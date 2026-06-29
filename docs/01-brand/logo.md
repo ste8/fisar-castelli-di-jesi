@@ -2,19 +2,34 @@
 
 ## Stato
 
-Il logo disponibile è raster.  
-Sarebbe utile ricostruirlo in formato vettoriale.
+Approvato come direzione brand v1.0.
 
-## Varianti desiderate
+## File di riferimento
 
-- Logo verticale.
-- Logo orizzontale.
-- Solo grappolo.
-- Versione monocromatica.
-- Versione chiara per sfondi scuri.
+```text
+assets/brand/brand-guideline-v1.png
+assets/logo-original/logo-fisar-cdj-originale.png
+```
 
-## Note
+## Decisioni approvate
 
-La versione orizzontale è particolarmente utile nell'header del sito.
+- Mantenere il grappolo FISAR.
+- Mantenere la linea tricolore.
+- Rendere più leggibile “Castelli di Jesi”.
+- Non includere nel logo la dicitura estesa “Federazione Italiana Sommelier Albergatori Ristoratori”.
+- Prevedere varianti verticale, orizzontale, compatta e solo simbolo.
 
-La scritta "Castelli di Jesi" dovrebbe essere resa più leggibile rispetto al file attuale, se si ricostruisce il logo.
+## Uso previsto
+
+- Logo verticale: documenti, footer, usi istituzionali.
+- Logo orizzontale: header del sito e layout orizzontali.
+- Logo compatto: spazi ridotti.
+- Solo simbolo: favicon, icone, avatar.
+
+## Regole
+
+- Non deformare.
+- Non cambiare colori.
+- Non ruotare.
+- Non aggiungere effetti.
+- Non rimuovere la linea tricolore dalle versioni complete.
