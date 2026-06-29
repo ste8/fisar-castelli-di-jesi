@@ -1,21 +1,13 @@
 # Palette
 
-## Colori principali
-
 | Nome | HEX | Uso |
 |---|---|---|
-| Gray Yellow / Oro FISAR | `#b9aa54` | accenti istituzionali, linee, bottoni |
+| Oro FISAR / Gray Yellow | `#b9aa54` | logo, accenti, linee, dettagli |
 | Crimson | `#b33c61` | accenti selettivi |
-| Dark Gray Purple | `#282332` | titoli e testo principale |
-| Black | `#000000` | uso limitato |
-| White | `#ffffff` | sfondo dominante |
+| Dark Gray Purple | `#282332` | testi e titoli |
+| Bianco | `#ffffff` | sfondo dominante |
+| Nero | `#000000` | uso limitato |
 
-## Direzione cromatica
+## Direzione
 
-La palette deve creare un effetto di eleganza calda:
-
-- bianco dominante;
-- bordeaux nelle fasce di cornice;
-- oro come accento;
-- testi scuri e leggibili;
-- locandine lasciate libere di portare colore.
+Eleganza calda: bianco dominante, oro istituzionale, bordeaux/crimson come accento e testi scuri morbidi.
