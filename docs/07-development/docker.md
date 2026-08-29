@@ -1,5 +1,12 @@
 # Docker
+Ambiente di sviluppo locale senza installare WordPress direttamente sul PC.
 
-Da definire.
+V1:
+- WordPress
+- database MariaDB/MySQL
+- volumi persistenti
+- mount di `plugin/` e `theme/`
+- configurazione via `.env` non versionato
+- `.env.example` versionato
 
-Obiettivo: ambiente WordPress locale riproducibile senza installare WordPress direttamente sul PC.
+Il sito pubblico FISAR non deve essere usato per lo sviluppo.

@@ -1,31 +1,12 @@
-# Navigazione
-
-## Menu principale
-
-- Eventi
-- Corsi
-- News
-- Carta dei Valori
-- Chi siamo
-- Contatti
-
-## CTA header
-
-- Unisciti a noi
-
+# Navigation
 ## Top bar
+Sinistra: payoff. Destra: Canale WhatsApp · Instagram · Facebook.
 
-Sinistra:
+## Header
+Logo orizzontale linkato alla Home.
+Menu: **Eventi · Corsi · News · Carta dei Valori · Chi siamo · Contatti**.
+CTA separata: **Unisciti a noi**.
+Nessuna voce Home.
 
-- Il vino come punto di partenza, le persone al centro.
-
-Destra:
-
-- Canale WhatsApp
-- Instagram
-- Facebook
-
-## Home
-
-La voce "Home" non compare nel menu.  
-Il logo linka alla homepage.
+## Footer
+Navigazione, contatti, WhatsApp, Instagram, Facebook, Newsletter, privacy/cookie.

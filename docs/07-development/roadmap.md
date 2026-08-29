@@ -1,22 +1,10 @@
 # Roadmap
+## Adesso
+Merge delle specifiche pre-implementazione.
 
-## Fase 1 — Progettazione
+## Subito dopo
+Implementazione V1 con Codex:
+Docker → plugin → tema → contenuti di test → review visiva/funzionale.
 
-- Documentazione fondativa
-- Brand
-- Homepage concept
-- Specifiche pagine
-- Specifiche CPT
-
-## Fase 2 — Setup tecnico
-
-- Docker
-- Struttura plugin
-- Struttura tema
-
-## Fase 3 — Implementazione
-
-- Plugin
-- Tema
-- Test accessibilità
-- Test responsive
+## Dopo la prima V1
+Affinamento iterativo di design, copy, responsive, accessibilità e backend sulla base del sito funzionante.
