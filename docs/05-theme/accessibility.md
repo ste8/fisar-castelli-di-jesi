@@ -1,11 +1,14 @@
 # Accessibilità
+Requisito dalla V1.
 
-## Requisiti
-
-- Contrasto adeguato.
-- Link e bottoni con testi espliciti.
-- Nessuna informazione solo tramite colore o icona.
-- Navigazione da tastiera.
-- Focus visibile.
-- Alt text per immagini informative.
-- Gerarchia corretta degli heading.
+- HTML semantico e gerarchia heading corretta.
+- Navigazione completa da tastiera.
+- Focus sempre visibile.
+- Contrasto verificato.
+- Nessuna informazione affidata solo al colore o alle icone.
+- Alt text per immagini informative; alt vuoto per decorative.
+- Link/CTA descrittivi, non serie di “Scopri di più”.
+- Target touch adeguati.
+- Form con label e messaggi errore accessibili.
+- Tabelle con intestazioni semantiche.
+- `prefers-reduced-motion` per eventuali animazioni.
