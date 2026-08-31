@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1880" viewBox="0 40 1600 1880">
+  <defs>
+    <style>.olive{fill:#b1a65d}.grape-triangle{fill:#fff}.dark{fill:#fff}.sub{fill:#fff;font-family:Arial,Helvetica,sans-serif;font-weight:400;letter-spacing:18px}.main{fill:#fff;font-family:Arial,Helvetica,sans-serif;font-weight:700}</style>
+    <mask id="grape-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="2000">
+      <rect width="2000" height="2000" fill="black"/>
+      <g fill="white"><circle cx="713" cy="505" r="161"/><circle cx="1000" cy="505" r="161"/><circle cx="1287" cy="505" r="161"/><circle cx="856" cy="738" r="161"/><circle cx="1144" cy="738" r="161"/><circle cx="1000" cy="970" r="161"/></g>
+      <g fill="black"><circle cx="713" cy="505" r="104"/><circle cx="1000" cy="505" r="104"/><circle cx="1287" cy="505" r="104"/><circle cx="856" cy="738" r="104"/><circle cx="1144" cy="738" r="104"/><circle cx="1000" cy="970" r="104"/></g>
+    </mask>
+  </defs>
+  <g transform="translate(-200,0)"><path d="M928 72 L1072 72 L1000 238 Z" class="grape-triangle"/><rect x="0" y="0" width="2000" height="2000" class="olive" mask="url(#grape-mask)"/><g class="main" font-size="270" text-anchor="middle"><text x="470" y="1518">F</text><text x="735" y="1518">I</text><text x="990" y="1518">S</text><text x="1260" y="1518">A</text><text x="1520" y="1518">R</text></g><rect x="361" y="1622" width="426" height="22" fill="#0a9f49"/><rect x="787" y="1622" width="426" height="22" fill="#f2f2f0"/><rect x="1213" y="1622" width="426" height="22" fill="#e31d2b"/><text x="1000" y="1798" text-anchor="middle" class="sub" font-size="108">CASTELLI DI JESI</text></g>
+</svg>
+

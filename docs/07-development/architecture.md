@@ -1,0 +1,47 @@
+# Architettura V1
+
+## Sintesi
+
+La V1 usa WordPress nativo, un plugin di dominio e un tema classico custom. Docker Compose orchestra WordPress, MariaDB e un container WP-CLI one-shot che installa il sito, attiva plugin e tema e carica i dati demo in modo idempotente.
+
+```text
+Browser
+  -> WordPress + tema fisar-cdj (presentazione)
+       -> API pubblica del plugin fisar-cdj-core
+            -> CPT, post meta, relazioni, regole temporali e import calendario
+                 -> MariaDB
+
+Docker Compose
+  -> database (persistente)
+  -> wordpress (core persistente, plugin/tema bind-mounted)
+  -> wordpress_cli (bootstrap e dati demo, termina dopo l'avvio)
+```
+
+## Responsabilità
+
+- `plugin/fisar-cdj-core/`: registra CPT e meta, gestisce metabox, sanitizzazione, relazione Evento → Corso, stati attivo/concluso, query di dominio, parsing TSV e dati demo.
+- `theme/fisar-cdj/`: HTML semantico, template, componenti, design token, asset ufficiali, responsive e interazioni progressive-enhancement.
+- `docker/`: stack locale e bootstrap riproducibile; nessuna logica applicativa.
+- `docs/`: specifiche e decisioni, inclusa questa descrizione dell'implementazione.
+
+Il tema usa funzioni pubbliche del plugin per le regole di stato e le query: non ricalcola date, relazioni o copy funzionale.
+
+## Dipendenze
+
+- WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).
+- MariaDB 11.4 LTS.
+- WP-CLI 2.12 per il bootstrap.
+- Nessun framework frontend, page builder, libreria JavaScript, font remoto o plugin di campi esterno.
+
+## Alternative considerate
+
+- ACF o framework custom fields: esclusi, perché i metabox nativi coprono i requisiti con meno dipendenze.
+- Tema a blocchi completo: escluso per la V1; i template PHP classici rendono più esplicito il contratto con il plugin e riducono la complessità editoriale iniziale.
+- Dati demo in dump SQL: esclusi; il comando WP-CLI idempotente è leggibile, versionabile e indipendente dagli ID del database.
+
+## Rischi e mitigazioni
+
+- Le immagini reali della Delegazione non sono ancora fornite: fallback illustrati locali e immagine in evidenza della homepage sostituibile dal backend.
+- I provider reali di newsletter e i profili social non sono specificati: navigazione e CTA demo restano modificabili con strumenti WordPress nativi, senza inventare integrazioni esterne.
+- Privacy e cookie policy demo non sono consulenza legale: sono marcate come bozze da sostituire prima della pubblicazione.
+
