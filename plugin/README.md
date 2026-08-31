@@ -1,12 +1,15 @@
 # Plugin WordPress
 
-Questa cartella conterrà il plugin custom del progetto.
+Il plugin installabile è `fisar-cdj-core/`.
 
-## Responsabilità
+Responsabilità:
 
-- CPT Eventi
-- CPT Corsi
-- Campi personalizzati
-- Relazione Evento → Corso
-- Import calendario lezioni
-- Logiche di business indipendenti dal tema
+- CPT Eventi e Corsi;
+- campi e metabox nativi;
+- sanitizzazione e salvataggio;
+- stati temporali e query pubbliche;
+- relazione Evento → Corso;
+- import TSV del calendario lezioni;
+- comando WP-CLI idempotente `wp fisar-cdj demo install`.
+
+Non contiene markup o regole di layout del frontend.

@@ -1,14 +1,7 @@
 # Tema WordPress
 
-Questa cartella conterrà il tema custom del sito.
+Il tema installabile è `fisar-cdj/`.
 
-## Responsabilità
+Include homepage, archivi e singoli Eventi/Corsi, archivio e singole News, pagine editoriali, header/footer, componenti, design token, menu mobile e stili responsive/accessibili.
 
-- Layout
-- Homepage
-- Template
-- Componenti UI
-- CSS
-- JavaScript
-- Responsive
-- Accessibilità
+Il tema dipende da `fisar-cdj-core` per dati e logiche di dominio. Non include framework, page builder, font remoti o librerie JavaScript esterne.

@@ -1,0 +1,47 @@
+.fisar-admin-grid {
+	display: grid;
+	gap: 1rem;
+	margin: 1rem 0;
+}
+
+.fisar-admin-grid--2,
+.fisar-admin-grid--4 {
+	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.fisar-field {
+	margin: 1rem 0;
+}
+
+.fisar-field label,
+.fisar-field > p:first-child {
+	display: block;
+	margin-bottom: .4rem;
+}
+
+.fisar-field--checkbox {
+	padding: .75rem;
+	background: #f6f7f7;
+	border-left: 4px solid #b9aa54;
+}
+
+.fisar-field--editor {
+	margin-top: 1.5rem;
+}
+
+.fisar-calendar-table-wrap {
+	overflow-x: auto;
+}
+
+#fisar-calendar-table {
+	min-width: 900px;
+}
+
+#fisar-calendar-table input {
+	width: 100%;
+}
+
+.fisar-conditional[hidden] {
+	display: none;
+}
+
