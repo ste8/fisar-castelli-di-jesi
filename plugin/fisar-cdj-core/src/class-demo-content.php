@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Fisar_CDJ_Demo_Content {
-	private const VERSION = '1.0.3';
+	private const VERSION = '1.1.2';
 	private const OPTION  = 'fisar_cdj_demo_version';
 
 	public static function init(): void {
@@ -171,7 +171,11 @@ HTML;
 			$ids[ $key ] = $post_id;
 		}
 
-		$hero = self::create_demo_attachment( 'hero', 'Il vino come punto di partenza', 'Le persone al centro', 'landscape', '#32141c', '#b9aa54' );
+		$hero = self::create_bundled_attachment(
+			'hero-convivialita-webp',
+			'Un momento conviviale di degustazione',
+			FISAR_CDJ_CORE_DIR . 'assets/demo/hero-convivialita-demo.webp'
+		);
 		if ( is_wp_error( $hero ) ) {
 			return $hero;
 		}
@@ -247,6 +251,82 @@ HTML;
 		}
 		self::set_featured_asset( $active, $active_image );
 
+		$additional_active_definitions = array(
+			array(
+				'key'      => 'course-second-level-active',
+				'title'    => 'Corso Sommelier FISAR — 2° livello',
+				'slug'     => 'corso-sommelier-secondo-livello',
+				'level'    => '2',
+				'director' => 'Paolo Mancini',
+				'start'    => 48,
+				'end'      => 188,
+				'excerpt'  => 'Approfondisci territori, vitigni e denominazioni per leggere ogni vino nel suo contesto.',
+				'content'  => '<p>Un percorso dedicato alla geografia del vino italiana e internazionale. Le lezioni uniscono territorio, storia, denominazioni e degustazione comparata.</p>',
+				'colors'   => array( '#493226', '#c99a52' ),
+			),
+			array(
+				'key'      => 'course-third-level-active',
+				'title'    => 'Corso Sommelier FISAR — 3° livello',
+				'slug'     => 'corso-sommelier-terzo-livello',
+				'level'    => '3',
+				'director' => 'Elena Conti',
+				'start'    => 72,
+				'end'      => 212,
+				'excerpt'  => 'Tecnica dell’abbinamento tra cibo e vino, dalla teoria alla tavola.',
+				'content'  => '<p>Il livello conclusivo del percorso FISAR è dedicato all’abbinamento. Esercitazioni, assaggi e confronto aiutano a trasformare il metodo in una competenza concreta.</p>',
+				'colors'   => array( '#39412d', '#b9aa54' ),
+			),
+		);
+		$additional_active_ids = array();
+		foreach ( $additional_active_definitions as $definition ) {
+			$course_id = self::upsert_post(
+				$definition['key'],
+				array(
+					'post_type'    => Fisar_CDJ_Post_Types::COURSE,
+					'post_status'  => 'publish',
+					'post_title'   => $definition['title'],
+					'post_name'    => $definition['slug'],
+					'post_excerpt' => $definition['excerpt'],
+					'post_content' => $definition['content'],
+				)
+			);
+			if ( is_wp_error( $course_id ) ) {
+				return $course_id;
+			}
+
+			$course_start = $now->modify( sprintf( '+%d days', $definition['start'] ) );
+			$course_end   = $now->modify( sprintf( '+%d days', $definition['end'] ) );
+			self::set_meta(
+				$course_id,
+				array(
+					'_fisar_course_director'           => $definition['director'],
+					'_fisar_course_level'              => $definition['level'],
+					'_fisar_course_start_date'         => $course_start->format( 'Y-m-d' ),
+					'_fisar_course_end_date'           => $course_end->format( 'Y-m-d' ),
+					'_fisar_course_venue'              => 'Sala del Gusto',
+					'_fisar_course_address'            => 'Via delle Cantine 8',
+					'_fisar_course_city'               => 'Jesi',
+					'_fisar_course_province'           => 'AN',
+					'_fisar_course_email'              => 'corsi@fisarcastellidijesi.it',
+					'_fisar_course_form_url'           => home_url( '/contatti/' ),
+					'_fisar_course_deadline'           => $course_start->modify( '-7 days' )->format( 'Y-m-d' ),
+					'_fisar_course_deadline_type'      => 'flexible',
+					'_fisar_course_registration_notes' => '<p>Contattaci per verificare i requisiti di accesso e ricevere il programma completo.</p>',
+					'_fisar_course_fee'                => '<p>Quota e modalità di pagamento disponibili su richiesta.</p>',
+					'_fisar_course_membership'         => '<p>È richiesto il tesseramento FISAR per l’anno in corso.</p>',
+					'_fisar_course_includes'           => '<p>Materiali didattici, vini in degustazione e attestato finale.</p>',
+					'_fisar_course_calendar'           => array(),
+				)
+			);
+
+			$image_id = self::create_demo_attachment( $definition['key'], $definition['title'], $definition['level'] . '° livello · Jesi', 'landscape', $definition['colors'][0], $definition['colors'][1] );
+			if ( is_wp_error( $image_id ) ) {
+				return $image_id;
+			}
+			self::set_featured_asset( $course_id, $image_id );
+			$additional_active_ids[] = $course_id;
+		}
+
 		$past_start = $now->modify( '-210 days' );
 		$past_end   = $now->modify( '-70 days' );
 		$past = self::upsert_post(
@@ -285,7 +365,11 @@ HTML;
 		}
 		self::set_featured_asset( $past, $past_image );
 
-		return array( 'active' => $active, 'past' => $past );
+		return array(
+			'active'            => $active,
+			'additional_active' => $additional_active_ids,
+			'past'              => $past,
+		);
 	}
 
 	private static function create_events( array $courses ): array|WP_Error {
@@ -471,7 +555,7 @@ HTML;
 				$definition['meta']
 			);
 			self::set_meta( $post_id, $meta );
-			$image_id = self::create_demo_attachment( $definition['key'], $definition['title'], wp_date( 'j F Y', $event_date->getTimestamp() ), 'poster', $definition['colors'][0], $definition['colors'][1] );
+			$image_id = self::create_demo_attachment( $definition['key'] . '-square', $definition['title'], wp_date( 'j F Y', $event_date->getTimestamp() ), 'square', $definition['colors'][0], $definition['colors'][1] );
 			if ( is_wp_error( $image_id ) ) {
 				return $image_id;
 			}
@@ -592,24 +676,32 @@ HTML;
 	}
 
 	private static function set_featured_asset( int $post_id, int $attachment_id ): void {
-		// SVG demo locali e fidati: WordPress non genera metadata raster, quindi
-		// impostiamo direttamente la relazione. Il tema legge l'URL originale.
+		// Impostazione diretta per mantenere idempotente l'aggiornamento dei demo.
 		update_post_meta( $post_id, '_thumbnail_id', $attachment_id );
 	}
 
-	private static function create_demo_attachment( string $key, string $title, string $subtitle, string $format, string $background, string $accent ): int|WP_Error {
-		$existing = get_posts(
-			array(
-				'post_type'      => 'attachment',
-				'post_status'    => 'inherit',
-				'posts_per_page' => 1,
-				'fields'         => 'ids',
-				'meta_key'       => '_fisar_demo_asset_key',
-				'meta_value'     => $key,
-			)
-		);
+	private static function create_bundled_attachment( string $key, string $title, string $source_path ): int|WP_Error {
+		$existing = self::find_demo_attachment( $key );
 		if ( $existing ) {
-			return (int) $existing[0];
+			return $existing;
+		}
+
+		if ( ! is_readable( $source_path ) ) {
+			return new WP_Error( 'fisar_demo_asset_missing', 'L’immagine demo inclusa nel plugin non è leggibile.' );
+		}
+
+		$contents = file_get_contents( $source_path );
+		if ( false === $contents ) {
+			return new WP_Error( 'fisar_demo_asset_read', 'Impossibile leggere l’immagine demo inclusa nel plugin.' );
+		}
+
+		return self::store_demo_attachment( $key, $title, $contents, pathinfo( $source_path, PATHINFO_EXTENSION ) );
+	}
+
+	private static function create_demo_attachment( string $key, string $title, string $subtitle, string $format, string $background, string $accent ): int|WP_Error {
+		$existing = self::find_demo_attachment( $key );
+		if ( $existing ) {
+			return $existing;
 		}
 
 		if ( ! function_exists( 'imagecreatetruecolor' ) ) {
@@ -617,8 +709,9 @@ HTML;
 		}
 
 		$is_poster = 'poster' === $format;
-		$width     = $is_poster ? 900 : 1200;
-		$height    = $is_poster ? 1200 : 760;
+		$is_square = 'square' === $format;
+		$width     = $is_poster || $is_square ? 900 : 1200;
+		$height    = $is_poster ? 1200 : ( $is_square ? 900 : 760 );
 		$image     = imagecreatetruecolor( $width, $height );
 		if ( false === $image ) {
 			return new WP_Error( 'fisar_demo_image', 'Impossibile inizializzare l’immagine demo.' );
@@ -677,14 +770,42 @@ HTML;
 		$png = (string) ob_get_clean();
 		imagedestroy( $image );
 
-		$upload = wp_upload_bits( 'fisar-demo-' . sanitize_file_name( $key ) . '.png', null, $png );
+		return self::store_demo_attachment( $key, $title, $png );
+	}
+
+	private static function find_demo_attachment( string $key ): int {
+		$existing = get_posts(
+			array(
+				'post_type'      => 'attachment',
+				'post_status'    => 'inherit',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'meta_key'       => '_fisar_demo_asset_key',
+				'meta_value'     => $key,
+			)
+		);
+
+		return $existing ? (int) $existing[0] : 0;
+	}
+
+	private static function store_demo_attachment( string $key, string $title, string $contents, string $extension = 'png' ): int|WP_Error {
+		$mime_types = array(
+			'png'  => 'image/png',
+			'webp' => 'image/webp',
+		);
+		$extension = strtolower( $extension );
+		if ( ! isset( $mime_types[ $extension ] ) ) {
+			return new WP_Error( 'fisar_demo_asset_type', 'Il formato dell’immagine demo non è supportato.' );
+		}
+
+		$upload = wp_upload_bits( 'fisar-demo-' . sanitize_file_name( $key ) . '.' . $extension, null, $contents );
 		if ( ! empty( $upload['error'] ) ) {
 			return new WP_Error( 'fisar_demo_upload', $upload['error'] );
 		}
 
 		$attachment_id = wp_insert_attachment(
 			array(
-				'post_mime_type' => 'image/png',
+				'post_mime_type' => $mime_types[ $extension ],
 				'post_title'     => wp_strip_all_tags( $title ),
 				'post_status'    => 'inherit',
 			),

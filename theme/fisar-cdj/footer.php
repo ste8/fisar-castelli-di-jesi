@@ -6,8 +6,8 @@
 <footer class="site-footer">
 	<div class="container footer-grid">
 		<div class="footer-brand">
-			<?php fisar_cdj_theme_logo( true ); ?>
-			<p>Una comunità competente, accogliente, curiosa e conviviale.</p>
+			<?php fisar_cdj_theme_logo(); ?>
+			<p>Federazione Italiana Sommelier Albergatori Ristoratori</p>
 		</div>
 		<div>
 			<h2 class="footer-title">Navigazione</h2>
@@ -35,7 +35,7 @@
 		<div class="footer-newsletter">
 			<h2 class="footer-title">Resta aggiornato</h2>
 			<p>Eventi, corsi e racconti della Delegazione, senza rumore.</p>
-			<a class="button button--light" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'contatti' ) ); ?>">Richiedi gli aggiornamenti</a>
+			<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'contatti' ) ); ?>">Richiedi gli aggiornamenti</a>
 			<?php if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="footer-social" aria-label="Canali social nel footer">
 					<?php wp_nav_menu( array( 'theme_location' => 'social', 'container' => false, 'depth' => 1, 'fallback_cb' => false ) ); ?>
@@ -53,4 +53,3 @@
 <?php wp_footer(); ?>
 </body>
 </html>
-
