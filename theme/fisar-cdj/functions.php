@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.1.0' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.2.0' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -44,6 +44,28 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'fisar_cdj_theme_assets' );
+
+/**
+ * Precarica i due file variabili usati above-the-fold.
+ *
+ * Ogni file contiene soltanto il subset latino e l'intervallo di pesi ammesso
+ * dalla specifica, evitando richieste a servizi esterni durante la navigazione.
+ */
+function fisar_cdj_theme_preload_fonts(): void {
+	$font_base_url = get_template_directory_uri() . '/assets/fonts/';
+	$fonts         = array(
+		$font_base_url . 'cormorant-garamond/cormorant-garamond-latin-600-700.woff2',
+		$font_base_url . 'inter/inter-latin-400-700.woff2',
+	);
+
+	foreach ( $fonts as $font_url ) {
+		printf(
+			'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+			esc_url( $font_url )
+		);
+	}
+}
+add_action( 'wp_head', 'fisar_cdj_theme_preload_fonts', 1 );
 
 function fisar_cdj_theme_admin_notice(): void {
 	if ( current_user_can( 'activate_plugins' ) && ! class_exists( 'Fisar_CDJ_Post_Types' ) ) {
