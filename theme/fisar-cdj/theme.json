@@ -24,13 +24,13 @@
       "fluid": true,
       "fontFamilies": [
         {
-          "fontFamily": "Georgia, 'Times New Roman', serif",
-          "name": "Titoli FISAR",
+          "fontFamily": "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+          "name": "Cormorant Garamond",
           "slug": "fisar-heading"
         },
         {
-          "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-          "name": "Testo FISAR",
+          "fontFamily": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          "name": "Inter",
           "slug": "fisar-body"
         }
       ]
@@ -43,13 +43,14 @@
     },
     "typography": {
       "fontFamily": "var(--wp--preset--font-family--fisar-body)",
-      "lineHeight": "1.65"
+      "fontWeight": "400",
+      "lineHeight": "1.6"
     },
     "elements": {
       "heading": {
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--fisar-heading)",
-          "fontWeight": "500",
+          "fontWeight": "600",
           "lineHeight": "1.15"
         }
       },
@@ -59,4 +60,3 @@
     }
   }
 }
-

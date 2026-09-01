@@ -13,7 +13,7 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 
 ## Scelte per dettagli aperti
 
-- Tipografia: Georgia per titoli e testi, con stack system sans-serif riservato alle micro-label. La specifica la lascia da definire; la soluzione evita download esterni e segue meglio il tono editoriale del concept.
+- Tipografia: dal 31 agosto 2026 `docs/01-brand/typography.md` è approvato e prevale sulla precedente assunzione. Il tema usa Cormorant Garamond `600–700` per titoli/display e Inter `400–700` per corpo e UI, con file WOFF2 self-hosted e subset latino.
 - Hero: usa l'immagine in evidenza della homepage quando presente e un'illustrazione locale come fallback. I dati demo importano una fotografia generata, calda e conviviale, dichiaratamente sostituibile con una fotografia reale della Delegazione; il mockup non viene ritagliato né riutilizzato come sorgente.
 - Immagini demo: il paesaggio della fascia Valori è un asset decorativo generato. Le locandine demo degli Eventi sono quadrate; le locandine reali non vengono ritagliate aggressivamente perché il tema conserva `object-fit: contain`.
 - Iconografia: social, Quattro Porte e Valori usano SVG minimali inclusi nel tema, decorativi e accompagnati da label testuali accessibili.

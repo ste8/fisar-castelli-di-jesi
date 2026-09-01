@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2
+
+- Allineata la tipografia alla specifica approvata: Cormorant Garamond per titoli/display e Inter per corpo e UI.
+- Aggiunti font WOFF2 self-hosted, licenze OFL, `font-display: swap` e preload dei due file indispensabili above-the-fold.
+- Uniformati scala, pesi, interlinee e larghezza dei testi editoriali nei componenti frontend e nell'editor WordPress.
+
 ## v1.1
 
 - Riallineata la homepage al concept approvato dopo confronto visuale a 1024 px.
