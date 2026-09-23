@@ -11,7 +11,6 @@
 		<p class="news-card__date"><time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time></p>
 		<h3 class="news-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 		<p><?php echo esc_html( get_the_excerpt() ); ?></p>
-		<a class="text-link" href="<?php the_permalink(); ?>">Leggi “<?php echo esc_html( get_the_title() ); ?>” <span aria-hidden="true">→</span></a>
+		<a class="text-link" href="<?php the_permalink(); ?>">Leggi l’articolo<span class="screen-reader-text">: <?php echo esc_html( get_the_title() ); ?></span> <span aria-hidden="true">→</span></a>
 	</div>
 </article>
-

@@ -296,7 +296,7 @@ blockquote {
 	stroke-width: 3.2;
 }
 
-.text-link span {
+.text-link > span[aria-hidden="true"] {
 	margin-left: .4rem;
 }
 
@@ -729,6 +729,7 @@ blockquote {
 }
 
 .event-grid--home .event-card__media {
+	background: var(--color-paper);
 	padding: .35rem;
 }
 
@@ -741,8 +742,23 @@ blockquote {
 	font-size: .875rem;
 }
 
-.event-grid--home .event-card__title {
+.event-grid--home .event-card__date--compact {
+	display: inline-flex;
+	align-items: center;
+	white-space: nowrap;
+	gap: .35rem;
+}
+
+.event-card__date-icon {
+	width: .95rem;
+	height: .95rem;
+}
+
+.event-grid--home .event-card__title,
+.course-grid--home .course-card__title,
+.news-grid--home .news-card__title {
 	font-size: 1.375rem;
+	font-weight: 700;
 }
 
 .event-grid--home .event-card__excerpt {
@@ -762,8 +778,9 @@ blockquote {
 }
 
 .course-grid--home .course-card__media {
-	height: 100%;
-	aspect-ratio: auto;
+	height: auto;
+	aspect-ratio: 1;
+	align-self: start;
 }
 
 .course-grid--home .course-card__body {
@@ -778,17 +795,6 @@ blockquote {
 
 .course-grid--home .course-card__title {
 	margin-bottom: .3rem;
-	font-size: 1.375rem;
-}
-
-.course-grid--home .course-card__body > p {
-	display: -webkit-box;
-	margin-bottom: .35rem;
-	overflow: hidden;
-	font-size: var(--font-size-base);
-	line-height: var(--line-height-body);
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
 }
 
 .section--home-news {
@@ -924,10 +930,6 @@ blockquote {
 
 .news-grid--home .news-card__date {
 	font-size: .875rem;
-}
-
-.news-grid--home .news-card__title {
-	font-size: 1.375rem;
 }
 
 .news-grid--home .news-card__body > p:not(.news-card__date) {
@@ -1895,7 +1897,7 @@ blockquote {
 	}
 
 	.event-grid--home {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.course-grid--home {
