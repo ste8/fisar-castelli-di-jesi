@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.3.0' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.4.0' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -95,6 +95,7 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		'whatsapp' => '<path d="M20.5 11.8a8.3 8.3 0 0 1-12.3 7.3L3.5 20.5l1.4-4.6A8.3 8.3 0 1 1 20.5 11.8Z"/><path d="M8.2 7.8c.2-.5.4-.5.8-.5h.5l1 2.3-.8 1c.8 1.7 2 2.8 3.7 3.6l1-.9 2.3 1.1v.5c0 .5-.1.8-.5 1.1-.6.5-1.5.7-2.3.5-3.7-1-6.5-3.8-7.4-7.4-.2-.5.2-1 .7-1.3Z"/>',
 		'instagram' => '<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r=".8" class="icon__fill"/>',
 		'facebook'  => '<path d="M13.7 20.5v-7.7h2.7l.4-3h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.8c-.8-.1-1.6-.2-2.4-.2-2.4 0-4.1 1.5-4.1 4.2v2H7.8v3h2.7v7.7"/>',
+		'mail'      => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
 		'calendar'  => '<rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10h16"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01" class="icon__dots"/>',
 		'course'    => '<path d="m2.5 9 9.5-5 9.5 5-9.5 5-9.5-5Z"/><path d="M6.5 11.2v5.1c2.9 2.2 8.1 2.2 11 0v-5.1M21.5 9v6"/>',
 		'members'   => '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20v-2.2c0-3 2.4-5.4 5.4-5.4s5.4 2.4 5.4 5.4V20"/><circle cx="17" cy="9" r="2.4"/><path d="M15.7 13.2c.5-.2 1-.3 1.5-.3 2.4 0 4.3 2 4.3 4.4V20h-4.8"/>',
@@ -116,6 +117,25 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 }
 
 /**
+ * Identifica un canale social dal testo configurato nel menu WordPress.
+ */
+function fisar_cdj_theme_social_network( string $title ): string {
+	$normalized = strtolower( remove_accents( wp_strip_all_tags( $title ) ) );
+
+	if ( str_contains( $normalized, 'whatsapp' ) ) {
+		return 'whatsapp';
+	}
+	if ( str_contains( $normalized, 'instagram' ) ) {
+		return 'instagram';
+	}
+	if ( str_contains( $normalized, 'facebook' ) ) {
+		return 'facebook';
+	}
+
+	return '';
+}
+
+/**
  * Aggiunge l'icona del canale mantenendo la label testuale del menu.
  */
 function fisar_cdj_theme_social_menu_title( string $title, WP_Post $item, stdClass $args, int $depth ): string {
@@ -123,13 +143,75 @@ function fisar_cdj_theme_social_menu_title( string $title, WP_Post $item, stdCla
 		return $title;
 	}
 
-	$normalized = strtolower( remove_accents( wp_strip_all_tags( $title ) ) );
-	$network    = str_contains( $normalized, 'whatsapp' ) ? 'whatsapp' : ( str_contains( $normalized, 'instagram' ) ? 'instagram' : ( str_contains( $normalized, 'facebook' ) ? 'facebook' : '' ) );
-	$label      = esc_html( wp_strip_all_tags( $title ) );
+	$network = fisar_cdj_theme_social_network( $title );
+	$label   = esc_html( wp_strip_all_tags( $title ) );
 
 	return $network ? fisar_cdj_theme_icon( $network, 'social-link__icon' ) . '<span>' . $label . '</span>' : $label;
 }
 add_filter( 'nav_menu_item_title', 'fisar_cdj_theme_social_menu_title', 10, 4 );
+
+/**
+ * Restituisce i canali configurati per il componente "Resta aggiornato".
+ */
+function fisar_cdj_theme_follow_channels( string $newsletter_url ): array {
+	$definitions = array(
+		'whatsapp' => array(
+			'title'       => 'WhatsApp',
+			'description' => 'Avvisi rapidi su eventi, posti disponibili e nuove iscrizioni.',
+			'cta'         => 'Segui il canale WhatsApp',
+		),
+		'instagram' => array(
+			'title'       => 'Instagram',
+			'description' => 'Foto, storie e momenti vissuti insieme alla Delegazione.',
+			'cta'         => 'Seguici su Instagram',
+		),
+		'facebook' => array(
+			'title'       => 'Facebook',
+			'description' => 'Eventi, comunicazioni e vita della nostra comunità.',
+			'cta'         => 'Seguici su Facebook',
+		),
+	);
+	$urls        = array();
+	$locations   = get_nav_menu_locations();
+	$menu_id     = isset( $locations['social'] ) ? (int) $locations['social'] : 0;
+	$menu_items  = $menu_id ? wp_get_nav_menu_items( $menu_id ) : array();
+
+	foreach ( $menu_items ?: array() as $item ) {
+		if ( (int) $item->menu_item_parent > 0 ) {
+			continue;
+		}
+		$network = fisar_cdj_theme_social_network( $item->title );
+		if ( $network && isset( $definitions[ $network ] ) && ! isset( $urls[ $network ] ) ) {
+			$urls[ $network ] = $item->url;
+		}
+	}
+
+	$channels = array();
+	foreach ( $definitions as $network => $definition ) {
+		if ( ! isset( $urls[ $network ] ) ) {
+			continue;
+		}
+		$channels[] = array_merge(
+			$definition,
+			array(
+				'key'  => $network,
+				'icon' => $network,
+				'url'  => $urls[ $network ],
+			)
+		);
+	}
+
+	$channels[] = array(
+		'key'         => 'newsletter',
+		'icon'        => 'mail',
+		'title'       => 'Newsletter',
+		'description' => 'Un riepilogo periodico con le novità più importanti.',
+		'cta'         => 'Iscriviti alla newsletter',
+		'url'         => $newsletter_url,
+	);
+
+	return $channels;
+}
 
 function fisar_cdj_theme_page_url( string $slug ): string {
 	$page = get_page_by_path( $slug );

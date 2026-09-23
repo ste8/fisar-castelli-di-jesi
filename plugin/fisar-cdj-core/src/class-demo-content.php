@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Fisar_CDJ_Demo_Content {
-	private const VERSION = '1.1.2';
+	private const VERSION = '1.2.0';
 	private const OPTION  = 'fisar_cdj_demo_version';
 
 	public static function init(): void {
@@ -116,6 +116,12 @@ HTML;
 				'slug'    => 'news',
 				'content' => '<p>Racconti, aggiornamenti e vita della Delegazione.</p>',
 			),
+			'follow' => array(
+				'title'   => 'Resta aggiornato',
+				'slug'    => 'resta-aggiornato',
+				'excerpt' => 'Scegli il canale che preferisci per seguire eventi, corsi e vita della Delegazione.',
+				'content' => '<p class="lead">WhatsApp, Instagram, Facebook e newsletter raccontano la Delegazione con tempi e formati diversi. Scegli uno o più canali per non perdere le prossime iniziative.</p>',
+			),
 			'values' => array(
 				'title'   => 'Carta dei Valori',
 				'slug'    => 'carta-dei-valori',
@@ -143,7 +149,7 @@ HTML;
 			'privacy' => array(
 				'title'   => 'Privacy Policy',
 				'slug'    => 'privacy-policy',
-				'content' => '<p><strong>Bozza dimostrativa.</strong> Prima della pubblicazione, sostituire questa pagina con l’informativa validata dal titolare del trattamento e coerente con i servizi effettivamente attivati.</p>',
+				'content' => '<p><strong>Bozza dimostrativa.</strong> Prima della pubblicazione, sostituire questa pagina con l’informativa validata dal titolare del trattamento e coerente con i servizi effettivamente attivati.</p><p>Il modulo newsletter trasmette a Mailchimp nome, cognome e indirizzo email soltanto quando la persona richiede volontariamente l’iscrizione. Documentare finalità, base giuridica, tempi di conservazione, responsabili del trattamento e modalità di esercizio dei diritti.</p>',
 			),
 			'cookies' => array(
 				'title'   => 'Cookie Policy',
@@ -619,6 +625,7 @@ HTML;
 		self::ensure_menu_item( $primary, 'Eventi', get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) ?: home_url( '/eventi/' ), 10 );
 		self::ensure_menu_item( $primary, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
 		self::ensure_menu_item( $primary, 'News', get_permalink( $pages['news'] ), 30 );
+		self::ensure_menu_item( $primary, 'Resta aggiornato', get_permalink( $pages['follow'] ), 35 );
 		self::ensure_menu_item( $primary, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
 		self::ensure_menu_item( $primary, 'Chi siamo', get_permalink( $pages['about'] ), 50 );
 		self::ensure_menu_item( $primary, 'Contatti', get_permalink( $pages['contacts'] ), 60 );
@@ -628,6 +635,7 @@ HTML;
 		self::ensure_menu_item( $footer, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
 		self::ensure_menu_item( $footer, 'News', get_permalink( $pages['news'] ), 30 );
 		self::ensure_menu_item( $footer, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
+		self::ensure_menu_item( $footer, 'Resta aggiornato', get_permalink( $pages['follow'] ), 45 );
 		self::ensure_menu_item( $footer, 'Privacy Policy', get_permalink( $pages['privacy'] ), 50 );
 		self::ensure_menu_item( $footer, 'Cookie Policy', get_permalink( $pages['cookies'] ), 60 );
 

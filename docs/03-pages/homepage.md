@@ -3,11 +3,11 @@
 1. Top bar + Header
 2. Hero
 3. Le Quattro Porte
-4. Prossimi Eventi
-5. I nostri Corsi
-6. Ultime News
-7. Carta dei Valori
-8. Newsletter
+4. Resta aggiornato
+5. Prossimi Eventi
+6. I nostri Corsi
+7. Ultime News
+8. Carta dei Valori
 9. Footer
 
 ## Hero
@@ -24,3 +24,14 @@ CTA: Scopri gli eventi · Scopri i corsi. Fotografia calda, preferibilmente real
 **Carta dei Valori** — “I principi che guidano ogni nostra attività e scelta.” → Leggi la Carta dei Valori
 
 Prossimi Eventi: futuri ASC. Corsi: attivi. News: ultime pubblicazioni.
+
+## Resta aggiornato
+
+Sezione ad alta visibilità subito dopo le Quattro Porte. Presenta quattro canali con CTA esplicite:
+
+- Canale WhatsApp;
+- Instagram;
+- Facebook;
+- Newsletter Mailchimp.
+
+Le CTA social usano gli URL del menu WordPress `social`. La newsletter usa un form HTML integrato nello stile del tema e invia nome, cognome ed email direttamente a Mailchimp, senza salvare i dati in WordPress e senza caricare CSS o JavaScript remoti. La sezione rimanda anche alla pagina dedicata `Resta aggiornato`.

@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4
+
+- Aggiunta in homepage la sezione ad alta visibilità `Resta aggiornato`, con accesso diretto a WhatsApp, Instagram, Facebook e Newsletter.
+- Creata la pagina dedicata `Resta aggiornato` e aggiunti i relativi collegamenti a menu principale e footer.
+- Integrato il form Mailchimp fornito con markup accessibile, validazione nativa, honeypot anti-bot e senza dipendenze frontend remote.
+- Centralizzata nel plugin la configurazione pubblica del form, mantenendo markup e stile nel tema.
+- Adeguato il breakpoint del menu e delle card canale per mantenere spaziatura e leggibilità anche a 1024 px.
+- Aggiornata la versione del tema a `1.4.0` anche nei metadati WordPress.
+
 ## v1.3
 
 - Portati a due gli Eventi mostrati in homepage, con locandine più grandi, fondo bianco e data compatta su una riga.
