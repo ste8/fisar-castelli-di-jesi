@@ -116,11 +116,13 @@ Nel box **Calendario lezioni** di un Corso:
 
 Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I dati vengono salvati come righe strutturate, non come HTML.
 
-### News e pagine
+### News, canali e pagine
 
-Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, Chi siamo, Contatti e Unisciti a noi sono pagine native modificabili con l’editor.
+Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, Chi siamo, Contatti, Unisciti a noi e Resta aggiornato sono pagine native modificabili con l’editor.
 
 I canali social sono un menu WordPress dedicato in **Aspetto → Menu**.
+
+La newsletter usa il form Mailchimp fornito: nome, cognome ed email vengono inviati direttamente a Mailchimp e non salvati in WordPress. Il frontend non carica CSS o JavaScript Mailchimp.
 
 ## Dati demo
 

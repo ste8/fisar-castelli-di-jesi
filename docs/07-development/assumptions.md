@@ -19,5 +19,5 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 - Iconografia: social, Quattro Porte e Valori usano SVG minimali inclusi nel tema, decorativi e accompagnati da label testuali accessibili.
 - News: usa i post WordPress nativi; non viene creato un terzo CPT.
 - Social: usa un menu WordPress dedicato. I link demo sono esplicitamente sostituibili, evitando campi custom non previsti.
-- Newsletter: nella V1 è una CTA accessibile verso i Contatti; non vengono memorizzati indirizzi né simulate integrazioni con provider non specificati.
+- Newsletter: dal 23 settembre 2026 il provider indicato è Mailchimp. Il tema usa il form embedded fornito, ripulito da CSS, JavaScript e badge remoti; nome, cognome ed email vengono trasmessi direttamente a Mailchimp e non memorizzati in WordPress. Il metodo di opt-in è gestito nell’Audience Mailchimp; prima della pubblicazione vanno verificati double opt-in, messaggi di conferma e informativa privacy.
 - Pagine legali: contenuti demo chiaramente indicati come bozze, da validare prima della pubblicazione.

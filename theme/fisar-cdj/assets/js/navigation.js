@@ -34,9 +34,8 @@
 	});
 
 	window.addEventListener('resize', function () {
-		if (window.matchMedia('(min-width: 64rem)').matches) {
+		if (window.matchMedia('(min-width: 70rem)').matches) {
 			closeMenu();
 		}
 	});
 }());
-

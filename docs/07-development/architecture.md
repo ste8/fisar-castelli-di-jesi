@@ -32,6 +32,7 @@ Il tema usa funzioni pubbliche del plugin per le regole di stato e le query: non
 - MariaDB 11.4 LTS.
 - WP-CLI 2.12 per il bootstrap.
 - Nessun framework frontend, page builder, libreria JavaScript, font remoto o plugin di campi esterno.
+- La newsletter invia i dati direttamente al form Mailchimp tramite HTTPS: configurazione e identificativi pubblici appartengono al plugin, mentre markup e presentazione restano nel tema. Non sono usate API key né librerie Mailchimp a runtime.
 
 ## Alternative considerate
 
@@ -42,6 +43,5 @@ Il tema usa funzioni pubbliche del plugin per le regole di stato e le query: non
 ## Rischi e mitigazioni
 
 - Le immagini reali della Delegazione non sono ancora fornite: fallback illustrati locali e immagine in evidenza della homepage sostituibile dal backend.
-- I provider reali di newsletter e i profili social non sono specificati: navigazione e CTA demo restano modificabili con strumenti WordPress nativi, senza inventare integrazioni esterne.
+- I profili social reali non sono ancora forniti: gli URL demo restano sostituibili dal menu WordPress dedicato. Per la newsletter è invece autorevole il form Mailchimp consegnato il 23 settembre 2026.
 - Privacy e cookie policy demo non sono consulenza legale: sono marcate come bozze da sostituire prima della pubblicazione.
-

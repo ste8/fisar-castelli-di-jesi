@@ -193,3 +193,23 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 	return $channels;
 }
 
+/**
+ * Restituisce la configurazione pubblica del modulo newsletter Mailchimp.
+ *
+ * Gli identificativi del form non sono credenziali: servono esclusivamente a
+ * indirizzare l'iscrizione verso l'Audience corretta. Nessuna API key viene
+ * esposta o richiesta dal frontend.
+ */
+function fisar_cdj_get_newsletter_signup_config(): array {
+	$config = array(
+		'action'         => 'https://fisarcastellidijesi.us18.list-manage.com/subscribe/post?u=5a46e5d06783143549e3d9323&id=d1d5b0068e&f_id=00beade6f0',
+		'honeypot_name' => 'b_5a46e5d06783143549e3d9323_d1d5b0068e',
+	);
+
+	/**
+	 * Permette di sostituire la configurazione senza modificare il tema.
+	 *
+	 * @param array{action:string,honeypot_name:string} $config Configurazione del form.
+	 */
+	return apply_filters( 'fisar_cdj_newsletter_signup_config', $config );
+}
