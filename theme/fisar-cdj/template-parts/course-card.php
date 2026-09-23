@@ -3,6 +3,7 @@
  * Card corso; usa il post globale.
  */
 $course_id = get_the_ID();
+$is_home_card = isset( $args['context'] ) && 'home' === $args['context'];
 $level     = (string) get_post_meta( $course_id, '_fisar_course_level', true );
 $start     = (string) get_post_meta( $course_id, '_fisar_course_start_date', true );
 $end       = (string) get_post_meta( $course_id, '_fisar_course_end_date', true );
@@ -21,8 +22,7 @@ $active    = function_exists( 'fisar_cdj_is_course_active' ) && fisar_cdj_is_cou
 		<h3 class="course-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 		<?php if ( $start && $end ) : ?><p class="course-card__dates"><?php echo esc_html( fisar_cdj_theme_format_date( $start ) ); ?> – <?php echo esc_html( fisar_cdj_theme_format_date( $end ) ); ?></p><?php endif; ?>
 		<?php if ( '' !== $city ) : ?><p class="course-card__place"><?php echo esc_html( $city ); ?></p><?php endif; ?>
-		<p><?php echo esc_html( get_the_excerpt() ); ?></p>
-		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli del corso <span aria-hidden="true">→</span></a>
+		<?php if ( ! $is_home_card ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
+		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli corso<span class="screen-reader-text">: <?php echo esc_html( get_the_title() ); ?></span> <span aria-hidden="true">→</span></a>
 	</div>
 </article>
-

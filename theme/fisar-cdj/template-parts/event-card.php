@@ -3,6 +3,7 @@
  * Card evento; usa il post globale.
  */
 $event_id = get_the_ID();
+$is_home_card = isset( $args['context'] ) && 'home' === $args['context'];
 $date     = (string) get_post_meta( $event_id, '_fisar_event_date', true );
 $venue    = (string) get_post_meta( $event_id, '_fisar_event_venue', true );
 $city     = (string) get_post_meta( $event_id, '_fisar_event_city', true );
@@ -19,11 +20,20 @@ if ( 'online' === $mode ) {
 		<?php fisar_cdj_theme_post_image( $event_id, 'event-card__image' ); ?>
 	</a>
 	<div class="event-card__body">
-		<p class="event-card__date"><time datetime="<?php echo esc_attr( $date ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></time></p>
+		<?php if ( $is_home_card ) : ?>
+			<p class="event-card__date event-card__date--compact">
+				<?php echo fisar_cdj_theme_icon( 'calendar', 'event-card__date-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<time datetime="<?php echo esc_attr( $date ); ?>">
+					<span aria-hidden="true"><?php echo esc_html( fisar_cdj_theme_format_date_compact( $date ) ); ?></span>
+					<span class="screen-reader-text"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span>
+				</time>
+			</p>
+		<?php else : ?>
+			<p class="event-card__date"><time datetime="<?php echo esc_attr( $date ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></time></p>
+		<?php endif; ?>
 		<h3 class="event-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 		<?php if ( '' !== $place ) : ?><p class="event-card__place"><?php echo esc_html( $place ); ?></p><?php endif; ?>
-		<?php if ( has_excerpt() ) : ?><p class="event-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
-		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli dell’evento <span aria-hidden="true">→</span></a>
+		<?php if ( ! $is_home_card && has_excerpt() ) : ?><p class="event-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
+		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli evento<span class="screen-reader-text">: <?php echo esc_html( get_the_title() ); ?></span> <span aria-hidden="true">→</span></a>
 	</div>
 </article>
-

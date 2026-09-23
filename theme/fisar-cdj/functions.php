@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.2.0' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.3.0' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -206,6 +206,15 @@ function fisar_cdj_theme_format_date_with_day( string $date ): string {
 	$timestamp = strtotime( $date );
 
 	return $timestamp ? wp_date( 'l j F Y', $timestamp ) : '';
+}
+
+function fisar_cdj_theme_format_date_compact( string $date ): string {
+	if ( '' === $date ) {
+		return '';
+	}
+	$timestamp = strtotime( $date );
+
+	return $timestamp ? strtoupper( wp_date( 'D j M Y', $timestamp ) ) : '';
 }
 
 function fisar_cdj_theme_reading_time( int $post_id ): int {

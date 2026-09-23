@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.3
+
+- Portati a due gli Eventi mostrati in homepage, con locandine più grandi, fondo bianco e data compatta su una riga.
+- Rese quadrate le immagini dei Corsi in homepage e rimosso il relativo abstract dalla card compatta.
+- Rafforzati i titoli delle card Eventi, Corsi e News.
+- Accorciate le CTA visibili delle card, mantenendo il titolo della risorsa come contesto aggiuntivo per screen reader.
+
 ## v1.2
 
 - Allineata la tipografia alla specifica approvata: Cormorant Garamond per titoli/display e Inter per corpo e UI.

@@ -62,9 +62,9 @@ $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
 				</div>
 				<div class="event-grid event-grid--home">
 					<?php if ( function_exists( 'fisar_cdj_get_upcoming_events' ) ) : ?>
-						<?php $events = fisar_cdj_get_upcoming_events( 3 ); ?>
+						<?php $events = fisar_cdj_get_upcoming_events( 2 ); ?>
 						<?php while ( $events->have_posts() ) : $events->the_post(); ?>
-							<?php get_template_part( 'template-parts/event-card' ); ?>
+							<?php get_template_part( 'template-parts/event-card', null, array( 'context' => 'home' ) ); ?>
 						<?php endwhile; wp_reset_postdata(); ?>
 					<?php else : ?>
 						<?php get_template_part( 'template-parts/empty-state' ); ?>
@@ -82,7 +82,7 @@ $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
 					<?php if ( function_exists( 'fisar_cdj_get_active_courses' ) ) : ?>
 						<?php $courses = fisar_cdj_get_active_courses( 3 ); ?>
 						<?php while ( $courses->have_posts() ) : $courses->the_post(); ?>
-							<?php get_template_part( 'template-parts/course-card' ); ?>
+							<?php get_template_part( 'template-parts/course-card', null, array( 'context' => 'home' ) ); ?>
 						<?php endwhile; wp_reset_postdata(); ?>
 					<?php else : ?>
 						<?php get_template_part( 'template-parts/empty-state' ); ?>
