@@ -2,7 +2,7 @@
 
 ## Revisione homepage — 4 ottobre 2026
 
-Rimosse le Quattro Porte senza sostituirle: i percorsi restano accessibili dalla hero, dal menu e dalle sezioni dedicate. `Come seguirci` segue direttamente la hero. Questa decisione e la struttura aggiornata in `docs/03-pages/homepage.md` prevalgono sulla struttura iniziale riportata sotto e nel mockup.
+Rimosse le Quattro Porte senza sostituirle: i percorsi restano accessibili dalla hero, dal menu e dalle sezioni dedicate. Su successiva approvazione, `Come seguirci`, newsletter inclusa, segue la Carta dei Valori e precede il footer; Eventi e Corsi seguono direttamente la hero. Questa decisione e la struttura aggiornata in `docs/03-pages/homepage.md` prevalgono sulla struttura iniziale riportata sotto e nel mockup.
 
 ## Repository
 
