@@ -33,3 +33,5 @@ La scelta della proposta Poppins e la successiva conferma “al posto di Inter�
 ## Semplificazione della homepage — 4 ottobre 2026
 
 Su richiesta dell’utente sono rimosse le Quattro Porte, perché i loro percorsi sono già disponibili in hero, menu e sezioni dedicate. `Come seguirci` segue direttamente la hero; non sono aggiunti blocchi sostitutivi né riordinate le altre sezioni. Questa revisione prevale sulla presenza delle Quattro Porte nel mockup e nelle decisioni iniziali. Nessuna modifica a contenuti, menu o logica del plugin.
+
+Su successiva approvazione, il blocco completo `Come seguirci`, con canali e form Mailchimp, è spostato dopo la Carta dei Valori e prima del footer. Eventi e Corsi seguono direttamente la hero. Contenuti, stile, ID delle ancore, menu e link social restano invariati; nessuna modifica al plugin o alla configurazione Mailchimp.

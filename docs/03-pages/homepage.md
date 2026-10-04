@@ -2,11 +2,11 @@
 ## Struttura
 1. Top bar + Header
 2. Hero
-3. Come seguirci
-4. Prossimi Eventi
-5. I nostri Corsi
-6. Ultime News
-7. Carta dei Valori
+3. Prossimi Eventi
+4. I nostri Corsi
+5. Ultime News
+6. Carta dei Valori
+7. Come seguirci
 8. Footer
 
 ## Hero
@@ -19,7 +19,7 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 - Le due frasi del payoff sono raggruppate per favorire l’andata a capo dopo la virgola; ogni gruppo può comunque andare a capo internamente se lo spazio o lo zoom lo richiedono.
 - CTA: **Scopri i corsi** · **Scopri gli eventi**.
 - Fotografia calda, preferibilmente reale, con overlay scuro per la leggibilità. Conservata l’immagine attuale sostituibile dall’editor.
-- Nessuna fascia istituzionale sotto la hero: `Come seguirci` segue direttamente. Nome esteso della FISAR, qualifica APS e rapporto con la Delegazione sono raccontati nella sezione `Chi siamo`, senza duplicare il testo in homepage.
+- Nessuna fascia istituzionale sotto la hero: seguono direttamente le proposte di Eventi e Corsi. Nome esteso della FISAR, qualifica APS e rapporto con la Delegazione sono raccontati nella sezione `Chi siamo`, senza duplicare il testo in homepage.
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
@@ -31,7 +31,7 @@ Prossimi Eventi: futuri ASC. Corsi: attivi. News: ultime pubblicazioni.
 
 ## Come seguirci
 
-Sezione ad alta visibilità subito dopo la hero. Presenta quattro canali con CTA esplicite:
+Sezione dedicata dopo la Carta dei Valori e prima del footer, come approvato il 4 ottobre 2026. L’intero blocco, incluso il form newsletter, è spostato senza modificarne contenuto o stile: le attività concrete precedono l’invito a mantenere il contatto. La voce `Seguici` nel menu e i collegamenti social in top bar e footer restano invariati. Presenta quattro canali con CTA esplicite:
 
 - Canale WhatsApp;
 - Instagram;
