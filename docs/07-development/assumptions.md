@@ -38,4 +38,6 @@ Su successiva approvazione, il blocco completo `Come seguirci`, con canali e for
 
 ## Prova dei titoli di sezione — 4 ottobre 2026
 
-La richiesta di provare Poppins sul sito dopo il confronto autorizza la variante Poppins Medium per i cinque titoli di sezione della homepage, non una conversione globale degli heading. Sono usati peso `500` e dimensione massima `2.5rem`, mantenendo Cormorant per payoff, card e pagine interne. La regola CSS è circoscritta alla classe WordPress `home`; il font è già incluso. La prova resta da valutare visivamente dall’utente.
+La prima richiesta di provare Poppins sul sito dopo il confronto riguarda i cinque titoli di sezione della homepage, con peso `500` e dimensione massima `2.5rem`. L’utente conferma questa scelta dopo averla vista sul sito.
+
+La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, Corsi e News, canali, pannello newsletter e voci della fascia Valori. Poppins Medium `500`, con interlinea `1.3` per card, canali e newsletter; dimensioni esistenti conservate. I componenti condivisi sono aggiornati anche negli archivi e nella pagina Seguici. Restano invariati payoff, heading editoriali delle pagine interne e default dell’editor: non è una conversione globale degli heading. Nessuna modifica a plugin, markup, contenuti o nomi accessibili.

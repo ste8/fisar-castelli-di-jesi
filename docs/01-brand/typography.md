@@ -35,7 +35,9 @@ Non usare i pesi più sottili nel frontend.
 
 Eccezione esplicita: l’H1 della homepage “FISAR / Delegazione / Castelli di Jesi” usa Poppins `400`, `clamp(2rem, 4.5vw, 3rem)` e interlinea `1.1`, come nella proposta approvata. Non è un nuovo logo e non modifica l’asset ufficiale. Gli altri H1 restano Cormorant Garamond.
 
-Prova attiva richiesta il 4 ottobre 2026: i cinque titoli di sezione della homepage (Prossimi eventi, I nostri corsi, Ultime notizie dalla Delegazione, I nostri valori, il nostro impegno e Come seguirci) usano Poppins `500`, `clamp(2rem, 4vw, 2.5rem)` e interlinea `1.08`, come nell’anteprima Poppins Medium. Questa eccezione è limitata alla homepage: payoff, titoli delle card, titoli interni alle sezioni e heading di archivi/pagine interne restano invariati. Nessuna sostituzione globale del display.
+Approvato il 4 ottobre 2026 dopo la prova sul sito: i cinque titoli di sezione della homepage (Prossimi eventi, I nostri corsi, Ultime notizie dalla Delegazione, I nostri valori, il nostro impegno e Come seguirci) usano Poppins `500`, `clamp(2rem, 4vw, 2.5rem)` e interlinea `1.08`.
+
+Su successiva richiesta, Poppins Medium è in prova anche per i titoli delle card Eventi, Corsi e News, dei canali e del pannello newsletter, con peso `500` e interlinea `1.3`. Le quattro voci della fascia Valori usano Poppins `500`. Questi componenti condividono la stessa tipografia in homepage, archivi e pagina Seguici. Payoff e heading editoriali delle pagine interne restano Cormorant; nessuna conversione globale degli heading o modifica al default dell’editor.
 
 ### UI / body
 
@@ -44,7 +46,8 @@ Prova attiva richiesta il 4 ottobre 2026: i cinque titoli di sezione della homep
 Uso:
 - corpo testo
 - nome della Delegazione nella hero (`400`)
-- titoli di sezione della homepage (`500`, prova attiva)
+- titoli di sezione della homepage (`500`, approvati)
+- titoli di card, canali, newsletter e voci della fascia Valori (`500`, prova attiva)
 - menu
 - bottoni e CTA
 - metadata
@@ -118,7 +121,7 @@ letter-spacing: -0.02em;
 
 Per “Prossimi eventi”, “I nostri corsi”, “Ultime News” e sezioni equivalenti.
 
-La regola seguente resta il default generale. Per i cinque titoli di sezione della homepage prevale la prova Poppins descritta sopra, con dimensione massima `2.5rem` (40 px a scala base), non `3.25rem`.
+La regola seguente resta il default generale. Per i cinque titoli di sezione della homepage prevale Poppins come descritto sopra, con dimensione massima `2.5rem` (40 px a scala base), non `3.25rem`. Titoli dei canali e del pannello newsletter seguono la prova dei componenti anche quando sono H2.
 
 ```css
 font-family: var(--font-display);
@@ -196,7 +199,7 @@ Il payoff nella top bar resta discreto e usa Poppins.
 ## Card
 
 ### Titolo card
-Cormorant Garamond `700` per Eventi, Corsi e News, come approvato in v1.3; dimensione minima indicativa `1.375rem`.
+La prova v1.6.7 prevale sulla scelta v1.3: Poppins `500` per Eventi, Corsi e News, con interlinea `1.3`. Dimensioni conservate: `1.375rem` nelle card compatte della home, `1.55rem` negli altri contesti. Canali: `1.75rem`; pannello newsletter: scala esistente. Nessun titolo viene troncato.
 
 ### Metadata
 Date, luogo, livello del corso e informazioni pratiche:
