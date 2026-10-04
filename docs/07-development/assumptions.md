@@ -13,7 +13,7 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 
 ## Scelte per dettagli aperti
 
-- Tipografia: dal 31 agosto 2026 `docs/01-brand/typography.md` è approvato e prevale sulla precedente assunzione. Il tema usa Cormorant Garamond `600–700` per titoli/display e Inter `400–700` per corpo e UI, con file WOFF2 self-hosted e subset latino.
+- Tipografia: l’approvazione del 4 ottobre 2026 aggiorna `docs/01-brand/typography.md`: Poppins `400–700` sostituisce Inter per corpo e UI ed è usato a peso `400` per il nome della Delegazione nella hero. Cormorant Garamond `600–700` resta per titoli editoriali e payoff. Due sole famiglie, WOFF2 self-hosted con subset latino e nessun servizio font remoto a runtime.
 - Hero: usa l'immagine in evidenza della homepage quando presente e un'illustrazione locale come fallback. I dati demo importano una fotografia generata, calda e conviviale, dichiaratamente sostituibile con una fotografia reale della Delegazione; il mockup non viene ritagliato né riutilizzato come sorgente.
 - Immagini demo: il paesaggio della fascia Valori è un asset decorativo generato. Le locandine demo degli Eventi sono quadrate; le locandine reali non vengono ritagliate aggressivamente perché il tema conserva `object-fit: contain`.
 - Iconografia: social, Quattro Porte e Valori usano SVG minimali inclusi nel tema, decorativi e accompagnati da label testuali accessibili.
@@ -25,3 +25,7 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 ## Navigazione associativa — 4 ottobre 2026
 
 Il riscontro dell’utente prevale sulla precedente navigazione piatta: `Chi siamo` è la prima voce, con sottomenu come descritto in `docs/02-information-architecture/navigation.md`. Consiglio e incarichi e Statuto sono sezioni della pagina locale, non nuove pagine. Non sono stati forniti nomi ufficiali, mandato o PDF della Delegazione: restano indicazioni editoriali esplicite da completare prima della pubblicazione. Il testo nazionale descrive la FISAR APS, senza attribuire alla Delegazione una qualifica giuridica locale non verificata.
+
+## Identità in homepage — 4 ottobre 2026
+
+La scelta della proposta Poppins e la successiva conferma “al posto di Inter” autorizzano la sostituzione globale del sans-serif, non l’aggiunta di una terza famiglia. Il nuovo H1 identifica FISAR e la Delegazione Castelli di Jesi; il payoff rimane secondario. Copy, CTA e fascia istituzionale sono descritti in `docs/03-pages/homepage.md` e prevalgono sul vecchio titolo manifesto del mockup. Nessuna modifica ai contenuti editoriali delle pagine associative o alla sequenza delle altre sezioni.

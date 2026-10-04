@@ -29,8 +29,8 @@
           "slug": "fisar-heading"
         },
         {
-          "fontFamily": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-          "name": "Inter",
+          "fontFamily": "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          "name": "Poppins",
           "slug": "fisar-body"
         }
       ]

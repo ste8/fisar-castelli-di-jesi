@@ -6,6 +6,8 @@ Implementazione completa e locale del sito della Delegazione FISAR Castelli di J
 
 La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, contenuti demo realistici e frontend responsive/accessibile. La documentazione in `docs/` resta la source of truth.
 
+La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero, con Cormorant Garamond per titoli editoriali e payoff; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
+
 ## Requisiti
 
 - Docker Desktop o Docker Engine con Docker Compose v2;

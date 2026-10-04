@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.5.0' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.0' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -46,16 +46,16 @@ function fisar_cdj_theme_assets(): void {
 add_action( 'wp_enqueue_scripts', 'fisar_cdj_theme_assets' );
 
 /**
- * Precarica i due file variabili usati above-the-fold.
+ * Precarica soltanto i font indispensabili above-the-fold.
  *
- * Ogni file contiene soltanto il subset latino e l'intervallo di pesi ammesso
- * dalla specifica, evitando richieste a servizi esterni durante la navigazione.
+ * I file contengono soltanto il subset latino previsto dalla specifica,
+ * evitando richieste a servizi esterni durante la navigazione.
  */
 function fisar_cdj_theme_preload_fonts(): void {
 	$font_base_url = get_template_directory_uri() . '/assets/fonts/';
 	$fonts         = array(
 		$font_base_url . 'cormorant-garamond/cormorant-garamond-latin-600-700.woff2',
-		$font_base_url . 'inter/inter-latin-400-700.woff2',
+		$font_base_url . 'poppins/poppins-latin-400.woff2',
 	);
 
 	foreach ( $fonts as $font_url ) {

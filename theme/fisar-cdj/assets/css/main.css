@@ -7,11 +7,35 @@
 }
 
 @font-face {
-	font-family: 'Inter';
+	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400 700;
+	font-weight: 400;
 	font-display: swap;
-	src: url('../fonts/inter/inter-latin-400-700.woff2') format('woff2');
+	src: url('../fonts/poppins/poppins-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/poppins/poppins-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/poppins/poppins-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/poppins/poppins-latin-700.woff2') format('woff2');
 }
 
 :root {
@@ -33,7 +57,7 @@
 	--container: 76rem;
 	--reading: 68ch;
 	--font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-	--font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	--font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 	--font-size-xs: .8125rem;
 	--font-size-sm: .9375rem;
 	--font-size-base: 1rem;
@@ -573,20 +597,21 @@ blockquote {
 }
 
 .hero__content h1 {
-	max-width: 19ch;
-	margin-bottom: .62em;
-	padding-bottom: .55em;
+	max-width: 22ch;
+	margin-bottom: 1.25rem;
 	color: #fff;
-	font-size: clamp(2.75rem, 6vw, 5.25rem);
-	letter-spacing: -.02em;
-	line-height: 1.02;
+	font-family: var(--font-body);
+	font-size: clamp(2rem, 4.5vw, 3rem);
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.1;
 }
 
-.hero__content h1::after {
+.hero__payoff::after {
 	display: block;
 	width: 2.4rem;
 	height: 2px;
-	margin-top: .4em;
+	margin-block: 1.5rem;
 	background: var(--color-gold);
 	content: '';
 }
@@ -595,19 +620,21 @@ blockquote {
 	display: block;
 }
 
-.hero__content > p:not(.hero__eyebrow) {
-	max-width: 32rem;
-	font-size: clamp(1rem, 2.2vw, 1.1rem);
+.hero__description {
+	max-width: 44ch;
+	margin-bottom: 0;
+	font-size: var(--font-size-base);
 	line-height: var(--line-height-body);
 }
 
-.hero__eyebrow {
-	color: #e7d98e;
-	font-size: var(--font-size-xs);
-	font-weight: 700;
-	line-height: var(--line-height-ui);
-	letter-spacing: .14em;
-	text-transform: uppercase;
+.hero__payoff {
+	max-width: 36ch;
+	margin-bottom: 0;
+	color: #eee2b2;
+	font-family: var(--font-display);
+	font-size: clamp(1.25rem, 2.2vw, 1.375rem);
+	font-weight: 600;
+	line-height: 1.35;
 }
 
 .hero__actions {
@@ -617,6 +644,19 @@ blockquote {
 	max-width: 22rem;
 	gap: .8rem;
 	margin-top: 1.35rem;
+}
+
+.hero-association {
+	padding-block: 1.1rem;
+	border-bottom: 1px solid var(--color-line);
+	background: var(--color-tint);
+	color: var(--color-muted);
+	font-size: var(--font-size-sm);
+	line-height: var(--line-height-body);
+}
+
+.hero-association p {
+	margin-block: 0;
 }
 
 /* Four doors */
