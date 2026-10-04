@@ -17,7 +17,7 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 		<div class="hero__overlay"></div>
 		<div class="container hero__content">
 			<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
-			<p class="hero__payoff">Il vino come punto di partenza, le persone al centro.</p>
+			<p class="hero__payoff"><span>Il vino come punto di partenza,</span> <span>le persone al centro.</span></p>
 			<p class="hero__description">Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.</p>
 			<div class="hero__actions">
 				<a class="button" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi</a>
