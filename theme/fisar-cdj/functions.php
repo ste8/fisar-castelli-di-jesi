@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.1' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.2' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -225,13 +225,16 @@ function fisar_cdj_theme_archive_url( string $post_type, string $fallback ): str
 	return $url ?: home_url( '/' . trim( $fallback, '/' ) . '/' );
 }
 
-function fisar_cdj_theme_logo( bool $on_dark = false ): void {
+function fisar_cdj_theme_logo( bool $on_dark = false, bool $for_header = false ): void {
 	if ( ! $on_dark && has_custom_logo() ) {
 		the_custom_logo();
 		return;
 	}
 
 	$file = $on_dark ? 'logo-verticale-on-dark.svg' : 'logo-orizzontale.svg';
+	if ( $for_header && ! $on_dark ) {
+		$file = 'logo-orizzontale-header.svg';
+	}
 	$alt  = 'FISAR Castelli di Jesi';
 	printf(
 		'<a class="site-logo%1$s" href="%2$s" rel="home"><img src="%3$s" alt="%4$s" width="%5$d" height="%6$d"></a>',
@@ -239,7 +242,7 @@ function fisar_cdj_theme_logo( bool $on_dark = false ): void {
 		esc_url( home_url( '/' ) ),
 		esc_url( get_template_directory_uri() . '/assets/images/' . $file ),
 		esc_attr( $alt ),
-		$on_dark ? 160 : 240,
+		$on_dark ? 160 : ( $for_header ? 290 : 240 ),
 		$on_dark ? 188 : 96
 	);
 }
