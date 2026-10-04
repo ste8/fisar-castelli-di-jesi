@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Fisar_CDJ_Demo_Content {
-	private const VERSION = '1.2.0';
+	private const VERSION = '1.2.1';
 	private const OPTION  = 'fisar_cdj_demo_version';
 
 	public static function init(): void {
@@ -117,8 +117,8 @@ HTML;
 				'content' => '<p>Racconti, aggiornamenti e vita della Delegazione.</p>',
 			),
 			'follow' => array(
-				'title'   => 'Resta aggiornato',
-				'slug'    => 'resta-aggiornato',
+				'title'   => 'Come seguirci',
+				'slug'    => 'seguici',
 				'excerpt' => 'Scegli il canale che preferisci per seguire eventi, corsi e vita della Delegazione.',
 				'content' => '<p class="lead">WhatsApp, Instagram, Facebook e newsletter raccontano la Delegazione con tempi e formati diversi. Scegli uno o più canali per non perdere le prossime iniziative.</p>',
 			),
@@ -625,7 +625,7 @@ HTML;
 		self::ensure_menu_item( $primary, 'Eventi', get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) ?: home_url( '/eventi/' ), 10 );
 		self::ensure_menu_item( $primary, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
 		self::ensure_menu_item( $primary, 'News', get_permalink( $pages['news'] ), 30 );
-		self::ensure_menu_item( $primary, 'Resta aggiornato', get_permalink( $pages['follow'] ), 35 );
+		self::ensure_menu_item( $primary, 'Seguici', get_permalink( $pages['follow'] ), 35, array( 'Resta aggiornato' ) );
 		self::ensure_menu_item( $primary, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
 		self::ensure_menu_item( $primary, 'Chi siamo', get_permalink( $pages['about'] ), 50 );
 		self::ensure_menu_item( $primary, 'Contatti', get_permalink( $pages['contacts'] ), 60 );
@@ -635,7 +635,7 @@ HTML;
 		self::ensure_menu_item( $footer, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
 		self::ensure_menu_item( $footer, 'News', get_permalink( $pages['news'] ), 30 );
 		self::ensure_menu_item( $footer, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
-		self::ensure_menu_item( $footer, 'Resta aggiornato', get_permalink( $pages['follow'] ), 45 );
+		self::ensure_menu_item( $footer, 'Seguici', get_permalink( $pages['follow'] ), 45, array( 'Resta aggiornato' ) );
 		self::ensure_menu_item( $footer, 'Privacy Policy', get_permalink( $pages['privacy'] ), 50 );
 		self::ensure_menu_item( $footer, 'Cookie Policy', get_permalink( $pages['cookies'] ), 60 );
 
@@ -853,10 +853,11 @@ HTML;
 		return $menu ? (int) $menu->term_id : (int) wp_create_nav_menu( $name );
 	}
 
-	private static function ensure_menu_item( int $menu_id, string $title, string $url, int $position ): void {
+	private static function ensure_menu_item( int $menu_id, string $title, string $url, int $position, array $legacy_titles = array() ): void {
 		$items = wp_get_nav_menu_items( $menu_id ) ?: array();
+		$known_titles = array_merge( array( $title ), $legacy_titles );
 		foreach ( $items as $item ) {
-			if ( $item->title === $title ) {
+			if ( in_array( $item->title, $known_titles, true ) ) {
 				wp_update_nav_menu_item(
 					$menu_id,
 					$item->ID,

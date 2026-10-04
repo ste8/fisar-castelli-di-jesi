@@ -9,7 +9,7 @@ $events_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_u
 $courses_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) : home_url( '/corsi/' );
 $news_page = (int) get_option( 'page_for_posts' );
 $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
-$follow_url = fisar_cdj_theme_page_url( 'resta-aggiornato' );
+$follow_url = fisar_cdj_theme_page_url( 'seguici' );
 ?>
 <main id="main-content">
 	<section class="hero" aria-labelledby="hero-title">
@@ -59,11 +59,11 @@ $follow_url = fisar_cdj_theme_page_url( 'resta-aggiornato' );
 			<header class="follow-section__header">
 				<div>
 					<p class="eyebrow">Non perdere le prossime iniziative</p>
-					<h2 id="follow-title">Resta aggiornato</h2>
+					<h2 id="follow-title">Come seguirci</h2>
 				</div>
 				<div class="follow-section__lead">
 					<p>Eventi, corsi e vita della Delegazione: scegli il canale che preferisci per seguirci nel modo più comodo per te.</p>
-					<a class="text-link" href="<?php echo esc_url( $follow_url ); ?>">Scopri tutti i modi per seguirci <span aria-hidden="true">→</span></a>
+					<a class="text-link" href="<?php echo esc_url( $follow_url ); ?>">Scopri tutti i canali <span aria-hidden="true">→</span></a>
 				</div>
 			</header>
 

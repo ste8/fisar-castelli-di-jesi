@@ -1,4 +1,7 @@
 <?php
+/**
+ * Template della pagina "Come seguirci".
+ */
 get_header();
 the_post();
 ?>
