@@ -671,6 +671,15 @@ blockquote {
 	margin-bottom: 1.25rem;
 }
 
+/* Homepage section titles: Poppins Medium preview. */
+.home .section-heading h2,
+.home .values-banner__intro h2,
+.home .follow-section__header h2 {
+	font-family: var(--font-body);
+	font-size: clamp(2rem, 4vw, 2.5rem);
+	font-weight: 500;
+}
+
 .section-heading h2,
 .section-heading h1 {
 	position: relative;

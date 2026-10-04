@@ -23,6 +23,10 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
+## Titoli di sezione — prova Poppins Medium
+
+Su richiesta del 4 ottobre 2026, i titoli di Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative. La prova riguarda solo questi cinque titoli della homepage: hero, payoff, titoli delle card e delle pagine interne restano invariati. Il font Medium è già self-hosted nel tema; nessun nuovo asset o font remoto.
+
 ## Percorsi di accesso
 
 Dal 4 ottobre 2026 le Quattro Porte sono rimosse, senza un blocco sostitutivo: duplicavano percorsi già presenti nella hero, nella navigazione e nelle sezioni con contenuti concreti. La decisione prevale sul concept iniziale. Restano le CTA verso Eventi e Corsi, `Unisciti a noi` nell’header e la fascia Carta dei Valori.
