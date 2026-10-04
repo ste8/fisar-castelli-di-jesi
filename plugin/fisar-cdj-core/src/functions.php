@@ -215,9 +215,9 @@ function fisar_cdj_get_newsletter_signup_config(): array {
 }
 
 /**
- * Reindirizza il precedente URL della pagina canali verso lo slug corrente.
+ * Conserva i collegamenti alle pagine native rinominate.
  */
-function fisar_cdj_redirect_legacy_follow_page(): void {
+function fisar_cdj_redirect_legacy_pages(): void {
 	if ( is_admin() || ! is_404() ) {
 		return;
 	}
@@ -229,14 +229,17 @@ function fisar_cdj_redirect_legacy_follow_page(): void {
 
 	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
-	$legacy_path  = (string) wp_parse_url( home_url( '/resta-aggiornato/' ), PHP_URL_PATH );
-	if ( untrailingslashit( $request_path ) !== untrailingslashit( $legacy_path ) ) {
-		return;
+	$redirects = array( 'resta-aggiornato' => 'seguici', 'chi-siamo' => 'la-nostra-delegazione' );
+	foreach ( $redirects as $legacy_slug => $current_slug ) {
+		$legacy_path = (string) wp_parse_url( home_url( '/' . $legacy_slug . '/' ), PHP_URL_PATH );
+		if ( untrailingslashit( $request_path ) !== untrailingslashit( $legacy_path ) ) {
+			continue;
+		}
+		$page = get_page_by_path( $current_slug );
+		if ( $page && 'publish' === $page->post_status ) {
+			wp_safe_redirect( get_permalink( $page ), 301, 'FISAR Castelli di Jesi' );
+			exit;
+		}
 	}
-
-	$page        = get_page_by_path( 'seguici' );
-	$destination = $page ? get_permalink( $page ) : home_url( '/seguici/' );
-	wp_safe_redirect( $destination, 301, 'FISAR Castelli di Jesi' );
-	exit;
 }
-add_action( 'template_redirect', 'fisar_cdj_redirect_legacy_follow_page', 1 );
+add_action( 'template_redirect', 'fisar_cdj_redirect_legacy_pages', 1 );

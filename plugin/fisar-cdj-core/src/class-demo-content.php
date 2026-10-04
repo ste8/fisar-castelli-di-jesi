@@ -5,12 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Fisar_CDJ_Demo_Content {
-	private const VERSION = '1.2.1';
+	private const VERSION = '1.3.0';
 	private const OPTION  = 'fisar_cdj_demo_version';
 
 	public static function init(): void {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			WP_CLI::add_command( 'fisar-cdj demo install', array( self::class, 'cli_install' ) );
+			WP_CLI::add_command( 'fisar-cdj demo association', array( self::class, 'cli_association' ) );
 		}
 	}
 
@@ -67,6 +68,32 @@ final class Fisar_CDJ_Demo_Content {
 		return true;
 	}
 
+	/** Aggiorna solo le pagine associative e il menu, senza reimportare gli altri demo. */
+	public static function cli_association(): void {
+		$pages = array();
+		foreach ( array( 'values' => 'carta-dei-valori', 'join' => 'unisciti-a-noi' ) as $key => $slug ) {
+			$page = get_page_by_path( $slug );
+			if ( ! $page ) {
+				WP_CLI::error( "Pagina necessaria non trovata: {$slug}." );
+			}
+			$pages[ $key ] = $page->ID;
+		}
+		$association_pages = self::create_pages( array( 'about', 'fisar' ), true );
+		if ( is_wp_error( $association_pages ) ) {
+			WP_CLI::error( $association_pages->get_error_message() );
+		}
+		self::create_association_menu( self::ensure_menu( 'Navigazione principale' ), array_merge( $pages, $association_pages ) );
+		update_option( self::OPTION, self::VERSION );
+		WP_CLI::success( 'Pagine associative e menu aggiornati; contenuti esistenti conservati.' );
+	}
+
+	private static function delegation_sections(): array {
+		return array(
+			'consiglio' => '<h2 id="consiglio">Consiglio e incarichi</h2><h3>Consiglio di Delegazione</h3><p>Il Consiglio di Delegazione è l’organo eletto che guida la vita associativa locale.</p><p><strong>Contenuto da completare:</strong> inserire il Delegato, i componenti del Consiglio e il periodo del mandato dopo la conferma dei dati ufficiali.</p><h3>Incarichi non elettivi</h3><p>Accanto al Consiglio, questi incarichi contribuiscono all’organizzazione delle attività della Delegazione.</p><ul><li>Responsabile Eventi</li><li>Responsabile Servizi</li><li>Direttori di Corso</li><li>Organizzazione Corsi e Didattica</li></ul><p><strong>Contenuto da completare:</strong> aggiungere i nomi delle persone incaricate, anche quando una persona ricopre più ruoli.</p>',
+			'statuto' => '<h2 id="statuto">Statuto</h2><p>Lo statuto definisce le finalità della Delegazione, gli organi associativi e le regole della vita sociale.</p><p><strong>Documento da aggiungere:</strong> caricare il PDF ufficiale nella Libreria media e inserire qui il collegamento “Scarica lo statuto”, indicando formato e dimensione del file.</p>',
+		);
+	}
+
 	private static function remove_default_content(): void {
 		$default_slugs = array( 'hello-world', 'sample-page', 'privacy-policy' );
 		foreach ( $default_slugs as $slug ) {
@@ -85,7 +112,7 @@ final class Fisar_CDJ_Demo_Content {
 		}
 	}
 
-	private static function create_pages(): array|WP_Error {
+	private static function create_pages( array $only = array(), bool $preserve_content = false ): array|WP_Error {
 		$values_content = <<<'HTML'
 <p class="lead">Il vino come punto di partenza, le persone al centro.</p>
 <h2>Chi siamo</h2>
@@ -129,10 +156,16 @@ HTML;
 				'content' => $values_content,
 			),
 			'about' => array(
-				'title'   => 'Chi siamo',
-				'slug'    => 'chi-siamo',
+				'title'   => 'La nostra delegazione',
+				'slug'    => 'la-nostra-delegazione',
 				'excerpt' => 'Una comunità competente, accogliente, curiosa e conviviale.',
 				'content' => '<p class="lead">Siamo la Delegazione FISAR Castelli di Jesi: un luogo in cui imparare, incontrarsi e condividere la cultura del vino con semplicità.</p><h2>Una Delegazione aperta</h2><p>Organizziamo corsi per aspiranti sommelier, degustazioni, visite in cantina e momenti di approfondimento. Accogliamo chi muove i primi passi e chi desidera continuare a formarsi.</p><h2>Il territorio</h2><p>Viviamo tra i Castelli di Jesi, in un paesaggio di vigne, borghi e produttori. Partiamo da qui per esplorare vini, territori e culture vicine e lontane.</p><h2>Le persone</h2><p>La Delegazione cresce grazie a chi partecipa, propone idee e mette a disposizione tempo e competenze. È questo il cuore del nostro modo di lavorare.</p>',
+			),
+			'fisar' => array(
+				'title'   => 'La FISAR',
+				'slug'    => 'la-fisar',
+				'excerpt' => 'Federazione Italiana Sommelier Albergatori Ristoratori APS.',
+				'content' => '<p class="lead">La FISAR — Federazione Italiana Sommelier Albergatori Ristoratori — è un’associazione di promozione sociale che diffonde la cultura del vino e dell’enogastronomia.</p><h2>Passione, cultura e formazione</h2><p>Attraverso i corsi per sommelier e le occasioni di approfondimento, la FISAR accompagna appassionati e professionisti in un percorso di conoscenza, degustazione e servizio del vino.</p><h2>Una rete di delegazioni</h2><p>Le delegazioni portano questa esperienza nei territori, con corsi, incontri e attività associative. La Delegazione Castelli di Jesi è il nostro punto di incontro locale.</p><p><a href="' . esc_url( home_url( '/la-nostra-delegazione/' ) ) . '">Scopri la nostra delegazione</a></p><h2>Approfondisci sul sito nazionale</h2><p>Per conoscere l’associazione e i suoi documenti ufficiali, visita il <a href="https://www.fisar.org/associazione/fisar-aps/chi-siamo/">sito nazionale FISAR</a>.</p>',
 			),
 			'contacts' => array(
 				'title'   => 'Contatti',
@@ -160,6 +193,31 @@ HTML;
 
 		$ids = array();
 		foreach ( $definitions as $key => $definition ) {
+			if ( $only && ! in_array( $key, $only, true ) ) {
+				continue;
+			}
+			if ( $preserve_content ) {
+				$existing = get_posts(
+					array(
+						'post_type'      => 'page',
+						'post_status'    => 'any',
+						'posts_per_page' => 1,
+						'meta_key'       => '_fisar_demo_key',
+						'meta_value'     => "page-{$key}",
+					)
+				);
+				if ( $existing ) {
+					$definition['content'] = $existing[0]->post_content;
+					$definition['excerpt'] = $existing[0]->post_excerpt;
+				}
+			}
+			if ( 'about' === $key ) {
+				foreach ( self::delegation_sections() as $anchor => $content ) {
+					if ( ! preg_match( '/\bid=[\'"]' . preg_quote( $anchor, '/' ) . '[\'"]/', $definition['content'] ) ) {
+						$definition['content'] .= "\n" . $content;
+					}
+				}
+			}
 			$post_id = self::upsert_post(
 				"page-{$key}",
 				array(
@@ -175,6 +233,9 @@ HTML;
 				return $post_id;
 			}
 			$ids[ $key ] = $post_id;
+		}
+		if ( ! isset( $ids['home'] ) ) {
+			return $ids;
 		}
 
 		$hero = self::create_bundled_attachment(
@@ -626,9 +687,8 @@ HTML;
 		self::ensure_menu_item( $primary, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
 		self::ensure_menu_item( $primary, 'News', get_permalink( $pages['news'] ), 30 );
 		self::ensure_menu_item( $primary, 'Seguici', get_permalink( $pages['follow'] ), 35, array( 'Resta aggiornato' ) );
-		self::ensure_menu_item( $primary, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
-		self::ensure_menu_item( $primary, 'Chi siamo', get_permalink( $pages['about'] ), 50 );
 		self::ensure_menu_item( $primary, 'Contatti', get_permalink( $pages['contacts'] ), 60 );
+		self::create_association_menu( $primary, $pages );
 
 		$footer = self::ensure_menu( 'Navigazione footer' );
 		self::ensure_menu_item( $footer, 'Eventi', get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) ?: home_url( '/eventi/' ), 10 );
@@ -652,6 +712,26 @@ HTML;
 				'social'  => $social,
 			)
 		);
+	}
+
+	private static function create_association_menu( int $menu_id, array $pages ): void {
+		$delegation_url = get_permalink( $pages['about'] );
+		$parent = self::ensure_menu_item( $menu_id, 'Chi siamo', $delegation_url, 1 );
+		self::ensure_menu_item( $menu_id, 'La FISAR', get_permalink( $pages['fisar'] ), 2, array(), $parent );
+		self::ensure_menu_item( $menu_id, 'La nostra delegazione', $delegation_url, 3, array(), $parent );
+		self::ensure_menu_item( $menu_id, 'Consiglio e incarichi', $delegation_url . '#consiglio', 4, array(), $parent );
+		self::ensure_menu_item( $menu_id, 'Carta dei Valori', get_permalink( $pages['values'] ), 5, array(), $parent );
+		self::ensure_menu_item( $menu_id, 'Statuto', $delegation_url . '#statuto', 6, array(), $parent );
+		self::ensure_menu_item( $menu_id, 'Diventa socio', get_permalink( $pages['join'] ), 7, array(), $parent );
+		$position = 8;
+		foreach ( wp_get_nav_menu_items( $menu_id ) ?: array() as $item ) {
+			if ( (int) $item->ID !== $parent && ! $item->menu_item_parent ) {
+				$result = wp_update_post( array( 'ID' => $item->ID, 'menu_order' => $position++ ), true );
+				if ( is_wp_error( $result ) ) {
+					WP_CLI::error( $result->get_error_message() );
+				}
+			}
+		}
 	}
 
 	private static function upsert_post( string $demo_key, array $post_data ): int|WP_Error {
@@ -853,12 +933,12 @@ HTML;
 		return $menu ? (int) $menu->term_id : (int) wp_create_nav_menu( $name );
 	}
 
-	private static function ensure_menu_item( int $menu_id, string $title, string $url, int $position, array $legacy_titles = array() ): void {
+	private static function ensure_menu_item( int $menu_id, string $title, string $url, int $position, array $legacy_titles = array(), int $parent = 0 ): int {
 		$items = wp_get_nav_menu_items( $menu_id ) ?: array();
 		$known_titles = array_merge( array( $title ), $legacy_titles );
 		foreach ( $items as $item ) {
 			if ( in_array( $item->title, $known_titles, true ) ) {
-				wp_update_nav_menu_item(
+				$result = wp_update_nav_menu_item(
 					$menu_id,
 					$item->ID,
 					array(
@@ -866,13 +946,17 @@ HTML;
 						'menu-item-url'      => $url,
 						'menu-item-position' => $position,
 						'menu-item-status'   => 'publish',
+						'menu-item-parent-id' => $parent,
 					)
 				);
-				return;
+				if ( is_wp_error( $result ) ) {
+					WP_CLI::error( $result->get_error_message() );
+				}
+				return $result;
 			}
 		}
 
-		wp_update_nav_menu_item(
+		$result = wp_update_nav_menu_item(
 			$menu_id,
 			0,
 			array(
@@ -880,7 +964,12 @@ HTML;
 				'menu-item-url'      => $url,
 				'menu-item-position' => $position,
 				'menu-item-status'   => 'publish',
+				'menu-item-parent-id' => $parent,
 			)
 		);
+		if ( is_wp_error( $result ) ) {
+			WP_CLI::error( $result->get_error_message() );
+		}
+		return $result;
 	}
 }
