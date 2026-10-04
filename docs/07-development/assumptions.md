@@ -21,3 +21,7 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 - Social: usa un menu WordPress dedicato. I link demo sono esplicitamente sostituibili, evitando campi custom non previsti.
 - Newsletter: dal 23 settembre 2026 il provider indicato è Mailchimp. Il tema usa il form embedded fornito, ripulito da CSS, JavaScript e badge remoti; nome, cognome ed email vengono trasmessi direttamente a Mailchimp e non memorizzati in WordPress. Il metodo di opt-in è gestito nell’Audience Mailchimp; prima della pubblicazione vanno verificati double opt-in, messaggi di conferma e informativa privacy.
 - Pagine legali: contenuti demo chiaramente indicati come bozze, da validare prima della pubblicazione.
+
+## Navigazione associativa — 4 ottobre 2026
+
+Il riscontro dell’utente prevale sulla precedente navigazione piatta: `Chi siamo` è la prima voce, con sottomenu come descritto in `docs/02-information-architecture/navigation.md`. Consiglio e incarichi e Statuto sono sezioni della pagina locale, non nuove pagine. Non sono stati forniti nomi ufficiali, mandato o PDF della Delegazione: restano indicazioni editoriali esplicite da completare prima della pubblicazione. Il testo nazionale descrive la FISAR APS, senza attribuire alla Delegazione una qualifica giuridica locale non verificata.

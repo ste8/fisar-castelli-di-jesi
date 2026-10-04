@@ -118,7 +118,16 @@ Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I d
 
 ### News, canali e pagine
 
-Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, Chi siamo, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
+Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
+
+Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e Statuto rimandano alle ancore `consiglio` e `statuto` della pagina La nostra delegazione: conservare questi ID quando si modificano i titoli nell’editor. Completare i nomi ufficiali e il mandato; caricare lo statuto nella Libreria media e aggiungere il collegamento al PDF nella stessa sezione.
+
+Per aggiornare soltanto la struttura associativa su un ambiente demo già installato, senza reimportare gli altri contenuti:
+
+```bash
+docker compose -f docker/compose.yaml run --rm --no-deps \
+  --entrypoint /bin/sh wordpress_cli -c 'wp fisar-cdj demo association'
+```
 
 I canali social sono un menu WordPress dedicato in **Aspetto → Menu**.
 

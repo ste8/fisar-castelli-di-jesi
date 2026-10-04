@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.4.1' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.5.0' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );

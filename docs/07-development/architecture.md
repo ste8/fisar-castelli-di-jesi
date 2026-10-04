@@ -26,6 +26,8 @@ Docker Compose
 
 Il tema usa funzioni pubbliche del plugin per le regole di stato e le query: non ricalcola date, relazioni o copy funzionale.
 
+Le pagine La FISAR e La nostra delegazione usano il template standard e l’editor nativo, senza CPT o campi aggiuntivi. Consiglio e Statuto sono ancore editoriali sulla pagina locale. Il plugin mantiene seed e redirect degli URL precedenti; il tema gestisce soltanto aspetto e interazione del menu WordPress a due livelli.
+
 ## Dipendenze
 
 - WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).
