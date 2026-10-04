@@ -213,3 +213,30 @@ function fisar_cdj_get_newsletter_signup_config(): array {
 	 */
 	return apply_filters( 'fisar_cdj_newsletter_signup_config', $config );
 }
+
+/**
+ * Reindirizza il precedente URL della pagina canali verso lo slug corrente.
+ */
+function fisar_cdj_redirect_legacy_follow_page(): void {
+	if ( is_admin() || ! is_404() ) {
+		return;
+	}
+
+	$request_method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) : '';
+	if ( ! in_array( $request_method, array( 'GET', 'HEAD' ), true ) ) {
+		return;
+	}
+
+	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
+	$legacy_path  = (string) wp_parse_url( home_url( '/resta-aggiornato/' ), PHP_URL_PATH );
+	if ( untrailingslashit( $request_path ) !== untrailingslashit( $legacy_path ) ) {
+		return;
+	}
+
+	$page        = get_page_by_path( 'seguici' );
+	$destination = $page ? get_permalink( $page ) : home_url( '/seguici/' );
+	wp_safe_redirect( $destination, 301, 'FISAR Castelli di Jesi' );
+	exit;
+}
+add_action( 'template_redirect', 'fisar_cdj_redirect_legacy_follow_page', 1 );

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.4.0' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.4.1' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -151,7 +151,7 @@ function fisar_cdj_theme_social_menu_title( string $title, WP_Post $item, stdCla
 add_filter( 'nav_menu_item_title', 'fisar_cdj_theme_social_menu_title', 10, 4 );
 
 /**
- * Restituisce i canali configurati per il componente "Resta aggiornato".
+ * Restituisce i canali configurati per il componente "Come seguirci".
  */
 function fisar_cdj_theme_follow_channels( string $newsletter_url ): array {
 	$definitions = array(

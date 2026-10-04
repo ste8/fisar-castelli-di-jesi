@@ -118,7 +118,7 @@ Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I d
 
 ### News, canali e pagine
 
-Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, Chi siamo, Contatti, Unisciti a noi e Resta aggiornato sono pagine native modificabili con l’editor.
+Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, Chi siamo, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
 
 I canali social sono un menu WordPress dedicato in **Aspetto → Menu**.
 

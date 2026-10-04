@@ -33,10 +33,10 @@
 			<p class="footer-demo-note">Recapiti dimostrativi da sostituire.</p>
 		</div>
 		<div class="footer-newsletter">
-			<h2 class="footer-title">Resta aggiornato</h2>
+			<h2 class="footer-title">Seguici</h2>
 			<p>Eventi, corsi e racconti della Delegazione, senza rumore.</p>
-			<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'resta-aggiornato' ) . '#newsletter-page' ); ?>">Iscriviti alla newsletter</a>
-			<a class="footer-newsletter__all" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'resta-aggiornato' ) ); ?>">Scopri tutti i canali <span aria-hidden="true">→</span></a>
+			<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) . '#newsletter-page' ); ?>">Iscriviti alla newsletter</a>
+			<a class="footer-newsletter__all" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) ); ?>">Scopri tutti i canali <span aria-hidden="true">→</span></a>
 			<?php if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="footer-social" aria-label="Canali social nel footer">
 					<?php wp_nav_menu( array( 'theme_location' => 'social', 'container' => false, 'depth' => 1, 'fallback_cb' => false ) ); ?>
