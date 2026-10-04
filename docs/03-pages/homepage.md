@@ -23,9 +23,13 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
-## Titoli di sezione — prova Poppins Medium
+## Titoli — Poppins Medium
 
-Su richiesta del 4 ottobre 2026, i titoli di Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative. La prova riguarda solo questi cinque titoli della homepage: hero, payoff, titoli delle card e delle pagine interne restano invariati. Il font Medium è già self-hosted nel tema; nessun nuovo asset o font remoto.
+Approvati il 4 ottobre 2026 dopo la prova sul sito: i titoli di sezione Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative.
+
+La successiva prova estende Poppins `500` ai titoli delle card Eventi, Corsi e News, ai canali, al pannello newsletter e alle quattro voci della fascia Valori. Le card conservano la dimensione di `1.375rem`, con interlinea `1.3` per dare respiro al sans-serif; nessun troncamento dei titoli. Hero e payoff restano invariati. La tipografia dei componenti condivisi è uniforme anche negli archivi e nella pagina Seguici; gli heading editoriali delle pagine interne non cambiano. Il font Medium è già self-hosted nel tema; nessun nuovo asset o font remoto.
+
+Per contenere le voci Valori con il nuovo font, la loro griglia resta su una colonna sotto `38rem`, due colonne alle larghezze intermedie e quattro da `80rem`. Padding orizzontale più compatto nei quattro elementi affiancati; wrapping di sicurezza per parole lunghe, senza testo nascosto.
 
 ## Percorsi di accesso
 
