@@ -20,7 +20,7 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 - Le due frasi del payoff sono raggruppate per favorire l’andata a capo dopo la virgola; ogni gruppo può comunque andare a capo internamente se lo spazio o lo zoom lo richiedono.
 - CTA: **Scopri i corsi** · **Scopri gli eventi**.
 - Fotografia calda, preferibilmente reale, con overlay scuro per la leggibilità. Conservata l’immagine attuale sostituibile dall’editor.
-- Fascia istituzionale subito sotto: “La nostra Delegazione fa parte della FISAR — Federazione Italiana Sommelier Albergatori Ristoratori APS, associazione di promozione sociale.” La qualifica APS si riferisce alla Federazione nazionale, non attribuisce uno status giuridico locale non verificato.
+- Nessuna fascia istituzionale sotto la hero: le Quattro Porte seguono direttamente. Nome esteso della FISAR, qualifica APS e rapporto con la Delegazione sono raccontati nella sezione `Chi siamo`, senza duplicare il testo in homepage.
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
