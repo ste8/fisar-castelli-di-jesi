@@ -16,7 +16,7 @@ Non sono emersi conflitti sostanziali. Quando un riepilogo omette un dettaglio, 
 - Tipografia: l’approvazione del 4 ottobre 2026 aggiorna `docs/01-brand/typography.md`: Poppins `400–700` sostituisce Inter per corpo e UI ed è usato a peso `400` per il nome della Delegazione nella hero. Cormorant Garamond `600–700` resta per titoli editoriali e payoff. Due sole famiglie, WOFF2 self-hosted con subset latino e nessun servizio font remoto a runtime.
 - Hero: usa l'immagine in evidenza della homepage quando presente e un'illustrazione locale come fallback. I dati demo importano una fotografia generata, calda e conviviale, dichiaratamente sostituibile con una fotografia reale della Delegazione; il mockup non viene ritagliato né riutilizzato come sorgente.
 - Immagini demo: il paesaggio della fascia Valori è un asset decorativo generato. Le locandine demo degli Eventi sono quadrate; le locandine reali non vengono ritagliate aggressivamente perché il tema conserva `object-fit: contain`.
-- Iconografia: social, Quattro Porte e Valori usano SVG minimali inclusi nel tema, decorativi e accompagnati da label testuali accessibili.
+- Iconografia: social, CTA e Valori usano SVG minimali inclusi nel tema, decorativi e accompagnati da label testuali accessibili.
 - News: usa i post WordPress nativi; non viene creato un terzo CPT.
 - Social: usa un menu WordPress dedicato. I link demo sono esplicitamente sostituibili, evitando campi custom non previsti.
 - Newsletter: dal 23 settembre 2026 il provider indicato è Mailchimp. Il tema usa il form embedded fornito, ripulito da CSS, JavaScript e badge remoti; nome, cognome ed email vengono trasmessi direttamente a Mailchimp e non memorizzati in WordPress. Il metodo di opt-in è gestito nell’Audience Mailchimp; prima della pubblicazione vanno verificati double opt-in, messaggi di conferma e informativa privacy.
@@ -29,3 +29,7 @@ Il riscontro dell’utente prevale sulla precedente navigazione piatta: `Chi sia
 ## Identità in homepage — 4 ottobre 2026
 
 La scelta della proposta Poppins e la successiva conferma “al posto di Inter” autorizzano la sostituzione globale del sans-serif, non l’aggiunta di una terza famiglia. Il nuovo H1 identifica FISAR e la Delegazione Castelli di Jesi; il payoff rimane secondario. Copy e CTA sono descritti in `docs/03-pages/homepage.md` e prevalgono sul vecchio titolo manifesto del mockup. Su successiva richiesta dell’utente, la fascia istituzionale sotto la hero è rimossa: le informazioni associative restano nelle pagine della sezione `Chi siamo`. Nessuna modifica ai loro contenuti editoriali o alla sequenza delle altre sezioni.
+
+## Semplificazione della homepage — 4 ottobre 2026
+
+Su richiesta dell’utente sono rimosse le Quattro Porte, perché i loro percorsi sono già disponibili in hero, menu e sezioni dedicate. `Come seguirci` segue direttamente la hero; non sono aggiunti blocchi sostitutivi né riordinate le altre sezioni. Questa revisione prevale sulla presenza delle Quattro Porte nel mockup e nelle decisioni iniziali. Nessuna modifica a contenuti, menu o logica del plugin.

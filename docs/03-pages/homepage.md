@@ -2,13 +2,12 @@
 ## Struttura
 1. Top bar + Header
 2. Hero
-3. Le Quattro Porte
-4. Come seguirci
-5. Prossimi Eventi
-6. I nostri Corsi
-7. Ultime News
-8. Carta dei Valori
-9. Footer
+3. Come seguirci
+4. Prossimi Eventi
+5. I nostri Corsi
+6. Ultime News
+7. Carta dei Valori
+8. Footer
 
 ## Hero
 Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy e gerarchia della hero.
@@ -20,24 +19,19 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 - Le due frasi del payoff sono raggruppate per favorire l’andata a capo dopo la virgola; ogni gruppo può comunque andare a capo internamente se lo spazio o lo zoom lo richiedono.
 - CTA: **Scopri i corsi** · **Scopri gli eventi**.
 - Fotografia calda, preferibilmente reale, con overlay scuro per la leggibilità. Conservata l’immagine attuale sostituibile dall’editor.
-- Nessuna fascia istituzionale sotto la hero: le Quattro Porte seguono direttamente. Nome esteso della FISAR, qualifica APS e rapporto con la Delegazione sono raccontati nella sezione `Chi siamo`, senza duplicare il testo in homepage.
+- Nessuna fascia istituzionale sotto la hero: `Come seguirci` segue direttamente. Nome esteso della FISAR, qualifica APS e rapporto con la Delegazione sono raccontati nella sezione `Chi siamo`, senza duplicare il testo in homepage.
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
-## Le Quattro Porte
-**Eventi** — “Degustazioni, visite in cantina, serate a tema e molto altro.” → Scopri gli eventi
+## Percorsi di accesso
 
-**Corsi** — “Percorsi di formazione per appassionati e futuri sommelier.” → Scopri i corsi
-
-**Unisciti a noi** — “Entra a far parte della nostra comunità e condividi la passione.” → Scopri come unirti a noi
-
-**Carta dei Valori** — “I principi che guidano ogni nostra attività e scelta.” → Leggi la Carta dei Valori
+Dal 4 ottobre 2026 le Quattro Porte sono rimosse, senza un blocco sostitutivo: duplicavano percorsi già presenti nella hero, nella navigazione e nelle sezioni con contenuti concreti. La decisione prevale sul concept iniziale. Restano le CTA verso Eventi e Corsi, `Unisciti a noi` nell’header e la fascia Carta dei Valori.
 
 Prossimi Eventi: futuri ASC. Corsi: attivi. News: ultime pubblicazioni.
 
 ## Come seguirci
 
-Sezione ad alta visibilità subito dopo le Quattro Porte. Presenta quattro canali con CTA esplicite:
+Sezione ad alta visibilità subito dopo la hero. Presenta quattro canali con CTA esplicite:
 
 - Canale WhatsApp;
 - Instagram;

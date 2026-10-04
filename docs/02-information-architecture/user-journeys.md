@@ -2,7 +2,7 @@
 
 ## Persona interessata agli eventi
 
-Homepage → Le Quattro Porte / Eventi → Pagina Evento → Iscrizione o contatto.
+Homepage → Prossimi eventi / CTA hero / menu Eventi → Pagina Evento → Iscrizione o contatto.
 
 ## Persona interessata ai corsi
 
