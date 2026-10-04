@@ -35,3 +35,7 @@ La scelta della proposta Poppins e la successiva conferma “al posto di Inter�
 Su richiesta dell’utente sono rimosse le Quattro Porte, perché i loro percorsi sono già disponibili in hero, menu e sezioni dedicate. `Come seguirci` segue direttamente la hero; non sono aggiunti blocchi sostitutivi né riordinate le altre sezioni. Questa revisione prevale sulla presenza delle Quattro Porte nel mockup e nelle decisioni iniziali. Nessuna modifica a contenuti, menu o logica del plugin.
 
 Su successiva approvazione, il blocco completo `Come seguirci`, con canali e form Mailchimp, è spostato dopo la Carta dei Valori e prima del footer. Eventi e Corsi seguono direttamente la hero. Contenuti, stile, ID delle ancore, menu e link social restano invariati; nessuna modifica al plugin o alla configurazione Mailchimp.
+
+## Prova dei titoli di sezione — 4 ottobre 2026
+
+La richiesta di provare Poppins sul sito dopo il confronto autorizza la variante Poppins Medium per i cinque titoli di sezione della homepage, non una conversione globale degli heading. Sono usati peso `500` e dimensione massima `2.5rem`, mantenendo Cormorant per payoff, card e pagine interne. La regola CSS è circoscritta alla classe WordPress `home`; il font è già incluso. La prova resta da valutare visivamente dall’utente.

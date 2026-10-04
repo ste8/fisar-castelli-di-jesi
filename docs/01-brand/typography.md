@@ -35,6 +35,8 @@ Non usare i pesi più sottili nel frontend.
 
 Eccezione esplicita: l’H1 della homepage “FISAR / Delegazione / Castelli di Jesi” usa Poppins `400`, `clamp(2rem, 4.5vw, 3rem)` e interlinea `1.1`, come nella proposta approvata. Non è un nuovo logo e non modifica l’asset ufficiale. Gli altri H1 restano Cormorant Garamond.
 
+Prova attiva richiesta il 4 ottobre 2026: i cinque titoli di sezione della homepage (Prossimi eventi, I nostri corsi, Ultime notizie dalla Delegazione, I nostri valori, il nostro impegno e Come seguirci) usano Poppins `500`, `clamp(2rem, 4vw, 2.5rem)` e interlinea `1.08`, come nell’anteprima Poppins Medium. Questa eccezione è limitata alla homepage: payoff, titoli delle card, titoli interni alle sezioni e heading di archivi/pagine interne restano invariati. Nessuna sostituzione globale del display.
+
 ### UI / body
 
 **Poppins**
@@ -42,6 +44,7 @@ Eccezione esplicita: l’H1 della homepage “FISAR / Delegazione / Castelli di 
 Uso:
 - corpo testo
 - nome della Delegazione nella hero (`400`)
+- titoli di sezione della homepage (`500`, prova attiva)
 - menu
 - bottoni e CTA
 - metadata
@@ -114,6 +117,8 @@ letter-spacing: -0.02em;
 ### H2
 
 Per “Prossimi eventi”, “I nostri corsi”, “Ultime News” e sezioni equivalenti.
+
+La regola seguente resta il default generale. Per i cinque titoli di sezione della homepage prevale la prova Poppins descritta sopra, con dimensione massima `2.5rem` (40 px a scala base), non `3.25rem`.
 
 ```css
 font-family: var(--font-display);
