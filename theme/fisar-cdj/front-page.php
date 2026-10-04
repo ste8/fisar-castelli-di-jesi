@@ -16,14 +16,18 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 		<img class="hero__media" src="<?php echo esc_url( $hero_url ); ?>" alt="" fetchpriority="high" decoding="async">
 		<div class="hero__overlay"></div>
 		<div class="container hero__content">
-			<h1 id="hero-title"><span>Il vino come</span><span>punto di partenza,</span><span>le persone al centro.</span></h1>
-			<p>Eventi, corsi e incontri per conoscere, condividere e vivere insieme la cultura del vino.</p>
+			<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
+			<p class="hero__payoff">Il vino come punto di partenza, le persone al centro.</p>
+			<p class="hero__description">Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.</p>
 			<div class="hero__actions">
-				<a class="button" href="<?php echo esc_url( $events_url ); ?>">Scopri gli eventi</a>
-				<a class="button button--outline-light" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi</a>
+				<a class="button" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi</a>
+				<a class="button button--outline-light" href="<?php echo esc_url( $events_url ); ?>">Scopri gli eventi</a>
 			</div>
 		</div>
 	</section>
+	<div class="hero-association">
+		<p class="container">La nostra Delegazione fa parte della FISAR — Federazione Italiana Sommelier Albergatori Ristoratori APS, associazione di promozione sociale.</p>
+	</div>
 
 	<nav class="doors" aria-label="Quattro modi per conoscere la Delegazione">
 		<div class="container doors__grid">

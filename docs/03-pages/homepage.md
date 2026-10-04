@@ -11,8 +11,16 @@
 9. Footer
 
 ## Hero
-**Il vino come punto di partenza, le persone al centro.**
-CTA: Scopri gli eventi · Scopri i corsi. Fotografia calda, preferibilmente reale.
+Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy e gerarchia della hero.
+
+- H1 ben visibile: **FISAR / Delegazione / Castelli di Jesi**, su tre righe, in Poppins `400`.
+- Payoff secondario, più piccolo e in Cormorant Garamond `600`: **Il vino come punto di partenza, le persone al centro.**
+- Descrizione: **Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.**
+- CTA: **Scopri i corsi** · **Scopri gli eventi**.
+- Fotografia calda, preferibilmente reale, con overlay scuro per la leggibilità. Conservata l’immagine attuale sostituibile dall’editor.
+- Fascia istituzionale subito sotto: “La nostra Delegazione fa parte della FISAR — Federazione Italiana Sommelier Albergatori Ristoratori APS, associazione di promozione sociale.” La qualifica APS si riferisce alla Federazione nazionale, non attribuisce uno status giuridico locale non verificato.
+
+Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
 ## Le Quattro Porte
 **Eventi** — “Degustazioni, visite in cantina, serate a tema e molto altro.” → Scopri gli eventi

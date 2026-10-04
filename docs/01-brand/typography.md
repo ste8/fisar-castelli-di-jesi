@@ -4,6 +4,8 @@
 
 Approvato per la V1.
 
+Aggiornato il 4 ottobre 2026: Poppins sostituisce Inter nell’intero sito, come approvato dall’utente dopo il confronto delle anteprime. Restano due sole famiglie. Questa revisione prevale sulle indicazioni tipografiche del concept iniziale.
+
 Questa specifica definisce i font e le regole tipografiche del sito FISAR Castelli di Jesi. La direzione deve essere coerente con il principio di **eleganza calda** già definito nel design system: titoli autorevoli ed editoriali, testi molto leggibili, tono contemporaneo ma non freddo.
 
 ## Font family
@@ -16,7 +18,7 @@ Uso:
 - `h1`
 - `h2`
 - titoli di sezione
-- hero title
+- payoff della hero
 - eventuali citazioni o frasi manifesto
 
 Pesi:
@@ -31,12 +33,15 @@ font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 
 Non usare i pesi più sottili nel frontend.
 
+Eccezione esplicita: l’H1 della homepage “FISAR / Delegazione / Castelli di Jesi” usa Poppins `400`, `clamp(2rem, 4.5vw, 3rem)` e interlinea `1.1`, come nella proposta approvata. Non è un nuovo logo e non modifica l’asset ufficiale. Gli altri H1 restano Cormorant Garamond.
+
 ### UI / body
 
-**Inter**
+**Poppins**
 
 Uso:
 - corpo testo
+- nome della Delegazione nella hero (`400`)
 - menu
 - bottoni e CTA
 - metadata
@@ -54,12 +59,12 @@ Pesi:
 Fallback:
 
 ```css
-font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 ```
 
 ## Perché questa combinazione
 
-Cormorant Garamond porta il carattere editoriale, caldo ed elegante desiderato. Inter garantisce ottima leggibilità, resa affidabile su mobile e chiarezza nelle informazioni pratiche.
+Cormorant Garamond porta il carattere editoriale, caldo ed elegante desiderato. Poppins garantisce ottima leggibilità, resa affidabile su mobile e chiarezza nelle informazioni pratiche.
 
 Il contrasto tra serif nei titoli e sans-serif nel testo deve essere percepibile ma sobrio.
 
@@ -78,7 +83,7 @@ Il contrasto tra serif nei titoli e sans-serif nel testo deve essere percepibile
 ```css
 :root {
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --font-size-xs: 0.8125rem;
   --font-size-sm: 0.9375rem;
@@ -129,7 +134,7 @@ font-size: clamp(1.5rem, 2.5vw, 2rem);
 line-height: 1.15;
 ```
 
-Per piccoli heading funzionali è ammesso Inter `600`.
+Per piccoli heading funzionali è ammesso Poppins `600`.
 
 ## Body text
 
@@ -159,7 +164,7 @@ font-weight: 500;
 line-height: 1.2;
 ```
 
-La CTA **Unisciti a noi** usa Inter `600`.
+La CTA **Unisciti a noi** usa Poppins `600`.
 
 ## Buttons e CTA
 
@@ -181,12 +186,12 @@ font-weight: 500;
 line-height: 1.3;
 ```
 
-Il payoff nella top bar resta discreto e usa Inter.
+Il payoff nella top bar resta discreto e usa Poppins.
 
 ## Card
 
 ### Titolo card
-Cormorant Garamond `600`, dimensione minima indicativa `1.375rem`.
+Cormorant Garamond `700` per Eventi, Corsi e News, come approvato in v1.3; dimensione minima indicativa `1.375rem`.
 
 ### Metadata
 Date, luogo, livello del corso e informazioni pratiche:
@@ -202,14 +207,14 @@ line-height: 1.4;
 
 - titolo pagina: Cormorant Garamond `600`
 - titoli dei sette punti: Cormorant Garamond `600`
-- testo: Inter `400`
+- testo: Poppins `400`
 - eventuali callout: Cormorant Garamond `600` o `700`
 
 La priorità resta la leggibilità, non l'ornamento.
 
 ## Tabelle
 
-Il calendario delle lezioni usa esclusivamente Inter.
+Il calendario delle lezioni usa esclusivamente Poppins.
 
 Header: `font-weight: 600`.
 
@@ -222,7 +227,7 @@ line-height: 1.45;
 
 ## Form
 
-Label: Inter `600`.
+Label: Poppins `600`.
 
 Input, select e textarea:
 
@@ -257,7 +262,7 @@ Cormorant Garamond:
 - 600
 - 700
 
-Inter:
+Poppins:
 - 400
 - 500
 - 600
@@ -267,6 +272,7 @@ Inter:
 
 - Preload solo dei font indispensabili above-the-fold.
 - Evitare preload di tutti i pesi.
+- Precaricare il file variabile Cormorant Garamond `600–700` e Poppins Regular `400`; i quattro pesi Poppins sono file statici, richiesti dal browser solo quando necessari.
 - Caching lungo per file versionati.
 - Fallback stack sempre definito.
 - Evitare layout shift significativo durante il font loading.
@@ -293,7 +299,7 @@ theme/
 └── assets/
     └── fonts/
         ├── cormorant-garamond/
-        └── inter/
+        └── poppins/
 ```
 
 Non duplicare `@font-face` tra componenti. Usare i design tokens e non nomi di font hardcoded ripetuti.
@@ -304,8 +310,8 @@ Questa specifica è la source of truth per la tipografia della V1.
 
 Usare:
 - **Cormorant Garamond** per display/headings
-- **Inter** per body e UI
+- **Poppins** per body e UI
 
 Non scegliere font alternativi e non dedurre il font dal logo o dai mockup.
 
-Se un componente non è esplicitamente descritto, usare Inter per gli elementi funzionali e Cormorant Garamond soltanto per elementi chiaramente editoriali/display.
+Se un componente non è esplicitamente descritto, usare Poppins per gli elementi funzionali e Cormorant Garamond soltanto per elementi chiaramente editoriali/display.
