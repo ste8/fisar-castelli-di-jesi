@@ -7,7 +7,7 @@
 - CTA "Unisciti a noi".
 - Titoli grandi con sottolineatura breve.
 - Card evento con locandina protagonista.
-- Sezione "Le Quattro Porte".
+- Sezione "Come seguirci" con canali e newsletter.
 - Footer con newsletter e social.
 
 ## Accessibilità

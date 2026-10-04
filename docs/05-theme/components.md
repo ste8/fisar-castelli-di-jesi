@@ -4,14 +4,9 @@
 
 Top bar + logo + menu + CTA.
 
-## Le Quattro Porte
+## Come seguirci
 
-Quattro elementi:
-
-- Eventi
-- Corsi
-- Unisciti a noi
-- Carta dei Valori
+Quattro canali (WhatsApp, Instagram, Facebook e Newsletter) e form Mailchimp. In homepage segue direttamente la hero. Le precedenti Quattro Porte sono rimosse dal 4 ottobre 2026.
 
 ## Card Evento
 

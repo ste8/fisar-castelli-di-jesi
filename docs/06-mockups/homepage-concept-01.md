@@ -4,6 +4,8 @@
 
 Approvato come prima base progettuale.
 
+La revisione del 4 ottobre 2026 rimuove le Quattro Porte. Per la struttura attuale e per le successive modifiche alla hero prevale `docs/03-pages/homepage.md`; l’immagine resta un riferimento della direzione visiva iniziale.
+
 ## File
 
 ```txt

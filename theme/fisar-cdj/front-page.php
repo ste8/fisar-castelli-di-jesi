@@ -26,35 +26,6 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 		</div>
 	</section>
 
-	<nav class="doors" aria-label="Quattro modi per conoscere la Delegazione">
-		<div class="container doors__grid">
-			<article class="door">
-				<?php echo fisar_cdj_theme_icon( 'calendar', 'door__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<h2>Eventi</h2>
-				<p>Degustazioni, visite in cantina, serate a tema e molto altro.</p>
-				<a class="text-link" href="<?php echo esc_url( $events_url ); ?>">Scopri gli eventi <span aria-hidden="true">→</span></a>
-			</article>
-			<article class="door">
-				<?php echo fisar_cdj_theme_icon( 'course', 'door__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<h2>Corsi</h2>
-				<p>Percorsi di formazione per appassionati e futuri sommelier.</p>
-				<a class="text-link" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi <span aria-hidden="true">→</span></a>
-			</article>
-			<article class="door">
-				<?php echo fisar_cdj_theme_icon( 'members', 'door__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<h2>Unisciti a noi</h2>
-				<p>Entra a far parte della nostra comunità e condividi la passione.</p>
-				<a class="text-link" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'unisciti-a-noi' ) ); ?>">Scopri come unirti a noi <span aria-hidden="true">→</span></a>
-			</article>
-			<article class="door">
-				<?php echo fisar_cdj_theme_icon( 'heart', 'door__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<h2>Carta dei Valori</h2>
-				<p>I principi che guidano ogni nostra attività e scelta.</p>
-				<a class="text-link" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'carta-dei-valori' ) ); ?>">Leggi la Carta dei Valori <span aria-hidden="true">→</span></a>
-			</article>
-		</div>
-	</nav>
-
 	<section class="follow-section" aria-labelledby="follow-title">
 		<div class="container">
 			<header class="follow-section__header">
