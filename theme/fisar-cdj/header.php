@@ -35,7 +35,7 @@
 	</div>
 	<div class="main-header">
 		<div class="container main-header__inner">
-			<?php fisar_cdj_theme_logo(); ?>
+			<?php fisar_cdj_theme_logo( for_header: true ); ?>
 			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
 				<span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
 				<span class="menu-toggle__label">Menu</span>

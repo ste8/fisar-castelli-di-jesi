@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2900" height="960" viewBox="0 0 2900 960">
+  <defs>
+    <style>.olive{fill:#b1a64e}.dark{fill:#5f6466}.sub{fill:#6a6f71;font-family:Arial,Helvetica,sans-serif;font-weight:400;letter-spacing:4px}.main{fill:#5f6466;font-family:Arial,Helvetica,sans-serif;font-weight:700}</style>
+    <mask id="grape-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="2000">
+      <rect width="2000" height="2000" fill="black"/>
+      <g fill="white"><circle cx="713" cy="505" r="161"/><circle cx="1000" cy="505" r="161"/><circle cx="1287" cy="505" r="161"/><circle cx="856" cy="738" r="161"/><circle cx="1144" cy="738" r="161"/><circle cx="1000" cy="970" r="161"/></g>
+      <g fill="black"><circle cx="713" cy="505" r="104"/><circle cx="1000" cy="505" r="104"/><circle cx="1287" cy="505" r="104"/><circle cx="856" cy="738" r="104"/><circle cx="1144" cy="738" r="104"/><circle cx="1000" cy="970" r="104"/></g>
+    </mask>
+  </defs>
+  <g id="marchio" transform="translate(-288 40) scale(0.74)"><path d="M928 72 L1072 72 L1000 238 Z" class="dark"/><rect x="0" y="0" width="2000" height="2000" class="olive" mask="url(#grape-mask)"/></g>
+  <g id="testo" text-anchor="middle">
+    <g class="main" font-size="480"><text x="1140" y="500">F</text><text x="1410" y="500">I</text><text x="1720" y="500">S</text><text x="2120" y="500">A</text><text x="2520" y="500">R</text></g>
+    <!-- Dicitura e tricolore condividono i margini del logotipo: x=994, larghezza=1700. -->
+    <rect x="994" y="585" width="566.6667" height="24" fill="#0a9f49"/><rect x="1560.6667" y="585" width="566.6666" height="24" fill="#f2f2f0"/><rect x="2127.3333" y="585" width="566.6667" height="24" fill="#e31d2b"/>
+    <text x="1844" y="810" class="sub" font-size="195" textLength="1700" lengthAdjust="spacing">CASTELLI DI JESI</text>
+  </g>
+</svg>
