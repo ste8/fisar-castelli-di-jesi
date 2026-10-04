@@ -16,6 +16,8 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 - H1 ben visibile: **FISAR / Delegazione / Castelli di Jesi**, su tre righe, in Poppins `400`.
 - Payoff secondario, più piccolo e in Cormorant Garamond `600`: **Il vino come punto di partenza, le persone al centro.**
 - Descrizione: **Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.**
+- Payoff e descrizione hanno più respiro orizzontale: larghezza massima rispettivamente `34rem` e `40rem`, sempre limitata allo spazio disponibile. I testi occupano una riga quando possibile; `text-wrap: balance` equilibra le righe alle larghezze inferiori senza interruzioni forzate o `nowrap`. H1, fotografia e CTA restano invariati.
+- Le due frasi del payoff sono raggruppate per favorire l’andata a capo dopo la virgola; ogni gruppo può comunque andare a capo internamente se lo spazio o lo zoom lo richiedono.
 - CTA: **Scopri i corsi** · **Scopri gli eventi**.
 - Fotografia calda, preferibilmente reale, con overlay scuro per la leggibilità. Conservata l’immagine attuale sostituibile dall’editor.
 - Fascia istituzionale subito sotto: “La nostra Delegazione fa parte della FISAR — Federazione Italiana Sommelier Albergatori Ristoratori APS, associazione di promozione sociale.” La qualifica APS si riferisce alla Federazione nazionale, non attribuisce uno status giuridico locale non verificato.
