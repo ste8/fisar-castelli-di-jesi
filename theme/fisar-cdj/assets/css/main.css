@@ -654,19 +654,6 @@ blockquote {
 	margin-top: 1.35rem;
 }
 
-.hero-association {
-	padding-block: 1.1rem;
-	border-bottom: 1px solid var(--color-line);
-	background: var(--color-tint);
-	color: var(--color-muted);
-	font-size: var(--font-size-sm);
-	line-height: var(--line-height-body);
-}
-
-.hero-association p {
-	margin-block: 0;
-}
-
 /* Four doors */
 .doors {
 	border-bottom: 1px solid var(--color-line);

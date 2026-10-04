@@ -25,9 +25,6 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 			</div>
 		</div>
 	</section>
-	<div class="hero-association">
-		<p class="container">La nostra Delegazione fa parte della FISAR — Federazione Italiana Sommelier Albergatori Ristoratori APS, associazione di promozione sociale.</p>
-	</div>
 
 	<nav class="doors" aria-label="Quattro modi per conoscere la Delegazione">
 		<div class="container doors__grid">
