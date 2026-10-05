@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.6.32 — Iscrizione e informazioni essenziali dell’Evento
+
+- Omettere la riga `Modalità` nelle informazioni pratiche per gli eventi in presenza; mantenerla per online e ibridi. Luogo, indirizzo, accesso alla piattaforma e fallback del riepilogo invariati, senza modificare i meta salvati.
+- Etichette Accoglienza/Inizio/Fine del componente condiviso aumentate da 13 a 14 px in entrambi i riepiloghi. Peso 500, ore da 16 px/600, distanza di 24 px e allineamento accoglienza/inizio conservati.
+- Nota flessibile resa più scura con `--color-ink` (`#282332`), nelle due posizioni; testo, dimensione 14 px e condizioni di visualizzazione invariati.
+- Titolo finale semplificato da `Quote e prenotazioni` a `Iscrizione`; per eventi senza prenotazione `Partecipazione`, per eventi passati ancora `Evento concluso`. Nessuna modifica a quote, recapiti, canali, note, ID o scorciatoie.
+- Tema e asset `1.6.32`, plugin `1.3.3` invariato. README, specifica Evento e tipografia aggiornati. Skill `clean-code-engineer` applicata mantenendo gli stessi componenti e selettori circoscritti agli Eventi. Nessuna dipendenza, script, scrittura nel database o commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS e `git diff --check`; evento, CSS versionato e font HTTP 200. Nove casi di modalità/orari, tredici varianti di iscrizione con titolo verificato per stato, dodici casi valuta, undici normalizzazioni WhatsApp e sei salvataggi intercettati, tutti riusciti senza persistenza.
+- Browser: evento giapponese a 1440/768/390/320 px e altre otto combinazioni su ibrido, partecipazione libera, concluso e Corso a 1440/320 px. Modalità ibrida conservata, nuovi titoli corretti, sottoetichette misurate a 14 px, note nel colore scuro e ore allineate. Nessun overflow, immagine rotta o errore console; review visiva desktop/mobile, focus della scorciatoia da tastiera ancora sul pannello. Nessun login o invio di prenotazioni.
+
 ## v1.6.31 — Scadenza esplicita e riepiloghi Evento coerenti
 
 - `Prenotazioni entro` e data ora formano una frase continua con spazio esplicito, stesso peso 600 e dimensione (18 px nella hero, 22 px nel pannello finale). Ritorno a capo naturale quando lo spazio non basta, senza riduzione del font o clipping; calendario e `datetime` conservati.
