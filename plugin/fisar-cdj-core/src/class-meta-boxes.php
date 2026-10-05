@@ -156,9 +156,12 @@ final class Fisar_CDJ_Meta_Boxes {
 			)
 		);
 		self::checkbox( $post->ID, '_fisar_event_is_free', 'Evento gratuito', 'Nasconde le quote e attiva il copy dedicato.' );
-		echo '<div class="fisar-conditional fisar-admin-grid fisar-admin-grid--2" data-hide-when-checked="_fisar_event_is_free">';
+		echo '<div class="fisar-conditional" data-hide-when-checked="_fisar_event_is_free">';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post->ID, '_fisar_event_member_price', 'Quota soci', 'text', 'Testo libero breve, per esempio “€ 25”.' );
 		self::input( $post->ID, '_fisar_event_non_member_price', 'Quota non soci', 'text' );
+		echo '</div>';
+		self::render_event_fee_options( $post->ID );
 		echo '</div>';
 		self::checkbox( $post->ID, '_fisar_event_limited_seats', 'Mostra avviso posti limitati', 'Non viene memorizzato il numero di posti.' );
 	}
@@ -169,6 +172,50 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::render_registration_fields( $post->ID, 'event' );
 		self::editor( $post->ID, '_fisar_event_registration_notes', 'Informazioni aggiuntive', 'Dettagli utili non coperti dai campi precedenti.' );
 		echo '</div>';
+	}
+
+	private static function render_event_fee_options( int $post_id ): void {
+		$options = fisar_cdj_sanitize_event_fee_options( get_post_meta( $post_id, '_fisar_event_fee_options', true ) );
+		$note    = get_post_meta( $post_id, '_fisar_event_fee_note', true );
+		?>
+		<input type="hidden" name="_fisar_event_fees_present" value="1">
+		<div class="fisar-field">
+			<label for="_fisar_event_fee_note"><strong>Nota generale sulle quote</strong></label>
+			<p class="description" id="fisar-event-fee-note-help">Facoltativa. Spiega cosa comprendono le quote, per esempio “Le quote soci e non soci comprendono il menu con abbinamento vini”.</p>
+			<textarea class="widefat" id="_fisar_event_fee_note" name="_fisar_event_fee_note" rows="3" aria-describedby="fisar-event-fee-note-help"><?php echo esc_textarea( is_string( $note ) ? $note : '' ); ?></textarea>
+		</div>
+		<h3>Altre opzioni di partecipazione</h3>
+		<p class="description" id="fisar-event-fee-options-help">Voci facoltative, nell’ordine di inserimento. Compila etichetta e importo: le righe incomplete non vengono mostrate. Nella nota specifica cosa comprende la quota e a chi si applica; se è un supplemento, scrivilo esplicitamente nell’etichetta e nell’importo.</p>
+		<div id="fisar-event-fee-options" data-next-index="<?php echo count( $options ) + 1; ?>">
+			<?php foreach ( $options as $index => $option ) { self::event_fee_option( $index, $option ); } ?>
+			<?php self::event_fee_option( count( $options ) ); ?>
+		</div>
+		<template id="fisar-event-fee-option-template"><?php self::event_fee_option( '__INDEX__' ); ?></template>
+		<p><button type="button" class="button" id="fisar-event-fee-add" hidden>Aggiungi quota</button></p>
+		<p class="description" id="fisar-event-fee-noscript">Senza JavaScript puoi compilare la riga vuota e salvare: al caricamento successivo ne troverai un’altra. Per rimuovere una voce, svuota etichetta e importo.</p>
+		<span class="screen-reader-text" id="fisar-event-fee-status" role="status" aria-live="polite"></span>
+		<?php
+	}
+
+	private static function event_fee_option( int|string $index, array $option = array() ): void {
+		?>
+		<fieldset class="fisar-event-fee-option" aria-describedby="fisar-event-fee-options-help">
+			<legend><strong>Quota personalizzata</strong></legend>
+			<div class="fisar-admin-grid fisar-admin-grid--2">
+				<?php foreach ( array( 'label' => 'Etichetta', 'amount' => 'Importo' ) as $key => $label ) : ?>
+					<div class="fisar-field">
+						<label for="fisar-event-fee-<?php echo esc_attr( $index . '-' . $key ); ?>"><strong><?php echo esc_html( $label ); ?></strong></label>
+						<input class="widefat" type="text" id="fisar-event-fee-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_event_fee_options[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $option[ $key ] ?? '' ); ?>">
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<div class="fisar-field">
+				<label for="fisar-event-fee-<?php echo esc_attr( $index ); ?>-note"><strong>Nota facoltativa</strong></label>
+				<textarea class="widefat" id="fisar-event-fee-<?php echo esc_attr( $index ); ?>-note" name="_fisar_event_fee_options[<?php echo esc_attr( $index ); ?>][note]" rows="2"><?php echo esc_textarea( $option['note'] ?? '' ); ?></textarea>
+			</div>
+			<button type="button" class="button-link-delete fisar-event-fee-remove" aria-label="Rimuovi questa quota personalizzata" hidden>Rimuovi quota</button>
+		</fieldset>
+		<?php
 	}
 
 	public static function render_event_course( WP_Post $post ): void {
@@ -265,6 +312,12 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::save_url_fields( $post_id, self::EVENT_URL_FIELDS );
 		self::save_boolean_fields( $post_id, self::EVENT_BOOLEAN_FIELDS );
 		self::save_rich_fields( $post_id, array( '_fisar_event_registration_notes' ) );
+		if ( isset( $_POST['_fisar_event_fees_present'] ) ) {
+			$options = fisar_cdj_sanitize_event_fee_options( wp_unslash( $_POST['_fisar_event_fee_options'] ?? array() ) );
+			update_post_meta( $post_id, '_fisar_event_fee_options', wp_slash( $options ) );
+			$fee_note = wp_unslash( $_POST['_fisar_event_fee_note'] ?? '' );
+			update_post_meta( $post_id, '_fisar_event_fee_note', is_string( $fee_note ) ? wp_slash( sanitize_textarea_field( $fee_note ) ) : '' );
+		}
 		update_post_meta( $post_id, '_fisar_event_course_id', absint( $_POST['_fisar_event_course_id'] ?? 0 ) );
 	}
 

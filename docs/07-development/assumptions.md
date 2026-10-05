@@ -48,6 +48,8 @@ Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta
 
 ## Prenotazione nel dettaglio Evento — 5 ottobre 2026
 
+Successivo riscontro v1.6.35: per nuove esigenze come un menu senza vini, mantenere i campi Soci/Non soci e affiancare righe facoltative personalizzabili con etichetta, importo e nota, più una nota generale sulle quote. Non creare un campo fisso per ogni variante né usare un editor libero per sostituire l’intero elenco. Alternative e supplementi devono essere espliciti nei testi, senza calcoli presunti. Nessun importo o condizione del nuovo menu è stato fornito: i test usano dati simulati e gli eventi reali restano invariati.
+
 Il riscontro successivo al doppio pannello v1.6.28 approva un unico riquadro finale `Quote e prenotazioni`, raggiungibile da `Come prenotare` nella hero. Quote e scadenza non sono duplicate nella tabella immediatamente precedente; la scadenza resta nella hero. Corpo in una colonna centrale, senza sticky, barra fissa o testo a tutta larghezza. Gli eventi senza prenotazione usano `Come partecipare`/`Quote e partecipazione`; quelli conclusi non hanno un invito operativo.
 
 L’utente richiede esplicitamente l’euro nelle quote: il tema aggiunge `€` agli importi numerici privi di valuta, conservando testi completi e importi già con valuta. Nessuna modifica ai dati WordPress o alle regole del plugin.

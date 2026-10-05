@@ -16,7 +16,7 @@ Rappresentare eventi, degustazioni, visite, serate di presentazione e attività 
 - Link Google Maps (facoltativo, senza mappa incorporata)
 - Modalità
 - Partecipazione
-- Costi
+- Costi: quote Soci/Non soci, nota generale facoltativa e altre quote personalizzabili (etichetta, importo, nota facoltativa)
 - Iscrizioni
 - Termine prenotazioni
 - Warning posti limitati

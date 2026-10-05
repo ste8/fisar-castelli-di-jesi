@@ -9,6 +9,14 @@ Dal plugin `1.3.4`, `_fisar_event_maps_url` è un meta stringa singolo, non espo
 
 Non memorizzare il numero di posti. Evento concluso se `data_evento < oggi`. Nessuna tassonomia Tipologia evento nella V1.
 
+### Quote personalizzabili — plugin v1.3.5
+
+- Quote Soci/Non soci esistenti conservate. Nuovo meta singolo privato `_fisar_event_fee_options` di tipo array, con righe ordinate `{label, amount, note}`; etichetta e importo sono testo breve, nota è testo semplice multilinea facoltativo. Nessun campo fisso “senza vini”. `_fisar_event_fee_note` è una nota generale in testo semplice multilinea.
+- `fisar_cdj_sanitize_event_fee_options()` sanitizza le righe, scarta input malformati e righe senza etichetta o importo, conserva `0`, ordine e importi editoriali senza calcoli. La stessa funzione è usata nella registrazione meta, nel salvataggio e nella lettura. Autorizzazioni, nonce e capability esistenti; nuovi campi salvati soltanto se il metabox è presente nel POST, così un editor aperto prima dell’aggiornamento non li azzera.
+- Metabox `Partecipazione e costi`: Soci/Non soci, nota generale e `Altre opzioni di partecipazione`, con `Aggiungi quota`/`Rimuovi quota`, label associate, fieldset, focus esplicito e feedback per screen reader. Indici nuovi univoci anche dopo rimozioni. Senza JS: una riga vuota disponibile a ogni caricamento, eliminazione svuotando i due campi principali. Righe incomplete non persistite.
+- `fisar_cdj_get_event_fees()` espone `free`, `member`, `nonmember`, `options`, `note` e `has_fees`. La gratuità nasconde tutte le quote e le loro note, senza cancellare i dati salvati. Una nota generale da sola è visualizzabile; una quota unica può usare soltanto le righe personalizzate. Nessuna distinzione alternativa/supplemento dedotta dal prezzo: va esplicitata editorialmente.
+- Nessuna migrazione, valorizzazione demo o nuova dipendenza. Corsi e loro quota editoriale invariati. La valuta continua a essere formattata dal tema, senza alterare i valori memorizzati.
+
 Copy aperto a tutti: “La partecipazione è aperta a tutti, anche a chi non è socio FISAR.”
 Gratuito + prenotazione: “INGRESSO GRATUITO, PRENOTAZIONE OBBLIGATORIA”.
 Gratuito libero: “La partecipazione è libera, non è richiesta la prenotazione.”
