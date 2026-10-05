@@ -42,6 +42,10 @@ La prima richiesta di provare Poppins sul sito dopo il confronto riguarda i cinq
 
 La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, Corsi e News, canali, pannello newsletter e voci della fascia Valori. Poppins Medium `500`, con interlinea `1.3` per card, canali e newsletter; dimensioni esistenti conservate. I componenti condivisi sono aggiornati anche negli archivi e nella pagina Seguici. Restano invariati payoff, heading editoriali delle pagine interne e default dell’editor: non è una conversione globale degli heading. Nessuna modifica a plugin, markup, contenuti o nomi accessibili.
 
+## Stile archivio e dettaglio Eventi — 5 ottobre 2026
+
+Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta ai soli template Eventi: intestazioni compatte, locandine intere su bianco, bordi e accenti oro leggeri. Riquadro iscrizioni in normale flusso, senza sticky, per evitare che pannelli lunghi siano parzialmente fuori dal viewport. Conservati integralmente i contenuti e tutte le condizioni funzionali; nessuna riscrittura editoriale o modifica al plugin/database. Le specifiche più aggiornate sono `docs/03-pages/events.md` e `docs/03-pages/event.md`.
+
 ## Visibilità degli eventi in homepage — 5 ottobre 2026
 
 L’utente approva la visibilità diretta fino a quattro eventi, in sostituzione del precedente limite di due. Si mantengono due card per riga su desktop/tablet e una su mobile, senza diminuire le locandine o introdurre un carosello. Il successivo riscontro conserva sempre il link all’archivio nella stessa posizione: `Tutti gli eventi` fino a quattro, `Tutti gli eventi (N)` oltre quattro, accanto al titolo su desktop e sotto le card su mobile. Il totale è fornito dalla stessa query del plugin; a zero eventi compare un messaggio esplicito. Nessuna modifica a dati, seed, criteri temporali, Corsi, altri contenuti o archivi. I test dei diversi totali usano filtri in memoria e fixture temporanee, senza alterare il database locale.

@@ -14,6 +14,8 @@ Prova v1.6.7: titoli dei canali e del pannello newsletter in Poppins Medium `500
 
 Mostra locandina, data, titolo, luogo, CTA.
 
+Da v1.6.18 il contesto `archive` usa la stessa data compatta con calendario della home, mantenendo data estesa e titolo completo per screen reader. L’archivio conserva l’eventuale abstract; solo il contesto `home` lo omette. Cornice bianca quadrata con immagine intera, bordo e ombra leggeri; specifica in `docs/03-pages/events.md`.
+
 ## Card Corso
 
 Mostra immagine, livello, titolo, descrizione, CTA.

@@ -97,6 +97,8 @@ Il tema non ricalcola gli stati temporali né le relazioni: usa le funzioni pubb
 
 ### Eventi
 
+Archivio e dettaglio Eventi riprendono lo stile Poppins della home e della Carta dei Valori: intestazioni compatte, locandine intere su bianco e accenti oro leggeri. Le card dell’archivio conservano gli abstract; il dettaglio mantiene il contenuto completo e presenta informazioni pratiche e iscrizioni in riquadri leggibili. Specifiche in `docs/03-pages/events.md` e `docs/03-pages/event.md`.
+
 Dal menu **Eventi** del backend puoi gestire data e orari, modalità, luogo o piattaforma, partecipazione, gratuità, quote, iscrizioni, deadline, avviso posti limitati e Corso collegato. I campi non pertinenti vengono nascosti in base a modalità, gratuità e richiesta di iscrizione.
 
 Un Evento passa automaticamente tra futuro e concluso confrontando la data evento con la data corrente del sito.
