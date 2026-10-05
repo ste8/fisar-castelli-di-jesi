@@ -1,5 +1,11 @@
 # Changelog
 
+## Intestazione essenziale dell’archivio Eventi — 5 ottobre 2026
+
+- Rimossa la dicitura `FISAR · Delegazione Castelli di Jesi` sopra il titolo dell’archivio Eventi, su richiesta dell’utente; l’identità resta nel logo/header e nella hero della Carta dei Valori, dove chiarisce l’ambito locale del documento.
+- Conservati titolo, introduzione, padding 32–48 px, card, nomi accessibili e query. Modifica circoscritta al template dell’archivio; nessun intervento su plugin, database, CSS o altri template. Tema `1.6.19` invariato, specifica aggiornata; nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per Eventi, Carta, CSS e font. Browser a 1440/768/390/320 px senza overflow o immagini rotte, sei card e padding conservati, dicitura assente dalla hero Eventi e presente nella Carta; sette capitoli della Carta e console senza errori. Review visiva desktop/mobile.
+
 ## v1.6.19
 
 - Ridotto soltanto il padding verticale della hero dell’archivio Eventi da 40–64 px a 32–48 px per lato, con `clamp(2rem, 4vw, 3rem)`. Titolo, testo, accento oro, card e spaziature delle sezioni invariati; la hero del singolo evento conserva i precedenti valori.
