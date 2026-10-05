@@ -1670,19 +1670,18 @@ blockquote {
 	max-width: 100%;
 }
 
-.standard-page.page-carta-dei-valori .prose--page h2 {
-	position: relative;
-	padding-left: 1.15rem;
+.prose--page .values-chapter-heading {
+	display: grid;
+	grid-template-columns: 1.75rem minmax(0, 1fr);
+	align-items: start;
+	gap: .85rem;
 }
 
-.standard-page.page-carta-dei-valori .prose--page h2::before {
-	position: absolute;
-	top: .42em;
-	left: 0;
-	width: 4px;
-	height: .8em;
-	background: var(--color-gold);
-	content: '';
+.values-chapter-heading__icon {
+	width: 1.75rem;
+	height: 1.75rem;
+	margin-top: .12em;
+	color: var(--color-gold);
 }
 
 .post-navigation {

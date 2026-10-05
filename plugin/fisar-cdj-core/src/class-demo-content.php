@@ -113,23 +113,10 @@ final class Fisar_CDJ_Demo_Content {
 	}
 
 	private static function create_pages( array $only = array(), bool $preserve_content = false ): array|WP_Error {
-		$values_content = <<<'HTML'
-<p class="lead">Il vino come punto di partenza, le persone al centro.</p>
-<h2>Chi siamo</h2>
-<p>Siamo un’associazione di persone unite dalla passione per il vino, dalla voglia di conoscerlo e dal piacere di condividerlo. Crediamo nella competenza e nella professionalità, che promuoviamo attraverso corsi, formazione e occasioni di approfondimento.</p>
-<h2>Il valore delle persone e del modo di lavorare</h2>
-<p>Ci sentiamo vicini ai principi di Slow Food e privilegiamo produttori che lavorano con attenzione alla terra, all’ambiente e alle persone, cercando la qualità prima di tutto in vigna e limitando gli interventi in cantina.</p>
-<h2>Curiosità e apertura</h2>
-<p>Il vino è per noi un punto di partenza: ci piace conoscere anche ciò che gli sta intorno, dalle altre bevande al cibo, di cui in Italia abbiamo una cultura straordinariamente ricca.</p>
-<h2>Il vino con consapevolezza</h2>
-<p>Crediamo in un approccio basato sulla conoscenza, sulla consapevolezza e sulla moderazione. Il vino trova posto all’interno di uno stile di vita equilibrato e attento alla longevità.</p>
-<h2>Semplicità e informalità</h2>
-<p>Conosciamo e rispettiamo le regole del servizio e della degustazione, ma non amiamo gli eccessivi formalismi. Preferiamo un ambiente informale, senza rinunciare alla professionalità.</p>
-<h2>Inclusione e accoglienza</h2>
-<p>Le nostre attività sono aperte a tutti, dagli appassionati alle prime armi alle persone che fanno parte di altre associazioni. Preferiamo il confronto e la collaborazione alla competizione.</p>
-<h2>Ognuno può contribuire</h2>
-<p>Alla vita della Delegazione possono contribuire tutti con idee, proposte e iniziative. Chi ha voglia di dare una mano è sempre benvenuto.</p>
-HTML;
+		$values_content = file_get_contents( __DIR__ . '/../content/carta-dei-valori.html' );
+		if ( false === $values_content ) {
+			return new WP_Error( 'fisar_values_content', 'Testo della Carta dei Valori non disponibile.' );
+		}
 
 		$definitions = array(
 			'home' => array(
