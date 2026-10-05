@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.20
+
+- Su richiesta dell’utente, applicata una prova scura alla sola hero dell’archivio Eventi: fondo bordeaux scuro uniforme del brand, titolo bianco, introduzione chiara e linea oro; nessuna fotografia o nuova dicitura. Conservati padding compatto 32–48 px, Poppins, testo e griglia.
+- Selettori circoscritti all’archivio: singolo evento ancora chiaro, Carta fotografica e resto del sito invariati. Nessuna modifica a plugin, dati o funzioni e nessuna nuova dipendenza. Tema e asset `1.6.20`, specifica aggiornata; nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per archivio, singolo evento, Carta, CSS versionato e font. Browser a 1440/1024/768/390/320 px senza overflow o immagini rotte: sei card e padding invariati, background senza immagine. Contrasti misurati sui colori renderizzati: titolo 16.28:1, introduzione 12.45:1 e linea oro 6.93:1. Review visiva desktop/mobile, singolo evento conservato chiaro e console senza errori.
+
 ## Intestazione essenziale dell’archivio Eventi — 5 ottobre 2026
 
 - Rimossa la dicitura `FISAR · Delegazione Castelli di Jesi` sopra il titolo dell’archivio Eventi, su richiesta dell’utente; l’identità resta nel logo/header e nella hero della Carta dei Valori, dove chiarisce l’ambito locale del documento.
