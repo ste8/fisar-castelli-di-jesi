@@ -22,6 +22,12 @@ Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepa
 - Solo gli eventi online hanno nel riepilogo `Modalità: Online`, senza luogo fisico. Gli ibridi mostrano sede e `Anche online`; se manca ogni dato di luogo, fallback `Modalità: In presenza e online`, per non perdere l’informazione.
 - Modalità, piattaforma, accesso online e altri dati della tabella finale restano conservati, con i precedenti vincoli per eventi conclusi.
 
+## Gerarchia del luogo — v1.6.24
+
+Nome della sede in Poppins `600` da 16 px, su una riga dedicata (con ritorno a capo naturale se lungo). Nel riepilogo segue la città/provincia; nelle informazioni pratiche seguono via e città/provincia, ciascuna su una riga distinta con spazio di 4 px. Nessuna concatenazione di sede e indirizzo. Dati mancanti omessi, senza righe vuote, mantenendo il fallback all’indirizzo nel riepilogo quando sede e città non sono presenti. `Online` e `Anche online` restano invariati. Nessun uso di `address`: non sono recapiti dell’autore della pagina.
+
+Aggiornamento v1.6.25: anche il riepilogo iniziale mostra sempre la via disponibile, tra nome della sede e città/provincia, con la stessa formattazione della tabella. Questa indicazione prevale sulla precedente sintesi senza via; campi mancanti ancora omessi e modalità online invariata.
+
 ## Requisiti comuni
 
 - Accessibile.

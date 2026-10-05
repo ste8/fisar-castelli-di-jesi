@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.6.25
+
+- Aggiunta la via anche al riepilogo iniziale del dettaglio evento, tra il nome della sede in grassetto e la città/provincia. Conservati righe separate e stile v1.6.24, campi mancanti omessi e comportamento degli eventi online/ibridi.
+- Nessuna modifica a dati, plugin, tabella finale o CSS; tema e asset `1.6.25`, specifica e architettura aggiornate. Nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per evento e CSS versionato. Nove casi WordPress in sola lettura per via nel riepilogo, sede parziale o assente, online/ibrido, escaping e conservazione del corpo. Browser a 1440/768/390/320 px: via su riga dedicata, nessun overflow o immagine rotta, console senza errori e review visiva desktop.
+
+## v1.6.24
+
+- Migliorata la gerarchia del luogo nel dettaglio evento: nome della sede in grassetto semantico Poppins `600` da 16 px, città/provincia su una riga distinta nel riepilogo. Nelle informazioni pratiche, nome, via e città/provincia su righe separate con spazio di 4 px, senza concatenazioni.
+- Testi lunghi liberi di andare a capo, dati mancanti omessi e fallback all’indirizzo conservato. `Online`, `Anche online`, orari ravvicinati, indirizzo completo e altri dati invariati. Il nome non eredita il maiuscolo e il colore delle etichette del riepilogo.
+- Intervento circoscritto a markup e CSS del singolo evento; nessuna modifica al plugin, al database o agli altri template, nessuna dipendenza aggiunta. Tema e asset `1.6.24`, specifica aggiornata; nessun commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS e `git diff --check`; HTTP 200 per pagina evento, CSS versionato e font 600. Diciotto casi WordPress in sola lettura con filtri in memoria: stati/modalità/orari conservati, luogo completo o parziale, dati assenti, fallback, escaping e corpo editoriale integrale.
+- Browser desktop/tablet/mobile a 1440/1024/768/390/320 px: nome a peso 600, righe separate, orari ancora allineati e nessun overflow o immagine rotta. Review visiva del riepilogo desktop e dell’indirizzo completo desktop/mobile; console senza errori.
+
 ## v1.6.23
 
 - Ravvicinati accoglienza e inizio nel riepilogo e nelle informazioni pratiche: colonne dimensionate sul testo, allineate a sinistra e distanti `1.5rem` (24 px), anziché espanse sull’intera larghezza disponibile. Conservati etichette, valori, allineamento delle ore e disposizione dell’eventuale fine sotto.
