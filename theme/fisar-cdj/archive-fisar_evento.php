@@ -5,7 +5,7 @@ get_header();
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
 			<h1>Eventi</h1>
-			<p>Degustazioni, visite in cantina, serate a tema e occasioni per stare insieme. Ogni evento è un modo diverso per conoscere il vino e le persone.</p>
+			<p>Degustazioni, visite e incontri per scoprire e condividere.</p>
 		</div>
 	</header>
 	<section class="section" aria-labelledby="future-events">
