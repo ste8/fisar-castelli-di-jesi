@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.6.23
+
+- Ravvicinati accoglienza e inizio nel riepilogo e nelle informazioni pratiche: colonne dimensionate sul testo, allineate a sinistra e distanti `1.5rem` (24 px), anziché espanse sull’intera larghezza disponibile. Conservati etichette, valori, allineamento delle ore e disposizione dell’eventuale fine sotto.
+- Modifica circoscritta al CSS del dettaglio evento; componente, contenuti e plugin invariati. Tema e asset `1.6.23`, specifiche aggiornate; nessun commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS e `git diff --check`; pagina evento e CSS versionato HTTP 200. Otto combinazioni browser su due eventi con due/tre orari, da 320 a 1440 px: gap effettivo 24 px nelle due viste, ore allineate, fine sotto e nessun overflow. Asset caricati, review visiva desktop e console senza errori.
+
+## v1.6.22
+
+- Nel dettaglio degli eventi futuri, sostituito `Prossimo evento` con `Evento in programma`: la dicitura non implica che sia il primo in ordine cronologico. Conservato `Evento concluso` per gli eventi passati.
+- Accoglienza e inizio affiancati nello stesso gruppo `Orari`, sia nel riepilogo iniziale sia nelle informazioni pratiche, anche su mobile: etichette sopra e ore sulla stessa riga, a peso 600 e con numeri tabulari. L’eventuale fine resta sotto quando ci sono tre orari; dati facoltativi mancanti omessi. Un componente condiviso del tema evita divergenze fra le due viste.
+- Il riepilogo iniziale mostra il luogo anziché `In presenza`. Per gli eventi online mostra `Modalità: Online`; per quelli ibridi mostra il luogo con `Anche online`, oppure la modalità se manca la sede. Indirizzo completo e modalità restano disponibili nelle informazioni pratiche.
+- Nessuna modifica a campi, validazione, query, contenuti editoriali, iscrizioni o relazioni del plugin, nessuna scrittura nel database e nessuna nuova dipendenza. Tema e asset `1.6.22`, specifiche aggiornate; nessun commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS e `git diff --check`; HTTP 200 per home, archivio, dettagli, CSS/JS versionati e font. Test WordPress in sola lettura su sei eventi per conservazione di contenuti, iscrizioni, stati e corsi collegati; nove casi con meta simulati in memoria per presenza, online, ibrido, orari incompleti, sede mancante ed evento passato.
+- Browser: 24 combinazioni di quattro eventi reali e sei larghezze da 320 a 1440 px, con accoglienza e inizio allineati in entrambe le viste, nessun overflow o immagine rotta. Review visiva desktop/mobile e delle informazioni pratiche; console senza errori.
+
 ## v1.6.21
 
 - Prova richiesta dall’utente: mese per esteso nelle date delle card Eventi di home e archivio, abbreviato soltanto quando non entra su una riga. Giorno della settimana ancora breve; icona, font e `datetime` conservati, data completa per screen reader invariata.
