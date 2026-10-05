@@ -16,6 +16,8 @@ Mostra locandina, data, titolo, luogo, CTA.
 
 Da v1.6.18 il contesto `archive` usa la stessa data compatta con calendario della home, mantenendo data estesa e titolo completo per screen reader. L’archivio conserva l’eventuale abstract; solo il contesto `home` lo omette. Cornice bianca quadrata con immagine intera, bordo e ombra leggeri; specifica in `docs/03-pages/events.md`.
 
+Prova v1.6.21: giorno della settimana abbreviato e mese per esteso, es. `GIO 8 OTTOBRE 2026`. Il piccolo script `event-dates.js` misura ogni data nello spazio reale della card, considerando calendario, gap e font: abbrevia soltanto il mese che non entra e ripristina quello esteso quando la card si allarga. Aggiornamento dopo caricamento dei font e variazioni di larghezza, con `ResizeObserver` e fallback al resize della finestra. `datetime` e testo per screen reader restano completi e invariati. Senza JavaScript la forma estesa può andare a capo; se a forte ingrandimento neppure quella breve entra, può andare a capo anche con JavaScript. Nessun clipping o riduzione del font.
+
 ## Card Corso
 
 Mostra immagine, livello, titolo, descrizione, CTA.

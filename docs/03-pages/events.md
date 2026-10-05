@@ -12,6 +12,8 @@ Card a una colonna su mobile, due da `38rem`, tre da `52rem`. Locandine quadrate
 
 Stili circoscritti a `events-archive`; nessuna modifica a homepage, Corsi, News, dati editoriali o regole temporali. Nessuna nuova dipendenza o immagine.
 
+Prova date v1.6.21: nella card condivisa con la home, mese per esteso quando entra su una riga, abbreviato soltanto quando lo spazio effettivo non basta. Giorno della settimana ancora abbreviato; calendario, font, data completa per screen reader e `datetime` conservati. Il comportamento si aggiorna dopo font e ridimensionamento, senza breakpoint dedicati; fallback naturale su più righe senza JS o quando neppure la forma breve entra a forte ingrandimento. Dettagli in `docs/05-theme/components.md`. Le date del singolo evento non cambiano.
+
 ## Requisiti comuni
 
 - Accessibile.
