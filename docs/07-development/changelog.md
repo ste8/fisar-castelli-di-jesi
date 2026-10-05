@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6.34 — Tutti gli orari dell’Evento affiancati
+
+- Accoglienza, Inizio e l’eventuale Fine sulla stessa riga, sia nel riepilogo iniziale sia nelle informazioni pratiche. Colonne automatiche per gli orari presenti, senza colonne vuote; rimosso il posizionamento forzato di Fine sotto gli altri due valori.
+- Conservati distanza orizzontale 24 px, etichette da 14 px/500 e ore da 16 px/600 con numeri tabulari. Griglia esplicitamente isolata dalle colonne generiche della lista di dettagli. Skill `clean-code-engineer` applicata aggiornando soltanto lo stile del componente condiviso, senza duplicare markup o introdurre script.
+- Tema/asset `1.6.34`; specifica Evento aggiornata. Plugin, Corsi, dati e contenuti invariati; nessuna scrittura nel database o commit automatico.
+- Verifiche: lint PHP del file modificato, sintassi dei due script JS frontend e `git diff --check`; pagina, CSS versionato e font HTTP 200. Nove regressioni WordPress con meta simulati in memoria, comprese modalità e orari mancanti, tutte riuscite.
+- Browser: evento con tre orari a 1440/768/390/320 px e con due orari a 1440/320 px. In entrambi i riepiloghi ore allineate, gap 24 px e font invariati; nessun overflow, immagine rotta o errore console nell’evento con tre orari. Review visiva desktop/mobile e scorciatoia di prenotazione da tastiera con focus sulla destinazione conservato. Nessun link esterno aperto né prenotazione inviata.
+
 ## v1.6.33 — Link Google Maps nell’Evento e plugin v1.3.4
 
 - Aggiunto meta facoltativo `_fisar_event_maps_url`: stringa singola, non esposta in REST, autorizzazioni esistenti e sanitizzazione WordPress limitata a HTTP/HTTPS. Campo URL `Link Google Maps` nel box `Modalità e luogo`, nella sezione presenza/ibrido; salvataggio con nonce e capability esistenti. Link abbreviati supportati senza risoluzione remota o deduzione della posizione. I valori non stringa nei campi URL vengono scartati senza errori.
