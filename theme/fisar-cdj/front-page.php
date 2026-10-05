@@ -91,7 +91,7 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 			<div class="values-banner__intro">
 				<h2 id="values-title">La nostra Carta dei Valori</h2>
 				<p>Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.</p>
-				<p>Coltiviamo competenza e professionalità attraverso corsi e incontri, e viviamo il vino come occasione per creare relazioni.</p>
+				<p>Attraverso corsi ed eventi coltiviamo competenza e professionalità, in un ambiente informale.</p>
 				<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'carta-dei-valori' ) ); ?>">Leggi la Carta dei Valori</a>
 			</div>
 			<ul class="values-list">
@@ -103,27 +103,27 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 				<li>
 					<?php echo fisar_cdj_theme_icon( 'compass', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Curiosità e apertura</h3>
-					<p>Dal vino ci piace allargare lo sguardo a birra, distillati, tè, caffè e cibo.</p>
+					<p>Partiamo dal vino per esplorare anche il mondo del cibo e delle altre bevande, come birra, distillati, tè e caffè.</p>
 				</li>
 				<li>
 					<?php echo fisar_cdj_theme_icon( 'shield', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Il vino con consapevolezza</h3>
-					<p>Conoscere ciò che beviamo e scegliere con moderazione.</p>
+					<p>Un approccio al vino basato sulla conoscenza e sulla consapevolezza.</p>
 				</li>
 				<li>
 					<?php echo fisar_cdj_theme_icon( 'chat', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Semplicità e informalità</h3>
-					<p>Competenza e professionalità, in un ambiente in cui sentirsi a proprio agio.</p>
+					<h3>Informalità</h3>
+					<p>Seguiamo le regole del servizio e della degustazione, senza eccessivi formalismi.</p>
 				</li>
 				<li>
 					<?php echo fisar_cdj_theme_icon( 'members', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Inclusione e accoglienza</h3>
-					<p>Attività aperte a tutti, anche a chi inizia e a chi fa parte di altre associazioni.</p>
+					<p>Le nostre attività sono aperte a tutti, anche a chi non ha mai frequentato un corso da sommelier e a chi fa parte di altre associazioni.</p>
 				</li>
 				<li>
 					<?php echo fisar_cdj_theme_icon( 'idea', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Ognuno può contribuire</h3>
-					<p>Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio.</p>
+					<p>Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio Direttivo.</p>
 				</li>
 			</ul>
 		</div>
