@@ -155,7 +155,7 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 		'deadline'        => false !== $timestamp ? $deadline : '',
 		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
 		'deadline_notice' => false !== $timestamp && 'flexible' === $deadline_type
-			? 'Dopo tale termine sarà comunque possibile contattarci, ma non potremo garantire la disponibilità.' : '',
+			? 'Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.' : '',
 	);
 }
 
