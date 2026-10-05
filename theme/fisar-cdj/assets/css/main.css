@@ -2073,7 +2073,11 @@ blockquote {
 	font-size: 1.25rem;
 }
 
-.single-event .prose :is(h4, h5, h6) {
+.single-event .prose h4 {
+	font-size: 1.125rem;
+}
+
+.single-event .prose :is(h5, h6) {
 	font-size: 1.0625rem;
 }
 

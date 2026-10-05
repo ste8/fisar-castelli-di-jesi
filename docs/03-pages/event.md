@@ -30,7 +30,7 @@ Aggiornamento v1.6.25: anche il riepilogo iniziale mostra sempre la via disponib
 
 ## Anteprima nell’editor — v1.6.26
 
-Il canvas dell’editor Eventi usa gli stessi font locali e la scala di lettura desktop della pagina: corpo Poppins 17 px, interlinea 1.7, H2 24 px, H3 20 px, H4–H6 17 px, titoli a peso 500 e grassetti 600. Margini dei titoli, elenchi, citazioni e misura di lettura `68ch` coerenti con `.single-event .prose`. Il titolo principale rimane distinto dal contenuto; la sua scala è 44 px. Le dimensioni non usano `vw`, perché la larghezza del canvas è diversa dal viewport della pagina pubblica.
+Il canvas dell’editor Eventi usa gli stessi font locali e la scala di lettura desktop della pagina: corpo Poppins 17 px, interlinea 1.7, H2 24 px, H3 20 px, H4 18 px (aggiornamento v1.6.27, anche nel frontend), H5–H6 17 px, titoli a peso 500 e grassetti 600. Margini dei titoli, elenchi, citazioni e misura di lettura `68ch` coerenti con `.single-event .prose`. Il titolo principale rimane distinto dal contenuto; la sua scala è 44 px. Le dimensioni non usano `vw`, perché la larghezza del canvas è diversa dal viewport della pagina pubblica.
 
 Stili nativi caricati soltanto nel contesto di modifica Evento; niente modifiche a dati, formattazioni esplicite salvate, metabox o interfaccia amministrativa. È una rappresentazione del testo, non una replica della hero, del riepilogo o delle iscrizioni, generati dal template. La pagina pubblica mantiene le proprie scale responsive.
 

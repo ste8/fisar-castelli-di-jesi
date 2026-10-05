@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.27
+
+- Aumentato H4 del corpo Evento da 17 a 18 px (`1.125rem`), sia nel frontend sia nel CSS dell’editor Eventi. Conservati Poppins `500`, interlinea `1.35`, H3 da 20 px e H5–H6 da 17 px. Nessun intervento su contenuti, livelli salvati, Corsi o altri template.
+- Tema e asset `1.6.27`, specifiche tipografiche aggiornate; nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per evento, CSS principale versionato e CSS editor Eventi. Test WordPress in sola lettura del caricamento degli stili per tipo di editor, senza nuove scritture nel database. Browser a 1440/768/390/320 px: tre H4 reali misurati a 18 px, peso 500 e interlinea 24.3 px, nessun overflow o immagine rotta; review visiva desktop e console senza errori. Verifica nell’editor autenticato ancora subordinata all’autorizzazione di accesso già richiesta.
+
 ## v1.6.26
 
 - Configurati stili nativi del canvas per gli editor Eventi e Corsi: font locali già presenti nel tema, larghezza di lettura `68ch`, margini dei titoli, elenchi e citazioni coerenti con il corpo delle pagine pubbliche. Nessun cambiamento alla toolbar, ai metabox o ai contenuti salvati.
