@@ -3,7 +3,9 @@ Il plugin contiene dati e logiche indipendenti dal tema.
 
 ## CPT Eventi
 Base: titolo, editor, featured image.
-Campi: data evento; ora accoglienza/inizio/fine; modalità (presenza/online/ibrido); sede, indirizzo, città, provincia; piattaforma/link online; partecipazione (aperto a tutti/solo soci/soci e accompagnatori); gratuito; quota soci/non soci; iscrizione richiesta; WhatsApp, email, telefono, modulo online, altro canale, info aggiuntive; deadline; chiusura tassativa/flessibile; **Mostra avviso posti limitati**; Corso collegato.
+Campi: data evento; ora accoglienza/inizio/fine; modalità (presenza/online/ibrido); sede, indirizzo, città, provincia, link Google Maps facoltativo; piattaforma/link online; partecipazione (aperto a tutti/solo soci/soci e accompagnatori); gratuito; quota soci/non soci; iscrizione richiesta; WhatsApp, email, telefono, modulo online, altro canale, info aggiuntive; deadline; chiusura tassativa/flessibile; **Mostra avviso posti limitati**; Corso collegato.
+
+Dal plugin `1.3.4`, `_fisar_event_maps_url` è un meta stringa singolo, non esposto in REST, registrato con le stesse autorizzazioni degli altri campi. Campo URL `Link Google Maps` nel box `Modalità e luogo`, dentro la sezione esistente visibile per presenza/ibrido, non obbligatorio. Riusa salvataggio con nonce/capability e sanitizzazione WordPress; il callback del nuovo meta consente solo HTTP/HTTPS e scarta dati non stringa. Accetta anche link abbreviati condivisi da Google Maps; nessuna risoluzione remota, geocodifica, generazione dall’indirizzo o verifica della destinazione. Nessun nuovo campo Corsi, nessuna migrazione o valorizzazione automatica degli eventi esistenti.
 
 Non memorizzare il numero di posti. Evento concluso se `data_evento < oggi`. Nessuna tassonomia Tipologia evento nella V1.
 

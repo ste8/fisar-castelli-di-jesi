@@ -63,6 +63,7 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_event_address'               => 'string',
 			'_fisar_event_city'                  => 'string',
 			'_fisar_event_province'              => 'string',
+			'_fisar_event_maps_url'              => 'string',
 			'_fisar_event_platform'              => 'string',
 			'_fisar_event_online_url'            => 'string',
 			'_fisar_event_participation'         => 'string',
@@ -128,6 +129,9 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( '_fisar_event_maps_url' === $key ) {
+					return is_string( $value ) ? esc_url_raw( $value, array( 'http', 'https' ) ) : '';
+				}
 				if ( 'boolean' === $type ) {
 					return (bool) $value;
 				}

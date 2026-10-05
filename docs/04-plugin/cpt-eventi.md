@@ -13,6 +13,7 @@ Rappresentare eventi, degustazioni, visite, serate di presentazione e attività 
 - Ora accoglienza
 - Ora inizio
 - Luogo
+- Link Google Maps (facoltativo, senza mappa incorporata)
 - Modalità
 - Partecipazione
 - Costi

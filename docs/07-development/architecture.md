@@ -48,6 +48,8 @@ Dal tema `1.6.30`, `event-deadline.php` condivide la presentazione della scadenz
 
 Il v1.6.31 mantiene lo stesso componente della scadenza, presentando etichetta e data in linea con dimensione/peso identici e ritorno a capo naturale. Uniforma solo le etichette principali dei due riepiloghi Eventi, senza applicare il maiuscolo ai valori annidati. La nota flessibile esplicita `contattarci per iscriversi` nel plugin `1.3.3`, così API strutturata e testuale usano lo stesso testo; regole e dati non cambiano.
 
+Dal tema `1.6.33` e plugin `1.3.4`, il link facoltativo alla posizione Maps è un meta dell’Evento (`_fisar_event_maps_url`): registrazione, autorizzazioni, metabox e sanitizzazione nel plugin. Il tema riusa `event-map-link.php` per la sola presentazione nei due riepiloghi del luogo, sopprimendo il link per gli eventi online. Nessuna geocodifica, iframe, integrazione remota a runtime o duplicazione del campo nel tema; nessuna migrazione dei dati esistenti.
+
 ## Stili editoriali nel backend
 
 Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.css` oppure `editor-course.css` con `add_editor_style` durante `enqueue_block_editor_assets`, solo sugli schermi di modifica dei due CPT. WordPress legge i file locali e ne porta CSS e URL base nel canvas, anche iframed; `main.css` conserva font e stili generali già registrati. Nessun nuovo script, dato o API amministrativa. Le varianti rispecchiano le scale desktop dei template rispettivi; non caricano stili nel frontend o negli editor di pagine/News. Le future modifiche alla tipografia del corpo dei template devono aggiornare la variante corrispondente.

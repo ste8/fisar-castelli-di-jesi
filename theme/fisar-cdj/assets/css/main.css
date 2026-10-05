@@ -2061,6 +2061,12 @@ blockquote {
 	font-weight: 500;
 }
 
+.single-event .event-location__map {
+	max-width: 100%;
+	font-size: .9375rem;
+	line-height: 1.4;
+}
+
 @media (max-width: 37.999rem) {
 	.single-event .hero-facts .event-schedule-row {
 		grid-template-columns: minmax(0, 1fr);

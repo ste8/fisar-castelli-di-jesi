@@ -13,6 +13,13 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Posizione Google Maps — v1.6.33
+
+- Nuovo campo facoltativo del plugin `_fisar_event_maps_url`, compilato nel box `Modalità e luogo`. Il dettaglio mostra `Apri in Google Maps ↗` sotto il luogo, sia nel riepilogo iniziale sia nelle informazioni pratiche, tramite un unico componente `event-map-link.php`.
+- Link nativo nella stessa scheda, freccia decorativa, stile delle CTA testuali esistenti e font da 15 px. Nessuna mappa, iframe, SDK, chiave API o richiesta a Google durante il caricamento della pagina.
+- Campo vuoto o protocollo non ammesso: nessun link. Online: nessun link al luogo fisico, anche se un vecchio valore rimane salvato. Presenza/ibrido: link disponibile anche con il solo pin e negli eventi conclusi; indirizzo e informazioni esistenti non cambiano.
+- Nessuna modifica a home, archivi o Corsi; URL inserito editorialmente, senza ricerca o deduzione della posizione. I test usano dati in memoria: nessuna posizione di prova salvata negli eventi locali.
+
 ## Semplificazione delle informazioni — v1.6.32
 
 - Nelle informazioni pratiche, la riga `Modalità` non compare per gli eventi `presence`; resta per `online` e `hybrid`. Il riepilogo iniziale già usa il luogo per gli eventi in presenza. Nessuna modifica ai dati o alle modalità salvate, all’indirizzo o al fallback ibrido.
