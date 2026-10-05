@@ -4,7 +4,6 @@ get_header();
 <main id="main-content" class="events-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
-			<p class="eyebrow">FISAR · Delegazione Castelli di Jesi</p>
 			<h1>Eventi</h1>
 			<p>Degustazioni, visite in cantina, serate a tema e occasioni per stare insieme. Ogni evento è un modo diverso per conoscere il vino e le persone.</p>
 		</div>

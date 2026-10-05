@@ -2,7 +2,7 @@
 
 ## Revisione visiva — 5 ottobre 2026
 
-L’archivio riprende la gerarchia della homepage e della Carta dei Valori: intestazione compatta su fondo chiaro caldo, identità `FISAR · Delegazione Castelli di Jesi`, H1 Poppins Medium 32–44 px e linea oro. Introduzione conservata, Poppins 16–18 px.
+L’archivio riprende la gerarchia della homepage e della Carta dei Valori: intestazione compatta su fondo chiaro caldo, H1 Poppins Medium 32–44 px e linea oro. Introduzione conservata, Poppins 16–18 px. Su successivo riscontro dell’utente, rimossa la dicitura `FISAR · Delegazione Castelli di Jesi` sopra il titolo: l’identità è già presente nell’header. La dicitura resta nella Carta per chiarire l’ambito locale del documento.
 
 `Prossimi eventi` ed `Eventi conclusi` restano sezioni separate, con titoli Poppins Medium 32–40 px e accento oro. La query del plugin mostra tutti gli eventi, senza applicare il limite della home.
 
