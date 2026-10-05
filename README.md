@@ -124,7 +124,7 @@ Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, La FISA
 
 La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo, con titoli Poppins e impaginazione coerente con la homepage. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
 
-La hero della Carta usa la sua immagine in evidenza o, in mancanza, il paesaggio di vigneti incluso nel tema. Titolo ed estratto nativi identificano la Carta della nostra Delegazione; il primo Paragrafo con classe `values-scope-note` è la nota sull’ambito locale, modificabile nell’editor e mostrata soltanto nella hero. Il payoff con classe `lead` resta nel corpo, sopra `Chi siamo`. URL e voce di menu non cambiano.
+La hero della Carta usa la sua immagine in evidenza o, in mancanza, il paesaggio di vigneti incluso nel tema. Titolo ed estratto nativi identificano la Carta della nostra Delegazione; il primo Paragrafo con classe `values-scope-note` è la nota sull’ambito locale, modificabile nell’editor e mostrata una sola volta nel riquadro informativo sotto la hero, con bordo oro e icona decorativa. Il payoff con classe `lead` resta nel corpo, sopra `Chi siamo`. URL e voce di menu non cambiano.
 
 Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e Statuto rimandano alle ancore `consiglio` e `statuto` della pagina La nostra delegazione: conservare questi ID quando si modificano i titoli nell’editor. Completare i nomi ufficiali e il mandato; caricare lo statuto nella Libreria media e aggiungere il collegamento al PDF nella stessa sezione.
 

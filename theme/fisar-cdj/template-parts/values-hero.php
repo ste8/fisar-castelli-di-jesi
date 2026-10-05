@@ -1,6 +1,5 @@
 <?php
 $image_id = get_post_thumbnail_id();
-$note = $args['note'] ?? '';
 ?>
 <header class="page-hero values-hero">
 	<?php if ( $image_id ) : ?>
@@ -13,8 +12,5 @@ $note = $args['note'] ?? '';
 		<p class="eyebrow">FISAR · Delegazione Castelli di Jesi</p>
 		<h1><?php the_title(); ?></h1>
 		<?php if ( has_excerpt() ) : ?><p class="values-hero__description"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
-		<?php if ( $note ) : ?>
-			<div class="values-hero__note"><?php echo $note; ?></div>
-		<?php endif; ?>
 	</div>
 </header>

@@ -1741,18 +1741,6 @@ blockquote {
 	text-wrap: balance;
 }
 
-.values-hero__note {
-	max-width: 40rem;
-	margin-top: 1.25rem;
-}
-
-.values-hero__note p {
-	margin-bottom: 0;
-	color: #e8e2df;
-	font-size: var(--font-size-sm);
-	line-height: 1.6;
-}
-
 @media (max-width: 47.999rem) {
 	.values-hero__overlay {
 		background: linear-gradient(90deg, rgba(18, 14, 10, .91), rgba(18, 14, 10, .72));
@@ -1761,7 +1749,33 @@ blockquote {
 
 .values-page .prose--page {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
+	padding-top: clamp(1.5rem, 3vw, 2rem);
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
+}
+
+.values-page .values-note {
+	display: grid;
+	grid-template-columns: 1.5rem minmax(0, 1fr);
+	align-items: start;
+	margin-bottom: 2rem;
+	padding: clamp(1rem, 2vw, 1.25rem);
+	border: 1px solid var(--color-gold);
+	border-left-width: 3px;
+	border-radius: var(--radius-small);
+	background: var(--color-tint);
+	gap: .85rem;
+}
+
+.values-note__icon {
+	margin-top: .05rem;
+	color: var(--color-gold-dark);
+}
+
+.values-page .values-note__content p {
+	margin-bottom: 0;
+	color: var(--color-ink);
+	font-size: var(--font-size-base);
+	line-height: 1.6;
 }
 
 .values-page .prose--page .lead {

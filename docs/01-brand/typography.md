@@ -45,7 +45,7 @@ Eccezione aggiunta il 5 ottobre 2026 su richiesta di omogeneità con la homepage
 
 **Poppins**
 
-La successiva revisione della hero fotografica della Carta conserva H1 e capitoli nelle stesse scale. La frase sui principi ha più rilievo: Poppins `500` da 18–24 px con interlinea `1.45`; la nota sull’ambito locale usa Poppins `400` a 15 px. Il payoff torna nel corpo, sopra `Chi siamo`, in Cormorant `600` da 20–24 px, senza `nowrap` o clipping.
+La successiva revisione della hero fotografica della Carta conserva H1 e capitoli nelle stesse scale. La frase sui principi ha più rilievo: Poppins `500` da 18–24 px con interlinea `1.45`. La nota sull’ambito locale, successivamente spostata nel riquadro sotto l’immagine, usa Poppins `400` a 16 px con interlinea `1.6`. Il payoff torna nel corpo, sopra `Chi siamo`, in Cormorant `600` da 20–24 px, senza `nowrap` o clipping.
 
 Uso:
 - corpo testo
