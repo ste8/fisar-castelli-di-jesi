@@ -45,6 +45,8 @@ Il 5 ottobre 2026 l’allineamento richiesto dall’utente si estende all’arch
 
 Affinamento v1.6.27: H4 del corpo Evento a `1.125rem` (18 px), anche nell’editor, per distinguerlo dal testo normale. H3 resta a 20 px; H5 e H6 restano a 17 px. Poppins Medium `500` e interlinea `1.35` invariati. Nessuna modifica alla tipografia dei Corsi o di altre pagine.
 
+Affinamento v1.6.31 dei riepiloghi Evento: etichette principali iniziali e finali Poppins `600`, 16 px, maiuscolo e tracking `0.05em`. Etichetta `Prenotazioni entro` e data sulla stessa linea di testo, entrambe Poppins `600` da 18 px nel riepilogo e 22 px nel pannello finale, con ritorno a capo naturale. Non riguarda i titoli editoriali, l’editor, le sottoetichette Accoglienza/Inizio/Fine o i Corsi.
+
 Eccezione aggiunta il 5 ottobre 2026 su richiesta di omogeneità con la homepage: nella sola pagina Carta dei Valori, H1 e titoli dei sette capitoli usano Poppins `500`, rispettivamente 32–44 px e 20–24 px, con interlinea `1.2` e `1.35`. Payoff in Cormorant `600`; corpo 16–17 px e grassetti `600`. Le altre pagine interne conservano i propri heading editoriali. Per i dettagli prevale `docs/03-pages/values.md`.
 
 **Poppins**

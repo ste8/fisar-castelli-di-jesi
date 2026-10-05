@@ -1965,6 +1965,14 @@ blockquote {
 	border-color: var(--color-line);
 }
 
+.single-event .hero-facts > li > strong,
+.single-event .details-list dt {
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+}
+
 .single-event .content-layout {
 	grid-template-columns: minmax(0, 1fr);
 	max-width: 48rem;
@@ -2155,20 +2163,17 @@ blockquote {
 }
 
 .single-event .registration-deadline__heading p {
+	min-width: 0;
 	margin: 0;
+	font-size: 1.375rem;
+	font-weight: 600;
 	line-height: 1.4;
 }
 
-.single-event .registration-deadline span {
-	display: block;
-	margin-bottom: .35rem;
-	font-size: .875rem;
-}
-
+.single-event .registration-deadline__heading span,
 .single-event .registration-deadline time {
-	display: block;
-	font-size: 1.375rem;
-	font-weight: 600;
+	display: inline;
+	font: inherit;
 }
 
 .single-event .registration-deadline .registration-deadline-note {
@@ -2185,7 +2190,7 @@ blockquote {
 	background: transparent;
 }
 
-.single-event .registration-deadline--summary time {
+.single-event .registration-deadline--summary .registration-deadline__heading p {
 	font-size: 1.125rem;
 }
 
@@ -2267,12 +2272,6 @@ blockquote {
 .single-event .hero-facts .event-deadline-row .event-registration-link {
 	justify-self: start;
 	margin-top: .75rem;
-}
-
-.single-event .event-deadline-row time {
-	color: var(--color-bordeaux);
-	font-size: 1.125rem;
-	font-weight: 600;
 }
 
 .single-event .related-course {

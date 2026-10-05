@@ -13,6 +13,13 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Scadenza ed etichette dei riepiloghi — v1.6.31
+
+- `Prenotazioni entro` e data sono una frase continua, con lo stesso font, peso 600 e dimensione: 18 px nel riepilogo iniziale, 22 px nel pannello finale. Nessun ritorno a capo imposto tra etichetta e data; su mobile il testo può andare a capo naturalmente, senza ridurre il font o nascondere parti della scadenza. Spazio esplicito nel markup e attributo `datetime` conservato.
+- Nota flessibile aggiornata nel plugin `1.3.3`: `Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.` Rimane dentro entrambi i box; termine tassativo, data assente ed evento concluso invariati.
+- Etichette principali dei riepiloghi (`Data`, `Orario`, `Luogo`, `Modalità`, ecc.) uniformate a Poppins 600 da 16 px, maiuscolo e tracking 0.05 em. Selettori limitati ai figli diretti della hero e ai `dt` del dettaglio Evento: nomi delle sedi, valori, Accoglienza/Inizio/Fine e Corsi non cambiano.
+- Stesso componente condiviso della scadenza e nessuna modifica ai dati salvati, nessuna dipendenza o nuovo script. Queste indicazioni prevalgono sulla v1.6.30 per stile di etichetta/data e testo della nota.
+
 ## Affinamenti della prenotazione — v1.6.30
 
 - Componente condiviso `event-deadline.php` per riepilogo iniziale e pannello finale: `Prenotazioni entro`, giorno della settimana e data completa localizzati tramite il formatter esistente del tema. Data da 18 px nel riepilogo e 22 px nel pannello; il termine flessibile, quando configurato, compare **dentro entrambi i riquadri**. Le regole e il testo della nota restano nel plugin.

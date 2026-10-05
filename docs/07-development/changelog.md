@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.31 — Scadenza esplicita e riepiloghi Evento coerenti
+
+- `Prenotazioni entro` e data ora formano una frase continua con spazio esplicito, stesso peso 600 e dimensione (18 px nella hero, 22 px nel pannello finale). Ritorno a capo naturale quando lo spazio non basta, senza riduzione del font o clipping; calendario e `datetime` conservati.
+- Nota flessibile chiarita nel plugin `1.3.3`: `Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.` Il componente condiviso mantiene la nota dentro entrambi i box; API testuale e strutturata allineate, nessuna nuova regola di chiusura.
+- Etichette principali del riepilogo iniziale aumentate da 13 a 16 px; etichette finali uniformate a 16 px e maiuscolo, peso 600 e tracking 0.05 em. Selettori limitati ai figli diretti e ai `dt`: nomi delle sedi, valori e sottoetichette Accoglienza/Inizio/Fine invariati.
+- Tema/asset `1.6.31`, plugin `1.3.3`; specifiche Evento, tipografia, plugin e architettura aggiornate. Skill `clean-code-engineer` applicata riusando il componente della scadenza e mantenendo il copy funzionale nel plugin. Nessuna dipendenza, nuovo script, scrittura nel database o commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS e `git diff --check`; HTTP 200 per evento, CSS versionato e font Poppins 600 effettivamente dichiarato nel CSS. Tredici varianti di prenotazione/template, dodici casi valuta, undici normalizzazioni WhatsApp e sei salvataggi intercettati senza persistenza, tutti riusciti con il nuovo testo atteso.
+- Browser: sei larghezze 320–1440 px sull’evento giapponese e altre otto combinazioni su gratuito con prenotazione, partecipazione libera, concluso e Corso a 1440/320 px. Etichetta e data misurate alla stessa dimensione in entrambe le posizioni, riepiloghi a 16 px/maiuscolo e Corsi invariati. Nessun overflow, immagine rotta o errore console; review visiva desktop/mobile e ancora provata con tastiera, focus sul pannello. Nessun login o invio di prenotazioni.
+
 ## v1.6.30 — Gerarchia delle prenotazioni e plugin v1.3.2
 
 - Scadenza con giorno della settimana, usando la localizzazione WordPress esistente. Nuovo componente di presentazione `event-deadline.php` condiviso: nota sul termine flessibile dentro il box sia nella hero sia nel pannello finale; nessuna nuova regola di chiusura e API testuale del plugin invariata.

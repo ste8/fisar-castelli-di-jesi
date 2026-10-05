@@ -10,7 +10,7 @@ Non memorizzare il numero di posti. Evento concluso se `data_evento < oggi`. Nes
 Copy aperto a tutti: “La partecipazione è aperta a tutti, anche a chi non è socio FISAR.”
 Gratuito + prenotazione: “INGRESSO GRATUITO, PRENOTAZIONE OBBLIGATORIA”.
 Gratuito libero: “La partecipazione è libera, non è richiesta la prenotazione.”
-Deadline flessibile: “Dopo tale termine sarà comunque possibile contattarci, ma non potremo garantire la disponibilità.”
+Deadline flessibile (testo chiarito dal plugin `1.3.3`): “Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.”
 
 Dal plugin `1.3.1`, `fisar_cdj_get_event_registration_details()` espone copy, scadenza grezza/localizzata e nota flessibile separatamente. `fisar_cdj_get_event_registration_copy()` conserva l’API testuale precedente per i dati validi. Una data assente o non interpretabile non genera una scadenza fittizia; nessuna chiusura automatica derivata dal termine.
 
