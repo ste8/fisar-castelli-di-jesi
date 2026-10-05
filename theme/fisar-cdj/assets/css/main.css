@@ -2128,13 +2128,11 @@ blockquote {
 
 .single-event .registration-box .registration-fees h3 {
 	margin-bottom: .6rem;
-	font-size: 1rem;
+	font-size: 1.25rem;
 	font-weight: 600;
 }
 
 .single-event .registration-deadline {
-	display: flex;
-	align-items: center;
 	margin: 1.25rem 0;
 	padding: 1rem;
 	border: 1px solid var(--color-gold);
@@ -2142,6 +2140,11 @@ blockquote {
 	border-radius: var(--radius-small);
 	background: var(--color-paper);
 	color: var(--color-bordeaux);
+}
+
+.single-event .registration-deadline__heading {
+	display: flex;
+	align-items: center;
 	gap: .75rem;
 }
 
@@ -2151,7 +2154,7 @@ blockquote {
 	flex-shrink: 0;
 }
 
-.single-event .registration-deadline p {
+.single-event .registration-deadline__heading p {
 	margin: 0;
 	line-height: 1.4;
 }
@@ -2168,8 +2171,22 @@ blockquote {
 	font-weight: 600;
 }
 
-.single-event .registration-deadline-note {
+.single-event .registration-deadline .registration-deadline-note {
+	margin: .85rem 0 0;
+	color: var(--color-muted);
 	font-size: .875rem;
+	line-height: 1.65;
+}
+
+.single-event .registration-deadline--summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+.single-event .registration-deadline--summary time {
+	font-size: 1.125rem;
 }
 
 .single-event .registration-fees {
@@ -2185,19 +2202,19 @@ blockquote {
 }
 
 .single-event .event-fees > span {
-	display: flex;
+	display: grid;
+	grid-template-columns: 5rem minmax(0, 1fr);
 	align-items: baseline;
-	justify-content: space-between;
-	gap: 1rem;
+	gap: .75rem;
 }
 
 .single-event .event-fees > span > strong {
 	color: var(--color-bordeaux);
-	text-align: right;
+	text-align: left;
 }
 
 .single-event .registration-channels {
-	margin: 1.5rem 0;
+	margin: 1rem 0 0;
 	padding: 0;
 	gap: 1.25rem;
 }
@@ -2211,15 +2228,27 @@ blockquote {
 	line-height: 1.5;
 }
 
-.single-event .registration-contact span,
 .single-event .registration-contact strong {
 	display: block;
 }
 
-.single-event .registration-contact span {
+.single-event .registration-box .registration-contact__label {
 	margin-bottom: .25rem;
-	color: var(--color-muted);
-	font-size: .8125rem;
+	margin-top: 0;
+	color: var(--color-ink);
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.single-event .registration-box .registration-methods h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.single-event .registration-methods {
+	margin-block: 1.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--color-line);
 }
 
 .single-event .hero-facts .event-deadline-row {
@@ -2233,6 +2262,11 @@ blockquote {
 .single-event .hero-facts .event-deadline-row {
 	grid-template-columns: minmax(0, 1fr);
 	gap: .35rem;
+}
+
+.single-event .hero-facts .event-deadline-row .event-registration-link {
+	justify-self: start;
+	margin-top: .75rem;
 }
 
 .single-event .event-deadline-row time {

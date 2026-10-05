@@ -13,6 +13,15 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Affinamenti della prenotazione — v1.6.30
+
+- Componente condiviso `event-deadline.php` per riepilogo iniziale e pannello finale: `Prenotazioni entro`, giorno della settimana e data completa localizzati tramite il formatter esistente del tema. Data da 18 px nel riepilogo e 22 px nel pannello; il termine flessibile, quando configurato, compare **dentro entrambi i riquadri**. Le regole e il testo della nota restano nel plugin.
+- `Come prenotare ↓` dentro il riquadro iniziale delle prenotazioni. Se non esiste una scadenza valida, resta la scorciatoia autonoma nella hero. Partecipazione libera ed eventi conclusi mantengono i comportamenti v1.6.29.
+- `Quota di partecipazione` e `Come prenotare` a 20 px, peso 600. Soci/Non soci e importi allineati a sinistra, colonne da 5 rem e spazio di 0.75 rem: niente distribuzione agli estremi del pannello. Condizioni di partecipazione evidenziate con grassetto semantico.
+- Sezione `Come prenotare` con intestazioni dei canali a 18 px, peso 600, recapiti selezionabili e pulsanti `Prenota via WhatsApp`/`Prenota via mail`. Etichette aggiornate dal plugin soltanto per gli Eventi; Corsi invariati. Nessun canale o pulsante presunto se mancano i dati.
+- Per rendere operativa la prenotazione richiesta dall’utente, completato editorialmente il solo campo WhatsApp dell’evento locale `alla-scoperta-dei-vini-giapponesi` (ID 108): da `http://3357882629` a `+39 3357882629`, che genera `https://wa.me/393357882629`. Nessuna aggiunta automatica di prefissi agli altri eventi e nessuna modifica agli altri recapiti.
+- Conservati unico pannello finale, quote con `€`, contenuto integrale, ancore e focus; nessuna dipendenza o nuovo script. Questo affinamento prevale sulle indicazioni precedenti relative a posizione della nota e del pulsante.
+
 ## Unico punto di prenotazione — v1.6.29
 
 Questa revisione, approvata dall’utente dopo la valutazione UX/information architecture, prevale sul doppio pannello v1.6.28:

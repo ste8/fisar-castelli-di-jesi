@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.6.30 — Gerarchia delle prenotazioni e plugin v1.3.2
+
+- Scadenza con giorno della settimana, usando la localizzazione WordPress esistente. Nuovo componente di presentazione `event-deadline.php` condiviso: nota sul termine flessibile dentro il box sia nella hero sia nel pannello finale; nessuna nuova regola di chiusura e API testuale del plugin invariata.
+- Scorciatoia `Come prenotare` raccolta nel box iniziale delle prenotazioni; fallback autonomo nella hero quando manca una scadenza valida. Conservati un solo pannello finale, focus della destinazione, partecipazione libera ed eventi conclusi.
+- `Quota di partecipazione` più grande (20 px/600), quote ravvicinate con colonne allineate a sinistra e gap 12 px; condizioni di partecipazione in grassetto semantico. Nuova sezione `Come prenotare` con titolo da 20 px/600, intestazioni dei canali da 18 px/600 e recapiti selezionabili.
+- Pulsanti Eventi `Prenota via WhatsApp` e `Prenota via mail`; il plugin applica le etichette soltanto al prefisso Evento, senza cambiare etichette Corsi, URL, validazione o altri canali.
+- Per attivare il pulsante richiesto, completato il solo meta `_fisar_event_whatsapp` dell’evento locale ID 108 (`alla-scoperta-dei-vini-giapponesi`): `http://3357882629` → `+39 3357882629`, link generato `https://wa.me/393357882629`. Nessun altro recapito o contenuto modificato, nessun prefisso dedotto globalmente, nessuna migrazione o messaggio inviato.
+- Tema e asset `1.6.30`, plugin `1.3.2`; README, specifica Evento, API del plugin e architettura aggiornati. Skill `clean-code-engineer` applicata mantenendo un componente condiviso e separando presentazione e regole funzionali. Nessuna dipendenza, nuovo script o commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS, `git diff --check`; HTTP 200 per pagina, CSS versionato e font locale. Dodici casi valuta, tredici varianti di prenotazione/template (inclusi giorno, note dentro i box, posizione della scorciatoia, grassetto semantico e condizioni dei canali), undici normalizzazioni WhatsApp e sei salvataggi intercettati senza persistenza, tutti riusciti.
+- Browser: evento giapponese a sei larghezze 320–1440 px e altre dodici combinazioni su evento gratuito con prenotazione, partecipazione libera, concluso e Corso a 1440/768/320 px. Nessun overflow, immagine rotta o errore console; Corsi invariati, URL dei pulsanti verificati senza aprire chat/email. Review visiva desktop/mobile e link interno provato con mouse e tastiera: focus sul pannello e Tab successivo su WhatsApp. Nessun login amministrativo.
+
 ## v1.6.29 — Unico riquadro Quote e prenotazioni
 
 - Applicata la proposta approvata dopo il confronto UX/information architecture: rimosso il pannello laterale e conservato un unico riquadro finale dopo le informazioni pratiche, prima del Corso collegato. Corpo in una colonna centrale, massimo 48 rem, senza sticky o barre fisse. Contatti affiancati da 38 rem, impilati su mobile.

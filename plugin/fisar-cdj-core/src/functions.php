@@ -219,6 +219,10 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 		'form_url'     => array( 'label' => 'Compila il modulo di iscrizione', 'reference_label' => 'Modulo online', 'type' => 'url' ),
 		'other_channel'=> array( 'label' => 'Altro canale di iscrizione', 'reference_label' => 'Altro canale', 'type' => 'text' ),
 	);
+	if ( 'event' === $prefix ) {
+		$definitions['whatsapp']['label'] = 'Prenota via WhatsApp';
+		$definitions['email']['label']    = 'Prenota via mail';
+	}
 	$channels = array();
 
 	foreach ( $definitions as $suffix => $definition ) {
