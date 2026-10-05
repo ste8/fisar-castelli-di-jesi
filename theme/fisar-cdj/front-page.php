@@ -96,26 +96,32 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 			</div>
 			<ul class="values-list">
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'leaf', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Il modo di lavorare dei produttori</h3>
 					<p>Privilegiamo chi ha cura della terra, dell’ambiente e delle persone, e cerca la qualità in vigna.</p>
 				</li>
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'compass', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Curiosità e apertura</h3>
 					<p>Dal vino ci piace allargare lo sguardo a birra, distillati, tè, caffè e cibo.</p>
 				</li>
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'shield', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Il vino con consapevolezza</h3>
 					<p>Conoscere ciò che beviamo e scegliere con moderazione.</p>
 				</li>
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'chat', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Semplicità e informalità</h3>
 					<p>Competenza e professionalità, in un ambiente in cui sentirsi a proprio agio.</p>
 				</li>
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'members', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Inclusione e accoglienza</h3>
 					<p>Attività aperte a tutti, anche a chi inizia e a chi fa parte di altre associazioni.</p>
 				</li>
 				<li>
+					<?php echo fisar_cdj_theme_icon( 'idea', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<h3>Ognuno può contribuire</h3>
 					<p>Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio.</p>
 				</li>
