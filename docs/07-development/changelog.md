@@ -1,5 +1,17 @@
 # Changelog
 
+## Introduzione aperta dell’archivio Eventi — 5 ottobre 2026
+
+- Applicata la frase scelta dall’utente: `Degustazioni, visite e incontri per scoprire e condividere.` Sostituisce il riferimento limitato al vino, evitando la ripetizione fra conoscere e scoprire.
+- Conservati stile, padding, dimensioni dei font, card e query; modifica circoscritta al testo dell’archivio. Specifica aggiornata, tema `1.6.20` invariato; nessuna modifica al database e nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per archivio, CSS e font. Browser a 1440/768/390/320 px: testo su una riga su desktop/tablet e due su mobile, ritorno a capo naturale, sei card conservate e nessun overflow, immagine rotta o errore console. Review visiva desktop/mobile.
+
+## Introduzione breve dell’archivio Eventi — 5 ottobre 2026
+
+- Accorciata l’introduzione della hero in `Degustazioni, visite in cantina e incontri per conoscere il vino.`, per avere una riga su desktop. Su mobile il testo va naturalmente a capo, senza `nowrap`, clipping o riduzione della tipografia.
+- Registrata nella specifica l’approvazione della fascia scura. Modifica limitata al testo del template dell’archivio; stile, padding, card, nomi accessibili, query e altri contenuti invariati. Nessuna modifica al database o nuova dipendenza; tema `1.6.20` invariato e nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per archivio, CSS e font. Browser a 1440/1024/768/390/320 px: una riga alle prime tre larghezze, due su mobile; font 16–18 px invariato, sei card conservate, nessun overflow, immagine rotta o errore console. Review visiva desktop/mobile.
+
 ## v1.6.20
 
 - Su richiesta dell’utente, applicata una prova scura alla sola hero dell’archivio Eventi: fondo bordeaux scuro uniforme del brand, titolo bianco, introduzione chiara e linea oro; nessuna fotografia o nuova dicitura. Conservati padding compatto 32–48 px, Poppins, testo e griglia.
