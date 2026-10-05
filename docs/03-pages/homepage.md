@@ -23,6 +23,17 @@ Aggiornamento approvato il 4 ottobre 2026; prevale sul concept iniziale per copy
 
 Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano invariate.
 
+## Prossimi eventi — revisione del 5 ottobre 2026
+
+Su richiesta dell’utente, il limite della homepage passa da due a quattro eventi futuri, sempre in ordine cronologico crescente. Questa revisione prevale sulla precedente scelta di mostrare soltanto due locandine. Il tema usa la query pubblica del plugin e il totale `found_posts`, senza duplicare criteri temporali o eseguire una seconda query di conteggio.
+
+- Con uno o due eventi si conserva la presentazione attuale; con tre o quattro sono tutti visibili. Nessun carosello o elemento nascosto dietro un’interazione.
+- Griglia da due card per riga da `38rem`, anche nelle larghezze intermedie dove gli archivi usano tre colonne; una colonna sotto `38rem`. Dimensioni, formato quadrato, fondo bianco e comportamento `contain` delle locandine conservati.
+- Oltre quattro eventi si mostrano i primi quattro. Su successiva approvazione dell’utente, il link conserva sempre testo e posizione coerenti: `Tutti gli eventi` fino a quattro, `Tutti gli eventi (N)` oltre quattro per rendere esplicito il totale. È sempre accanto al titolo su desktop e sotto le card su mobile; questa scelta sostituisce la precedente CTA lunga sotto la griglia su tutte le larghezze.
+- Senza eventi futuri compare `Non ci sono eventi in programma al momento.` Il collegamento all’archivio resta disponibile, anche per consultare quelli passati.
+
+Restano invariati Corsi, News, Carta, Come seguirci, ordine delle sezioni, archivi e pagine interne. Le CTA delle card mantengono il titolo completo nel nome accessibile.
+
 ## Titoli — Poppins Medium
 
 Approvati il 4 ottobre 2026 dopo la prova sul sito: i titoli di sezione Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative.

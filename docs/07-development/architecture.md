@@ -26,6 +26,8 @@ Docker Compose
 
 Il tema usa funzioni pubbliche del plugin per le regole di stato e le query: non ricalcola date, relazioni o copy funzionale.
 
+La homepage richiede quattro eventi tramite `fisar_cdj_get_upcoming_events(4)` e usa `WP_Query::found_posts` della stessa query per il collegamento con il totale quando ci sono ulteriori eventi. Limite, disposizione delle card e testo del link sono presentazione del tema; criteri di selezione e ordinamento rimangono nel plugin. Nessuna seconda query di conteggio o nuova configurazione editoriale.
+
 Le pagine La FISAR e La nostra delegazione usano il template standard e l’editor nativo, senza CPT o campi aggiuntivi. Consiglio e Statuto sono ancore editoriali sulla pagina locale. Il plugin mantiene seed e redirect degli URL precedenti; il tema gestisce soltanto aspetto e interazione del menu WordPress a due livelli.
 
 La Carta dei Valori conserva il testo integrale V2 in blocchi WordPress nativi. Il plugin contiene la copia per il seed in `content/carta-dei-valori.html`; il tema decora soltanto i sette H2 riconosciuti dalle loro ancore con il filtro `render_block_core/heading`, circoscritto alla pagina e al loop principale. Nessun SVG viene salvato nei contenuti editoriali e nessuna nuova logica di dominio viene aggiunta al tema.
