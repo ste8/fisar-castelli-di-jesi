@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.19
+
+- Ridotto soltanto il padding verticale della hero dell’archivio Eventi da 40–64 px a 32–48 px per lato, con `clamp(2rem, 4vw, 3rem)`. Titolo, testo, accento oro, card e spaziature delle sezioni invariati; la hero del singolo evento conserva i precedenti valori.
+- Aggiornati versione degli asset del tema e specifica dell’archivio. Nessuna modifica a plugin, database o contenuti; nessuna nuova dipendenza e nessun commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per archivio, singolo evento, CSS versionato e font. Browser a 1440/1024/768/390/320 px: padding corretto, sei card conservate, nessun overflow o immagine rotta; review visiva desktop/mobile e console senza errori. Confermato padding di 64 px invariato nel singolo evento su desktop.
+
 ## v1.6.18
 
 - Riallineati archivio e dettaglio Eventi allo stile approvato della home e della Carta: heading Poppins Medium, intestazioni più compatte, fondo chiaro caldo, linee oro, bordi sottili e ombre leggere. Identità della Delegazione esplicita nell’intestazione dell’archivio.
