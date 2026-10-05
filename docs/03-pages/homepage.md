@@ -27,9 +27,26 @@ Non compare “autonoma” nel titolo. Le altre sezioni della homepage restano i
 
 Approvati il 4 ottobre 2026 dopo la prova sul sito: i titoli di sezione Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative.
 
-La successiva prova estende Poppins `500` ai titoli delle card Eventi, Corsi e News, ai canali, al pannello newsletter e alle quattro voci della fascia Valori. Le card conservano la dimensione di `1.375rem`, con interlinea `1.3` per dare respiro al sans-serif; nessun troncamento dei titoli. Hero e payoff restano invariati. La tipografia dei componenti condivisi è uniforme anche negli archivi e nella pagina Seguici; gli heading editoriali delle pagine interne non cambiano. Il font Medium è già self-hosted nel tema; nessun nuovo asset o font remoto.
+La successiva prova estende Poppins `500` ai titoli delle card Eventi, Corsi e News, ai canali, al pannello newsletter e alle voci della fascia Valori. Le card conservano la dimensione di `1.375rem`, con interlinea `1.3` per dare respiro al sans-serif; nessun troncamento dei titoli. Hero e payoff restano invariati. La tipografia dei componenti condivisi è uniforme anche negli archivi e nella pagina Seguici; gli heading editoriali delle pagine interne non cambiano. Il font Medium è già self-hosted nel tema; nessun nuovo asset o font remoto.
 
-Per contenere le voci Valori con il nuovo font, la loro griglia resta su una colonna sotto `38rem`, due colonne alle larghezze intermedie e quattro da `80rem`. Padding orizzontale più compatto nei quattro elementi affiancati; wrapping di sicurezza per parole lunghe, senza testo nascosto.
+Per la composizione e i contenuti aggiornati della fascia Valori prevale la revisione del 5 ottobre 2026 descritta sotto.
+
+## Carta dei Valori — revisione del 5 ottobre 2026
+
+La bozza Word `Carta dei Valori - v2.docx` fornita dall’utente coincide nei contenuti con `docs/00-foundation/carta-dei-valori.md`, che resta una working draft e non viene riscritta. La homepage presenta una sintesi editoriale, non un nuovo testo ufficiale; la pagina completa della Carta e il seed del plugin rimangono invariati.
+
+- Titolo: **La nostra Carta dei Valori**.
+- Introduzione, corrispondente al punto 1: **Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.** Segue: **Coltiviamo competenza e professionalità attraverso corsi e incontri, e viviamo il vino come occasione per creare relazioni.**
+- Sei voci, nello stesso ordine dei punti 2–7 della Carta:
+  - **Il modo di lavorare dei produttori**: Privilegiamo chi ha cura della terra, dell’ambiente e delle persone, e cerca la qualità in vigna.
+  - **Curiosità e apertura**: Dal vino ci piace allargare lo sguardo a birra, distillati, tè, caffè e cibo.
+  - **Il vino con consapevolezza**: Conoscere ciò che beviamo e scegliere con moderazione.
+  - **Semplicità e informalità**: Competenza e professionalità, in un ambiente in cui sentirsi a proprio agio.
+  - **Inclusione e accoglienza**: Attività aperte a tutti, anche a chi inizia e a chi fa parte di altre associazioni.
+  - **Ognuno può contribuire**: Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio.
+- CTA conservata: **Leggi la Carta dei Valori**, verso la pagina completa, dove restano gli approfondimenti (anche Slow Food/Slow Wine).
+
+Sostituite le quattro categorie generiche e le icone con una lista semantica di sei brevi testi, H3 Poppins `500` da `1.25rem`, interlinea `1.3`, allineamento a sinistra e separatori sottili. Fondo fotografico caldo, overlay scuro, H2 Poppins e accenti oro restano coerenti con il sito. Una colonna sotto `38rem`, due colonne per le sei voci da `38rem`; introduzione e lista affiancate da `52rem`, senza carosello, testo nascosto o animazioni. Nessuna promessa sanitaria nel testo sintetico.
 
 ## Percorsi di accesso
 

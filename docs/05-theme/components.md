@@ -20,9 +20,11 @@ Mostra immagine, livello, titolo, descrizione, CTA.
 
 ## Tipografia dei titoli delle card
 
-Prova v1.6.7: Eventi, Corsi e News usano Poppins `500`, interlinea `1.3`, mantenendo le dimensioni esistenti nei contesti compatti e completi. Titoli e nomi accessibili delle CTA rimangono completi. Le quattro voci della fascia Valori usano anch’esse Poppins `500`.
+Prova v1.6.7: Eventi, Corsi e News usano Poppins `500`, interlinea `1.3`, mantenendo le dimensioni esistenti nei contesti compatti e completi. Titoli e nomi accessibili delle CTA rimangono completi.
 
-La griglia delle voci Valori passa a quattro colonne da `80rem` per evitare che il nuovo sans-serif esca dalle colonne su tablet; alle larghezze intermedie conserva due colonne, su mobile una.
+## Fascia Carta dei Valori
+
+Dal 5 ottobre 2026 presenta il punto 1 della Carta nell’introduzione e sei sintesi dei punti 2–7. Sostituisce le quattro categorie generiche con una lista di H3 e paragrafi allineati a sinistra, senza icone; Poppins `500` per i titoli. Una colonna su mobile e due da `38rem`, introduzione affiancata da `52rem`. Conservati fotografia di fondo, overlay e CTA alla pagina completa. Copy e corrispondenza con la bozza V2 in `docs/03-pages/homepage.md`.
 
 ## Newsletter
 
