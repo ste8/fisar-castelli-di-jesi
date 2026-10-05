@@ -131,7 +131,8 @@ function fisar_cdj_get_course_calendar( int $course_id ): array {
 	return Fisar_CDJ_Calendar_Importer::sanitize_rows( get_post_meta( $course_id, '_fisar_course_calendar', true ) );
 }
 
-function fisar_cdj_get_event_registration_copy( int $event_id ): array {
+/** Registration data shared by summaries and booking panels; no closing rule is inferred. */
+function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	$is_free      = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
 	$is_required  = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 	$deadline     = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
@@ -148,23 +149,75 @@ function fisar_cdj_get_event_registration_copy( int $event_id ): array {
 		$lines[] = 'La partecipazione è libera, non è richiesta la prenotazione.';
 	}
 
-	if ( '' !== $deadline ) {
-		$lines[] = sprintf( 'Prenotazioni entro il %s.', wp_date( 'j F Y', strtotime( $deadline ) ) );
-		if ( 'flexible' === $deadline_type ) {
-			$lines[] = 'Dopo tale termine sarà comunque possibile contattarci, ma non potremo garantire la disponibilità.';
+	$timestamp = $deadline ? strtotime( $deadline ) : false;
+	return array(
+		'lines'           => $lines,
+		'deadline'        => false !== $timestamp ? $deadline : '',
+		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
+		'deadline_notice' => false !== $timestamp && 'flexible' === $deadline_type
+			? 'Dopo tale termine sarà comunque possibile contattarci, ma non potremo garantire la disponibilità.' : '',
+	);
+}
+
+/** Preserve the original text API for callers that do not need structured data. */
+function fisar_cdj_get_event_registration_copy( int $event_id ): array {
+	$details = fisar_cdj_get_event_registration_details( $event_id );
+	$lines   = $details['lines'];
+	if ( $details['deadline'] ) {
+		$lines[] = sprintf( 'Prenotazioni entro il %s.', $details['deadline_label'] );
+		if ( $details['deadline_notice'] ) {
+			$lines[] = $details['deadline_notice'];
+		}
+	}
+	return $lines;
+}
+
+/**
+ * Keep a readable contact even when an international chat link cannot be built.
+ * A national number is never assigned a country prefix automatically.
+ */
+function fisar_cdj_get_whatsapp_contact( string $value ): array {
+	$reference = trim( $value );
+	$parts     = wp_parse_url( $reference );
+	$host      = strtolower( $parts['host'] ?? '' );
+
+	// Older URL inputs may have stored a national number as http://3351234567.
+	if ( preg_match( '/^[0-9]{7,15}$/', $host ) && empty( $parts['query'] ) && empty( $parts['fragment'] ) && in_array( $parts['path'] ?? '', array( '', '/' ), true ) ) {
+		$reference = $host;
+	}
+
+	if ( preg_match( '/^\+?[0-9\s().-]+$/', $reference ) ) {
+		$number        = preg_replace( '/[^0-9]/', '', $reference );
+		$international = str_starts_with( $reference, '+' ) || str_starts_with( $number, '00' );
+		if ( str_starts_with( $number, '00' ) ) {
+			$number = substr( $number, 2 );
+		}
+		return array(
+			'reference' => $reference,
+			'url'       => $international && preg_match( '/^[1-9][0-9]{6,14}$/', $number ) ? 'https://wa.me/' . $number : '',
+		);
+	}
+
+	if ( 'wa.me' === $host && preg_match( '#^/([1-9][0-9]{6,14})/?$#', $parts['path'] ?? '', $matches ) ) {
+		$reference = '+' . $matches[1];
+	} elseif ( in_array( $host, array( 'api.whatsapp.com', 'web.whatsapp.com', 'whatsapp.com', 'www.whatsapp.com' ), true ) && '/send' === ( $parts['path'] ?? '' ) ) {
+		parse_str( $parts['query'] ?? '', $query );
+		$number = is_string( $query['phone'] ?? null ) ? ltrim( trim( $query['phone'] ), '+' ) : '';
+		if ( preg_match( '/^[1-9][0-9]{6,14}$/', $number ) ) {
+			$reference = '+' . $number;
 		}
 	}
 
-	return $lines;
+	return array( 'reference' => $reference, 'url' => esc_url_raw( $value, array( 'http', 'https' ) ) );
 }
 
 function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): array {
 	$definitions = array(
-		'whatsapp'     => array( 'label' => 'Prenota su WhatsApp', 'type' => 'url' ),
-		'email'        => array( 'label' => 'Scrivi una email', 'type' => 'email' ),
-		'phone'        => array( 'label' => 'Chiama per informazioni', 'type' => 'phone' ),
-		'form_url'     => array( 'label' => 'Compila il modulo di iscrizione', 'type' => 'url' ),
-		'other_channel'=> array( 'label' => 'Altro canale di iscrizione', 'type' => 'text' ),
+		'whatsapp'     => array( 'label' => 'Prenota su WhatsApp', 'reference_label' => 'WhatsApp', 'type' => 'url' ),
+		'email'        => array( 'label' => 'Scrivi una email', 'reference_label' => 'Email', 'type' => 'email' ),
+		'phone'        => array( 'label' => 'Chiama per informazioni', 'reference_label' => 'Telefono', 'type' => 'phone' ),
+		'form_url'     => array( 'label' => 'Compila il modulo di iscrizione', 'reference_label' => 'Modulo online', 'type' => 'url' ),
+		'other_channel'=> array( 'label' => 'Altro canale di iscrizione', 'reference_label' => 'Altro canale', 'type' => 'text' ),
 	);
 	$channels = array();
 
@@ -174,8 +227,13 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 			continue;
 		}
 
-		$url = '';
-		if ( 'email' === $definition['type'] ) {
+		$url       = '';
+		$reference = $value;
+		if ( 'whatsapp' === $suffix ) {
+			$contact   = fisar_cdj_get_whatsapp_contact( $value );
+			$url       = $contact['url'];
+			$reference = $contact['reference'];
+		} elseif ( 'email' === $definition['type'] ) {
 			$url = 'mailto:' . sanitize_email( $value );
 		} elseif ( 'phone' === $definition['type'] ) {
 			$url = 'tel:' . preg_replace( '/[^0-9+]/', '', $value );
@@ -184,9 +242,11 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 		}
 
 		$channels[] = array(
-			'label' => $definition['label'],
-			'value' => $value,
-			'url'   => $url,
+			'label'           => $definition['label'],
+			'value'           => $value,
+			'url'             => $url,
+			'reference_label' => $definition['reference_label'],
+			'reference'       => $reference,
 		);
 	}
 

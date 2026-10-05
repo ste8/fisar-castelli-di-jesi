@@ -8,10 +8,18 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 - Locandina protagonista: cornice quadrata bianca, bordo sottile, ombra leggera e immagine intera con `contain`, mai ritagliata. Due colonne da `52rem`, testo e poi locandina su mobile.
 - Corpo integrale WordPress in Poppins 16–17 px, interlinea 1.7; heading Poppins Medium gerarchici, grassetti 600. Nessuna modifica a testo, elenchi, enfasi o livelli degli heading salvati nell’editor.
 - Informazioni pratiche a righe con separatori sottili: etichetta sopra il valore su mobile, due colonne da `38rem`. Dati, quote, luogo, piattaforma e partecipazione restano quelli del plugin.
-- Riquadro iscrizioni con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px. Affiancato al corpo su desktop, in normale flusso senza sticky; sotto il corpo su mobile. Conservati canali, scadenze, note, posti limitati, condizioni di partecipazione e stato concluso.
+- Riquadro iscrizioni con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px. Affiancato al corpo su desktop, in normale flusso senza sticky; prima della descrizione su mobile. Per gli eventi in programma, ripetuto dopo le informazioni pratiche e prima dell’eventuale corso collegato (v1.6.28). Conservati note, posti limitati, condizioni di partecipazione e stato concluso.
 - Corso collegato in riquadro leggero con accento oro; relazione invariata.
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
+
+## Quote, recapiti e scadenza — v1.6.28
+
+- Un solo componente `event-registration.php` presenta gli stessi dati nei due riquadri, con ID distinti e titoli accessibili. Un evento concluso conserva soltanto il riquadro di stato, senza recapiti di prenotazione, scadenze o secondo invito.
+- Quote di partecipazione dentro entrambi i riquadri, vicine ai canali d’iscrizione, oltre alla tabella pratica. Valori editoriali integrali, senza aggiungere valuta presunta; gratuità e campi mancanti rispettati. `event-fees.php` condivide la presentazione nei tre punti.
+- Scadenza in un blocco bianco con bordo oro, calendario decorativo e data completa Poppins `600` da 22 px; ripetuta in una riga evidenziata sia nella hero sia nella tabella, a 18 px. Data e avviso sul termine flessibile provengono dal plugin; nessuna chiusura automatica delle prenotazioni introdotta.
+- I canali configurati mostrano un riferimento testuale selezionabile (numero WhatsApp, email, telefono o URL) oltre all’eventuale pulsante. Nessun recapito sostituito con dati generici della Delegazione; se un link a gruppo/canale WhatsApp non contiene un numero, resta visibile il link originale.
+- Il campo WhatsApp accetta numero o link completo. I numeri con prefisso internazionale generano `wa.me`; i numeri nazionali rimangono leggibili senza un link presunto. Riconosciuti anche i vecchi valori numerici salvati come `http://numero`. L’editor di Eventi e Corsi conserva ora i numeri come testo, senza convertirli in URL; nessuna migrazione dei dati esistenti.
 
 ## Riepilogo e orari — v1.6.22
 
