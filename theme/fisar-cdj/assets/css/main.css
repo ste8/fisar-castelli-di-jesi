@@ -782,15 +782,29 @@ blockquote {
 }
 
 .event-card__date--compact {
-	display: inline-flex;
+	display: flex;
+	width: 100%;
 	align-items: center;
-	white-space: nowrap;
 	gap: .35rem;
+}
+
+.event-card__date--compact time {
+	flex: 1;
+	min-width: 0;
+}
+
+.event-card__date-label {
+	display: inline-block;
+}
+
+.event-card__date--compact.has-responsive-date .event-card__date-label {
+	white-space: nowrap;
 }
 
 .event-card__date-icon {
 	width: .95rem;
 	height: .95rem;
+	flex-shrink: 0;
 }
 
 .event-grid--home .event-card__title,

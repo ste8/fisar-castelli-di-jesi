@@ -25,7 +25,7 @@ if ( 'online' === $mode ) {
 			<p class="event-card__date event-card__date--compact">
 				<?php echo fisar_cdj_theme_icon( 'calendar', 'event-card__date-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<time datetime="<?php echo esc_attr( $date ); ?>">
-					<span aria-hidden="true"><?php echo esc_html( fisar_cdj_theme_format_date_compact( $date ) ); ?></span>
+					<span class="event-card__date-label" data-date-short="<?php echo esc_attr( fisar_cdj_theme_format_date_compact( $date ) ); ?>" aria-hidden="true"><?php echo esc_html( fisar_cdj_theme_format_date_compact( $date, false ) ); ?></span>
 					<span class="screen-reader-text"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span>
 				</time>
 			</p>

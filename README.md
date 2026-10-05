@@ -105,6 +105,8 @@ Un Evento passa automaticamente tra futuro e concluso confrontando la data event
 
 La homepage mostra fino a quattro eventi futuri in ordine cronologico: due card per riga su desktop/tablet e una su mobile, senza ridurre le locandine. Il link all’archivio resta sempre accanto al titolo su desktop e sotto le card su mobile: `Tutti gli eventi`, oppure `Tutti gli eventi (N)` quando il totale supera quattro. L’archivio conserva l’elenco completo e gli eventi passati.
 
+Nelle card Eventi di home e archivio il mese è per esteso quando entra su una riga, abbreviato soltanto quando non basta lo spazio. Il testo per screen reader resta completo; senza JavaScript o a forte ingrandimento è consentito il ritorno a capo. Controllo leggero nel tema, senza dipendenze.
+
 ### Corsi
 
 Dal menu **Corsi** puoi gestire Direttore, livello, date, sede, canali e termine di iscrizione, quota, tesseramento, dotazione e calendario. Un Corso è attivo finché la sua data di fine non è precedente a oggi.

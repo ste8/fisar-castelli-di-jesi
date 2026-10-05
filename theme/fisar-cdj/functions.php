@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.20' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.21' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -42,6 +42,9 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	if ( is_front_page() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) {
+		wp_enqueue_script( 'fisar-cdj-event-dates', get_template_directory_uri() . '/assets/js/event-dates.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'fisar_cdj_theme_assets' );
 
@@ -354,13 +357,15 @@ function fisar_cdj_theme_format_date_with_day( string $date ): string {
 	return $timestamp ? wp_date( 'l j F Y', $timestamp ) : '';
 }
 
-function fisar_cdj_theme_format_date_compact( string $date ): string {
+function fisar_cdj_theme_format_date_compact( string $date, bool $abbreviate_month = true ): string {
 	if ( '' === $date ) {
 		return '';
 	}
 	$timestamp = strtotime( $date );
 
-	return $timestamp ? strtoupper( wp_date( 'D j M Y', $timestamp ) ) : '';
+	$format = $abbreviate_month ? 'D j M Y' : 'D j F Y';
+
+	return $timestamp ? strtoupper( wp_date( $format, $timestamp ) ) : '';
 }
 
 function fisar_cdj_theme_reading_time( int $post_id ): int {

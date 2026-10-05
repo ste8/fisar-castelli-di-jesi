@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6.21
+
+- Prova richiesta dall’utente: mese per esteso nelle date delle card Eventi di home e archivio, abbreviato soltanto quando non entra su una riga. Giorno della settimana ancora breve; icona, font e `datetime` conservati, data completa per screen reader invariata.
+- Formatter del tema esteso con parametro opzionale per il mese, mantenendo il comportamento precedente come default. La card rende la forma estesa e fornisce quella breve al nuovo script nativo `event-dates.js`, caricato solo nelle due viste interessate. Misurazione del testo nello spazio reale rimasto dopo calendario e gap, aggiornata dopo font e ridimensionamento con `ResizeObserver`/resize e callback coalescenti; ripristino della forma estesa allargando la card.
+- Senza JavaScript rimane leggibile la data estesa su più righe. Se a forte ingrandimento neppure la forma breve entra, è consentito il ritorno a capo anche con JS, senza clipping o riduzione del font. Nessuna dipendenza, logica di dominio o scrittura nel database; tema `1.6.21`, specifiche e README aggiornati. Nessun commit automatico.
+- Verifiche: lint PHP, sintassi di entrambi gli script e `git diff --check`; HTTP 200 per home, archivio, singolo evento, CSS/JS versionati e font. Test WordPress in sola lettura: sei eventi, contenuti integrali, abstract, iscrizioni, stati e corsi collegati conservati; formattazione di tutti i mesi e fallback vuoto/non valido verificati.
+- Browser: 14 varianti delle pagine reali fra 320 e 1440 px, inclusi restringimento e riallargamento; 20 varianti di fixture native per 12 mesi più `MER 30 SETTEMBRE 2026`, home/archivio, script assente e testo al 200%. Nessun overflow, clipping o errore console, nomi accessibili e date complete conservati; abbreviazione e ripristino corretti. Review visiva desktop; singolo evento e Carta non caricano il nuovo script. Fixture generate con filtri in memoria, nessun dato editoriale modificato; server temporaneo arrestato a fine test.
+
 ## Introduzione aperta dell’archivio Eventi — 5 ottobre 2026
 
 - Applicata la frase scelta dall’utente: `Degustazioni, visite e incontri per scoprire e condividere.` Sostituisce il riferimento limitato al vino, evitando la ripetizione fra conoscere e scoprire.

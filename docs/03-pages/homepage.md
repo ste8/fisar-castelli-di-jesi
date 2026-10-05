@@ -34,6 +34,8 @@ Su richiesta dell’utente, il limite della homepage passa da due a quattro even
 
 Restano invariati Corsi, News, Carta, Come seguirci, ordine delle sezioni, archivi e pagine interne. Le CTA delle card mantengono il titolo completo nel nome accessibile.
 
+Prova date v1.6.21: le card Eventi mostrano il mese per esteso se entra su una riga, abbreviandolo solo quando manca spazio. Il controllo è condiviso con l’archivio, misura la card reale e si aggiorna con font e ridimensionamento. Data accessibile completa e fallback su più righe senza JS; dettagli in `docs/05-theme/components.md`. Nessuna variazione a numero, ordine o contenuto degli eventi.
+
 ## Titoli — Poppins Medium
 
 Approvati il 4 ottobre 2026 dopo la prova sul sito: i titoli di sezione Eventi, Corsi, News, Valori e Come seguirci usano Poppins `500` con `clamp(2rem, 4vw, 2.5rem)`, massimo 40 px. Conservati interlinea, tracking, colori e linee decorative.
