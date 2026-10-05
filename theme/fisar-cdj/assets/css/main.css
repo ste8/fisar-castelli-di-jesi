@@ -1013,7 +1013,7 @@ blockquote {
 }
 
 .values-banner__intro > p:not(.eyebrow) {
-	max-width: 24rem;
+	max-width: 30rem;
 	color: #e4dee1;
 }
 
@@ -1035,38 +1035,30 @@ blockquote {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	gap: 1.5rem 2rem;
 }
 
 .values-list li {
-	display: grid;
 	min-width: 0;
-	justify-items: center;
-	padding: 1.25rem 0;
-	border-bottom: 1px solid rgba(255, 255, 255, .16);
-	gap: .4rem;
-	text-align: center;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, .25);
 }
 
-.values-list strong {
-	max-width: 100%;
+.values-list h3 {
+	margin-bottom: .5rem;
 	color: #fff;
 	font-family: var(--font-body);
-	font-size: var(--font-size-xl);
+	font-size: var(--font-size-lg);
 	font-weight: 500;
+	line-height: 1.3;
 	overflow-wrap: anywhere;
 }
 
-.values-list span {
-	color: #d8d1d4;
+.values-list p {
+	margin-bottom: 0;
+	color: #e4dee1;
 	font-size: var(--font-size-base);
 	line-height: var(--line-height-body);
-}
-
-.values-list__icon {
-	width: 2.4rem;
-	height: 2.4rem;
-	margin-bottom: .2rem;
-	color: #d0ad31;
 }
 
 .follow-section {
@@ -1906,8 +1898,7 @@ blockquote {
 	}
 
 	.values-list {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0 1.5rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.follow-channels {
@@ -1959,7 +1950,7 @@ blockquote {
 
 	.values-banner__grid {
 		grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
-		align-items: center;
+		align-items: start;
 		gap: 3rem;
 	}
 
@@ -2215,23 +2206,6 @@ blockquote {
 		width: auto;
 		margin-top: 0;
 		white-space: nowrap;
-	}
-}
-
-@media (min-width: 80rem) {
-	.values-list {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0;
-	}
-
-	.values-list li {
-		padding: .5rem .5rem;
-		border-right: 1px solid rgba(255, 255, 255, .2);
-		border-bottom: 0;
-	}
-
-	.values-list li:last-child {
-		border-right: 0;
 	}
 }
 

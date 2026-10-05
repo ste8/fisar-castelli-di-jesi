@@ -35,9 +35,9 @@ Non usare i pesi più sottili nel frontend.
 
 Eccezione esplicita: l’H1 della homepage “FISAR / Delegazione / Castelli di Jesi” usa Poppins `400`, `clamp(2rem, 4.5vw, 3rem)` e interlinea `1.1`, come nella proposta approvata. Non è un nuovo logo e non modifica l’asset ufficiale. Gli altri H1 restano Cormorant Garamond.
 
-Approvato il 4 ottobre 2026 dopo la prova sul sito: i cinque titoli di sezione della homepage (Prossimi eventi, I nostri corsi, Ultime notizie dalla Delegazione, I nostri valori, il nostro impegno e Come seguirci) usano Poppins `500`, `clamp(2rem, 4vw, 2.5rem)` e interlinea `1.08`.
+Approvato il 4 ottobre 2026 dopo la prova sul sito: i cinque titoli di sezione della homepage (Prossimi eventi, I nostri corsi, Ultime notizie dalla Delegazione, La nostra Carta dei Valori e Come seguirci) usano Poppins `500`, `clamp(2rem, 4vw, 2.5rem)` e interlinea `1.08`. Il titolo della fascia Valori è aggiornato il 5 ottobre 2026.
 
-Su successiva richiesta, Poppins Medium è in prova anche per i titoli delle card Eventi, Corsi e News, dei canali e del pannello newsletter, con peso `500` e interlinea `1.3`. Le quattro voci della fascia Valori usano Poppins `500`. Questi componenti condividono la stessa tipografia in homepage, archivi e pagina Seguici. Payoff e heading editoriali delle pagine interne restano Cormorant; nessuna conversione globale degli heading o modifica al default dell’editor.
+Su successiva richiesta, Poppins Medium è in prova anche per i titoli delle card Eventi, Corsi e News, dei canali e del pannello newsletter, con peso `500` e interlinea `1.3`. Le voci della fascia Valori usano Poppins `500`, come dettagliato nella revisione del 5 ottobre sotto. Questi componenti condividono la stessa tipografia in homepage, archivi e pagina Seguici. Payoff e heading editoriali delle pagine interne restano Cormorant; nessuna conversione globale degli heading o modifica al default dell’editor.
 
 ### UI / body
 
@@ -219,6 +219,8 @@ line-height: 1.4;
 - eventuali callout: Cormorant Garamond `600` o `700`
 
 La priorità resta la leggibilità, non l'ornamento.
+
+Nella sintesi della homepage, revisionata il 5 ottobre 2026, i sei titoli dei principi sono H3 Poppins `500`, `1.25rem`, interlinea `1.3`; l’H2 della fascia resta Poppins `500` come gli altri titoli di sezione. Questa revisione sostituisce le precedenti quattro voci da `1.5rem`, senza cambiare la pagina completa della Carta.
 
 ## Tabelle
 
