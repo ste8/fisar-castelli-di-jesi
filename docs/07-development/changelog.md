@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.33 — Link Google Maps nell’Evento e plugin v1.3.4
+
+- Aggiunto meta facoltativo `_fisar_event_maps_url`: stringa singola, non esposta in REST, autorizzazioni esistenti e sanitizzazione WordPress limitata a HTTP/HTTPS. Campo URL `Link Google Maps` nel box `Modalità e luogo`, nella sezione presenza/ibrido; salvataggio con nonce e capability esistenti. Link abbreviati supportati senza risoluzione remota o deduzione della posizione. I valori non stringa nei campi URL vengono scartati senza errori.
+- Componente condiviso `event-map-link.php`: `Apri in Google Maps ↗` sotto il luogo nei riepiloghi iniziale e finale. Link nativo nella stessa scheda, freccia decorativa, stile testuale esistente da 15 px. Disponibile anche con il solo pin e negli eventi conclusi; nascosto se il campo è vuoto, non sicuro o l’evento è online.
+- Nessuna mappa incorporata, API, chiave Google, nuovo script o dipendenza. Campi e template Corsi invariati. Nessuna posizione di prova salvata negli eventi, nessuna migrazione, login amministrativo o apertura di Google Maps.
+- Tema/asset `1.6.33`, plugin `1.3.4`; README, specifiche CPT/Plugin/Evento e architettura aggiornati. Skill `clean-code-engineer` applicata riusando registrazione e salvataggio nativi e condividendo il markup dei due link. Nessun commit automatico.
+- Verifiche: lint PHP, sintassi dei tre script JS e `git diff --check`; evento, CSS versionato e font HTTP 200. Dieci URL e input malformati, salvataggi intercettati senza persistenza, registrazione del campo, rendering del metabox e otto varianti del dettaglio (presenza, ibrido, online, assente, non sicuro, abbreviato, solo pin, concluso), tutti riusciti. Rieseguite nove regressioni del luogo, tredici varianti di iscrizione, dodici casi valuta, undici normalizzazioni WhatsApp e sei salvataggi dei contatti.
+- Anteprima temporanea generata dal template WordPress con meta simulato e asset locali same-origin: desktop/tablet/mobile a 1440/768/390/320 px, due link corretti, font caricati, nessun overflow, immagine rotta, iframe o errore console; review visiva dei due riepiloghi e focus tastiera visibile senza seguire il link esterno. Controllato anche il sito reale con campo ancora vuoto. Server dell’anteprima arrestato a fine test; WordPress locale rimane disponibile.
+
 ## v1.6.32 — Iscrizione e informazioni essenziali dell’Evento
 
 - Omettere la riga `Modalità` nelle informazioni pratiche per gli eventi in presenza; mantenerla per online e ibridi. Luogo, indirizzo, accesso alla piattaforma e fallback del riepilogo invariati, senza modificare i meta salvati.

@@ -12,6 +12,7 @@ $venue         = (string) get_post_meta( $event_id, '_fisar_event_venue', true )
 $address       = (string) get_post_meta( $event_id, '_fisar_event_address', true );
 $city          = (string) get_post_meta( $event_id, '_fisar_event_city', true );
 $province      = (string) get_post_meta( $event_id, '_fisar_event_province', true );
+$maps_url      = 'online' !== $mode ? esc_url_raw( (string) get_post_meta( $event_id, '_fisar_event_maps_url', true ), array( 'http', 'https' ) ) : '';
 $platform      = (string) get_post_meta( $event_id, '_fisar_event_platform', true );
 $online_url    = (string) get_post_meta( $event_id, '_fisar_event_online_url', true );
 $participation = (string) get_post_meta( $event_id, '_fisar_event_participation', true );
@@ -27,7 +28,7 @@ $mode_labels = array( 'presence' => 'In presenza', 'online' => 'Online', 'hybrid
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
 $city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
-$has_location = $venue || $address || $city_label;
+$has_location = $venue || $address || $city_label || $maps_url;
 $fees = array( 'free' => $is_free, 'member' => $member_price, 'nonmember' => $nonmember_price );
 $registration = array(
 	'past'     => $past,
@@ -65,6 +66,7 @@ $deadline = $registration['details'];
 									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
 									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
 									<?php if ( 'hybrid' === $mode ) : ?><span class="event-location__online">Anche online</span><?php endif; ?>
+									<?php get_template_part( 'template-parts/event-map-link', null, array( 'url' => $maps_url ) ); ?>
 								</span>
 							</li>
 						<?php elseif ( 'hybrid' === $mode ) : ?>
@@ -104,6 +106,7 @@ $deadline = $registration['details'];
 									<?php if ( $venue ) : ?><strong class="event-location__name"><?php echo esc_html( $venue ); ?></strong><?php endif; ?>
 									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
 									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
+									<?php get_template_part( 'template-parts/event-map-link', null, array( 'url' => $maps_url ) ); ?>
 								</dd>
 							</div>
 						<?php endif; ?>

@@ -31,6 +31,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	);
 
 	private const EVENT_URL_FIELDS = array(
+		'_fisar_event_maps_url',
 		'_fisar_event_online_url',
 		'_fisar_event_form_url',
 	);
@@ -134,6 +135,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::input( $post->ID, '_fisar_event_address', 'Indirizzo', 'text' );
 		self::input( $post->ID, '_fisar_event_city', 'Città', 'text' );
 		self::input( $post->ID, '_fisar_event_province', 'Provincia', 'text', 'Sigla di due lettere.', false, 2 );
+		self::input( $post->ID, '_fisar_event_maps_url', 'Link Google Maps', 'url', 'Facoltativo. Incolla il link della posizione condiviso da Google Maps, incluso https://. Nel sito compare solo il collegamento, senza mappa incorporata.' );
 		echo '</div>';
 
 		echo '<div class="fisar-conditional fisar-admin-grid fisar-admin-grid--2" data-show-modes="online,hybrid">';
@@ -459,7 +461,8 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	private static function save_url_fields( int $post_id, array $fields ): void {
 		foreach ( $fields as $field ) {
-			$value = esc_url_raw( wp_unslash( $_POST[ $field ] ?? '' ) );
+			$raw_value = wp_unslash( $_POST[ $field ] ?? '' );
+			$value = is_string( $raw_value ) ? esc_url_raw( $raw_value ) : '';
 			update_post_meta( $post_id, $field, $value );
 		}
 	}
