@@ -40,6 +40,10 @@ Le date adattive sono progressive enhancement del tema: il formatter PHP produce
 
 Il componente `template-parts/event-schedule.php` presenta gli stessi orari in due punti del singolo evento, evitando divergenze fra riepilogo e tabella. Riceve soltanto la raccolta di etichette e orari già letti dal template; campi, validazione e stato restano nel plugin. Sede e indirizzo completo, dal v1.6.25 presenti sia in hero sia nella tabella, sono presentazione degli stessi meta, senza nuove relazioni o query.
 
+## Stili editoriali nel backend
+
+Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.css` oppure `editor-course.css` con `add_editor_style` durante `enqueue_block_editor_assets`, solo sugli schermi di modifica dei due CPT. WordPress legge i file locali e ne porta CSS e URL base nel canvas, anche iframed; `main.css` conserva font e stili generali già registrati. Nessun nuovo script, dato o API amministrativa. Le varianti rispecchiano le scale desktop dei template rispettivi; non caricano stili nel frontend o negli editor di pagine/News. Le future modifiche alla tipografia del corpo dei template devono aggiornare la variante corrispondente.
+
 ## Dipendenze
 
 - WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).

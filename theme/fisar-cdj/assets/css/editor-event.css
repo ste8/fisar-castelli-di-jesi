@@ -1,0 +1,44 @@
+/* Desktop reading scale from .single-event .prose; no viewport-dependent
+ * units, since the editor canvas is narrower than the published viewport.
+ */
+body {
+	font-size: 1.0625rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-body);
+	font-weight: 500;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-wrap: initial;
+}
+
+h1,
+.editor-post-title__input {
+	font-size: 2.75rem;
+	line-height: 1.15;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+h4,
+h5,
+h6 {
+	font-size: 1.0625rem;
+}
+
+strong,
+b {
+	font-weight: 600;
+}
