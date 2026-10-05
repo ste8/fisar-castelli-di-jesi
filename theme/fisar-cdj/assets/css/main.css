@@ -2012,6 +2012,31 @@ blockquote {
 	white-space: nowrap;
 }
 
+.single-event .event-location {
+	display: block;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.single-event .event-location > span {
+	display: block;
+}
+
+.single-event .event-location > :not(:first-child) {
+	margin-top: .25rem;
+}
+
+.single-event .event-location__name,
+.single-event .hero-facts .event-location__name {
+	display: block;
+	color: var(--color-ink);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
 .single-event .event-location__online {
 	display: block;
 	margin-top: .25rem;

@@ -27,11 +27,7 @@ $mode_labels = array( 'presence' => 'In presenza', 'online' => 'Online', 'hybrid
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
 $city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
-$location = implode( ', ', array_filter( array( $venue, $address, $city_label ) ) );
-$summary_location = implode( ', ', array_filter( array( $venue, $city_label ) ) );
-if ( '' === $summary_location ) {
-	$summary_location = $address;
-}
+$has_location = $venue || $address || $city_label;
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-event' ); ?>>
@@ -49,8 +45,16 @@ if ( '' === $summary_location ) {
 						<?php endif; ?>
 						<?php if ( 'online' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>Online</span></li>
-						<?php elseif ( $summary_location ) : ?>
-							<li><strong>Luogo</strong><span><?php echo esc_html( $summary_location ); ?><?php if ( 'hybrid' === $mode ) : ?><span class="event-location__online">Anche online</span><?php endif; ?></span></li>
+						<?php elseif ( $has_location ) : ?>
+							<li>
+								<strong>Luogo</strong>
+								<span class="event-location">
+									<?php if ( $venue ) : ?><strong class="event-location__name"><?php echo esc_html( $venue ); ?></strong><?php endif; ?>
+									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
+									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
+									<?php if ( 'hybrid' === $mode ) : ?><span class="event-location__online">Anche online</span><?php endif; ?>
+								</span>
+							</li>
 						<?php elseif ( 'hybrid' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
@@ -72,7 +76,16 @@ if ( '' === $summary_location ) {
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
 						<?php if ( $schedule ) : ?><div><dt>Orari</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
 						<?php if ( isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
-						<?php if ( $location ) : ?><div><dt>Luogo</dt><dd><?php echo esc_html( $location ); ?></dd></div><?php endif; ?>
+						<?php if ( $has_location ) : ?>
+							<div>
+								<dt>Luogo</dt>
+								<dd class="event-location">
+									<?php if ( $venue ) : ?><strong class="event-location__name"><?php echo esc_html( $venue ); ?></strong><?php endif; ?>
+									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
+									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
+								</dd>
+							</div>
+						<?php endif; ?>
 						<?php if ( $platform ) : ?><div><dt>Piattaforma</dt><dd><?php echo esc_html( $platform ); ?><?php if ( $online_url && ! $past ) : ?> · <a href="<?php echo esc_url( $online_url ); ?>">Accedi alla piattaforma</a><?php endif; ?></dd></div><?php endif; ?>
 						<?php if ( isset( $participation_labels[ $participation ] ) ) : ?><div><dt>Partecipazione</dt><dd><?php echo esc_html( $participation_labels[ $participation ] ); ?></dd></div><?php endif; ?>
 						<div><dt>Quota</dt><dd><?php if ( $is_free ) : ?>Gratuito<?php else : ?><?php echo $member_price ? 'Soci: ' . esc_html( $member_price ) : ''; ?><?php echo $nonmember_price ? '<br>Non soci: ' . esc_html( $nonmember_price ) : ''; ?><?php endif; ?></dd></div>

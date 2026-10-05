@@ -38,7 +38,7 @@ Il restyling dell’archivio e del dettaglio Eventi usa selettori circoscritti a
 
 Le date adattive sono progressive enhancement del tema: il formatter PHP produce le due etichette tramite la localizzazione WordPress, la card rende la forma estesa e il testo screen-reader invariato. `assets/js/event-dates.js`, caricato soltanto in home e nell’archivio Eventi, misura la larghezza del testo e abbrevia il mese solo se necessario, con aggiornamenti coalescenti tramite `requestAnimationFrame`, `ResizeObserver`, resize e caricamento dei font. Nessuna regola temporale, query o dato viene modificato; senza JS la forma estesa resta leggibile su più righe.
 
-Il componente `template-parts/event-schedule.php` presenta gli stessi orari in due punti del singolo evento, evitando divergenze fra riepilogo e tabella. Riceve soltanto la raccolta di etichette e orari già letti dal template; campi, validazione e stato restano nel plugin. Sede breve in hero e indirizzo completo nella tabella sono presentazione degli stessi meta, senza nuove relazioni o query.
+Il componente `template-parts/event-schedule.php` presenta gli stessi orari in due punti del singolo evento, evitando divergenze fra riepilogo e tabella. Riceve soltanto la raccolta di etichette e orari già letti dal template; campi, validazione e stato restano nel plugin. Sede e indirizzo completo, dal v1.6.25 presenti sia in hero sia nella tabella, sono presentazione degli stessi meta, senza nuove relazioni o query.
 
 ## Dipendenze
 
