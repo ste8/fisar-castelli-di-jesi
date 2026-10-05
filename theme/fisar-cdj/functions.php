@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.28' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.29' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -354,6 +354,16 @@ function fisar_cdj_theme_post_image( int $post_id, string $class = '', bool $inf
 		esc_attr( $alt ),
 		esc_attr( $loading )
 	);
+}
+
+/** Add the requested currency to bare amounts, preserving richer editorial copy. */
+function fisar_cdj_theme_format_event_fee( string $fee ): string {
+	$fee = trim( $fee );
+	if ( preg_match( '/^[0-9]+(?:[.,][0-9]+)*$/', $fee ) ) {
+		return $fee . "\u{00A0}€";
+	}
+
+	return $fee;
 }
 
 function fisar_cdj_theme_format_date( string $date ): string {

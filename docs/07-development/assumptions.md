@@ -46,6 +46,12 @@ La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, 
 
 Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta ai soli template Eventi: intestazioni compatte, locandine intere su bianco, bordi e accenti oro leggeri. Riquadro iscrizioni in normale flusso, senza sticky, per evitare che pannelli lunghi siano parzialmente fuori dal viewport. Conservati integralmente i contenuti e tutte le condizioni funzionali; nessuna riscrittura editoriale o modifica al plugin/database. Le specifiche più aggiornate sono `docs/03-pages/events.md` e `docs/03-pages/event.md`.
 
+## Prenotazione nel dettaglio Evento — 5 ottobre 2026
+
+Il riscontro successivo al doppio pannello v1.6.28 approva un unico riquadro finale `Quote e prenotazioni`, raggiungibile da `Come prenotare` nella hero. Quote e scadenza non sono duplicate nella tabella immediatamente precedente; la scadenza resta nella hero. Corpo in una colonna centrale, senza sticky, barra fissa o testo a tutta larghezza. Gli eventi senza prenotazione usano `Come partecipare`/`Quote e partecipazione`; quelli conclusi non hanno un invito operativo.
+
+L’utente richiede esplicitamente l’euro nelle quote: il tema aggiunge `€` agli importi numerici privi di valuta, conservando testi completi e importi già con valuta. Nessuna modifica ai dati WordPress o alle regole del plugin.
+
 ## Visibilità degli eventi in homepage — 5 ottobre 2026
 
 L’utente approva la visibilità diretta fino a quattro eventi, in sostituzione del precedente limite di due. Si mantengono due card per riga su desktop/tablet e una su mobile, senza diminuire le locandine o introdurre un carosello. Il successivo riscontro conserva sempre il link all’archivio nella stessa posizione: `Tutti gli eventi` fino a quattro, `Tutti gli eventi (N)` oltre quattro, accanto al titolo su desktop e sotto le card su mobile. Il totale è fornito dalla stessa query del plugin; a zero eventi compare un messaggio esplicito. Nessuna modifica a dati, seed, criteri temporali, Corsi, altri contenuti o archivi. I test dei diversi totali usano filtri in memoria e fixture temporanee, senza alterare il database locale.

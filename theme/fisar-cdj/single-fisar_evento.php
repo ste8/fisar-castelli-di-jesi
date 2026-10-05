@@ -74,6 +74,9 @@ $deadline = $registration['details'];
 							<li class="event-deadline-row"><strong>Prenotazioni</strong><span>Entro il <time datetime="<?php echo esc_attr( $deadline['deadline'] ); ?>"><?php echo esc_html( $deadline['deadline_label'] ); ?></time></span></li>
 						<?php endif; ?>
 					</ul>
+					<?php if ( ! $past ) : ?>
+						<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
+					<?php endif; ?>
 				</div>
 				<div class="content-hero__media content-hero__media--poster">
 					<?php fisar_cdj_theme_post_image( $event_id, 'single-poster', true, 'eager' ); ?>
@@ -82,7 +85,6 @@ $deadline = $registration['details'];
 		</header>
 
 		<div class="container content-layout">
-			<?php get_template_part( 'template-parts/event-registration', null, array( 'registration' => $registration ) ); ?>
 			<div class="prose">
 				<?php the_content(); ?>
 
@@ -104,15 +106,10 @@ $deadline = $registration['details'];
 						<?php endif; ?>
 						<?php if ( $platform ) : ?><div><dt>Piattaforma</dt><dd><?php echo esc_html( $platform ); ?><?php if ( $online_url && ! $past ) : ?> · <a href="<?php echo esc_url( $online_url ); ?>">Accedi alla piattaforma</a><?php endif; ?></dd></div><?php endif; ?>
 						<?php if ( isset( $participation_labels[ $participation ] ) ) : ?><div><dt>Partecipazione</dt><dd><?php echo esc_html( $participation_labels[ $participation ] ); ?></dd></div><?php endif; ?>
-						<?php if ( $registration['has_fees'] ) : ?><div><dt>Quota</dt><dd><?php get_template_part( 'template-parts/event-fees', null, array( 'fees' => $fees ) ); ?></dd></div><?php endif; ?>
-						<?php if ( ! $past && $deadline['deadline'] ) : ?>
-							<div class="event-deadline-row"><dt>Prenotazioni</dt><dd>Entro il <time datetime="<?php echo esc_attr( $deadline['deadline'] ); ?>"><?php echo esc_html( $deadline['deadline_label'] ); ?></time></dd></div>
-						<?php endif; ?>
+						<?php if ( $past && $registration['has_fees'] ) : ?><div><dt>Quota</dt><dd><?php get_template_part( 'template-parts/event-fees', null, array( 'fees' => $fees ) ); ?></dd></div><?php endif; ?>
 					</dl>
 				</section>
-				<?php if ( ! $past ) : ?>
-					<?php get_template_part( 'template-parts/event-registration', null, array( 'registration' => $registration, 'bottom' => true ) ); ?>
-				<?php endif; ?>
+				<?php get_template_part( 'template-parts/event-registration', null, array( 'registration' => $registration ) ); ?>
 
 				<?php if ( $course_id && 'publish' === get_post_status( $course_id ) ) : ?>
 					<section class="related-course" aria-labelledby="related-course-title">

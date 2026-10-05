@@ -1,13 +1,10 @@
 <?php
-/** One presentation for the side panel and the call to action at the end. */
+/** The single booking destination, reached from the hero or after reading. */
 $registration = $args['registration'];
-$bottom       = ! empty( $args['bottom'] );
-$tag          = $bottom ? 'section' : 'aside';
-$heading_id   = $bottom ? 'registration-title-bottom' : 'registration-title';
 $details      = $registration['details'];
 ?>
-<<?php echo $tag; ?> class="registration-box<?php echo $bottom ? ' registration-box--bottom' : ' registration-box--side'; ?>" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>">
-	<h2 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo $registration['past'] ? 'Evento concluso' : ( $registration['required'] ? 'Iscriviti all’evento' : 'Partecipa' ); ?></h2>
+<section id="event-registration" class="registration-box" aria-labelledby="registration-title" tabindex="-1">
+	<h2 id="registration-title"><?php echo $registration['past'] ? 'Evento concluso' : ( $registration['required'] ? 'Quote e prenotazioni' : 'Quote e partecipazione' ); ?></h2>
 	<?php if ( $registration['past'] ) : ?>
 		<p>Questo evento si è già svolto. Scopri le prossime occasioni per partecipare.</p>
 		<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>">Vedi i prossimi eventi</a>
@@ -39,4 +36,4 @@ $details      = $registration['details'];
 		<?php endif; ?>
 		<?php if ( $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>
-</<?php echo $tag; ?>>
+</section>

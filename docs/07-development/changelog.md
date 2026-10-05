@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.6.29 — Unico riquadro Quote e prenotazioni
+
+- Applicata la proposta approvata dopo il confronto UX/information architecture: rimosso il pannello laterale e conservato un unico riquadro finale dopo le informazioni pratiche, prima del Corso collegato. Corpo in una colonna centrale, massimo 48 rem, senza sticky o barre fisse. Contatti affiancati da 38 rem, impilati su mobile.
+- Link nativo `Come prenotare ↓` nella hero verso `#event-registration`, con focus sulla destinazione e margine di scorrimento. Riquadro `Quote e prenotazioni`; per partecipazione libera, `Come partecipare`/`Quote e partecipazione`. Eventi conclusi: un solo blocco di stato in fondo, nessun invito a prenotare.
+- Quote mostrate una sola volta nel riquadro (nella tabella per gli eventi conclusi); eliminata la duplicazione di quote e scadenza nella tabella immediatamente precedente. Scadenza ancora evidente in hero e riquadro, nota flessibile, recapiti copiabili, pulsanti e condizioni invariati.
+- Su richiesta dell’utente, importi numerici senza valuta resi con spazio non separabile e `€`, per esempio `50 €`/`60 €`. Conservati valori già con valuta e testi editoriali come `€ 20 per accompagnatore`, senza euro duplicato o conversione dei dati. Formatter di presentazione nel tema; nessun intervento sul plugin, sui meta o sui contenuti salvati.
+- Riusati i componenti esistenti, eliminando le varianti laterale/fondo non più necessarie. Tema e asset `1.6.29`, README, specifica Evento, architettura e assunzioni aggiornati. Nessun nuovo script, dipendenza, scrittura nel database o commit automatico.
+- Verifiche: lint PHP, sintassi dei due script JS, `git diff --check`; pagina, CSS versionato e font locale HTTP 200. Dodici casi di valuta e tredici varianti di iscrizione con meta simulati in memoria, API/copy preservati e corpo integrale, escaping e ID univoci verificati. Rieseguite 18 regressioni di orari/luogo, 11 normalizzazioni WhatsApp e 6 salvataggi intercettati senza persistenza.
+- Browser: evento giapponese su sei larghezze 320–1440 px; altre 15 combinazioni su eventi gratuito con prenotazione, ibrido, partecipazione libera, concluso e Corso a 1440/768/320 px. Un solo pannello, quote/recapiti leggibili, nessun overflow o immagine rotta e stili Corsi invariati. Review visiva desktop/mobile; link interno provato con mouse e tastiera, focus sulla destinazione e poi sul contatto, console senza errori. Supporto reduced-motion esistente conservato; nessun login o invio di prenotazioni.
+
 ## v1.6.28 — Iscrizioni Evento e plugin v1.3.1
 
 - Riquadro d’iscrizione con scadenza in primo piano (calendario decorativo, bordo oro, data Poppins 600 da 22 px), quote e recapiti testuali selezionabili oltre ai pulsanti. Numero WhatsApp, email, telefono e altri canali provengono soltanto dai campi configurati per l’evento.
