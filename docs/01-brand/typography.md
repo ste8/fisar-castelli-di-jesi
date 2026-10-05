@@ -41,6 +41,8 @@ Su successiva richiesta, Poppins Medium è in prova anche per i titoli delle car
 
 ### UI / body
 
+Eccezione aggiunta il 5 ottobre 2026 su richiesta di omogeneità con la homepage: nella sola pagina Carta dei Valori, H1 e titoli dei sette capitoli usano Poppins `500`, rispettivamente 32–44 px e 20–24 px, con interlinea `1.2` e `1.35`. Payoff in Cormorant `600`; corpo 16–17 px e grassetti `600`. Le altre pagine interne conservano i propri heading editoriali. Per i dettagli prevale `docs/03-pages/values.md`.
+
 **Poppins**
 
 Uso:

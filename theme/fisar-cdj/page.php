@@ -1,6 +1,6 @@
 <?php get_header(); the_post(); ?>
 <main id="main-content">
-	<article <?php post_class( 'standard-page' ); ?>>
+	<article <?php post_class( is_page( 'carta-dei-valori' ) ? 'standard-page values-page' : 'standard-page' ); ?>>
 		<header class="page-hero">
 			<div class="container page-hero__inner">
 				<p class="eyebrow">FISAR Castelli di Jesi</p>
@@ -12,4 +12,3 @@
 	</article>
 </main>
 <?php get_footer(); ?>
-

@@ -1670,18 +1670,88 @@ blockquote {
 	max-width: 100%;
 }
 
-.prose--page .values-chapter-heading {
+/* Carta dei Valori: the homepage's typography and accents, at reading scale. */
+.values-page .page-hero {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.values-page .page-hero__inner,
+.values-page .prose--page {
+	max-width: 50rem;
+	margin-inline: auto;
+}
+
+.values-page .page-hero h1 {
+	margin-bottom: 1rem;
+	padding-bottom: 1.25rem;
+	font-family: var(--font-body);
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.values-page .page-hero h1::after {
+	width: 3.4rem;
+	height: 3px;
+}
+
+.values-page .page-hero__inner > p:last-child {
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-body);
+}
+
+.values-page .prose--page {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	font-size: clamp(1rem, 1.2vw, 1.0625rem);
+}
+
+.values-page .prose--page .lead {
+	margin-bottom: 2rem;
+	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+	text-wrap: balance;
+}
+
+.values-page .values-chapter-heading {
 	display: grid;
 	grid-template-columns: 1.75rem minmax(0, 1fr);
 	align-items: start;
-	gap: .85rem;
+	margin: 2rem 0 .9rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--color-line);
+	font-family: var(--font-body);
+	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+	font-weight: 500;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-wrap: initial;
+	gap: 1rem;
 }
 
-.values-chapter-heading__icon {
+.values-page .lead + .values-chapter-heading {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
+}
+
+.values-page .values-chapter-heading__icon {
 	width: 1.75rem;
 	height: 1.75rem;
-	margin-top: .12em;
+	margin-top: .05em;
 	color: var(--color-gold);
+}
+
+.values-page .prose--page strong {
+	font-weight: 600;
+}
+
+.values-page .prose--page > :last-child {
+	margin-bottom: 0;
+}
+
+@media (min-width: 48rem) {
+	.values-page .prose--page > p:not(.lead) {
+		padding-left: 2.75rem;
+	}
 }
 
 .post-navigation {
