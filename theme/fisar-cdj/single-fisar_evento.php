@@ -71,10 +71,13 @@ $deadline = $registration['details'];
 							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
 						<?php if ( ! $past && $deadline['deadline'] ) : ?>
-							<li class="event-deadline-row"><strong>Prenotazioni</strong><span>Entro il <time datetime="<?php echo esc_attr( $deadline['deadline'] ); ?>"><?php echo esc_html( $deadline['deadline_label'] ); ?></time></span></li>
+							<li class="event-deadline-row">
+								<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $deadline, 'summary' => true ) ); ?>
+								<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
+							</li>
 						<?php endif; ?>
 					</ul>
-					<?php if ( ! $past ) : ?>
+					<?php if ( ! $past && ! $deadline['deadline'] ) : ?>
 						<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>
 				</div>

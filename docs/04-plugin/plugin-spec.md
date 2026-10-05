@@ -16,6 +16,8 @@ Dal plugin `1.3.1`, `fisar_cdj_get_event_registration_details()` espone copy, sc
 
 L’API condivisa dei canali conserva `label`, `value`, `url` e aggiunge `reference_label`/`reference` per mostrare recapiti leggibili. WhatsApp accetta un numero come testo o un URL: con `+` o `00` e numero internazionale completo si genera la chat `wa.me`; senza prefisso il numero è visibile ma non cliccabile. Un link diretto `wa.me` o `/send?phone=…` mostra il numero ricavabile, mantenendo l’URL e l’eventuale messaggio; gruppi/canali mantengono il link. Nessun prefisso dedotto e nessuna conversione automatica dei dati salvati. Campo e salvataggio testuale sono condivisi con i Corsi; nessun nuovo meta.
 
+Dal plugin `1.3.2`, le etichette dei canali Eventi sono `Prenota via WhatsApp` e `Prenota via mail`; quelle dei Corsi restano `Prenota su WhatsApp` e `Scrivi una email`. URL, riferimenti, validazione e campi condivisi invariati. La data con giorno della settimana è una variante di presentazione del tema, senza cambiare `deadline_label` o l’API testuale del plugin.
+
 ## CPT Corsi
 Base: titolo, editor, featured image, Direttore del Corso.
 Livello: 1° / 2° / 3°.
