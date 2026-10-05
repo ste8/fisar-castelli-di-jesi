@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.14' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.15' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -106,6 +106,7 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		'compass'   => '<circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/>',
 		'chat'      => '<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l1.8-4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 9h8M8 13h5"/>',
 		'idea'      => '<path d="M8.5 16c0-2.5-3-3.3-3-6.5a6.5 6.5 0 1 1 13 0c0 3.2-3 4-3 6.5h-7ZM9 19h6M10 22h4M12 16v-5M9.5 8.5 12 11l2.5-2.5"/>',
+		'info'      => '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',
 	);
 
 	if ( ! isset( $icons[ $name ] ) ) {
@@ -120,7 +121,7 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 }
 
 /**
- * Separa la nota editoriale sull'ambito locale per mostrarla nella hero.
+ * Separa la nota editoriale sull'ambito locale per mostrarla nel riquadro informativo.
  * Il payoff e il documento restano nel corpo, senza modificare i dati salvati.
  */
 function fisar_cdj_theme_values_content_parts( string $content ): array {

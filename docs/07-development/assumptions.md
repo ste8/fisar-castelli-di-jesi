@@ -44,6 +44,8 @@ La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, 
 
 ## Sintesi Carta dei Valori — 5 ottobre 2026
 
+Il nuovo riscontro sposta la precisazione sull’ambito locale fuori dalla hero, in un riquadro sotto l’immagine e prima del payoff. Si sceglie un’icona `info`, non `warning`, perché il testo è un chiarimento e non segnala un rischio o un errore. Il testo salvato e il seed rimangono invariati; il tema cambia soltanto markup, icona e stile della nota, senza live region o allarme.
+
 L’ultimo riscontro sulla hero prevale sull’esperimento precedente: titolo `Carta dei Valori della nostra Delegazione`, identificazione esplicita della Delegazione Castelli di Jesi e nota editoriale che distingue l’ambito locale da quello nazionale. La frase sui principi acquista rilievo; il payoff torna nel corpo sopra `Chi siamo`. Si usa il paesaggio di vigneti già disponibile, non la foto conviviale della hero della home, con precedenza all’eventuale immagine in evidenza della Carta. L’asset resta demo e non documenta un luogo reale verificato. Il testo integrale del documento non cambia: la nota è un paratesto separato, modificabile nell’editor. Nessuna nuova immagine generata, promessa editoriale o modifica alle altre hero.
 
 Il successivo riscontro sullo stile della pagina completa autorizza una revisione visiva circoscritta alla Carta: H1 e capitoli in Poppins come nella home, scala ridotta, intestazione compatta e separazioni leggere. Payoff serif e testo integrale sono conservati; nessuna modifica agli altri template editoriali, al plugin o ai dati WordPress. Specifica aggiornata in `docs/03-pages/values.md`.

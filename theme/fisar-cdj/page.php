@@ -7,7 +7,7 @@ $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_th
 <main id="main-content">
 	<article <?php post_class( $is_values_page ? 'standard-page values-page' : 'standard-page' ); ?>>
 		<?php if ( $is_values_page ) : ?>
-			<?php get_template_part( 'template-parts/values-hero', null, array( 'note' => $values_parts['note'] ) ); ?>
+			<?php get_template_part( 'template-parts/values-hero' ); ?>
 		<?php else : ?>
 		<header class="page-hero">
 			<div class="container page-hero__inner">
@@ -18,6 +18,12 @@ $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_th
 		</header>
 		<?php endif; ?>
 		<div class="container prose prose--page">
+			<?php if ( $is_values_page && $values_parts['note'] ) : ?>
+				<aside class="values-note" aria-label="Nota sulla Carta dei Valori">
+					<?php echo fisar_cdj_theme_icon( 'info', 'values-note__icon' ); ?>
+					<div class="values-note__content"><?php echo $values_parts['note']; ?></div>
+				</aside>
+			<?php endif; ?>
 			<?php
 			if ( $is_values_page ) {
 				echo apply_filters( 'the_content', $values_parts['body'] );
