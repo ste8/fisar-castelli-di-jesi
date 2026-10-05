@@ -48,6 +48,8 @@ La bozza Word `Carta dei Valori - v2.docx` fornita dall’utente coincide nei co
 
 Sostituite le quattro categorie generiche e le icone con una lista semantica di sei brevi testi, H3 Poppins `500` da `1.25rem`, interlinea `1.3`, allineamento a sinistra e separatori sottili. Fondo fotografico caldo, overlay scuro, H2 Poppins e accenti oro restano coerenti con il sito. Una colonna sotto `38rem`, due colonne per le sei voci da `38rem`; introduzione e lista affiancate da `52rem`, senza carosello, testo nascosto o animazioni. Nessuna promessa sanitaria nel testo sintetico.
 
+Esperimento successivo del 5 ottobre: ciascuna delle sei voci ha una piccola icona SVG lineare oro, a sinistra di titolo e testo, in una colonna da `1.75rem` con gap `.75rem`. Associazioni: germoglio → produttori; bussola → curiosità; scudo → consapevolezza; fumetto → informalità; persone → accoglienza; lampadina → contributo. Riutilizzato il sistema icone del tema e aggiunte solo le tre forme mancanti. Le icone sono decorative (`aria-hidden="true"`, `focusable="false"`): il significato resta nei testi, invariati. Nessuna immagine raster, dipendenza o richiesta di rete aggiuntiva.
+
 ## Percorsi di accesso
 
 Dal 4 ottobre 2026 le Quattro Porte sono rimosse, senza un blocco sostitutivo: duplicavano percorsi già presenti nella hero, nella navigazione e nelle sezioni con contenuti concreti. La decisione prevale sul concept iniziale. Restano le CTA verso Eventi e Corsi, `Unisciti a noi` nell’header e la fascia Carta dei Valori.

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.8' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.9' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -103,6 +103,9 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		'leaf'      => '<path d="M12 21V9M12 16c-4.7.1-7.3-2.2-7.8-6.8 4.7-.2 7.3 2.1 7.8 6.8ZM12 12.8c.5-4.6 3.1-6.9 7.8-6.8-.5 4.6-3.1 6.9-7.8 6.8Z"/><path d="M12 18c-3.4 0-5.5 1.2-6.5 3M12 15.5c3.4 0 5.5 1.2 6.5 3"/>',
 		'book'      => '<path d="M3.5 5.5c3.2-1.2 6-.5 8.5 1.6v13c-2.5-2.1-5.3-2.8-8.5-1.6v-13ZM20.5 5.5c-3.2-1.2-6-.5-8.5 1.6v13c2.5-2.1 5.3-2.8 8.5-1.6v-13Z"/>',
 		'shield'    => '<path d="M12 2.8 20 6v5.8c0 4.8-3.3 8.1-8 9.4-4.7-1.3-8-4.6-8-9.4V6l8-3.2Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
+		'compass'   => '<circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/>',
+		'chat'      => '<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l1.8-4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 9h8M8 13h5"/>',
+		'idea'      => '<path d="M8.5 16c0-2.5-3-3.3-3-6.5a6.5 6.5 0 1 1 13 0c0 3.2-3 4-3 6.5h-7ZM9 19h6M10 22h4M12 16v-5M9.5 8.5 12 11l2.5-2.5"/>',
 	);
 
 	if ( ! isset( $icons[ $name ] ) ) {

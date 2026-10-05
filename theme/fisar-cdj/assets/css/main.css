@@ -1039,12 +1039,25 @@ blockquote {
 }
 
 .values-list li {
+	display: grid;
+	grid-template-columns: 1.75rem minmax(0, 1fr);
+	align-content: start;
 	min-width: 0;
 	padding-top: 1rem;
 	border-top: 1px solid rgba(255, 255, 255, .25);
+	column-gap: .75rem;
+}
+
+.values-list__icon {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	width: 1.75rem;
+	height: 1.75rem;
+	color: var(--color-gold);
 }
 
 .values-list h3 {
+	grid-column: 2;
 	margin-bottom: .5rem;
 	color: #fff;
 	font-family: var(--font-body);
@@ -1055,6 +1068,7 @@ blockquote {
 }
 
 .values-list p {
+	grid-column: 2;
 	margin-bottom: 0;
 	color: #e4dee1;
 	font-size: var(--font-size-base);
