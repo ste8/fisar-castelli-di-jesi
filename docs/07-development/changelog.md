@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.26
+
+- Configurati stili nativi del canvas per gli editor Eventi e Corsi: font locali già presenti nel tema, larghezza di lettura `68ch`, margini dei titoli, elenchi e citazioni coerenti con il corpo delle pagine pubbliche. Nessun cambiamento alla toolbar, ai metabox o ai contenuti salvati.
+- Eventi: scala desktop Poppins, corpo 17 px, H2 24 px, H3 20 px, H4–H6 17 px, heading 500 e grassetti 600. Corsi: mantenuto lo stile pubblico attuale, corpo Poppins 18 px e titoli Cormorant con H2 52 px/H3 32 px. Scale fisse nel canvas, senza `vw`, perché l’editor è più stretto del viewport pubblico; frontend responsive invariato.
+- CSS aggiunti tramite `add_editor_style` durante `enqueue_block_editor_assets`, soltanto sugli schermi di modifica dei due CPT. Nessun nuovo script, plugin, font remoto o scrittura nel database. Tema `1.6.26`, README e specifiche aggiornati; nessun commit automatico.
+- Verifiche completate: lint PHP, sintassi JS, `git diff --check`; HTTP 200 per Evento, Corso e tre CSS editoriali. Test WordPress in sola lettura: tre fogli di stile per ciascuno dei due editor, solo il precedente per News e pagine, nessuna aggiunta negli elenchi amministrativi. Controllate anche le registrazioni native e gli URL base dei CSS.
+- Frontend: otto combinazioni di Evento/Corso e larghezze 1440/768/390/320 px; tipografia pubblica conservata, nessun CSS editoriale caricato, overflow o immagine rotta; console senza errori.
+- Verifica visiva nell’editor reale ancora da completare: il controllo delle autorizzazioni ha bloccato il login con l’account demo e sono stati segnalati timeout iniziali. Richiesta all’utente l’autorizzazione specifica all’accesso al backend locale; nessun tentativo di aggirare il blocco e nessun contenuto modificato tramite editor.
+
 ## v1.6.25
 
 - Aggiunta la via anche al riepilogo iniziale del dettaglio evento, tra il nome della sede in grassetto e la città/provincia. Conservati righe separate e stile v1.6.24, campi mancanti omessi e comportamento degli eventi online/ibridi.

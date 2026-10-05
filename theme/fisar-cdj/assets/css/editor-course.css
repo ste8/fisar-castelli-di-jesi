@@ -1,0 +1,17 @@
+/* Mirror the current course template, retaining its serif headings. */
+body {
+	font-size: 1.125rem;
+}
+
+h1,
+.editor-post-title__input {
+	font-size: 5.25rem;
+}
+
+h2 {
+	font-size: 3.25rem;
+}
+
+h3 {
+	font-size: 2rem;
+}

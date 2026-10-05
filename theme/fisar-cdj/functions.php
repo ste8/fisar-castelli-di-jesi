@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.25' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.26' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -37,6 +37,23 @@ function fisar_cdj_theme_setup(): void {
 	);
 }
 add_action( 'after_setup_theme', 'fisar_cdj_theme_setup' );
+
+/** Match the editing canvas to each content template, not the admin interface. */
+function fisar_cdj_theme_content_editor_styles(): void {
+	$screen = get_current_screen();
+	if ( ! $screen || 'post' !== $screen->base || ! class_exists( 'Fisar_CDJ_Post_Types' ) ) {
+		return;
+	}
+
+	$styles = array(
+		Fisar_CDJ_Post_Types::EVENT  => 'assets/css/editor-event.css',
+		Fisar_CDJ_Post_Types::COURSE => 'assets/css/editor-course.css',
+	);
+	if ( isset( $styles[ $screen->post_type ] ) ) {
+		add_editor_style( array( 'assets/css/editor-content.css', $styles[ $screen->post_type ] ) );
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'fisar_cdj_theme_content_editor_styles' );
 
 function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
