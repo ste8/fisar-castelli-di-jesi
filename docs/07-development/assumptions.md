@@ -44,6 +44,8 @@ La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, 
 
 ## Sintesi Carta dei Valori — 5 ottobre 2026
 
+L’ultimo riscontro sulla hero prevale sull’esperimento precedente: titolo `Carta dei Valori della nostra Delegazione`, identificazione esplicita della Delegazione Castelli di Jesi e nota editoriale che distingue l’ambito locale da quello nazionale. La frase sui principi acquista rilievo; il payoff torna nel corpo sopra `Chi siamo`. Si usa il paesaggio di vigneti già disponibile, non la foto conviviale della hero della home, con precedenza all’eventuale immagine in evidenza della Carta. L’asset resta demo e non documenta un luogo reale verificato. Il testo integrale del documento non cambia: la nota è un paratesto separato, modificabile nell’editor. Nessuna nuova immagine generata, promessa editoriale o modifica alle altre hero.
+
 Il successivo riscontro sullo stile della pagina completa autorizza una revisione visiva circoscritta alla Carta: H1 e capitoli in Poppins come nella home, scala ridotta, intestazione compatta e separazioni leggere. Payoff serif e testo integrale sono conservati; nessuna modifica agli altri template editoriali, al plugin o ai dati WordPress. Specifica aggiornata in `docs/03-pages/values.md`.
 
 La successiva richiesta dell’utente estende l’intervento alla pagina completa: riportare integralmente il documento Word V2 e aggiungere le stesse icone della home. Per questa pagina prevale `docs/03-pages/values.md`; il testo originale e la numerazione sono conservati, senza usare le sintesi riscritte per la home. Il paragrafo seguente descrive solo l’intervento iniziale alla homepage.

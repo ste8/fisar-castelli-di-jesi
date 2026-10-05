@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.12' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.14' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -117,6 +117,24 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		esc_attr( $class ),
 		$icons[ $name ]
 	);
+}
+
+/**
+ * Separa la nota editoriale sull'ambito locale per mostrarla nella hero.
+ * Il payoff e il documento restano nel corpo, senza modificare i dati salvati.
+ */
+function fisar_cdj_theme_values_content_parts( string $content ): array {
+	$parts  = array( 'note' => '', 'body' => $content );
+	$blocks = parse_blocks( $content );
+	$first  = $blocks[0] ?? array();
+	$classes = preg_split( '/\s+/', trim( $first['attrs']['className'] ?? '' ) );
+	if ( 'core/paragraph' !== ( $first['blockName'] ?? '' ) || ! in_array( 'values-scope-note', $classes, true ) ) {
+		return $parts;
+	}
+
+	$parts['note'] = render_block( array_shift( $blocks ) );
+	$parts['body']  = serialize_blocks( $blocks );
+	return $parts;
 }
 
 /**
