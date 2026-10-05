@@ -34,6 +34,8 @@ La Carta dei Valori conserva il testo integrale V2 in blocchi WordPress nativi. 
 
 Il template standard usa il componente `template-parts/values-hero.php` soltanto per la Carta. Il tema separa il primo Paragrafo `values-scope-note` con `parse_blocks`/`serialize_blocks`, mostrandolo una sola volta in un `aside` informativo sotto la hero e applicando i filtri nativi `the_content` al corpo rimanente. Il riquadro e l’icona decorativa `info` sono presentazione del tema, senza SVG nel database o semantica di allarme. Il payoff `lead` rimane nel corpo sopra `Chi siamo`; se il blocco iniziale non corrisponde, il corpo rimane integrale e il riquadro non viene creato. Titolo, estratto e nota sono dati editoriali nativi. L’immagine usa la funzionalità WordPress nativa delle immagini in evidenza, con fallback diretto all’asset di vigneti nel tema, non alla homepage; nessuna duplicazione di logica del plugin.
 
+Il restyling dell’archivio e del dettaglio Eventi usa selettori circoscritti a `events-archive` e `single-event`. La card condivisa riceve il contesto `archive` per la data compatta accessibile, senza eliminare l’estratto come avviene in home. Query, contenuto WordPress, canali di iscrizione e relazioni del plugin restano invariati; nessuna scrittura nel database o nuova dipendenza.
+
 ## Dipendenze
 
 - WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).

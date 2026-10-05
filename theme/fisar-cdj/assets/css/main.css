@@ -781,7 +781,7 @@ blockquote {
 	font-size: .875rem;
 }
 
-.event-grid--home .event-card__date--compact {
+.event-card__date--compact {
 	display: inline-flex;
 	align-items: center;
 	white-space: nowrap;
@@ -1828,6 +1828,187 @@ blockquote {
 	}
 }
 
+/* Event archive and detail: same Poppins hierarchy as home and Values. */
+.events-archive .page-hero,
+.single-event .content-hero {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	border-bottom: 1px solid var(--color-line);
+	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
+}
+
+.events-archive .page-hero__inner {
+	max-width: var(--container);
+	margin-inline: auto;
+}
+
+.events-archive .page-hero h1,
+.single-event .content-hero h1 {
+	position: relative;
+	margin-bottom: 1.25rem;
+	padding-bottom: .5em;
+	font-family: var(--font-body);
+	font-size: clamp(2rem, 3.5vw, 2.75rem);
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: -.02em;
+	text-wrap: balance;
+}
+
+.events-archive .page-hero h1::after,
+.single-event .content-hero h1::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 3.4rem;
+	height: 3px;
+	background: var(--color-gold);
+	content: '';
+}
+
+.events-archive .page-hero__inner > p:last-child,
+.single-event .content-hero__lead {
+	max-width: 46rem;
+	font-family: var(--font-body);
+	font-size: clamp(1rem, 1.4vw, 1.125rem);
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+.events-archive .section {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.events-archive .section-heading h2 {
+	font-family: var(--font-body);
+	font-size: clamp(2rem, 4vw, 2.5rem);
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.events-archive .event-card,
+.single-event .content-hero__media--poster {
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-small);
+	background: var(--color-paper);
+	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
+}
+
+.events-archive .event-card__media {
+	padding: .5rem;
+	background: var(--color-paper);
+}
+
+.events-archive .event-card__image {
+	border-radius: 0;
+}
+
+.events-archive .event-card__body {
+	padding: 1.25rem;
+}
+
+.events-archive .event-card__title {
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.single-event .content-hero__copy {
+	min-width: 0;
+}
+
+.single-event .back-link {
+	margin-bottom: 1.25rem;
+	font-weight: 500;
+}
+
+.single-event .content-hero__media--poster {
+	width: 100%;
+	max-width: 32rem;
+	aspect-ratio: 1;
+	padding: .5rem;
+}
+
+.single-event .hero-facts {
+	margin-top: 1.5rem;
+	font-size: .9375rem;
+}
+
+.single-event .hero-facts li {
+	grid-template-columns: 5.5rem minmax(0, 1fr);
+	border-color: var(--color-line);
+}
+
+.single-event .content-layout {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	gap: 2.5rem;
+}
+
+.single-event .prose {
+	font-size: clamp(1rem, 1.2vw, 1.0625rem);
+}
+
+.single-event .prose :is(h2, h3, h4, h5, h6),
+.single-event .registration-box :is(h2, h3) {
+	font-family: var(--font-body);
+	font-weight: 500;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-wrap: initial;
+}
+
+.single-event .prose h2,
+.single-event .registration-box h2 {
+	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+}
+
+.single-event .prose h3 {
+	font-size: 1.25rem;
+}
+
+.single-event .prose :is(h4, h5, h6) {
+	font-size: 1.0625rem;
+}
+
+.single-event .prose strong,
+.single-event .registration-box strong {
+	font-weight: 600;
+}
+
+.single-event .details-list div {
+	grid-template-columns: minmax(0, 1fr);
+	gap: .35rem;
+}
+
+.single-event .details-list dd,
+.single-event .registration-box {
+	overflow-wrap: anywhere;
+}
+
+.single-event .registration-box {
+	position: static;
+	border: 1px solid var(--color-gold);
+	border-top-width: 3px;
+	border-radius: var(--radius-small);
+	box-shadow: none;
+	font-size: 1rem;
+	line-height: 1.7;
+}
+
+.single-event .registration-box > :last-child {
+	margin-bottom: 0;
+}
+
+.single-event .related-course {
+	margin-top: 2.5rem;
+	border-left-width: 3px;
+	background: var(--color-tint);
+}
+
+@media (min-width: 38rem) {
+	.single-event .details-list div {
+		grid-template-columns: minmax(8rem, .32fr) minmax(0, 1fr);
+		gap: 1rem;
+	}
+}
+
 .post-navigation {
 	padding-bottom: 5rem;
 }
@@ -2397,7 +2578,8 @@ blockquote {
 
 	.section-heading h2::after,
 	.section-heading h1::after,
-	.page-hero h1::after {
+	.page-hero h1::after,
+	.single-event .content-hero h1::after {
 		background: CanvasText;
 	}
 }

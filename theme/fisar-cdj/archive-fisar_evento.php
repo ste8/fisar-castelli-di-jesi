@@ -1,11 +1,10 @@
 <?php
 get_header();
-$events_url = get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT );
 ?>
-<main id="main-content">
+<main id="main-content" class="events-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
-			<p class="eyebrow">Incontri e territorio</p>
+			<p class="eyebrow">FISAR · Delegazione Castelli di Jesi</p>
 			<h1>Eventi</h1>
 			<p>Degustazioni, visite in cantina, serate a tema e occasioni per stare insieme. Ogni evento è un modo diverso per conoscere il vino e le persone.</p>
 		</div>
@@ -16,7 +15,7 @@ $events_url = get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT );
 			<?php $upcoming = fisar_cdj_get_upcoming_events(); ?>
 			<?php if ( $upcoming->have_posts() ) : ?>
 				<div class="event-grid">
-					<?php while ( $upcoming->have_posts() ) : $upcoming->the_post(); get_template_part( 'template-parts/event-card' ); endwhile; ?>
+					<?php while ( $upcoming->have_posts() ) : $upcoming->the_post(); get_template_part( 'template-parts/event-card', null, array( 'context' => 'archive' ) ); endwhile; ?>
 				</div>
 			<?php else : get_template_part( 'template-parts/empty-state' ); endif; wp_reset_postdata(); ?>
 		</div>
@@ -27,11 +26,10 @@ $events_url = get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT );
 			<?php $past = fisar_cdj_get_past_events(); ?>
 			<?php if ( $past->have_posts() ) : ?>
 				<div class="event-grid event-grid--past">
-					<?php while ( $past->have_posts() ) : $past->the_post(); get_template_part( 'template-parts/event-card' ); endwhile; ?>
+					<?php while ( $past->have_posts() ) : $past->the_post(); get_template_part( 'template-parts/event-card', null, array( 'context' => 'archive' ) ); endwhile; ?>
 				</div>
 			<?php else : ?><p>Gli eventi conclusi compariranno qui.</p><?php endif; wp_reset_postdata(); ?>
 		</div>
 	</section>
 </main>
 <?php get_footer(); ?>
-
