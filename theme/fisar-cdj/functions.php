@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.10' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.11' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -118,6 +118,45 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		$icons[ $name ]
 	);
 }
+
+/**
+ * Decora i capitoli della Carta senza salvare SVG nei blocchi editoriali.
+ * Le ancore rimangono stabili anche quando cambia il testo di un titolo.
+ */
+function fisar_cdj_theme_values_heading( string $block_content, array $block ): string {
+	if ( is_admin() || ! is_page( 'carta-dei-valori' ) || ! in_the_loop() || ! is_main_query() ) {
+		return $block_content;
+	}
+
+	$icons = array(
+		'chi-siamo'                 => 'heart',
+		'persone-e-modo-di-lavorare' => 'leaf',
+		'curiosita-e-apertura'       => 'compass',
+		'vino-con-consapevolezza'   => 'shield',
+		'semplicita-e-informalita'   => 'chat',
+		'inclusione-e-accoglienza'   => 'members',
+		'ognuno-puo-contribuire'     => 'idea',
+	);
+	$anchor = $block['attrs']['anchor'] ?? '';
+	if ( 2 !== ( $block['attrs']['level'] ?? 2 ) || ! isset( $icons[ $anchor ] ) ) {
+		return $block_content;
+	}
+
+	$heading = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $heading->next_tag( 'H2' ) ) {
+		return $block_content;
+	}
+	$heading->add_class( 'values-chapter-heading' );
+	$icon = fisar_cdj_theme_icon( $icons[ $anchor ], 'values-chapter-heading__icon' );
+
+	return preg_replace_callback(
+		'/(<h2\b[^>]*>)(.*?)(<\/h2>)/is',
+		static fn( array $match ): string => $match[1] . $icon . '<span>' . $match[2] . '</span>' . $match[3],
+		$heading->get_updated_html(),
+		1
+	) ?? $block_content;
+}
+add_filter( 'render_block_core/heading', 'fisar_cdj_theme_values_heading', 10, 2 );
 
 /**
  * Identifica un canale social dal testo configurato nel menu WordPress.

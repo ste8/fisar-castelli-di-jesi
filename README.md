@@ -122,6 +122,8 @@ Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I d
 
 Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
 
+La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
+
 Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e Statuto rimandano alle ancore `consiglio` e `statuto` della pagina La nostra delegazione: conservare questi ID quando si modificano i titoli nell’editor. Completare i nomi ufficiali e il mandato; caricare lo statuto nella Libreria media e aggiungere il collegamento al PDF nella stessa sezione.
 
 Per aggiornare soltanto la struttura associativa su un ambiente demo già installato, senza reimportare gli altri contenuti:

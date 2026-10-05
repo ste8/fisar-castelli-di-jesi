@@ -44,4 +44,6 @@ La successiva richiesta estende la prova ai titoli dei componenti: card Eventi, 
 
 ## Sintesi Carta dei Valori — 5 ottobre 2026
 
+La successiva richiesta dell’utente estende l’intervento alla pagina completa: riportare integralmente il documento Word V2 e aggiungere le stesse icone della home. Per questa pagina prevale `docs/03-pages/values.md`; il testo originale e la numerazione sono conservati, senza usare le sintesi riscritte per la home. Il paragrafo seguente descrive solo l’intervento iniziale alla homepage.
+
 L’allegato Word V2 coincide nei contenuti con la working draft in `docs/00-foundation/carta-dei-valori.md`. La riprogettazione riguarda esclusivamente la sezione della home: introduzione per il punto 1 e sei voci per i punti 2–7, nell’ordine originale. Rimossi i testi generici contestati dall’utente; le sintesi non sostituiscono la Carta ufficiale e non introducono promesse sulla salute. La pagina completa, il documento sorgente e i dati WordPress non sono modificati. Restano il fondo fotografico e la posizione tra News e Come seguirci; la nuova composizione e il copy sono documentati nella specifica homepage.
