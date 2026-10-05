@@ -1836,6 +1836,10 @@ blockquote {
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
+.events-archive .page-hero {
+	padding-block: clamp(2rem, 4vw, 3rem);
+}
+
 .events-archive .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
