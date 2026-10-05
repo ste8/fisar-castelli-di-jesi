@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.6.28 — Iscrizioni Evento e plugin v1.3.1
+
+- Riquadro d’iscrizione con scadenza in primo piano (calendario decorativo, bordo oro, data Poppins 600 da 22 px), quote e recapiti testuali selezionabili oltre ai pulsanti. Numero WhatsApp, email, telefono e altri canali provengono soltanto dai campi configurati per l’evento.
+- Riquadro affiancato alla descrizione su desktop, prima del corpo su mobile, ripetuto dopo le informazioni pratiche e prima dell’eventuale corso collegato. Componenti condivisi per iscrizioni e quote, dati raccolti una volta e ID univoci. Scadenza evidenziata anche nei riepiloghi iniziale e finale. Gli eventi conclusi conservano un solo riquadro di stato, senza inviti a prenotare.
+- Il plugin fornisce i dettagli strutturati della prenotazione, mantenendo la precedente API testuale e le regole su gratuità, partecipazione e termine flessibile. Nessuna chiusura automatica dedotta dalla scadenza, nessuna valuta aggiunta alle quote editoriali.
+- WhatsApp accetta numeri o URL nei metabox condivisi Eventi/Corsi: testo preservato al salvataggio, chat generata solo con numero internazionale completo, numero estratto dai link diretti noti. Gruppi/canali mostrano l’URL; numeri nazionali, anche se precedentemente salvati come `http://numero`, sono leggibili senza link presunto. Corretto il collegamento malformato nella presentazione dell’evento giapponese; numero privo di prefisso lasciato invariato nel database, da completare editorialmente per avere il pulsante.
+- Tema/asset `1.6.28`, plugin `1.3.1`; README, specifica Evento, API del plugin e architettura aggiornati. Nessuna dipendenza, migrazione, scrittura nel database o commit automatico.
+- Verifiche: lint PHP, sintassi JS e `git diff --check`; HTTP 200 per pagina, CSS versionato e font locale. Test in memoria: 11 normalizzazioni WhatsApp, 6 salvataggi intercettati senza persistenza, 13 varianti di iscrizione (quote assenti/parziali/gratuità, scadenza assente/non valida/tassativa/flessibile, canali assenti, evento concluso, escaping, ID e corpo integrale), più 18 regressioni di orari e luogo.
+- Browser: sei larghezze 320–1440 px per l’evento giapponese e dodici combinazioni di tre altri eventi/Corso a 1440/390/320 px. Nessun overflow, immagine rotta o ID duplicato; orari allineati, link diretti conservati nei dati validi, stili Corsi invariati. Review visiva desktop/mobile, focus da tastiera visibile e console senza errori. Nessun login amministrativo né invio di prenotazioni.
+
 ## Etichetta Orario nel dettaglio Evento — 5 ottobre 2026
 
 - Sostituito `Orari` con `Orario` nel riepilogo iniziale e nelle informazioni pratiche, su richiesta dell’utente. Accoglienza, inizio, eventuale fine e layout invariati; versione `1.6.27` conservata, nessun dato o asset modificato.

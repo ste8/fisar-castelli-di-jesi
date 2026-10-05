@@ -22,6 +22,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		'_fisar_event_participation',
 		'_fisar_event_member_price',
 		'_fisar_event_non_member_price',
+		'_fisar_event_whatsapp',
 		'_fisar_event_email',
 		'_fisar_event_phone',
 		'_fisar_event_other_channel',
@@ -31,7 +32,6 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	private const EVENT_URL_FIELDS = array(
 		'_fisar_event_online_url',
-		'_fisar_event_whatsapp',
 		'_fisar_event_form_url',
 	);
 
@@ -50,6 +50,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		'_fisar_course_address',
 		'_fisar_course_city',
 		'_fisar_course_province',
+		'_fisar_course_whatsapp',
 		'_fisar_course_email',
 		'_fisar_course_phone',
 		'_fisar_course_other_channel',
@@ -58,7 +59,6 @@ final class Fisar_CDJ_Meta_Boxes {
 	);
 
 	private const COURSE_URL_FIELDS = array(
-		'_fisar_course_whatsapp',
 		'_fisar_course_form_url',
 	);
 
@@ -306,7 +306,7 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	private static function render_registration_fields( int $post_id, string $prefix ): void {
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
-		self::input( $post_id, "_fisar_{$prefix}_whatsapp", 'WhatsApp', 'url', 'Link completo alla chat o al canale.' );
+		self::input( $post_id, "_fisar_{$prefix}_whatsapp", 'WhatsApp', 'text', 'Numero con prefisso internazionale (es. +39 …), oppure link completo alla chat o al canale. Senza prefisso il numero resta visibile, ma non viene generato un link alla chat.' );
 		self::input( $post_id, "_fisar_{$prefix}_email", 'Email', 'email' );
 		self::input( $post_id, "_fisar_{$prefix}_phone", 'Telefono', 'tel' );
 		self::input( $post_id, "_fisar_{$prefix}_form_url", 'Modulo online', 'url', 'Link completo al modulo.' );

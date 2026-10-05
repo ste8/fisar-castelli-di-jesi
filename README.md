@@ -99,6 +99,8 @@ Il tema non ricalcola gli stati temporali né le relazioni: usa le funzioni pubb
 
 Archivio e dettaglio Eventi riprendono lo stile Poppins della home e della Carta dei Valori: intestazioni compatte, locandine intere su bianco e accenti oro leggeri. Le card dell’archivio conservano gli abstract; il dettaglio mantiene il contenuto completo e presenta informazioni pratiche e iscrizioni in riquadri leggibili. Specifiche in `docs/03-pages/events.md` e `docs/03-pages/event.md`.
 
+Gli eventi in programma hanno un riquadro d’iscrizione a lato (prima del corpo su mobile) e uno dopo le informazioni pratiche: quote, scadenza evidenziata e recapiti testuali oltre ai pulsanti. La scadenza è visibile anche nei due riepiloghi. Per WhatsApp inserire un link completo oppure un numero con prefisso internazionale: senza prefisso il numero resta leggibile, ma non si genera la chat automaticamente. Nessuna modifica automatica ai dati esistenti.
+
 Gli editor di Eventi e Corsi hanno stili del canvas dedicati: stessi font locali, gerarchia dei titoli, spaziature e larghezza di lettura delle rispettive pagine, alla scala desktop. I Corsi conservano i loro heading serif attuali. Non è un’anteprima del template completo; calendari, riepiloghi e iscrizioni restano generati dal frontend. Nessuna modifica ai contenuti salvati o agli editor delle altre pagine.
 
 Dal menu **Eventi** del backend puoi gestire data e orari, modalità, luogo o piattaforma, partecipazione, gratuità, quote, iscrizioni, deadline, avviso posti limitati e Corso collegato. I campi non pertinenti vengono nascosti in base a modalità, gratuità e richiesta di iscrizione.

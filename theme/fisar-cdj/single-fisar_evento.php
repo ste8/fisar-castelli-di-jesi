@@ -28,6 +28,18 @@ $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservat
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
 $city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
 $has_location = $venue || $address || $city_label;
+$fees = array( 'free' => $is_free, 'member' => $member_price, 'nonmember' => $nonmember_price );
+$registration = array(
+	'past'     => $past,
+	'required' => $required,
+	'limited'  => $limited,
+	'fees'     => $fees,
+	'has_fees' => $is_free || '' !== $member_price || '' !== $nonmember_price,
+	'details'  => fisar_cdj_get_event_registration_details( $event_id ),
+	'channels' => ! $past && $required ? fisar_cdj_get_registration_channels( $event_id, 'event' ) : array(),
+	'notes'    => (string) get_post_meta( $event_id, '_fisar_event_registration_notes', true ),
+);
+$deadline = $registration['details'];
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-event' ); ?>>
@@ -58,6 +70,9 @@ $has_location = $venue || $address || $city_label;
 						<?php elseif ( 'hybrid' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
+						<?php if ( ! $past && $deadline['deadline'] ) : ?>
+							<li class="event-deadline-row"><strong>Prenotazioni</strong><span>Entro il <time datetime="<?php echo esc_attr( $deadline['deadline'] ); ?>"><?php echo esc_html( $deadline['deadline_label'] ); ?></time></span></li>
+						<?php endif; ?>
 					</ul>
 				</div>
 				<div class="content-hero__media content-hero__media--poster">
@@ -67,6 +82,7 @@ $has_location = $venue || $address || $city_label;
 		</header>
 
 		<div class="container content-layout">
+			<?php get_template_part( 'template-parts/event-registration', null, array( 'registration' => $registration ) ); ?>
 			<div class="prose">
 				<?php the_content(); ?>
 
@@ -88,9 +104,15 @@ $has_location = $venue || $address || $city_label;
 						<?php endif; ?>
 						<?php if ( $platform ) : ?><div><dt>Piattaforma</dt><dd><?php echo esc_html( $platform ); ?><?php if ( $online_url && ! $past ) : ?> · <a href="<?php echo esc_url( $online_url ); ?>">Accedi alla piattaforma</a><?php endif; ?></dd></div><?php endif; ?>
 						<?php if ( isset( $participation_labels[ $participation ] ) ) : ?><div><dt>Partecipazione</dt><dd><?php echo esc_html( $participation_labels[ $participation ] ); ?></dd></div><?php endif; ?>
-						<div><dt>Quota</dt><dd><?php if ( $is_free ) : ?>Gratuito<?php else : ?><?php echo $member_price ? 'Soci: ' . esc_html( $member_price ) : ''; ?><?php echo $nonmember_price ? '<br>Non soci: ' . esc_html( $nonmember_price ) : ''; ?><?php endif; ?></dd></div>
+						<?php if ( $registration['has_fees'] ) : ?><div><dt>Quota</dt><dd><?php get_template_part( 'template-parts/event-fees', null, array( 'fees' => $fees ) ); ?></dd></div><?php endif; ?>
+						<?php if ( ! $past && $deadline['deadline'] ) : ?>
+							<div class="event-deadline-row"><dt>Prenotazioni</dt><dd>Entro il <time datetime="<?php echo esc_attr( $deadline['deadline'] ); ?>"><?php echo esc_html( $deadline['deadline_label'] ); ?></time></dd></div>
+						<?php endif; ?>
 					</dl>
 				</section>
+				<?php if ( ! $past ) : ?>
+					<?php get_template_part( 'template-parts/event-registration', null, array( 'registration' => $registration, 'bottom' => true ) ); ?>
+				<?php endif; ?>
 
 				<?php if ( $course_id && 'publish' === get_post_status( $course_id ) ) : ?>
 					<section class="related-course" aria-labelledby="related-course-title">
@@ -101,25 +123,6 @@ $has_location = $venue || $address || $city_label;
 					</section>
 				<?php endif; ?>
 			</div>
-
-			<aside class="registration-box" aria-labelledby="registration-title">
-				<h2 id="registration-title"><?php echo $past ? 'Evento concluso' : ( $required ? 'Iscriviti all’evento' : 'Partecipa' ); ?></h2>
-				<?php if ( $limited && ! $past ) : ?><p class="alert"><strong>Posti limitati.</strong> Prenota appena possibile.</p><?php endif; ?>
-				<?php if ( $past ) : ?>
-					<p>Questo evento si è già svolto. Scopri le prossime occasioni per partecipare.</p>
-					<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>">Vedi i prossimi eventi</a>
-				<?php else : ?>
-					<?php foreach ( fisar_cdj_get_event_registration_copy( $event_id ) as $line ) : ?><p><?php echo esc_html( $line ); ?></p><?php endforeach; ?>
-					<?php if ( $required ) : ?>
-						<ul class="registration-channels">
-							<?php foreach ( fisar_cdj_get_registration_channels( $event_id, 'event' ) as $channel ) : ?>
-								<li><?php if ( $channel['url'] ) : ?><a class="button" href="<?php echo esc_url( $channel['url'] ); ?>"><?php echo esc_html( $channel['label'] ); ?></a><?php else : ?><strong><?php echo esc_html( $channel['label'] ); ?>:</strong> <?php echo esc_html( $channel['value'] ); ?><?php endif; ?></li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-					<?php $notes = (string) get_post_meta( $event_id, '_fisar_event_registration_notes', true ); if ( $notes ) : ?><div class="registration-notes"><?php echo wp_kses_post( $notes ); ?></div><?php endif; ?>
-				<?php endif; ?>
-			</aside>
 		</div>
 	</article>
 </main>
