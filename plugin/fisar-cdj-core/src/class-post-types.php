@@ -70,6 +70,8 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_event_is_free'               => 'boolean',
 			'_fisar_event_member_price'          => 'string',
 			'_fisar_event_non_member_price'      => 'string',
+			'_fisar_event_fee_note'              => 'string',
+			'_fisar_event_fee_options'           => 'array',
 			'_fisar_event_registration_required' => 'boolean',
 			'_fisar_event_whatsapp'              => 'string',
 			'_fisar_event_email'                 => 'string',
@@ -129,6 +131,12 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( '_fisar_event_fee_options' === $key ) {
+					return fisar_cdj_sanitize_event_fee_options( $value );
+				}
+				if ( '_fisar_event_fee_note' === $key ) {
+					return is_string( $value ) ? sanitize_textarea_field( $value ) : '';
+				}
 				if ( '_fisar_event_maps_url' === $key ) {
 					return is_string( $value ) ? esc_url_raw( $value, array( 'http', 'https' ) ) : '';
 				}

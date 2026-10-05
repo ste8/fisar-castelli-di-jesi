@@ -16,11 +16,8 @@ $maps_url      = 'online' !== $mode ? esc_url_raw( (string) get_post_meta( $even
 $platform      = (string) get_post_meta( $event_id, '_fisar_event_platform', true );
 $online_url    = (string) get_post_meta( $event_id, '_fisar_event_online_url', true );
 $participation = (string) get_post_meta( $event_id, '_fisar_event_participation', true );
-$is_free       = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $limited       = (bool) get_post_meta( $event_id, '_fisar_event_limited_seats', true );
-$member_price  = (string) get_post_meta( $event_id, '_fisar_event_member_price', true );
-$nonmember_price = (string) get_post_meta( $event_id, '_fisar_event_non_member_price', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
 
@@ -29,13 +26,13 @@ $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservat
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
 $city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
 $has_location = $venue || $address || $city_label || $maps_url;
-$fees = array( 'free' => $is_free, 'member' => $member_price, 'nonmember' => $nonmember_price );
+$fees = fisar_cdj_get_event_fees( $event_id );
 $registration = array(
 	'past'     => $past,
 	'required' => $required,
 	'limited'  => $limited,
 	'fees'     => $fees,
-	'has_fees' => $is_free || '' !== $member_price || '' !== $nonmember_price,
+	'has_fees' => $fees['has_fees'],
 	'details'  => fisar_cdj_get_event_registration_details( $event_id ),
 	'channels' => ! $past && $required ? fisar_cdj_get_registration_channels( $event_id, 'event' ) : array(),
 	'notes'    => (string) get_post_meta( $event_id, '_fisar_event_registration_notes', true ),

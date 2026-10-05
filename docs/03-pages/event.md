@@ -13,6 +13,19 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Quote uniformi e importi allineati — v1.6.36
+
+- Quote Soci/Non soci e personalizzate formano un unico elenco compatto, senza separatori o spazi aggiuntivi tra categorie. Stesso font e peso per tutte le etichette, stessa colonna per tutti gli importi, con distanza etichetta/importo 12 px e distanza verticale 8 px.
+- La colonna delle etichette segue quella più lunga, con minimo 5 rem; su mobile il testo può andare a capo, lasciando almeno 4 rem alla colonna degli importi. Note generali e note delle singole voci restano leggibili su una riga di griglia a tutta larghezza, senza cambiare i contenuti.
+- Presentazione condivisa fra pannello degli eventi in programma e informazioni degli eventi conclusi; dati, editor, gratuità e formatter valuta invariati. Questa revisione prevale sul separatore e sullo stile distinto delle opzioni previsti dalla v1.6.35.
+
+## Quote personalizzabili — v1.6.35
+
+- Quote Soci/Non soci conservate, seguite dalle eventuali opzioni personalizzate nello stesso blocco `Quota di partecipazione`. Nota generale sopra le quote; ogni opzione mostra etichetta, importo e nota facoltativa sotto, con ritorno a capo naturale. Separatore sottile tra quote abituali e altre opzioni soltanto quando entrambe sono presenti.
+- Nessuna dicitura “Quote aggiuntive” o supplemento presunto: le condizioni sono definite dall’editor. Supportata anche una quota unica senza Soci/Non soci. Righe incomplete omesse dal plugin, importo `0` valido e formattazione `€` esistente riusata.
+- Quote mostrate una sola volta: nel pannello finale per eventi in programma (anche senza iscrizione richiesta), nelle informazioni pratiche per eventi conclusi. Eventi gratuiti: soltanto `Gratuito`, senza altre quote o note sui costi; i dati editoriali rimangono salvati.
+- Note in Poppins 15 px e colore del corpo, interlinea 1.6; etichetta personalizzata a peso 500, importo bordeaux/600. Quote Soci/Non soci mantengono font, colonne e distanza 12 px. Stili circoscritti a `single-event`, nessun cambiamento ai Corsi o ai contenuti.
+
 ## Orari su un’unica riga — v1.6.34
 
 - Accoglienza, Inizio e l’eventuale Fine sono affiancati nello stesso gruppo, nel riepilogo iniziale e nelle informazioni pratiche, anche su mobile. Etichette sopra e ore allineate sulla stessa riga; distanza orizzontale 24 px, font e pesi invariati.

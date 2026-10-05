@@ -45,3 +45,30 @@
 	display: none;
 }
 
+.fisar-event-fee-option {
+	min-width: 0;
+	margin-block: 1rem;
+	padding: 1rem;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #f6f7f7;
+}
+
+.fisar-event-fee-option .fisar-admin-grid {
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+	margin: 0;
+}
+
+.fisar-event-fee-option .fisar-field {
+	min-width: 0;
+}
+
+.fisar-event-fee-option legend {
+	padding-inline: .4rem;
+}
+
+#fisar-event-fee-add[hidden],
+.fisar-event-fee-remove[hidden],
+#fisar-event-fee-noscript[hidden] {
+	display: none;
+}

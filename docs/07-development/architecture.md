@@ -52,6 +52,8 @@ Dal tema `1.6.33` e plugin `1.3.4`, il link facoltativo alla posizione Maps è u
 
 ## Stili editoriali nel backend
 
+Dal tema `1.6.35` e plugin `1.3.5`, quote personalizzate e nota generale appartengono al plugin: meta privati, sanitizzazione centralizzata `fisar_cdj_sanitize_event_fee_options()`, metabox e API `fisar_cdj_get_event_fees()`. Il tema raccoglie questa API una volta e riusa `event-fees.php` per la presentazione, anche negli eventi conclusi; il formatter valuta resta nel tema. Il piccolo repeater estende lo script amministrativo esistente, senza framework o librerie; nessun JavaScript frontend aggiuntivo. Campi Soci/Non soci e dati già salvati restano compatibili, nessuna migrazione. Gratuità e validità delle righe non sono ricalcolate nel tema.
+
 Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.css` oppure `editor-course.css` con `add_editor_style` durante `enqueue_block_editor_assets`, solo sugli schermi di modifica dei due CPT. WordPress legge i file locali e ne porta CSS e URL base nel canvas, anche iframed; `main.css` conserva font e stili generali già registrati. Nessun nuovo script, dato o API amministrativa. Le varianti rispecchiano le scale desktop dei template rispettivi; non caricano stili nel frontend o negli editor di pagine/News. Le future modifiche alla tipografia del corpo dei template devono aggiornare la variante corrispondente.
 
 ## Dipendenze

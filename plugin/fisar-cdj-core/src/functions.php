@@ -131,6 +131,45 @@ function fisar_cdj_get_course_calendar( int $course_id ): array {
 	return Fisar_CDJ_Calendar_Importer::sanitize_rows( get_post_meta( $course_id, '_fisar_course_calendar', true ) );
 }
 
+/** Optional fee choices: ignore incomplete rows and never infer amounts or conditions. */
+function fisar_cdj_sanitize_event_fee_options( mixed $options ): array {
+	if ( ! is_array( $options ) ) {
+		return array();
+	}
+
+	$clean_options = array();
+	foreach ( $options as $option ) {
+		if ( ! is_array( $option ) ) {
+			continue;
+		}
+		$label  = is_string( $option['label'] ?? null ) ? sanitize_text_field( $option['label'] ) : '';
+		$amount = is_string( $option['amount'] ?? null ) ? sanitize_text_field( $option['amount'] ) : '';
+		$note   = is_string( $option['note'] ?? null ) ? sanitize_textarea_field( $option['note'] ) : '';
+		if ( '' === $label || '' === $amount ) {
+			continue;
+		}
+		$clean_options[] = array( 'label' => $label, 'amount' => $amount, 'note' => $note );
+	}
+
+	return $clean_options;
+}
+
+/** Keep legacy fees compatible while exposing optional, editorially defined choices. */
+function fisar_cdj_get_event_fees( int $event_id ): array {
+	$is_free = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
+	$note    = get_post_meta( $event_id, '_fisar_event_fee_note', true );
+	$fees    = array(
+		'free'      => $is_free,
+		'member'    => $is_free ? '' : (string) get_post_meta( $event_id, '_fisar_event_member_price', true ),
+		'nonmember' => $is_free ? '' : (string) get_post_meta( $event_id, '_fisar_event_non_member_price', true ),
+		'options'   => $is_free ? array() : fisar_cdj_sanitize_event_fee_options( get_post_meta( $event_id, '_fisar_event_fee_options', true ) ),
+		'note'      => ! $is_free && is_string( $note ) ? sanitize_textarea_field( $note ) : '',
+	);
+	$fees['has_fees'] = $is_free || '' !== $fees['member'] || '' !== $fees['nonmember'] || ! empty( $fees['options'] ) || '' !== $fees['note'];
+
+	return $fees;
+}
+
 /** Registration data shared by summaries and booking panels; no closing rule is inferred. */
 function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	$is_free      = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
