@@ -4,9 +4,21 @@
 
 Su richiesta dell’utente, la pagina riporta integralmente la bozza `Carta dei Valori - v2.docx`, già trascritta in `docs/00-foundation/carta-dei-valori.md`. Conservare payoff, sette punti numerati, titoli originali, testo e grassetti; nessuna sostituzione con le sintesi della homepage. La bozza resta modificabile e non è dichiarata definitiva.
 
-Titolo della pagina e nome FISAR nell’intestazione corrispondono al titolo e al sottotitolo del documento, senza duplicarli nel corpo.
+Il titolo della pagina è `Carta dei Valori della nostra Delegazione`, con identificazione `FISAR · Delegazione Castelli di Jesi` nell’intestazione. URL `/carta-dei-valori/` e voce di menu breve `Carta dei Valori` restano invariati. Una nota editoriale separata dal documento chiarisce: “Il documento si riferisce alla Delegazione Castelli di Jesi, non alla FISAR nazionale.”
 
-La successiva richiesta di maggiore coerenza con la home aggiorna lo stile della sola Carta: H1 Poppins `500` da 32–44 px e titoli dei capitoli Poppins `500` da 20–24 px, senza i grandi heading serif del template standard. Cormorant rimane per il payoff. Intestazione più compatta, fondo chiaro caldo e linea oro come nelle sezioni della homepage.
+La successiva richiesta di maggiore coerenza con la home aggiorna lo stile della sola Carta: H1 Poppins `500` da 32–44 px e titoli dei capitoli Poppins `500` da 20–24 px, senza i grandi heading serif del template standard. Cormorant rimane per il payoff. La prima intestazione compatta su fondo chiaro è sostituita dalla hero fotografica descritta sotto, su ulteriore richiesta dell’utente.
+
+## Hero fotografica
+
+Paesaggio caldo di vigneti a tutta larghezza, diverso dalla foto conviviale della hero della home, con overlay scuro e gradiente più uniforme su mobile per proteggere la leggibilità. Identificazione della Delegazione in oro chiaro, H1 bianco Poppins `500` da 32–44 px e linea oro. La descrizione “I principi che guidano ogni nostra attività e scelta.” usa Poppins `500` da 18–24 px, seguita dalla nota sull’ambito locale a 15 px. Altezza determinata dai contenuti, minimo `20rem`, senza testo nascosto o animazioni; il testo si allinea alla colonna del corpo.
+
+La fotografia usa prima l’immagine in evidenza della Carta, modificabile dal backend, altrimenti l’asset già disponibile `valori-vigneti-demo.webp`. Non usa più l’immagine in evidenza della homepage come fallback. Nessun nuovo asset, font o servizio esterno; l’immagine è decorativa (`alt=""`), caricata con priorità alta e, per gli allegati WordPress, `srcset` nativo.
+
+Il primo blocco Paragrafo con classe `values-scope-note` contiene la nota sull’ambito locale: rimane modificabile nell’editor, ma viene mostrato soltanto nella hero. La separazione è solo di presentazione. Se il blocco iniziale non corrisponde, il corpo è mostrato integralmente e non viene estratto alcun testo. Titolo e descrizione usano titolo ed estratto nativi della pagina.
+
+## Corpo della Carta
+
+Il payoff originale “Il vino come punto di partenza, le persone al centro.” rimane nel corpo, immediatamente sopra `1. Chi siamo`, in Cormorant `600` da 20–24 px. Tutto il testo originale del documento, inclusi i sette punti e i grassetti, è conservato.
 
 Impaginazione a colonna singola, larga al massimo `50rem`, con allineamento comune fra intestazione e corpo; testo Poppins da 16–17 px, interlinea `1.7` e grassetti semantici a peso `600`. Separazioni sottili e spaziature regolari fra i capitoli; da `48rem` i paragrafi si allineano al testo dei titoli, lasciando alle icone una colonna dedicata. Su mobile i paragrafi sfruttano tutta la larghezza disponibile. Nessuna card, colonna di testo parallela, sintesi aggiuntiva o contenuto nascosto.
 

@@ -137,7 +137,7 @@ final class Fisar_CDJ_Demo_Content {
 				'content' => '<p class="lead">WhatsApp, Instagram, Facebook e newsletter raccontano la Delegazione con tempi e formati diversi. Scegli uno o più canali per non perdere le prossime iniziative.</p>',
 			),
 			'values' => array(
-				'title'   => 'Carta dei Valori',
+				'title'   => 'Carta dei Valori della nostra Delegazione',
 				'slug'    => 'carta-dei-valori',
 				'excerpt' => 'I principi che guidano ogni nostra attività e scelta.',
 				'content' => $values_content,
