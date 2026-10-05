@@ -8,10 +8,20 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 - Locandina protagonista: cornice quadrata bianca, bordo sottile, ombra leggera e immagine intera con `contain`, mai ritagliata. Due colonne da `52rem`, testo e poi locandina su mobile.
 - Corpo integrale WordPress in Poppins 16–17 px, interlinea 1.7; heading Poppins Medium gerarchici, grassetti 600. Nessuna modifica a testo, elenchi, enfasi o livelli degli heading salvati nell’editor.
 - Informazioni pratiche a righe con separatori sottili: etichetta sopra il valore su mobile, due colonne da `38rem`. Dati, quote, luogo, piattaforma e partecipazione restano quelli del plugin.
-- Riquadro iscrizioni con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px. Affiancato al corpo su desktop, in normale flusso senza sticky; prima della descrizione su mobile. Per gli eventi in programma, ripetuto dopo le informazioni pratiche e prima dell’eventuale corso collegato (v1.6.28). Conservati note, posti limitati, condizioni di partecipazione e stato concluso.
+- Unico riquadro finale con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px: `Quote e prenotazioni`, oppure `Quote e partecipazione` quando non è richiesta prenotazione. Dopo le informazioni pratiche, prima dell’eventuale corso collegato, senza sticky o duplicazione laterale (v1.6.29). Conservati note, posti limitati, condizioni di partecipazione e stato concluso.
 - Corso collegato in riquadro leggero con accento oro; relazione invariata.
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
+
+## Unico punto di prenotazione — v1.6.29
+
+Questa revisione, approvata dall’utente dopo la valutazione UX/information architecture, prevale sul doppio pannello v1.6.28:
+
+- Un solo riquadro `event-registration.php` in fondo, con ancora `event-registration` e titolo `registration-title`. Link nativo nella hero `Come prenotare ↓` (oppure `Come partecipare ↓` per gli eventi senza prenotazione), senza nuovi script. La destinazione riceve il focus e ha un margine di scorrimento di 2 rem; animazione esistente disattivata con `prefers-reduced-motion`.
+- Corpo e riquadro in una colonna centrale larga al massimo 48 rem, mantenendo la misura di lettura e la gerarchia tipografica esistenti. Nessuna sidebar; contatti affiancati da 38 rem e impilati su mobile.
+- Quote visibili una sola volta: nel riquadro degli eventi in programma, oppure nella tabella di quelli conclusi. Rimosse quote e scadenza dalla tabella degli eventi in programma, perché sono immediatamente nel riquadro successivo. La scadenza resta evidenziata nella hero e nel riquadro, con avviso flessibile conservato.
+- Su richiesta dell’utente, importi numerici senza valuta mostrati con spazio non separabile e `€` (`50 €`, `25,50 €`); importi già con valuta e testi editoriali completi conservati senza duplicazioni. Formatter di presentazione nel tema, nessuna conversione numerica o modifica ai meta. Gratuità invariata.
+- Gli eventi conclusi mostrano un solo riquadro di stato in fondo, senza scorciatoia di prenotazione, scadenza o canali operativi. Relazione al Corso e contenuto integrale invariati.
 
 ## Quote, recapiti e scadenza — v1.6.28
 
