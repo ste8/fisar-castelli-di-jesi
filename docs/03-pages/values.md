@@ -4,7 +4,11 @@
 
 Su richiesta dell’utente, la pagina riporta integralmente la bozza `Carta dei Valori - v2.docx`, già trascritta in `docs/00-foundation/carta-dei-valori.md`. Conservare payoff, sette punti numerati, titoli originali, testo e grassetti; nessuna sostituzione con le sintesi della homepage. La bozza resta modificabile e non è dichiarata definitiva.
 
-Titolo della pagina e nome FISAR nell’intestazione corrispondono al titolo e al sottotitolo del documento, senza duplicarli nel corpo. Conservata l’impaginazione editoriale a colonna singola, con larghezza di lettura limitata, corpo Poppins e heading Cormorant Garamond come nelle altre pagine interne.
+Titolo della pagina e nome FISAR nell’intestazione corrispondono al titolo e al sottotitolo del documento, senza duplicarli nel corpo.
+
+La successiva richiesta di maggiore coerenza con la home aggiorna lo stile della sola Carta: H1 Poppins `500` da 32–44 px e titoli dei capitoli Poppins `500` da 20–24 px, senza i grandi heading serif del template standard. Cormorant rimane per il payoff. Intestazione più compatta, fondo chiaro caldo e linea oro come nelle sezioni della homepage.
+
+Impaginazione a colonna singola, larga al massimo `50rem`, con allineamento comune fra intestazione e corpo; testo Poppins da 16–17 px, interlinea `1.7` e grassetti semantici a peso `600`. Separazioni sottili e spaziature regolari fra i capitoli; da `48rem` i paragrafi si allineano al testo dei titoli, lasciando alle icone una colonna dedicata. Su mobile i paragrafi sfruttano tutta la larghezza disponibile. Nessuna card, colonna di testo parallela, sintesi aggiuntiva o contenuto nascosto.
 
 Ogni capitolo ha una piccola icona SVG lineare oro. I punti 2–7 riutilizzano esattamente le icone della home (germoglio, bussola, scudo, fumetto, persone, lampadina); `Chi siamo` usa il cuore già presente nel tema. Tutte le icone sono decorative, nascoste alle tecnologie assistive e non focalizzabili.
 
