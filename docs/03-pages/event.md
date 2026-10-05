@@ -13,6 +13,12 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Orari su un’unica riga — v1.6.34
+
+- Accoglienza, Inizio e l’eventuale Fine sono affiancati nello stesso gruppo, nel riepilogo iniziale e nelle informazioni pratiche, anche su mobile. Etichette sopra e ore allineate sulla stessa riga; distanza orizzontale 24 px, font e pesi invariati.
+- La griglia crea una colonna per ciascun orario disponibile. Campi mancanti omessi, senza colonne vuote o valori presunti; nessun nuovo script o modifica ai dati. Stile condiviso circoscritto al dettaglio Evento.
+- Questa revisione prevale sulla v1.6.22 che posizionava Fine sotto gli altri due orari.
+
 ## Posizione Google Maps — v1.6.33
 
 - Nuovo campo facoltativo del plugin `_fisar_event_maps_url`, compilato nel box `Modalità e luogo`. Il dettaglio mostra `Apri in Google Maps ↗` sotto il luogo, sia nel riepilogo iniziale sia nelle informazioni pratiche, tramite un unico componente `event-map-link.php`.

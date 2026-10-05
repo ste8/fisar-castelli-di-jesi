@@ -1989,7 +1989,9 @@ blockquote {
 
 .single-event .event-schedule {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, max-content));
+	grid-template-columns: none;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(0, max-content);
 	justify-content: start;
 	gap: .75rem 1.5rem;
 }
@@ -2006,11 +2008,6 @@ blockquote {
 	grid-template-columns: minmax(0, 1fr);
 	grid-template-rows: 1fr auto;
 	gap: .2rem;
-}
-
-.single-event .event-schedule__item:only-child,
-.single-event .event-schedule__item:last-child:nth-child(3) {
-	grid-column: 1 / -1;
 }
 
 .single-event .event-schedule__label {
