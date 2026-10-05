@@ -101,6 +101,8 @@ Dal menu **Eventi** del backend puoi gestire data e orari, modalità, luogo o pi
 
 Un Evento passa automaticamente tra futuro e concluso confrontando la data evento con la data corrente del sito.
 
+La homepage mostra fino a quattro eventi futuri in ordine cronologico: due card per riga su desktop/tablet e una su mobile, senza ridurre le locandine. Il link all’archivio resta sempre accanto al titolo su desktop e sotto le card su mobile: `Tutti gli eventi`, oppure `Tutti gli eventi (N)` quando il totale supera quattro. L’archivio conserva l’elenco completo e gli eventi passati.
+
 ### Corsi
 
 Dal menu **Corsi** puoi gestire Direttore, livello, date, sede, canali e termine di iscrizione, quota, tesseramento, dotazione e calendario. Un Corso è attivo finché la sua data di fine non è precedente a oggi.

@@ -10,6 +10,13 @@ $courses_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_
 $news_page = (int) get_option( 'page_for_posts' );
 $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
 $follow_url = fisar_cdj_theme_page_url( 'seguici' );
+$home_events_limit = 4;
+$events = function_exists( 'fisar_cdj_get_upcoming_events' ) ? fisar_cdj_get_upcoming_events( $home_events_limit ) : null;
+$events_total = $events ? (int) $events->found_posts : 0;
+$has_more_events = $events_total > $home_events_limit;
+$events_link_text = $has_more_events
+	? sprintf( 'Tutti gli eventi (%s)', number_format_i18n( $events_total ) )
+	: 'Tutti gli eventi';
 ?>
 <main id="main-content">
 	<section class="hero" aria-labelledby="hero-title">
@@ -31,19 +38,20 @@ $follow_url = fisar_cdj_theme_page_url( 'seguici' );
 			<section class="home-programs__events" aria-labelledby="upcoming-events-title">
 				<div class="section-heading section-heading--compact section-heading--with-link">
 					<h2 id="upcoming-events-title">Prossimi eventi</h2>
-					<a class="text-link text-link--desktop" href="<?php echo esc_url( $events_url ); ?>">Tutti gli eventi <span aria-hidden="true">→</span></a>
+					<a class="text-link text-link--desktop" href="<?php echo esc_url( $events_url ); ?>"><?php echo esc_html( $events_link_text ); ?> <span aria-hidden="true">→</span></a>
 				</div>
 				<div class="event-grid event-grid--home">
-					<?php if ( function_exists( 'fisar_cdj_get_upcoming_events' ) ) : ?>
-						<?php $events = fisar_cdj_get_upcoming_events( 2 ); ?>
+					<?php if ( $events && $events->have_posts() ) : ?>
 						<?php while ( $events->have_posts() ) : $events->the_post(); ?>
 							<?php get_template_part( 'template-parts/event-card', null, array( 'context' => 'home' ) ); ?>
 						<?php endwhile; wp_reset_postdata(); ?>
+					<?php elseif ( $events ) : ?>
+						<p>Non ci sono eventi in programma al momento.</p>
 					<?php else : ?>
 						<?php get_template_part( 'template-parts/empty-state' ); ?>
 					<?php endif; ?>
 				</div>
-				<a class="text-link text-link--mobile" href="<?php echo esc_url( $events_url ); ?>">Tutti gli eventi <span aria-hidden="true">→</span></a>
+				<a class="text-link text-link--mobile" href="<?php echo esc_url( $events_url ); ?>"><?php echo esc_html( $events_link_text ); ?> <span aria-hidden="true">→</span></a>
 			</section>
 
 			<section class="home-programs__courses" aria-labelledby="courses-title">
