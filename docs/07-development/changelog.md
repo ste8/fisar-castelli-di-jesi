@@ -1,5 +1,10 @@
 # Changelog
 
+## Etichetta Orario nel dettaglio Evento — 5 ottobre 2026
+
+- Sostituito `Orari` con `Orario` nel riepilogo iniziale e nelle informazioni pratiche, su richiesta dell’utente. Accoglienza, inizio, eventuale fine e layout invariati; versione `1.6.27` conservata, nessun dato o asset modificato.
+- Verifiche: lint PHP, `git diff --check` e risposta HTTP locale riuscita con entrambe le nuove etichette presenti. Nessun commit automatico.
+
 ## v1.6.27
 
 - Aumentato H4 del corpo Evento da 17 a 18 px (`1.125rem`), sia nel frontend sia nel CSS dell’editor Eventi. Conservati Poppins `500`, interlinea `1.35`, H3 da 20 px e H5–H6 da 17 px. Nessun intervento su contenuti, livelli salvati, Corsi o altri template.

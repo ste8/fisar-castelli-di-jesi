@@ -41,7 +41,7 @@ $has_location = $venue || $address || $city_label;
 					<ul class="hero-facts">
 						<li><strong>Data</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span></li>
 						<?php if ( $schedule ) : ?>
-							<li class="event-schedule-row"><strong>Orari</strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
+							<li class="event-schedule-row"><strong>Orario</strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
 						<?php endif; ?>
 						<?php if ( 'online' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>Online</span></li>
@@ -74,7 +74,7 @@ $has_location = $venue || $address || $city_label;
 					<h2 id="event-details-title">Informazioni pratiche</h2>
 					<dl class="details-list">
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
-						<?php if ( $schedule ) : ?><div><dt>Orari</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
+						<?php if ( $schedule ) : ?><div><dt>Orario</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
 						<?php if ( isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
 						<?php if ( $has_location ) : ?>
 							<div>
