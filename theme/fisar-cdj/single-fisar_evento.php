@@ -96,7 +96,7 @@ $deadline = $registration['details'];
 					<dl class="details-list">
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
 						<?php if ( $schedule ) : ?><div><dt>Orario</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
-						<?php if ( isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
+						<?php if ( 'presence' !== $mode && isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
 						<?php if ( $has_location ) : ?>
 							<div>
 								<dt>Luogo</dt>

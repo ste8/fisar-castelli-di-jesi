@@ -4,7 +4,7 @@ $registration = $args['registration'];
 $details      = $registration['details'];
 ?>
 <section id="event-registration" class="registration-box" aria-labelledby="registration-title" tabindex="-1">
-	<h2 id="registration-title"><?php echo $registration['past'] ? 'Evento concluso' : ( $registration['required'] ? 'Quote e prenotazioni' : 'Quote e partecipazione' ); ?></h2>
+	<h2 id="registration-title"><?php echo $registration['past'] ? 'Evento concluso' : ( $registration['required'] ? 'Iscrizione' : 'Partecipazione' ); ?></h2>
 	<?php if ( $registration['past'] ) : ?>
 		<p>Questo evento si è già svolto. Scopri le prossime occasioni per partecipare.</p>
 		<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>">Vedi i prossimi eventi</a>

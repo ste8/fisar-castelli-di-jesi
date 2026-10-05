@@ -8,10 +8,18 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 - Locandina protagonista: cornice quadrata bianca, bordo sottile, ombra leggera e immagine intera con `contain`, mai ritagliata. Due colonne da `52rem`, testo e poi locandina su mobile.
 - Corpo integrale WordPress in Poppins 16–17 px, interlinea 1.7; heading Poppins Medium gerarchici, grassetti 600. Nessuna modifica a testo, elenchi, enfasi o livelli degli heading salvati nell’editor.
 - Informazioni pratiche a righe con separatori sottili: etichetta sopra il valore su mobile, due colonne da `38rem`. Dati, quote, luogo, piattaforma e partecipazione restano quelli del plugin.
-- Unico riquadro finale con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px: `Quote e prenotazioni`, oppure `Quote e partecipazione` quando non è richiesta prenotazione. Dopo le informazioni pratiche, prima dell’eventuale corso collegato, senza sticky o duplicazione laterale (v1.6.29). Conservati note, posti limitati, condizioni di partecipazione e stato concluso.
+- Unico riquadro finale con fondo caldo e bordo oro, titolo Poppins Medium 20–24 px: `Iscrizione`, oppure `Partecipazione` quando non è richiesta prenotazione (v1.6.32). Dopo le informazioni pratiche, prima dell’eventuale corso collegato, senza sticky o duplicazione laterale (v1.6.29). Conservati note, posti limitati, condizioni di partecipazione e stato concluso.
 - Corso collegato in riquadro leggero con accento oro; relazione invariata.
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
+
+## Semplificazione delle informazioni — v1.6.32
+
+- Nelle informazioni pratiche, la riga `Modalità` non compare per gli eventi `presence`; resta per `online` e `hybrid`. Il riepilogo iniziale già usa il luogo per gli eventi in presenza. Nessuna modifica ai dati o alle modalità salvate, all’indirizzo o al fallback ibrido.
+- Etichette Accoglienza/Inizio/Fine del componente orari da 13 a 14 px (`0.875rem`), nelle due posizioni. Conservati peso 500, interlinea 1.35, orari da 16 px/600, allineamento delle ore e distanza orizzontale 24 px.
+- Nota del termine flessibile nel colore del corpo `--color-ink` (`#282332`), invece di `--color-muted`; testo, dimensione 14 px e posizione dentro i due box invariati.
+- Titolo del pannello finale semplificato in `Iscrizione` se è richiesta prenotazione, `Partecipazione` altrimenti. `Evento concluso`, quote, recapiti, pulsanti, condizioni, ID e scorciatoie rimangono invariati. Questa revisione prevale sulle precedenti diciture `Quote e prenotazioni`/`Quote e partecipazione`.
+- Modifiche di presentazione circoscritte al dettaglio Evento; Corsi e plugin invariati, nessun nuovo script o dato salvato.
 
 ## Scadenza ed etichette dei riepiloghi — v1.6.31
 

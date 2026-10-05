@@ -47,6 +47,8 @@ Affinamento v1.6.27: H4 del corpo Evento a `1.125rem` (18 px), anche nell’edit
 
 Affinamento v1.6.31 dei riepiloghi Evento: etichette principali iniziali e finali Poppins `600`, 16 px, maiuscolo e tracking `0.05em`. Etichetta `Prenotazioni entro` e data sulla stessa linea di testo, entrambe Poppins `600` da 18 px nel riepilogo e 22 px nel pannello finale, con ritorno a capo naturale. Non riguarda i titoli editoriali, l’editor, le sottoetichette Accoglienza/Inizio/Fine o i Corsi.
 
+Il successivo v1.6.32 aumenta soltanto le sottoetichette Accoglienza/Inizio/Fine del dettaglio Evento da 13 a 14 px, conservando peso 500, interlinea 1.35 e orari da 16 px/600. La nota flessibile da 14 px passa al colore del corpo `--color-ink`, senza modificare altre note o i Corsi.
+
 Eccezione aggiunta il 5 ottobre 2026 su richiesta di omogeneità con la homepage: nella sola pagina Carta dei Valori, H1 e titoli dei sette capitoli usano Poppins `500`, rispettivamente 32–44 px e 20–24 px, con interlinea `1.2` e `1.35`. Payoff in Cormorant `600`; corpo 16–17 px e grassetti `600`. Le altre pagine interne conservano i propri heading editoriali. Per i dettagli prevale `docs/03-pages/values.md`.
 
 **Poppins**
