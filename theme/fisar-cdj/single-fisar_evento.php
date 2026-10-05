@@ -25,6 +25,13 @@ $past          = fisar_cdj_is_event_past( $event_id );
 
 $mode_labels = array( 'presence' => 'In presenza', 'online' => 'Online', 'hybrid' => 'In presenza e online' );
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
+$schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
+$city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
+$location = implode( ', ', array_filter( array( $venue, $address, $city_label ) ) );
+$summary_location = implode( ', ', array_filter( array( $venue, $city_label ) ) );
+if ( '' === $summary_location ) {
+	$summary_location = $address;
+}
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-event' ); ?>>
@@ -32,13 +39,21 @@ $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservat
 			<div class="container content-hero__grid">
 				<div class="content-hero__copy">
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>"><span aria-hidden="true">←</span> Tutti gli eventi</a>
-					<p class="eyebrow"><?php echo $past ? 'Evento concluso' : 'Prossimo evento'; ?></p>
+					<p class="eyebrow"><?php echo $past ? 'Evento concluso' : 'Evento in programma'; ?></p>
 					<h1><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
 						<li><strong>Data</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span></li>
-						<?php if ( $start_time ) : ?><li><strong>Inizio</strong><span><?php echo esc_html( $start_time ); ?><?php echo $end_time ? ' – ' . esc_html( $end_time ) : ''; ?></span></li><?php endif; ?>
-						<?php if ( isset( $mode_labels[ $mode ] ) ) : ?><li><strong>Modalità</strong><span><?php echo esc_html( $mode_labels[ $mode ] ); ?></span></li><?php endif; ?>
+						<?php if ( $schedule ) : ?>
+							<li class="event-schedule-row"><strong>Orari</strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
+						<?php endif; ?>
+						<?php if ( 'online' === $mode ) : ?>
+							<li><strong>Modalità</strong><span>Online</span></li>
+						<?php elseif ( $summary_location ) : ?>
+							<li><strong>Luogo</strong><span><?php echo esc_html( $summary_location ); ?><?php if ( 'hybrid' === $mode ) : ?><span class="event-location__online">Anche online</span><?php endif; ?></span></li>
+						<?php elseif ( 'hybrid' === $mode ) : ?>
+							<li><strong>Modalità</strong><span>In presenza e online</span></li>
+						<?php endif; ?>
 					</ul>
 				</div>
 				<div class="content-hero__media content-hero__media--poster">
@@ -55,10 +70,9 @@ $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservat
 					<h2 id="event-details-title">Informazioni pratiche</h2>
 					<dl class="details-list">
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
-						<?php if ( $welcome_time ) : ?><div><dt>Accoglienza</dt><dd><?php echo esc_html( $welcome_time ); ?></dd></div><?php endif; ?>
-						<?php if ( $start_time ) : ?><div><dt>Orario</dt><dd><?php echo esc_html( $start_time ); ?><?php echo $end_time ? ' – ' . esc_html( $end_time ) : ''; ?></dd></div><?php endif; ?>
+						<?php if ( $schedule ) : ?><div><dt>Orari</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
 						<?php if ( isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
-						<?php if ( $venue || $city ) : ?><div><dt>Luogo</dt><dd><?php echo esc_html( implode( ', ', array_filter( array( $venue, $address, trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) ) ) ) ); ?></dd></div><?php endif; ?>
+						<?php if ( $location ) : ?><div><dt>Luogo</dt><dd><?php echo esc_html( $location ); ?></dd></div><?php endif; ?>
 						<?php if ( $platform ) : ?><div><dt>Piattaforma</dt><dd><?php echo esc_html( $platform ); ?><?php if ( $online_url && ! $past ) : ?> · <a href="<?php echo esc_url( $online_url ); ?>">Accedi alla piattaforma</a><?php endif; ?></dd></div><?php endif; ?>
 						<?php if ( isset( $participation_labels[ $participation ] ) ) : ?><div><dt>Partecipazione</dt><dd><?php echo esc_html( $participation_labels[ $participation ] ); ?></dd></div><?php endif; ?>
 						<div><dt>Quota</dt><dd><?php if ( $is_free ) : ?>Gratuito<?php else : ?><?php echo $member_price ? 'Soci: ' . esc_html( $member_price ) : ''; ?><?php echo $nonmember_price ? '<br>Non soci: ' . esc_html( $nonmember_price ) : ''; ?><?php endif; ?></dd></div>
@@ -97,4 +111,3 @@ $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservat
 	</article>
 </main>
 <?php get_footer(); ?>
-

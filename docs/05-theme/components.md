@@ -18,6 +18,12 @@ Da v1.6.18 il contesto `archive` usa la stessa data compatta con calendario dell
 
 Prova v1.6.21: giorno della settimana abbreviato e mese per esteso, es. `GIO 8 OTTOBRE 2026`. Il piccolo script `event-dates.js` misura ogni data nello spazio reale della card, considerando calendario, gap e font: abbrevia soltanto il mese che non entra e ripristina quello esteso quando la card si allarga. Aggiornamento dopo caricamento dei font e variazioni di larghezza, con `ResizeObserver` e fallback al resize della finestra. `datetime` e testo per screen reader restano completi e invariati. Senza JavaScript la forma estesa può andare a capo; se a forte ingrandimento neppure quella breve entra, può andare a capo anche con JavaScript. Nessun clipping o riduzione del font.
 
+## Orari nel dettaglio Evento
+
+Da v1.6.22, `event-schedule.php` rende la stessa raccolta di orari nel riepilogo iniziale e nelle informazioni pratiche. Accoglienza e inizio affiancati, etichette 13 px e ore 16 px a peso 600, numeri tabulari; eventuale fine sotto se ci sono tre valori. Omette i dati mancanti e non cambia campi o contenuti del plugin. Stile limitato a `single-event`.
+
+Da v1.6.23, colonne dimensionate sul testo e allineate a sinistra, con gap orizzontale `1.5rem`; non occupano più metà dello spazio disponibile ciascuna.
+
 ## Card Corso
 
 Mostra immagine, livello, titolo, descrizione, CTA.

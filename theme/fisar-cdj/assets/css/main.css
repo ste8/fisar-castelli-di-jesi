@@ -1970,6 +1970,62 @@ blockquote {
 	gap: 2.5rem;
 }
 
+.single-event .event-schedule {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, max-content));
+	justify-content: start;
+	gap: .75rem 1.5rem;
+}
+
+/* Exclude the nested time groups from the definition-list row styling. */
+.single-event .details-list .event-schedule,
+.single-event .details-list .event-schedule__item {
+	padding: 0;
+	border: 0;
+}
+
+.single-event .event-schedule .event-schedule__item {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-rows: 1fr auto;
+	gap: .2rem;
+}
+
+.single-event .event-schedule__item:only-child,
+.single-event .event-schedule__item:last-child:nth-child(3) {
+	grid-column: 1 / -1;
+}
+
+.single-event .event-schedule__label {
+	color: var(--color-muted);
+	font-size: .8125rem;
+	font-weight: 500;
+	line-height: 1.35;
+	overflow-wrap: anywhere;
+}
+
+.single-event .event-schedule__time {
+	font-size: 1rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.single-event .event-location__online {
+	display: block;
+	margin-top: .25rem;
+	color: var(--color-bordeaux);
+	font-weight: 500;
+}
+
+@media (max-width: 37.999rem) {
+	.single-event .hero-facts .event-schedule-row {
+		grid-template-columns: minmax(0, 1fr);
+		gap: .5rem;
+	}
+}
+
 .single-event .prose {
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
@@ -2001,7 +2057,7 @@ blockquote {
 	font-weight: 600;
 }
 
-.single-event .details-list div {
+.single-event .details-list > div {
 	grid-template-columns: minmax(0, 1fr);
 	gap: .35rem;
 }
@@ -2032,7 +2088,7 @@ blockquote {
 }
 
 @media (min-width: 38rem) {
-	.single-event .details-list div {
+	.single-event .details-list > div {
 		grid-template-columns: minmax(8rem, .32fr) minmax(0, 1fr);
 		gap: 1rem;
 	}
