@@ -36,15 +36,17 @@ Per la composizione e i contenuti aggiornati della fascia Valori prevale la revi
 La bozza Word `Carta dei Valori - v2.docx` fornita dall’utente coincide nei contenuti con `docs/00-foundation/carta-dei-valori.md`, che resta una working draft e non viene riscritta. La homepage presenta una sintesi editoriale, non un nuovo testo ufficiale; la pagina completa della Carta e il seed del plugin rimangono invariati.
 
 - Titolo: **La nostra Carta dei Valori**.
-- Introduzione, corrispondente al punto 1: **Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.** Segue: **Coltiviamo competenza e professionalità attraverso corsi e incontri, e viviamo il vino come occasione per creare relazioni.**
+- Introduzione, corrispondente al punto 1: **Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.** Segue: **Attraverso corsi ed eventi coltiviamo competenza e professionalità, in un ambiente informale.**
 - Sei voci, nello stesso ordine dei punti 2–7 della Carta:
   - **Il modo di lavorare dei produttori**: Privilegiamo chi ha cura della terra, dell’ambiente e delle persone, e cerca la qualità in vigna.
-  - **Curiosità e apertura**: Dal vino ci piace allargare lo sguardo a birra, distillati, tè, caffè e cibo.
-  - **Il vino con consapevolezza**: Conoscere ciò che beviamo e scegliere con moderazione.
-  - **Semplicità e informalità**: Competenza e professionalità, in un ambiente in cui sentirsi a proprio agio.
-  - **Inclusione e accoglienza**: Attività aperte a tutti, anche a chi inizia e a chi fa parte di altre associazioni.
-  - **Ognuno può contribuire**: Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio.
+  - **Curiosità e apertura**: Partiamo dal vino per esplorare anche il mondo del cibo e delle altre bevande, come birra, distillati, tè e caffè.
+  - **Il vino con consapevolezza**: Un approccio al vino basato sulla conoscenza e sulla consapevolezza.
+  - **Informalità**: Seguiamo le regole del servizio e della degustazione, senza eccessivi formalismi.
+  - **Inclusione e accoglienza**: Le nostre attività sono aperte a tutti, anche a chi non ha mai frequentato un corso da sommelier e a chi fa parte di altre associazioni.
+  - **Ognuno può contribuire**: Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio Direttivo.
 - CTA conservata: **Leggi la Carta dei Valori**, verso la pagina completa, dove restano gli approfondimenti (anche Slow Food/Slow Wine).
+
+Il copy sopra include l’affinamento approvato dall’utente il 5 ottobre: condivisione citata una sola volta nell’introduzione, “corsi ed eventi” e ambiente informale; consapevolezza al posto di “scegliere con moderazione”; accesso anche senza precedenti corsi da sommelier; vino come punto di partenza; titolo “Informalità” e testo “Seguiamo le regole…” per evitare di ripetere competenza e professionalità. Restano invariati layout, icone e testo completo della Carta; la moderazione resta trattata nella pagina completa.
 
 Sostituite le quattro categorie generiche e le icone con una lista semantica di sei brevi testi, H3 Poppins `500` da `1.25rem`, interlinea `1.3`, allineamento a sinistra e separatori sottili. Fondo fotografico caldo, overlay scuro, H2 Poppins e accenti oro restano coerenti con il sito. Una colonna sotto `38rem`, due colonne per le sei voci da `38rem`; introduzione e lista affiancate da `52rem`, senza carosello, testo nascosto o animazioni. Nessuna promessa sanitaria nel testo sintetico.
 
