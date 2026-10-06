@@ -9,6 +9,8 @@ Dal plugin `1.3.4`, `_fisar_event_maps_url` è un meta stringa singolo, non espo
 
 Non memorizzare il numero di posti. Evento concluso se `data_evento < oggi`. Nessuna tassonomia Tipologia evento nella V1.
 
+Dal plugin `1.3.7`, `fisar_cdj_get_event_registration_details()` espone `limited_seats_notice`: `Ti consigliamo di prenotare prima che esauriscano.` se il meta `Mostra avviso posti limitati` è attivo, altrimenti stringa vuota. Il tema presenta l’avviso con `Posti limitati.` nei due box solo per eventi non conclusi. `lines` e l’API testuale precedente restano invariati. Nessun conteggio, disponibilità in tempo reale o chiusura automatica.
+
 ### Quote personalizzabili — plugin v1.3.5
 
 - Quote Soci/Non soci esistenti conservate. Nuovo meta singolo privato `_fisar_event_fee_options` di tipo array, con righe ordinate `{label, amount, note}`; etichetta e importo sono testo breve, nota è testo semplice multilinea facoltativo. Nessun campo fisso “senza vini”. `_fisar_event_fee_note` è una nota generale in testo semplice multilinea.

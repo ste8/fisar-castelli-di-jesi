@@ -17,7 +17,6 @@ $platform      = (string) get_post_meta( $event_id, '_fisar_event_platform', tru
 $online_url    = (string) get_post_meta( $event_id, '_fisar_event_online_url', true );
 $participation = (string) get_post_meta( $event_id, '_fisar_event_participation', true );
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
-$limited       = (bool) get_post_meta( $event_id, '_fisar_event_limited_seats', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
 
@@ -30,7 +29,6 @@ $fees = fisar_cdj_get_event_fees( $event_id );
 $registration = array(
 	'past'     => $past,
 	'required' => $required,
-	'limited'  => $limited,
 	'fees'     => $fees,
 	'has_fees' => $fees['has_fees'],
 	'details'  => fisar_cdj_get_event_registration_details( $event_id ),
@@ -69,14 +67,15 @@ $deadline = $registration['details'];
 						<?php elseif ( 'hybrid' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
-						<?php if ( ! $past && $deadline['deadline'] ) : ?>
+						<?php if ( ! $past && ( $deadline['deadline'] || $deadline['limited_seats_notice'] ) ) : ?>
 							<li class="event-deadline-row">
 								<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $deadline, 'summary' => true ) ); ?>
+								<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $deadline ) ); ?>
 								<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
 							</li>
 						<?php endif; ?>
 					</ul>
-					<?php if ( ! $past && ! $deadline['deadline'] ) : ?>
+					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] ) : ?>
 						<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>
 				</div>
