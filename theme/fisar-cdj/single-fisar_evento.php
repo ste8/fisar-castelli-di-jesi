@@ -13,18 +13,17 @@ $address       = (string) get_post_meta( $event_id, '_fisar_event_address', true
 $city          = (string) get_post_meta( $event_id, '_fisar_event_city', true );
 $province      = (string) get_post_meta( $event_id, '_fisar_event_province', true );
 $maps_url      = 'online' !== $mode ? esc_url_raw( (string) get_post_meta( $event_id, '_fisar_event_maps_url', true ), array( 'http', 'https' ) ) : '';
-$platform      = (string) get_post_meta( $event_id, '_fisar_event_platform', true );
-$online_url    = (string) get_post_meta( $event_id, '_fisar_event_online_url', true );
+$online_access = fisar_cdj_get_event_online_access( $event_id );
 $participation = (string) get_post_meta( $event_id, '_fisar_event_participation', true );
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
 
-$mode_labels = array( 'presence' => 'In presenza', 'online' => 'Online', 'hybrid' => 'In presenza e online' );
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
 $city_label = $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '';
-$has_location = $venue || $address || $city_label || $maps_url;
+$has_location = $venue || $address || $city_label || $maps_url || in_array( $mode, array( 'online', 'hybrid' ), true );
+$location = array( 'mode' => $mode, 'venue' => $venue, 'address' => $address, 'city' => $city_label, 'maps_url' => $maps_url );
 $fees = fisar_cdj_get_event_fees( $event_id );
 $registration = array(
 	'past'     => $past,
@@ -55,21 +54,11 @@ if ( $deadline['waiting_list'] ) {
 						<?php if ( $schedule ) : ?>
 							<li class="event-schedule-row"><strong>Orario</strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
 						<?php endif; ?>
-						<?php if ( 'online' === $mode ) : ?>
-							<li><strong>Modalità</strong><span>Online</span></li>
-						<?php elseif ( $has_location ) : ?>
+						<?php if ( $has_location ) : ?>
 							<li>
 								<strong>Luogo</strong>
-								<span class="event-location">
-									<?php if ( $venue ) : ?><strong class="event-location__name"><?php echo esc_html( $venue ); ?></strong><?php endif; ?>
-									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
-									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
-									<?php if ( 'hybrid' === $mode ) : ?><span class="event-location__online">Anche online</span><?php endif; ?>
-									<?php get_template_part( 'template-parts/event-map-link', null, array( 'url' => $maps_url ) ); ?>
-								</span>
+								<?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?>
 							</li>
-						<?php elseif ( 'hybrid' === $mode ) : ?>
-							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
 						<?php if ( ! $past && ( $deadline['deadline'] || $deadline['limited_seats_notice'] || $deadline['status_notice'] ) ) : ?>
 							<li class="event-deadline-row">
@@ -103,19 +92,26 @@ if ( $deadline['waiting_list'] ) {
 					<dl class="details-list">
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
 						<?php if ( $schedule ) : ?><div><dt>Orario</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
-						<?php if ( 'presence' !== $mode && isset( $mode_labels[ $mode ] ) ) : ?><div><dt>Modalità</dt><dd><?php echo esc_html( $mode_labels[ $mode ] ); ?></dd></div><?php endif; ?>
 						<?php if ( $has_location ) : ?>
 							<div>
 								<dt>Luogo</dt>
-								<dd class="event-location">
-									<?php if ( $venue ) : ?><strong class="event-location__name"><?php echo esc_html( $venue ); ?></strong><?php endif; ?>
-									<?php if ( $address ) : ?><span><?php echo esc_html( $address ); ?></span><?php endif; ?>
-									<?php if ( $city_label ) : ?><span><?php echo esc_html( $city_label ); ?></span><?php endif; ?>
-									<?php get_template_part( 'template-parts/event-map-link', null, array( 'url' => $maps_url ) ); ?>
+								<dd>
+									<?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?>
 								</dd>
 							</div>
 						<?php endif; ?>
-						<?php if ( $platform ) : ?><div><dt>Piattaforma</dt><dd><?php echo esc_html( $platform ); ?><?php if ( $online_url && ! $past ) : ?> · <a href="<?php echo esc_url( $online_url ); ?>">Accedi alla piattaforma</a><?php endif; ?></dd></div><?php endif; ?>
+						<?php if ( $online_access['platform'] || $online_access['url'] ) : ?>
+							<div>
+								<dt><?php echo $online_access['platform'] ? 'Piattaforma' : 'Partecipazione online'; ?></dt>
+								<dd>
+									<?php echo esc_html( $online_access['platform'] ); ?>
+									<?php if ( $online_access['url'] ) : ?>
+										<?php if ( $online_access['platform'] ) : ?> · <?php endif; ?>
+										<a href="<?php echo esc_url( $online_access['url'] ); ?>">Accedi alla piattaforma</a>
+									<?php endif; ?>
+								</dd>
+							</div>
+						<?php endif; ?>
 						<?php if ( isset( $participation_labels[ $participation ] ) ) : ?><div><dt>Partecipazione</dt><dd><?php echo esc_html( $participation_labels[ $participation ] ); ?></dd></div><?php endif; ?>
 						<?php if ( $past && $registration['has_fees'] ) : ?><div><dt>Quota</dt><dd><?php get_template_part( 'template-parts/event-fees', null, array( 'fees' => $fees ) ); ?></dd></div><?php endif; ?>
 					</dl>

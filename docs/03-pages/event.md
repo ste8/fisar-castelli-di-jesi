@@ -1,5 +1,22 @@
 # Pagina Evento
 
+## Modalità più evidente dentro Luogo — v1.6.47
+
+- Per gli ibridi, sostituito `Anche online` con un riquadro prima della sede in entrambi i riepiloghi: `EVENTO IBRIDO` (Poppins 14 px/700) e `In presenza e online` (16 px/600), su due righe, testo bordeaux, fondo caldo e accento oro laterale. Sede/indirizzo/città e Maps seguono senza modifiche; con dati fisici assenti il riquadro basta a chiarire la doppia modalità, senza duplicare il fallback `In presenza`.
+- Eventi solo online: `Online` in grassetto semantico, Poppins 16 px/600, sotto l’etichetta Luogo in entrambi i riepiloghi. Presenza invariata; nessuna riga Modalità ripristinata, nessuna modifica alla visibilità di piattaforma/link, al plugin o ai dati salvati. Questa revisione sostituisce la posizione inferiore dell’etichetta v1.6.46.
+
+## Luogo per eventi online e ibridi — v1.6.46
+
+- Etichetta `Luogo` in entrambi i riepiloghi, anche per online: valore `Online`, senza sede/indirizzo/Maps fisici eventualmente ancora salvati. Rimossa la riga `Modalità` dalle informazioni pratiche.
+- Ibrido: sede, indirizzo, città/provincia e Maps conservati nella voce Luogo; `Anche online` compare in entrambi i punti come etichetta distinta su una riga dedicata, Poppins 16 px/600, bordeaux, fondo caldo e bordo sottile. Senza luogo compilato, fallback `In presenza` seguito da `Anche online`, senza inventare una sede.
+- Componente di presentazione condiviso `event-location.php` per mantenere allineati i riepiloghi. Eventi in presenza senza dati continuano a omettere la riga. Visibilità di piattaforma/link, prenotazioni, dati del plugin e Corsi invariati; nessuna nuova dipendenza o scrittura nel database. Questa revisione prevale sulle precedenti etichette Modalità per online/ibrido.
+
+## Informazioni per partecipare online — v1.6.45
+
+- Per online e ibrido, piattaforma e link sono nascosti per default, anche sugli eventi esistenti. Pubblicazione solo con l’opzione `Mostra le informazioni per partecipare online` nel box Modalità e luogo. Dati preservati nell’editor, senza nascondere i canali per prenotare o l’indicazione della modalità online/ibrida.
+- Il dettaglio usa esclusivamente `fisar_cdj_get_event_online_access()` per questi dati: se disattivato, nessuna riga, URL o testo della piattaforma nell’HTML, non una semplice occultazione CSS. Se attivo mostra la riga Piattaforma e `Accedi alla piattaforma`; con il solo URL usa l’etichetta `Partecipazione online`. Nessun separatore vuoto. Negli eventi conclusi il link resta soppresso; piattaforma consultabile solo con opzione attiva.
+- Luogo fisico degli ibridi, Maps, iscrizioni, sold-out, scadenze e contenuto editoriale invariati. Non inserire il link di accesso nel corpo pubblico se destinato ai soli iscritti: il testo non è filtrato. Nessun invio automatico, account partecipanti o pianificazione della visibilità.
+
 ## Sold-out sotto la locandina — v1.6.44
 
 - Sold-out senza lista d’attesa: scadenza omessa nei due riquadri, senza cancellare il dato editoriale. La data resta visibile per la lista d’attesa e per la chiusura automatica dopo un termine tassativo; precedenze degli stati invariate.

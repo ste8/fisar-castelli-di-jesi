@@ -15,6 +15,19 @@ function fisar_cdj_is_event_past( int|WP_Post $event ): bool {
 	return '' !== $date && $date < fisar_cdj_today();
 }
 
+/** Public online participation data; hidden unless explicitly enabled. */
+function fisar_cdj_get_event_online_access( int $event_id ): array {
+	$hidden = array( 'platform' => '', 'url' => '' );
+	$enabled = in_array( get_post_meta( $event_id, '_fisar_event_online_access_public', true ), array( true, 1, '1' ), true );
+	if ( ! $enabled || ! in_array( get_post_meta( $event_id, '_fisar_event_mode', true ), array( 'online', 'hybrid' ), true ) ) {
+		return $hidden;
+	}
+	return array(
+		'platform' => (string) get_post_meta( $event_id, '_fisar_event_platform', true ),
+		'url'      => fisar_cdj_is_event_past( $event_id ) ? '' : esc_url_raw( (string) get_post_meta( $event_id, '_fisar_event_online_url', true ), array( 'http', 'https' ) ),
+	);
+}
+
 function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	$course_id = $course instanceof WP_Post ? $course->ID : $course;
 	$end_date  = (string) get_post_meta( $course_id, '_fisar_course_end_date', true );

@@ -138,9 +138,13 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::input( $post->ID, '_fisar_event_maps_url', 'Link Google Maps', 'url', 'Facoltativo. Incolla il link della posizione condiviso da Google Maps, incluso https://. Nel sito compare solo il collegamento, senza mappa incorporata.' );
 		echo '</div>';
 
-		echo '<div class="fisar-conditional fisar-admin-grid fisar-admin-grid--2" data-show-modes="online,hybrid">';
+		echo '<div class="fisar-conditional" data-show-modes="online,hybrid">';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post->ID, '_fisar_event_platform', 'Piattaforma', 'text', 'Per esempio: Zoom o Google Meet.' );
 		self::input( $post->ID, '_fisar_event_online_url', 'Link online', 'url', 'Inserire un URL completo, incluso https://.' );
+		echo '</div>';
+		echo '<input type="hidden" name="_fisar_event_online_access_present" value="1">';
+		self::checkbox( $post->ID, '_fisar_event_online_access_public', 'Mostra le informazioni per partecipare online', 'Disattivato per default, anche per gli eventi già inseriti. Attiva per rendere pubblici piattaforma e link di accesso nella pagina dell’evento. Se disattivato, i dati restano salvati ma non compaiono sul sito. Non modifica i canali di prenotazione.' );
 		echo '</div>';
 	}
 
@@ -332,6 +336,9 @@ final class Fisar_CDJ_Meta_Boxes {
 			update_post_meta( $post_id, '_fisar_event_whatsapp', wp_slash( $contacts[0]['value'] ?? '' ) );
 		}
 		self::save_url_fields( $post_id, self::EVENT_URL_FIELDS );
+		if ( isset( $_POST['_fisar_event_online_access_present'] ) ) {
+			update_post_meta( $post_id, '_fisar_event_online_access_public', '1' === ( $_POST['_fisar_event_online_access_public'] ?? '' ) );
+		}
 		self::save_boolean_fields( $post_id, self::EVENT_BOOLEAN_FIELDS );
 		self::save_rich_fields( $post_id, array( '_fisar_event_registration_notes' ) );
 		if ( isset( $_POST['_fisar_event_fees_present'] ) ) {

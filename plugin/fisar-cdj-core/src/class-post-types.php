@@ -66,6 +66,7 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_event_maps_url'              => 'string',
 			'_fisar_event_platform'              => 'string',
 			'_fisar_event_online_url'            => 'string',
+			'_fisar_event_online_access_public'  => 'boolean',
 			'_fisar_event_participation'         => 'string',
 			'_fisar_event_is_free'               => 'boolean',
 			'_fisar_event_member_price'          => 'string',
@@ -133,6 +134,9 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( '_fisar_event_online_access_public' === $key ) {
+					return in_array( $value, array( true, 1, '1' ), true );
+				}
 				if ( '_fisar_event_booking_status' === $key ) {
 					return fisar_cdj_sanitize_event_booking_status( $value );
 				}
@@ -168,6 +172,9 @@ final class Fisar_CDJ_Post_Types {
 			},
 		);
 
+		if ( '_fisar_event_online_access_public' === $key ) {
+			$args['default'] = false;
+		}
 		register_post_meta( $post_type, $key, $args );
 	}
 
