@@ -255,6 +255,40 @@ function fisar_cdj_get_whatsapp_contact( string $value ): array {
 	return array( 'reference' => $reference, 'url' => esc_url_raw( $value, array( 'http', 'https' ) ) );
 }
 
+/** Ordered WhatsApp contacts; a name alone is not a usable booking destination. */
+function fisar_cdj_sanitize_event_whatsapp_contacts( mixed $contacts ): array {
+	if ( ! is_array( $contacts ) ) {
+		return array();
+	}
+	$clean = array();
+	foreach ( $contacts as $contact ) {
+		if ( ! is_array( $contact ) || ! is_string( $contact['value'] ?? null ) ) {
+			continue;
+		}
+		$raw_value = trim( $contact['value'] );
+		$value = preg_match( '#^https?://#i', $raw_value )
+			? esc_url_raw( $raw_value, array( 'http', 'https' ) ) : sanitize_text_field( $raw_value );
+		if ( '' === $value ) {
+			continue;
+		}
+		$clean[] = array(
+			'name'  => is_string( $contact['name'] ?? null ) ? sanitize_text_field( $contact['name'] ) : '',
+			'value' => $value,
+		);
+	}
+	return $clean;
+}
+
+/** Read legacy contacts without writing; an explicitly empty new list stays empty. */
+function fisar_cdj_get_event_whatsapp_contacts( int $event_id ): array {
+	if ( metadata_exists( 'post', $event_id, '_fisar_event_whatsapp_contacts' ) ) {
+		return fisar_cdj_sanitize_event_whatsapp_contacts( get_post_meta( $event_id, '_fisar_event_whatsapp_contacts', true ) );
+	}
+	return fisar_cdj_sanitize_event_whatsapp_contacts( array(
+		array( 'name' => '', 'value' => get_post_meta( $event_id, '_fisar_event_whatsapp', true ) ),
+	) );
+}
+
 function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): array {
 	$definitions = array(
 		'whatsapp'     => array( 'label' => 'Prenota su WhatsApp', 'reference_label' => 'WhatsApp', 'type' => 'url' ),
@@ -270,6 +304,20 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 	$channels = array();
 
 	foreach ( $definitions as $suffix => $definition ) {
+		if ( 'event' === $prefix && 'whatsapp' === $suffix ) {
+			foreach ( fisar_cdj_get_event_whatsapp_contacts( $post_id ) as $entry ) {
+				$contact = fisar_cdj_get_whatsapp_contact( $entry['value'] );
+				$channels[] = array(
+					'label'           => $definition['label'],
+					'value'           => $entry['value'],
+					'url'             => $contact['url'],
+					'reference_label' => $definition['reference_label'],
+					'reference'       => $contact['reference'],
+					'name'            => $entry['name'],
+				);
+			}
+			continue;
+		}
 		$value = trim( (string) get_post_meta( $post_id, "_fisar_{$prefix}_{$suffix}", true ) );
 		if ( '' === $value ) {
 			continue;

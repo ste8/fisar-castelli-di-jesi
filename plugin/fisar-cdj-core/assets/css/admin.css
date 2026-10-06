@@ -45,7 +45,8 @@
 	display: none;
 }
 
-.fisar-event-fee-option {
+.fisar-event-fee-option,
+.fisar-whatsapp-contact {
 	min-width: 0;
 	margin-block: 1rem;
 	padding: 1rem;
@@ -54,21 +55,27 @@
 	background: #f6f7f7;
 }
 
-.fisar-event-fee-option .fisar-admin-grid {
+.fisar-event-fee-option .fisar-admin-grid,
+.fisar-whatsapp-contact .fisar-admin-grid {
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
 	margin: 0;
 }
 
-.fisar-event-fee-option .fisar-field {
+.fisar-event-fee-option .fisar-field,
+.fisar-whatsapp-contact .fisar-field {
 	min-width: 0;
 }
 
-.fisar-event-fee-option legend {
+.fisar-event-fee-option legend,
+.fisar-whatsapp-contact legend {
 	padding-inline: .4rem;
 }
 
 #fisar-event-fee-add[hidden],
 .fisar-event-fee-remove[hidden],
-#fisar-event-fee-noscript[hidden] {
+#fisar-event-fee-noscript[hidden],
+#fisar-whatsapp-add[hidden],
+.fisar-whatsapp-remove[hidden],
+#fisar-whatsapp-noscript[hidden] {
 	display: none;
 }

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.39' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.41' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -354,6 +354,14 @@ function fisar_cdj_theme_post_image( int $post_id, string $class = '', bool $inf
 		esc_attr( $alt ),
 		esc_attr( $loading )
 	);
+}
+
+/** Hide only an explicit Italian prefix in display text, never in stored data or URLs. */
+function fisar_cdj_theme_format_whatsapp_reference( string $reference ): string {
+	if ( ! preg_match( '/^(?:\+39|0039)(?=[\s().-]*\d)[0-9\s().-]+$/', $reference ) ) {
+		return $reference;
+	}
+	return preg_replace( '/^(?:\+39|0039)[\s.-]*/', '', $reference );
 }
 
 /** Add the requested currency to bare amounts, preserving richer editorial copy. */

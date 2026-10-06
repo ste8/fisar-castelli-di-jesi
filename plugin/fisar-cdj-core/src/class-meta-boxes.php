@@ -308,7 +308,17 @@ final class Fisar_CDJ_Meta_Boxes {
 			return;
 		}
 
-		self::save_text_fields( $post_id, self::EVENT_TEXT_FIELDS );
+		$text_fields = self::EVENT_TEXT_FIELDS;
+		if ( ! isset( $_POST['_fisar_event_whatsapp'] ) || metadata_exists( 'post', $post_id, '_fisar_event_whatsapp_contacts' ) ) {
+			$text_fields = array_diff( $text_fields, array( '_fisar_event_whatsapp' ) );
+		}
+		self::save_text_fields( $post_id, $text_fields );
+		if ( isset( $_POST['_fisar_event_whatsapp_contacts_present'] ) ) {
+			$contacts = fisar_cdj_sanitize_event_whatsapp_contacts( wp_unslash( $_POST['_fisar_event_whatsapp_contacts'] ?? array() ) );
+			update_post_meta( $post_id, '_fisar_event_whatsapp_contacts', wp_slash( $contacts ) );
+			// Keep the first destination readable by legacy consumers, including empty lists.
+			update_post_meta( $post_id, '_fisar_event_whatsapp', wp_slash( $contacts[0]['value'] ?? '' ) );
+		}
 		self::save_url_fields( $post_id, self::EVENT_URL_FIELDS );
 		self::save_boolean_fields( $post_id, self::EVENT_BOOLEAN_FIELDS );
 		self::save_rich_fields( $post_id, array( '_fisar_event_registration_notes' ) );
@@ -360,8 +370,13 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	private static function render_registration_fields( int $post_id, string $prefix ): void {
+		if ( 'event' === $prefix ) {
+			self::render_event_whatsapp_contacts( $post_id );
+		}
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
-		self::input( $post_id, "_fisar_{$prefix}_whatsapp", 'WhatsApp', 'text', 'Numero con prefisso internazionale (es. +39 …), oppure link completo alla chat o al canale. Senza prefisso il numero resta visibile, ma non viene generato un link alla chat.' );
+		if ( 'event' !== $prefix ) {
+			self::input( $post_id, "_fisar_{$prefix}_whatsapp", 'WhatsApp', 'text', 'Numero con prefisso internazionale (es. +39 …), oppure link completo alla chat o al canale. Senza prefisso il numero resta visibile, ma non viene generato un link alla chat.' );
+		}
 		self::input( $post_id, "_fisar_{$prefix}_email", 'Email', 'email' );
 		self::input( $post_id, "_fisar_{$prefix}_phone", 'Telefono', 'tel' );
 		self::input( $post_id, "_fisar_{$prefix}_form_url", 'Modulo online', 'url', 'Link completo al modulo.' );
@@ -378,6 +393,40 @@ final class Fisar_CDJ_Meta_Boxes {
 			),
 			'Con il termine flessibile, il frontend invita comunque a contattare la Delegazione.'
 		);
+	}
+
+	private static function render_event_whatsapp_contacts( int $post_id ): void {
+		$contacts = fisar_cdj_get_event_whatsapp_contacts( $post_id );
+		?>
+		<h3>Contatti WhatsApp per le prenotazioni</h3>
+		<input type="hidden" name="_fisar_event_whatsapp_contacts_present" value="1">
+		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria), numero con prefisso internazionale (es. +39 …) oppure link completo alla chat o al canale. Il numero resta visibile anche senza prefisso, ma non viene generato un link alla chat. Le righe senza numero o link vengono ignorate. I contatti saranno pubblici nella pagina dell’evento.</p>
+		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ) + 1; ?>">
+			<?php foreach ( $contacts as $index => $contact ) { self::event_whatsapp_contact( $index, $contact ); } ?>
+			<?php self::event_whatsapp_contact( count( $contacts ) ); ?>
+		</div>
+		<template id="fisar-whatsapp-template"><?php self::event_whatsapp_contact( '__INDEX__' ); ?></template>
+		<p><button type="button" class="button" id="fisar-whatsapp-add" hidden>Aggiungi contatto WhatsApp</button></p>
+		<p class="description" id="fisar-whatsapp-noscript">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero o il link.</p>
+		<span class="screen-reader-text" id="fisar-whatsapp-status" role="status" aria-live="polite"></span>
+		<?php
+	}
+
+	private static function event_whatsapp_contact( int|string $index, array $contact = array() ): void {
+		?>
+		<fieldset class="fisar-whatsapp-contact" aria-describedby="fisar-whatsapp-help">
+			<legend><strong>Contatto WhatsApp</strong></legend>
+			<div class="fisar-admin-grid fisar-admin-grid--2">
+				<?php foreach ( array( 'name' => 'Nominativo (facoltativo)', 'value' => 'Numero WhatsApp o link' ) as $key => $label ) : ?>
+					<div class="fisar-field">
+						<label for="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>"><strong><?php echo esc_html( $label ); ?></strong></label>
+						<input class="widefat" type="text" id="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_event_whatsapp_contacts[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $contact[ $key ] ?? '' ); ?>">
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<button type="button" class="button-link-delete fisar-whatsapp-remove" hidden>Rimuovi contatto</button>
+		</fieldset>
+		<?php
 	}
 
 	private static function input( int $post_id, string $key, string $label, string $type = 'text', string $description = '', bool $required = false, ?int $maxlength = null ): void {

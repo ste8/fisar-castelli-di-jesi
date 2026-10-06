@@ -89,6 +89,51 @@
 		return ['data', 'data lezione', 'giorno'].indexOf(first) !== -1;
 	}
 
+	function announceWhatsAppChange(message) {
+		field('fisar-whatsapp-status').textContent = message;
+	}
+
+	function addWhatsAppContact() {
+		var container = field('fisar-whatsapp-contacts');
+		var fragment = field('fisar-whatsapp-template').content.cloneNode(true);
+		var index = Number(container.dataset.nextIndex);
+		fragment.querySelectorAll('[id], [name], [for]').forEach(function (element) {
+			['id', 'name', 'for'].forEach(function (attribute) {
+				if (element.hasAttribute(attribute)) {
+					element.setAttribute(attribute, element.getAttribute(attribute).replace('__INDEX__', String(index)));
+				}
+			});
+		});
+		var input = fragment.querySelector('input');
+		fragment.querySelector('.fisar-whatsapp-remove').hidden = false;
+		container.appendChild(fragment);
+		container.dataset.nextIndex = String(index + 1);
+		input.focus();
+		announceWhatsAppChange('Contatto WhatsApp aggiunto. Compila il numero o il link; il nominativo è facoltativo.');
+	}
+
+	function removeWhatsAppContact(button) {
+		var contact = button.closest('.fisar-whatsapp-contact');
+		var neighbour = contact.nextElementSibling || contact.previousElementSibling;
+		var target = neighbour ? neighbour.querySelector('input') : field('fisar-whatsapp-add');
+		var name = contact.querySelector('input').value.trim();
+		contact.remove();
+		target.focus();
+		announceWhatsAppChange(name ? 'Contatto rimosso: ' + name + '.' : 'Contatto WhatsApp rimosso.');
+	}
+
+	function initWhatsAppContacts() {
+		var addButton = field('fisar-whatsapp-add');
+		if (!addButton) {
+			return;
+		}
+		addButton.hidden = false;
+		field('fisar-whatsapp-noscript').hidden = true;
+		document.querySelectorAll('.fisar-whatsapp-remove').forEach(function (button) {
+			button.hidden = false;
+		});
+	}
+
 	function addCalendarRow(values) {
 		var body = document.querySelector('#fisar-calendar-table tbody');
 		if (!body) {
@@ -158,6 +203,12 @@
 	});
 
 	document.addEventListener('click', function (event) {
+		if (event.target.matches('#fisar-whatsapp-add')) {
+			addWhatsAppContact();
+		}
+		if (event.target.matches('.fisar-whatsapp-remove')) {
+			removeWhatsAppContact(event.target);
+		}
 		if (event.target.matches('#fisar-event-fee-add')) {
 			addFeeOption();
 		}
@@ -177,4 +228,5 @@
 
 	updateConditionalFields();
 	initFeeOptions();
+	initWhatsAppContacts();
 }());

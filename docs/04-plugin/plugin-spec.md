@@ -30,6 +30,13 @@ L’API condivisa dei canali conserva `label`, `value`, `url` e aggiunge `refere
 
 Dal plugin `1.3.2`, le etichette dei canali Eventi sono `Prenota via WhatsApp` e `Prenota via mail`; quelle dei Corsi restano `Prenota su WhatsApp` e `Scrivi una email`. URL, riferimenti, validazione e campi condivisi invariati. La data con giorno della settimana è una variante di presentazione del tema, senza cambiare `deadline_label` o l’API testuale del plugin.
 
+### Contatti WhatsApp multipli degli Eventi — plugin v1.3.8
+
+- Nuovo meta privato singolo array `_fisar_event_whatsapp_contacts`, non esposto in REST, con voci ordinate `{name, value}`. Nominativo facoltativo; numero o link necessario per conservare la riga. Sanitizzazione centralizzata, righe malformate/vuote scartate; URL HTTP/HTTPS conservano i parametri codificati, incluso il messaggio precompilato. Nessun prefisso internazionale dedotto.
+- `fisar_cdj_get_event_whatsapp_contacts()` legge il vecchio `_fisar_event_whatsapp` come prima voce senza scritture, soltanto quando il nuovo meta non esiste. Un elenco nuovo esplicitamente vuoto resta vuoto. `fisar_cdj_get_registration_channels()` emette una voce per contatto WhatsApp Eventi, con `name` aggiuntivo, riusando normalizzazione/riferimento leggibile/link esistenti. Email e altri canali mantengono ordine e comportamento; API e campo singolo dei Corsi invariati.
+- Metabox nativo: due campi distinti, `Aggiungi contatto WhatsApp`/`Rimuovi contatto`, label associate, fieldset, indici monotoni, focus e feedback screen-reader. Una riga vuota consente l’inserimento senza JS. Nomi e recapiti sono destinati alla pubblicazione nella pagina dell’evento, come indicato nell’editor.
+- Salvataggio con nonce/capability/autosave/revision esistenti e marker `_fisar_event_whatsapp_contacts_present`. Nuovo elenco salvato solo se il metabox è presente; gestione slash/apostrofi. Il primo numero/link è sincronizzato nel vecchio campo per i consumatori legacy, anche quando l’elenco viene svuotato. Un editor precedente senza marker non sovrascrive il nuovo elenco né il contatto legacy sincronizzato. Nessuna migrazione automatica o modifica ai Corsi.
+
 ## CPT Corsi
 Base: titolo, editor, featured image, Direttore del Corso.
 Livello: 1° / 2° / 3°.

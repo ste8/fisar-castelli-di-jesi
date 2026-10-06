@@ -56,6 +56,10 @@ Dal tema `1.6.35` e plugin `1.3.5`, quote personalizzate e nota generale apparte
 
 Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.css` oppure `editor-course.css` con `add_editor_style` durante `enqueue_block_editor_assets`, solo sugli schermi di modifica dei due CPT. WordPress legge i file locali e ne porta CSS e URL base nel canvas, anche iframed; `main.css` conserva font e stili generali già registrati. Nessun nuovo script, dato o API amministrativa. Le varianti rispecchiano le scale desktop dei template rispettivi; non caricano stili nel frontend o negli editor di pagine/News. Le future modifiche alla tipografia del corpo dei template devono aggiornare la variante corrispondente.
 
+## Contatti WhatsApp degli Eventi
+
+Contatti WhatsApp Eventi v1.6.40/plugin v1.3.8: il plugin registra e sanitizza l’elenco privato, gestisce editor/salvataggio protetto e fallback di sola lettura dal contatto legacy; la API dei canali espone un destinatario per voce e il nominativo. Il tema aggiunge soltanto la riga del nome e il suffisso accessibile al pulsante. Nessuna nuova dipendenza, migrazione o modifica al modello dei Corsi. Un elenco salvato vuoto è distinto dall’assenza del nuovo meta, per evitare la ricomparsa di contatti eliminati.
+
 ## Dipendenze
 
 - WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).
