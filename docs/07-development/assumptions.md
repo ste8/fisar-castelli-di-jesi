@@ -48,6 +48,8 @@ Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta
 
 ## Prenotazione nel dettaglio Evento — 5 ottobre 2026
 
+Riscontro successivo del 6 ottobre 2026, plugin v1.3.9: i numeri WhatsApp senza prefisso degli Eventi sono italiani; aggiungere `39` al solo link. Il campo propone solo il numero, con o senza `+39`. Non dedurre un prefisso estero: richiederlo esplicitamente. Conservare dati e vecchi URL per compatibilità; nessuna estensione automatica ai Corsi.
+
 Riscontro del 6 ottobre 2026: nominativo facoltativo e più contatti WhatsApp negli Eventi, con un elenco ripetibile come le quote. Conservare il contatto esistente come prima voce senza migrazione automatica; rendere pubblici nomi, numeri e pulsanti per destinatario. Il campo dei Corsi resta singolo: questa richiesta riguarda gli Eventi. Le verifiche usano contatti simulati, senza pubblicare nuovi nominativi/recapiti negli eventi reali.
 
 Successivo riscontro v1.6.35: per nuove esigenze come un menu senza vini, mantenere i campi Soci/Non soci e affiancare righe facoltative personalizzabili con etichetta, importo e nota, più una nota generale sulle quote. Non creare un campo fisso per ogni variante né usare un editor libero per sostituire l’intero elenco. Alternative e supplementi devono essere espliciti nei testi, senza calcoli presunti. Nessun importo o condizione del nuovo menu è stato fornito: i test usano dati simulati e gli eventi reali restano invariati.

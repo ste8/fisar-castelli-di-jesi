@@ -400,14 +400,14 @@ final class Fisar_CDJ_Meta_Boxes {
 		?>
 		<h3>Contatti WhatsApp per le prenotazioni</h3>
 		<input type="hidden" name="_fisar_event_whatsapp_contacts_present" value="1">
-		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria), numero con prefisso internazionale (es. +39 …) oppure link completo alla chat o al canale. Il numero resta visibile anche senza prefisso, ma non viene generato un link alla chat. Le righe senza numero o link vengono ignorate. I contatti saranno pubblici nella pagina dell’evento.</p>
+		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria) e numero WhatsApp, con o senza +39: per esempio 335 1234567. Se manca il prefisso, il numero è considerato italiano e il link alla chat viene generato automaticamente. Per numeri esteri indica il prefisso internazionale. Le righe senza numero vengono ignorate. I contatti saranno pubblici nella pagina dell’evento.</p>
 		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ) + 1; ?>">
 			<?php foreach ( $contacts as $index => $contact ) { self::event_whatsapp_contact( $index, $contact ); } ?>
 			<?php self::event_whatsapp_contact( count( $contacts ) ); ?>
 		</div>
 		<template id="fisar-whatsapp-template"><?php self::event_whatsapp_contact( '__INDEX__' ); ?></template>
 		<p><button type="button" class="button" id="fisar-whatsapp-add" hidden>Aggiungi contatto WhatsApp</button></p>
-		<p class="description" id="fisar-whatsapp-noscript">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero o il link.</p>
+		<p class="description" id="fisar-whatsapp-noscript">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero.</p>
 		<span class="screen-reader-text" id="fisar-whatsapp-status" role="status" aria-live="polite"></span>
 		<?php
 	}
@@ -417,10 +417,10 @@ final class Fisar_CDJ_Meta_Boxes {
 		<fieldset class="fisar-whatsapp-contact" aria-describedby="fisar-whatsapp-help">
 			<legend><strong>Contatto WhatsApp</strong></legend>
 			<div class="fisar-admin-grid fisar-admin-grid--2">
-				<?php foreach ( array( 'name' => 'Nominativo (facoltativo)', 'value' => 'Numero WhatsApp o link' ) as $key => $label ) : ?>
+				<?php foreach ( array( 'name' => 'Nominativo (facoltativo)', 'value' => 'Numero WhatsApp' ) as $key => $label ) : ?>
 					<div class="fisar-field">
 						<label for="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>"><strong><?php echo esc_html( $label ); ?></strong></label>
-						<input class="widefat" type="text" id="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_event_whatsapp_contacts[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $contact[ $key ] ?? '' ); ?>">
+						<input class="widefat" type="<?php echo 'value' === $key ? 'tel' : 'text'; ?>"<?php if ( 'value' === $key ) : ?> inputmode="tel" placeholder="335 1234567"<?php endif; ?> id="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_event_whatsapp_contacts[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $contact[ $key ] ?? '' ); ?>">
 					</div>
 				<?php endforeach; ?>
 			</div>

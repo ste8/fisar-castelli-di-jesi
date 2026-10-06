@@ -218,9 +218,9 @@ function fisar_cdj_get_event_registration_copy( int $event_id ): array {
 
 /**
  * Keep a readable contact even when an international chat link cannot be built.
- * A national number is never assigned a country prefix automatically.
+ * National numbers use a default country code only when the caller supplies it.
  */
-function fisar_cdj_get_whatsapp_contact( string $value ): array {
+function fisar_cdj_get_whatsapp_contact( string $value, string $default_country_code = '' ): array {
 	$reference = trim( $value );
 	$parts     = wp_parse_url( $reference );
 	$host      = strtolower( $parts['host'] ?? '' );
@@ -235,6 +235,10 @@ function fisar_cdj_get_whatsapp_contact( string $value ): array {
 		$international = str_starts_with( $reference, '+' ) || str_starts_with( $number, '00' );
 		if ( str_starts_with( $number, '00' ) ) {
 			$number = substr( $number, 2 );
+		}
+		if ( ! $international && preg_match( '/^[1-9][0-9]{0,2}$/', $default_country_code ) && preg_match( '/^[0-9]{7,13}$/', $number ) ) {
+			$number        = $default_country_code . $number;
+			$international = true;
 		}
 		return array(
 			'reference' => $reference,
@@ -306,7 +310,7 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 	foreach ( $definitions as $suffix => $definition ) {
 		if ( 'event' === $prefix && 'whatsapp' === $suffix ) {
 			foreach ( fisar_cdj_get_event_whatsapp_contacts( $post_id ) as $entry ) {
-				$contact = fisar_cdj_get_whatsapp_contact( $entry['value'] );
+				$contact = fisar_cdj_get_whatsapp_contact( $entry['value'], '39' );
 				$channels[] = array(
 					'label'           => $definition['label'],
 					'value'           => $entry['value'],

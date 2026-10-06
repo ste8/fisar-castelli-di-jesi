@@ -15,6 +15,8 @@ Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepa
 
 ## Più destinatari WhatsApp — v1.6.40
 
+- Riscontro del 6 ottobre 2026, plugin v1.3.9: campo Eventi semplificato in `Numero WhatsApp`, tipo `tel`, con esempio e istruzioni per inserire il numero con o senza `+39`. Per numeri nazionali il plugin aggiunge `39` soltanto al link `wa.me`, senza alterare il dato salvato o il numero mostrato. Spazi, parentesi, punti e trattini accettati; prefissi espliciti `+`/`00` rispettati anche per numeri esteri. I vecchi URL restano compatibili, inclusi parametri e messaggi. Corsi invariati. Questa revisione prevale sulle precedenti indicazioni che richiedevano il prefisso internazionale anche per gli Eventi.
+
 - Affinamento v1.6.41: nominativo e numero/link nello stesso paragrafo, separati da `·`, senza ritorni a capo imposti; su mobile il testo va a capo solo se necessario. Prefisso italiano esplicito `+39` (anche `0039`) omesso soltanto nel numero visualizzato. Dati, link WhatsApp e nome accessibile completo conservati; prefissi stranieri, numeri senza prefisso e link a gruppi/canali invariati. Questa revisione prevale sulla riga distinta prevista sotto.
 
 - Nel pannello finale ogni contatto WhatsApp mostra il nominativo facoltativo su una riga distinta dal numero/link, seguito dal pulsante `Prenota via WhatsApp`. Destinatari nell’ordine editoriale, usando la griglia dei canali esistente: affiancati da 38 rem, impilati su mobile. Nominali in Poppins 16 px/600, senza modificare gli altri canali.
