@@ -170,12 +170,23 @@ function fisar_cdj_get_event_fees( int $event_id ): array {
 	return $fees;
 }
 
-/** Registration data shared by summaries and booking panels; no closing rule is inferred. */
+/** A strict date is inclusive in the site's timezone; invalid/missing dates never close bookings. */
+function fisar_cdj_is_event_registration_closed( int $event_id ): bool {
+	if ( ! get_post_meta( $event_id, '_fisar_event_registration_required', true ) || 'strict' !== get_post_meta( $event_id, '_fisar_event_deadline_type', true ) ) {
+		return false;
+	}
+	$deadline = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
+	$date     = DateTimeImmutable::createFromFormat( '!Y-m-d', $deadline, wp_timezone() );
+	return $date && $date->format( 'Y-m-d' ) === $deadline && $deadline < fisar_cdj_today();
+}
+
+/** Registration data shared by summaries and booking panels. */
 function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	$is_free      = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
 	$is_required  = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 	$deadline     = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
 	$deadline_type = (string) get_post_meta( $event_id, '_fisar_event_deadline_type', true );
+	$closed       = fisar_cdj_is_event_registration_closed( $event_id );
 	$lines        = array();
 	$open_participation_notice = '';
 
@@ -192,9 +203,11 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 
 	$timestamp = $deadline ? strtotime( $deadline ) : false;
 	return array(
-		'lines'           => $lines,
+		'closed'          => $closed,
+		'closed_notice'   => $closed ? 'Iscrizioni chiuse' : '',
+		'lines'           => $closed ? array() : $lines,
 		'open_participation_notice' => $open_participation_notice,
-		'limited_seats_notice' => get_post_meta( $event_id, '_fisar_event_limited_seats', true )
+		'limited_seats_notice' => ! $closed && get_post_meta( $event_id, '_fisar_event_limited_seats', true )
 			? 'Ti consigliamo di prenotare prima che esauriscano.' : '',
 		'deadline'        => false !== $timestamp ? $deadline : '',
 		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
@@ -206,6 +219,9 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 /** Preserve the original text API for callers that do not need structured data. */
 function fisar_cdj_get_event_registration_copy( int $event_id ): array {
 	$details = fisar_cdj_get_event_registration_details( $event_id );
+	if ( $details['closed'] ) {
+		return array( $details['closed_notice'] );
+	}
 	$lines   = $details['lines'];
 	if ( $details['deadline'] ) {
 		$lines[] = sprintf( 'Prenotazioni entro il %s.', $details['deadline_label'] );
@@ -294,6 +310,9 @@ function fisar_cdj_get_event_whatsapp_contacts( int $event_id ): array {
 }
 
 function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): array {
+	if ( 'event' === $prefix && fisar_cdj_is_event_registration_closed( $post_id ) ) {
+		return array();
+	}
 	$definitions = array(
 		'whatsapp'     => array( 'label' => 'Prenota su WhatsApp', 'reference_label' => 'WhatsApp', 'type' => 'url' ),
 		'email'        => array( 'label' => 'Scrivi una email', 'reference_label' => 'Email', 'type' => 'email' ),

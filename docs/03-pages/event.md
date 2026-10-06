@@ -1,5 +1,11 @@
 # Pagina Evento
 
+## Iscrizioni chiuse dopo il termine tassativo — v1.6.42
+
+- Con prenotazione richiesta, tipo `Tassativo` e data valida superata, il plugin espone lo stato `closed`. La data è inclusa: fino alla fine di quel giorno nel fuso del sito le iscrizioni restano aperte; chiusura dal giorno successivo. Termine flessibile, assente o invalido e partecipazione senza prenotazione non attivano questa regola.
+- Nei riquadri iniziale e finale compare `Iscrizioni chiuse`, con la scadenza come informazione (`Termine prenotazioni: …`). La scorciatoia iniziale diventa `Informazioni sulle iscrizioni` e mantiene la stessa destinazione/focus. Quote conservate; canali, pulsanti, posti limitati, inviti e note aggiuntive di prenotazione non mostrati. Contenuto editoriale e dati salvati invariati. Gli eventi già conclusi mantengono il proprio stato prioritario.
+- Regola e API nel plugin `1.3.10`, componenti condivisi nel tema `1.6.42`, senza cron o nuovi campi. Corsi invariati. Questa revisione prevale sulle precedenti indicazioni che escludevano la chiusura automatica degli Eventi.
+
 ## Revisione visiva — 5 ottobre 2026
 
 La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscrivere i contenuti editoriali.

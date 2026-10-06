@@ -36,6 +36,7 @@ $registration = array(
 	'notes'    => (string) get_post_meta( $event_id, '_fisar_event_registration_notes', true ),
 );
 $deadline = $registration['details'];
+$registration_link_label = $deadline['closed'] ? 'Informazioni sulle iscrizioni' : ( $required ? 'Come prenotare' : 'Come partecipare' );
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-event' ); ?>>
@@ -71,12 +72,12 @@ $deadline = $registration['details'];
 							<li class="event-deadline-row">
 								<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $deadline, 'summary' => true ) ); ?>
 								<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $deadline ) ); ?>
-								<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
+								<a class="button event-registration-link" href="#event-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
 							</li>
 						<?php endif; ?>
 					</ul>
 					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] ) : ?>
-						<a class="button event-registration-link" href="#event-registration"><?php echo $required ? 'Come prenotare' : 'Come partecipare'; ?> <span aria-hidden="true">↓</span></a>
+						<a class="button event-registration-link" href="#event-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>
 				</div>
 				<div class="content-hero__media content-hero__media--poster">

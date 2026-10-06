@@ -48,6 +48,9 @@ Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta
 
 ## Prenotazione nel dettaglio Evento — 5 ottobre 2026
 
+Riscontro del 6 ottobre 2026, v1.6.42/plugin v1.3.10: il termine tassativo superato chiude le iscrizioni richieste degli Eventi. La data è inclusa, dato che non è previsto un orario di scadenza: chiusura dal giorno successivo nel fuso del sito. Stato informativo in alto e in fondo, canali/inviti nascosti ma quote conservate. Date assenti/invalide non chiudono; termini flessibili e Corsi invariati. Nessuna scrittura nei contenuti o nei meta. Questa richiesta prevale sulla precedente assunzione di nessuna chiusura automatica per gli Eventi.
+
+
 Riscontro successivo del 6 ottobre 2026, plugin v1.3.9: i numeri WhatsApp senza prefisso degli Eventi sono italiani; aggiungere `39` al solo link. Il campo propone solo il numero, con o senza `+39`. Non dedurre un prefisso estero: richiederlo esplicitamente. Conservare dati e vecchi URL per compatibilità; nessuna estensione automatica ai Corsi.
 
 Riscontro del 6 ottobre 2026: nominativo facoltativo e più contatti WhatsApp negli Eventi, con un elenco ripetibile come le quote. Conservare il contatto esistente come prima voce senza migrazione automatica; rendere pubblici nomi, numeri e pulsanti per destinatario. Il campo dei Corsi resta singolo: questa richiesta riguarda gli Eventi. Le verifiche usano contatti simulati, senza pubblicare nuovi nominativi/recapiti negli eventi reali.
