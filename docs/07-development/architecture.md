@@ -58,6 +58,8 @@ Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.cs
 
 ## Contatti WhatsApp degli Eventi
 
+Plugin v1.3.9: la normalizzazione condivisa riceve un codice paese di default facoltativo; solo i canali Eventi passano `39`. Il prefisso è applicato al link dei numeri nazionali, non ai meta o al testo visualizzato. Editor semplificato in numero `tel`, senza nuova logica nel tema. URL legacy e parametri preservati; Corsi e chiamate senza default invariati, nessuna migrazione.
+
 Contatti WhatsApp Eventi v1.6.40/plugin v1.3.8: il plugin registra e sanitizza l’elenco privato, gestisce editor/salvataggio protetto e fallback di sola lettura dal contatto legacy; la API dei canali espone un destinatario per voce e il nominativo. Il tema aggiunge soltanto la riga del nome e il suffisso accessibile al pulsante. Nessuna nuova dipendenza, migrazione o modifica al modello dei Corsi. Un elenco salvato vuoto è distinto dall’assenza del nuovo meta, per evitare la ricomparsa di contatti eliminati.
 
 ## Dipendenze

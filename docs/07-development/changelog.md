@@ -1,5 +1,12 @@
 # Changelog
 
+## Plugin v1.3.9 — Numero WhatsApp con o senza +39
+
+- Campo Eventi semplificato in `Numero WhatsApp`, tipo `tel` e `inputmode=tel`, esempio e istruzioni per il numero con o senza prefisso italiano. Aggiornati anche feedback screen-reader e fallback senza JS del repeater; nominativi, elenco e protezioni del salvataggio invariati.
+- Il normalizzatore condiviso accetta un codice paese di default facoltativo: soltanto i canali Eventi passano `39`. Prefisso aggiunto al link dei numeri nazionali validi, mai al dato salvato o al riferimento mostrato; rispettati `+39`, `0039`, prefissi esteri e zero iniziale dei fissi. Vecchi URL, messaggi e parametri preservati. Skill `clean-code-engineer` applicata tenendo la regola nel plugin e conservando il comportamento predefinito per i Corsi. Plugin/asset admin `1.3.9`, tema `1.6.41` invariato; README e specifiche aggiornati. Nessuna migrazione, modifica ai dati reali, nuova dipendenza o commit automatico.
+- Verifiche: lint dei tre PHP modificati, sintassi JS e `git diff --check`; evento e asset admin versionati HTTP 200. Quattordici casi di numeri (nazionali formattati, internazionali espliciti, fissi, invalidi, vecchi URL/messaggi), sette normalizzazioni dell’elenco, dieci salvataggi intercettati incluso un numero senza prefisso, otto formattazioni visuali e rendering frontend/metabox. Rieseguite quattordici varianti iscrizione, undici normalizzazioni condivise, sei salvataggi contatti e dodici casi valuta. Tutti senza scritture persistenti.
+- Browser su anteprime native con dati simulati: input telefonici, label, istruzioni, aggiunta/rimozione e focus verificati; editor e frontend a 1440/768/390/320 px senza overflow. Numero italiano senza prefisso visibile e link `wa.me` con `39`; nessuna immagine rotta o errore console frontend. Nessun login, salvataggio amministrativo o link esterno aperto; server di anteprima arrestato al termine.
+
 ## v1.6.41 — Nome e numero WhatsApp sulla stessa riga
 
 - Nome e numero/link del destinatario nello stesso paragrafo, separati da `·`, senza a capo imposto e con ritorno naturale quando lo spazio non basta. Rimossa la classe della riga nome separata. Gli altri canali restano invariati.

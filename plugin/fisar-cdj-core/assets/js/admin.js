@@ -109,7 +109,7 @@
 		container.appendChild(fragment);
 		container.dataset.nextIndex = String(index + 1);
 		input.focus();
-		announceWhatsAppChange('Contatto WhatsApp aggiunto. Compila il numero o il link; il nominativo è facoltativo.');
+		announceWhatsAppChange('Contatto WhatsApp aggiunto. Compila il numero, con o senza +39; il nominativo è facoltativo.');
 	}
 
 	function removeWhatsAppContact(button) {
