@@ -56,6 +56,10 @@ Dal tema `1.6.35` e plugin `1.3.5`, quote personalizzate e nota generale apparte
 
 Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.css` oppure `editor-course.css` con `add_editor_style` durante `enqueue_block_editor_assets`, solo sugli schermi di modifica dei due CPT. WordPress legge i file locali e ne porta CSS e URL base nel canvas, anche iframed; `main.css` conserva font e stili generali già registrati. Nessun nuovo script, dato o API amministrativa. Le varianti rispecchiano le scale desktop dei template rispettivi; non caricano stili nel frontend o negli editor di pagine/News. Le future modifiche alla tipografia del corpo dei template devono aggiornare la variante corrispondente.
 
+## Chiusura iscrizioni Eventi
+
+Dal plugin `1.3.10` lo stato derivato `fisar_cdj_is_event_registration_closed()` confronta una data valida tassativa con il giorno corrente nel fuso WordPress, solo con prenotazione richiesta. La regola è riusata dai dettagli e dall’API canali, evitando calcoli nel tema. Nessun flag persistito o cron: lo stato è ricalcolato a ogni richiesta. Un’eventuale cache HTML in produzione dovrà scadere/essere invalidata dopo il cambio di giorno. Il tema `1.6.42` riusa `event-deadline.php` per i due avvisi e adatta solo presentazione/scorciatoia; quote conservate, inviti/note operative nascosti. Stato evento concluso prioritario; Corsi invariati.
+
 ## Contatti WhatsApp degli Eventi
 
 Plugin v1.3.9: la normalizzazione condivisa riceve un codice paese di default facoltativo; solo i canali Eventi passano `39`. Il prefisso è applicato al link dei numeri nazionali, non ai meta o al testo visualizzato. Editor semplificato in numero `tel`, senza nuova logica nel tema. URL legacy e parametri preservati; Corsi e chiamate senza default invariati, nessuna migrazione.

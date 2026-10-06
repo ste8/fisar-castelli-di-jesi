@@ -109,6 +109,8 @@ Nel box **Partecipazione e costi**, oltre alle quote Soci/Non soci, puoi compila
 
 Un Evento passa automaticamente tra futuro e concluso confrontando la data evento con la data corrente del sito.
 
+Dal plugin `1.3.10`, con **Iscrizione richiesta** e **Tipo di termine data prenotazione → Tassativo**, una scadenza valida superata mostra **Iscrizioni chiuse** nei due riepiloghi dell’Evento e nasconde canali, pulsanti e inviti a prenotare. Le quote restano consultabili. La data indicata è inclusa: chiusura dal giorno successivo nel fuso WordPress. Il termine **Flessibile** non chiude automaticamente; i dati salvati non vengono cancellati. Corsi invariati.
+
 Nel box **Modalità e luogo** puoi compilare il campo facoltativo **Link Google Maps**, incollando il collegamento condiviso da Maps (anche abbreviato, completo di `https://`). Per presenza e ibrido compare `Apri in Google Maps` nei riepiloghi del luogo. Il campo non incorpora una mappa, non richiede una chiave API e non viene compilato automaticamente dall’indirizzo; se vuoto, il sito resta invariato.
 
 La homepage mostra fino a quattro eventi futuri in ordine cronologico: due card per riga su desktop/tablet e una su mobile, senza ridurre le locandine. Il link all’archivio resta sempre accanto al titolo su desktop e sotto le card su mobile: `Tutti gli eventi`, oppure `Tutti gli eventi (N)` quando il totale supera quattro. L’archivio conserva l’elenco completo e gli eventi passati.

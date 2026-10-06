@@ -20,7 +20,7 @@ $details      = $registration['details'];
 		<?php foreach ( $details['lines'] as $line ) : ?>
 			<p class="registration-intro<?php echo $line === ( $details['open_participation_notice'] ?? '' ) ? ' registration-intro--open' : ''; ?>"><strong><?php echo esc_html( $line ); ?></strong></p>
 		<?php endforeach; ?>
-		<?php if ( $registration['required'] && $registration['channels'] ) : ?>
+		<?php if ( empty( $details['closed'] ) && $registration['required'] && $registration['channels'] ) : ?>
 			<section class="registration-methods" aria-labelledby="registration-methods-title">
 				<h3 id="registration-methods-title">Come prenotare</h3>
 				<ul class="registration-channels">
@@ -39,6 +39,6 @@ $details      = $registration['details'];
 				</ul>
 			</section>
 		<?php endif; ?>
-		<?php if ( $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
+		<?php if ( empty( $details['closed'] ) && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>
 </section>

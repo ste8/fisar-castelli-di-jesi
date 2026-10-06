@@ -2,6 +2,9 @@
 Il plugin contiene dati e logiche indipendenti dal tema.
 
 ## CPT Eventi
+
+Revisione plugin `1.3.10`: `fisar_cdj_is_event_registration_closed()` restituisce vero solo con iscrizione richiesta, termine `strict`, data canonica `YYYY-MM-DD` valida e precedente a `fisar_cdj_today()`. Data inclusa e fuso WordPress; giorni impossibili, date relative e valori assenti non chiudono. `fisar_cdj_get_event_registration_details()` espone `closed` e `closed_notice`, sopprimendo copy operativo e posti limitati a chiusura avvenuta. API testuale restituisce `Iscrizioni chiuse`; API dei canali Eventi restituisce un elenco vuoto. Nessuna modifica ai meta, migrazione, cron o regola dei Corsi. Questa revisione prevale sulla precedente assenza di chiusura automatica per gli Eventi, senza introdurre un flag manuale o inferire disponibilità dai posti limitati.
+
 Base: titolo, editor, featured image.
 Campi: data evento; ora accoglienza/inizio/fine; modalità (presenza/online/ibrido); sede, indirizzo, città, provincia, link Google Maps facoltativo; piattaforma/link online; partecipazione (aperto a tutti/solo soci/soci e accompagnatori); gratuito; quota soci/non soci; iscrizione richiesta; WhatsApp, email, telefono, modulo online, altro canale, info aggiuntive; deadline; chiusura tassativa/flessibile; **Mostra avviso posti limitati**; Corso collegato.
 

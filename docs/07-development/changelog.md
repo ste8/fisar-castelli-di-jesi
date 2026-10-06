@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.42 — Iscrizioni Eventi chiuse dopo il termine tassativo
+
+- Plugin `1.3.10`: nuova regola derivata per iscrizione richiesta, termine tassativo e data canonica valida precedente al giorno corrente WordPress. Scadenza inclusa; termini flessibili/assenti/invalidi non chiudono. API strutturata con `closed`/`closed_notice`, API testuale aggiornata, canali Eventi vuoti e copy operativo/posti limitati soppressi quando chiuso. Nessun meta riscritto, flag manuale o cron; Corsi invariati.
+- Tema/asset `1.6.42`: `Iscrizioni chiuse` sia in hero sia nel pannello, scadenza conservata come informazione. Scorciatoia `Informazioni sulle iscrizioni` con destinazione/focus invariati; quote visibili, canali e note operative nascosti. Evento concluso prioritario. Skill `clean-code-engineer` applicata centralizzando la regola nel plugin e riusando il componente della scadenza senza nuovi stili/dipendenze. README, specifiche e assunzioni aggiornati; nessuna modifica agli eventi reali o commit automatico.
+- Verifiche: lint dei sei PHP modificati, sintassi dei tre JS e `git diff --check`; evento/CSS HTTP 200. Quattordici varianti dedicate (ieri, oggi, domani, flessibile superato, senza prenotazione/data/tipo valido, date impossibili/non bisestili/relative, gratuità, evento concluso), più regressioni prenotazione, quote e contatti WhatsApp, salvataggi intercettati senza persistenza. Fixture WhatsApp resa indipendente dalla scadenza reale modificata editorialmente dall’utente.
+- Browser sull’evento reale con scadenza tassativa al 4 ottobre ed evento all’8 ottobre: stato chiuso in entrambi i box, nessun pulsante operativo, quote conservate. Desktop/tablet/mobile a 1440/768/390/320 px senza overflow o immagini rotte, font caricati e console senza errori. Scorciatoia da tastiera con focus sul pannello; review visiva e screenshot. Nessun login, modifica al database o link esterno aperto.
+
 ## 6 ottobre 2026 — Istruzioni dei campi quota
 
 - Sostituito il vecchio esempio `€ 25` nel testo di aiuto con la distinzione tra importo senza valuta (`25`, con euro aggiunto automaticamente) e testo libero (`Da 25 €`, `Offerta libera`). Istruzione condivisa fra Quota soci e Quota non soci, secondo la skill `clean-code-engineer`; specifica aggiornata. Versioni, dati, salvataggio e frontend invariati; nessun commit.
