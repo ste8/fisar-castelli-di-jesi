@@ -156,10 +156,11 @@ final class Fisar_CDJ_Meta_Boxes {
 			)
 		);
 		self::checkbox( $post->ID, '_fisar_event_is_free', 'Evento gratuito', 'Nasconde le quote e attiva il copy dedicato.' );
+		$fee_help = 'Inserisci un importo senza valuta, per esempio “25”: il simbolo € verrà aggiunto automaticamente. Oppure un testo breve, come “Da 25 €” o “Offerta libera”.';
 		echo '<div class="fisar-conditional" data-hide-when-checked="_fisar_event_is_free">';
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
-		self::input( $post->ID, '_fisar_event_member_price', 'Quota soci', 'text', 'Testo libero breve, per esempio “€ 25”.' );
-		self::input( $post->ID, '_fisar_event_non_member_price', 'Quota non soci', 'text' );
+		self::input( $post->ID, '_fisar_event_member_price', 'Quota soci', 'text', $fee_help );
+		self::input( $post->ID, '_fisar_event_non_member_price', 'Quota non soci', 'text', $fee_help );
 		echo '</div>';
 		self::render_event_fee_options( $post->ID );
 		echo '</div>';
@@ -386,7 +387,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::select(
 			$post_id,
 			"_fisar_{$prefix}_deadline_type",
-			'Tipo di termine',
+			'Tipo di termine data prenotazione',
 			array(
 				'strict'   => 'Tassativo',
 				'flexible' => 'Flessibile',
