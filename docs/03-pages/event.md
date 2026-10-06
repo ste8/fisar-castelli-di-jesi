@@ -15,6 +15,7 @@ Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepa
 
 ## Quote uniformi e importi allineati — v1.6.36
 
+- Affinamento v1.6.37: se il blocco quote è immediatamente seguito da `Come prenotare`, rimane soltanto il bordo inferiore delle quote, senza un secondo bordo o padding superiore aggiuntivo sui metodi. Se c’è una nota di partecipazione intermedia, o non ci sono quote, il separatore dei metodi resta invariato. Regola CSS circoscritta al dettaglio Evento.
 - Quote Soci/Non soci e personalizzate formano un unico elenco compatto, senza separatori o spazi aggiuntivi tra categorie. Stesso font e peso per tutte le etichette, stessa colonna per tutti gli importi, con distanza etichetta/importo 12 px e distanza verticale 8 px.
 - La colonna delle etichette segue quella più lunga, con minimo 5 rem; su mobile il testo può andare a capo, lasciando almeno 4 rem alla colonna degli importi. Note generali e note delle singole voci restano leggibili su una riga di griglia a tutta larghezza, senza cambiare i contenuti.
 - Presentazione condivisa fra pannello degli eventi in programma e informazioni degli eventi conclusi; dati, editor, gratuità e formatter valuta invariati. Questa revisione prevale sul separatore e sullo stile distinto delle opzioni previsti dalla v1.6.35.

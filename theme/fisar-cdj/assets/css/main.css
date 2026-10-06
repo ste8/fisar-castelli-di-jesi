@@ -2272,6 +2272,12 @@ blockquote {
 	border-top: 1px solid var(--color-line);
 }
 
+/* The preceding fees block already supplies the separator when there is no intro. */
+.single-event .registration-fees + .registration-methods {
+	padding-top: 0;
+	border-top: 0;
+}
+
 .single-event .hero-facts .event-deadline-row {
 	padding: 1rem;
 	border: 1px solid var(--color-gold);

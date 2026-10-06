@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.37 — Un solo separatore tra quote e prenotazione
+
+- Corretto il doppio bordo nel pannello dell’evento `in-cantina-con-il-vignaiolo`: quando `registration-fees` è immediatamente seguito da `registration-methods`, rimane il solo bordo inferiore delle quote. Rimossi bordo e padding superiore aggiuntivi dai metodi soltanto in questo caso; separazione invariata quando c’è una nota di partecipazione intermedia o mancano le quote.
+- Regola CSS condivisa e circoscritta agli Eventi, secondo la skill `clean-code-engineer`. Tema/asset `1.6.37`, specifica Evento aggiornata; template, plugin, contenuti, quote, contatti e focus invariati. Nessuna scrittura nel database o commit automatico.
+- Verifiche: lint PHP del file modificato, sintassi dei due script frontend e `git diff --check`; evento, CSS versionato e font HTTP 200. Rieseguite tredici varianti del pannello, dodici casi valuta, undici normalizzazioni WhatsApp e sei salvataggi intercettati senza persistenza. Browser sull’evento indicato a 1440/768/390/320 px: bordo quote 1 px, bordo metodi e padding superiore 0 px, font caricati, nessun overflow, immagine rotta o errore console; review visiva desktop/mobile. Caso con nota intermedia verificato a 1440/320 px: bordo metodi 1 px e padding 20 px conservati.
+
 ## v1.6.36 — Quote uniformi e importi allineati
 
 - Quote personalizzate presentate come Soci/Non soci nello stesso elenco: rimossi wrapper di categoria, separatore interno, margini/padding aggiuntivi e peso distinto delle etichette. Una sola griglia condivisa dimensiona la colonna delle etichette e allinea tutti gli importi, con gap verticale 8 px e orizzontale 12 px. Note mantenute a tutta larghezza, testi lunghi liberi di andare a capo e spazio minimo per gli importi su mobile.
