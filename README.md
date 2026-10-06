@@ -115,6 +115,8 @@ La homepage mostra fino a quattro eventi futuri in ordine cronologico: due card 
 
 Nelle card Eventi di home e archivio il mese è per esteso quando entra su una riga, abbreviato soltanto quando non basta lo spazio. Il testo per screen reader resta completo; senza JavaScript o a forte ingrandimento è consentito il ritorno a capo. Controllo leggero nel tema, senza dipendenze.
 
+Dal plugin `1.3.8`, nel box **Iscrizioni** degli Eventi trovi **Contatti WhatsApp per le prenotazioni**: ogni voce ha **Nominativo (facoltativo)** e **Numero WhatsApp o link**, con pulsanti **Aggiungi contatto WhatsApp** e **Rimuovi contatto**. Il numero esistente compare automaticamente come prima voce. Le righe senza numero/link sono ignorate; nomi e numeri inseriti saranno pubblici nel dettaglio evento, con un pulsante per destinatario. Usa `+39 …` o un link completo per rendere disponibile la chat; non viene dedotto un prefisso. Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra, oppure svuota il numero/link per rimuoverla. Il campo WhatsApp dei Corsi resta singolo e invariato.
+
 ### Corsi
 
 Dal menu **Corsi** puoi gestire Direttore, livello, date, sede, canali e termine di iscrizione, quota, tesseramento, dotazione e calendario. Un Corso è attivo finché la sua data di fine non è precedente a oggi.

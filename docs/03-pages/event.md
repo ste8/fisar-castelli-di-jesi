@@ -13,6 +13,14 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Più destinatari WhatsApp — v1.6.40
+
+- Affinamento v1.6.41: nominativo e numero/link nello stesso paragrafo, separati da `·`, senza ritorni a capo imposti; su mobile il testo va a capo solo se necessario. Prefisso italiano esplicito `+39` (anche `0039`) omesso soltanto nel numero visualizzato. Dati, link WhatsApp e nome accessibile completo conservati; prefissi stranieri, numeri senza prefisso e link a gruppi/canali invariati. Questa revisione prevale sulla riga distinta prevista sotto.
+
+- Nel pannello finale ogni contatto WhatsApp mostra il nominativo facoltativo su una riga distinta dal numero/link, seguito dal pulsante `Prenota via WhatsApp`. Destinatari nell’ordine editoriale, usando la griglia dei canali esistente: affiancati da 38 rem, impilati su mobile. Nominali in Poppins 16 px/600, senza modificare gli altri canali.
+- Il nome accessibile del pulsante comprende il nominativo, oppure il riferimento se il nome manca, tramite suffisso `.screen-reader-text`. Numero sempre selezionabile; senza prefisso internazionale resta visibile ma senza chat presunta. Link completi e messaggi precompilati conservati.
+- Plugin responsabile di elenco, fallback legacy e normalizzazione; tema responsabile della presentazione. Contatto esistente preservato, nessuna modifica automatica dei contenuti o dei Corsi. Visibilità dei canali invariata: eventi non conclusi con iscrizione richiesta.
+
 ## Avviso posti limitati nelle prenotazioni — v1.6.39
 
 - Copy approvato: `Posti limitati. Ti consigliamo di prenotare prima che esauriscano.` La prima frase resta in grassetto; testo da 16 px con interlinea 1.6, bordo bordeaux e fondo bianco.
