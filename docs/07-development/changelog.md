@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.6.47 — Evento ibrido prima della sede
+
+- Raffinato il componente condiviso Luogo: riquadro `EVENTO IBRIDO` / `In presenza e online` sopra la sede, in hero e informazioni pratiche, anziché Anche online sotto. Titolo 14 px/700 e testo 16 px/600, su due righe, con accento oro e bordeaux; nessuna ripetizione In presenza se manca la sede. `Online` a 16 px/600 in grassetto semantico in entrambi i riepiloghi. Regole di accesso, Maps, plugin/dati e Corsi invariati.
+- Skill `clean-code-engineer` applicata intervenendo nel componente condiviso senza duplicazioni o dipendenze. Tema/asset `1.6.47`, specifica aggiornata; nessuna scrittura nel database o commit automatico.
+- Verifiche: lint dei due PHP, sintassi JS, HTTP e `git diff --check`; dodici varianti native di Luogo, ordine del riquadro prima dei dati fisici, grassetto Online e regressioni della pubblicazione facoltativa dell’accesso. Browser su ibrido e online a 1440/768/390/320 px: posizione, pesi font, asset e ritorni a capo verificati, nessun overflow o errore console. Review visiva e screenshot con dati di esempio; nessun login o collegamento esterno aperto.
+
+## v1.6.46 — Luogo uniforme per online e ibrido
+
+- `LUOGO: Online` nei due riepiloghi, senza riga Modalità. Ibridi con `Anche online` ben visibile dentro Luogo in entrambe le posizioni: etichetta su riga propria, Poppins 16 px/600, bordeaux e fondo caldo. Sede/indirizzo/città/Maps conservati; senza sede fallback In presenza + Anche online. Dati fisici obsoleti non mostrati per online.
+- Skill `clean-code-engineer` applicata riusando `event-location.php` nei due riepiloghi invece di mantenere markup divergente. Intervento nel tema/asset `1.6.46`, nessuna modifica a plugin, dati, Corsi o regola di pubblicazione facoltativa dell’accesso online. Specifica e architettura aggiornate, nessuna dipendenza o commit automatico.
+- Verifiche: lint dei tre PHP, sintassi JS, `git diff --check` e HTTP. Dodici varianti native in memoria: online/ibrido/presenza, sede assente, solo Maps o indirizzo, nomi lunghi, testo da escapare, evento concluso e accesso pubblico/nascosto. Riepiloghi identici, nessuna riga Modalità o perdita della modalità ibrida. Regressioni accesso online, prenotazioni e sold-out superate senza scritture persistenti.
+- Browser su quattro anteprime native, desktop/tablet/mobile a 1440/768/390/320 px: etichette, font, asset e ritorni a capo corretti, nessun overflow o errore console. Review visiva e screenshot del recap inferiore ibrido con dati di esempio; nessun login, salvataggio amministrativo o link esterno aperto.
+
+## v1.6.45 — Pubblicazione facoltativa dell’accesso online
+
+- Plugin `1.3.12`: checkbox `Mostra le informazioni per partecipare online` nel box Modalità e luogo, solo online/ibrido, default disattivato anche per gli eventi esistenti. Meta booleano privato, sanitizzazione conservativa e salvataggio protetto con marker. Piattaforma/link rimangono compilabili e salvati; nessuna migrazione, scrittura automatica o modifica ai Corsi.
+- API del plugin per i soli dati pubblici, usata dal tema `1.6.45`: nessuna piattaforma/URL nell’HTML se nascosti, accesso visibile solo quando abilitato. Supportato anche URL senza nome della piattaforma; eventi conclusi ancora senza link. Modalità, luogo fisico/Maps e canali di prenotazione invariati. Skill `clean-code-engineer` applicata mantenendo regola nel plugin e presentazione nel tema, riusando metabox/script nativi senza dipendenze. Documentazione aggiornata; nessun commit automatico.
+- Verifiche: lint dei sei PHP modificati, sintassi JS, `git diff --check` e HTTP. Sedici varianti native con dati in memoria (default, online/ibrido/presenza, dato malformato, evento concluso, URL senza piattaforma, protocolli non ammessi, sold-out/lista d’attesa), dieci input del sanitizzatore, meta/default/editor e sette salvataggi intercettati. Regressioni sold-out, scadenze e prenotazioni senza scritture persistenti.
+- Browser su editor e tre anteprime native a 1440/768/390/320 px: default non selezionato, toggle preservato cambiando modalità, campi/URL conservati, assenza dell’accesso nell’HTML quando nascosto, contatti disponibili e dati pubblici solo quando abilitati. Nessun overflow, asset rotto o errore console; nessun login, salvataggio amministrativo o collegamento esterno aperto. Screenshot editor con dati di esempio.
+
 ## v1.6.44 — Fascia sold-out sotto la locandina
 
 - Componente testuale condiviso `event-sold-out.php`, sotto l’immagine nelle card home/archivio e nel dettaglio: bordeaux, bianco, accento oro, Poppins 700 e indicazione della lista d’attesa quando disponibile. Nessuna sovrapposizione all’immagine, che conserva proporzioni quadrate e `contain`. Badge ordinario nel corpo della card conservato solo per iscrizioni chiuse; eventi conclusi e ordinari invariati.

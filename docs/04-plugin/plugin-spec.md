@@ -3,6 +3,13 @@ Il plugin contiene dati e logiche indipendenti dal tema.
 
 ## CPT Eventi
 
+### Visibilità delle informazioni online — plugin v1.3.12
+
+- Meta booleano singolo privato `_fisar_event_online_access_public`, default `false`, non esposto in REST. Sanitizzazione: solo `true`, `1`, `"1"` attivano l’opzione; input malformati restano falsi. Nessuna migrazione: assenza del dato nasconde piattaforma e link anche negli eventi esistenti.
+- Nel metabox Modalità e luogo, per online/ibrido: checkbox `Mostra le informazioni per partecipare online` sotto Piattaforma e Link online. I due campi restano compilabili anche quando la casella non è selezionata. Marker `_fisar_event_online_access_present`: solo con metabox presente viene salvato il nuovo booleano, evitando azzeramenti da editor precedenti; checkbox assente equivale a falso. Nonce/capability/autosave/revision esistenti.
+- API `fisar_cdj_get_event_online_access()` restituisce `{platform, url}` con stringhe vuote se non abilitato o modalità diversa da online/ibrido. Se abilitato restituisce la piattaforma e il link HTTP/HTTPS; negli eventi conclusi omette comunque l’URL. Regola nel plugin, markup nel tema. Nessuna modifica ai contatti di prenotazione, al luogo fisico, alle scadenze, agli stati sold-out o ai Corsi.
+- Scelta editoriale manuale, non accesso autenticato, invio agli iscritti o pubblicazione temporizzata. L’URL nascosto non viene incluso nel markup pubblico del template; eventuali link inseriti nel corpo/estratto editoriale restano pubblici e non sono rimossi automaticamente.
+
 ### Disponibilità e lista d’attesa — plugin v1.3.11
 
 - Meta privato singolo stringa `_fisar_event_booking_status`, valori `available`, `sold_out`, `waitlist`; assenza o valore non valido equivale ad `available`. Enum unico invece di due booleani contraddittori, senza migrare i contenuti esistenti. Sanitizzatore condiviso tra registrazione meta, lettura e salvataggio. Nel metabox Iscrizioni compare `Disponibilità dell’evento` con tre opzioni, solo con Iscrizione richiesta attivo. Salvataggio con protezioni esistenti e soltanto se il nuovo campo è presente nel POST; editor precedenti non azzerano lo stato.

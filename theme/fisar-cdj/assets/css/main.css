@@ -2086,11 +2086,30 @@ blockquote {
 	text-transform: none;
 }
 
-.single-event .event-location__online {
-	display: block;
-	margin-top: .25rem;
+.single-event .event-location > .event-location__hybrid {
+	display: grid;
+	gap: .1rem;
+	width: fit-content;
+	max-width: 100%;
+	margin: 0 0 .5rem;
+	padding: .5rem .75rem;
+	border: 1px solid var(--color-line);
+	border-left: 3px solid var(--color-gold);
+	border-radius: var(--radius-small);
+	background: var(--color-tint);
 	color: var(--color-bordeaux);
-	font-weight: 500;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.single-event .event-location .event-location__hybrid strong {
+	color: inherit;
+	font-size: .875rem;
+	font-weight: 700;
+	line-height: 1.5;
+	letter-spacing: .04em;
+	text-transform: uppercase;
 }
 
 .single-event .event-location__map {
