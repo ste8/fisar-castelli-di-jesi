@@ -17,7 +17,9 @@ $details      = $registration['details'];
 				<?php get_template_part( 'template-parts/event-fees', null, array( 'fees' => $registration['fees'] ) ); ?>
 			</div>
 		<?php endif; ?>
-		<?php foreach ( $details['lines'] as $line ) : ?><p class="registration-intro"><strong><?php echo esc_html( $line ); ?></strong></p><?php endforeach; ?>
+		<?php foreach ( $details['lines'] as $line ) : ?>
+			<p class="registration-intro<?php echo $line === ( $details['open_participation_notice'] ?? '' ) ? ' registration-intro--open' : ''; ?>"><strong><?php echo esc_html( $line ); ?></strong></p>
+		<?php endforeach; ?>
 		<?php if ( $registration['required'] && $registration['channels'] ) : ?>
 			<section class="registration-methods" aria-labelledby="registration-methods-title">
 				<h3 id="registration-methods-title">Come prenotare</h3>

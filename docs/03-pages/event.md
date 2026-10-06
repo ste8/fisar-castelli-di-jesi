@@ -13,6 +13,11 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Partecipazione libera più leggibile — v1.6.38
+
+- La sola frase `La partecipazione è libera, non è richiesta la prenotazione.` nel pannello finale passa da 16 a 18 px, con interlinea 1.6 e grassetto 600 invariato. Ritorno a capo naturale su mobile; altri avvisi e Corsi invariati.
+- Il plugin identifica il messaggio tramite `open_participation_notice`; il tema applica una classe dedicata, senza duplicare il testo o le regole di partecipazione.
+
 ## Quote uniformi e importi allineati — v1.6.36
 
 - Affinamento v1.6.37: se il blocco quote è immediatamente seguito da `Come prenotare`, rimane soltanto il bordo inferiore delle quote, senza un secondo bordo o padding superiore aggiuntivo sui metodi. Se c’è una nota di partecipazione intermedia, o non ci sono quote, il separatore dei metodi resta invariato. Regola CSS circoscritta al dettaglio Evento.

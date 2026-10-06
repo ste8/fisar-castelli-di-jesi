@@ -51,6 +51,8 @@ Il successivo v1.6.32 aumenta soltanto le sottoetichette Accoglienza/Inizio/Fine
 
 Eccezione aggiunta il 5 ottobre 2026 su richiesta di omogeneità con la homepage: nella sola pagina Carta dei Valori, H1 e titoli dei sette capitoli usano Poppins `500`, rispettivamente 32–44 px e 20–24 px, con interlinea `1.2` e `1.35`. Payoff in Cormorant `600`; corpo 16–17 px e grassetti `600`. Le altre pagine interne conservano i propri heading editoriali. Per i dettagli prevale `docs/03-pages/values.md`.
 
+Affinamento v1.6.38: nel pannello del dettaglio Evento, la sola frase di partecipazione libera senza prenotazione usa Poppins 18 px/600 e interlinea 1.6, invece di 16 px. Gli altri avvisi mantengono dimensioni e pesi precedenti; nessun cambiamento ai Corsi.
+
 **Poppins**
 
 La successiva revisione della hero fotografica della Carta conserva H1 e capitoli nelle stesse scale. La frase sui principi ha più rilievo: Poppins `500` da 18–24 px con interlinea `1.45`. La nota sull’ambito locale, successivamente spostata nel riquadro sotto l’immagine, usa Poppins `400` a 16 px con interlinea `1.6`. Il payoff torna nel corpo, sopra `Chi siamo`, in Cormorant `600` da 20–24 px, senza `nowrap` o clipping.
