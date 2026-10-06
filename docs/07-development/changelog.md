@@ -1,5 +1,10 @@
 # Changelog
 
+## 6 ottobre 2026 — Istruzioni dei campi quota
+
+- Sostituito il vecchio esempio `€ 25` nel testo di aiuto con la distinzione tra importo senza valuta (`25`, con euro aggiunto automaticamente) e testo libero (`Da 25 €`, `Offerta libera`). Istruzione condivisa fra Quota soci e Quota non soci, secondo la skill `clean-code-engineer`; specifica aggiornata. Versioni, dati, salvataggio e frontend invariati; nessun commit.
+- Verificati lint PHP, `git diff --check`, rendering nativo delle due descrizioni ed esempi nel formatter. Rieseguite normalizzazione quote, salvataggi intercettati e varianti del dettaglio, senza scritture persistenti.
+
 ## Plugin v1.3.9 — Numero WhatsApp con o senza +39
 
 - Campo Eventi semplificato in `Numero WhatsApp`, tipo `tel` e `inputmode=tel`, esempio e istruzioni per il numero con o senza prefisso italiano. Aggiornati anche feedback screen-reader e fallback senza JS del repeater; nominativi, elenco e protezioni del salvataggio invariati.

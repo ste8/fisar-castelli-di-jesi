@@ -13,6 +13,8 @@ Dal plugin `1.3.7`, `fisar_cdj_get_event_registration_details()` espone `limited
 
 ### Quote personalizzabili — plugin v1.3.5
 
+- Affinamento editoriale del 6 ottobre 2026: i campi Quota soci/Quota non soci condividono l’istruzione `Inserisci un importo senza valuta, per esempio “25”: il simbolo € verrà aggiunto automaticamente. Oppure un testo breve, come “Da 25 €” o “Offerta libera”.` Nessun cambiamento alla formattazione o al salvataggio.
+
 - Quote Soci/Non soci esistenti conservate. Nuovo meta singolo privato `_fisar_event_fee_options` di tipo array, con righe ordinate `{label, amount, note}`; etichetta e importo sono testo breve, nota è testo semplice multilinea facoltativo. Nessun campo fisso “senza vini”. `_fisar_event_fee_note` è una nota generale in testo semplice multilinea.
 - `fisar_cdj_sanitize_event_fee_options()` sanitizza le righe, scarta input malformati e righe senza etichetta o importo, conserva `0`, ordine e importi editoriali senza calcoli. La stessa funzione è usata nella registrazione meta, nel salvataggio e nella lettura. Autorizzazioni, nonce e capability esistenti; nuovi campi salvati soltanto se il metabox è presente nel POST, così un editor aperto prima dell’aggiornamento non li azzera.
 - Metabox `Partecipazione e costi`: Soci/Non soci, nota generale e `Altre opzioni di partecipazione`, con `Aggiungi quota`/`Rimuovi quota`, label associate, fieldset, focus esplicito e feedback per screen reader. Indici nuovi univoci anche dopo rimozioni. Senza JS: una riga vuota disponibile a ogni caricamento, eliminazione svuotando i due campi principali. Righe incomplete non persistite.
