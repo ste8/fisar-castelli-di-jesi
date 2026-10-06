@@ -177,6 +177,7 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	$deadline     = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
 	$deadline_type = (string) get_post_meta( $event_id, '_fisar_event_deadline_type', true );
 	$lines        = array();
+	$open_participation_notice = '';
 
 	if ( 'all' === get_post_meta( $event_id, '_fisar_event_participation', true ) ) {
 		$lines[] = 'La partecipazione è aperta a tutti, anche a chi non è socio FISAR.';
@@ -185,12 +186,14 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	if ( $is_free && $is_required ) {
 		$lines[] = 'INGRESSO GRATUITO, PRENOTAZIONE OBBLIGATORIA';
 	} elseif ( $is_free ) {
-		$lines[] = 'La partecipazione è libera, non è richiesta la prenotazione.';
+		$open_participation_notice = 'La partecipazione è libera, non è richiesta la prenotazione.';
+		$lines[] = $open_participation_notice;
 	}
 
 	$timestamp = $deadline ? strtotime( $deadline ) : false;
 	return array(
 		'lines'           => $lines,
+		'open_participation_notice' => $open_participation_notice,
 		'deadline'        => false !== $timestamp ? $deadline : '',
 		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
 		'deadline_notice' => false !== $timestamp && 'flexible' === $deadline_type

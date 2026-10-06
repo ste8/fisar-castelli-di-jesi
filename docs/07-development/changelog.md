@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.38 — Avviso di partecipazione libera più leggibile
+
+- Aumentata soltanto la frase `La partecipazione è libera, non è richiesta la prenotazione.` da 16 a 18 px, mantenendo Poppins e grassetto 600; interlinea 1.6 e ritorno a capo naturale. Altri avvisi, quote, Corsi e contenuti invariati.
+- Plugin `1.3.6`: aggiunto `open_participation_notice` ai dettagli di prenotazione, riusando il testo esistente e conservando `lines` e l’API testuale. Tema/asset `1.6.38`: classe dedicata al solo messaggio. Skill `clean-code-engineer` applicata mantenendo copy/regole nel plugin e presentazione nel tema. Specifiche aggiornate; nessun dato modificato o commit automatico.
+- Verifiche: lint dei quattro file PHP modificati, sintassi dei due script frontend e `git diff --check`; evento, CSS e font HTTP 200. Tredici regressioni del pannello con nuove asserzioni sulla classe dedicata, dodici casi valuta, undici normalizzazioni WhatsApp e sei salvataggi intercettati, senza scritture persistenti.
+- Browser sull’evento gratuito con partecipazione libera a 1440/768/390/320 px: frase a 18 px/600, altro avviso a 16 px, font caricati e nessun overflow, immagine rotta o errore console. Review visiva desktop/mobile; evento concluso senza la nuova classe. Nessun login, link esterno aperto o prenotazione inviata.
+
 ## v1.6.37 — Un solo separatore tra quote e prenotazione
 
 - Corretto il doppio bordo nel pannello dell’evento `in-cantina-con-il-vignaiolo`: quando `registration-fees` è immediatamente seguito da `registration-methods`, rimane il solo bordo inferiore delle quote. Rimossi bordo e padding superiore aggiuntivi dai metodi soltanto in questo caso; separazione invariata quando c’è una nota di partecipazione intermedia o mancano le quote.

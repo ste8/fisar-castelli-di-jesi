@@ -2132,6 +2132,11 @@ blockquote {
 	margin-bottom: 0;
 }
 
+.single-event .registration-intro--open {
+	font-size: 1.125rem;
+	line-height: 1.6;
+}
+
 .single-event .registration-box :is(h2, h3) {
 	margin: 0 0 1rem;
 	padding: 0;
