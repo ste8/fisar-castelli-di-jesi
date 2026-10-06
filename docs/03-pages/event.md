@@ -13,6 +13,12 @@ La pagina riprende lo stile della homepage e della Carta dei Valori, senza riscr
 
 Stili circoscritti a `single-event`, senza cambiare template Corsi, News, homepage o Carta. Nessuna nuova dipendenza, campo o scrittura nel database.
 
+## Avviso posti limitati nelle prenotazioni — v1.6.39
+
+- Copy approvato: `Posti limitati. Ti consigliamo di prenotare prima che esauriscano.` La prima frase resta in grassetto; testo da 16 px con interlinea 1.6, bordo bordeaux e fondo bianco.
+- Lo stesso componente mostra l’avviso nel box iniziale prima della scorciatoia e nel pannello finale dopo l’eventuale scadenza. Visibile solo con `Mostra avviso posti limitati` attivo e per eventi non conclusi; nessun numero di posti dedotto.
+- Se manca una scadenza valida ma l’avviso è attivo, il box iniziale raccoglie avviso e scorciatoia senza data fittizia. Senza entrambi rimane la scorciatoia autonoma esistente. Copy fornito dal plugin, senza modificare dati, regole temporali o Corsi.
+
 ## Partecipazione libera più leggibile — v1.6.38
 
 - La sola frase `La partecipazione è libera, non è richiesta la prenotazione.` nel pannello finale passa da 16 a 18 px, con interlinea 1.6 e grassetto 600 invariato. Ritorno a capo naturale su mobile; altri avvisi e Corsi invariati.

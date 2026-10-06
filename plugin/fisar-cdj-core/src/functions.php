@@ -194,6 +194,8 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	return array(
 		'lines'           => $lines,
 		'open_participation_notice' => $open_participation_notice,
+		'limited_seats_notice' => get_post_meta( $event_id, '_fisar_event_limited_seats', true )
+			? 'Ti consigliamo di prenotare prima che esauriscano.' : '',
 		'deadline'        => false !== $timestamp ? $deadline : '',
 		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
 		'deadline_notice' => false !== $timestamp && 'flexible' === $deadline_type

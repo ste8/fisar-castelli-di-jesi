@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.39 — Posti limitati anche nel riepilogo iniziale
+
+- Successiva correzione richiesta dall’utente: rimosso `si`; il copy definitivo nei due box è `Posti limitati. Ti consigliamo di prenotare prima che esauriscano.` Nessun cambiamento a markup, stili o condizioni di visualizzazione. Rieseguiti lint PHP, quattordici varianti e controllo HTTP del testo in entrambe le posizioni.
+
+- Sostituito `Prenota appena possibile.` con `Ti consigliamo di prenotare prima che si esauriscano.` dopo `Posti limitati.` in grassetto. Avviso ripetuto nel box iniziale prima della scorciatoia e nel pannello finale dopo la scadenza, solo con flag attivo e per eventi non conclusi. Testo 16 px, interlinea 1.6, fondo bianco e bordo bordeaux, senza ereditare il maiuscolo delle etichette del riepilogo.
+- Componente condiviso `event-limited-seats.php`; copy fornito dai dettagli di prenotazione del plugin tramite `limited_seats_notice`. Se manca una scadenza valida, il box iniziale contiene solo avviso e scorciatoia; se mancano entrambi resta il link autonomo. Tema/asset `1.6.39`, plugin `1.3.7`. Skill `clean-code-engineer` applicata evitando duplicazioni di copy e markup. Specifiche aggiornate; nessuna scrittura nel database, dipendenza o commit automatico.
+- Verifiche: lint dei sei file PHP modificati/aggiunti, sintassi dei due script frontend e `git diff --check`; evento, CSS versionato e font HTTP 200. Quattordici varianti native del dettaglio, comprese scadenze assenti/non valide, flag spento, gratuità ed evento concluso; asserzioni su testo aggiornato, avvisi dentro entrambi i box e singola scorciatoia. Dodici casi valuta, undici WhatsApp e sei salvataggi intercettati senza persistenza.
+- Browser sull’evento Verdicchio a 1440/768/390/320 px: due note identiche, testo/etichetta 16 px, nessun overflow o immagine rotta, font caricati e console senza errori. Review visiva desktop/mobile e link interno funzionante con focus sul pannello. Evento giapponese senza flag: avviso assente; evento ibrido con flag: presente nelle due posizioni. Nessun login, prenotazione o link esterno aperto.
+
 ## v1.6.38 — Avviso di partecipazione libera più leggibile
 
 - Aumentata soltanto la frase `La partecipazione è libera, non è richiesta la prenotazione.` da 16 a 18 px, mantenendo Poppins e grassetto 600; interlinea 1.6 e ritorno a capo naturale. Altri avvisi, quote, Corsi e contenuti invariati.

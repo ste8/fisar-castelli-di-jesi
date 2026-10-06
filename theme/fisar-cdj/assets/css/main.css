@@ -2202,6 +2202,25 @@ blockquote {
 	font-size: 1.125rem;
 }
 
+.single-event .event-limited-seats {
+	margin: .85rem 0 0;
+	padding: 1rem;
+	border-left: 4px solid var(--color-crimson);
+	background: #fff;
+	color: var(--color-ink);
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+.single-event .event-limited-seats strong {
+	color: inherit;
+	font-size: inherit;
+	font-weight: 600;
+	line-height: inherit;
+	letter-spacing: normal;
+	text-transform: none;
+}
+
 .single-event .registration-fees {
 	margin-block: 1.5rem;
 	padding-block: 1rem;
