@@ -22,7 +22,7 @@ $details      = $registration['details'];
 		<?php endforeach; ?>
 		<?php if ( empty( $details['closed'] ) && $registration['required'] && $registration['channels'] ) : ?>
 			<section class="registration-methods" aria-labelledby="registration-methods-title">
-				<h3 id="registration-methods-title">Come prenotare</h3>
+				<h3 id="registration-methods-title"><?php echo ! empty( $details['waiting_list'] ) ? 'Richiedi la lista d’attesa' : 'Come prenotare'; ?></h3>
 				<ul class="registration-channels">
 					<?php foreach ( $registration['channels'] as $channel ) : ?>
 						<li>
@@ -39,6 +39,6 @@ $details      = $registration['details'];
 				</ul>
 			</section>
 		<?php endif; ?>
-		<?php if ( empty( $details['closed'] ) && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
+		<?php if ( empty( $details['closed'] ) && empty( $details['waiting_list'] ) && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>
 </section>

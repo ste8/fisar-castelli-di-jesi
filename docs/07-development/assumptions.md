@@ -48,6 +48,8 @@ Su richiesta dell’utente, estesa la gerarchia Poppins della home e della Carta
 
 ## Prenotazione nel dettaglio Evento — 5 ottobre 2026
 
+Riscontro del 6 ottobre 2026, v1.6.43/plugin v1.3.11: stato sold-out con o senza lista d’attesa, per eventi con iscrizione richiesta. Si riusano gli stessi canali senza cambiare i messaggi/URL salvati. Un termine tassativo superato chiude anche la lista d’attesa; evento concluso prioritario. Il sito raccoglie solo l’invito a contattare: non registra le persone in attesa né promette disponibilità. I test usano dati simulati, senza marcare sold-out gli eventi reali. Enum unico per evitare flag contraddittori, nessun default sold-out o modifica ai Corsi.
+
 Riscontro del 6 ottobre 2026, v1.6.42/plugin v1.3.10: il termine tassativo superato chiude le iscrizioni richieste degli Eventi. La data è inclusa, dato che non è previsto un orario di scadenza: chiusura dal giorno successivo nel fuso del sito. Stato informativo in alto e in fondo, canali/inviti nascosti ma quote conservate. Date assenti/invalide non chiudono; termini flessibili e Corsi invariati. Nessuna scrittura nei contenuti o nei meta. Questa richiesta prevale sulla precedente assunzione di nessuna chiusura automatica per gli Eventi.
 
 

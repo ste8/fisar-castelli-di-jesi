@@ -1,5 +1,18 @@
 # Pagina Evento
 
+## Sold-out sotto la locandina — v1.6.44
+
+- Sold-out senza lista d’attesa: scadenza omessa nei due riquadri, senza cancellare il dato editoriale. La data resta visibile per la lista d’attesa e per la chiusura automatica dopo un termine tassativo; precedenze degli stati invariate.
+- Nel dettaglio e nelle card home/archivio una fascia bordeaux con testo bianco `SOLD-OUT` e accento oro compare subito sotto l’immagine, in normale flusso: nessuna sovrapposizione o ritaglio della locandina. Poppins 20 px/700; con lista d’attesa aggiunge `Lista d’attesa disponibile` a 14 px. Nel dettaglio la fascia è separata dalla cornice con un piccolo spazio.
+- Il badge precedente nel corpo della card resta solo per `Iscrizioni chiuse`, evitando due avvisi sold-out nella stessa card. Nessuna fascia per eventi ordinari, conclusi o chiusi per scadenza. Componente condiviso nel tema; nessuna immagine raster, dipendenza, modifica ai dati/plugin o ai Corsi.
+
+## Sold-out e lista d’attesa — v1.6.43
+
+- Selezione editoriale nel plugin: Ordinaria, Sold-out, Sold-out con lista d’attesa. Il dettaglio riusa il box della scadenza nei due punti anche senza data. Sold-out: `I posti disponibili sono esauriti.`, quote consultabili e nessun canale di prenotazione. Lista d’attesa: `I posti disponibili sono esauriti. Puoi contattarci per chiedere di essere inserito in lista d’attesa. L’inserimento non garantisce la partecipazione all’evento.`
+- La scorciatoia iniziale diventa `Lista d’attesa`, con destinazione/focus invariati; pannello con `Richiedi la lista d’attesa` e pulsanti `Lista d’attesa via WhatsApp`/`Lista d’attesa via mail`, etichette coerenti anche per telefono/modulo/altro canale. Stessi URL, nominativi e numeri; suffissi accessibili conservati. Note editoriali della prenotazione ordinaria nascoste per non contraddire la nuova azione, senza cancellarle.
+- Un badge testuale nelle card home/archivio rende visibili Sold-out, Sold-out — lista d’attesa oppure Iscrizioni chiuse. Poppins 14 px/600, fondo caldo, bordo oro, testo bordeaux e ritorno a capo naturale; nessun badge negli eventi conclusi. Limiti della home, locandine e CTA Dettagli evento invariati.
+- Termine tassativo superato e stato Evento concluso prevalgono; liste d’attesa disponibili solo con Iscrizione richiesta attivo. Nessuna gestione automatica dei posti, garanzia di partecipazione o memorizzazione delle richieste nel sito. Dati e Corsi invariati.
+
 ## Iscrizioni chiuse dopo il termine tassativo — v1.6.42
 
 - Con prenotazione richiesta, tipo `Tassativo` e data valida superata, il plugin espone lo stato `closed`. La data è inclusa: fino alla fine di quel giorno nel fuso del sito le iscrizioni restano aperte; chiusura dal giorno successivo. Termine flessibile, assente o invalido e partecipazione senza prenotazione non attivano questa regola.
