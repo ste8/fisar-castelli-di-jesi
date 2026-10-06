@@ -37,6 +37,9 @@ $registration = array(
 );
 $deadline = $registration['details'];
 $registration_link_label = $deadline['closed'] ? 'Informazioni sulle iscrizioni' : ( $required ? 'Come prenotare' : 'Come partecipare' );
+if ( $deadline['waiting_list'] ) {
+	$registration_link_label = 'Lista d’attesa';
+}
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-event' ); ?>>
@@ -68,7 +71,7 @@ $registration_link_label = $deadline['closed'] ? 'Informazioni sulle iscrizioni'
 						<?php elseif ( 'hybrid' === $mode ) : ?>
 							<li><strong>Modalità</strong><span>In presenza e online</span></li>
 						<?php endif; ?>
-						<?php if ( ! $past && ( $deadline['deadline'] || $deadline['limited_seats_notice'] ) ) : ?>
+						<?php if ( ! $past && ( $deadline['deadline'] || $deadline['limited_seats_notice'] || $deadline['status_notice'] ) ) : ?>
 							<li class="event-deadline-row">
 								<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $deadline, 'summary' => true ) ); ?>
 								<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $deadline ) ); ?>
@@ -76,12 +79,17 @@ $registration_link_label = $deadline['closed'] ? 'Informazioni sulle iscrizioni'
 							</li>
 						<?php endif; ?>
 					</ul>
-					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] ) : ?>
+					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] && ! $deadline['status_notice'] ) : ?>
 						<a class="button event-registration-link" href="#event-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>
 				</div>
-				<div class="content-hero__media content-hero__media--poster">
-					<?php fisar_cdj_theme_post_image( $event_id, 'single-poster', true, 'eager' ); ?>
+				<div class="event-poster">
+					<div class="content-hero__media content-hero__media--poster">
+						<?php fisar_cdj_theme_post_image( $event_id, 'single-poster', true, 'eager' ); ?>
+					</div>
+					<?php if ( ! $past ) : ?>
+						<?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $deadline ) ); ?>
+					<?php endif; ?>
 				</div>
 			</div>
 		</header>

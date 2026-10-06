@@ -58,6 +58,8 @@ Dal v1.6.26 il tema aggiunge `editor-content.css` e la variante `editor-event.cs
 
 ## Chiusura iscrizioni Eventi
 
+Estensione plugin `1.3.11`: enum editoriale di disponibilità anziché due flag indipendenti (alternativa esclusa per evitare sold-out/lista d’attesa incoerenti). Un’unica API determina lo stato effettivo con precedenza del termine tassativo; meta e sanitizzazione/salvataggio appartengono al plugin, mentre dettaglio e badge delle card appartengono al tema `1.6.43`. Canali riusati, nessun sistema di liste o nuovo provider. Assenza del meta equivalente alla disponibilità ordinaria; POST senza nuovo campo preserva il dato. Un checkbox sold-out più un secondo checkbox lista d’attesa avrebbe richiesto gestire combinazioni invalide; l’enum è più semplice da modificare e verificare. Costi/dipendenze invariati, letture meta cache native e nessuna migrazione; limite deliberato: gestione delle richieste manuale.
+
 Dal plugin `1.3.10` lo stato derivato `fisar_cdj_is_event_registration_closed()` confronta una data valida tassativa con il giorno corrente nel fuso WordPress, solo con prenotazione richiesta. La regola è riusata dai dettagli e dall’API canali, evitando calcoli nel tema. Nessun flag persistito o cron: lo stato è ricalcolato a ogni richiesta. Un’eventuale cache HTML in produzione dovrà scadere/essere invalidata dopo il cambio di giorno. Il tema `1.6.42` riusa `event-deadline.php` per i due avvisi e adatta solo presentazione/scorciatoia; quote conservate, inviti/note operative nascosti. Stato evento concluso prioritario; Corsi invariati.
 
 ## Contatti WhatsApp degli Eventi

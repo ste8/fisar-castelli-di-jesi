@@ -73,6 +73,7 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_event_fee_note'              => 'string',
 			'_fisar_event_fee_options'           => 'array',
 			'_fisar_event_registration_required' => 'boolean',
+			'_fisar_event_booking_status'        => 'string',
 			'_fisar_event_whatsapp'              => 'string',
 			'_fisar_event_whatsapp_contacts'     => 'array',
 			'_fisar_event_email'                 => 'string',
@@ -132,6 +133,9 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( '_fisar_event_booking_status' === $key ) {
+					return fisar_cdj_sanitize_event_booking_status( $value );
+				}
 				if ( '_fisar_event_whatsapp_contacts' === $key ) {
 					return fisar_cdj_sanitize_event_whatsapp_contacts( $value );
 				}

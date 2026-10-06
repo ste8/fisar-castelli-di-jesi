@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.6.44 — Fascia sold-out sotto la locandina
+
+- Componente testuale condiviso `event-sold-out.php`, sotto l’immagine nelle card home/archivio e nel dettaglio: bordeaux, bianco, accento oro, Poppins 700 e indicazione della lista d’attesa quando disponibile. Nessuna sovrapposizione all’immagine, che conserva proporzioni quadrate e `contain`. Badge ordinario nel corpo della card conservato solo per iscrizioni chiuse; eventi conclusi e ordinari invariati.
+- Sold-out senza lista d’attesa: data del termine nascosta nei due box, conservata nei dati. Lista d’attesa e chiusura per termine tassativo mantengono la scadenza; regole del plugin e priorità invariate. Skill `clean-code-engineer` applicata riusando un unico componente per le tre viste. Solo presentazione, tema/asset `1.6.44`; nessuna dipendenza, scrittura nel database o commit automatico.
+- Verifiche: lint dei cinque PHP, sintassi JavaScript e `git diff --check`; diciassette varianti native in memoria, inclusa scadenza futura del sold-out e regressioni su chiusura/lista d’attesa, meta/editor e salvataggi intercettati. HTTP e browser desktop/tablet/mobile a 1440/768/390/320 px: fascia sotto l’immagine, font caricati, locandina intera, nessun overflow o asset rotto. Anteprime con dati simulati, senza modificare eventi reali.
+
+## v1.6.43 — Sold-out e lista d’attesa
+
+- Plugin `1.3.11`: meta privato enum `_fisar_event_booking_status`, sanitizzazione condivisa e menu a tre opzioni nel box Iscrizioni. Stato assente ordinario, salvataggio solo con campo nel POST e protezioni esistenti. API effettiva con precedenza della scadenza tassativa; helper chiusura compatibile anche con sold-out senza lista. Nessun conteggio o richiesta persistita, migrazione o modifica ai Corsi.
+- Lista d’attesa tramite gli stessi contatti/URL e nominativi, con etichette dedicate; sold-out semplice senza canali. Copy e posti limitati coerenti con lo stato. Tema/asset `1.6.43`: avviso nei due box anche senza data, scorciatoia e titoli dedicati, note operative ordinarie nascoste e quote conservate. Badge nelle card di home/archivio, nessuno sugli eventi conclusi. Stato concluso e termine tassativo superato prioritari.
+- Skill `software-architect` applicata scegliendo un enum reversibile invece di booleani indipendenti; `clean-code-engineer` centralizza regole/copy nel plugin e riusa componenti/frontend. Documentazione aggiornata, nessuna dipendenza, dato reale modificato o commit automatico.
+- Verifiche: lint dei nove PHP modificati, sintassi dei tre JS e `git diff --check`; sedici varianti di disponibilità, otto normalizzazioni enum, registrazione/meta privato, editor/default e otto salvataggi intercettati. Regressioni scadenze, prenotazioni, quote e contatti senza scritture persistenti. Browser su anteprime native: lista d’attesa, sold-out semplice, editor e card verificati su desktop/tablet/mobile, pulsanti/URL corretti e overflow assente; selezione preservata disattivando/riattivando Iscrizione richiesta. Nessun login, salvataggio amministrativo o link esterno aperto; server temporaneo arrestato al termine.
+
 ## v1.6.42 — Iscrizioni Eventi chiuse dopo il termine tassativo
 
 - Plugin `1.3.10`: nuova regola derivata per iscrizione richiesta, termine tassativo e data canonica valida precedente al giorno corrente WordPress. Scadenza inclusa; termini flessibili/assenti/invalidi non chiudono. API strutturata con `closed`/`closed_notice`, API testuale aggiornata, canali Eventi vuoti e copy operativo/posti limitati soppressi quando chiuso. Nessun meta riscritto, flag manuale o cron; Corsi invariati.

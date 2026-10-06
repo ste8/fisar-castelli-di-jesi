@@ -171,7 +171,7 @@ function fisar_cdj_get_event_fees( int $event_id ): array {
 }
 
 /** A strict date is inclusive in the site's timezone; invalid/missing dates never close bookings. */
-function fisar_cdj_is_event_registration_closed( int $event_id ): bool {
+function fisar_cdj_has_event_registration_deadline_passed( int $event_id ): bool {
 	if ( ! get_post_meta( $event_id, '_fisar_event_registration_required', true ) || 'strict' !== get_post_meta( $event_id, '_fisar_event_deadline_type', true ) ) {
 		return false;
 	}
@@ -180,13 +180,41 @@ function fisar_cdj_is_event_registration_closed( int $event_id ): bool {
 	return $date && $date->format( 'Y-m-d' ) === $deadline && $deadline < fisar_cdj_today();
 }
 
+/** One enum prevents contradictory sold-out/waiting-list flags. */
+function fisar_cdj_sanitize_event_booking_status( mixed $status ): string {
+	return in_array( $status, array( 'available', 'sold_out', 'waitlist' ), true ) ? $status : 'available';
+}
+
+/** A strict expired deadline takes priority over editorial availability. */
+function fisar_cdj_get_event_booking_status( int $event_id ): string {
+	if ( fisar_cdj_has_event_registration_deadline_passed( $event_id ) ) {
+		return 'closed';
+	}
+	if ( ! get_post_meta( $event_id, '_fisar_event_registration_required', true ) ) {
+		return 'available';
+	}
+	return fisar_cdj_sanitize_event_booking_status( get_post_meta( $event_id, '_fisar_event_booking_status', true ) );
+}
+
+function fisar_cdj_is_event_registration_closed( int $event_id ): bool {
+	return in_array( fisar_cdj_get_event_booking_status( $event_id ), array( 'closed', 'sold_out' ), true );
+}
+
 /** Registration data shared by summaries and booking panels. */
 function fisar_cdj_get_event_registration_details( int $event_id ): array {
 	$is_free      = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
 	$is_required  = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 	$deadline     = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
 	$deadline_type = (string) get_post_meta( $event_id, '_fisar_event_deadline_type', true );
-	$closed       = fisar_cdj_is_event_registration_closed( $event_id );
+	$status       = fisar_cdj_get_event_booking_status( $event_id );
+	$closed       = in_array( $status, array( 'closed', 'sold_out' ), true );
+	$waiting_list = 'waitlist' === $status;
+	$status_notice = match ( $status ) {
+		'closed'   => 'Iscrizioni chiuse',
+		'sold_out' => 'Sold-out',
+		'waitlist' => 'Sold-out — lista d’attesa',
+		default   => '',
+	};
 	$lines        = array();
 	$open_participation_notice = '';
 
@@ -203,15 +231,23 @@ function fisar_cdj_get_event_registration_details( int $event_id ): array {
 
 	$timestamp = $deadline ? strtotime( $deadline ) : false;
 	return array(
+		'status'          => $status,
+		'status_notice'   => $status_notice,
+		'waiting_list'    => $waiting_list,
+		'availability_notice' => match ( $status ) {
+			'sold_out' => 'I posti disponibili sono esauriti.',
+			'waitlist' => 'I posti disponibili sono esauriti. Puoi contattarci per chiedere di essere inserito in lista d’attesa. L’inserimento non garantisce la partecipazione all’evento.',
+			default   => '',
+		},
 		'closed'          => $closed,
-		'closed_notice'   => $closed ? 'Iscrizioni chiuse' : '',
-		'lines'           => $closed ? array() : $lines,
+		'closed_notice'   => $closed ? $status_notice : '',
+		'lines'           => $closed || $waiting_list ? array() : $lines,
 		'open_participation_notice' => $open_participation_notice,
-		'limited_seats_notice' => ! $closed && get_post_meta( $event_id, '_fisar_event_limited_seats', true )
+		'limited_seats_notice' => ! $closed && ! $waiting_list && get_post_meta( $event_id, '_fisar_event_limited_seats', true )
 			? 'Ti consigliamo di prenotare prima che esauriscano.' : '',
 		'deadline'        => false !== $timestamp ? $deadline : '',
 		'deadline_label'  => false !== $timestamp ? wp_date( 'j F Y', $timestamp ) : '',
-		'deadline_notice' => false !== $timestamp && 'flexible' === $deadline_type
+		'deadline_notice' => ! $closed && ! $waiting_list && false !== $timestamp && 'flexible' === $deadline_type
 			? 'Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.' : '',
 	);
 }
@@ -223,8 +259,11 @@ function fisar_cdj_get_event_registration_copy( int $event_id ): array {
 		return array( $details['closed_notice'] );
 	}
 	$lines   = $details['lines'];
+	if ( $details['waiting_list'] ) {
+		$lines = array( $details['status_notice'], $details['availability_notice'] );
+	}
 	if ( $details['deadline'] ) {
-		$lines[] = sprintf( 'Prenotazioni entro il %s.', $details['deadline_label'] );
+		$lines[] = sprintf( $details['waiting_list'] ? 'Richieste di lista d’attesa entro il %s.' : 'Prenotazioni entro il %s.', $details['deadline_label'] );
 		if ( $details['deadline_notice'] ) {
 			$lines[] = $details['deadline_notice'];
 		}
@@ -323,6 +362,13 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 	if ( 'event' === $prefix ) {
 		$definitions['whatsapp']['label'] = 'Prenota via WhatsApp';
 		$definitions['email']['label']    = 'Prenota via mail';
+		if ( 'waitlist' === fisar_cdj_get_event_booking_status( $post_id ) ) {
+			$definitions['whatsapp']['label'] = 'Lista d’attesa via WhatsApp';
+			$definitions['email']['label'] = 'Lista d’attesa via mail';
+			$definitions['phone']['label'] = 'Chiama per la lista d’attesa';
+			$definitions['form_url']['label'] = 'Richiedi la lista d’attesa';
+			$definitions['other_channel']['label'] = 'Altro contatto per la lista d’attesa';
+		}
 	}
 	$channels = array();
 

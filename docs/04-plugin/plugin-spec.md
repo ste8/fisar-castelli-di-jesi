@@ -3,6 +3,13 @@ Il plugin contiene dati e logiche indipendenti dal tema.
 
 ## CPT Eventi
 
+### Disponibilità e lista d’attesa — plugin v1.3.11
+
+- Meta privato singolo stringa `_fisar_event_booking_status`, valori `available`, `sold_out`, `waitlist`; assenza o valore non valido equivale ad `available`. Enum unico invece di due booleani contraddittori, senza migrare i contenuti esistenti. Sanitizzatore condiviso tra registrazione meta, lettura e salvataggio. Nel metabox Iscrizioni compare `Disponibilità dell’evento` con tre opzioni, solo con Iscrizione richiesta attivo. Salvataggio con protezioni esistenti e soltanto se il nuovo campo è presente nel POST; editor precedenti non azzerano lo stato.
+- `fisar_cdj_get_event_booking_status()` restituisce lo stato effettivo: un termine tassativo valido superato prevale ed espone `closed`; senza prenotazione richiesta le nuove impostazioni non si applicano. Il controllo della sola scadenza è `fisar_cdj_has_event_registration_deadline_passed()`. `fisar_cdj_is_event_registration_closed()` resta compatibile e restituisce vero anche per `sold_out` senza lista d’attesa.
+- Dettagli strutturati estesi con `status`, `status_notice`, `waiting_list`, `availability_notice`. Sold-out senza lista: niente canali. Lista d’attesa: stessi contatti, ordine, URL e nomi accessibili, soltanto etichette dedicate. Nessun messaggio precompilato modificato, contatto inventato o lista persistita; richiesta gestita tramite i canali già configurati. Senza contatti non vengono creati pulsanti.
+- Stati sold-out/lista d’attesa sopprimono copy della prenotazione ordinaria, nota flessibile e posti limitati. Quote conservate; il tema mantiene prioritario Evento concluso. API testuale aggiornata, Corsi invariati. Questa revisione estende lo stato chiuso v1.3.10 senza eliminare la scadenza tassativa.
+
 Revisione plugin `1.3.10`: `fisar_cdj_is_event_registration_closed()` restituisce vero solo con iscrizione richiesta, termine `strict`, data canonica `YYYY-MM-DD` valida e precedente a `fisar_cdj_today()`. Data inclusa e fuso WordPress; giorni impossibili, date relative e valori assenti non chiudono. `fisar_cdj_get_event_registration_details()` espone `closed` e `closed_notice`, sopprimendo copy operativo e posti limitati a chiusura avvenuta. API testuale restituisce `Iscrizioni chiuse`; API dei canali Eventi restituisce un elenco vuoto. Nessuna modifica ai meta, migrazione, cron o regola dei Corsi. Questa revisione prevale sulla precedente assenza di chiusura automatica per gli Eventi, senza introdurre un flag manuale o inferire disponibilità dai posti limitati.
 
 Base: titolo, editor, featured image.

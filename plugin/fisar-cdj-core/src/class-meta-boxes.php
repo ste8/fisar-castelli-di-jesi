@@ -170,6 +170,14 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function render_event_registration( WP_Post $post ): void {
 		self::checkbox( $post->ID, '_fisar_event_registration_required', 'Iscrizione richiesta', 'Se non selezionato, i canali non vengono mostrati nel frontend.' );
 		echo '<div class="fisar-conditional" data-show-when-checked="_fisar_event_registration_required">';
+		self::select(
+			$post->ID,
+			'_fisar_event_booking_status',
+			'Disponibilità dell’evento',
+			array( 'available' => 'Ordinaria (non sold-out)', 'sold_out' => 'Sold-out', 'waitlist' => 'Sold-out con lista d’attesa' ),
+			'Con la lista d’attesa restano disponibili gli stessi contatti delle prenotazioni. Un termine tassativo superato chiude anche la lista d’attesa. Questa impostazione si applica solo con Iscrizione richiesta attivo.',
+			'available'
+		);
 		self::render_registration_fields( $post->ID, 'event' );
 		self::editor( $post->ID, '_fisar_event_registration_notes', 'Informazioni aggiuntive', 'Dettagli utili non coperti dai campi precedenti.' );
 		echo '</div>';
@@ -314,6 +322,9 @@ final class Fisar_CDJ_Meta_Boxes {
 			$text_fields = array_diff( $text_fields, array( '_fisar_event_whatsapp' ) );
 		}
 		self::save_text_fields( $post_id, $text_fields );
+		if ( isset( $_POST['_fisar_event_booking_status'] ) ) {
+			update_post_meta( $post_id, '_fisar_event_booking_status', fisar_cdj_sanitize_event_booking_status( wp_unslash( $_POST['_fisar_event_booking_status'] ) ) );
+		}
 		if ( isset( $_POST['_fisar_event_whatsapp_contacts_present'] ) ) {
 			$contacts = fisar_cdj_sanitize_event_whatsapp_contacts( wp_unslash( $_POST['_fisar_event_whatsapp_contacts'] ?? array() ) );
 			update_post_meta( $post_id, '_fisar_event_whatsapp_contacts', wp_slash( $contacts ) );
@@ -447,12 +458,15 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '</div>';
 	}
 
-	private static function select( int $post_id, string $key, string $label, array $options, string $description = '' ): void {
+	private static function select( int $post_id, string $key, string $label, array $options, string $description = '', string $default = '' ): void {
 		$value = (string) get_post_meta( $post_id, $key, true );
+		$value = '' === $value ? $default : $value;
 		echo '<div class="fisar-field">';
 		printf( '<label for="%1$s"><strong>%2$s</strong></label>', esc_attr( $key ), esc_html( $label ) );
 		printf( '<select class="widefat" id="%1$s" name="%1$s">', esc_attr( $key ) );
-		echo '<option value="">Seleziona…</option>';
+		if ( '' === $default ) {
+			echo '<option value="">Seleziona…</option>';
+		}
 		foreach ( $options as $option_value => $option_label ) {
 			printf( '<option value="%1$s"%2$s>%3$s</option>', esc_attr( $option_value ), selected( $value, $option_value, false ), esc_html( $option_label ) );
 		}

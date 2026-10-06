@@ -1948,11 +1948,46 @@ blockquote {
 	font-weight: 500;
 }
 
-.single-event .content-hero__media--poster {
+.single-event .event-poster {
 	width: 100%;
 	max-width: 32rem;
+	margin-inline: auto;
+}
+
+.single-event .content-hero__media--poster {
+	width: 100%;
+	max-width: none;
 	aspect-ratio: 1;
 	padding: .5rem;
+}
+
+.event-sold-out {
+	display: flex;
+	flex-direction: column;
+	gap: .15rem;
+	margin: 0;
+	padding: .65rem 1rem;
+	border-top: 2px solid var(--color-gold);
+	background: var(--color-bordeaux);
+	color: var(--color-paper);
+	text-align: center;
+	line-height: 1.4;
+}
+
+.event-sold-out strong {
+	font-family: var(--font-body);
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: .1em;
+}
+
+.event-sold-out span {
+	font-size: .875rem;
+}
+
+.event-poster .event-sold-out {
+	margin-top: .65rem;
+	border-radius: var(--radius-small);
 }
 
 .single-event .hero-facts {
@@ -2146,6 +2181,18 @@ blockquote {
 	margin-bottom: .6rem;
 	font-size: 1.25rem;
 	font-weight: 600;
+}
+
+.event-card .event-card__booking-status {
+	margin: 0 0 .75rem;
+	padding: .35rem .6rem;
+	border-left: 3px solid var(--color-gold);
+	border-radius: var(--radius-small);
+	background: var(--color-tint);
+	color: var(--color-bordeaux);
+	font-size: .875rem;
+	font-weight: 600;
+	line-height: 1.5;
 }
 
 .single-event .registration-deadline {
