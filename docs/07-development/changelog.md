@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.54 — Separatore Eventi anche nella home
+
+- Card Eventi della home allineate all’archivio: titolo, linea oro tenue, data e luogo, con ordine del markup coerente. Riutilizzata la stessa regola decorativa da 1 px e spaziature compatte. Locandine, fascia sold-out, date adattive, CTA e nomi accessibili conservati; nessun abstract aggiunto o modifica a query, dati, dettaglio, Corsi e News.
+- Skill `clean-code-engineer`: estesi soltanto il contesto del componente e il selettore condiviso; tema/asset `1.6.54`, plugin invariato. Nessuna dipendenza o commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP home/CSS e `git diff --check`; regressioni native su sette località Eventi in home/archivio senza scritture. Browser home a 1440/768/390/320 px: un solo titolo/data, ordine titolo→data, bordo da 1 px alla larghezza del contenuto e nomi CTA completi; nessun overflow, immagine fallita o errore console. Card Corsi/News senza nuovi separatori. Review visiva e screenshot desktop.
+
 ## v1.6.53 — Separatore nelle card Eventi
 
 - Estesa alle card dell’archivio Eventi la linea oro tenue delle card Corsi, con una sola regola CSS condivisa. Titolo e separatore prima di data e luogo, ordine del markup coerente con la resa visiva; home mantiene l’ordine precedente e nessuna linea. Dettaglio, contenuti, stati di iscrizione, query e date adattive invariati.
