@@ -1,9 +1,21 @@
 # Changelog
 
+## v1.6.53 — Separatore nelle card Eventi
+
+- Estesa alle card dell’archivio Eventi la linea oro tenue delle card Corsi, con una sola regola CSS condivisa. Titolo e separatore prima di data e luogo, ordine del markup coerente con la resa visiva; home mantiene l’ordine precedente e nessuna linea. Dettaglio, contenuti, stati di iscrizione, query e date adattive invariati.
+- Skill `clean-code-engineer`: modifica circoscritta al componente e ai selettori dei due archivi, senza logica di dominio o dipendenze; tema/asset `1.6.53`, plugin invariato. Modifiche precedenti preservate, nessun commit automatico.
+- Verificati lint PHP, sintassi dei JS frontend invariati, HTTP pagina/CSS/immagini e `git diff --check`; regressioni native su sette località Eventi in home e archivio senza scritture. Browser Eventi a 1440/768/390/320 px: un solo titolo/data per card, ordine titolo→data, bordo e larghezza corretti, nessun overflow o errore console. Immagini dell’archivio passato inizialmente differite dal lazy-load, disponibili via HTTP. Home senza separatore e con data iniziale; card Corsi invariate. Review visiva e screenshot desktop.
+
+## v1.6.52 — Separatore nelle card Corsi
+
+- Linea decorativa di 1 px oro tenue sotto livello e città nelle card automatiche dell’archivio, prima di data e sede. Larghezza del contenuto, spaziature compatte; home, dettaglio, titoli personalizzati, dati e nomi accessibili invariati. Skill `clean-code-engineer`: solo CSS del componente, senza nuovo markup o dipendenze; tema/asset `1.6.52`, plugin invariato. Modifiche precedenti preservate, nessun commit automatico.
+- Verificati lint PHP, sintassi dei due JS frontend invariati, HTTP pagina/CSS e `git diff --check`. Browser a 1440/768/390/320 px: bordo da 1 px con opacità corretta, larghezza del contenuto e posizione tra identità e data, nessun overflow o immagine rotta; console senza errori. Review visiva e screenshot desktop.
+
 ## v1.6.51 / plugin v1.3.16 — Livello e città in primo piano
 
 - Nelle sole card automatiche dell’archivio Corsi, `Corso Sommelier` ridotto a introduzione 16–18 px; livello e città a 20–24 px, provincia discreta a 16–18 px. Livello indivisibile, località flessibile e nome accessibile completo. Home, dettaglio, titoli personalizzati, query, date, sede e abstract invariati.
 - Skill `clean-code-engineer` e `software-architect`: parti della località normalizzate nel plugin ed esposte senza rimuovere la località completa dalla API esistente; presentazione nel tema, nessuna analisi del titolo libero, migrazione, scrittura editoriale o dipendenza aggiunta. Tema/asset `1.6.51`, plugin `1.3.16`; nessun commit automatico.
+- Verificati lint PHP, sintassi dei due JS frontend invariati, HTTP pagina/CSS e `git diff --check`. Test nativi di sola lettura: sei normalizzazioni della località, quattro card strutturate (anche senza città/provincia), nomi accessibili completi e home/titoli personalizzati conservati; regressioni su sette località Eventi in home e archivio. Browser a 1440/768/390/320 px: scala tipografica corretta, livello indivisibile, nessun overflow, immagine rotta o errore console. Review visiva e screenshot; nessuna scrittura nel database.
 
 ## v1.6.50 / plugin v1.3.15 — Identità dei Corsi, titolo automatico e pin
 

@@ -1,5 +1,9 @@
 # Archivio Eventi
 
+## Separatore delle card — v1.6.53
+
+Nell’archivio, titolo prima delle informazioni pratiche: linea decorativa subito sotto, poi data, eventuale stato Iscrizioni chiuse, luogo e abstract. Stessa regola delle card Corsi: 1 px oro FISAR al 40%, larghezza del contenuto, `.65rem` sopra la linea e `.8rem` sotto. Ordine reale del markup, non riordinamento CSS; un solo titolo e una sola data per card. Home mantiene la data sopra il titolo, senza separatore; dettaglio, query, stati e dati invariati.
+
 ## Luogo con pin e provincia — v1.6.50
 
 Card di home/archivio: `📍 Sede · Città (Provincia)`, campi mancanti omessi e provincia mostrata solo con città presente. Pin decorativo con `aria-hidden="true"`, testo completo e ritorno a capo naturale. Online: soltanto `Online`, senza pin né luogo fisico obsoleto. Ibrido: luogo fisico seguito da `+ online`; senza luogo fisico, `In presenza e online`, senza pin. Nessuna mappa o link esterno aggiunto; dettaglio e accesso online invariati.
