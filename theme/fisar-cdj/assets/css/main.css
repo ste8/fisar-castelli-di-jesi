@@ -2448,6 +2448,11 @@ blockquote {
 	font-size: clamp(1.25rem, 2vw, 1.5rem);
 }
 
+.courses-archive .course-card__title--intro {
+	margin-bottom: .4rem;
+	font-size: clamp(1rem, 1.5vw, 1.125rem);
+}
+
 .course-grid--home .course-card__meta,
 .course-grid--home .course-card__dates {
 	display: flex;
@@ -2472,17 +2477,24 @@ blockquote {
 	gap: .3em;
 	margin: 0 0 .8rem;
 	color: var(--color-ink);
-	font-size: 1rem;
-	line-height: 1.5;
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+	font-weight: 500;
+	line-height: 1.3;
 }
 
 .course-card__level {
 	white-space: nowrap;
 }
 
-.course-card__identity > span:last-child {
+.course-card__locality {
 	min-width: 0;
 	overflow-wrap: anywhere;
+}
+
+.course-card__province {
+	font-size: clamp(1rem, 1.5vw, 1.125rem);
+	font-weight: 400;
+	white-space: nowrap;
 }
 
 .card-place {
