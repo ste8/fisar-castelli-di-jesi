@@ -1,5 +1,7 @@
 # Homepage
 
+Affinamento v1.6.55: anche gli eventi solo online mostrano `📍 Online` nelle card, con pin decorativo nascosto agli screen reader. Nessuna pubblicazione di piattaforme/link o modifica al dettaglio.
+
 ## Card Eventi — separatore v1.6.54
 
 Su approvazione del 7 ottobre 2026, le card Eventi della home adottano l’ordine dell’archivio: titolo, linea oro tenue, data, eventuale avviso Iscrizioni chiuse, luogo e CTA. Bordo decorativo da 1 px oro FISAR al 40%, largo quanto il contenuto; `.65rem` sopra e `.8rem` sotto. Ordine anche nel markup, senza riordino CSS. Locandine, sold-out, date adattive, limite di quattro eventi e nomi accessibili completi invariati. Nessun abstract aggiunto; card Corsi/News e resto della home invariati. Questa revisione prevale sulle precedenti indicazioni della data sopra il titolo e dell’assenza del separatore in home.

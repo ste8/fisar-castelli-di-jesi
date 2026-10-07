@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.55 — Pin anche per eventi online
+
+- Card Eventi di home e archivio: `📍 Online`, con lo stesso pin decorativo delle sedi fisiche, nascosto agli screen reader. Luogo fisico obsoleto ancora omesso; nessuna modifica a eventi in presenza/ibridi, dettaglio o regole di pubblicazione dell’accesso online.
+- Skill `clean-code-engineer`: estesa una sola condizione nel componente condiviso, senza nuovo markup, CSS, dipendenze o dati. Tema/asset `1.6.55`, plugin invariato; nessun commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP home/archivio/CSS e `git diff --check`. Test di sola lettura su sette località in entrambi i contesti, aggiornata l’aspettativa del pin online; nessuna scrittura nel database. Browser home/archivio a 1440/768/390/320 px: un pin con `aria-hidden="true"` davanti a Online, nessun overflow, immagine fallita o errore console. Review visiva e screenshot desktop.
+
 ## v1.6.54 — Separatore Eventi anche nella home
 
 - Card Eventi della home allineate all’archivio: titolo, linea oro tenue, data e luogo, con ordine del markup coerente. Riutilizzata la stessa regola decorativa da 1 px e spaziature compatte. Locandine, fascia sold-out, date adattive, CTA e nomi accessibili conservati; nessun abstract aggiunto o modifica a query, dati, dettaglio, Corsi e News.
