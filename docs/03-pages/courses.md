@@ -1,5 +1,13 @@
 # Archivio Corsi
 
+## Risalto delle offerte — v1.6.61
+
+Su richiesta esplicita, la precedente fascia oro tenue diventa giallo pieno `#ffda3d`, con titolo `IN OFFERTA` Poppins 700 da 20 px, data sotto da 15 px/600 e testo bordeaux scuro. Cornice coordinata da 4 px intorno al gruppo locandina/fascia, solo con offerta attiva. Immagine ancora intera su bianco, senza overlay o animazioni. Regole, campi e corsi non in offerta invariati. Questa revisione visiva prevale sulla v1.6.60 sotto.
+
+## Offerte — v1.6.60 / plugin v1.3.19
+
+Le card mostrano una fascia oro tenue sotto la locandina, senza coprirla: `In offerta` e, se compilata, `Fino al [data per esteso]`. Usa lo stato del plugin, identico a home/dettaglio: scompare dopo la data inclusa o quando non sono più disponibili le iscrizioni ordinarie. Nessun banner per i corsi esistenti finché non viene attivato esplicitamente. Titoli, date d’inizio, sedi, excerpt e nomi accessibili conservati.
+
 ## Ordine delle informazioni sul corso — v1.6.59 / plugin v1.3.18
 
 Nel box dell’editor dedicato all’offerta e nel pannello del dettaglio, ordine `Quota di partecipazione` → `Cosa comprende il corso` → `Tesseramento FISAR`. Anche il titolo nel dettaglio usa la dicitura completa `Cosa comprende il corso`, per distinguerlo dai benefici del tesseramento. Campi vuoti ancora omessi nel sito, contenuti salvati e regole di iscrizione invariati.

@@ -17,13 +17,15 @@ if ( $structured && '' === trim( $venue ) ) {
 }
 $active    = function_exists( 'fisar_cdj_is_course_active' ) && fisar_cdj_is_course_active( $course_id );
 $details = fisar_cdj_get_course_registration_details( $course_id );
+$offer = fisar_cdj_get_course_offer( $course_id );
 ?>
 <article <?php post_class( 'course-card' ); ?>>
-	<div class="course-card__visual">
+	<div class="course-card__visual<?php echo $offer['active'] ? ' course-promotion' : ''; ?>">
 		<a class="course-card__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 			<?php fisar_cdj_theme_post_image( $course_id, 'course-card__image' ); ?>
 		</a>
 		<?php if ( $active ) : ?><?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $details ) ); ?><?php endif; ?>
+		<?php get_template_part( 'template-parts/course-offer', null, array( 'offer' => $offer ) ); ?>
 	</div>
 	<div class="course-card__body">
 		<div class="course-card__meta<?php echo $structured ? ' course-card__meta--structured' : ''; ?>">

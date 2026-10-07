@@ -1,6 +1,13 @@
 # Plugin Spec
 Il plugin contiene dati e logiche indipendenti dal tema.
 
+## Offerte dei Corsi — plugin v1.3.19
+
+- Meta privati singoli `_fisar_course_offer_enabled` (booleano, default disattivato) e `_fisar_course_offer_end_date` (data canonica `YYYY-MM-DD`, facoltativa). Flag accetta solo true/1/"1"; data validata con `checkdate`, nessun valore relativo. Controlli nativi nel box `Quota e dotazione`, separati da scadenza iscrizioni e importi.
+- Salvataggio nel percorso autorizzato esistente, soltanto con marker `_fisar_course_offer_present`: editor precedenti senza marker conservano i nuovi campi. Casella non selezionata disattiva; data non valida disattiva l’offerta al salvataggio, evitando una promozione indefinita involontaria. Nessuna migrazione o attivazione dei corsi esistenti.
+- `fisar_cdj_get_course_offer()` espone `{active, end_date}`: attivo solo con spunta, iscrizioni ordinarie disponibili e data facoltativa non superata. Data inclusa nel fuso WordPress; data invalida in lettura, termine tassativo superato, sold-out/lista d’attesa o corso concluso restituiscono `{false, ''}`. Senza data, durata manuale fino a disattivazione.
+- Non modifica quote, note Early Bird, canali, disponibilità o date di iscrizione. Nessun calcolo/sconto, scrittura alla visita, cron o dipendenza; fascia e formattazione nel tema. Il testo libero delle quote resta editoriale e va aggiornato separatamente.
+
 ## Titolo dei Corsi — plugin v1.3.15
 
 - Meta privato singolo stringa `_fisar_course_title_mode`, enum `automatic` / `custom`, non esposto in REST. Valori malformati equivalgono a `custom`. Se assente, Automatico per auto-draft o livello valido 1/2/3, altrimenti Personalizzato. Default di lettura, non migrazione; titolo nativo esistente non riscritto alla visita di una pagina o dell’editor.

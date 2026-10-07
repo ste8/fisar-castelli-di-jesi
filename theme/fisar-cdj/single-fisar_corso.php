@@ -15,6 +15,7 @@ $active     = fisar_cdj_is_course_active( $course_id );
 $calendar   = fisar_cdj_get_course_calendar( $course_id );
 $events     = fisar_cdj_get_course_events( $course_id );
 $details    = fisar_cdj_get_course_registration_details( $course_id );
+$offer      = fisar_cdj_get_course_offer( $course_id );
 $location   = array(
 	'mode'     => 'presence',
 	'venue'    => $venue,
@@ -58,9 +59,10 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 					</ul>
 					<?php if ( $active && ! $details['deadline'] && ! $details['status_notice'] && ! $details['limited_seats_notice'] ) : ?><a class="button event-registration-link" href="#course-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 				</div>
-				<div class="event-poster">
+				<div class="event-poster<?php echo $offer['active'] ? ' course-promotion' : ''; ?>">
 					<div class="content-hero__media content-hero__media--poster"><?php fisar_cdj_theme_post_image( $course_id, 'single-course-image', true, 'eager' ); ?></div>
 					<?php if ( $active ) : ?><?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $details ) ); ?><?php endif; ?>
+					<?php get_template_part( 'template-parts/course-offer', null, array( 'offer' => $offer ) ); ?>
 				</div>
 			</div>
 		</header>

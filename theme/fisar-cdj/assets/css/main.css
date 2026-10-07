@@ -40,6 +40,7 @@
 
 :root {
 	--color-gold: #b9aa54;
+	--color-offer: #ffda3d;
 	--color-gold-dark: #6f6016;
 	--color-crimson: #b33c61;
 	--color-bordeaux: #641629;
@@ -1988,6 +1989,47 @@ blockquote {
 .event-poster .event-sold-out {
 	margin-top: .65rem;
 	border-radius: var(--radius-small);
+}
+
+.course-offer {
+	display: flex;
+	flex-direction: column;
+	gap: .2rem;
+	margin: 0;
+	padding: .8rem 1rem;
+	background: var(--color-offer);
+	color: var(--color-bordeaux-dark);
+	font-size: .9375rem;
+	font-weight: 600;
+	line-height: 1.4;
+	text-align: center;
+}
+
+.course-offer strong {
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+.course-promotion {
+	overflow: hidden;
+	border: 4px solid var(--color-offer);
+	border-radius: var(--radius-small);
+	background: var(--color-paper);
+}
+
+.course-grid--home .course-offer {
+	padding: .6rem .25rem;
+	font-size: .8125rem;
+}
+
+.course-grid--home .course-offer strong {
+	font-size: 1rem;
+}
+
+.course-grid--home .course-promotion {
+	align-self: start;
 }
 
 :is(.single-event, .single-course) .hero-facts {
