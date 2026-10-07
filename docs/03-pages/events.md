@@ -1,5 +1,7 @@
 # Archivio Eventi
 
+Aggiornamento v1.6.54: anche le card Eventi della home adottano titolo→separatore→data e luogo, con la stessa regola CSS dell’archivio. Prevale sull’indicazione della home senza separatore riportata nella revisione v1.6.53. Dettaglio e altri contesti invariati; specifica in `homepage.md`.
+
 ## Separatore delle card — v1.6.53
 
 Nell’archivio, titolo prima delle informazioni pratiche: linea decorativa subito sotto, poi data, eventuale stato Iscrizioni chiuse, luogo e abstract. Stessa regola delle card Corsi: 1 px oro FISAR al 40%, larghezza del contenuto, `.65rem` sopra la linea e `.8rem` sotto. Ordine reale del markup, non riordinamento CSS; un solo titolo e una sola data per card. Home mantiene la data sopra il titolo, senza separatore; dettaglio, query, stati e dati invariati.

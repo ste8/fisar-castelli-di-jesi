@@ -1,4 +1,9 @@
 # Homepage
+
+## Card Eventi — separatore v1.6.54
+
+Su approvazione del 7 ottobre 2026, le card Eventi della home adottano l’ordine dell’archivio: titolo, linea oro tenue, data, eventuale avviso Iscrizioni chiuse, luogo e CTA. Bordo decorativo da 1 px oro FISAR al 40%, largo quanto il contenuto; `.65rem` sopra e `.8rem` sotto. Ordine anche nel markup, senza riordino CSS. Locandine, sold-out, date adattive, limite di quattro eventi e nomi accessibili completi invariati. Nessun abstract aggiunto; card Corsi/News e resto della home invariati. Questa revisione prevale sulle precedenti indicazioni della data sopra il titolo e dell’assenza del separatore in home.
+
 ## Struttura
 1. Top bar + Header
 2. Hero

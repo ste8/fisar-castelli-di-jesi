@@ -2482,7 +2482,8 @@ blockquote {
 }
 
 .courses-archive .course-card__identity,
-.events-archive .event-card__title {
+.events-archive .event-card__title,
+.event-grid--home .event-card__title {
 	width: 100%;
 	margin: 0 0 .8rem;
 	padding-bottom: .65rem;
