@@ -1,5 +1,13 @@
 # Homepage
 
+## Offerte Corsi più evidenti — v1.6.61
+
+Solo con offerta attiva, cornice gialla da 4 px intorno a immagine/fascia e fondo giallo pieno `#ffda3d`, con `IN OFFERTA` da 16 px/700 e data da 13 px/600 su riga separata, bordeaux scuro. Il gruppo si allinea in alto nella card compatta, senza spazio vuoto dentro la cornice. Nessun overlay, animazione o cambiamento delle card ordinarie; prevale sulla precedente fascia oro tenue.
+
+## Offerte Corsi — v1.6.60 / plugin v1.3.19
+
+Nelle card compatte dei Corsi, fascia oro tenue sotto l’immagine senza coprirla, testo `In offerta` e data `Fino al …` facoltativa. Dimensioni e ritorno a capo adattati alla colonna della locandina; nessun troncamento della data o del nome accessibile. Stato identico a elenco/dettaglio, fornito dal plugin; numero, query e ordine dei corsi invariati.
+
 Affinamento v1.6.55: anche gli eventi solo online mostrano `📍 Online` nelle card, con pin decorativo nascosto agli screen reader. Nessuna pubblicazione di piattaforme/link o modifica al dettaglio.
 
 ## Card Eventi — separatore v1.6.54

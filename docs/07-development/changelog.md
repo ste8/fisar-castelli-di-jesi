@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.6.61 — Offerte Corsi: giallo pieno e cornice
+
+- Su richiesta esplicita, sostituita la fascia discreta con giallo pieno `#ffda3d`, titolo maiuscolo più grande/700 e data separata/600. Aggiunta cornice coordinata da 4 px a immagine e fascia nei tre contesti; adattamento compatto per la home, senza overlay o animazioni. Contrasto testo bordeaux scuro/fondo 11,9:1; oro istituzionale invariato.
+- Skill `clean-code-engineer`: sola presentazione nel tema, classe condizionale derivata dalla API dell’offerta già esistente e stato letto una volta per template. Dati, algoritmo, salvataggi e plugin `1.3.19` invariati; tema/asset `1.6.61`, documentazione aggiornata e precedente lavoro non committato preservato. Nessun commit automatico.
+- Verificati lint dei tre PHP modificati, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Test nativi su 16 varianti dell’offerta: fascia e cornice presenti solo con offerta attiva in home/archivio/dettaglio, guardie dei sette salvataggi intercettati; regressioni Corsi su 20 varianti, senza persistenza. Browser con offerta simulata nei tre template a 1440/768/390/320 px: colore, bordo e dimensioni corretti, nessun overflow pagina/fascia/cornice, immagine fallita o errore console. Review visiva e screenshot desktop/mobile; pagina temporanea rimossa e nessun dato editoriale modificato.
+
+## v1.6.60 / plugin v1.3.19 — Banner offerta dei Corsi
+
+- Nel box `Quota e dotazione`, spunta `Corso in offerta` e `Fine offerta (facoltativa)`. Fascia oro sotto la locandina di home/archivio/dettaglio, senza overlay: `In offerta` e data `Fino al …` se presente. Quote e condizioni editoriali non ricalcolate né riscritte.
+- Stato nel plugin: scadenza inclusiva nel fuso WordPress, durata manuale senza data, nessun banner con iscrizioni chiuse/sold-out/lista d’attesa o corso concluso. Meta privati validati, marker per preservare dati in editor precedenti, date invalide senza attivazione involontaria. Nessuna migrazione, attivazione dei corsi reali, cron o dipendenza.
+- Skill `software-architect` e `clean-code-engineer`: preferita attivazione esplicita con termine opzionale alla deduzione dal testo libero delle quote; componente condiviso nel tema e regole nel plugin. Versioni e documentazione aggiornate; modifiche precedenti preservate e nessun commit automatico.
+- Verificati lint degli otto PHP interessati, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Test nativi su 16 varianti in home/archivio/dettaglio, data inclusiva/scaduta/invalida, stati chiusi e campi privati; sette salvataggi intercettati con guardie/marker e rendering dei controlli dell’editor. Regressioni Corsi su 20 varianti e ordine/dicitura dell’offerta su otto combinazioni, senza scritture persistenti.
+- Browser con offerta simulata nei tre template reali a 1440/768/390/320 px: un banner con data semantica, nessun overflow pagina/fascia, immagine fallita o errore console; review visiva e screenshot di home/archivio/dettaglio. Nessun salvataggio autenticato nell’editor. Confermata l’assenza dei nuovi meta nei quattro corsi locali; pagina temporanea di anteprima rimossa, nessun dato editoriale modificato.
+
 ## v1.6.59 / plugin v1.3.18 — Contenuti del corso prima del tesseramento
 
 - Spostato `Cosa comprende il corso` prima di `Tesseramento FISAR`, sia nell’editor sia nel dettaglio. Titolo pubblico completato con `il corso`, evitando l’ambiguità con la tessera; quota ancora per prima e campi vuoti omessi.

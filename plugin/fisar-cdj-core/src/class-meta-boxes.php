@@ -312,6 +312,9 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	public static function render_course_offer( WP_Post $post ): void {
+		echo '<input type="hidden" name="_fisar_course_offer_present" value="1">';
+		self::checkbox( $post->ID, '_fisar_course_offer_enabled', 'Corso in offerta', 'Mostra una fascia in home, elenco e dettaglio. Non modifica la quota: specifica importo e condizioni nel campo Quota di partecipazione. La fascia non compare se il corso è concluso, sold-out o le iscrizioni sono chiuse.' );
+		self::input( $post->ID, '_fisar_course_offer_end_date', 'Fine offerta (facoltativa)', 'date', 'Offerta valida fino a questa data inclusa, nel fuso del sito. Dal giorno successivo la fascia scompare. Senza data resta finché disattivi Corso in offerta; la data da sola non attiva l’offerta. Il termine d’iscrizione è distinto.' );
 		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento. Se inserisci solo un importo numerico, per esempio 590, il sito aggiunge €. Nei testi con condizioni specifiche indica anche la valuta.' );
 		self::editor( $post->ID, '_fisar_course_includes', 'Cosa comprende il corso', 'Per esempio kit, manuali, calici, degustazioni, software e attestato.' );
 		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.' );
@@ -383,6 +386,14 @@ final class Fisar_CDJ_Meta_Boxes {
 			$text_fields = array_diff( $text_fields, array( '_fisar_course_whatsapp' ) );
 		}
 		self::save_text_fields( $post_id, $text_fields );
+		if ( isset( $_POST['_fisar_course_offer_present'] ) ) {
+			$raw_date = wp_unslash( $_POST['_fisar_course_offer_end_date'] ?? '' );
+			$end_date = fisar_cdj_sanitize_course_offer_end_date( $raw_date );
+			$enabled = in_array( wp_unslash( $_POST['_fisar_course_offer_enabled'] ?? false ), array( true, 1, '1' ), true );
+			$enabled = $enabled && ( '' === $raw_date || '' !== $end_date );
+			update_post_meta( $post_id, '_fisar_course_offer_enabled', $enabled ? 1 : 0 );
+			update_post_meta( $post_id, '_fisar_course_offer_end_date', $end_date );
+		}
 		if ( isset( $_POST['_fisar_course_booking_status'] ) ) {
 			update_post_meta( $post_id, '_fisar_course_booking_status', fisar_cdj_sanitize_booking_status( wp_unslash( $_POST['_fisar_course_booking_status'] ) ) );
 		}

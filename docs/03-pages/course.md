@@ -1,5 +1,13 @@
 # Pagina Corso
 
+## Evidenza dell’offerta — v1.6.61
+
+Locandina e fascia sono racchiuse in una cornice gialla da 4 px quando l’offerta è attiva. Fascia gialla piena `#ffda3d` immediatamente sotto l’immagine, titolo maiuscolo 20 px/700 e data sotto 15 px/600, testo bordeaux scuro ad alto contrasto. Immagine intera su bianco e nessuna sovrapposizione. Prevale sul precedente oro tenue; stato e algoritmo del plugin invariati.
+
+## Offerta del corso — v1.6.60 / plugin v1.3.19
+
+Fascia sotto la locandina, oro tenue con testo bordeaux: `In offerta`, oppure `In offerta` / `Fino al [data]`. Componente condiviso con le card, data semantica `<time>`, niente overlay, allarme o banner fisso. Regole nel plugin: scadenza inclusiva, stato ordinario disponibile e spunta esplicita; nessuna modifica automatica agli importi o al termine d’iscrizione. Condizioni e quota restano nel pannello finale editoriale.
+
 ## Un solo riepilogo pratico — v1.6.57
 
 Rimossa la sezione generata `Informazioni pratiche` dal corpo: ripeteva livello, direttore, inizio/fine e luogo già presenti nella hero. Questi dati restano nell’editor e nel riepilogo iniziale, con livello nella fascia sopra il titolo, indirizzo/città/provincia e Maps facoltativo. Descrizione completa seguita direttamente dal calendario, se presente; Eventi collegati e pannello `Informazioni e iscrizioni` conservati. Intervento sui soli Corsi attivi/conclusi: Eventi, home e archivio invariati. Prevale sui riferimenti precedenti al riepilogo inferiore.

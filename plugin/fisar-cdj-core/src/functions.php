@@ -35,6 +35,29 @@ function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	return '' !== $end_date && $end_date >= fisar_cdj_today();
 }
 
+/** Optional promotion deadline, validated independently of registration deadlines. */
+function fisar_cdj_sanitize_course_offer_end_date( mixed $value ): string {
+	if ( ! is_string( $value ) || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $value, $parts ) ) {
+		return '';
+	}
+	return checkdate( (int) $parts[2], (int) $parts[3], (int) $parts[1] ) ? $value : '';
+}
+
+/** Read-only offer state: no scheduled writes, price calculation or booking changes. */
+function fisar_cdj_get_course_offer( int $course_id ): array {
+	$hidden = array( 'active' => false, 'end_date' => '' );
+	$enabled = in_array( get_post_meta( $course_id, '_fisar_course_offer_enabled', true ), array( true, 1, '1' ), true );
+	if ( ! $enabled || 'available' !== fisar_cdj_get_course_booking_status( $course_id ) ) {
+		return $hidden;
+	}
+	$raw_date = get_post_meta( $course_id, '_fisar_course_offer_end_date', true );
+	$end_date = fisar_cdj_sanitize_course_offer_end_date( $raw_date );
+	if ( ( '' !== $raw_date && '' === $end_date ) || ( $end_date && $end_date < fisar_cdj_today() ) ) {
+		return $hidden;
+	}
+	return array( 'active' => true, 'end_date' => $end_date );
+}
+
 /** Normalized locality parts, with no orphan province when the city is absent. */
 function fisar_cdj_normalize_locality( string $city, string $province = '' ): array {
 	$city = trim( sanitize_text_field( $city ) );

@@ -129,6 +129,8 @@ Dal plugin `1.3.9`, nel box **Iscrizioni** degli Eventi trovi **Contatti WhatsAp
 
 ### Corsi
 
+Dal plugin `1.3.19` / tema `1.6.60`, nel box **Quota e dotazione** puoi attivare **Corso in offerta** e compilare **Fine offerta (facoltativa)**. La fascia sotto la locandina compare in home, elenco e dettaglio: **In offerta**, oppure **In offerta — Fino al [data]**. La data è inclusa; dal giorno successivo il banner sparisce, senza cancellare i dati. Senza data disattiva manualmente la spunta. Sold-out, lista d’attesa, iscrizioni chiuse e corso concluso nascondono il banner. Importi e condizioni restano nel campo **Quota di partecipazione** e non vengono modificati automaticamente; il termine d’iscrizione è separato. Corsi esistenti non attivati automaticamente.
+
 Dal menu **Corsi** puoi gestire Direttore, livello, date, sede, canali e termine di iscrizione, quota, tesseramento, dotazione e calendario. Un Corso con data di fine compilata è attivo finché questa non è precedente a oggi; questo stato è distinto dalla possibilità di iscriversi.
 
 Dal plugin `1.3.13`, il box **Sede** include **Link Google Maps**, facoltativo. Nel box **Iscrizioni** trovi **Disponibilità del corso** (Ordinaria, Sold-out, Sold-out con lista d’attesa), **Mostra avviso posti limitati** e più contatti WhatsApp, ciascuno con nominativo facoltativo e numero con o senza `+39`. Il contatto precedente resta disponibile senza migrazioni; il nuovo elenco viene salvato soltanto quando aggiorni il corso. Numero e mail restano leggibili accanto ai pulsanti.

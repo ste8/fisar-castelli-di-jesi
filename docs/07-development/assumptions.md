@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 7 ottobre 2026 — Offerta dei Corsi
+
+Richiesta di opzione e banner automatico, con scadenza facoltativa. Scelta esplicita: spunta più data, anziché dedurre l’offerta dal testo Early Bird della quota o dalla presenza di una data. Senza data la durata è manuale; con data si include il giorno indicato nel fuso del sito. Non segnalare offerte sui corsi conclusi o con iscrizioni non ordinarie (chiuse, sold-out o lista d’attesa). Banner in home, elenco e dettaglio; nessun importo scontato fornito o calcolato. Regole e campi nel plugin, presentazione nel tema; test con dati simulati, corsi reali non marcati in offerta. In presenza di future cache di pagina, la loro scadenza dovrà rispettare i cambi di stato giornalieri, come per le iscrizioni.
+
 ## 7 ottobre 2026 — Titoli dei Corsi e località nelle card
 
 - Approvata la separazione `Corso Sommelier` / `1° livello · Città (Provincia)` nell’elenco, con un unico livello visibile e pin davanti alla sede; pin/località estesi anche alle card Eventi. Provincia dal campo esistente, non da lookup geografico. Nessun pin per eventi solo online.

@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Offerte Corsi — plugin 1.3.19 / tema 1.6.60
+
+Due meta opzionali e un lettore di stato nel plugin: attivazione manuale e termine facoltativo inclusivo nel fuso WordPress, subordinati alla disponibilità ordinaria delle iscrizioni. Il tema legge `fisar_cdj_get_course_offer()` e riusa `course-offer.php` sotto la locandina in home, archivio e dettaglio. Nessuna logica temporale nel tema, migrazione, cron o calcolo delle quote. Dati di offerta salvati con marker e guardie esistenti; editor senza nuovi controlli non li cancellano. Le quote rimangono testo editoriale, non derivato dal banner.
+
 ### Identità dei Corsi — plugin 1.3.15 / tema 1.6.50
 
 Modalità titolo, default e composizione da livello/città/provincia sono nel plugin, con un unico titolo nativo `post_title`. Il tema legge `fisar_cdj_get_course_identity()` per separare nome e metadati nelle card standard dell’archivio, senza estrarli dal titolo libero; i nomi accessibili restano completi. Scelta esplicita Personalizzato per eccezioni. La visita dell’editor non modifica il titolo, e non ci sono migrazioni: la sincronizzazione avviene nel salvataggio autorizzato dei metabox, con preparazione del titolo classico e riallineamento dopo la richiesta metabox di Gutenberg. URL conservati.
