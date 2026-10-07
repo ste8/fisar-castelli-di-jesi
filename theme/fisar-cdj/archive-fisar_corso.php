@@ -1,10 +1,9 @@
 <?php get_header(); ?>
-<main id="main-content">
+<main id="main-content" class="courses-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
-			<p class="eyebrow">Formazione FISAR</p>
 			<h1>Corsi</h1>
-			<p>Percorsi per imparare a conoscere, degustare e raccontare il vino con competenza, senza perdere curiosità e piacere della condivisione.</p>
+			<p>Corsi per sommelier per conoscere e approfondire il mondo del vino.</p>
 		</div>
 	</header>
 	<section class="section" aria-labelledby="active-courses">
@@ -31,4 +30,3 @@
 	</section>
 </main>
 <?php get_footer(); ?>
-

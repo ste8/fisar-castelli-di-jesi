@@ -59,11 +59,20 @@ Dal plugin `1.3.2`, le etichette dei canali Eventi sono `Prenota via WhatsApp` e
 - Salvataggio con nonce/capability/autosave/revision esistenti e marker `_fisar_event_whatsapp_contacts_present`. Nuovo elenco salvato solo se il metabox è presente; gestione slash/apostrofi. Il primo numero/link è sincronizzato nel vecchio campo per i consumatori legacy, anche quando l’elenco viene svuotato. Un editor precedente senza marker non sovrascrive il nuovo elenco né il contatto legacy sincronizzato. Nessuna migrazione automatica o modifica ai Corsi.
 
 ## CPT Corsi
+Revisione `1.3.13`, prevalente sulle precedenti indicazioni “Corsi invariati” per queste funzionalità:
+
+- Meta privati singoli `_fisar_course_booking_status` (enum stringa `available`/`sold_out`/`waitlist`, default effettivo `available`), `_fisar_course_limited_seats` (booleano), `_fisar_course_maps_url` (HTTP/HTTPS) e `_fisar_course_whatsapp_contacts` (array ordinato `{name, value}`). Non esposti in REST, stesse capability dei meta esistenti.
+- `fisar_cdj_get_course_booking_status()` distingue corso concluso, chiusura tassativa e disponibilità editoriale. `fisar_cdj_get_course_registration_details()` centralizza stato/copy, scadenza canonica, nota flessibile e posti limitati. `fisar_cdj_get_registration_channels()` omette i canali per corso concluso, iscrizioni chiuse e sold-out semplice; lista d’attesa con le stesse destinazioni e label dedicate.
+- `fisar_cdj_has_registration_deadline_passed()` condiviso: termine tassativo, data canonica valida precedente a oggi, inclusività e fuso WordPress. Il wrapper Eventi mantiene il controllo `Iscrizione richiesta`; nei Corsi non viene aggiunto tale flag. Stato attivo/concluso basato sulla data di fine invariato.
+- Sanitizzatori di disponibilità e contatti, e lettore dei contatti, condivisi; wrapper pubblici Eventi conservati. Numero nazionale con paese predefinito `39` anche nei Corsi, nessuna conversione del dato salvato. Fallback dal singolo contatto precedente solo quando il nuovo elenco non esiste; elenco esplicitamente vuoto autorevole. Primo contatto sincronizzato nel legacy solo al salvataggio del nuovo metabox.
+- UI nativa con ripetitore WhatsApp, nominativo/numero distinti, aggiunta/rimozione, focus/feedback screen-reader e riga vuota senza JS. Maps e posti limitati protetti da marker; enum salvato solo se presente, elenco protetto dal proprio marker. Nonce/capability/autosave/revision esistenti. Nessuna migrazione o scrittura automatica nei dati reali.
+- Etichette `Iscriviti via WhatsApp`, `Iscriviti via mail`, `Termine iscrizioni` e `Tipo di termine data iscrizione`. Quota editoriale libera, tesseramento, dotazione, calendario/import e relazioni preservati. Non introdotte modalità online/ibrida o quote Soci/Non soci per i Corsi.
+
 Base: titolo, editor, featured image, Direttore del Corso.
 Livello: 1° / 2° / 3°.
 Date inizio/fine. Attivo se `data_fine >= oggi`, concluso altrimenti.
 Sede, indirizzo, città, provincia; inizialmente possono essere noti solo città/provincia.
-Iscrizioni: stessi canali degli Eventi + deadline e chiusura tassativa/flessibile. Nessun flag iscrizioni aperte/chiuse nella V1.
+Iscrizioni: stessi canali degli Eventi + deadline tassativa/flessibile; chiusura derivata dalla scadenza e disponibilità editoriale come nella revisione sopra, senza flag manuale aperto/chiuso.
 **Quota di partecipazione**: editor libero (standard, Early Bird, Under 25, gruppi, pagamenti).
 **Tesseramento FISAR**: editor libero separato.
 **Cosa comprende il corso**: editor libero (kit, manuali, calici, degustazioni, software, attestato).

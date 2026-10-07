@@ -1,5 +1,9 @@
 # Typography
 
+## Allineamento Corsi — v1.6.48
+
+Il 6 ottobre 2026, su richiesta dell’utente, archivio e dettaglio Corsi adottano la gerarchia Poppins degli Eventi: H1 500 da 32–44 px, sezioni archivio 32–40 px; corpo dettaglio 16–17 px, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px, grassetti 600. Etichette del riepilogo 16 px/600 maiuscole, scadenza 18 px nel riepilogo e 22 px nel pannello finale. Editor Corsi alla scala desktop corrispondente. Font già self-hosted, nessun asset remoto aggiunto. Questa revisione prevale sui riferimenti successivi al mantenimento dei titoli serif o della tipografia invariata dei Corsi; altre pagine non cambiano.
+
 ## Stato
 
 Approvato per la V1.

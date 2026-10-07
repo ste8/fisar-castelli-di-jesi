@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.47' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.49' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -59,7 +59,7 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
-	if ( is_front_page() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) {
+	if ( is_front_page() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) || is_post_type_archive( Fisar_CDJ_Post_Types::COURSE ) ) {
 		wp_enqueue_script( 'fisar-cdj-event-dates', get_template_directory_uri() . '/assets/js/event-dates.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
 }
@@ -372,6 +372,15 @@ function fisar_cdj_theme_format_event_fee( string $fee ): string {
 	}
 
 	return $fee;
+}
+
+/** Add currency only to a bare course amount; rich pricing conditions stay intact. */
+function fisar_cdj_theme_format_course_fee( string $fee ): string {
+	$fee = trim( $fee );
+	if ( preg_match( '/^<p>\s*([0-9]+(?:[.,][0-9]+)*)\s*<\/p>$/', $fee, $matches ) ) {
+		return '<p>' . fisar_cdj_theme_format_event_fee( $matches[1] ) . '</p>';
+	}
+	return fisar_cdj_theme_format_event_fee( $fee );
 }
 
 function fisar_cdj_theme_format_date( string $date ): string {

@@ -1842,36 +1842,36 @@ blockquote {
 	}
 }
 
-/* Event archive and detail: same Poppins hierarchy as home and Values. */
-.events-archive .page-hero,
-.single-event .content-hero {
+/* Event and course archives and details: same Poppins hierarchy as home and Values. */
+:is(.events-archive, .courses-archive) .page-hero,
+:is(.single-event, .single-course) .content-hero {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 	border-bottom: 1px solid var(--color-line);
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
-.events-archive .page-hero {
+:is(.events-archive, .courses-archive) .page-hero {
 	padding-block: clamp(2rem, 4vw, 3rem);
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
 }
 
-.events-archive .page-hero h1 {
+:is(.events-archive, .courses-archive) .page-hero h1 {
 	color: var(--color-paper);
 }
 
-.events-archive .page-hero__inner > p:last-child {
+:is(.events-archive, .courses-archive) .page-hero__inner > p:last-child {
 	color: var(--color-line);
 }
 
-.events-archive .page-hero__inner {
+:is(.events-archive, .courses-archive) .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
 }
 
-.events-archive .page-hero h1,
-.single-event .content-hero h1 {
+:is(.events-archive, .courses-archive) .page-hero h1,
+:is(.single-event, .single-course) .content-hero h1 {
 	position: relative;
 	margin-bottom: 1.25rem;
 	padding-bottom: .5em;
@@ -1883,8 +1883,8 @@ blockquote {
 	text-wrap: balance;
 }
 
-.events-archive .page-hero h1::after,
-.single-event .content-hero h1::after {
+:is(.events-archive, .courses-archive) .page-hero h1::after,
+:is(.single-event, .single-course) .content-hero h1::after {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1894,8 +1894,8 @@ blockquote {
 	content: '';
 }
 
-.events-archive .page-hero__inner > p:last-child,
-.single-event .content-hero__lead {
+:is(.events-archive, .courses-archive) .page-hero__inner > p:last-child,
+:is(.single-event, .single-course) .content-hero__lead {
 	max-width: 46rem;
 	font-family: var(--font-body);
 	font-size: clamp(1rem, 1.4vw, 1.125rem);
@@ -1903,58 +1903,58 @@ blockquote {
 	line-height: 1.7;
 }
 
-.events-archive .section {
+:is(.events-archive, .courses-archive) .section {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
-.events-archive .section-heading h2 {
+:is(.events-archive, .courses-archive) .section-heading h2 {
 	font-family: var(--font-body);
 	font-size: clamp(2rem, 4vw, 2.5rem);
 	font-weight: 500;
 	line-height: 1.2;
 }
 
-.events-archive .event-card,
-.single-event .content-hero__media--poster {
+:is(.events-archive, .courses-archive) .event-card,
+:is(.single-event, .single-course) .content-hero__media--poster {
 	border: 1px solid var(--color-line);
 	border-radius: var(--radius-small);
 	background: var(--color-paper);
 	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
 }
 
-.events-archive .event-card__media {
+:is(.events-archive, .courses-archive) .event-card__media {
 	padding: .5rem;
 	background: var(--color-paper);
 }
 
-.events-archive .event-card__image {
+:is(.events-archive, .courses-archive) .event-card__image {
 	border-radius: 0;
 }
 
-.events-archive .event-card__body {
+:is(.events-archive, .courses-archive) .event-card__body {
 	padding: 1.25rem;
 }
 
-.events-archive .event-card__title {
+:is(.events-archive, .courses-archive) .event-card__title {
 	font-size: clamp(1.25rem, 2vw, 1.5rem);
 }
 
-.single-event .content-hero__copy {
+:is(.single-event, .single-course) .content-hero__copy {
 	min-width: 0;
 }
 
-.single-event .back-link {
+:is(.single-event, .single-course) .back-link {
 	margin-bottom: 1.25rem;
 	font-weight: 500;
 }
 
-.single-event .event-poster {
+:is(.single-event, .single-course) .event-poster {
 	width: 100%;
 	max-width: 32rem;
 	margin-inline: auto;
 }
 
-.single-event .content-hero__media--poster {
+:is(.single-event, .single-course) .content-hero__media--poster {
 	width: 100%;
 	max-width: none;
 	aspect-ratio: 1;
@@ -1990,39 +1990,39 @@ blockquote {
 	border-radius: var(--radius-small);
 }
 
-.single-event .hero-facts {
+:is(.single-event, .single-course) .hero-facts {
 	margin-top: 1.5rem;
 	font-size: .9375rem;
 }
 
-.single-event .hero-facts li {
+:is(.single-event, .single-course) .hero-facts li {
 	grid-template-columns: 5.5rem minmax(0, 1fr);
 	border-color: var(--color-line);
 }
 
-.single-event .hero-facts > li > strong,
-.single-event .details-list dt {
+:is(.single-event, .single-course) .hero-facts > li > strong,
+:is(.single-event, .single-course) .details-list dt {
 	font-size: 1rem;
 	font-weight: 600;
 	letter-spacing: .05em;
 	text-transform: uppercase;
 }
 
-.single-event .content-layout {
+:is(.single-event, .single-course) .content-layout {
 	grid-template-columns: minmax(0, 1fr);
 	max-width: 48rem;
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 	gap: 2.5rem;
 }
 
-.single-event .event-registration-link {
+:is(.single-event, .single-course) .event-registration-link {
 	display: inline-flex;
 	align-items: center;
 	margin-top: 1.25rem;
 	gap: .5rem;
 }
 
-.single-event .event-schedule {
+:is(.single-event, .single-course) .event-schedule {
 	display: grid;
 	grid-template-columns: none;
 	grid-auto-flow: column;
@@ -2032,20 +2032,20 @@ blockquote {
 }
 
 /* Exclude the nested time groups from the definition-list row styling. */
-.single-event .details-list .event-schedule,
-.single-event .details-list .event-schedule__item {
+:is(.single-event, .single-course) .details-list .event-schedule,
+:is(.single-event, .single-course) .details-list .event-schedule__item {
 	padding: 0;
 	border: 0;
 }
 
-.single-event .event-schedule .event-schedule__item {
+:is(.single-event, .single-course) .event-schedule .event-schedule__item {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	grid-template-rows: 1fr auto;
 	gap: .2rem;
 }
 
-.single-event .event-schedule__label {
+:is(.single-event, .single-course) .event-schedule__label {
 	color: var(--color-muted);
 	font-size: .875rem;
 	font-weight: 500;
@@ -2053,7 +2053,7 @@ blockquote {
 	overflow-wrap: anywhere;
 }
 
-.single-event .event-schedule__time {
+:is(.single-event, .single-course) .event-schedule__time {
 	font-size: 1rem;
 	font-weight: 600;
 	font-variant-numeric: tabular-nums;
@@ -2061,22 +2061,22 @@ blockquote {
 	white-space: nowrap;
 }
 
-.single-event .event-location {
+:is(.single-event, .single-course) .event-location {
 	display: block;
 	min-width: 0;
 	overflow-wrap: anywhere;
 }
 
-.single-event .event-location > span {
+:is(.single-event, .single-course) .event-location > span {
 	display: block;
 }
 
-.single-event .event-location > :not(:first-child) {
+:is(.single-event, .single-course) .event-location > :not(:first-child) {
 	margin-top: .25rem;
 }
 
-.single-event .event-location__name,
-.single-event .hero-facts .event-location__name {
+:is(.single-event, .single-course) .event-location__name,
+:is(.single-event, .single-course) .hero-facts .event-location__name {
 	display: block;
 	color: var(--color-ink);
 	font-size: 1rem;
@@ -2086,7 +2086,7 @@ blockquote {
 	text-transform: none;
 }
 
-.single-event .event-location > .event-location__hybrid {
+:is(.single-event, .single-course) .event-location > .event-location__hybrid {
 	display: grid;
 	gap: .1rem;
 	width: fit-content;
@@ -2103,7 +2103,7 @@ blockquote {
 	line-height: 1.5;
 }
 
-.single-event .event-location .event-location__hybrid strong {
+:is(.single-event, .single-course) .event-location .event-location__hybrid strong {
 	color: inherit;
 	font-size: .875rem;
 	font-weight: 700;
@@ -2112,25 +2112,25 @@ blockquote {
 	text-transform: uppercase;
 }
 
-.single-event .event-location__map {
+:is(.single-event, .single-course) .event-location__map {
 	max-width: 100%;
 	font-size: .9375rem;
 	line-height: 1.4;
 }
 
 @media (max-width: 37.999rem) {
-	.single-event .hero-facts .event-schedule-row {
+	:is(.single-event, .single-course) .hero-facts .event-schedule-row {
 		grid-template-columns: minmax(0, 1fr);
 		gap: .5rem;
 	}
 }
 
-.single-event .prose {
+:is(.single-event, .single-course) .prose {
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
-.single-event .prose :is(h2, h3, h4, h5, h6),
-.single-event .registration-box :is(h2, h3) {
+:is(.single-event, .single-course) .prose :is(h2, h3, h4, h5, h6),
+:is(.single-event, .single-course) .registration-box :is(h2, h3) {
 	font-family: var(--font-body);
 	font-weight: 500;
 	line-height: 1.35;
@@ -2138,39 +2138,39 @@ blockquote {
 	text-wrap: initial;
 }
 
-.single-event .prose h2,
-.single-event .registration-box h2 {
+:is(.single-event, .single-course) .prose h2,
+:is(.single-event, .single-course) .registration-box h2 {
 	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
 }
 
-.single-event .prose h3 {
+:is(.single-event, .single-course) .prose h3 {
 	font-size: 1.25rem;
 }
 
-.single-event .prose h4 {
+:is(.single-event, .single-course) .prose h4 {
 	font-size: 1.125rem;
 }
 
-.single-event .prose :is(h5, h6) {
+:is(.single-event, .single-course) .prose :is(h5, h6) {
 	font-size: 1.0625rem;
 }
 
-.single-event .prose strong,
-.single-event .registration-box strong {
+:is(.single-event, .single-course) .prose strong,
+:is(.single-event, .single-course) .registration-box strong {
 	font-weight: 600;
 }
 
-.single-event .details-list > div {
+:is(.single-event, .single-course) .details-list > div {
 	grid-template-columns: minmax(0, 1fr);
 	gap: .35rem;
 }
 
-.single-event .details-list dd,
-.single-event .registration-box {
+:is(.single-event, .single-course) .details-list dd,
+:is(.single-event, .single-course) .registration-box {
 	overflow-wrap: anywhere;
 }
 
-.single-event .registration-box {
+:is(.single-event, .single-course) .registration-box {
 	position: static;
 	margin-top: 2.5rem;
 	border: 1px solid var(--color-gold);
@@ -2182,27 +2182,27 @@ blockquote {
 	scroll-margin-top: 2rem;
 }
 
-.single-event .registration-box > :last-child {
+:is(.single-event, .single-course) .registration-box > :last-child {
 	margin-bottom: 0;
 }
 
-.single-event .registration-intro--open {
+:is(.single-event, .single-course) .registration-intro--open {
 	font-size: 1.125rem;
 	line-height: 1.6;
 }
 
-.single-event .registration-box :is(h2, h3) {
+:is(.single-event, .single-course) .registration-box :is(h2, h3) {
 	margin: 0 0 1rem;
 	padding: 0;
 }
 
-.single-event .registration-box .registration-fees h3 {
+:is(.single-event, .single-course) .registration-box .registration-fees h3 {
 	margin-bottom: .6rem;
 	font-size: 1.25rem;
 	font-weight: 600;
 }
 
-.event-card .event-card__booking-status {
+:is(.event-card, .course-card) .event-card__booking-status {
 	margin: 0 0 .75rem;
 	padding: .35rem .6rem;
 	border-left: 3px solid var(--color-gold);
@@ -2214,7 +2214,7 @@ blockquote {
 	line-height: 1.5;
 }
 
-.single-event .registration-deadline {
+:is(.single-event, .single-course) .registration-deadline {
 	margin: 1.25rem 0;
 	padding: 1rem;
 	border: 1px solid var(--color-gold);
@@ -2224,19 +2224,19 @@ blockquote {
 	color: var(--color-bordeaux);
 }
 
-.single-event .registration-deadline__heading {
+:is(.single-event, .single-course) .registration-deadline__heading {
 	display: flex;
 	align-items: center;
 	gap: .75rem;
 }
 
-.single-event .registration-deadline svg {
+:is(.single-event, .single-course) .registration-deadline svg {
 	width: 1.5rem;
 	height: 1.5rem;
 	flex-shrink: 0;
 }
 
-.single-event .registration-deadline__heading p {
+:is(.single-event, .single-course) .registration-deadline__heading p {
 	min-width: 0;
 	margin: 0;
 	font-size: 1.375rem;
@@ -2244,31 +2244,31 @@ blockquote {
 	line-height: 1.4;
 }
 
-.single-event .registration-deadline__heading span,
-.single-event .registration-deadline time {
+:is(.single-event, .single-course) .registration-deadline__heading span,
+:is(.single-event, .single-course) .registration-deadline time {
 	display: inline;
 	font: inherit;
 }
 
-.single-event .registration-deadline .registration-deadline-note {
+:is(.single-event, .single-course) .registration-deadline .registration-deadline-note {
 	margin: .85rem 0 0;
 	color: var(--color-ink);
 	font-size: .875rem;
 	line-height: 1.65;
 }
 
-.single-event .registration-deadline--summary {
+:is(.single-event, .single-course) .registration-deadline--summary {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	background: transparent;
 }
 
-.single-event .registration-deadline--summary .registration-deadline__heading p {
+:is(.single-event, .single-course) .registration-deadline--summary .registration-deadline__heading p {
 	font-size: 1.125rem;
 }
 
-.single-event .event-limited-seats {
+:is(.single-event, .single-course) .event-limited-seats {
 	margin: .85rem 0 0;
 	padding: 1rem;
 	border-left: 4px solid var(--color-crimson);
@@ -2278,7 +2278,7 @@ blockquote {
 	line-height: 1.6;
 }
 
-.single-event .event-limited-seats strong {
+:is(.single-event, .single-course) .event-limited-seats strong {
 	color: inherit;
 	font-size: inherit;
 	font-weight: 600;
@@ -2287,13 +2287,13 @@ blockquote {
 	text-transform: none;
 }
 
-.single-event .registration-fees {
+:is(.single-event, .single-course) .registration-fees {
 	margin-block: 1.5rem;
 	padding-block: 1rem;
 	border-block: 1px solid var(--color-line);
 }
 
-.single-event .event-fees {
+:is(.single-event, .single-course) .event-fees {
 	display: grid;
 	grid-template-columns: minmax(5rem, max-content) minmax(4rem, 1fr);
 	align-items: baseline;
@@ -2301,21 +2301,21 @@ blockquote {
 }
 
 /* All labels size one shared column; the wrappers contain no additional semantics. */
-.single-event .event-fees__row {
+:is(.single-event, .single-course) .event-fees__row {
 	display: contents;
 }
 
-.single-event .event-fees__row > span:first-child {
+:is(.single-event, .single-course) .event-fees__row > span:first-child {
 	grid-column: 1;
 }
 
-.single-event .event-fees__row > strong {
+:is(.single-event, .single-course) .event-fees__row > strong {
 	grid-column: 2;
 	color: var(--color-bordeaux);
 	text-align: left;
 }
 
-.single-event .event-fees__note {
+:is(.single-event, .single-course) .event-fees__note {
 	display: block;
 	grid-column: 1 / -1;
 	color: var(--color-ink);
@@ -2324,26 +2324,26 @@ blockquote {
 	white-space: pre-line;
 }
 
-.single-event .registration-channels {
+:is(.single-event, .single-course) .registration-channels {
 	margin: 1rem 0 0;
 	padding: 0;
 	gap: 1.25rem;
 }
 
-.single-event .registration-channels li {
+:is(.single-event, .single-course) .registration-channels li {
 	margin: 0;
 }
 
-.single-event .registration-contact {
+:is(.single-event, .single-course) .registration-contact {
 	margin: 0 0 .6rem;
 	line-height: 1.5;
 }
 
-.single-event .registration-contact strong {
+:is(.single-event, .single-course) .registration-contact strong {
 	display: block;
 }
 
-.single-event .registration-box .registration-contact__label {
+:is(.single-event, .single-course) .registration-box .registration-contact__label {
 	margin-bottom: .25rem;
 	margin-top: 0;
 	color: var(--color-ink);
@@ -2351,24 +2351,24 @@ blockquote {
 	font-weight: 600;
 }
 
-.single-event .registration-box .registration-methods h3 {
+:is(.single-event, .single-course) .registration-box .registration-methods h3 {
 	font-size: 1.25rem;
 	font-weight: 600;
 }
 
-.single-event .registration-methods {
+:is(.single-event, .single-course) .registration-methods {
 	margin-block: 1.5rem;
 	padding-top: 1.25rem;
 	border-top: 1px solid var(--color-line);
 }
 
 /* The preceding fees block already supplies the separator when there is no intro. */
-.single-event .registration-fees + .registration-methods {
+:is(.single-event, .single-course) .registration-fees + .registration-methods {
 	padding-top: 0;
 	border-top: 0;
 }
 
-.single-event .hero-facts .event-deadline-row {
+:is(.single-event, .single-course) .hero-facts .event-deadline-row {
 	padding: 1rem;
 	border: 1px solid var(--color-gold);
 	border-left-width: 4px;
@@ -2376,31 +2376,109 @@ blockquote {
 	background: var(--color-tint);
 }
 
-.single-event .hero-facts .event-deadline-row {
+:is(.single-event, .single-course) .hero-facts .event-deadline-row {
 	grid-template-columns: minmax(0, 1fr);
 	gap: .35rem;
 }
 
-.single-event .hero-facts .event-deadline-row .event-registration-link {
+:is(.single-event, .single-course) .hero-facts .event-deadline-row .event-registration-link {
 	justify-self: start;
 	margin-top: .75rem;
 }
 
-.single-event .related-course {
+:is(.single-event, .single-course) .related-course {
 	margin-top: 2.5rem;
 	border-left-width: 3px;
 	background: var(--color-tint);
 }
 
 @media (min-width: 38rem) {
-	.single-event .registration-channels {
+	:is(.single-event, .single-course) .registration-channels {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.single-event .details-list > div {
+	:is(.single-event, .single-course) .details-list > div {
 		grid-template-columns: minmax(8rem, .32fr) minmax(0, 1fr);
 		gap: 1rem;
 	}
+}
+
+/* Course cards keep the compact home composition, without cropping their artwork. */
+.single-course .hero-facts li:not(.event-deadline-row) {
+	grid-template-columns: 7rem minmax(0, 1fr);
+}
+
+.single-course .registration-fees {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+.course-card__visual {
+	min-width: 0;
+}
+
+.course-card .course-card__media {
+	aspect-ratio: 1;
+	height: auto;
+	padding: .35rem;
+	background: var(--color-paper);
+}
+
+.course-card .course-card__image,
+.single-course .single-course-image {
+	object-fit: contain;
+}
+
+.course-card:hover .course-card__image {
+	transform: none;
+}
+
+.courses-archive .course-card {
+	display: flex;
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-small);
+	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
+}
+
+.courses-archive .course-card__body {
+	padding: 1.25rem;
+}
+
+.courses-archive .course-card__title {
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.course-grid--home .course-card__meta,
+.course-grid--home .course-card__dates {
+	display: flex;
+}
+
+.course-grid--home .course-card__meta {
+	flex-wrap: wrap;
+	gap: .35rem;
+}
+
+.course-grid--home .course-card__dates {
+	font-size: .875rem;
+}
+
+.course-card__end {
+	margin: 0 0 .6rem;
+	color: var(--color-muted);
+	font-size: .9375rem;
+}
+
+.course-grid--home .event-sold-out {
+	padding: .5rem .25rem;
+}
+
+.course-grid--home .event-sold-out strong {
+	font-size: .875rem;
+	letter-spacing: .03em;
+}
+
+.course-grid--home .event-sold-out span {
+	font-size: .75rem;
 }
 
 .post-navigation {
@@ -2672,7 +2750,8 @@ blockquote {
 		display: none;
 	}
 
-	.event-grid {
+	.event-grid,
+	.course-grid:not(.course-grid--home) {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
@@ -2808,10 +2887,6 @@ blockquote {
 
 	.course-grid--home {
 		grid-template-columns: 1fr;
-	}
-
-	.course-grid:not(.course-grid--home) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.course-card {
@@ -2973,7 +3048,7 @@ blockquote {
 	.section-heading h2::after,
 	.section-heading h1::after,
 	.page-hero h1::after,
-	.single-event .content-hero h1::after {
+	:is(.single-event, .single-course) .content-hero h1::after {
 		background: CanvasText;
 	}
 }

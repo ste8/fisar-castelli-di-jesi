@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FISAR Castelli di Jesi — Core
  * Description: Contenuti, campi, relazioni e logiche di dominio del sito FISAR Castelli di Jesi.
- * Version: 1.3.12
+ * Version: 1.3.13
  * Requires at least: 6.7
  * Requires PHP: 8.1
  * Author: FISAR Castelli di Jesi
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_CORE_VERSION', '1.3.12' );
+define( 'FISAR_CDJ_CORE_VERSION', '1.3.13' );
 define( 'FISAR_CDJ_CORE_FILE', __FILE__ );
 define( 'FISAR_CDJ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FISAR_CDJ_CORE_URL', plugin_dir_url( __FILE__ ) );

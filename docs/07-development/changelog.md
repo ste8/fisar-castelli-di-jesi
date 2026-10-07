@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.6.49 — Dimensioni delle card nell’archivio Corsi
+
+- Allineata la griglia Corsi a quella Eventi: tre colonne da 832 px, due da 608 px e una su mobile. Riutilizzata la stessa regola desktop e rimosso l’override a due colonne sulle larghezze maggiori, secondo la skill `clean-code-engineer`. Immagini quadrate, contenuti e tipografia invariati; home e dettaglio non modificati.
+- Tema/asset `1.6.49`, specifica aggiornata. Plugin, dati e precedenti modifiche preservati; nessun commit automatico.
+- Verificati lint PHP, sintassi JS, HTTP pagina/CSS e `git diff --check`. Confronto browser Corsi/Eventi/home a 1440/1024/832/831/768/608/607/390/320 px: larghezze delle card dei due archivi identiche, transizioni dei breakpoint corrette, home invariata, nessun overflow, immagine rotta o errore console. Review visiva e screenshot della griglia desktop.
+
+## v1.6.48 — Corsi allineati agli Eventi
+
+- Tema `1.6.48`: archivio con fascia compatta scura, dettaglio con hero chiara, titoli/corpo/editor Poppins e immagini quadrate intere su bianco. Sede, indirizzo, città/provincia e Maps nei due riepiloghi; un solo pannello finale Iscrizione con scorciatoia e focus da tastiera. Quota, tesseramento e dotazione distinti; condizioni editoriali libere conservate, € automatico solo per importi isolati. Calendario/import, relatori/note e relazioni con Eventi invariati.
+- Plugin `1.3.13`: disponibilità ordinaria/sold-out/lista d’attesa, posti limitati, Maps opzionale e contatti WhatsApp ripetibili con nominativo/numero con o senza +39. Meta privati, sanitizzatori condivisi, marker e protezioni native del salvataggio; fallback dal numero precedente senza migrazioni o scritture automatiche. Termine tassativo superato chiude le iscrizioni; corso concluso prioritario. Corso attivo distinto da iscrizioni aperte. Stessi canali per la lista d’attesa, senza raccolta delle richieste nel sito.
+- Home: card compatte con livello, inizio e disponibilità, fino a tre corsi; link Tutti i corsi sempre presente, totale quando eccede tre e stato vuoto funzionante. Componenti contatti, luogo, scadenza, posti limitati e sold-out riusati con gli Eventi; date adattive anche nell’archivio Corsi. Nessuna modalità online/ibrida o quote Soci/Non soci imposte ai Corsi.
+- Skill `software-architect` e `clean-code-engineer`: separate regole di dominio e presentazione, preservate specificità Corsi e API Eventi, condivisi soltanto componenti/regole pertinenti. README e specifiche aggiornati; nessuna dipendenza, contenuto reale modificato o commit automatico.
+- Verifiche native: lint PHP, sintassi JS e `git diff --check`; 20 varianti Corsi (scadenze, stati, sedi parziali/assenti/lunghe, canali, quota zero), sanitizzatori/meta, sei formati quota, fallback legacy/elenco vuoto e otto salvataggi intercettati. Home con 0/1/3/4/7 corsi e import calendario; regressioni Eventi su sold-out, scadenze, accesso online e luogo. Vecchia aspettativa “Corsi invariati” del test scadenze aggiornata alla nuova specifica. Nessuna scrittura persistente durante i test.
+- Browser: home, archivio, dettaglio attivo/concluso e cinque anteprime native a 1440/768/390/320 px; nessun overflow della pagina, font e immagini non ritagliate, tabella contenuta. Card home sold-out/lista d’attesa, repeater WhatsApp da tastiera, ID univoci e focus della scorciatoia verificati. Controlli HTTP/asset e review visiva desktop/mobile. Nessun login, salvataggio amministrativo o apertura di canali esterni; anteprime con dati di esempio.
+
 ## v1.6.47 — Evento ibrido prima della sede
 
 - Raffinato il componente condiviso Luogo: riquadro `EVENTO IBRIDO` / `In presenza e online` sopra la sede, in hero e informazioni pratiche, anziché Anche online sotto. Titolo 14 px/700 e testo 16 px/600, su due righe, con accento oro e bordeaux; nessuna ripetizione In presenza se manca la sede. `Online` a 16 px/600 in grassetto semantico in entrambi i riepiloghi. Regole di accesso, Maps, plugin/dati e Corsi invariati.

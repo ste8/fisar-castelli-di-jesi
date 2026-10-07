@@ -97,7 +97,11 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_course_address'            => 'string',
 			'_fisar_course_city'               => 'string',
 			'_fisar_course_province'           => 'string',
+			'_fisar_course_maps_url'           => 'string',
 			'_fisar_course_whatsapp'           => 'string',
+			'_fisar_course_whatsapp_contacts'  => 'array',
+			'_fisar_course_booking_status'     => 'string',
+			'_fisar_course_limited_seats'      => 'boolean',
 			'_fisar_course_email'              => 'string',
 			'_fisar_course_phone'              => 'string',
 			'_fisar_course_form_url'           => 'string',
@@ -137,13 +141,13 @@ final class Fisar_CDJ_Post_Types {
 				if ( '_fisar_event_online_access_public' === $key ) {
 					return in_array( $value, array( true, 1, '1' ), true );
 				}
-				if ( '_fisar_event_booking_status' === $key ) {
-					return fisar_cdj_sanitize_event_booking_status( $value );
+				if ( in_array( $key, array( '_fisar_event_booking_status', '_fisar_course_booking_status' ), true ) ) {
+					return fisar_cdj_sanitize_booking_status( $value );
 				}
-				if ( '_fisar_event_whatsapp_contacts' === $key ) {
-					return fisar_cdj_sanitize_event_whatsapp_contacts( $value );
+				if ( in_array( $key, array( '_fisar_event_whatsapp_contacts', '_fisar_course_whatsapp_contacts' ), true ) ) {
+					return fisar_cdj_sanitize_whatsapp_contacts( $value );
 				}
-				if ( '_fisar_event_whatsapp' === $key && is_string( $value ) && preg_match( '#^https?://#i', trim( $value ) ) ) {
+				if ( in_array( $key, array( '_fisar_event_whatsapp', '_fisar_course_whatsapp' ), true ) && is_string( $value ) && preg_match( '#^https?://#i', trim( $value ) ) ) {
 					return esc_url_raw( trim( $value ), array( 'http', 'https' ) );
 				}
 				if ( '_fisar_event_fee_options' === $key ) {
@@ -152,7 +156,7 @@ final class Fisar_CDJ_Post_Types {
 				if ( '_fisar_event_fee_note' === $key ) {
 					return is_string( $value ) ? sanitize_textarea_field( $value ) : '';
 				}
-				if ( '_fisar_event_maps_url' === $key ) {
+				if ( in_array( $key, array( '_fisar_event_maps_url', '_fisar_course_maps_url' ), true ) ) {
 					return is_string( $value ) ? esc_url_raw( $value, array( 'http', 'https' ) ) : '';
 				}
 				if ( 'boolean' === $type ) {
