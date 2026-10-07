@@ -1,5 +1,9 @@
 # Pagina Corso
 
+## Un solo riepilogo pratico — v1.6.57
+
+Rimossa la sezione generata `Informazioni pratiche` dal corpo: ripeteva livello, direttore, inizio/fine e luogo già presenti nella hero. Questi dati restano nell’editor e nel riepilogo iniziale, con livello nella fascia sopra il titolo, indirizzo/città/provincia e Maps facoltativo. Descrizione completa seguita direttamente dal calendario, se presente; Eventi collegati e pannello `Informazioni e iscrizioni` conservati. Intervento sui soli Corsi attivi/conclusi: Eventi, home e archivio invariati. Prevale sui riferimenti precedenti al riepilogo inferiore.
+
 ## Contatto per informazioni e iscrizioni — v1.6.56 / plugin v1.3.17
 
 Il corso non è presentato come un’iscrizione immediata tramite i pulsanti: pannello finale e scorciatoia ordinaria `Informazioni e iscrizioni`. Con iscrizioni disponibili e contatti compilati, introduzione `Contattaci per conoscere meglio il corso e ricevere tutte le informazioni per iscriverti.` Sezione canali `Contattaci`, pulsanti `Contattaci via WhatsApp` / `Contattaci via mail`, recapiti e nominativi completi; telefono per informazioni invariato. L’eventuale modulo editoriale conserva il suo URL, con CTA neutra `Apri il modulo`: non si presume una specifica procedura esterna né una conferma automatica.
