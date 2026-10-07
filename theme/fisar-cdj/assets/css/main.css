@@ -2482,6 +2482,7 @@ blockquote {
 }
 
 .courses-archive .course-card__identity,
+.courses-archive .course-card__title:not(.course-card__title--intro),
 .events-archive .event-card__title,
 .event-grid--home .event-card__title {
 	width: 100%;

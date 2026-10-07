@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.58 — Separatore nei Corsi con titolo personalizzato
+
+- Corretta l’assenza della linea nelle card Personalizzato dell’archivio Corsi: stessa regola decorativa, sotto il titolo libero anziché sotto la riga identitaria delle card automatiche. Testo, nomi accessibili, home/dettaglio e dati conservati.
+- Skill `clean-code-engineer`: aggiunto un solo selettore alla regola condivisa, senza cambiare markup, plugin o dipendenze. Tema/asset `1.6.58`; nessun commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP archivio/CSS e `git diff --check`; regressioni native dell’identità Corsi senza scritture nel database. Browser a 1440/768/390/320 px: un solo separatore nelle card automatiche e personalizzate, home invariata, nessun overflow o immagine fallita; console senza errori. Review visiva e screenshot dell’archivio.
+
 ## v1.6.57 — Eliminato il riepilogo duplicato dei Corsi
 
 - Rimossa dal dettaglio Corsi la sezione generata `Informazioni pratiche`, senza toccare il contenuto editoriale. Livello, direttore, date, sede/indirizzo/città/provincia e Maps rimangono in alto; calendario, Eventi collegati e pannello finale `Informazioni e iscrizioni` conservati.
