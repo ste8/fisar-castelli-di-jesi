@@ -31,12 +31,12 @@ $details = fisar_cdj_get_course_registration_details( $course_id );
 			<span class="status <?php echo $active ? 'status--active' : 'status--past'; ?>"><?php echo $active ? 'Attivo' : 'Concluso'; ?></span>
 		</div>
 		<?php if ( 'closed' === $details['status'] ) : ?><p class="event-card__booking-status"><?php echo esc_html( $details['status_notice'] ); ?></p><?php endif; ?>
-		<h3 class="course-card__title"><a href="<?php the_permalink(); ?>"<?php if ( $structured ) : ?> aria-label="<?php echo esc_attr( $card_title ); ?>"<?php endif; ?>><?php echo esc_html( $structured ? $identity['name'] : $card_title ); ?></a></h3>
+		<h3 class="course-card__title<?php echo $structured ? ' course-card__title--intro' : ''; ?>"><a href="<?php the_permalink(); ?>"<?php if ( $structured ) : ?> aria-label="<?php echo esc_attr( $card_title ); ?>"<?php endif; ?>><?php echo esc_html( $structured ? $identity['name'] : $card_title ); ?></a></h3>
 		<?php if ( $structured && ( $identity['level'] || $identity['city'] ) ) : ?>
 			<p class="course-card__identity">
 				<?php if ( $identity['level'] ) : ?><strong class="course-card__level"><?php echo esc_html( $identity['level'] ); ?></strong><?php endif; ?>
 				<?php if ( $identity['level'] && $identity['city'] ) : ?><span aria-hidden="true">·</span><?php endif; ?>
-				<?php if ( $identity['city'] ) : ?><span><?php echo esc_html( $identity['city'] ); ?></span><?php endif; ?>
+				<?php if ( $identity['city'] ) : ?><span class="course-card__locality"><?php echo esc_html( $identity['city_name'] ); ?><?php if ( $identity['province'] ) : ?> <span class="course-card__province">(<?php echo esc_html( $identity['province'] ); ?>)</span><?php endif; ?></span><?php endif; ?>
 			</p>
 		<?php endif; ?>
 		<?php if ( $start ) : ?>

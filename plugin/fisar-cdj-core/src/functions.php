@@ -35,11 +35,17 @@ function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	return '' !== $end_date && $end_date >= fisar_cdj_today();
 }
 
-/** Locality used in course identities and public card locations. */
-function fisar_cdj_format_city( string $city, string $province = '' ): string {
+/** Normalized locality parts, with no orphan province when the city is absent. */
+function fisar_cdj_normalize_locality( string $city, string $province = '' ): array {
 	$city = trim( sanitize_text_field( $city ) );
 	$province = strtoupper( substr( preg_replace( '/[^a-z]/i', '', $province ), 0, 2 ) );
-	return '' === $city ? '' : $city . ( '' !== $province ? ' (' . $province . ')' : '' );
+	return array( 'city' => $city, 'province' => '' === $city ? '' : $province );
+}
+
+/** Locality used in course identities and public card locations. */
+function fisar_cdj_format_city( string $city, string $province = '' ): string {
+	$locality = fisar_cdj_normalize_locality( $city, $province );
+	return $locality['city'] . ( '' !== $locality['province'] ? ' (' . $locality['province'] . ')' : '' );
 }
 
 function fisar_cdj_sanitize_course_title_mode( mixed $value ): string {
@@ -70,12 +76,15 @@ function fisar_cdj_get_course_identity( int $course_id ): array {
 	$level = (string) get_post_meta( $course_id, '_fisar_course_level', true );
 	$city = (string) get_post_meta( $course_id, '_fisar_course_city', true );
 	$province = (string) get_post_meta( $course_id, '_fisar_course_province', true );
+	$locality = fisar_cdj_normalize_locality( $city, $province );
 	$automatic = 'automatic' === fisar_cdj_get_course_title_mode( $course_id );
 	return array(
 		'automatic' => $automatic,
 		'name'      => $automatic ? 'Corso Sommelier' : get_the_title( $course_id ),
 		'level'     => in_array( $level, array( '1', '2', '3' ), true ) ? $level . '° livello' : '',
 		'city'      => fisar_cdj_format_city( $city, $province ),
+		'city_name' => $locality['city'],
+		'province'  => $locality['province'],
 		'title'     => $automatic ? fisar_cdj_compose_course_title( $level, $city, $province ) : get_the_title( $course_id ),
 	);
 }

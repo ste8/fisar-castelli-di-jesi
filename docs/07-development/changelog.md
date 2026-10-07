@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.6.51 / plugin v1.3.16 — Livello e città in primo piano
+
+- Nelle sole card automatiche dell’archivio Corsi, `Corso Sommelier` ridotto a introduzione 16–18 px; livello e città a 20–24 px, provincia discreta a 16–18 px. Livello indivisibile, località flessibile e nome accessibile completo. Home, dettaglio, titoli personalizzati, query, date, sede e abstract invariati.
+- Skill `clean-code-engineer` e `software-architect`: parti della località normalizzate nel plugin ed esposte senza rimuovere la località completa dalla API esistente; presentazione nel tema, nessuna analisi del titolo libero, migrazione, scrittura editoriale o dipendenza aggiunta. Tema/asset `1.6.51`, plugin `1.3.16`; nessun commit automatico.
+
 ## v1.6.50 / plugin v1.3.15 — Identità dei Corsi, titolo automatico e pin
 
 - Card standard dell’archivio Corsi: `Corso Sommelier` e seconda riga livello/località con provincia tra parentesi, senza duplicare il livello nella fascia superiore. Livello indivisibile, badge separato e nomi accessibili completi. Sede con `📍` decorativo; città non duplicata quando la sede manca. Titolo personalizzato conservato come eccezione. Date iniziali, abstract e CTA invariati; data finale ancora solo nel dettaglio.

@@ -1,5 +1,9 @@
 # Typography
 
+## Card Corsi dell’archivio — v1.6.51
+
+Per le sole card in modalità Automatico, `Corso Sommelier` Poppins 500 da 16–18 px come introduzione; livello e città più evidenti a 20–24 px con interlinea 1.3 (livello 600, città 500). Provincia 16–18 px/400 tra parentesi accanto alla città. Livello indivisibile e ritorni a capo naturali, senza troncamenti. Home, dettaglio e titoli personalizzati conservano la propria tipografia. Revisione approvata il 7 ottobre 2026, prevalente sulle scale generiche delle card sotto.
+
 ## Allineamento Corsi — v1.6.48
 
 Il 6 ottobre 2026, su richiesta dell’utente, archivio e dettaglio Corsi adottano la gerarchia Poppins degli Eventi: H1 500 da 32–44 px, sezioni archivio 32–40 px; corpo dettaglio 16–17 px, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px, grassetti 600. Etichette del riepilogo 16 px/600 maiuscole, scadenza 18 px nel riepilogo e 22 px nel pannello finale. Editor Corsi alla scala desktop corrispondente. Font già self-hosted, nessun asset remoto aggiunto. Questa revisione prevale sui riferimenti successivi al mantenimento dei titoli serif o della tipografia invariata dei Corsi; altre pagine non cambiano.

@@ -141,6 +141,8 @@ Nell’archivio Corsi, le card mostrano la data di inizio e il nome della **Sede
 
 Dal tema `1.6.50`, le card standard dell’archivio separano **Corso Sommelier** da **1° livello · Città (Provincia)**, senza ripetere il livello sopra. Sede con pin decorativo `📍`; quando la sede manca, la città è già nella riga del livello e non viene duplicata. Le card Eventi di home e archivio mostrano `📍 Sede · Città (Provincia)`, senza pin per eventi solo online. Provincia omessa se vuota.
 
+Dal tema `1.6.51`, livello e città sono più evidenti di `Corso Sommelier`, che diventa una piccola introduzione; provincia più discreta accanto alla città. Solo card automatiche dell’archivio, senza modificare home, dettaglio, titoli personalizzati o dati salvati.
+
 Dal plugin `1.3.15`, nel box **Dettagli del corso** scegli **Titolo del corso → Automatico / Personalizzato**. Automatico genera il titolo nativo WordPress dai campi Livello, Città e Provincia, anche se lasci il titolo vuoto, e lo ricompone al salvataggio se cambi questi dati. Personalizzato conserva il titolo libero WordPress. Anteprima nel metabox; modificare i campi in Automatico aggiorna anche il titolo nell’editor. I corsi esistenti con livello valido usano la card strutturata senza migrazioni: il titolo nel database resta quello attuale finché non salvi in Automatico. I corsi senza livello valido restano personalizzati. Per mantenere un nome particolare scegli Personalizzato; gli URL esistenti non vengono rinominati. La città non viene ricavata dal testo del titolo: controlla il campo Città.
 
 Gli Eventi associati dal campo **Corso collegato** compaiono automaticamente nella pagina del Corso; quelli passati sono marcati “(concluso)”.

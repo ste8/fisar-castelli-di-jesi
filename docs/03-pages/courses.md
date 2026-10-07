@@ -1,5 +1,11 @@
 # Archivio Corsi
 
+## Gerarchia delle card standard — v1.6.51
+
+Il 7 ottobre 2026, approvata la maggiore evidenza delle informazioni distintive: `Corso Sommelier` diventa un’introduzione Poppins 500 da 16–18 px; `1° livello · Città` usa la precedente scala del titolo, 20–24 px e interlinea 1.3 (livello 600, città 500). Provincia tra parentesi da 16–18 px/400, adiacente alla città. Riga flessibile, livello indivisibile, nessun troncamento. Riguarda le sole card automatiche dell’archivio, attive e concluse: home, dettaglio e titoli personalizzati invariati. Nome accessibile completo e dati editoriali conservati.
+
+Il plugin `1.3.16` aggiunge città e provincia separate alla API di identità, mantenendo la località completa per i consumatori esistenti; normalizzazione condivisa, nessuna estrazione dal titolo o scrittura nel database.
+
 ## Identità strutturata e pin — v1.6.50 / plugin v1.3.15
 
 - In modalità Automatico: badge Attivo/Concluso separato, titolo visibile `Corso Sommelier`, seconda riga `1° livello · Jesi (AN)` dai campi. Nessun livello ripetuto sopra il titolo; `1° livello` indivisibile, riga flessibile per città lunghe. Link del titolo e CTA conservano il nome accessibile completo, con livello e località.
