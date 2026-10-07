@@ -155,12 +155,14 @@ Gli Eventi associati dal campo **Corso collegato** compaiono automaticamente nel
 
 Nel box **Calendario lezioni** di un Corso:
 
-1. copia da Excel o Google Sheets le colonne `Data`, `Orario`, `Titolo lezione`, `Relatore`, `Note`;
+1. copia da Excel o Google Sheets le colonne `Numero lezione`, `Data`, `Orario`, `Titolo lezione`, `Relatore`, `Note`;
 2. incollale nel campo tabulato;
 3. usa **Importa e mostra anteprima** per controllare le righe;
 4. salva o aggiorna il Corso.
 
 Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I dati vengono salvati come righe strutturate, non come HTML.
+
+Dal plugin `1.3.20`, **Numero lezione** è il primo campo, manuale e facoltativo (per esempio `1`, `03`, `3 bis`); è anche la prima colonna pubblica. Nessuna rinumerazione automatica: le righe seguono data e orario. I calendari esistenti e gli import nel precedente formato senza numero sono conservati, con numero vuoto (`—` sul sito). Dopo un’anteprima riuscita il testo incollato viene svuotato: puoi modificare le righe e i numeri prima di salvare, senza che il testo originale li sovrascriva.
 
 ### News, canali e pagine
 

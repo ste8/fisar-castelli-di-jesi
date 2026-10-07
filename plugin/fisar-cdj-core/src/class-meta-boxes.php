@@ -323,14 +323,16 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function render_course_calendar( WP_Post $post ): void {
 		$rows = fisar_cdj_get_course_calendar( $post->ID );
 		?>
-		<p>Incolla da Excel o Google Sheets le colonne <strong>Data, Orario, Titolo, Relatore, Note</strong>, separate da tabulazioni. Salvando il corso, il testo viene convertito in righe strutturate.</p>
+		<p>Il <strong>Numero lezione</strong> si inserisce manualmente, per esempio 1, 2 o 3 bis. È facoltativo e non viene rinumerato automaticamente; le righe seguono data e orario.</p>
+		<p>Incolla da Excel o Google Sheets le colonne <strong>Numero lezione, Data, Orario, Titolo, Relatore, Note</strong>, separate da tabulazioni. È accettato anche il formato precedente senza numero. Salvando il corso, il testo viene convertito in righe strutturate.</p>
 		<label for="fisar_course_calendar_import"><strong>Dati tabulati da importare</strong></label>
-		<textarea class="widefat code" id="fisar_course_calendar_import" name="fisar_course_calendar_import" rows="6" placeholder="Data&#9;Orario&#9;Titolo lezione&#9;Relatore&#9;Note"></textarea>
+		<textarea class="widefat code" id="fisar_course_calendar_import" name="fisar_course_calendar_import" rows="6" placeholder="Numero lezione&#9;Data&#9;Orario&#9;Titolo lezione&#9;Relatore&#9;Note"></textarea>
 		<p><button type="button" class="button" id="fisar-calendar-preview">Importa e mostra anteprima</button></p>
+		<p id="fisar-calendar-status" role="status" aria-live="polite"></p>
 		<div class="fisar-calendar-table-wrap">
 			<table class="widefat striped" id="fisar-calendar-table">
-				<thead><tr><th>Data</th><th>Orario</th><th>Titolo lezione</th><th>Relatore</th><th>Note</th><th><span class="screen-reader-text">Azioni</span></th></tr></thead>
-				<tbody>
+				<thead><tr><th>Numero lezione</th><th>Data</th><th>Orario</th><th>Titolo lezione</th><th>Relatore</th><th>Note</th><th><span class="screen-reader-text">Azioni</span></th></tr></thead>
+				<tbody data-next-index="<?php echo esc_attr( count( $rows ) ); ?>">
 				<?php foreach ( $rows as $index => $row ) : ?>
 					<?php self::calendar_row( $index, $row ); ?>
 				<?php endforeach; ?>
@@ -413,8 +415,8 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::save_rich_fields( $post_id, array_diff( self::RICH_TEXT_FIELDS, array( '_fisar_event_registration_notes' ) ) );
 
 		$rows       = Fisar_CDJ_Calendar_Importer::sanitize_rows( wp_unslash( $_POST['fisar_course_calendar'] ?? array() ) );
-		$import_tsv = trim( (string) wp_unslash( $_POST['fisar_course_calendar_import'] ?? '' ) );
-		if ( '' !== $import_tsv ) {
+		$import_tsv = (string) wp_unslash( $_POST['fisar_course_calendar_import'] ?? '' );
+		if ( '' !== trim( $import_tsv ) ) {
 			$result = Fisar_CDJ_Calendar_Importer::parse( $import_tsv );
 			if ( ! empty( $result['rows'] ) ) {
 				$rows = $result['rows'];
@@ -577,9 +579,9 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	private static function calendar_row( int $index, array $row = array() ): void {
-		$fields = array( 'date', 'time', 'title', 'speaker', 'notes' );
+		$fields = array( 'number' => 'Numero lezione', 'date' => 'Data', 'time' => 'Orario', 'title' => 'Titolo lezione', 'speaker' => 'Relatore', 'notes' => 'Note' );
 		echo '<tr>';
-		foreach ( $fields as $field ) {
+		foreach ( $fields as $field => $label ) {
 			$type  = 'date' === $field ? 'date' : 'text';
 			$value = (string) ( $row[ $field ] ?? '' );
 			printf(
@@ -588,7 +590,7 @@ final class Fisar_CDJ_Meta_Boxes {
 				absint( $index ),
 				esc_attr( $field ),
 				esc_attr( $value ),
-				esc_attr( ucfirst( $field ) )
+				esc_attr( $label )
 			);
 		}
 		echo '<td><button type="button" class="button-link-delete fisar-calendar-remove">Rimuovi</button></td></tr>';

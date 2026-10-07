@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6.63 / plugin v1.3.20 — Numero manuale delle lezioni
+
+- `Numero lezione` come primo campo del calendario nell’editor e prima colonna pubblica (`N°`, nome accessibile completo). Numero manuale facoltativo, anche `03`, `0` o `3 bis`; nessuna rinumerazione né ordinamento numerico. Righe ancora cronologiche, calendari esistenti preservati con `—` per i numeri non inseriti. Nessuna migrazione o modifica ai contenuti reali.
+- Import tabulato con numero iniziale e compatibilità con il formato precedente. Conservata la cella iniziale vuota; sanitizzazione nel plugin, nessuna logica duplicata nel tema. Indici monotoni nell’editor dopo rimozioni/aggiunte. Anteprima riuscita resa modificabile senza sovrascrittura dal testo originale al salvataggio; date/titoli invalidi segnalati prima di sostituire le righe, feedback accessibile.
+- Skill `software-architect` e `clean-code-engineer`: esteso il modello delle righe esistente, senza nuovi meta, dipendenze o numerazione implicita. Aggiornati versioni, istruzioni e specifiche; nessun commit automatico.
+- Verificati lint dei cinque PHP modificati, sintassi JS, HTTP e `git diff --check`. Test nativi: sanitizzazione, numeri speciali/vuoti/legacy, ordine cronologico, sette import vecchi/nuovi, data invalida, sei salvataggi intercettati con nonce/capability, editor e template pubblico. Regressioni su 21 varianti Corsi e 16 offerte, con otto e sette salvataggi intercettati rispettivamente. Nessun dato dei corsi modificato.
+- Browser: import nuovo con prima cella vuota, legacy, modifica manuale, rimozione/aggiunta senza indici duplicati e errore senza sostituzione delle righe. Dettaglio con numeri simulati a 1920/1440/1024/768/390/320 px: sette colonne, desktop senza scrollbar e scorrimento solo interno sotto 1024 px, nessun overflow pagina o immagine fallita. Tastiera/focus verificati, console senza errori e review visiva desktop. Pagina reale conserva le cinque lezioni senza numeri; anteprima temporanea rimossa.
+
 ## v1.6.62 — Calendario Corsi più largo su desktop
 
 - Risolta la scrollbar forzata dalla colonna da 768 px, più stretta del minimo tabella di 928 px. Calendario separato dalla colonna di lettura e contenitore fino a 1.216 px; descrizione/Eventi collegati/iscrizioni ancora centrati a 768 px. Tabella adattiva da viewport 1.024 px, larghezza minima leggibile e scorrimento interno sotto tale soglia. Spaziatura dei blocchi autonomi coordinata, dati/intestazioni e focus conservati.

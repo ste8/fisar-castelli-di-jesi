@@ -24,11 +24,16 @@
 	}
 
 	function normaliseDate(value) {
-		var match = value.trim().match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$/);
+		var date = value.trim();
+		var match = date.match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$/);
 		if (match) {
-			return match[3] + '-' + match[2].padStart(2, '0') + '-' + match[1].padStart(2, '0');
+			date = match[3] + '-' + match[2].padStart(2, '0') + '-' + match[1].padStart(2, '0');
 		}
-		return /^\d{4}-\d{2}-\d{2}$/.test(value.trim()) ? value.trim() : '';
+		if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+			return '';
+		}
+		var parsed = new Date(date + 'T00:00:00Z');
+		return !isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date ? date : '';
 	}
 
 	function announceFeeChange(message) {
@@ -86,7 +91,7 @@
 
 	function looksLikeHeader(columns) {
 		var first = (columns[0] || '').trim().toLowerCase();
-		return ['data', 'data lezione', 'giorno'].indexOf(first) !== -1;
+		return ['data', 'data lezione', 'giorno', 'numero', 'numero lezione', 'n°', 'n.', 'n'].indexOf(first) !== -1;
 	}
 
 	function announceWhatsAppChange(message) {
@@ -140,15 +145,17 @@
 			return;
 		}
 
-		var index = body.querySelectorAll('tr').length;
+		var index = Number(body.dataset.nextIndex);
+		body.dataset.nextIndex = String(index + 1);
 		var row = document.createElement('tr');
-		['date', 'time', 'title', 'speaker', 'notes'].forEach(function (key) {
+		var labels = {number: 'Numero lezione', date: 'Data', time: 'Orario', title: 'Titolo lezione', speaker: 'Relatore', notes: 'Note'};
+		Object.keys(labels).forEach(function (key) {
 			var cell = document.createElement('td');
 			var input = document.createElement('input');
 			input.type = key === 'date' ? 'date' : 'text';
 			input.name = 'fisar_course_calendar[' + index + '][' + key + ']';
 			input.value = values && values[key] ? values[key] : '';
-			input.setAttribute('aria-label', key);
+			input.setAttribute('aria-label', labels[key]);
 			cell.appendChild(input);
 			row.appendChild(cell);
 		});
@@ -171,29 +178,41 @@
 		}
 
 		var parsedRows = [];
-		source.value.trim().split(/\r?\n/).forEach(function (line) {
+		var invalidRows = [];
+		source.value.split(/\r?\n/).forEach(function (line, index) {
 			var columns = line.split('\t');
-			if (looksLikeHeader(columns) || columns.length < 3) {
+			if (!line.trim() || looksLikeHeader(columns)) {
 				return;
 			}
-			var date = normaliseDate(columns[0]);
-			if (!date) {
+			var offset = normaliseDate(columns[0] || '') ? 0 : 1;
+			var date = normaliseDate(columns[offset] || '');
+			if (columns.length < 3 + offset || !date || !(columns[offset + 2] || '').trim()) {
+				invalidRows.push(index + 1);
 				return;
 			}
 			parsedRows.push({
+				number: offset ? columns[0].trim() : '',
 				date: date,
-				time: (columns[1] || '').trim(),
-				title: (columns[2] || '').trim(),
-				speaker: (columns[3] || '').trim(),
-				notes: columns.slice(4).join(' — ').trim()
+				time: (columns[offset + 1] || '').trim(),
+				title: (columns[offset + 2] || '').trim(),
+				speaker: (columns[offset + 3] || '').trim(),
+				notes: columns.slice(offset + 4).join(' — ').trim()
 			});
 		});
 
+		var status = field('fisar-calendar-status');
+		if (invalidRows.length) {
+			status.textContent = 'Controlla data e titolo nelle righe: ' + invalidRows.join(', ') + '. Il calendario non è stato sostituito.';
+			return;
+		}
 		if (!parsedRows.length) {
 			return;
 		}
 		body.innerHTML = '';
 		parsedRows.forEach(addCalendarRow);
+		// Dopo l'anteprima, al salvataggio sono autorevoli le righe modificabili.
+		source.value = '';
+		status.textContent = (parsedRows.length === 1 ? 'Importata 1 lezione.' : 'Importate ' + parsedRows.length + ' lezioni.') + ' Puoi modificare le righe, poi salva il corso.';
 	}
 
 	document.addEventListener('change', function (event) {

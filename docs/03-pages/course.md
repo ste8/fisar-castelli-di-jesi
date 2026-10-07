@@ -1,5 +1,9 @@
 # Pagina Corso
 
+## Numero lezione manuale — v1.6.63 / plugin v1.3.20
+
+Il calendario ha sette colonne: **N°**, Giorno, Data, Orario, Lezione, Relatore, Note. Prima colonna compatta, centrata e in grassetto; nome accessibile completo `Numero lezione`. Il valore arriva dal campo manuale nel plugin, non dalla posizione della riga: nessuna numerazione automatica nel tema. Se non compilato compare `—`, conservando le lezioni preesistenti. Ordinamento cronologico invariato. Larghezza estesa desktop, scorrimento locale e focus della revisione precedente conservati.
+
 ## Calendario a larghezza estesa — v1.6.62
 
 Il calendario è una sezione autonoma tra descrizione ed Eventi collegati, nello stesso contenitore da massimo 76 rem (1.216 px). Descrizione e informazioni/iscrizioni restano centrati a massimo 48 rem (768 px), senza allargare la misura di lettura. Stessa tipografia e dati, sei colonne e intestazioni semantiche conservate.
