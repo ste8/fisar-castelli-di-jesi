@@ -12,7 +12,7 @@ $details = $registration['details'];
 		<p>Questa edizione è terminata. Consulta i corsi attivi per trovare il prossimo percorso.</p>
 		<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>">Vedi i corsi attivi</a>
 	<?php endif; ?>
-	<?php foreach ( array( 'fee' => 'Quota di partecipazione', 'membership' => 'Tesseramento FISAR', 'includes' => 'Cosa comprende' ) as $key => $title ) : ?>
+	<?php foreach ( array( 'fee' => 'Quota di partecipazione', 'includes' => 'Cosa comprende il corso', 'membership' => 'Tesseramento FISAR' ) as $key => $title ) : ?>
 		<?php if ( '' !== $registration[ $key ] ) : ?>
 			<div class="registration-section<?php echo 'fee' === $key ? ' registration-fees' : ''; ?>">
 				<h3><?php echo esc_html( $title ); ?></h3>

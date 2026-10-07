@@ -1,5 +1,9 @@
 # Archivio Corsi
 
+## Ordine delle informazioni sul corso — v1.6.59 / plugin v1.3.18
+
+Nel box dell’editor dedicato all’offerta e nel pannello del dettaglio, ordine `Quota di partecipazione` → `Cosa comprende il corso` → `Tesseramento FISAR`. Anche il titolo nel dettaglio usa la dicitura completa `Cosa comprende il corso`, per distinguerlo dai benefici del tesseramento. Campi vuoti ancora omessi nel sito, contenuti salvati e regole di iscrizione invariati.
+
 ## Separatore anche con titolo personalizzato — v1.6.58
 
 La linea oro tenue compare anche nelle card con titolo Personalizzato, subito sotto il titolo libero e prima di data e luogo. Stessa regola delle card automatiche: 1 px, larghezza del contenuto e spaziature compatte. Il titolo personalizzato resta integrale; nessuna riga identitaria composta aggiunta. Nelle card automatiche il separatore resta sotto livello/città. Home, dettaglio e dati invariati. Questa revisione prevale sull’esclusione dei titoli personalizzati indicata nella v1.6.52 sotto.

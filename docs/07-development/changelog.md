@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.6.59 / plugin v1.3.18 — Contenuti del corso prima del tesseramento
+
+- Spostato `Cosa comprende il corso` prima di `Tesseramento FISAR`, sia nell’editor sia nel dettaglio. Titolo pubblico completato con `il corso`, evitando l’ambiguità con la tessera; quota ancora per prima e campi vuoti omessi.
+- Skill `clean-code-engineer`: riordinate soltanto le chiamate dei campi e la mappa dei titoli esistenti, senza modificare dati, CSS, salvataggi o stati. Tema `1.6.59`, plugin `1.3.18`; documentazione aggiornata, modifiche precedenti preservate e nessun commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Rendering nativo dell’editor: ordine dei tre campi corretto; otto combinazioni di campi nel pannello: ordine e omissione dei vuoti corretti, titolo completo, dati invariati. Regressioni Corsi su 20 varianti e otto salvataggi intercettati, senza persistenza. Browser del dettaglio a 1440/768/390/320 px: titoli ordinati, nessun overflow, immagine fallita o errore console; review visiva e screenshot. Nessun salvataggio autenticato nell’editor.
+
+## 7 ottobre 2026 — Rimossa la nota sul colloquio risalvata
+
+- La frase sul colloquio era nuovamente presente nel campo `Informazioni aggiuntive` del corso locale ID 12, non nel template né nel seed demo. Rimossa soltanto quella frase tramite API WordPress con confronto del valore precedente; conservato il testo aggiunto nel frattempo (`Queste sono delle note aggiuntive:`). Nessuna prova sulla causa del nuovo salvataggio; nessun filtro o blocco sul contenuto editoriale.
+- Skill `clean-code-engineer`: intervento sui soli dati interessati, codice/versioni invariati. Verificati rilettura del campo, HTTP e browser del dettaglio: frase assente e pannello/canali conservati; screenshot e `git diff --check`. Nessun commit automatico.
+
 ## v1.6.58 — Separatore nei Corsi con titolo personalizzato
 
 - Corretta l’assenza della linea nelle card Personalizzato dell’archivio Corsi: stessa regola decorativa, sotto il titolo libero anziché sotto la riga identitaria delle card automatiche. Testo, nomi accessibili, home/dettaglio e dati conservati.
