@@ -2462,10 +2462,42 @@ blockquote {
 	font-size: .875rem;
 }
 
-.course-card__end {
-	margin: 0 0 .6rem;
-	color: var(--color-muted);
-	font-size: .9375rem;
+.course-card__meta--structured {
+	justify-content: flex-end;
+}
+
+.courses-archive .course-card__identity {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .3em;
+	margin: 0 0 .8rem;
+	color: var(--color-ink);
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.course-card__level {
+	white-space: nowrap;
+}
+
+.course-card__identity > span:last-child {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.card-place {
+	display: flex;
+	align-items: flex-start;
+	gap: .3em;
+}
+
+.card-place > :last-child {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.card-place__pin {
+	flex: 0 0 auto;
 }
 
 .course-grid--home .event-sold-out {

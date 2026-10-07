@@ -1,5 +1,11 @@
 # Archivio Eventi
 
+## Luogo con pin e provincia — v1.6.50
+
+Card di home/archivio: `📍 Sede · Città (Provincia)`, campi mancanti omessi e provincia mostrata solo con città presente. Pin decorativo con `aria-hidden="true"`, testo completo e ritorno a capo naturale. Online: soltanto `Online`, senza pin né luogo fisico obsoleto. Ibrido: luogo fisico seguito da `+ online`; senza luogo fisico, `In presenza e online`, senza pin. Nessuna mappa o link esterno aggiunto; dettaglio e accesso online invariati.
+
+Affinamento delle etichette del 7 ottobre 2026: `Archivio` sopra `Eventi conclusi`, in sostituzione di `Il nostro percorso`. `In programma` sopra `Prossimi eventi` invariato; nessuna modifica a selezione, ordine o stile degli eventi.
+
 ## Revisione visiva — 5 ottobre 2026
 
 L’archivio riprende la gerarchia della homepage e della Carta dei Valori: intestazione compatta, H1 Poppins Medium 32–44 px e linea oro. Variante v1.6.20 richiesta e successivamente approvata dall’utente: fondo bordeaux scuro uniforme (`--color-bordeaux-dark`), titolo bianco e introduzione chiara (`--color-line`), senza fotografia. Introduzione Poppins 16–18 px: `Degustazioni, visite e incontri per scoprire e condividere.` La formulazione più recente, scelta dall’utente, non limita gli argomenti al vino ed evita la ripetizione fra conoscere e scoprire. Una riga su desktop, normale ritorno a capo sugli schermi piccoli, senza `nowrap` o riduzione del font. La variante sostituisce il precedente fondo chiaro soltanto nell’archivio Eventi; il singolo evento resta chiaro. Su precedente riscontro dell’utente, rimossa la dicitura `FISAR · Delegazione Castelli di Jesi` sopra il titolo: l’identità è già presente nell’header. La dicitura resta nella Carta per chiarire l’ambito locale del documento.

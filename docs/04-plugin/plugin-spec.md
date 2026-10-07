@@ -1,6 +1,22 @@
 # Plugin Spec
 Il plugin contiene dati e logiche indipendenti dal tema.
 
+## Titolo dei Corsi — plugin v1.3.15
+
+- Meta privato singolo stringa `_fisar_course_title_mode`, enum `automatic` / `custom`, non esposto in REST. Valori malformati equivalgono a `custom`. Se assente, Automatico per auto-draft o livello valido 1/2/3, altrimenti Personalizzato. Default di lettura, non migrazione; titolo nativo esistente non riscritto alla visita di una pagina o dell’editor.
+- `fisar_cdj_get_course_identity()` espone nome, livello, città/provincia, titolo completo e modalità. `fisar_cdj_compose_course_title()` produce `Corso Sommelier 1° livello – Jesi (AN)` omettendo parti mancanti; `fisar_cdj_format_city()` condiviso con le card Eventi, senza provincia isolata. Livello invalido omesso, città sanitizzata e sigla normalizzata. Nessuna analisi del titolo libero per estrarne dati.
+- Nel metabox principale, scelta Automatico/Personalizzato con anteprima. Script `course-title.js` limitato agli editor Corsi: aggiorna il titolo nativo su modifica dei campi in Automatico, attraverso `core/editor.editPost` nei blocchi e input nativo `#title` nel classico. La visita iniziale aggiorna soltanto l’anteprima, senza sporcare il titolo esistente; in Personalizzato lascia il titolo libero. PHP autorevole al salvataggio, anche senza JavaScript.
+- `Fisar_CDJ_Course_Titles` prepara il titolo prima del salvataggio classico con `wp_insert_post_data`, verificando tipo, target, nonce e capability. Dopo il salvataggio autorizzato dei metabox persiste la modalità soltanto se presente nel POST e sincronizza `post_title` dai meta correnti, coprendo le richieste separate di Gutenberg. Solo se diverso: `wp_update_post`, con hook del salvataggio metabox temporaneamente rimosso e ripristinato in `finally` per non rieseguire import/calendario. Errori del core registrati nel log. Nessuna modifica a `post_name`, nuovo campo titolo o handler REST; autosave/revisioni protetti dal salvataggio esistente.
+- Editor aperti prima dell’aggiornamento, senza il nuovo campo, non sovrascrivono modalità o titolo. Passaggio a Personalizzato conserva il titolo WordPress corrente; l’editor consente di riscriverlo liberamente. Le modifiche via API esterne senza metabox non attivano questa automazione: non è un filtro globale su tutti i titoli WordPress.
+
+## Breve descrizione di Eventi e Corsi — plugin v1.3.14
+
+- Primo campo nel metabox principale `Dettagli dell’evento` / `Dettagli del corso`, prima di date e altri dati. Il box Eventi conserva l’ID `fisar-event-schedule`, cambiando solo titolo. Label associata, textarea su tre righe e istruzioni collegate con `aria-describedby`.
+- Unica fonte: `post_excerpt` nativo, letto nel contesto `raw` e reso con `esc_textarea`. Nessun nuovo meta, copia dei testi, migrazione o modifica dello schema REST. Supporto CPT `excerpt` conservato.
+- Editor classico: textarea con `id="excerpt"` e `name="excerpt"`, come il campo WordPress, per salvataggio e autosalvataggio nativi; metabox `postexcerpt` separato rimosso soltanto per i due CPT.
+- Editor a blocchi: script del plugin, limitato a Eventi/Corsi, con dipendenze native `wp-data`, `wp-dom-ready`, `wp-editor`. `getEditedPostAttribute('excerpt')`, `editPost({excerpt})` e sottoscrizione dello stato mantengono il campo collegato al Riassunto, anche quando lo stato cambia per annulla/ripristina. Il valore iniziale non viene azzerato prima che l’editor sia pronto. Pannello laterale `post-excerpt` rimosso tramite `removeEditorPanel`; nessun handler di salvataggio aggiuntivo.
+- Presentazione pubblica invariata: Riassunto nelle card archivio e nel dettaglio; vuoto implica estratto automatico dal corpo nell’archivio e sottotitolo assente nel dettaglio. Nessun abstract nelle card compatte della home. Editor News e Pagine invariati.
+
 ## CPT Eventi
 
 ### Visibilità delle informazioni online — plugin v1.3.12

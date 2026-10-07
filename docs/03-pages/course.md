@@ -1,5 +1,9 @@
 # Pagina Corso
 
+## Breve descrizione nell’editor — plugin v1.3.14
+
+Il Riassunto nativo si compila come **Breve descrizione** all’inizio del box **Dettagli del corso**, non in un pannello separato. Il testo già presente è conservato. Compare sotto il titolo del dettaglio e nelle card dell’archivio; se vuoto, nessun sottotitolo nel dettaglio e estratto automatico dalla descrizione nell’archivio. Home compatta invariata. Non è un nuovo dato né una modifica allo stile pubblico.
+
 ## Dettaglio allineato agli Eventi — v1.6.48
 
 Questa revisione prevale sull’anteprima serif v1.6.26 riportata sotto.

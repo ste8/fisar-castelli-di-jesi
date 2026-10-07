@@ -1,5 +1,11 @@
 # Assunzioni di implementazione V1
 
+## 7 ottobre 2026 — Titoli dei Corsi e località nelle card
+
+- Approvata la separazione `Corso Sommelier` / `1° livello · Città (Provincia)` nell’elenco, con un unico livello visibile e pin davanti alla sede; pin/località estesi anche alle card Eventi. Provincia dal campo esistente, non da lookup geografico. Nessun pin per eventi solo online.
+- Default Automatico per corsi di livello 1/2/3 e nuovi auto-draft, Personalizzato per gli altri; scelta esplicita disponibile nel metabox. I titoli esistenti rimangono salvati, senza migrazione: card standard strutturata subito, titolo nativo composto al prossimo salvataggio autorizzato in Automatico. Non si ricava la città dal titolo: il corso locale ID 12 cita Falconara nel titolo ma ha Città Jesi, discrepanza segnalata e non corretta senza richiesta editoriale.
+- Niente rinomina degli URL, filtro globale sui titoli o riordino di home/dettaglio. La modalità Personalizzato serve per percorsi non standard. Test di salvataggio su bozze in transazione, rollback finale verificato; nessun contenuto reale modificato.
+
 ## 6 ottobre 2026 — Estensione delle migliorie Eventi ai Corsi
 
 - Richiesta di allineare home, archivio e dettaglio applicando soltanto quanto pertinente. Conservati livelli, direttore, calendario/import, tesseramento, dotazione, condizioni libere della quota e relazioni con Eventi.

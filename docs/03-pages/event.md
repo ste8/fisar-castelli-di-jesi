@@ -1,5 +1,9 @@
 # Pagina Evento
 
+## Breve descrizione nell’editor — plugin v1.3.14
+
+Il Riassunto nativo si compila come **Breve descrizione** all’inizio del box **Dettagli dell’evento**, prima di data e orari, non in un pannello separato. Il testo già presente è conservato. Compare sotto il titolo del dettaglio e nelle card dell’archivio; se vuoto, nessun sottotitolo nel dettaglio e estratto automatico dalla descrizione nell’archivio. Home compatta invariata. Non è un nuovo dato né una modifica allo stile pubblico.
+
 ## Modalità più evidente dentro Luogo — v1.6.47
 
 - Per gli ibridi, sostituito `Anche online` con un riquadro prima della sede in entrambi i riepiloghi: `EVENTO IBRIDO` (Poppins 14 px/700) e `In presenza e online` (16 px/600), su due righe, testo bordeaux, fondo caldo e accento oro laterale. Sede/indirizzo/città e Maps seguono senza modifiche; con dati fisici assenti il riquadro basta a chiarire la doppia modalità, senza duplicare il fallback `In presenza`.

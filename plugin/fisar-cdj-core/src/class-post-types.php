@@ -89,6 +89,7 @@ final class Fisar_CDJ_Post_Types {
 		);
 
 		$course_fields = array(
+			'_fisar_course_title_mode'         => 'string',
 			'_fisar_course_director'           => 'string',
 			'_fisar_course_level'              => 'string',
 			'_fisar_course_start_date'         => 'string',
@@ -138,6 +139,9 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( '_fisar_course_title_mode' === $key ) {
+					return fisar_cdj_sanitize_course_title_mode( $value );
+				}
 				if ( '_fisar_event_online_access_public' === $key ) {
 					return in_array( $value, array( true, 1, '1' ), true );
 				}
