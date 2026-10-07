@@ -2,6 +2,12 @@
 
 ## Sintesi
 
+### Identità dei Corsi — plugin 1.3.15 / tema 1.6.50
+
+Modalità titolo, default e composizione da livello/città/provincia sono nel plugin, con un unico titolo nativo `post_title`. Il tema legge `fisar_cdj_get_course_identity()` per separare nome e metadati nelle card standard dell’archivio, senza estrarli dal titolo libero; i nomi accessibili restano completi. Scelta esplicita Personalizzato per eccezioni. La visita dell’editor non modifica il titolo, e non ci sono migrazioni: la sincronizzazione avviene nel salvataggio autorizzato dei metabox, con preparazione del titolo classico e riallineamento dopo la richiesta metabox di Gutenberg. URL conservati.
+
+Il formatter della località è condiviso tra identità e card Eventi; `card-place.php` condivide il pin decorativo e il wrapping del testo nel tema. Nessuna API cartografica, dipendenza o dato duplicato. Home Corsi e dettaglio conservano il titolo nativo finché non viene salvato quello automatico; il layout strutturato riguarda l’archivio. Le card Eventi di home/archivio aggiungono pin e provincia, senza cambiare accesso online o regole del plugin.
+
 ### Allineamento Corsi — plugin 1.3.13 / tema 1.6.48
 
 Le regole di iscrizione dei Corsi sono nel plugin: stato concluso → scadenza tassativa superata → enum editoriale ordinario/sold-out/lista d’attesa. L’attività del corso continua a dipendere dalla data di fine, non dalla disponibilità delle iscrizioni. Nuovi meta privati facoltativi per disponibilità, posti limitati, Maps e destinatari WhatsApp; nessuna migrazione automatica.
@@ -61,6 +67,8 @@ Il v1.6.31 mantiene lo stesso componente della scadenza, presentando etichetta e
 Dal tema `1.6.33` e plugin `1.3.4`, il link facoltativo alla posizione Maps è un meta dell’Evento (`_fisar_event_maps_url`): registrazione, autorizzazioni, metabox e sanitizzazione nel plugin. Il tema riusa `event-map-link.php` per la sola presentazione nei due riepiloghi del luogo, sopprimendo il link per gli eventi online. Nessuna geocodifica, iframe, integrazione remota a runtime o duplicazione del campo nel tema; nessuna migrazione dei dati esistenti.
 
 ## Stili editoriali nel backend
+
+Dal plugin `1.3.14`, la UI **Breve descrizione** appartiene ai metabox principali di Eventi e Corsi, mantenendo `post_excerpt` come unica fonte. Il campo usa ID/nome nativi `excerpt` per il classico; nell’editor a blocchi un piccolo script con le API WordPress collega textarea e stato nativo del post e rimuove il pannello laterale duplicato. Nessun nuovo meta, API di dominio o handler di salvataggio: persistenza, autosalvataggio e revisioni rimangono responsabilità del core. Il tema continua a leggere lo stesso Riassunto; editor delle altre tipologie e dati esistenti invariati.
 
 Dal tema `1.6.35` e plugin `1.3.5`, quote personalizzate e nota generale appartengono al plugin: meta privati, sanitizzazione centralizzata `fisar_cdj_sanitize_event_fee_options()`, metabox e API `fisar_cdj_get_event_fees()`. Il tema raccoglie questa API una volta e riusa `event-fees.php` per la presentazione, anche negli eventi conclusi; il formatter valuta resta nel tema. Il piccolo repeater estende lo script amministrativo esistente, senza framework o librerie; nessun JavaScript frontend aggiuntivo. Campi Soci/Non soci e dati già salvati restano compatibili, nessuna migrazione. Gratuità e validità delle righe non sono ricalcolate nel tema.
 

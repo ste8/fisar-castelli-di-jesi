@@ -9,12 +9,14 @@ $has_compact_date = $is_home_card || ( isset( $args['context'] ) && 'archive' ==
 $date     = (string) get_post_meta( $event_id, '_fisar_event_date', true );
 $venue    = (string) get_post_meta( $event_id, '_fisar_event_venue', true );
 $city     = (string) get_post_meta( $event_id, '_fisar_event_city', true );
+$province = (string) get_post_meta( $event_id, '_fisar_event_province', true );
 $mode     = (string) get_post_meta( $event_id, '_fisar_event_mode', true );
-$place    = implode( ', ', array_filter( array( $venue, $city ) ) );
+$place    = implode( ' · ', array_filter( array( trim( $venue ), fisar_cdj_format_city( $city, $province ) ), static fn( string $value ): bool => '' !== $value ) );
+$has_physical_place = '' !== $place;
 if ( 'online' === $mode ) {
 	$place = 'Online';
-} elseif ( 'hybrid' === $mode && '' !== $place ) {
-	$place .= ' + online';
+} elseif ( 'hybrid' === $mode ) {
+	$place = $has_physical_place ? $place . ' + online' : 'In presenza e online';
 }
 ?>
 <article <?php post_class( 'event-card' ); ?>>
@@ -36,7 +38,7 @@ if ( 'online' === $mode ) {
 		<?php endif; ?>
 		<?php if ( 'closed' === ( $booking['status'] ?? '' ) ) : ?><p class="event-card__booking-status"><?php echo esc_html( $booking['status_notice'] ); ?></p><?php endif; ?>
 		<h3 class="event-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-		<?php if ( '' !== $place ) : ?><p class="event-card__place"><?php echo esc_html( $place ); ?></p><?php endif; ?>
+		<?php get_template_part( 'template-parts/card-place', null, array( 'place' => $place, 'class' => 'event-card__place', 'show_pin' => 'online' !== $mode && $has_physical_place ) ); ?>
 		<?php if ( ! $is_home_card && has_excerpt() ) : ?><p class="event-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli evento<span class="screen-reader-text">: <?php echo esc_html( get_the_title() ); ?></span> <span aria-hidden="true">→</span></a>
 	</div>

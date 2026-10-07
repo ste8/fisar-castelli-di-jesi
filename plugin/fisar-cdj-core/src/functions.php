@@ -35,6 +35,51 @@ function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	return '' !== $end_date && $end_date >= fisar_cdj_today();
 }
 
+/** Locality used in course identities and public card locations. */
+function fisar_cdj_format_city( string $city, string $province = '' ): string {
+	$city = trim( sanitize_text_field( $city ) );
+	$province = strtoupper( substr( preg_replace( '/[^a-z]/i', '', $province ), 0, 2 ) );
+	return '' === $city ? '' : $city . ( '' !== $province ? ' (' . $province . ')' : '' );
+}
+
+function fisar_cdj_sanitize_course_title_mode( mixed $value ): string {
+	return 'automatic' === $value ? 'automatic' : 'custom';
+}
+
+function fisar_cdj_get_course_title_mode( int $course_id ): string {
+	if ( metadata_exists( 'post', $course_id, '_fisar_course_title_mode' ) ) {
+		return fisar_cdj_sanitize_course_title_mode( get_post_meta( $course_id, '_fisar_course_title_mode', true ) );
+	}
+	// No migration: standard courses get a structured card, not a database rewrite.
+	if ( 'auto-draft' === get_post_status( $course_id ) || in_array( get_post_meta( $course_id, '_fisar_course_level', true ), array( '1', '2', '3' ), true ) ) {
+		return 'automatic';
+	}
+	return 'custom';
+}
+
+function fisar_cdj_compose_course_title( string $level, string $city, string $province = '' ): string {
+	$title = 'Corso Sommelier';
+	if ( in_array( $level, array( '1', '2', '3' ), true ) ) {
+		$title .= ' ' . $level . '° livello';
+	}
+	$locality = fisar_cdj_format_city( $city, $province );
+	return $title . ( '' !== $locality ? ' – ' . $locality : '' );
+}
+
+function fisar_cdj_get_course_identity( int $course_id ): array {
+	$level = (string) get_post_meta( $course_id, '_fisar_course_level', true );
+	$city = (string) get_post_meta( $course_id, '_fisar_course_city', true );
+	$province = (string) get_post_meta( $course_id, '_fisar_course_province', true );
+	$automatic = 'automatic' === fisar_cdj_get_course_title_mode( $course_id );
+	return array(
+		'automatic' => $automatic,
+		'name'      => $automatic ? 'Corso Sommelier' : get_the_title( $course_id ),
+		'level'     => in_array( $level, array( '1', '2', '3' ), true ) ? $level . '° livello' : '',
+		'city'      => fisar_cdj_format_city( $city, $province ),
+		'title'     => $automatic ? fisar_cdj_compose_course_title( $level, $city, $province ) : get_the_title( $course_id ),
+	);
+}
+
 function fisar_cdj_get_upcoming_events( int $limit = -1 ): WP_Query {
 	return new WP_Query(
 		array(

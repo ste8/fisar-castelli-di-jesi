@@ -80,7 +80,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	public static function add_meta_boxes(): void {
-		add_meta_box( 'fisar-event-schedule', 'Data e orari', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
+		add_meta_box( 'fisar-event-schedule', 'Dettagli dell’evento', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-location', 'Modalità e luogo', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
@@ -91,6 +91,11 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_meta_box( 'fisar-course-registration', 'Iscrizioni', array( self::class, 'render_course_registration' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
 		add_meta_box( 'fisar-course-offer', 'Quota e dotazione', array( self::class, 'render_course_offer' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
 		add_meta_box( 'fisar-course-calendar', 'Calendario lezioni', array( self::class, 'render_course_calendar' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
+
+		// The native excerpt is rendered inside the main details box, not duplicated.
+		foreach ( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) as $post_type ) {
+			remove_meta_box( 'postexcerpt', $post_type, 'normal' );
+		}
 	}
 
 	public static function enqueue_assets( string $hook_suffix ): void {
@@ -105,10 +110,18 @@ final class Fisar_CDJ_Meta_Boxes {
 
 		wp_enqueue_style( 'fisar-cdj-admin', FISAR_CDJ_CORE_URL . 'assets/css/admin.css', array(), FISAR_CDJ_CORE_VERSION );
 		wp_enqueue_script( 'fisar-cdj-admin', FISAR_CDJ_CORE_URL . 'assets/js/admin.js', array(), FISAR_CDJ_CORE_VERSION, true );
+		if ( Fisar_CDJ_Post_Types::COURSE === $screen->post_type ) {
+			$dependencies = $screen->is_block_editor() ? array( 'wp-dom-ready', 'wp-data', 'wp-editor' ) : array( 'wp-dom-ready' );
+			wp_enqueue_script( 'fisar-cdj-course-title', FISAR_CDJ_CORE_URL . 'assets/js/course-title.js', $dependencies, FISAR_CDJ_CORE_VERSION, true );
+		}
+		if ( $screen->is_block_editor() ) {
+			wp_enqueue_script( 'fisar-cdj-editor-excerpt', FISAR_CDJ_CORE_URL . 'assets/js/editor-excerpt.js', array( 'wp-data', 'wp-dom-ready', 'wp-editor' ), FISAR_CDJ_CORE_VERSION, true );
+		}
 	}
 
 	public static function render_event_schedule( WP_Post $post ): void {
 		self::nonce_field();
+		self::render_excerpt( $post );
 		echo '<div class="fisar-admin-grid fisar-admin-grid--4">';
 		self::input( $post->ID, '_fisar_event_date', 'Data evento', 'date', 'La data determina automaticamente se l’evento è futuro o concluso.', true );
 		self::input( $post->ID, '_fisar_event_welcome_time', 'Ora accoglienza', 'time', 'Facoltativa.' );
@@ -255,6 +268,11 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	public static function render_course_details( WP_Post $post ): void {
 		self::nonce_field();
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		echo '<div id="fisar-course-title-settings" data-editor="' . ( $screen && $screen->is_block_editor() ? 'block' : 'classic' ) . '">';
+		self::select( $post->ID, '_fisar_course_title_mode', 'Titolo del corso', array( 'automatic' => 'Automatico — da livello e città', 'custom' => 'Personalizzato — titolo libero' ), 'Automatico compone il titolo al salvataggio. Per un nome diverso scegli Personalizzato e usa il titolo WordPress in alto. Controlla Città e Provincia nel box Sede.', fisar_cdj_get_course_title_mode( $post->ID ) );
+		echo '<p class="description">Titolo automatico: <output id="fisar-course-title-preview">' . esc_html( fisar_cdj_compose_course_title( (string) get_post_meta( $post->ID, '_fisar_course_level', true ), (string) get_post_meta( $post->ID, '_fisar_course_city', true ), (string) get_post_meta( $post->ID, '_fisar_course_province', true ) ) ) . '</output></p></div>';
+		self::render_excerpt( $post );
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post->ID, '_fisar_course_director', 'Direttore del Corso', 'text', 'Nome e cognome.', true );
 		self::select(
@@ -393,6 +411,7 @@ final class Fisar_CDJ_Meta_Boxes {
 			self::store_import_notice( $result );
 		}
 		update_post_meta( $post_id, '_fisar_course_calendar', $rows );
+		Fisar_CDJ_Course_Titles::save( $post_id );
 	}
 
 	public static function show_import_notice(): void {
@@ -410,6 +429,19 @@ final class Fisar_CDJ_Meta_Boxes {
 			echo ' ' . esc_html( implode( ' ', $notice['errors'] ) );
 		}
 		echo '</p></div>';
+	}
+
+	private static function render_excerpt( WP_Post $post ): void {
+		$excerpt = (string) get_post_field( 'post_excerpt', $post->ID, 'raw' );
+		$archive = Fisar_CDJ_Post_Types::EVENT === $post->post_type ? 'degli eventi' : 'dei corsi';
+		// Keep the native ID/name: classic autosave reads and restores #excerpt.
+		?>
+		<div class="fisar-field">
+			<label for="excerpt"><strong>Breve descrizione</strong></label>
+			<textarea class="widefat" id="excerpt" name="excerpt" rows="3" aria-describedby="fisar-post-excerpt-help"><?php echo esc_textarea( $excerpt ); ?></textarea>
+			<p class="description" id="fisar-post-excerpt-help">Compare nella lista <?php echo esc_html( $archive ); ?> e sotto il titolo della pagina di dettaglio. È il Riassunto di WordPress. Se lo lasci vuoto, la lista ricava un estratto dalla descrizione; nel dettaglio il sottotitolo non compare.</p>
+		</div>
+		<?php
 	}
 
 	private static function render_registration_fields( int $post_id, string $prefix ): void {

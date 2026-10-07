@@ -21,7 +21,7 @@ get_header();
 	</section>
 	<section class="section section--tinted" aria-labelledby="past-events">
 		<div class="container">
-			<div class="section-heading"><p class="eyebrow">Il nostro percorso</p><h2 id="past-events">Eventi conclusi</h2></div>
+			<div class="section-heading"><p class="eyebrow">Archivio</p><h2 id="past-events">Eventi conclusi</h2></div>
 			<?php $past = fisar_cdj_get_past_events(); ?>
 			<?php if ( $past->have_posts() ) : ?>
 				<div class="event-grid event-grid--past">
