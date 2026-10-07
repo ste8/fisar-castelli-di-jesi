@@ -2475,11 +2475,18 @@ blockquote {
 	display: flex;
 	flex-wrap: wrap;
 	gap: .3em;
-	margin: 0 0 .8rem;
 	color: var(--color-ink);
 	font-size: clamp(1.25rem, 2vw, 1.5rem);
 	font-weight: 500;
 	line-height: 1.3;
+}
+
+.courses-archive .course-card__identity,
+.events-archive .event-card__title {
+	width: 100%;
+	margin: 0 0 .8rem;
+	padding-bottom: .65rem;
+	border-bottom: 1px solid color-mix(in srgb, var(--color-gold) 40%, transparent);
 }
 
 .course-card__level {

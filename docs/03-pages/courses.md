@@ -1,5 +1,9 @@
 # Archivio Corsi
 
+## Separatore delle card standard — v1.6.52
+
+Sottile bordo decorativo da 1 px sotto livello e città, largo quanto il contenuto della card, oro FISAR al 40% di opacità. Spazio sopra la linea `.65rem`, sotto `.8rem`: separa l’identità dalle informazioni pratiche senza aggiungere altri separatori. Solo card automatiche dell’archivio con riga identitaria presente; home, titoli personalizzati e dettaglio invariati. Nessun nuovo elemento semantico o dato.
+
 ## Gerarchia delle card standard — v1.6.51
 
 Il 7 ottobre 2026, approvata la maggiore evidenza delle informazioni distintive: `Corso Sommelier` diventa un’introduzione Poppins 500 da 16–18 px; `1° livello · Città` usa la precedente scala del titolo, 20–24 px e interlinea 1.3 (livello 600, città 500). Provincia tra parentesi da 16–18 px/400, adiacente alla città. Riga flessibile, livello indivisibile, nessun troncamento. Riguarda le sole card automatiche dell’archivio, attive e concluse: home, dettaglio e titoli personalizzati invariati. Nome accessibile completo e dati editoriali conservati.
