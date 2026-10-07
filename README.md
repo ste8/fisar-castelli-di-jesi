@@ -137,6 +137,8 @@ Dal plugin `1.3.13`, il box **Sede** include **Link Google Maps**, facoltativo. 
 
 Tema `1.6.48`: home, archivio e dettaglio sono allineati agli Eventi, con Poppins, immagini quadrate non ritagliate e stati visibili. Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall’alto; quota, tesseramento e dotazione restano distinti. La quota conserva l’editor libero per condizioni personalizzate: `€` viene aggiunto solo a un importo numerico isolato. La home conserva fino a tre corsi attivi e mostra il totale nel link **Tutti i corsi (N)** se sono di più.
 
+Dal tema `1.6.56` / plugin `1.3.17`, il pannello e la scorciatoia ordinaria del dettaglio Corsi diventano **Informazioni e iscrizioni**: invito a contattarci per conoscere meglio il corso e sapere come iscriversi, pulsanti **Contattaci via WhatsApp** / **Contattaci via mail**. Non è un’iscrizione automatica. Scadenze e disponibilità conservano le regole precedenti; Eventi invariati.
+
 Nell’archivio Corsi, le card mostrano la data di inizio e il nome della **Sede**, con ripiego sulla città se non compilata. La data di fine non compare nelle card dell’elenco, ma resta nell’editor e nel dettaglio e continua a determinare lo stato del corso. Homepage invariata.
 
 Dal tema `1.6.50`, le card standard dell’archivio separano **Corso Sommelier** da **1° livello · Città (Provincia)**, senza ripetere il livello sopra. Sede con pin decorativo `📍`; quando la sede manca, la città è già nella riga del livello e non viene duplicata. Le card Eventi di home e archivio mostrano `📍 Sede · Città (Provincia)`; dal tema `1.6.55` anche gli eventi solo online mostrano `📍 Online`. Provincia omessa se vuota.

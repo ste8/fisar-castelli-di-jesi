@@ -295,7 +295,7 @@ function fisar_cdj_get_course_registration_details( int $course_id ): array {
 		'deadline_notice' => 'available' === $status && $deadline && 'flexible' === get_post_meta( $course_id, '_fisar_course_deadline_type', true )
 			? 'Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.' : '',
 		'limited_seats_notice' => 'available' === $status && get_post_meta( $course_id, '_fisar_course_limited_seats', true )
-			? 'Ti consigliamo di prenotare prima che esauriscano.' : '',
+			? 'Ti consigliamo di contattarci prima che esauriscano.' : '',
 	);
 }
 
@@ -488,8 +488,12 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 		'other_channel'=> array( 'label' => 'Altro canale di iscrizione', 'reference_label' => 'Altro canale', 'type' => 'text' ),
 	);
 	if ( in_array( $prefix, array( 'event', 'course' ), true ) ) {
-		$definitions['whatsapp']['label'] = 'course' === $prefix ? 'Iscriviti via WhatsApp' : 'Prenota via WhatsApp';
-		$definitions['email']['label']    = 'course' === $prefix ? 'Iscriviti via mail' : 'Prenota via mail';
+		$definitions['whatsapp']['label'] = 'course' === $prefix ? 'Contattaci via WhatsApp' : 'Prenota via WhatsApp';
+		$definitions['email']['label']    = 'course' === $prefix ? 'Contattaci via mail' : 'Prenota via mail';
+		if ( 'course' === $prefix ) {
+			$definitions['form_url']['label'] = 'Apri il modulo';
+			$definitions['other_channel']['label'] = 'Altro contatto';
+		}
 		$status = 'course' === $prefix ? fisar_cdj_get_course_booking_status( $post_id ) : fisar_cdj_get_event_booking_status( $post_id );
 		if ( 'waitlist' === $status ) {
 			$definitions['whatsapp']['label'] = 'Lista d’attesa via WhatsApp';

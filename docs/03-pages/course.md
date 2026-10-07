@@ -1,5 +1,11 @@
 # Pagina Corso
 
+## Contatto per informazioni e iscrizioni — v1.6.56 / plugin v1.3.17
+
+Il corso non è presentato come un’iscrizione immediata tramite i pulsanti: pannello finale e scorciatoia ordinaria `Informazioni e iscrizioni`. Con iscrizioni disponibili e contatti compilati, introduzione `Contattaci per conoscere meglio il corso e ricevere tutte le informazioni per iscriverti.` Sezione canali `Contattaci`, pulsanti `Contattaci via WhatsApp` / `Contattaci via mail`, recapiti e nominativi completi; telefono per informazioni invariato. L’eventuale modulo editoriale conserva il suo URL, con CTA neutra `Apri il modulo`: non si presume una specifica procedura esterna né una conferma automatica.
+
+Avviso posti limitati nei due box invita a contattarci, non a prenotare. Quote, tesseramento, dotazione, note editoriali, scadenze e stati restano invariati: con termine tassativo superato/sold-out senza lista/corso concluso nessun canale operativo riaperto; lista d’attesa conserva le etichette dedicate. Introduzione ordinaria omessa in questi stati o senza contatti. ID `course-registration`, focus dell’ancora, home/archivio e comportamento Eventi invariati. Questa revisione prevale sui testi `Iscrizione`, `Come iscriversi` e `Iscriviti via …` della v1.6.48 sotto.
+
 ## Breve descrizione nell’editor — plugin v1.3.14
 
 Il Riassunto nativo si compila come **Breve descrizione** all’inizio del box **Dettagli del corso**, non in un pannello separato. Il testo già presente è conservato. Compare sotto il titolo del dettaglio e nelle card dell’archivio; se vuoto, nessun sottotitolo nel dettaglio e estratto automatico dalla descrizione nell’archivio. Home compatta invariata. Non è un nuovo dato né una modifica allo stile pubblico.
