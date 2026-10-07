@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 7 ottobre 2026 — Numeri delle lezioni
+
+Richiesto numero manuale come primo campo, per gestire anche cambi d’ordine. Interpretato come etichetta della lezione, non chiave di ordinamento: le righe seguono ancora data/orario e mantengono il numero assegnato. Testo breve anziché intero obbligatorio, per consentire eccezioni come `3 bis` e zeri iniziali; nessuna unicità imposta o rinumerazione. Campo facoltativo per preservare i calendari esistenti, senza attribuire numeri non concordati. La prima colonna pubblica mostra `—` per i valori non compilati. Import vecchio e nuovo supportati senza migrazione; dati reali non modificati durante i test.
+
 ## 7 ottobre 2026 — Offerta dei Corsi
 
 Richiesta di opzione e banner automatico, con scadenza facoltativa. Scelta esplicita: spunta più data, anziché dedurre l’offerta dal testo Early Bird della quota o dalla presenza di una data. Senza data la durata è manuale; con data si include il giorno indicato nel fuso del sito. Non segnalare offerte sui corsi conclusi o con iscrizioni non ordinarie (chiuse, sold-out o lista d’attesa). Banner in home, elenco e dettaglio; nessun importo scontato fornito o calcolato. Regole e campi nel plugin, presentazione nel tema; test con dati simulati, corsi reali non marcati in offerta. In presenza di future cache di pagina, la loro scadenza dovrà rispettare i cambi di stato giornalieri, come per le iscrizioni.

@@ -41,6 +41,10 @@
 	width: 100%;
 }
 
+#fisar-calendar-table th:first-child {
+	width: 7rem;
+}
+
 .fisar-conditional[hidden] {
 	display: none;
 }

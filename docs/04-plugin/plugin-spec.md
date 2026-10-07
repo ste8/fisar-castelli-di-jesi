@@ -101,7 +101,11 @@ Iscrizioni: stessi canali degli Eventi + deadline tassativa/flessibile; chiusura
 **Cosa comprende il corso**: editor libero (kit, manuali, calici, degustazioni, software, attestato).
 
 ## Calendario lezioni
-Righe strutturate: data, orario, titolo, relatore, note. Il giorno della settimana è automatico.
+Revisione plugin `1.3.20`: righe strutturate nello stesso meta `_fisar_course_calendar`, con `number`, `date`, `time`, `title`, `speaker`, `notes`. Il numero è manuale, facoltativo e sanitizzato come testo breve: consente anche `03`, `0` e `3 bis`, senza rinumerazione. Campo al primo posto nel metabox; righe ancora ordinate per data/orario. Il giorno della settimana è automatico.
+
+Import tabulato: `Numero lezione, Data, Orario, Titolo, Relatore, Note`. Compatibile con il precedente formato che inizia dalla data, anche senza intestazioni; la prima cella vuota del nuovo formato non viene rimossa. Righe legacy lette con numero vuoto, nessuna migrazione o scrittura durante la lettura. Salvataggio protetto dalle guardie esistenti.
+
+L’anteprima JS usa indici monotoni anche dopo rimozioni/aggiunte. Dopo un import riuscito svuota il testo sorgente, così il salvataggio conserva le modifiche manuali alla tabella. Anteprima con date/titoli invalidi non sostituisce le righe e segnala il problema con un messaggio accessibile; il plugin rimane autorevole per la sanitizzazione server.
 Nota fissa: “N.B.: il presente calendario potrebbe subire delle variazioni per motivi organizzativi e di disponibilità dei relatori.”
 Import V1 da Excel/Google Sheets tramite copia-incolla tabulato. Niente HTML copiato.
 

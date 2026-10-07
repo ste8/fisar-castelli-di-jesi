@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Numero lezione — plugin 1.3.20 / tema 1.6.63
+
+Campo `number` aggiunto alle righe del meta calendario esistente: import, sanitizzazione e ordinamento restano nel plugin. Il lettore normalizza i calendari legacy senza numeri né migrazioni. Editor nativo con campo manuale al primo posto e anteprima modificabile; il tema mostra la prima colonna senza generare numeri. Nessun nuovo CPT, meta duplicato, dipendenza o contatore automatico.
+
 ### Offerte Corsi — plugin 1.3.19 / tema 1.6.60
 
 Due meta opzionali e un lettore di stato nel plugin: attivazione manuale e termine facoltativo inclusivo nel fuso WordPress, subordinati alla disponibilità ordinaria delle iscrizioni. Il tema legge `fisar_cdj_get_course_offer()` e riusa `course-offer.php` sotto la locandina in home, archivio e dettaglio. Nessuna logica temporale nel tema, migrazione, cron o calcolo delle quote. Dati di offerta salvati con marker e guardie esistenti; editor senza nuovi controlli non li cancellano. Le quote rimangono testo editoriale, non derivato dal banner.

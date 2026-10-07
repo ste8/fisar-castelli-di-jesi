@@ -13,7 +13,7 @@ final class Fisar_CDJ_Calendar_Importer {
 	public static function parse( string $input ): array {
 		$rows   = array();
 		$errors = array();
-		$lines  = preg_split( '/\R/u', trim( $input ) ) ?: array();
+		$lines  = preg_split( '/\R/u', trim( $input, "\r\n" ) ) ?: array();
 
 		foreach ( $lines as $index => $line ) {
 			if ( '' === trim( $line ) ) {
@@ -27,23 +27,26 @@ final class Fisar_CDJ_Calendar_Importer {
 				continue;
 			}
 
-			if ( count( $columns ) < 3 ) {
+			// Il formato precedente inizia con la data; quello nuovo con il numero.
+			$offset = '' !== self::normalize_date( $columns[0] ?? '' ) ? 0 : 1;
+			if ( count( $columns ) < 3 + $offset ) {
 				$errors[] = sprintf( 'Riga %d: servono almeno data, orario e titolo.', $index + 1 );
 				continue;
 			}
 
-			$date = self::normalize_date( $columns[0] );
+			$date = self::normalize_date( $columns[ $offset ] );
 			if ( '' === $date ) {
 				$errors[] = sprintf( 'Riga %d: data non riconosciuta.', $index + 1 );
 				continue;
 			}
 
 			$rows[] = array(
+				'number'  => $offset ? sanitize_text_field( $columns[0] ) : '',
 				'date'    => $date,
-				'time'    => sanitize_text_field( $columns[1] ?? '' ),
-				'title'   => sanitize_text_field( $columns[2] ?? '' ),
-				'speaker' => sanitize_text_field( $columns[3] ?? '' ),
-				'notes'   => sanitize_text_field( implode( ' — ', array_slice( $columns, 4 ) ) ),
+				'time'    => sanitize_text_field( $columns[ $offset + 1 ] ?? '' ),
+				'title'   => sanitize_text_field( $columns[ $offset + 2 ] ?? '' ),
+				'speaker' => sanitize_text_field( $columns[ $offset + 3 ] ?? '' ),
+				'notes'   => sanitize_text_field( implode( ' — ', array_slice( $columns, $offset + 4 ) ) ),
 			);
 		}
 
@@ -71,6 +74,7 @@ final class Fisar_CDJ_Calendar_Importer {
 			}
 
 			$sanitized[] = array(
+				'number'  => is_scalar( $row['number'] ?? '' ) ? sanitize_text_field( (string) ( $row['number'] ?? '' ) ) : '',
 				'date'    => $date,
 				'time'    => sanitize_text_field( (string) ( $row['time'] ?? '' ) ),
 				'title'   => $title,
@@ -90,7 +94,7 @@ final class Fisar_CDJ_Calendar_Importer {
 	private static function looks_like_header( array $columns ): bool {
 		$first = strtolower( self::strip_accents( (string) ( $columns[0] ?? '' ) ) );
 
-		return in_array( $first, array( 'data', 'data lezione', 'giorno' ), true );
+		return in_array( $first, array( 'data', 'data lezione', 'giorno', 'numero', 'numero lezione', 'n°', 'n.', 'n' ), true );
 	}
 
 	private static function normalize_date( string $date ): string {
@@ -115,4 +119,3 @@ final class Fisar_CDJ_Calendar_Importer {
 		return function_exists( 'remove_accents' ) ? remove_accents( $value ) : $value;
 	}
 }
-
