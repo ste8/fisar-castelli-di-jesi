@@ -21,23 +21,7 @@ $details      = $registration['details'];
 			<p class="registration-intro<?php echo $line === ( $details['open_participation_notice'] ?? '' ) ? ' registration-intro--open' : ''; ?>"><strong><?php echo esc_html( $line ); ?></strong></p>
 		<?php endforeach; ?>
 		<?php if ( empty( $details['closed'] ) && $registration['required'] && $registration['channels'] ) : ?>
-			<section class="registration-methods" aria-labelledby="registration-methods-title">
-				<h3 id="registration-methods-title"><?php echo ! empty( $details['waiting_list'] ) ? 'Richiedi la lista d’attesa' : 'Come prenotare'; ?></h3>
-				<ul class="registration-channels">
-					<?php foreach ( $registration['channels'] as $channel ) : ?>
-						<li>
-							<h4 class="registration-contact__label"><?php echo esc_html( $channel['reference_label'] ); ?></h4>
-							<p class="registration-contact">
-								<strong>
-									<?php if ( ! empty( $channel['name'] ) ) : ?><span class="registration-contact__name"><?php echo esc_html( $channel['name'] ); ?></span> · <?php endif; ?>
-									<span class="registration-contact__reference"><?php echo esc_html( isset( $channel['name'] ) ? fisar_cdj_theme_format_whatsapp_reference( $channel['reference'] ) : $channel['reference'] ); ?></span>
-								</strong>
-							</p>
-							<?php if ( $channel['url'] ) : ?><a class="button" href="<?php echo esc_url( $channel['url'] ); ?>"><?php echo esc_html( $channel['label'] ); ?><?php if ( isset( $channel['name'] ) ) : ?><span class="screen-reader-text">: <?php echo esc_html( $channel['name'] ?: $channel['reference'] ); ?></span><?php endif; ?></a><?php endif; ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</section>
+			<?php get_template_part( 'template-parts/registration-channels', null, array( 'channels' => $registration['channels'], 'title' => ! empty( $details['waiting_list'] ) ? 'Richiedi la lista d’attesa' : 'Come prenotare' ) ); ?>
 		<?php endif; ?>
 		<?php if ( empty( $details['closed'] ) && empty( $details['waiting_list'] ) && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>

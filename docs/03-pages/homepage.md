@@ -67,6 +67,12 @@ Esperimento successivo del 5 ottobre: ciascuna delle sei voci ha una piccola ico
 
 ## Percorsi di accesso
 
+### Card Corsi — v1.6.48
+
+Restano fino a tre corsi attivi e la composizione orizzontale compatta, senza abstract. Immagine quadrata su bianco senza ritaglio, titolo Poppins 500, livello e stato visibili; data d’inizio con icona calendario, mese per esteso quando entra su una riga e abbreviato solo quando necessario. Testo completo per screen reader e CTA accessibile invariati. Sold-out sotto l’immagine/lista d’attesa o badge iscrizioni chiuse se pertinente; corso attivo e iscrizioni aperte sono distinti.
+
+Collegamento `Tutti i corsi` sempre disponibile, con totale `(N)` quando supera tre, ricavato da `found_posts` della stessa query. Stato vuoto quando non ci sono corsi attivi. Ordine delle sezioni e altre card invariati.
+
 Dal 4 ottobre 2026 le Quattro Porte sono rimosse, senza un blocco sostitutivo: duplicavano percorsi già presenti nella hero, nella navigazione e nelle sezioni con contenuti concreti. La decisione prevale sul concept iniziale. Restano le CTA verso Eventi e Corsi, `Unisciti a noi` nell’header e la fascia Carta dei Valori.
 
 Prossimi Eventi: futuri ASC. Corsi: attivi. News: ultime pubblicazioni.

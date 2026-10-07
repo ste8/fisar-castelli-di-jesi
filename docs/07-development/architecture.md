@@ -2,6 +2,14 @@
 
 ## Sintesi
 
+### Allineamento Corsi — plugin 1.3.13 / tema 1.6.48
+
+Le regole di iscrizione dei Corsi sono nel plugin: stato concluso → scadenza tassativa superata → enum editoriale ordinario/sold-out/lista d’attesa. L’attività del corso continua a dipendere dalla data di fine, non dalla disponibilità delle iscrizioni. Nuovi meta privati facoltativi per disponibilità, posti limitati, Maps e destinatari WhatsApp; nessuna migrazione automatica.
+
+Sanitizzatori enum/contatti, lettore WhatsApp, regola della scadenza e repeater nativo condivisi, conservando i wrapper pubblici Eventi. Il tema riusa luogo, scadenza, posti limitati, fascia sold-out e `registration-channels.php`; `course-registration.php` mantiene quota editoriale, tesseramento e dotazione senza forzare il modello prezzi Eventi. Un solo pannello finale con ancora/focus nativi. Stili circoscritti ai due tipi di contenuto e CSS editor Corsi coerente; date adattive caricate anche nell’archivio Corsi.
+
+Home: tre corsi, totale da `found_posts` della stessa query, link sempre presente e stato vuoto corretto. Modalità online/ibrida, contatore posti, raccolta richieste e quote Soci/Non soci non introdotti nei Corsi. Le indicazioni storiche sotto relative a “Corsi invariati” restano riferite alle rispettive revisioni, non a questa.
+
 La V1 usa WordPress nativo, un plugin di dominio e un tema classico custom. Docker Compose orchestra WordPress, MariaDB e un container WP-CLI one-shot che installa il sito, attiva plugin e tema e carica i dati demo in modo idempotente.
 
 ```text

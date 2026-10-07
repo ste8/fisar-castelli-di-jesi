@@ -14,8 +14,25 @@ $province   = (string) get_post_meta( $course_id, '_fisar_course_province', true
 $active     = fisar_cdj_is_course_active( $course_id );
 $calendar   = fisar_cdj_get_course_calendar( $course_id );
 $events     = fisar_cdj_get_course_events( $course_id );
-$deadline   = (string) get_post_meta( $course_id, '_fisar_course_deadline', true );
-$deadline_type = (string) get_post_meta( $course_id, '_fisar_course_deadline_type', true );
+$details    = fisar_cdj_get_course_registration_details( $course_id );
+$location   = array(
+	'mode'     => 'presence',
+	'venue'    => $venue,
+	'address'  => $address,
+	'city'     => $city ? trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) : '',
+	'maps_url' => esc_url_raw( (string) get_post_meta( $course_id, '_fisar_course_maps_url', true ), array( 'http', 'https' ) ),
+);
+$has_location = $venue || $address || $location['city'] || $location['maps_url'];
+$registration = array(
+	'active'     => $active,
+	'details'    => $details,
+	'channels'   => fisar_cdj_get_registration_channels( $course_id, 'course' ),
+	'fee'        => (string) get_post_meta( $course_id, '_fisar_course_fee', true ),
+	'membership' => (string) get_post_meta( $course_id, '_fisar_course_membership', true ),
+	'includes'   => (string) get_post_meta( $course_id, '_fisar_course_includes', true ),
+	'notes'      => (string) get_post_meta( $course_id, '_fisar_course_registration_notes', true ),
+);
+$registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' : ( $details['waiting_list'] ? 'Lista d’attesa' : 'Come iscriversi' );
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-course' ); ?>>
@@ -27,12 +44,24 @@ $deadline_type = (string) get_post_meta( $course_id, '_fisar_course_deadline_typ
 					<h1><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
-						<?php if ( $start && $end ) : ?><li><strong>Periodo</strong><span><?php echo esc_html( fisar_cdj_theme_format_date( $start ) ); ?> – <?php echo esc_html( fisar_cdj_theme_format_date( $end ) ); ?></span></li><?php endif; ?>
-						<?php if ( $city ) : ?><li><strong>Città</strong><span><?php echo esc_html( $city ); ?><?php echo $province ? ' (' . esc_html( $province ) . ')' : ''; ?></span></li><?php endif; ?>
+						<?php if ( $start ) : ?><li><strong>Inizio</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></span></li><?php endif; ?>
+						<?php if ( $end ) : ?><li><strong>Fine</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $end ) ); ?></span></li><?php endif; ?>
+						<?php if ( $has_location ) : ?><li><strong>Luogo</strong><?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?></li><?php endif; ?>
 						<?php if ( $director ) : ?><li><strong>Direttore</strong><span><?php echo esc_html( $director ); ?></span></li><?php endif; ?>
+						<?php if ( $active && ( $details['deadline'] || $details['status_notice'] || $details['limited_seats_notice'] ) ) : ?>
+							<li class="event-deadline-row">
+								<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $details, 'summary' => true, 'label' => 'Iscrizioni entro', 'past_label' => 'Termine iscrizioni' ) ); ?>
+								<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $details ) ); ?>
+								<a class="button event-registration-link" href="#course-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
+							</li>
+						<?php endif; ?>
 					</ul>
+					<?php if ( $active && ! $details['deadline'] && ! $details['status_notice'] && ! $details['limited_seats_notice'] ) : ?><a class="button event-registration-link" href="#course-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 				</div>
-				<div class="content-hero__media"><?php fisar_cdj_theme_post_image( $course_id, 'single-course-image', true, 'eager' ); ?></div>
+				<div class="event-poster">
+					<div class="content-hero__media content-hero__media--poster"><?php fisar_cdj_theme_post_image( $course_id, 'single-course-image', true, 'eager' ); ?></div>
+					<?php if ( $active ) : ?><?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $details ) ); ?><?php endif; ?>
+				</div>
 			</div>
 		</header>
 
@@ -46,7 +75,7 @@ $deadline_type = (string) get_post_meta( $course_id, '_fisar_course_deadline_typ
 						<?php if ( $director ) : ?><div><dt>Direttore del Corso</dt><dd><?php echo esc_html( $director ); ?></dd></div><?php endif; ?>
 						<?php if ( $start ) : ?><div><dt>Inizio</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></dd></div><?php endif; ?>
 						<?php if ( $end ) : ?><div><dt>Fine</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $end ) ); ?></dd></div><?php endif; ?>
-						<?php if ( $city ) : ?><div><dt>Sede</dt><dd><?php echo esc_html( implode( ', ', array_filter( array( $venue, $address, trim( $city . ( $province ? ' (' . $province . ')' : '' ) ) ) ) ) ); ?></dd></div><?php endif; ?>
+						<?php if ( $has_location ) : ?><div><dt>Luogo</dt><dd><?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?></dd></div><?php endif; ?>
 					</dl>
 				</section>
 
@@ -77,29 +106,9 @@ $deadline_type = (string) get_post_meta( $course_id, '_fisar_course_deadline_typ
 						</ul>
 					</section>
 				<?php endif; ?>
+				<?php get_template_part( 'template-parts/course-registration', null, array( 'registration' => $registration ) ); ?>
 			</div>
-
-			<aside class="registration-box" aria-labelledby="course-registration-title">
-				<h2 id="course-registration-title"><?php echo $active ? 'Iscrizioni e quota' : 'Corso concluso'; ?></h2>
-				<?php if ( $active ) : ?>
-					<?php if ( $deadline ) : ?><p><strong>Iscrizioni entro il <?php echo esc_html( fisar_cdj_theme_format_date( $deadline ) ); ?>.</strong></p><?php endif; ?>
-					<?php if ( 'flexible' === $deadline_type ) : ?><p>Dopo tale termine sarà comunque possibile contattarci, ma non potremo garantire la disponibilità.</p><?php endif; ?>
-					<div class="registration-section"><h3>Quota di partecipazione</h3><?php echo wp_kses_post( (string) get_post_meta( $course_id, '_fisar_course_fee', true ) ); ?></div>
-					<div class="registration-section"><h3>Tesseramento FISAR</h3><?php echo wp_kses_post( (string) get_post_meta( $course_id, '_fisar_course_membership', true ) ); ?></div>
-					<div class="registration-section"><h3>Cosa comprende</h3><?php echo wp_kses_post( (string) get_post_meta( $course_id, '_fisar_course_includes', true ) ); ?></div>
-					<ul class="registration-channels">
-						<?php foreach ( fisar_cdj_get_registration_channels( $course_id, 'course' ) as $channel ) : ?>
-							<li><?php if ( $channel['url'] ) : ?><a class="button" href="<?php echo esc_url( $channel['url'] ); ?>"><?php echo esc_html( $channel['label'] ); ?></a><?php else : ?><strong><?php echo esc_html( $channel['label'] ); ?>:</strong> <?php echo esc_html( $channel['value'] ); ?><?php endif; ?></li>
-						<?php endforeach; ?>
-					</ul>
-					<?php echo wp_kses_post( (string) get_post_meta( $course_id, '_fisar_course_registration_notes', true ) ); ?>
-				<?php else : ?>
-					<p>Questa edizione è terminata. Consulta i corsi attivi per trovare il prossimo percorso.</p>
-					<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>">Vedi i corsi attivi</a>
-				<?php endif; ?>
-			</aside>
 		</div>
 	</article>
 </main>
 <?php get_footer(); ?>
-

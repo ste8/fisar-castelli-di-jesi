@@ -280,16 +280,21 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::input( $post->ID, '_fisar_course_address', 'Indirizzo', 'text' );
 		self::input( $post->ID, '_fisar_course_city', 'Città', 'text', '', true );
 		self::input( $post->ID, '_fisar_course_province', 'Provincia', 'text', 'Sigla di due lettere.', true, 2 );
+		echo '<input type="hidden" name="_fisar_course_maps_present" value="1">';
+		self::input( $post->ID, '_fisar_course_maps_url', 'Link Google Maps', 'url', 'Facoltativo. Incolla il link della posizione condiviso da Google Maps, incluso https://. Nel sito compare solo il collegamento, senza mappa incorporata.' );
 		echo '</div>';
 	}
 
 	public static function render_course_registration( WP_Post $post ): void {
+		self::select( $post->ID, '_fisar_course_booking_status', 'Disponibilità del corso', array( 'available' => 'Ordinaria (non sold-out)', 'sold_out' => 'Sold-out', 'waitlist' => 'Sold-out con lista d’attesa' ), 'La lista d’attesa usa gli stessi contatti delle iscrizioni. Un termine tassativo superato chiude anche la lista d’attesa. Un corso concluso non accetta iscrizioni.', 'available' );
+		echo '<input type="hidden" name="_fisar_course_booking_present" value="1">';
+		self::checkbox( $post->ID, '_fisar_course_limited_seats', 'Mostra avviso posti limitati', 'Non viene memorizzato il numero di posti.' );
 		self::render_registration_fields( $post->ID, 'course' );
 		self::editor( $post->ID, '_fisar_course_registration_notes', 'Informazioni aggiuntive', 'Modalità o dettagli utili per l’iscrizione.' );
 	}
 
 	public static function render_course_offer( WP_Post $post ): void {
-		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento.' );
+		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento. Se inserisci solo un importo numerico, per esempio 590, il sito aggiunge €. Nei testi con condizioni specifiche indica anche la valuta.' );
 		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.' );
 		self::editor( $post->ID, '_fisar_course_includes', 'Cosa comprende il corso', 'Per esempio kit, manuali, calici, degustazioni, software e attestato.' );
 	}
@@ -355,7 +360,26 @@ final class Fisar_CDJ_Meta_Boxes {
 			return;
 		}
 
-		self::save_text_fields( $post_id, self::COURSE_TEXT_FIELDS );
+		$text_fields = self::COURSE_TEXT_FIELDS;
+		if ( ! isset( $_POST['_fisar_course_whatsapp'] ) || metadata_exists( 'post', $post_id, '_fisar_course_whatsapp_contacts' ) ) {
+			$text_fields = array_diff( $text_fields, array( '_fisar_course_whatsapp' ) );
+		}
+		self::save_text_fields( $post_id, $text_fields );
+		if ( isset( $_POST['_fisar_course_booking_status'] ) ) {
+			update_post_meta( $post_id, '_fisar_course_booking_status', fisar_cdj_sanitize_booking_status( wp_unslash( $_POST['_fisar_course_booking_status'] ) ) );
+		}
+		if ( isset( $_POST['_fisar_course_booking_present'] ) ) {
+			update_post_meta( $post_id, '_fisar_course_limited_seats', isset( $_POST['_fisar_course_limited_seats'] ) ? 1 : 0 );
+		}
+		if ( isset( $_POST['_fisar_course_maps_present'] ) ) {
+			$value = wp_unslash( $_POST['_fisar_course_maps_url'] ?? '' );
+			update_post_meta( $post_id, '_fisar_course_maps_url', is_string( $value ) ? esc_url_raw( $value, array( 'http', 'https' ) ) : '' );
+		}
+		if ( isset( $_POST['_fisar_course_whatsapp_contacts_present'] ) ) {
+			$contacts = fisar_cdj_sanitize_whatsapp_contacts( wp_unslash( $_POST['_fisar_course_whatsapp_contacts'] ?? array() ) );
+			update_post_meta( $post_id, '_fisar_course_whatsapp_contacts', wp_slash( $contacts ) );
+			update_post_meta( $post_id, '_fisar_course_whatsapp', wp_slash( $contacts[0]['value'] ?? '' ) );
+		}
 		self::save_url_fields( $post_id, self::COURSE_URL_FIELDS );
 		self::save_rich_fields( $post_id, array_diff( self::RICH_TEXT_FIELDS, array( '_fisar_event_registration_notes' ) ) );
 
@@ -389,23 +413,18 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	private static function render_registration_fields( int $post_id, string $prefix ): void {
-		if ( 'event' === $prefix ) {
-			self::render_event_whatsapp_contacts( $post_id );
-		}
+		self::render_whatsapp_contacts( $post_id, $prefix );
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
-		if ( 'event' !== $prefix ) {
-			self::input( $post_id, "_fisar_{$prefix}_whatsapp", 'WhatsApp', 'text', 'Numero con prefisso internazionale (es. +39 …), oppure link completo alla chat o al canale. Senza prefisso il numero resta visibile, ma non viene generato un link alla chat.' );
-		}
 		self::input( $post_id, "_fisar_{$prefix}_email", 'Email', 'email' );
 		self::input( $post_id, "_fisar_{$prefix}_phone", 'Telefono', 'tel' );
 		self::input( $post_id, "_fisar_{$prefix}_form_url", 'Modulo online', 'url', 'Link completo al modulo.' );
 		self::input( $post_id, "_fisar_{$prefix}_other_channel", 'Altro canale', 'text' );
-		self::input( $post_id, "_fisar_{$prefix}_deadline", 'Termine prenotazioni', 'date' );
+		self::input( $post_id, "_fisar_{$prefix}_deadline", 'course' === $prefix ? 'Termine iscrizioni' : 'Termine prenotazioni', 'date' );
 		echo '</div>';
 		self::select(
 			$post_id,
 			"_fisar_{$prefix}_deadline_type",
-			'Tipo di termine data prenotazione',
+			'course' === $prefix ? 'Tipo di termine data iscrizione' : 'Tipo di termine data prenotazione',
 			array(
 				'strict'   => 'Tassativo',
 				'flexible' => 'Flessibile',
@@ -414,24 +433,24 @@ final class Fisar_CDJ_Meta_Boxes {
 		);
 	}
 
-	private static function render_event_whatsapp_contacts( int $post_id ): void {
-		$contacts = fisar_cdj_get_event_whatsapp_contacts( $post_id );
+	private static function render_whatsapp_contacts( int $post_id, string $prefix ): void {
+		$contacts = fisar_cdj_get_registration_whatsapp_contacts( $post_id, $prefix );
 		?>
-		<h3>Contatti WhatsApp per le prenotazioni</h3>
-		<input type="hidden" name="_fisar_event_whatsapp_contacts_present" value="1">
-		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria) e numero WhatsApp, con o senza +39: per esempio 335 1234567. Se manca il prefisso, il numero è considerato italiano e il link alla chat viene generato automaticamente. Per numeri esteri indica il prefisso internazionale. Le righe senza numero vengono ignorate. I contatti saranno pubblici nella pagina dell’evento.</p>
+		<h3>Contatti WhatsApp per le <?php echo 'course' === $prefix ? 'iscrizioni' : 'prenotazioni'; ?></h3>
+		<input type="hidden" name="_fisar_<?php echo esc_attr( $prefix ); ?>_whatsapp_contacts_present" value="1">
+		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria) e numero WhatsApp, con o senza +39: per esempio 335 1234567. Se manca il prefisso, il numero è considerato italiano e il link alla chat viene generato automaticamente. Per numeri esteri indica il prefisso internazionale. Le righe senza numero vengono ignorate. I contatti saranno pubblici nella pagina <?php echo 'course' === $prefix ? 'del corso' : 'dell’evento'; ?>.</p>
 		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ) + 1; ?>">
-			<?php foreach ( $contacts as $index => $contact ) { self::event_whatsapp_contact( $index, $contact ); } ?>
-			<?php self::event_whatsapp_contact( count( $contacts ) ); ?>
+			<?php foreach ( $contacts as $index => $contact ) { self::whatsapp_contact( $index, $contact, $prefix ); } ?>
+			<?php self::whatsapp_contact( count( $contacts ), array(), $prefix ); ?>
 		</div>
-		<template id="fisar-whatsapp-template"><?php self::event_whatsapp_contact( '__INDEX__' ); ?></template>
+		<template id="fisar-whatsapp-template"><?php self::whatsapp_contact( '__INDEX__', array(), $prefix ); ?></template>
 		<p><button type="button" class="button" id="fisar-whatsapp-add" hidden>Aggiungi contatto WhatsApp</button></p>
 		<p class="description" id="fisar-whatsapp-noscript">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero.</p>
 		<span class="screen-reader-text" id="fisar-whatsapp-status" role="status" aria-live="polite"></span>
 		<?php
 	}
 
-	private static function event_whatsapp_contact( int|string $index, array $contact = array() ): void {
+	private static function whatsapp_contact( int|string $index, array $contact, string $prefix ): void {
 		?>
 		<fieldset class="fisar-whatsapp-contact" aria-describedby="fisar-whatsapp-help">
 			<legend><strong>Contatto WhatsApp</strong></legend>
@@ -439,7 +458,7 @@ final class Fisar_CDJ_Meta_Boxes {
 				<?php foreach ( array( 'name' => 'Nominativo (facoltativo)', 'value' => 'Numero WhatsApp' ) as $key => $label ) : ?>
 					<div class="fisar-field">
 						<label for="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>"><strong><?php echo esc_html( $label ); ?></strong></label>
-						<input class="widefat" type="<?php echo 'value' === $key ? 'tel' : 'text'; ?>"<?php if ( 'value' === $key ) : ?> inputmode="tel" placeholder="335 1234567"<?php endif; ?> id="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_event_whatsapp_contacts[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $contact[ $key ] ?? '' ); ?>">
+						<input class="widefat" type="<?php echo 'value' === $key ? 'tel' : 'text'; ?>"<?php if ( 'value' === $key ) : ?> inputmode="tel" placeholder="335 1234567"<?php endif; ?> id="fisar-whatsapp-<?php echo esc_attr( $index . '-' . $key ); ?>" name="_fisar_<?php echo esc_attr( $prefix ); ?>_whatsapp_contacts[<?php echo esc_attr( $index ); ?>][<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $contact[ $key ] ?? '' ); ?>">
 					</div>
 				<?php endforeach; ?>
 			</div>

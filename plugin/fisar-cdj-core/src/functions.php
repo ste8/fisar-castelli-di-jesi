@@ -185,17 +185,64 @@ function fisar_cdj_get_event_fees( int $event_id ): array {
 
 /** A strict date is inclusive in the site's timezone; invalid/missing dates never close bookings. */
 function fisar_cdj_has_event_registration_deadline_passed( int $event_id ): bool {
-	if ( ! get_post_meta( $event_id, '_fisar_event_registration_required', true ) || 'strict' !== get_post_meta( $event_id, '_fisar_event_deadline_type', true ) ) {
+	return (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true ) && fisar_cdj_has_registration_deadline_passed( $event_id, 'event' );
+}
+
+function fisar_cdj_has_registration_deadline_passed( int $post_id, string $prefix ): bool {
+	if ( ! in_array( $prefix, array( 'event', 'course' ), true ) || 'strict' !== get_post_meta( $post_id, "_fisar_{$prefix}_deadline_type", true ) ) {
 		return false;
 	}
-	$deadline = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
+	$deadline = (string) get_post_meta( $post_id, "_fisar_{$prefix}_deadline", true );
 	$date     = DateTimeImmutable::createFromFormat( '!Y-m-d', $deadline, wp_timezone() );
 	return $date && $date->format( 'Y-m-d' ) === $deadline && $deadline < fisar_cdj_today();
 }
 
 /** One enum prevents contradictory sold-out/waiting-list flags. */
 function fisar_cdj_sanitize_event_booking_status( mixed $status ): string {
+	return fisar_cdj_sanitize_booking_status( $status );
+}
+
+function fisar_cdj_sanitize_booking_status( mixed $status ): string {
 	return in_array( $status, array( 'available', 'sold_out', 'waitlist' ), true ) ? $status : 'available';
+}
+
+/** A course remains active during lessons, independently of booking availability. */
+function fisar_cdj_get_course_booking_status( int $course_id ): string {
+	if ( ! fisar_cdj_is_course_active( $course_id ) ) {
+		return 'concluded';
+	}
+	if ( fisar_cdj_has_registration_deadline_passed( $course_id, 'course' ) ) {
+		return 'closed';
+	}
+	return fisar_cdj_sanitize_booking_status( get_post_meta( $course_id, '_fisar_course_booking_status', true ) );
+}
+
+function fisar_cdj_get_course_registration_details( int $course_id ): array {
+	$status = fisar_cdj_get_course_booking_status( $course_id );
+	$deadline = (string) get_post_meta( $course_id, '_fisar_course_deadline', true );
+	$date = DateTimeImmutable::createFromFormat( '!Y-m-d', $deadline, wp_timezone() );
+	$deadline = $date && $date->format( 'Y-m-d' ) === $deadline ? $deadline : '';
+	return array(
+		'status' => $status,
+		'closed' => in_array( $status, array( 'closed', 'sold_out', 'concluded' ), true ),
+		'waiting_list' => 'waitlist' === $status,
+		'status_notice' => match ( $status ) {
+			'closed' => 'Iscrizioni chiuse',
+			'sold_out' => 'Sold-out',
+			'waitlist' => 'Sold-out — lista d’attesa',
+			default => '',
+		},
+		'availability_notice' => match ( $status ) {
+			'sold_out' => 'I posti disponibili sono esauriti.',
+			'waitlist' => 'I posti disponibili sono esauriti. Puoi contattarci per chiedere di essere inserito in lista d’attesa. L’inserimento non garantisce la partecipazione al corso.',
+			default => '',
+		},
+		'deadline' => $deadline,
+		'deadline_notice' => 'available' === $status && $deadline && 'flexible' === get_post_meta( $course_id, '_fisar_course_deadline_type', true )
+			? 'Dopo tale termine sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.' : '',
+		'limited_seats_notice' => 'available' === $status && get_post_meta( $course_id, '_fisar_course_limited_seats', true )
+			? 'Ti consigliamo di prenotare prima che esauriscano.' : '',
+	);
 }
 
 /** A strict expired deadline takes priority over editorial availability. */
@@ -329,6 +376,10 @@ function fisar_cdj_get_whatsapp_contact( string $value, string $default_country_
 
 /** Ordered WhatsApp contacts; a name alone is not a usable booking destination. */
 function fisar_cdj_sanitize_event_whatsapp_contacts( mixed $contacts ): array {
+	return fisar_cdj_sanitize_whatsapp_contacts( $contacts );
+}
+
+function fisar_cdj_sanitize_whatsapp_contacts( mixed $contacts ): array {
 	if ( ! is_array( $contacts ) ) {
 		return array();
 	}
@@ -353,16 +404,26 @@ function fisar_cdj_sanitize_event_whatsapp_contacts( mixed $contacts ): array {
 
 /** Read legacy contacts without writing; an explicitly empty new list stays empty. */
 function fisar_cdj_get_event_whatsapp_contacts( int $event_id ): array {
-	if ( metadata_exists( 'post', $event_id, '_fisar_event_whatsapp_contacts' ) ) {
-		return fisar_cdj_sanitize_event_whatsapp_contacts( get_post_meta( $event_id, '_fisar_event_whatsapp_contacts', true ) );
+	return fisar_cdj_get_registration_whatsapp_contacts( $event_id, 'event' );
+}
+
+function fisar_cdj_get_registration_whatsapp_contacts( int $post_id, string $prefix ): array {
+	if ( ! in_array( $prefix, array( 'event', 'course' ), true ) ) {
+		return array();
 	}
-	return fisar_cdj_sanitize_event_whatsapp_contacts( array(
-		array( 'name' => '', 'value' => get_post_meta( $event_id, '_fisar_event_whatsapp', true ) ),
+	if ( metadata_exists( 'post', $post_id, "_fisar_{$prefix}_whatsapp_contacts" ) ) {
+		return fisar_cdj_sanitize_whatsapp_contacts( get_post_meta( $post_id, "_fisar_{$prefix}_whatsapp_contacts", true ) );
+	}
+	return fisar_cdj_sanitize_whatsapp_contacts( array(
+		array( 'name' => '', 'value' => get_post_meta( $post_id, "_fisar_{$prefix}_whatsapp", true ) ),
 	) );
 }
 
 function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): array {
 	if ( 'event' === $prefix && fisar_cdj_is_event_registration_closed( $post_id ) ) {
+		return array();
+	}
+	if ( 'course' === $prefix && in_array( fisar_cdj_get_course_booking_status( $post_id ), array( 'closed', 'sold_out', 'concluded' ), true ) ) {
 		return array();
 	}
 	$definitions = array(
@@ -372,10 +433,11 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 		'form_url'     => array( 'label' => 'Compila il modulo di iscrizione', 'reference_label' => 'Modulo online', 'type' => 'url' ),
 		'other_channel'=> array( 'label' => 'Altro canale di iscrizione', 'reference_label' => 'Altro canale', 'type' => 'text' ),
 	);
-	if ( 'event' === $prefix ) {
-		$definitions['whatsapp']['label'] = 'Prenota via WhatsApp';
-		$definitions['email']['label']    = 'Prenota via mail';
-		if ( 'waitlist' === fisar_cdj_get_event_booking_status( $post_id ) ) {
+	if ( in_array( $prefix, array( 'event', 'course' ), true ) ) {
+		$definitions['whatsapp']['label'] = 'course' === $prefix ? 'Iscriviti via WhatsApp' : 'Prenota via WhatsApp';
+		$definitions['email']['label']    = 'course' === $prefix ? 'Iscriviti via mail' : 'Prenota via mail';
+		$status = 'course' === $prefix ? fisar_cdj_get_course_booking_status( $post_id ) : fisar_cdj_get_event_booking_status( $post_id );
+		if ( 'waitlist' === $status ) {
 			$definitions['whatsapp']['label'] = 'Lista d’attesa via WhatsApp';
 			$definitions['email']['label'] = 'Lista d’attesa via mail';
 			$definitions['phone']['label'] = 'Chiama per la lista d’attesa';
@@ -386,8 +448,8 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 	$channels = array();
 
 	foreach ( $definitions as $suffix => $definition ) {
-		if ( 'event' === $prefix && 'whatsapp' === $suffix ) {
-			foreach ( fisar_cdj_get_event_whatsapp_contacts( $post_id ) as $entry ) {
+		if ( in_array( $prefix, array( 'event', 'course' ), true ) && 'whatsapp' === $suffix ) {
+			foreach ( fisar_cdj_get_registration_whatsapp_contacts( $post_id, $prefix ) as $entry ) {
 				$contact = fisar_cdj_get_whatsapp_contact( $entry['value'], '39' );
 				$channels[] = array(
 					'label'           => $definition['label'],

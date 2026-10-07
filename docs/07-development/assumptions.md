@@ -1,5 +1,12 @@
 # Assunzioni di implementazione V1
 
+## 6 ottobre 2026 — Estensione delle migliorie Eventi ai Corsi
+
+- Richiesta di allineare home, archivio e dettaglio applicando soltanto quanto pertinente. Conservati livelli, direttore, calendario/import, tesseramento, dotazione, condizioni libere della quota e relazioni con Eventi.
+- Trasferiti scadenza evidenziata/chiusura tassativa, sold-out con eventuale lista d’attesa, avviso posti limitati, più contatti WhatsApp e Maps opzionale. Corso attivo e iscrizioni aperte sono stati diversi; conclusione e termine tassativo superato prevalgono sulla lista d’attesa. Data inclusa nel fuso WordPress, default ordinario, nessuna riscrittura dei dati esistenti.
+- Non aggiunte modalità online/ibrida o quote Soci/Non soci: il modello Corsi attuale non le prevede. L’editor libero della quota resta adatto a Early Bird, Under 25, gruppi e rate; € automatico solo per importi isolati.
+- Home fino a tre corsi con composizione compatta e link sempre disponibile; totale quando eccede il limite. Test su dati in memoria e salvataggi intercettati, non sugli inserimenti reali; nessun commit automatico.
+
 Data: 29 agosto 2026.
 
 ## Precedenza delle specifiche

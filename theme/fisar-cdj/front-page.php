@@ -55,13 +55,14 @@ $events_link_text = $has_more_events
 			</section>
 
 			<section class="home-programs__courses" aria-labelledby="courses-title">
+				<?php $courses = function_exists( 'fisar_cdj_get_active_courses' ) ? fisar_cdj_get_active_courses( 3 ) : null; ?>
+				<?php $courses_link_label = $courses && $courses->found_posts > 3 ? sprintf( 'Tutti i corsi (%d)', $courses->found_posts ) : 'Tutti i corsi'; ?>
 				<div class="section-heading section-heading--compact section-heading--with-link">
 					<h2 id="courses-title">I nostri corsi</h2>
-					<a class="text-link text-link--desktop" href="<?php echo esc_url( $courses_url ); ?>">Tutti i corsi <span aria-hidden="true">→</span></a>
+					<a class="text-link text-link--desktop" href="<?php echo esc_url( $courses_url ); ?>"><?php echo esc_html( $courses_link_label ); ?> <span aria-hidden="true">→</span></a>
 				</div>
 				<div class="course-grid course-grid--home">
-					<?php if ( function_exists( 'fisar_cdj_get_active_courses' ) ) : ?>
-						<?php $courses = fisar_cdj_get_active_courses( 3 ); ?>
+					<?php if ( $courses && $courses->have_posts() ) : ?>
 						<?php while ( $courses->have_posts() ) : $courses->the_post(); ?>
 							<?php get_template_part( 'template-parts/course-card', null, array( 'context' => 'home' ) ); ?>
 						<?php endwhile; wp_reset_postdata(); ?>
@@ -69,7 +70,7 @@ $events_link_text = $has_more_events
 						<?php get_template_part( 'template-parts/empty-state' ); ?>
 					<?php endif; ?>
 				</div>
-				<a class="text-link text-link--mobile" href="<?php echo esc_url( $courses_url ); ?>">Tutti i corsi <span aria-hidden="true">→</span></a>
+				<a class="text-link text-link--mobile" href="<?php echo esc_url( $courses_url ); ?>"><?php echo esc_html( $courses_link_label ); ?> <span aria-hidden="true">→</span></a>
 			</section>
 		</div>
 	</div>
