@@ -2057,6 +2057,34 @@ blockquote {
 	gap: 2.5rem;
 }
 
+.single-course .content-layout {
+	max-width: var(--container);
+}
+
+.single-course .content-layout > .prose {
+	width: 100%;
+	max-width: 48rem;
+	margin-inline: auto;
+}
+
+.single-course .content-layout > .course-calendar {
+	max-width: none;
+}
+
+.single-course .course-calendar > h2 {
+	margin-top: 0;
+}
+
+.single-course .course-follow-up > section:first-child > h2 {
+	margin-top: 0;
+}
+
+@media (min-width: 64rem) {
+	.single-course .course-calendar .lesson-calendar {
+		min-width: 0;
+	}
+}
+
 :is(.single-event, .single-course) .event-registration-link {
 	display: inline-flex;
 	align-items: center;
