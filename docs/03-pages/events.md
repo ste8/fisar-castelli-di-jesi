@@ -1,5 +1,9 @@
 # Archivio Eventi
 
+## Pin per eventi online — v1.6.55
+
+Anche le card di eventi solo online mostrano `📍 Online`, in home e archivio. Pin decorativo con `aria-hidden="true"`; nessun luogo fisico obsoleto, piattaforma o link di accesso aggiunto. Presenza, ibrido e dettaglio invariati. Questa revisione prevale sull’indicazione Online senza pin nella versione v1.6.50 sotto.
+
 Aggiornamento v1.6.54: anche le card Eventi della home adottano titolo→separatore→data e luogo, con la stessa regola CSS dell’archivio. Prevale sull’indicazione della home senza separatore riportata nella revisione v1.6.53. Dettaglio e altri contesti invariati; specifica in `homepage.md`.
 
 ## Separatore delle card — v1.6.53

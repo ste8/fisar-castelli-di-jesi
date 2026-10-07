@@ -40,7 +40,7 @@ if ( 'online' === $mode ) {
 		<?php endif; ?>
 		<?php if ( 'closed' === ( $booking['status'] ?? '' ) ) : ?><p class="event-card__booking-status"><?php echo esc_html( $booking['status_notice'] ); ?></p><?php endif; ?>
 		<?php if ( ! $is_home_card && ! $is_archive_card ) : ?><h3 class="event-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3><?php endif; ?>
-		<?php get_template_part( 'template-parts/card-place', null, array( 'place' => $place, 'class' => 'event-card__place', 'show_pin' => 'online' !== $mode && $has_physical_place ) ); ?>
+		<?php get_template_part( 'template-parts/card-place', null, array( 'place' => $place, 'class' => 'event-card__place', 'show_pin' => 'online' === $mode || $has_physical_place ) ); ?>
 		<?php if ( ! $is_home_card && has_excerpt() ) : ?><p class="event-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 		<a class="text-link" href="<?php the_permalink(); ?>">Dettagli evento<span class="screen-reader-text">: <?php echo esc_html( get_the_title() ); ?></span> <span aria-hidden="true">→</span></a>
 	</div>
