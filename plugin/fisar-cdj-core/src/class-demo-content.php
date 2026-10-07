@@ -292,7 +292,7 @@ final class Fisar_CDJ_Demo_Content {
 				'_fisar_course_form_url'           => home_url( '/contatti/' ),
 				'_fisar_course_deadline'           => $active_start->modify( '-7 days' )->format( 'Y-m-d' ),
 				'_fisar_course_deadline_type'      => 'flexible',
-				'_fisar_course_registration_notes' => '<p>È possibile richiedere un colloquio informativo prima dell’iscrizione.</p>',
+				'_fisar_course_registration_notes' => '',
 				'_fisar_course_fee'                => '<p><strong>Quota standard: € 590</strong>, in due rate. Quota Early Bird: € 550 entro il termine indicato.</p>',
 				'_fisar_course_membership'         => '<p>È richiesto il tesseramento FISAR per l’anno in corso. La quota associativa non è inclusa nella quota del corso.</p>',
 				'_fisar_course_includes'           => '<ul><li>Kit di calici e valigetta</li><li>Manuali didattici</li><li>Vini in degustazione</li><li>Accesso al software FISAR</li><li>Attestato finale</li></ul>',

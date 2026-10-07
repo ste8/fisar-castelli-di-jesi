@@ -68,16 +68,6 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 		<div class="container content-layout">
 			<div class="prose">
 				<?php the_content(); ?>
-				<section aria-labelledby="course-details-title">
-					<h2 id="course-details-title">Informazioni pratiche</h2>
-					<dl class="details-list">
-						<?php if ( $level ) : ?><div><dt>Livello</dt><dd><?php echo esc_html( $level ); ?>° livello</dd></div><?php endif; ?>
-						<?php if ( $director ) : ?><div><dt>Direttore del Corso</dt><dd><?php echo esc_html( $director ); ?></dd></div><?php endif; ?>
-						<?php if ( $start ) : ?><div><dt>Inizio</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></dd></div><?php endif; ?>
-						<?php if ( $end ) : ?><div><dt>Fine</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $end ) ); ?></dd></div><?php endif; ?>
-						<?php if ( $has_location ) : ?><div><dt>Luogo</dt><dd><?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?></dd></div><?php endif; ?>
-					</dl>
-				</section>
 
 				<?php if ( $calendar ) : ?>
 					<section aria-labelledby="calendar-title">

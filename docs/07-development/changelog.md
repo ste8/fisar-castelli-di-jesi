@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.6.57 — Eliminato il riepilogo duplicato dei Corsi
+
+- Rimossa dal dettaglio Corsi la sezione generata `Informazioni pratiche`, senza toccare il contenuto editoriale. Livello, direttore, date, sede/indirizzo/città/provincia e Maps rimangono in alto; calendario, Eventi collegati e pannello finale `Informazioni e iscrizioni` conservati.
+- Skill `clean-code-engineer`: eliminato soltanto il markup duplicato nel template Corsi, senza modificare CSS condiviso, campi, dati o regole del plugin. Tema/asset `1.6.57`, plugin invariato; Eventi, home/archivio e modifiche precedenti preservati. Nessun commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Test nativi su 20 varianti Corsi: riepilogo inferiore assente, livello/direttore/date e Maps ancora nella hero, calendario/relazioni/pannello conservati; otto salvataggi intercettati, nessuna scrittura persistente. Browser corso attivo a 1440/768/390/320 px e concluso a 320 px: dati iniziali presenti, nessun riepilogo duplicato o overflow; immagini caricate e console senza errori sul corso attivo. Review visiva e screenshot della descrizione seguita dal calendario.
+
+## 7 ottobre 2026 — Nota sul colloquio rimossa
+
+- Su richiesta dell’utente, rimossa dal campo Note iscrizioni del corso locale ID 12 la frase `È possibile richiedere un colloquio informativo prima dell’iscrizione.`; dato demo corrispondente svuotato, secondo la skill `clean-code-engineer`, per non riproporla nelle nuove installazioni. Campo e visualizzazione delle altre note conservati; nessuna modifica al template, alle iscrizioni o agli altri corsi. Nessun reimport o commit automatico.
+
 ## v1.6.56 / plugin v1.3.17 — Corsi: informazioni e iscrizioni
 
 - Dettaglio Corsi orientato al contatto: pannello e scorciatoia ordinaria `Informazioni e iscrizioni`, introduzione esplicativa quando disponibili i canali, sezione `Contattaci`. CTA WhatsApp/mail `Contattaci via …`; modulo opzionale conservato e invito posti limitati rivolto al contatto. Recapiti testuali e nomi accessibili completi mantenuti.
