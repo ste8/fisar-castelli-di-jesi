@@ -1,5 +1,11 @@
 # Pagina Corso
 
+## Calendario a larghezza estesa — v1.6.62
+
+Il calendario è una sezione autonoma tra descrizione ed Eventi collegati, nello stesso contenitore da massimo 76 rem (1.216 px). Descrizione e informazioni/iscrizioni restano centrati a massimo 48 rem (768 px), senza allargare la misura di lettura. Stessa tipografia e dati, sei colonne e intestazioni semantiche conservate.
+
+Da 64 rem di viewport, la tabella può adattarsi alla larghezza disponibile senza il minimo forzato di 58 rem: nessuno scorrimento quando i contenuti entrano. Sotto questa soglia mantiene la larghezza leggibile e scorre nel solo riquadro, focusabile e con indicatore di focus; nessuna colonna nascosta o scrollbar della pagina. Calendario vuoto ancora omesso. Prevale sul precedente vincolo del corpo a 48 rem per questa sola sezione; Eventi, editor, home/archivio, plugin e dati invariati.
+
 ## Evidenza dell’offerta — v1.6.61
 
 Locandina e fascia sono racchiuse in una cornice gialla da 4 px quando l’offerta è attiva. Fascia gialla piena `#ffda3d` immediatamente sotto l’immagine, titolo maiuscolo 20 px/700 e data sotto 15 px/600, testo bordeaux scuro ad alto contrasto. Immagine intera su bianco e nessuna sovrapposizione. Prevale sul precedente oro tenue; stato e algoritmo del plugin invariati.

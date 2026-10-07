@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.62 — Calendario Corsi più largo su desktop
+
+- Risolta la scrollbar forzata dalla colonna da 768 px, più stretta del minimo tabella di 928 px. Calendario separato dalla colonna di lettura e contenitore fino a 1.216 px; descrizione/Eventi collegati/iscrizioni ancora centrati a 768 px. Tabella adattiva da viewport 1.024 px, larghezza minima leggibile e scorrimento interno sotto tale soglia. Spaziatura dei blocchi autonomi coordinata, dati/intestazioni e focus conservati.
+- Skill `clean-code-engineer`: intervento circoscritto a template e CSS del dettaglio Corsi, senza dipendenze, modifica della tabella nel plugin o dati editoriali. Tema/asset `1.6.62`, plugin invariato; offerta e precedenti modifiche preservate, nessun commit automatico.
+- Verificati lint dei due PHP, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Regressioni native Corsi su 21 varianti (anche calendario vuoto), otto salvataggi intercettati; offerte su 16 varianti e relative guardie, nessuna persistenza. Browser sul corso reale a 1920/1440/1024 px: tutte le colonne visibili senza scorrimento; 768/390/320 px: scorrimento confinato al calendario, nessun overflow pagina. Misura della descrizione e del pannello conservata, cinque lezioni integre, immagini caricate e console senza errori. Scorrimento da tastiera verificato con focus sul riquadro; review visiva e screenshot desktop/mobile.
+
 ## v1.6.61 — Offerte Corsi: giallo pieno e cornice
 
 - Su richiesta esplicita, sostituita la fascia discreta con giallo pieno `#ffda3d`, titolo maiuscolo più grande/700 e data separata/600. Aggiunta cornice coordinata da 4 px a immagine e fascia nei tre contesti; adattamento compatto per la home, senza overlay o animazioni. Contrasto testo bordeaux scuro/fondo 11,9:1; oro istituzionale invariato.
