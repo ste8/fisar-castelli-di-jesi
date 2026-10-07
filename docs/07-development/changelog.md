@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.56 / plugin v1.3.17 — Corsi: informazioni e iscrizioni
+
+- Dettaglio Corsi orientato al contatto: pannello e scorciatoia ordinaria `Informazioni e iscrizioni`, introduzione esplicativa quando disponibili i canali, sezione `Contattaci`. CTA WhatsApp/mail `Contattaci via …`; modulo opzionale conservato e invito posti limitati rivolto al contatto. Recapiti testuali e nomi accessibili completi mantenuti.
+- Scadenze, stati chiusi, sold-out/lista d’attesa, quote/tesseramento/dotazione, note editoriali, anchor/focus, home/archivio e Eventi invariati. Nessuna nuova procedura di iscrizione o modifica ai dati.
+- Skill `clean-code-engineer`: copy dei canali distinto nel plugin esistente, presentazione nel componente Corsi; tema/asset `1.6.56`, plugin `1.3.17`, nessun CSS, dipendenza o commit automatico.
+- Verificati lint PHP, sintassi JS invariati, HTTP dettaglio/CSS e `git diff --check`. Test nativi su 20 varianti Corsi: copy/introduzione ordinari, assenza di contatti, stati chiusi e lista d’attesa, quota/dotazione, calendario, metabox e otto salvataggi intercettati; regressioni Eventi su 17 varianti e relativi salvataggi intercettati, senza persistenza. Browser sulla pagina reale a 1440/768/390/320 px: titolo, scorciatoia e canali corretti, link conservati, nessun overflow pagina/pulsanti, immagine fallita o errore console. Scorciatoia verificata con focus su `course-registration`; nessun canale esterno aperto. Review visiva e screenshot di introduzione e contatti.
+
 ## v1.6.55 — Pin anche per eventi online
 
 - Card Eventi di home e archivio: `📍 Online`, con lo stesso pin decorativo delle sedi fisiche, nascosto agli screen reader. Luogo fisico obsoleto ancora omesso; nessuna modifica a eventi in presenza/ibridi, dettaglio o regole di pubblicazione dell’accesso online.

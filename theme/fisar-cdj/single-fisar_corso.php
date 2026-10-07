@@ -32,7 +32,7 @@ $registration = array(
 	'includes'   => (string) get_post_meta( $course_id, '_fisar_course_includes', true ),
 	'notes'      => (string) get_post_meta( $course_id, '_fisar_course_registration_notes', true ),
 );
-$registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' : ( $details['waiting_list'] ? 'Lista d’attesa' : 'Come iscriversi' );
+$registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' : ( $details['waiting_list'] ? 'Lista d’attesa' : 'Informazioni e iscrizioni' );
 ?>
 <main id="main-content">
 	<article <?php post_class( 'single-course' ); ?>>

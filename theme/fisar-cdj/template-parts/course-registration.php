@@ -3,7 +3,8 @@ $registration = $args['registration'];
 $details = $registration['details'];
 ?>
 <section id="course-registration" class="registration-box" aria-labelledby="course-registration-title" tabindex="-1">
-	<h2 id="course-registration-title"><?php echo $registration['active'] ? 'Iscrizione' : 'Corso concluso'; ?></h2>
+	<h2 id="course-registration-title"><?php echo $registration['active'] ? 'Informazioni e iscrizioni' : 'Corso concluso'; ?></h2>
+	<?php if ( ! $details['closed'] && ! $details['waiting_list'] && $registration['channels'] ) : ?><p>Contattaci per conoscere meglio il corso e ricevere tutte le informazioni per iscriverti.</p><?php endif; ?>
 	<?php if ( $registration['active'] ) : ?>
 		<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $details, 'label' => 'Iscrizioni entro', 'past_label' => 'Termine iscrizioni' ) ); ?>
 		<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $details ) ); ?>
@@ -20,7 +21,7 @@ $details = $registration['details'];
 		<?php endif; ?>
 	<?php endforeach; ?>
 	<?php if ( ! $details['closed'] ) : ?>
-		<?php get_template_part( 'template-parts/registration-channels', null, array( 'channels' => $registration['channels'], 'title' => $details['waiting_list'] ? 'Richiedi la lista d’attesa' : 'Come iscriversi', 'title_id' => 'course-registration-methods-title' ) ); ?>
+		<?php get_template_part( 'template-parts/registration-channels', null, array( 'channels' => $registration['channels'], 'title' => $details['waiting_list'] ? 'Richiedi la lista d’attesa' : 'Contattaci', 'title_id' => 'course-registration-methods-title' ) ); ?>
 		<?php if ( ! $details['waiting_list'] && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>
 </section>
