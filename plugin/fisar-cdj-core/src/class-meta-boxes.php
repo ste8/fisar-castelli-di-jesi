@@ -313,8 +313,8 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	public static function render_course_offer( WP_Post $post ): void {
 		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento. Se inserisci solo un importo numerico, per esempio 590, il sito aggiunge €. Nei testi con condizioni specifiche indica anche la valuta.' );
-		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.' );
 		self::editor( $post->ID, '_fisar_course_includes', 'Cosa comprende il corso', 'Per esempio kit, manuali, calici, degustazioni, software e attestato.' );
+		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.' );
 	}
 
 	public static function render_course_calendar( WP_Post $post ): void {
