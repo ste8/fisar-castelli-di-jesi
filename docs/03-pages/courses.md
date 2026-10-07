@@ -1,5 +1,9 @@
 # Archivio Corsi
 
+## Separatore anche con titolo personalizzato — v1.6.58
+
+La linea oro tenue compare anche nelle card con titolo Personalizzato, subito sotto il titolo libero e prima di data e luogo. Stessa regola delle card automatiche: 1 px, larghezza del contenuto e spaziature compatte. Il titolo personalizzato resta integrale; nessuna riga identitaria composta aggiunta. Nelle card automatiche il separatore resta sotto livello/città. Home, dettaglio e dati invariati. Questa revisione prevale sull’esclusione dei titoli personalizzati indicata nella v1.6.52 sotto.
+
 ## Separatore delle card standard — v1.6.52
 
 Sottile bordo decorativo da 1 px sotto livello e città, largo quanto il contenuto della card, oro FISAR al 40% di opacità. Spazio sopra la linea `.65rem`, sotto `.8rem`: separa l’identità dalle informazioni pratiche senza aggiungere altri separatori. Solo card automatiche dell’archivio con riga identitaria presente; home, titoli personalizzati e dettaglio invariati. Nessun nuovo elemento semantico o dato.
