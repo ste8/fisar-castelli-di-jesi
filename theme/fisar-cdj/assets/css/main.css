@@ -1775,7 +1775,8 @@ blockquote {
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
-.values-page .values-note {
+.values-page .values-note,
+.courses-archive .archive-note {
 	display: grid;
 	grid-template-columns: 1.5rem minmax(0, 1fr);
 	align-items: start;
@@ -1788,16 +1789,26 @@ blockquote {
 	gap: .85rem;
 }
 
-.values-note__icon {
+.values-note__icon,
+.archive-note__icon {
 	margin-top: .05rem;
 	color: var(--color-gold-dark);
 }
 
-.values-page .values-note__content p {
+.values-page .values-note__content p,
+.courses-archive .archive-note__content p {
 	margin-bottom: 0;
 	color: var(--color-ink);
 	font-size: var(--font-size-base);
 	line-height: 1.6;
+}
+
+.courses-archive .archive-note {
+	background: var(--color-paper);
+}
+
+.courses-archive .archive-note__content p + p {
+	margin-top: .4rem;
 }
 
 .values-page .prose--page .lead {
