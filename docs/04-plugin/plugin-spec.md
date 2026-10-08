@@ -101,6 +101,8 @@ Iscrizioni: stessi canali degli Eventi + deadline tassativa/flessibile; chiusura
 **Cosa comprende il corso**: editor libero (kit, manuali, calici, degustazioni, software, attestato).
 
 ## Calendario lezioni
+Revisione plugin `1.3.21`: nell’editor la colonna Orario (terza, dopo Numero lezione e Data) è compatta, con larghezza di 5,5 rem, per liberare spazio alle colonne testuali. Campo sempre testuale, import e dati invariati; stessa larghezza per righe salvate, aggiunte e importate. Nessuna modifica alla tabella pubblica.
+
 Revisione plugin `1.3.20`: righe strutturate nello stesso meta `_fisar_course_calendar`, con `number`, `date`, `time`, `title`, `speaker`, `notes`. Il numero è manuale, facoltativo e sanitizzato come testo breve: consente anche `03`, `0` e `3 bis`, senza rinumerazione. Campo al primo posto nel metabox; righe ancora ordinate per data/orario. Il giorno della settimana è automatico.
 
 Import tabulato: `Numero lezione, Data, Orario, Titolo, Relatore, Note`. Compatibile con il precedente formato che inizia dalla data, anche senza intestazioni; la prima cella vuota del nuovo formato non viene rimossa. Righe legacy lette con numero vuoto, nessuna migrazione o scrittura durante la lettura. Salvataggio protetto dalle guardie esistenti.

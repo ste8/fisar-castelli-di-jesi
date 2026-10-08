@@ -1,5 +1,11 @@
 # Changelog
 
+## Plugin v1.3.21 — Orario compatto nell’editor del calendario
+
+- Ridotta la larghezza della terza colonna `Orario` a 5,5 rem (input circa 88 px), liberando spazio per le colonne testuali. Stessa regola per righe salvate, aggiunte e importate; campo testuale, valori, label e tabella pubblica invariati.
+- Skill `clean-code-engineer`: sola regola CSS circoscritta alla tabella nativa dell’editor, senza modificare PHP/JS del calendario o aggiungere dipendenze. Versione plugin aggiornata per la cache degli asset; tema invariato e nessun commit automatico.
+- Verificati lint PHP del bootstrap, sintassi JS invariata, HTTP CSS/dettaglio e `git diff --check`. Regressioni del calendario/import e sei salvataggi intercettati superate senza modificare dati. Browser su anteprima nativa senza salvataggi: valori `20:45` e `21:00` leggibili, larghezza 88 px sulle righe salvate/aggiunte/importate a 1200/768/390 px, console senza errori. Review visiva e screenshot desktop; anteprima temporanea rimossa.
+
 ## v1.6.65 — Colonna Note solo quando compilata
 
 - Il calendario pubblico omette l’intestazione `Note` e tutte le relative celle se nessuna lezione contiene una nota. Con almeno una nota, colonna presente per tutte le righe e celle allineate. Spazi soli considerati vuoti, testo `0` conservato. Avviso fisso sotto la tabella, editor, import e dati invariati.

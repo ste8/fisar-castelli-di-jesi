@@ -45,6 +45,10 @@
 	width: 7rem;
 }
 
+#fisar-calendar-table th:nth-child(3) {
+	width: 5.5rem;
+}
+
 .fisar-conditional[hidden] {
 	display: none;
 }
