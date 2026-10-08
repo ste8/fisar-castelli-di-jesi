@@ -1,5 +1,17 @@
 # Archivio Corsi
 
+## Nota sull’archivio — v1.6.66
+
+Sotto il titolo `Corsi conclusi`, nella sezione `Archivio`, riquadro informativo sempre visibile, anche senza corsi passati. Titolo `Nota sull’archivio`, icona informativa decorativa, bordo oro con lato sinistro più marcato, fondo bianco sullo sfondo tenue della sezione. Stile coordinato con la nota della Carta dei Valori, senza semantica di allarme.
+
+Testo approvato, in due paragrafi distinti:
+
+“Da 15 anni organizziamo corsi per sommelier in città come Jesi, Ancona, Senigallia e Falconara.”
+
+“Questo archivio raccoglie solo le edizioni pubblicate nella nuova versione del sito e non comprende tutti i corsi svolti negli anni.”
+
+Nota statica del template di presentazione, non dipendente dalla quantità dei corsi. Non aggiunge corsi storici, modifica query, date o dati editoriali; home, corsi attivi e dettaglio invariati.
+
 ## Risalto delle offerte — v1.6.61
 
 Su richiesta esplicita, la precedente fascia oro tenue diventa giallo pieno `#ffda3d`, con titolo `IN OFFERTA` Poppins 700 da 20 px, data sotto da 15 px/600 e testo bordeaux scuro. Cornice coordinata da 4 px intorno al gruppo locandina/fascia, solo con offerta attiva. Immagine ancora intera su bianco, senza overlay o animazioni. Regole, campi e corsi non in offerta invariati. Questa revisione visiva prevale sulla v1.6.60 sotto.

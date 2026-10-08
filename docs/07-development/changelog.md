@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6.66 — Nota sulla storia dei Corsi nell’archivio
+
+- Affinamento del testo approvato: “Questo archivio raccoglie solo le edizioni…” in un paragrafo distinto dalla frase sui 15 anni, riusando la spaziatura del box. Verificati lint del template, test nativi vuoto/popolato aggiornati e browser desktop/mobile senza overflow; screenshot aggiornato. Versione e stili invariati, modifica precedente non committata preservata.
+- Sotto `Corsi conclusi`, box sempre visibile `Nota sull’archivio`, con il testo approvato sui 15 anni di corsi “in città come Jesi, Ancona, Senigallia e Falconara” e sull’archivio non completo del nuovo sito. Presente sia con elenco vuoto sia popolato, prima delle card o dello stato vuoto. Nessun corso storico creato, query o dato modificato.
+- Riquadro bianco sulla sezione tenue, bordo oro e lato sinistro più marcato, icona `info` decorativa e nome accessibile del contenuto complementare. Riutilizzate le regole della nota della Carta dei Valori, conservandone aspetto e comportamento; nessuna semantica di allarme.
+- Skill `clean-code-engineer`: sola presentazione nel tema, API/query del plugin e contenuti reali preservati. Tema/asset `1.6.66`, plugin invariato, specifica aggiornata e nessun commit automatico.
+- Verificati lint dei due PHP, sintassi JS invariati, HTTP archivio/CSS e `git diff --check`. Test nativi su archivio vuoto e popolato: nota una sola volta, posizione prima dell’elenco/stato vuoto, icona decorativa e dati invariati. Browser reale a 1440/768/390/320 px: nota leggibile senza overflow pagina/box, immagini caricate e console senza errori; review visiva desktop/mobile e screenshot desktop. Verificata anche la nota della Carta dei Valori su mobile, con fondo tenue e bordo da 3 px conservati. Nessun salvataggio editoriale.
+
 ## Plugin v1.3.21 — Orario compatto nell’editor del calendario
 
 - Ridotta la larghezza della terza colonna `Orario` a 5,5 rem (input circa 88 px), liberando spazio per le colonne testuali. Stessa regola per righe salvate, aggiunte e importate; campo testuale, valori, label e tabella pubblica invariati.

@@ -20,6 +20,14 @@
 	<section class="section section--tinted" aria-labelledby="past-courses">
 		<div class="container">
 			<div class="section-heading"><p class="eyebrow">Archivio</p><h2 id="past-courses">Corsi conclusi</h2></div>
+			<aside class="archive-note" aria-labelledby="course-archive-note-title">
+				<?php echo fisar_cdj_theme_icon( 'info', 'archive-note__icon' ); ?>
+				<div class="archive-note__content">
+					<p id="course-archive-note-title"><strong>Nota sull’archivio</strong></p>
+					<p>Da 15 anni organizziamo corsi per sommelier in città come Jesi, Ancona, Senigallia e Falconara.</p>
+					<p>Questo archivio raccoglie solo le edizioni pubblicate nella nuova versione del sito e non comprende tutti i corsi svolti negli anni.</p>
+				</div>
+			</aside>
 			<?php $past = fisar_cdj_get_past_courses(); ?>
 			<?php if ( $past->have_posts() ) : ?>
 				<div class="course-grid course-grid--past">
