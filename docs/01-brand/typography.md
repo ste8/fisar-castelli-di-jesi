@@ -1,5 +1,9 @@
 # Typography
 
+## Allineamento News — v1.6.67
+
+L’8 ottobre 2026, su richiesta dell’utente, elenco e dettaglio News adottano la scala Poppins di Eventi/Corsi. H1 500 da 32–44 px, titolo sezione elenco 32–40 px; card elenco 20–24 px e home 22 px / 1.3. Corpo dettaglio 16–17 px / 1.7, heading 500 / 1.35: H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px; grassetti 600. Titoli della navigazione precedente/successiva 18 px / 500. Prevale sul default serif per i soli template News; nessuna nuova famiglia o modifica al default dell’editor. Riferimento: `docs/03-pages/news.md`.
+
 ## Card Corsi dell’archivio — v1.6.51
 
 Per le sole card in modalità Automatico, `Corso Sommelier` Poppins 500 da 16–18 px come introduzione; livello e città più evidenti a 20–24 px con interlinea 1.3 (livello 600, città 500). Provincia 16–18 px/400 tra parentesi accanto alla città. Livello indivisibile e ritorni a capo naturali, senza troncamenti. Home, dettaglio e titoli personalizzati conservano la propria tipografia. Revisione approvata il 7 ottobre 2026, prevalente sulle scale generiche delle card sotto.

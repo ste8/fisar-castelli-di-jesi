@@ -1,5 +1,9 @@
 # Homepage
 
+## Card News — v1.6.67
+
+Allineate l’8 ottobre 2026 a Eventi e Corsi: fotografia orizzontale 16:10 sopra il testo a tutte le larghezze, titolo Poppins 500 / 22 px senza troncamento, linea oro tenue, data con calendario decorativo, estratto a due righe e CTA con nome completo. Quattro notizie e ordine invariati; griglia quattro colonne desktop, due tablet, una mobile. Media assente omesso, senza spazio vuoto; stato senza notizie esplicito e link archivio sempre disponibile. Questa revisione prevale sulla composizione orizzontale delle singole card del mockup. Dettagli in `docs/03-pages/news.md`.
+
 ## Offerte Corsi più evidenti — v1.6.61
 
 Solo con offerta attiva, cornice gialla da 4 px intorno a immagine/fascia e fondo giallo pieno `#ffda3d`, con `IN OFFERTA` da 16 px/700 e data da 13 px/600 su riga separata, bordeaux scuro. Il gruppo si allinea in alto nella card compatta, senza spazio vuoto dentro la cornice. Nessun overlay, animazione o cambiamento delle card ordinarie; prevale sulla precedente fascia oro tenue.

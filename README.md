@@ -6,7 +6,7 @@ Implementazione completa e locale del sito della Delegazione FISAR Castelli di J
 
 La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, contenuti demo realistici e frontend responsive/accessibile. La documentazione in `docs/` resta la source of truth.
 
-La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage ed è in prova anche per card, canali, newsletter e voci della fascia Valori. La pagina Carta dei Valori usa anch’essa titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
+La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi e News usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
 
 ## Requisiti
 
