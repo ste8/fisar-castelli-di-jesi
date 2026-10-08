@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.65 — Colonna Note solo quando compilata
+
+- Il calendario pubblico omette l’intestazione `Note` e tutte le relative celle se nessuna lezione contiene una nota. Con almeno una nota, colonna presente per tutte le righe e celle allineate. Spazi soli considerati vuoti, testo `0` conservato. Avviso fisso sotto la tabella, editor, import e dati invariati.
+- Skill `clean-code-engineer`: condizione di sola presentazione calcolata una volta nel template, nessun nuovo campo o dipendenza. Righe del markup rese più leggibili; tema/asset `1.6.65`, plugin invariato e nessun commit automatico.
+- Verificati lint dei due PHP, sintassi JS invariati, HTTP pagina/CSS e `git diff --check`. Sette casi nativi (note vuote, spazi, una o più note, zero, caratteri speciali, calendario vuoto): intestazioni/celle corrette, data in evidenza e campo editor conservati. Regressioni numero lezione/import e sei salvataggi intercettati superate, senza modificare dati dei corsi.
+- Browser senza note a 1440/1024/768/390/320 px: sei colonne, nessun overflow pagina o immagine fallita, desktop senza scrollbar e scorrimento interno sui formati piccoli. Console senza errori, review visiva e screenshot. Corso reale con note: sette colonne e celle allineate. Anteprima temporanea rimossa.
+
 ## v1.6.64 — Data del calendario in evidenza
 
 - Spostata l’evidenza dal giorno della settimana alla data completa: data in grassetto/700 e bordeaux, giorno ordinario/400. La data è l’intestazione semantica di riga, con `time` conservato. Numero lezione, ordine, contenuti, plugin e layout invariati.
