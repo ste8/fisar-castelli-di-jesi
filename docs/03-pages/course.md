@@ -1,5 +1,9 @@
 # Pagina Corso
 
+## Data in evidenza nel calendario — v1.6.64
+
+La data completa è in grassetto e bordeaux, mentre il giorno della settimana usa peso e colore ordinari. La data diventa anche l’intestazione semantica di riga (`th scope="row"`), con il suo elemento `time`; riusati gli stili esistenti. Numero lezione, ordine delle colonne, dati e layout responsive invariati. Prevale sulla precedente evidenza del giorno della settimana.
+
 ## Numero lezione manuale — v1.6.63 / plugin v1.3.20
 
 Il calendario ha sette colonne: **N°**, Giorno, Data, Orario, Lezione, Relatore, Note. Prima colonna compatta, centrata e in grassetto; nome accessibile completo `Numero lezione`. Il valore arriva dal campo manuale nel plugin, non dalla posizione della riga: nessuna numerazione automatica nel tema. Se non compilato compare `—`, conservando le lezioni preesistenti. Ordinamento cronologico invariato. Larghezza estesa desktop, scorrimento locale e focus della revisione precedente conservati.

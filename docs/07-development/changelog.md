@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.64 — Data del calendario in evidenza
+
+- Spostata l’evidenza dal giorno della settimana alla data completa: data in grassetto/700 e bordeaux, giorno ordinario/400. La data è l’intestazione semantica di riga, con `time` conservato. Numero lezione, ordine, contenuti, plugin e layout invariati.
+- Skill `clean-code-engineer`: riusati gli stili delle intestazioni esistenti, intervenendo sul solo markup del calendario. Tema/asset `1.6.64`, specifica aggiornata; nessun commit automatico.
+- Verificati lint dei due PHP, sintassi JS invariati, HTTP pagina/CSS e `git diff --check`. Test del calendario (sanitizzazione/import, sei salvataggi intercettati e template) superati senza modificare dati dei corsi. Browser a 1440/1024/768/390/320 px: pesi e colori corretti, cinque righe conservate, nessun overflow pagina o immagine fallita, scorrimento locale sui formati piccoli e console senza errori. Review visiva e screenshot desktop.
+
 ## v1.6.63 / plugin v1.3.20 — Numero manuale delle lezioni
 
 - `Numero lezione` come primo campo del calendario nell’editor e prima colonna pubblica (`N°`, nome accessibile completo). Numero manuale facoltativo, anche `03`, `0` o `3 bis`; nessuna rinumerazione né ordinamento numerico. Righe ancora cronologiche, calendari esistenti preservati con `—` per i numeri non inseriti. Nessuna migrazione o modifica ai contenuti reali.

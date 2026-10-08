@@ -80,7 +80,7 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 							<thead><tr><th scope="col" class="lesson-calendar__number"><span aria-hidden="true">N°</span><span class="screen-reader-text">Numero lezione</span></th><th scope="col">Giorno</th><th scope="col">Data</th><th scope="col">Orario</th><th scope="col">Lezione</th><th scope="col">Relatore</th><th scope="col">Note</th></tr></thead>
 							<tbody>
 							<?php foreach ( $calendar as $lesson ) : ?>
-								<tr><td class="lesson-calendar__number"><?php echo esc_html( '' !== $lesson['number'] ? $lesson['number'] : '—' ); ?></td><th scope="row"><?php echo esc_html( wp_date( 'l', strtotime( $lesson['date'] ) ) ); ?></th><td><time datetime="<?php echo esc_attr( $lesson['date'] ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date( $lesson['date'] ) ); ?></time></td><td><?php echo esc_html( $lesson['time'] ); ?></td><td><?php echo esc_html( $lesson['title'] ); ?></td><td><?php echo esc_html( $lesson['speaker'] ?: 'Da definire' ); ?></td><td><?php echo esc_html( $lesson['notes'] ); ?></td></tr>
+								<tr><td class="lesson-calendar__number"><?php echo esc_html( '' !== $lesson['number'] ? $lesson['number'] : '—' ); ?></td><td><?php echo esc_html( wp_date( 'l', strtotime( $lesson['date'] ) ) ); ?></td><th scope="row"><time datetime="<?php echo esc_attr( $lesson['date'] ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date( $lesson['date'] ) ); ?></time></th><td><?php echo esc_html( $lesson['time'] ); ?></td><td><?php echo esc_html( $lesson['title'] ); ?></td><td><?php echo esc_html( $lesson['speaker'] ?: 'Da definire' ); ?></td><td><?php echo esc_html( $lesson['notes'] ); ?></td></tr>
 							<?php endforeach; ?>
 							</tbody>
 						</table>
