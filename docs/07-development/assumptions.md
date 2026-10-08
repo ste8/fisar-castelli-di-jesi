@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 8 ottobre 2026 — Stile News
+
+Richiesto l’allineamento di home, elenco e dettaglio alle migliorie Eventi/Corsi. Trasferite tipografia Poppins, fascia archivio bordeaux compatta, dettagli chiari, bordi leggeri e separatore delle card; non trasferiti dati di prenotazione o locandine quadrate, estranei agli articoli. Le fotografie restano orizzontali nelle card e naturali nel dettaglio. In home mantenute quattro notizie ma con immagine sopra il testo, per evitare colonne testuali troppo strette; copy degli articoli, query, URL e dati invariati. Nessun nuovo CPT, campo o editor custom: presentazione nel tema, font e icone già locali. Casi limite verificati tramite filtri temporanei in memoria, senza salvataggi editoriali.
+
 ## 7 ottobre 2026 — Numeri delle lezioni
 
 Richiesto numero manuale come primo campo, per gestire anche cambi d’ordine. Interpretato come etichetta della lezione, non chiave di ordinamento: le righe seguono ancora data/orario e mantengono il numero assegnato. Testo breve anziché intero obbligatorio, per consentire eccezioni come `3 bis` e zeri iniziali; nessuna unicità imposta o rinumerazione. Campo facoltativo per preservare i calendari esistenti, senza attribuire numeri non concordati. La prima colonna pubblica mostra `—` per i valori non compilati. Import vecchio e nuovo supportati senza migrazione; dati reali non modificati durante i test.

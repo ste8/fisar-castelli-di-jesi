@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.67 — News coerenti con Eventi e Corsi
+
+- Elenco News con fascia bordeaux compatta, titolo e sezioni Poppins alla scala degli altri archivi. Card con bordo/ombra leggeri, titolo prima della data, separatore oro tenue, calendario decorativo e CTA dal nome accessibile completo. Fotografie orizzontali 16:10, non locandine quadrate; media assente e abstract vuoto omessi.
+- In home conservate quattro ultime pubblicazioni e ordine: fotografia sopra il testo anche su desktop, eliminando le colonne testuali strette delle card orizzontali. Titoli completi, estratto visivo a due righe, CTA allineate; stato senza notizie esplicito e link archivio conservato.
+- Dettaglio con intestazione chiara senza fotografia di sfondo, H1 Poppins e accento oro, metadata e abstract, immagine separata a proporzioni naturali. Colonna di lettura/navigazione entro 48 rem; corpo e heading alla scala Eventi/Corsi. Navigazione e paginazione WordPress con una sola landmark ciascuna, senza `nav` annidati.
+- Skill `clean-code-engineer`: riusate le regole condivise e le icone locali, senza nuovi CPT/campi, dipendenze, modifiche al plugin o agli stili dell’editor News. Articoli, immagini, URL e query preservati; tema/asset `1.6.67`, specifiche aggiornate e nessun commit automatico.
+- Verificati lint dei cinque PHP modificati, sintassi dei JS invariati, HTTP home/elenco/dettaglio/CSS e quattro pesi Poppins, `git diff --check`. Test nativi in memoria: card e nomi accessibili, dettaglio ordinario/senza media/titolo lungo, paginazione reale su due pagine, archivio/home vuoti e quattro notizie in home; contenuti/meta degli articoli invariati.
+- Browser reale sui tre contesti a 1440/1024/768/390/320 px: griglie previste, nessun overflow pagina/card o immagine fallita. Titolo lungo e stati vuoti controllati anche a 1440/320 px, H2–H6 verificati, focus visibile su CTA e navigazione, console senza errori. Review visiva desktop/mobile e screenshot; anteprima temporanea rimossa, nessun salvataggio editoriale.
+
 ## v1.6.66 — Nota sulla storia dei Corsi nell’archivio
 
 - Affinamento del testo approvato: “Questo archivio raccoglie solo le edizioni…” in un paragrafo distinto dalla frase sui 15 anni, riusando la spaziatura del box. Verificati lint del template, test nativi vuoto/popolato aggiornati e browser desktop/mobile senza overflow; screenshot aggiornato. Versione e stili invariati, modifica precedente non committata preservata.

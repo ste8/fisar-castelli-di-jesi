@@ -1861,7 +1861,105 @@ blockquote {
 	}
 }
 
-/* Event and course archives and details: same Poppins hierarchy as home and Values. */
+/* Content archives and details: same Poppins hierarchy as home and Values. */
+.news-archive .page-hero .eyebrow {
+	color: var(--color-line);
+}
+
+.news-card {
+	border-radius: var(--radius-small);
+	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
+}
+
+.news-card__body {
+	padding: 1.25rem;
+	overflow-wrap: anywhere;
+}
+
+.news-card__title {
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.news-card__date {
+	display: flex;
+	align-items: flex-start;
+	gap: .4rem;
+	color: var(--color-muted);
+	letter-spacing: 0;
+}
+
+.news-card__date .site-icon {
+	flex-shrink: 0;
+	width: 1rem;
+	height: 1rem;
+	margin-top: .1rem;
+}
+
+.news-card__date time {
+	min-width: 0;
+}
+
+.single-news .editorial-hero {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	border-bottom: 1px solid var(--color-line);
+	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
+}
+
+.single-news :is(.editorial-hero__inner, .prose--narrow, .news-navigation) {
+	max-width: 48rem;
+	overflow-wrap: anywhere;
+}
+
+.single-news .back-link {
+	margin-bottom: 1.25rem;
+	font-weight: 500;
+}
+
+.single-news .editorial-meta,
+.single-news .editorial-meta__date {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.single-news .editorial-meta {
+	flex-wrap: wrap;
+	gap: .5rem .75rem;
+}
+
+.single-news .editorial-meta__date .site-icon {
+	flex-shrink: 0;
+	width: 1rem;
+	height: 1rem;
+}
+
+.single-news .editorial-image {
+	max-width: 60rem;
+	margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.single-news .editorial-image__asset {
+	max-height: none;
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-small);
+	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
+}
+
+.single-news .prose--narrow {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.single-news .post-navigation {
+	padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.single-news .post-navigation a strong {
+	font-family: var(--font-body);
+	font-size: 1.125rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
 :is(.events-archive, .courses-archive) .page-hero,
 :is(.single-event, .single-course) .content-hero {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
@@ -1869,28 +1967,29 @@ blockquote {
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
-:is(.events-archive, .courses-archive) .page-hero {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero {
 	padding-block: clamp(2rem, 4vw, 3rem);
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive) .page-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero h1 {
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive) .page-hero__inner > p:last-child {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner > p:last-child {
 	color: var(--color-line);
 }
 
-:is(.events-archive, .courses-archive) .page-hero__inner {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
 }
 
-:is(.events-archive, .courses-archive) .page-hero h1,
-:is(.single-event, .single-course) .content-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero h1,
+:is(.single-event, .single-course) .content-hero h1,
+.single-news .editorial-hero h1 {
 	position: relative;
 	margin-bottom: 1.25rem;
 	padding-bottom: .5em;
@@ -1902,8 +2001,9 @@ blockquote {
 	text-wrap: balance;
 }
 
-:is(.events-archive, .courses-archive) .page-hero h1::after,
-:is(.single-event, .single-course) .content-hero h1::after {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero h1::after,
+:is(.single-event, .single-course) .content-hero h1::after,
+.single-news .editorial-hero h1::after {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1913,8 +2013,9 @@ blockquote {
 	content: '';
 }
 
-:is(.events-archive, .courses-archive) .page-hero__inner > p:last-child,
-:is(.single-event, .single-course) .content-hero__lead {
+:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner > p:last-child,
+:is(.single-event, .single-course) .content-hero__lead,
+.single-news .content-hero__lead {
 	max-width: 46rem;
 	font-family: var(--font-body);
 	font-size: clamp(1rem, 1.4vw, 1.125rem);
@@ -1922,11 +2023,11 @@ blockquote {
 	line-height: 1.7;
 }
 
-:is(.events-archive, .courses-archive) .section {
+:is(.events-archive, .courses-archive, .news-archive) .section {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
-:is(.events-archive, .courses-archive) .section-heading h2 {
+:is(.events-archive, .courses-archive, .news-archive) .section-heading h2 {
 	font-family: var(--font-body);
 	font-size: clamp(2rem, 4vw, 2.5rem);
 	font-weight: 500;
@@ -2213,11 +2314,11 @@ blockquote {
 	}
 }
 
-:is(.single-event, .single-course) .prose {
+:is(.single-event, .single-course, .single-news) .prose {
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
-:is(.single-event, .single-course) .prose :is(h2, h3, h4, h5, h6),
+:is(.single-event, .single-course, .single-news) .prose :is(h2, h3, h4, h5, h6),
 :is(.single-event, .single-course) .registration-box :is(h2, h3) {
 	font-family: var(--font-body);
 	font-weight: 500;
@@ -2226,24 +2327,24 @@ blockquote {
 	text-wrap: initial;
 }
 
-:is(.single-event, .single-course) .prose h2,
+:is(.single-event, .single-course, .single-news) .prose h2,
 :is(.single-event, .single-course) .registration-box h2 {
 	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
 }
 
-:is(.single-event, .single-course) .prose h3 {
+:is(.single-event, .single-course, .single-news) .prose h3 {
 	font-size: 1.25rem;
 }
 
-:is(.single-event, .single-course) .prose h4 {
+:is(.single-event, .single-course, .single-news) .prose h4 {
 	font-size: 1.125rem;
 }
 
-:is(.single-event, .single-course) .prose :is(h5, h6) {
+:is(.single-event, .single-course, .single-news) .prose :is(h5, h6) {
 	font-size: 1.0625rem;
 }
 
-:is(.single-event, .single-course) .prose strong,
+:is(.single-event, .single-course, .single-news) .prose strong,
 :is(.single-event, .single-course) .registration-box strong {
 	font-weight: 600;
 }
@@ -2572,7 +2673,9 @@ blockquote {
 .courses-archive .course-card__identity,
 .courses-archive .course-card__title:not(.course-card__title--intro),
 .events-archive .event-card__title,
-.event-grid--home .event-card__title {
+.event-grid--home .event-card__title,
+.news-card__title,
+.news-grid--home .news-card__title {
 	width: 100%;
 	margin: 0 0 .8rem;
 	padding-bottom: .65rem;
@@ -3044,20 +3147,6 @@ blockquote {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
-	.news-grid--home .news-card {
-		display: grid;
-		grid-template-columns: minmax(5.5rem, .8fr) minmax(0, 1.2fr);
-	}
-
-	.news-grid--home .news-card__media {
-		height: 100%;
-		aspect-ratio: auto;
-	}
-
-	.news-grid--home .news-card__body {
-		padding: .7rem;
-	}
-
 	.values-banner__grid {
 		grid-template-columns: minmax(14rem, .68fr) minmax(0, 1.32fr);
 		gap: 2.5rem;
@@ -3189,7 +3278,8 @@ blockquote {
 	.section-heading h2::after,
 	.section-heading h1::after,
 	.page-hero h1::after,
-	:is(.single-event, .single-course) .content-hero h1::after {
+	:is(.single-event, .single-course) .content-hero h1::after,
+	.single-news .editorial-hero h1::after {
 		background: CanvasText;
 	}
 }

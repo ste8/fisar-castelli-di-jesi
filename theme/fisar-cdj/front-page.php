@@ -84,6 +84,9 @@ $events_link_text = $has_more_events
 			<div class="news-grid news-grid--home">
 				<?php
 				$news = new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 4, 'ignore_sticky_posts' => true ) );
+				if ( ! $news->have_posts() ) : ?>
+					<p>Non ci sono notizie pubblicate al momento.</p>
+				<?php endif;
 				while ( $news->have_posts() ) :
 					$news->the_post();
 					get_template_part( 'template-parts/news-card' );
