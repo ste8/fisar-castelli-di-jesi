@@ -1,5 +1,9 @@
 # Pagina Corso
 
+## Colonna Note condizionale — v1.6.65
+
+La colonna `Note` (intestazione e celle di tutte le righe) compare solo se almeno una lezione ha una nota non vuota. Se tutte sono vuote o contengono solo spazi, il calendario pubblico ha sei colonne; con almeno una nota ne ha sette, conservando le celle vuote delle altre lezioni per l’allineamento. Il valore testuale `0` conta come nota. Campo nell’editor, import e dati salvati invariati. L’avviso fisso sulle possibili variazioni del calendario resta sotto la tabella.
+
 ## Data in evidenza nel calendario — v1.6.64
 
 La data completa è in grassetto e bordeaux, mentre il giorno della settimana usa peso e colore ordinari. La data diventa anche l’intestazione semantica di riga (`th scope="row"`), con il suo elemento `time`; riusati gli stili esistenti. Numero lezione, ordine delle colonne, dati e layout responsive invariati. Prevale sulla precedente evidenza del giorno della settimana.

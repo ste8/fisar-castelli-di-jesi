@@ -13,6 +13,7 @@ $city       = (string) get_post_meta( $course_id, '_fisar_course_city', true );
 $province   = (string) get_post_meta( $course_id, '_fisar_course_province', true );
 $active     = fisar_cdj_is_course_active( $course_id );
 $calendar   = fisar_cdj_get_course_calendar( $course_id );
+$has_calendar_notes = (bool) array_filter( $calendar, static fn( array $lesson ): bool => '' !== trim( $lesson['notes'] ) );
 $events     = fisar_cdj_get_course_events( $course_id );
 $details    = fisar_cdj_get_course_registration_details( $course_id );
 $offer      = fisar_cdj_get_course_offer( $course_id );
@@ -77,10 +78,18 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 					<h2 id="calendar-title">Calendario lezioni</h2>
 					<div class="table-scroll" tabindex="0" role="region" aria-label="Calendario lezioni, scorrimento orizzontale su schermi piccoli">
 						<table class="lesson-calendar">
-							<thead><tr><th scope="col" class="lesson-calendar__number"><span aria-hidden="true">N°</span><span class="screen-reader-text">Numero lezione</span></th><th scope="col">Giorno</th><th scope="col">Data</th><th scope="col">Orario</th><th scope="col">Lezione</th><th scope="col">Relatore</th><th scope="col">Note</th></tr></thead>
+							<thead><tr><th scope="col" class="lesson-calendar__number"><span aria-hidden="true">N°</span><span class="screen-reader-text">Numero lezione</span></th><th scope="col">Giorno</th><th scope="col">Data</th><th scope="col">Orario</th><th scope="col">Lezione</th><th scope="col">Relatore</th><?php if ( $has_calendar_notes ) : ?><th scope="col">Note</th><?php endif; ?></tr></thead>
 							<tbody>
 							<?php foreach ( $calendar as $lesson ) : ?>
-								<tr><td class="lesson-calendar__number"><?php echo esc_html( '' !== $lesson['number'] ? $lesson['number'] : '—' ); ?></td><td><?php echo esc_html( wp_date( 'l', strtotime( $lesson['date'] ) ) ); ?></td><th scope="row"><time datetime="<?php echo esc_attr( $lesson['date'] ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date( $lesson['date'] ) ); ?></time></th><td><?php echo esc_html( $lesson['time'] ); ?></td><td><?php echo esc_html( $lesson['title'] ); ?></td><td><?php echo esc_html( $lesson['speaker'] ?: 'Da definire' ); ?></td><td><?php echo esc_html( $lesson['notes'] ); ?></td></tr>
+								<tr>
+									<td class="lesson-calendar__number"><?php echo esc_html( '' !== $lesson['number'] ? $lesson['number'] : '—' ); ?></td>
+									<td><?php echo esc_html( wp_date( 'l', strtotime( $lesson['date'] ) ) ); ?></td>
+									<th scope="row"><time datetime="<?php echo esc_attr( $lesson['date'] ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date( $lesson['date'] ) ); ?></time></th>
+									<td><?php echo esc_html( $lesson['time'] ); ?></td>
+									<td><?php echo esc_html( $lesson['title'] ); ?></td>
+									<td><?php echo esc_html( $lesson['speaker'] ?: 'Da definire' ); ?></td>
+									<?php if ( $has_calendar_notes ) : ?><td><?php echo esc_html( $lesson['notes'] ); ?></td><?php endif; ?>
+								</tr>
 							<?php endforeach; ?>
 							</tbody>
 						</table>
