@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 8 ottobre 2026 — Ingrandimento predefinito delle gallerie News
+
+Richiesto il default per le nuove gallerie, con possibilità di disattivarlo e senza alterare quelle già presenti. Applicato nel normale inserimento del blocco nativo nell’editor News, non come impostazione globale per tutte le immagini. Copia/incolla e trasformazioni preservano gli attributi dei blocchi originali; nessuna migrazione. La lightbox e la navigazione tra foto restano quelle native WordPress. Nessun carosello autonomo o libreria esterna: tema e dati editoriali reali invariati.
+
 ## 8 ottobre 2026 — Stile News
 
 Richiesto l’allineamento di home, elenco e dettaglio alle migliorie Eventi/Corsi. Trasferite tipografia Poppins, fascia archivio bordeaux compatta, dettagli chiari, bordi leggeri e separatore delle card; non trasferiti dati di prenotazione o locandine quadrate, estranei agli articoli. Le fotografie restano orizzontali nelle card e naturali nel dettaglio. In home mantenute quattro notizie ma con immagine sopra il testo, per evitare colonne testuali troppo strette; copy degli articoli, query, URL e dati invariati. Nessun nuovo CPT, campo o editor custom: presentazione nel tema, font e icone già locali. Casi limite verificati tramite filtri temporanei in memoria, senza salvataggi editoriali.

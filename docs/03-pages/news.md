@@ -1,5 +1,12 @@
 # News
 
+## Gallerie native — plugin v1.3.22, 8 ottobre 2026
+
+- Nell’editor a blocchi delle News, il normale inserimento del blocco `Galleria` usa una variante predefinita di `core/gallery` con `linkTo: lightbox`. WordPress applica l’ingrandimento alle nuove immagini della galleria e gestisce apertura, chiusura e navigazione tra foto.
+- Il blocco mantiene nome e comandi nativi: da **Collegamento → Nessuno** è possibile disattivare l’ingrandimento. Gli editor già aperti vanno ricaricati.
+- Solo un default all’inserimento: gallerie salvate, copiate/incollate o ottenute mediante trasformazioni non sono riscritte; le immagini singole restano invariate. Non è un’impostazione globale del sito.
+- Script del plugin caricato soltanto nell’editor degli articoli, con dipendenze WordPress già disponibili. Nessuna nuova libreria, CPT, campo, filtro di salvataggio/rendering o script frontend; editor Eventi, Corsi e pagine esclusi.
+
 ## Allineamento a Eventi e Corsi — v1.6.67, 8 ottobre 2026
 
 Le News restano articoli WordPress nativi: nessun CPT, campo aggiuntivo o modifica ai contenuti salvati. Le regole seguenti prevalgono sul concept iniziale e sulle scale generiche precedenti.

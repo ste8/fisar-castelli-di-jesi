@@ -168,6 +168,8 @@ Dal plugin `1.3.20`, **Numero lezione** è il primo campo, manuale e facoltativo
 
 Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
 
+Dal plugin `1.3.22`, le nuove **Gallerie** inserite dal pannello standard dell’editor News hanno l’ingrandimento al clic già attivo, con navigazione tra le foto gestita da WordPress. Puoi disattivarlo selezionando la galleria e scegliendo **Collegamento → Nessuno** nella barra del blocco. Ricarica gli editor già aperti per caricare il nuovo default. Gallerie già salvate o copiate/incollate e immagini singole mantengono le proprie impostazioni; nessuna conversione dei contenuti esistenti.
+
 La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo, con titoli Poppins e impaginazione coerente con la homepage. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
 
 La hero della Carta usa la sua immagine in evidenza o, in mancanza, il paesaggio di vigneti incluso nel tema. Titolo ed estratto nativi identificano la Carta della nostra Delegazione; il primo Paragrafo con classe `values-scope-note` è la nota sull’ambito locale, modificabile nell’editor e mostrata una sola volta nel riquadro informativo sotto la hero, con bordo oro e icona decorativa. Il payoff con classe `lead` resta nel corpo, sopra `Chi siamo`. URL e voce di menu non cambiano.
