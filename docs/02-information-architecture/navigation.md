@@ -4,7 +4,7 @@ Sinistra: payoff. Destra: Canale WhatsApp · Instagram · Facebook.
 
 ## Header
 Logo orizzontale linkato alla Home.
-Menu: **Chi siamo · Eventi · Corsi · News · Seguici · Contatti**.
+Menu: **Chi siamo · Eventi · Corsi · Blog · Seguici · Contatti**.
 CTA separata: **Unisciti a noi**.
 Nessuna voce Home.
 
@@ -21,6 +21,8 @@ Consiglio e Statuto hanno voci proprie nel menu ma non pagine separate. Il vecch
 
 ## Footer
 Navigazione, contatti, WhatsApp, Instagram, Facebook, CTA Newsletter, privacy/cookie.
+
+Dal 9 ottobre 2026 `Blog` sostituisce `News` nel menu principale e nel footer. Raccoglie gli Articoli nativi WordPress: approfondimenti, racconti e comunicazioni associative. Conservato l’URL `/news/` per non cambiare i collegamenti esistenti.
 
 ## Come seguirci
 

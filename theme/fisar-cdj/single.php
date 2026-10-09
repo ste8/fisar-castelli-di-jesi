@@ -7,8 +7,8 @@ $excerpt = has_excerpt() ? get_the_excerpt() : '';
 	<article <?php post_class( 'editorial-single single-news' ); ?>>
 		<header class="editorial-hero">
 			<div class="container editorial-hero__inner">
-				<a class="back-link" href="<?php echo esc_url( get_permalink( (int) get_option( 'page_for_posts' ) ) ); ?>"><span aria-hidden="true">←</span> Tutte le news</a>
-				<p class="eyebrow">News dalla Delegazione</p>
+				<a class="back-link" href="<?php echo esc_url( get_permalink( (int) get_option( 'page_for_posts' ) ) ); ?>"><span aria-hidden="true">←</span> Tutti gli articoli</a>
+				<p class="eyebrow">Dal nostro blog</p>
 				<h1><?php the_title(); ?></h1>
 				<p class="editorial-meta">
 					<span class="editorial-meta__date"><?php echo fisar_cdj_theme_icon( 'calendar' ); ?><time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time></span>
@@ -22,10 +22,10 @@ $excerpt = has_excerpt() ? get_the_excerpt() : '';
 		<div class="container news-navigation">
 			<?php
 			the_post_navigation( array(
-				'prev_text'          => '<span>News precedente</span> <strong>%title</strong>',
-				'next_text'          => '<span>News successiva</span> <strong>%title</strong>',
-				'aria_label'         => 'Altre news',
-				'screen_reader_text' => 'Altre news',
+				'prev_text'          => '<span>Articolo precedente</span> <strong>%title</strong>',
+				'next_text'          => '<span>Articolo successivo</span> <strong>%title</strong>',
+				'aria_label'         => 'Altri articoli',
+				'screen_reader_text' => 'Altri articoli',
 			) );
 			?>
 		</div>

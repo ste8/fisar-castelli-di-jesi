@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 9 ottobre 2026 — News diventa Blog
+
+Approvata la denominazione Blog per approfondimenti, racconti di eventi e annunci associativi. Applicati i nomi proposti a menu, home, elenco e dettaglio; non introdotte le categorie suggerite come sviluppo successivo. La richiesta riguarda la denominazione: preservati `/news/` e URL degli articoli, senza redirect o migrazione. Nel backend restano **Articoli**; nessuna modifica ai loro contenuti, abstract, immagini o lightbox. La nuova denominazione prevale sui riferimenti storici a News.
+
 ## 8 ottobre 2026 — Ingrandimento predefinito delle gallerie News
 
 Richiesto il default per le nuove gallerie, con possibilità di disattivarlo e senza alterare quelle già presenti. Applicato nel normale inserimento del blocco nativo nell’editor News, non come impostazione globale per tutte le immagini. Copia/incolla e trasformazioni preservano gli attributi dei blocchi originali; nessuna migrazione. La lightbox e la navigazione tra foto restano quelle native WordPress. Nessun carosello autonomo o libreria esterna: tema e dati editoriali reali invariati.

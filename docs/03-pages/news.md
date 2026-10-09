@@ -1,4 +1,15 @@
-# News
+# Blog
+
+## Nome della sezione — tema v1.6.68 / plugin v1.3.23, 9 ottobre 2026
+
+La sezione si chiama **Blog**, per raccogliere approfondimenti, racconti degli eventi e comunicazioni associative. Questa revisione prevale sui nomi News e notizie riportati nelle revisioni storiche sotto.
+
+- Menu principale/footer e pagina articoli nativa: `Blog`. URL `/news/` e permalink degli articoli conservati; nessun nuovo CPT, migrazione, categoria o redirect.
+- Hero elenco: `Blog`, con `Approfondimenti, racconti e novità dalla nostra Delegazione.`. Sezione `Ultimi articoli`, eyebrow `Dal nostro blog`.
+- Home: `Dal nostro blog`, link desktop/mobile `Tutti gli articoli`, stato vuoto `Non ci sono articoli pubblicati al momento.`. Quattro articoli e ordine invariati.
+- Dettaglio: ritorno `Tutti gli articoli`, eyebrow `Dal nostro blog`, navigazione `Articolo precedente` / `Articolo successivo`, nome accessibile `Altri articoli`. Paginazione `Articoli più recenti` / `Articoli precedenti`, nome accessibile `Paginazione del blog`.
+- CTA card `Leggi l’articolo` e suffisso accessibile completo conservati. Stili, galleria/lightbox e gestione nativa **Articoli** invariati.
+- Seed con titolo e menu Blog; alias legacy `News` riusa le voci esistenti, chiave demo e slug `news` conservati. Nell’ambiente locale rinominati soltanto pagina articoli e due voci di menu, senza reimportare i dati demo.
 
 ## Gallerie native — plugin v1.3.22, 8 ottobre 2026
 

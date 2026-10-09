@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Blog — tema 1.6.68 / plugin 1.3.23
+
+`Blog` è il nuovo nome pubblico della sezione News, non un tipo di contenuto: rimangono gli Articoli nativi, `page_for_posts` e i template `home.php` / `single.php`. Rinominate la pagina articoli e le due voci di menu native; permalink, ID, contenuti e impostazioni della galleria conservati. Seed aggiornato con alias legacy per riusare le voci; identificatori interni `news` e classi CSS mantenuti, senza refactoring estraneo al cambio di nome.
+
 ### Numero lezione — plugin 1.3.20 / tema 1.6.63
 
 Campo `number` aggiunto alle righe del meta calendario esistente: import, sanitizzazione e ordinamento restano nel plugin. Il lettore normalizza i calendari legacy senza numeri né migrazioni. Editor nativo con campo manuale al primo posto e anteprima modificabile; il tema mostra la prima colonna senza generare numeri. Nessun nuovo CPT, meta duplicato, dipendenza o contatore automatico.

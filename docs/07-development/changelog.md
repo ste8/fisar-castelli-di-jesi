@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.6.68 / plugin v1.3.23 — News diventa Blog
+
+- Approvato il nome pubblico `Blog`: menu principale/footer e pagina articoli nativa rinominati, hero elenco con il testo `Approfondimenti, racconti e novità dalla nostra Delegazione.` e sezione `Ultimi articoli`. Home `Dal nostro blog`, link `Tutti gli articoli`, stato vuoto riferito agli articoli. Dettaglio e paginazione aggiornati anche nei nomi accessibili; CTA `Leggi l’articolo` e titolo completo conservati.
+- Skill `clean-code-engineer`: mantenuti Articoli, query e componenti nativi, classi/identificatori interni `news`, stile, lightbox e permalink. Nessun nuovo CPT, categoria, dipendenza o redirect. URL `/news/` conservato. Seed con titolo/menu Blog e alias legacy News, senza duplicare le voci. Tema/asset `1.6.68`, plugin `1.3.23`; specifiche aggiornate, nessun commit automatico.
+- Nell’ambiente locale aggiornati soltanto i titoli della pagina articoli ID 5 e delle voci menu ID 26/32, tramite API native, senza reimport demo. Verificati URL, contenuto/estratto della pagina, posizione/parent dei menu e assenza di duplicati. Hash dei titoli, slug, contenuti, estratti e stati di Articoli, media, Eventi e Corsi invariato prima/dopo la rinomina.
+- Superati lint dei sei PHP modificati, sintassi JS della galleria invariata, HTTP home/Blog/articolo/CSS 200 e `git diff --check`. Test nativi in memoria: paginazione di due pagine con etichette nuove e stato archivio vuoto senza paginazione; nessun articolo salvato per i test.
+- Browser reale: elenco a 1440/768/390 px, home/dettaglio a 1440/390 px, etichette Blog e ritorno corretto, nessuna News residua nei testi visibili né overflow pagina. Immagini delle card caricate e console senza errori; review visiva e screenshot elenco. Scheda di test chiusa e viewport ripristinato.
+
 ## Plugin v1.3.22 — Ingrandimento predefinito delle nuove gallerie News
 
 - Il normale inserimento di `Galleria` nell’editor degli articoli usa una variante nativa con `linkTo: lightbox`. Ingrandimento e navigazione gestiti da WordPress; disattivazione disponibile da `Collegamento → Nessuno`. Ricaricare gli editor già aperti. Blocchi salvati/copiati e immagini singole non riscritti; editor Eventi/Corsi/pagine esclusi.

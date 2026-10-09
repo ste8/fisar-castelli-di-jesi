@@ -7,8 +7,8 @@
 - Singolo Evento
 - Corsi
 - Singolo Corso
-- News
-- Singola News
+- Blog (Articoli WordPress nativi, URL `/news/` conservato)
+- Singolo articolo
 - Carta dei Valori
 - Chi siamo
 - Contatti
