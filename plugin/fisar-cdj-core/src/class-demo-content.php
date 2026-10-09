@@ -126,7 +126,7 @@ final class Fisar_CDJ_Demo_Content {
 				'content' => '<p>La Delegazione FISAR Castelli di Jesi è una comunità di appassionati, sommelier e persone curiose. Scopri le nostre prossime attività.</p>',
 			),
 			'news' => array(
-				'title'   => 'News',
+				'title'   => 'Blog',
 				'slug'    => 'news',
 				'content' => '<p>Racconti, aggiornamenti e vita della Delegazione.</p>',
 			),
@@ -647,7 +647,7 @@ final class Fisar_CDJ_Demo_Content {
 			if ( is_wp_error( $post_id ) ) {
 				return $post_id;
 			}
-			$image_id = self::create_demo_attachment( $definition[0], $definition[1], 'News dalla Delegazione', 'landscape', $definition[5], $definition[6] );
+			$image_id = self::create_demo_attachment( $definition[0], $definition[1], 'Dal nostro blog', 'landscape', $definition[5], $definition[6] );
 			if ( is_wp_error( $image_id ) ) {
 				return $image_id;
 			}
@@ -672,7 +672,7 @@ final class Fisar_CDJ_Demo_Content {
 		$primary = self::ensure_menu( 'Navigazione principale' );
 		self::ensure_menu_item( $primary, 'Eventi', get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) ?: home_url( '/eventi/' ), 10 );
 		self::ensure_menu_item( $primary, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
-		self::ensure_menu_item( $primary, 'News', get_permalink( $pages['news'] ), 30 );
+		self::ensure_menu_item( $primary, 'Blog', get_permalink( $pages['news'] ), 30, array( 'News' ) );
 		self::ensure_menu_item( $primary, 'Seguici', get_permalink( $pages['follow'] ), 35, array( 'Resta aggiornato' ) );
 		self::ensure_menu_item( $primary, 'Contatti', get_permalink( $pages['contacts'] ), 60 );
 		self::create_association_menu( $primary, $pages );
@@ -680,7 +680,7 @@ final class Fisar_CDJ_Demo_Content {
 		$footer = self::ensure_menu( 'Navigazione footer' );
 		self::ensure_menu_item( $footer, 'Eventi', get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) ?: home_url( '/eventi/' ), 10 );
 		self::ensure_menu_item( $footer, 'Corsi', get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) ?: home_url( '/corsi/' ), 20 );
-		self::ensure_menu_item( $footer, 'News', get_permalink( $pages['news'] ), 30 );
+		self::ensure_menu_item( $footer, 'Blog', get_permalink( $pages['news'] ), 30, array( 'News' ) );
 		self::ensure_menu_item( $footer, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
 		self::ensure_menu_item( $footer, 'Seguici', get_permalink( $pages['follow'] ), 45, array( 'Resta aggiornato' ) );
 		self::ensure_menu_item( $footer, 'Privacy Policy', get_permalink( $pages['privacy'] ), 50 );

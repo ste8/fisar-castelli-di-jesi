@@ -6,7 +6,7 @@ Implementazione completa e locale del sito della Delegazione FISAR Castelli di J
 
 La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, contenuti demo realistici e frontend responsive/accessibile. La documentazione in `docs/` resta la source of truth.
 
-La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi e News usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
+La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi e Blog usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
 
 ## Requisiti
 
@@ -164,11 +164,11 @@ Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I d
 
 Dal plugin `1.3.20`, **Numero lezione** è il primo campo, manuale e facoltativo (per esempio `1`, `03`, `3 bis`); è anche la prima colonna pubblica. Nessuna rinumerazione automatica: le righe seguono data e orario. I calendari esistenti e gli import nel precedente formato senza numero sono conservati, con numero vuoto (`—` sul sito). Dopo un’anteprima riuscita il testo incollato viene svuotato: puoi modificare le righe e i numeri prima di salvare, senza che il testo originale li sovrascriva.
 
-### News, canali e pagine
+### Blog, canali e pagine
 
-Le News usano gli articoli WordPress nativi. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
+Il Blog usa gli **Articoli** WordPress nativi per approfondimenti, racconti degli eventi e comunicazioni associative. Dal 9 ottobre 2026 il nome Blog sostituisce News nei menu, nella pagina elenco e nei testi di navigazione; la home mostra `Dal nostro blog`. Restano l’URL `/news/`, i permalink degli articoli e la CTA `Leggi l’articolo`. Nessun nuovo CPT o categoria. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
 
-Dal plugin `1.3.22`, le nuove **Gallerie** inserite dal pannello standard dell’editor News hanno l’ingrandimento al clic già attivo, con navigazione tra le foto gestita da WordPress. Puoi disattivarlo selezionando la galleria e scegliendo **Collegamento → Nessuno** nella barra del blocco. Ricarica gli editor già aperti per caricare il nuovo default. Gallerie già salvate o copiate/incollate e immagini singole mantengono le proprie impostazioni; nessuna conversione dei contenuti esistenti.
+Dal plugin `1.3.22`, le nuove **Gallerie** inserite dal pannello standard dell’editor degli Articoli hanno l’ingrandimento al clic già attivo, con navigazione tra le foto gestita da WordPress. Puoi disattivarlo selezionando la galleria e scegliendo **Collegamento → Nessuno** nella barra del blocco. Ricarica gli editor già aperti per caricare il nuovo default. Gallerie già salvate o copiate/incollate e immagini singole mantengono le proprie impostazioni; nessuna conversione dei contenuti esistenti.
 
 La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo, con titoli Poppins e impaginazione coerente con la homepage. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
 
@@ -196,7 +196,7 @@ Il bootstrap crea in modo idempotente:
 - eventi gratuiti con e senza prenotazione e un evento con posti limitati;
 - un Corso attivo con cinque lezioni e un Corso concluso;
 - una serata di presentazione collegata al Corso attivo;
-- quattro News;
+- quattro articoli del Blog;
 - Carta dei Valori e tutte le pagine istituzionali;
 - menu principale, footer e social;
 - immagini demo locali in PNG.

@@ -1,5 +1,9 @@
 # Homepage
 
+## Blog — v1.6.68
+
+Dal 9 ottobre 2026, su approvazione dell’utente, `Dal nostro blog` sostituisce `Ultime notizie dalla Delegazione`. Link sempre disponibile `Tutti gli articoli`, stato vuoto `Non ci sono articoli pubblicati al momento.`. Quattro articoli nativi, ordine, card, stile e CTA `Leggi l’articolo` invariati. La nuova denominazione prevale sui riferimenti storici a News sotto; URL esistente conservato. Specifica in `docs/03-pages/news.md`.
+
 ## Card News — v1.6.67
 
 Allineate l’8 ottobre 2026 a Eventi e Corsi: fotografia orizzontale 16:10 sopra il testo a tutte le larghezze, titolo Poppins 500 / 22 px senza troncamento, linea oro tenue, data con calendario decorativo, estratto a due righe e CTA con nome completo. Quattro notizie e ordine invariati; griglia quattro colonne desktop, due tablet, una mobile. Media assente omesso, senza spazio vuoto; stato senza notizie esplicito e link archivio sempre disponibile. Questa revisione prevale sulla composizione orizzontale delle singole card del mockup. Dettagli in `docs/03-pages/news.md`.
@@ -23,7 +27,7 @@ Su approvazione del 7 ottobre 2026, le card Eventi della home adottano l’ordin
 2. Hero
 3. Prossimi Eventi
 4. I nostri Corsi
-5. Ultime News
+5. Dal nostro blog
 6. Carta dei Valori
 7. Come seguirci
 8. Footer

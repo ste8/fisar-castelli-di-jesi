@@ -78,14 +78,14 @@ $events_link_text = $has_more_events
 	<section class="section section--home-news" aria-labelledby="news-title">
 		<div class="container">
 			<div class="section-heading section-heading--compact section-heading--with-link">
-				<h2 id="news-title">Ultime notizie dalla Delegazione</h2>
-				<a class="text-link text-link--desktop" href="<?php echo esc_url( $news_url ); ?>">Leggi tutte le news <span aria-hidden="true">→</span></a>
+				<h2 id="news-title">Dal nostro blog</h2>
+				<a class="text-link text-link--desktop" href="<?php echo esc_url( $news_url ); ?>">Tutti gli articoli <span aria-hidden="true">→</span></a>
 			</div>
 			<div class="news-grid news-grid--home">
 				<?php
 				$news = new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 4, 'ignore_sticky_posts' => true ) );
 				if ( ! $news->have_posts() ) : ?>
-					<p>Non ci sono notizie pubblicate al momento.</p>
+					<p>Non ci sono articoli pubblicati al momento.</p>
 				<?php endif;
 				while ( $news->have_posts() ) :
 					$news->the_post();
@@ -94,7 +94,7 @@ $events_link_text = $has_more_events
 				wp_reset_postdata();
 				?>
 			</div>
-			<a class="text-link text-link--mobile" href="<?php echo esc_url( $news_url ); ?>">Leggi tutte le news <span aria-hidden="true">→</span></a>
+			<a class="text-link text-link--mobile" href="<?php echo esc_url( $news_url ); ?>">Tutti gli articoli <span aria-hidden="true">→</span></a>
 		</div>
 	</section>
 
