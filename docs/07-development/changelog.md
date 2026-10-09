@@ -1,5 +1,13 @@
 # Changelog
 
+## Plugin v1.3.22 — Ingrandimento predefinito delle nuove gallerie News
+
+- Il normale inserimento di `Galleria` nell’editor degli articoli usa una variante nativa con `linkTo: lightbox`. Ingrandimento e navigazione gestiti da WordPress; disattivazione disponibile da `Collegamento → Nessuno`. Ricaricare gli editor già aperti. Blocchi salvati/copiati e immagini singole non riscritti; editor Eventi/Corsi/pagine esclusi.
+- Skill `clean-code-engineer`: default editoriale nel plugin, riusando il blocco e le dipendenze native senza store subscriber, filtri di salvataggio/rendering, nuove librerie o script frontend. Plugin/asset `1.3.22`, tema `1.6.67` invariato; specifiche aggiornate, nessun commit automatico.
+- Superati lint PHP, test JS della variante e dell’helper immagini del core (default, disattivazione e collegamenti alternativi), controlli nativi sul caricamento nei soli articoli e sul default globale delle immagini singole. HTTP home/News/articolo/asset 200 e `git diff --check`.
+- Inserimento reale dall’editor verificato su una bozza temporanea: attributo lightbox salvato, galleria preesistente e immagine singola lasciate disattivate. Il browser di test non mostra il canvas dell’editor: selezione delle foto non verificata end-to-end dalla Libreria media; per il test frontend popolata soltanto la bozza QA con attributi verificati dell’helper nativo.
+- Lightbox verificata su desktop e mobile: apertura, foto successiva, chiusura e ritorno al pulsante; nessun overflow a 1280/768/390/320 px, immagini della lightbox caricate e console senza errori. Screenshot desktop. Bozza QA ID 155 spostata nel cestino, recuperabile; nessuna modifica effettuata ai contenuti reali. Confronto globale del database non conclusivo durante la sessione dell’editor attivo (lock variabili).
+
 ## v1.6.67 — News coerenti con Eventi e Corsi
 
 - Elenco News con fascia bordeaux compatta, titolo e sezioni Poppins alla scala degli altri archivi. Card con bordo/ombra leggeri, titolo prima della data, separatore oro tenue, calendario decorativo e CTA dal nome accessibile completo. Fotografie orizzontali 16:10, non locandine quadrate; media assente e abstract vuoto omessi.
