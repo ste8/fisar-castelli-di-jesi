@@ -8,6 +8,8 @@ Top bar + logo + menu + CTA.
 
 Quattro canali (WhatsApp, Instagram, Facebook e Newsletter) e form Mailchimp. In homepage segue la Carta dei Valori e precede il footer. Le precedenti Quattro Porte sono rimosse dal 4 ottobre 2026.
 
+Dal v1.6.71 `follow-channels.php` condivide card e descrizioni, mentre `newsletter-signup.php` condivide introduzione del pannello e chiamata al form `newsletter-form.php`. Il contesto determina gli ID del modulo/titolo; livello heading esplicito (H3 home, H2 pagina). Contenitori e introduzioni editoriali restano nei due template. Stessi URL social dal menu nativo e configurazione Mailchimp dal plugin; nessuna copia dei dati o nuovo campo. Rimossi solo il rimando ridondante della home e la sua variabile URL, non i link del menu/footer.
+
 Prova v1.6.7: titoli dei canali e del pannello newsletter in Poppins Medium `500`, sia in home sia nella pagina Seguici.
 
 ## Card Evento

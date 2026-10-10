@@ -28,12 +28,7 @@ the_post();
 
 		<section class="newsletter-section" id="newsletter-page" aria-labelledby="newsletter-page-title">
 			<div class="container newsletter-panel">
-				<div class="newsletter-panel__intro">
-					<p class="eyebrow">Direttamente nella tua casella email</p>
-					<h2 id="newsletter-page-title">Iscriviti alla newsletter</h2>
-					<p>Ricevi le iniziative più importanti della Delegazione e scegli con calma a quali partecipare.</p>
-				</div>
-				<?php get_template_part( 'template-parts/newsletter-form', null, array( 'context' => 'page' ) ); ?>
+				<?php get_template_part( 'template-parts/newsletter-signup', null, array( 'context' => 'page', 'heading_level' => 2 ) ); ?>
 			</div>
 		</section>
 	</article>

@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.71 — Come seguirci: contenuti comuni condivisi
+
+- Mantenuta la pagina autonoma `/seguici/` nel menu/footer e la sezione completa in home. Rimosso soltanto il rimando `Scopri tutti i canali` della home, ridondante con le quattro card già presenti. URL, ancore newsletter, posizione delle sezioni e introduzioni specifiche conservati.
+- Skill `clean-code-engineer`: nuovo componente `newsletter-signup.php` per titolo/testo del pannello e chiamata al modulo esistente, con contesto per gli ID e H3/H2 secondo la pagina. Riutilizzate card, menu social e configurazione Mailchimp già condivisi; nessun CSS/JS nuovo, campo editoriale, dipendenza, modifica al plugin o salvataggio nel database. Tema/asset `1.6.71`, documentazione aggiornata; nessun commit automatico.
+- Lint dei quattro PHP interessati, sintassi JS invariati, sette rendering WordPress in memoria (home/pagina, fallback heading e configurazione assente), HTTP home/Seguici/CSS 200 e `git diff --check` superati. Verificati testo comune identico, ID unici, label/input, destinazione Mailchimp e campi/consenso obbligatori. Nessun invio del modulo.
+- Browser su home e Seguici a 1440/768/390/320 px: quattro card, un solo form per pagina, heading corretti, ancore risolte, nessun overflow pagina, immagine fallita o errore console. Tastiera: dal link newsletter al campo Email con focus visibile in entrambi i contesti; review visiva e screenshot desktop/mobile. Viewport ripristinato e scheda temporanea chiusa.
+
 ## v1.6.70 — Immagini principali Blog quadrate
 
 - Formato 1:1 nelle card di home/elenco e nel riquadro contenuto del dettaglio, consigliato 1080 × 1080 px per semplificare il riuso editoriale. Card con cover conservato; dettaglio con contain per non tagliare le foto precedenti non quadrate. Gallerie e immagini nel corpo libere nelle proporzioni, file originali e dati invariati.

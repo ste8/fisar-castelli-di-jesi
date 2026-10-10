@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 10 ottobre 2026 — Home e pagina Seguici
+
+Approvate entrambe le destinazioni con componenti comuni, non due copie da mantenere separatamente. Rimane `/seguici/` nel menu/footer; tolto solo `Scopri tutti i canali` nella sezione home, dove tutte le opzioni sono già disponibili. Condivisi card e pannello newsletter; le introduzioni dei contesti restano deliberatamente diverse. Nessuna richiesta di rendere tutti i testi modificabili dal backend: non introdotti nuovi campi o sincronizzazioni nel database. Preservati form, ancore, configurazione Mailchimp e contenuto editoriale della pagina; non eseguiti invii o nuove iscrizioni.
+
 ## 10 ottobre 2026 — Formato quadrato delle immagini Blog
 
 Approvato il quadrato per semplificare la preparazione e il riuso delle immagini principali. Applicato alle card home/elenco e al riquadro contenuto del dettaglio, non a tutte le foto nei contenuti o alle gallerie. 1080 × 1080 px è una raccomandazione editoriale, non un obbligo del social o un limite WordPress. Nessun ritaglio dei file esistenti: cover nelle card e contain nel dettaglio restano comportamenti di presentazione. Eventi/Corsi non modificati.
