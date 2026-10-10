@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Immagine nel dettaglio Blog — tema 1.6.69
+
+`single.php` colloca l’immagine in evidenza nella hero, riusando la griglia `content-hero__grid` soltanto quando presente e il renderer immagini del tema. Regole circoscritte a `.single-news`, senza modificare griglie o media di Eventi/Corsi. Assenza dell’immagine conserva la colonna testuale; gallerie e contenuti continuano a passare dai filtri nativi WordPress. Nessun nuovo dato, componente astratto, script o dipendenza.
+
 ### Blog — tema 1.6.68 / plugin 1.3.23
 
 `Blog` è il nuovo nome pubblico della sezione News, non un tipo di contenuto: rimangono gli Articoli nativi, `page_for_posts` e i template `home.php` / `single.php`. Rinominate la pagina articoli e le due voci di menu native; permalink, ID, contenuti e impostazioni della galleria conservati. Seed aggiornato con alias legacy per riusare le voci; identificatori interni `news` e classi CSS mantenuti, senza refactoring estraneo al cambio di nome.

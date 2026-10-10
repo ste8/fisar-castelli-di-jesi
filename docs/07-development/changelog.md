@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.69 — Immagine in evidenza contenuta nel dettaglio Blog
+
+- Foto spostata nella hero chiara, a destra del testo da 832 px, sotto l’introduzione sui formati piccoli. Riquadro bianco fino a 352 px, bordo/ombra leggeri e foto intera con altezza limitata, senza ritaglio quadrato. Rimossa la grande immagine separata sotto il titolo. Senza foto conservata la hero testuale entro 768 px, senza colonna vuota; corpo e navigazione invariati.
+- Skill `clean-code-engineer`: riusati griglia dei dettagli e renderer immagini esistenti, stili circoscritti al Blog. Nessun nuovo script, campo o dipendenza; plugin, dati editoriali, gallerie/lightbox, home/elenco e altri dettagli invariati. Tema/asset `1.6.69`, specifiche aggiornate; nessun commit automatico.
+- Superati lint dei due PHP, sintassi JS invariati, HTTP dettaglio/elenco/home/CSS e `git diff --check`. Sei casi nativi in memoria: foto verticale/orizzontale, assenza di immagine, assenza di abstract, titolo lungo, entrambe le assenze; immagine una sola volta nella hero, alt informativo/eager, unico H1, nessun abstract/colonna vuota e galleria nativa conservata. Nessun salvataggio editoriale.
+- Browser con foto verticale a 1440/1024/768/390/320 px e orizzontale a 1440/390 px: posizione prevista, foto caricata/contain, larghezza fino a 352 px e nessun overflow pagina. Colonna del corpo invariata, apertura/chiusura della lightbox interna funzionante, console senza errori. Review visiva desktop/mobile e screenshot desktop; scheda chiusa e viewport ripristinato.
+
 ## v1.6.68 / plugin v1.3.23 — News diventa Blog
 
 - Approvato il nome pubblico `Blog`: menu principale/footer e pagina articoli nativa rinominati, hero elenco con il testo `Approfondimenti, racconti e novità dalla nostra Delegazione.` e sezione `Ultimi articoli`. Home `Dal nostro blog`, link `Tutti gli articoli`, stato vuoto riferito agli articoli. Dettaglio e paginazione aggiornati anche nei nomi accessibili; CTA `Leggi l’articolo` e titolo completo conservati.

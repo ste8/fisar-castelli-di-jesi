@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 9 ottobre 2026 — Immagine del dettaglio Blog
+
+Richiesta una fotografia contenuta nella parte alta, a destra come nei dettagli Eventi. Interpretata come immagine in evidenza, non come tutte le immagini del corpo o della galleria. Foto intera, anche verticale, senza ritaglio quadrato; massimo 352 px di larghezza del riquadro e altezza limitata. Sotto 832 px passa sotto l’introduzione per conservare leggibilità. Senza immagine non si riserva una colonna vuota; titoli, abstract, font, contenuti e dati non cambiano.
+
 ## 9 ottobre 2026 — News diventa Blog
 
 Approvata la denominazione Blog per approfondimenti, racconti di eventi e annunci associativi. Applicati i nomi proposti a menu, home, elenco e dettaglio; non introdotte le categorie suggerite come sviluppo successivo. La richiesta riguarda la denominazione: preservati `/news/` e URL degli articoli, senza redirect o migrazione. Nel backend restano **Articoli**; nessuna modifica ai loro contenuti, abstract, immagini o lightbox. La nuova denominazione prevale sui riferimenti storici a News.

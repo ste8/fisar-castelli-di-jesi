@@ -1,5 +1,11 @@
 # Blog
 
+## Immagine del dettaglio contenuta — tema v1.6.69, 9 ottobre 2026
+
+L’immagine in evidenza è nella hero chiara, a destra di titolo, metadata e abstract da `52rem`; sotto tale soglia segue il testo ed è centrata. Riutilizzata la griglia dei dettagli Eventi/Corsi, con contenitore fino a `68rem` solo quando c’è l’immagine. Riquadro bianco largo al massimo `22rem` (352 px), padding `.5rem`, bordo/angoli leggeri e ombra già usata nelle card. Foto intera con `object-fit: contain`, altezza massima `22rem`, senza formato quadrato forzato o ritagli.
+
+Senza immagine, hero testuale centrata entro `48rem`, senza colonna o segnaposto vuoto. Corpo e navigazione restano entro `48rem`, senza affiancamento del testo lungo. Immagine una sola volta, caricamento eager e testo alternativo informativo conservati. Gallerie, lightbox, immagini nel corpo, home, elenco e contenuti salvati invariati. Questa revisione sostituisce l’immagine grande separata sotto la hero delle specifiche precedenti.
+
 ## Nome della sezione — tema v1.6.68 / plugin v1.3.23, 9 ottobre 2026
 
 La sezione si chiama **Blog**, per raccogliere approfondimenti, racconti degli eventi e comunicazioni associative. Questa revisione prevale sui nomi News e notizie riportati nelle revisioni storiche sotto.
