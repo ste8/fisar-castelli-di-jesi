@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 10 ottobre 2026 — Formato quadrato delle immagini Blog
+
+Approvato il quadrato per semplificare la preparazione e il riuso delle immagini principali. Applicato alle card home/elenco e al riquadro contenuto del dettaglio, non a tutte le foto nei contenuti o alle gallerie. 1080 × 1080 px è una raccomandazione editoriale, non un obbligo del social o un limite WordPress. Nessun ritaglio dei file esistenti: cover nelle card e contain nel dettaglio restano comportamenti di presentazione. Eventi/Corsi non modificati.
+
 ## 9 ottobre 2026 — Immagine del dettaglio Blog
 
 Richiesta una fotografia contenuta nella parte alta, a destra come nei dettagli Eventi. Interpretata come immagine in evidenza, non come tutte le immagini del corpo o della galleria. Foto intera, anche verticale, senza ritaglio quadrato; massimo 352 px di larghezza del riquadro e altezza limitata. Sotto 832 px passa sotto l’introduzione per conservare leggibilità. Senza immagine non si riserva una colonna vuota; titoli, abstract, font, contenuti e dati non cambiano.

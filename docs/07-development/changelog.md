@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.70 — Immagini principali Blog quadrate
+
+- Formato 1:1 nelle card di home/elenco e nel riquadro contenuto del dettaglio, consigliato 1080 × 1080 px per semplificare il riuso editoriale. Card con cover conservato; dettaglio con contain per non tagliare le foto precedenti non quadrate. Gallerie e immagini nel corpo libere nelle proporzioni, file originali e dati invariati.
+- Skill `clean-code-engineer`: sole regole CSS dei media Blog, separando il selettore dalla regola Corsi invece di modificare quest’ultima. Nessun nuovo campo, script, dipendenza o rigenerazione degli allegati. Numero/griglie delle card, contenuti, CTA e nomi accessibili conservati; tema/asset `1.6.70`, plugin invariato e nessun commit automatico.
+- Verificati lint PHP del bootstrap tema, sintassi JS invariati, HTTP home/elenco/dettaglio/CSS, regressioni native del dettaglio e `git diff --check`. Browser sui tre contesti a 1440/768/390/320 px: riquadri 1:1, immagini principali caricate, dettaglio entro 352 px e nessun overflow pagina. Sette trigger lightbox interni conservati, console senza errori; review visiva e screenshot elenco. Scheda temporanea chiusa e viewport ripristinato.
+
 ## v1.6.69 — Immagine in evidenza contenuta nel dettaglio Blog
 
 - Foto spostata nella hero chiara, a destra del testo da 832 px, sotto l’introduzione sui formati piccoli. Riquadro bianco fino a 352 px, bordo/ombra leggeri e foto intera con altezza limitata, senza ritaglio quadrato. Rimossa la grande immagine separata sotto il titolo. Senza foto conservata la hero testuale entro 768 px, senza colonna vuota; corpo e navigazione invariati.

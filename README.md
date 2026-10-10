@@ -170,6 +170,8 @@ Il Blog usa gli **Articoli** WordPress nativi per approfondimenti, racconti degl
 
 Nel dettaglio Blog l’immagine in evidenza è contenuta nella hero, a destra del titolo su desktop e sotto l’introduzione sui formati più piccoli: riquadro fino a 352 px, fotografia intera senza ritaglio. Senza immagine resta la hero testuale; gallerie e foto nel corpo non cambiano.
 
+Dal tema `1.6.70`, anche le immagini principali del Blog usano riquadri **quadrati** in home, elenco e dettaglio. Formato consigliato **1080 × 1080 px**, per riusare la stessa immagine sul sito e sui social. Non è obbligatorio: le immagini non quadrate vengono ritagliate solo visivamente nelle card e mostrate intere nel riquadro bianco del dettaglio. I file originali e le immagini delle gallerie non vengono modificati.
+
 Dal plugin `1.3.22`, le nuove **Gallerie** inserite dal pannello standard dell’editor degli Articoli hanno l’ingrandimento al clic già attivo, con navigazione tra le foto gestita da WordPress. Puoi disattivarlo selezionando la galleria e scegliendo **Collegamento → Nessuno** nella barra del blocco. Ricarica gli editor già aperti per caricare il nuovo default. Gallerie già salvate o copiate/incollate e immagini singole mantengono le proprie impostazioni; nessuna conversione dei contenuti esistenti.
 
 La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo, con titoli Poppins e impaginazione coerente con la homepage. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
