@@ -193,6 +193,8 @@ La pagina `/seguici/` resta una destinazione autonoma nel menu e nel footer; la 
 
 La newsletter usa il form Mailchimp fornito: nome, cognome ed email vengono inviati direttamente a Mailchimp e non salvati in WordPress. Il frontend non carica CSS o JavaScript Mailchimp.
 
+Dal 10 ottobre 2026 la pagina locale `/privacy-policy/` contiene l’informativa newsletter autorizzata dall’utente con i dati reali della Delegazione, al posto del testo dimostrativo. Rimane modificabile nell’editor WordPress e collegata dai moduli home/Seguici. Testo iniziale e limiti in `docs/03-pages/privacy.md` / `privacy-newsletter.html`: prima del lancio pubblico verificare nell’account Mailchimp tracking, opt-in, prova del consenso e conservazione. Non è un’informativa generale su ogni trattamento del sito; il seed demo e la Cookie Policy restano dimostrativi.
+
 ## Dati demo
 
 Il bootstrap crea in modo idempotente:

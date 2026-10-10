@@ -1,5 +1,11 @@
 # Changelog
 
+## 10 ottobre 2026 — Pubblicata l’informativa newsletter locale
+
+- Su autorizzazione esplicita, sostituito il corpo dimostrativo della pagina WordPress `Privacy Policy` ID 10 con il testo newsletter proposto e i dati associativi forniti: denominazione completa/abbreviata, sede, C.F., P.IVA ed email. Blocco Paragrafo/Titolo nativo, cinque sezioni; nessuna certificazione legale o dichiarazione non verificata di assenza del tracking.
+- Aggiornamento mirato tramite API WordPress, con confronto esatto del testo precedente e revisione recuperabile. Titolo, slug `/privacy-policy/`, stato pubblicato, opzione privacy, menu e link dei due moduli invariati; nessun reimport demo, cambio di versione, modifica al tema/plugin o all’account Mailchimp. Testo iniziale versionato in `docs/03-pages/privacy-newsletter.html`, specifica/controlli ancora necessari in `privacy.md`. Nessun commit automatico.
+- Rilettura identica al file, revisione precedente disponibile, parsing dei blocchi nativi e HTTP privacy/home/Seguici 200. Browser a 1440/768/390/320 px: unico H1, cinque H2, dati reali e mailto corretti, testo dimostrativo assente e nessun overflow; font caricati e console senza errori. Verificata navigazione alla pagina dai link privacy di entrambi i moduli, senza iscrizioni o invii. Review visiva/screenshot desktop, viewport ripristinato e scheda temporanea chiusa; `git diff --check` superato.
+
 ## v1.6.71 — Come seguirci: contenuti comuni condivisi
 
 - Mantenuta la pagina autonoma `/seguici/` nel menu/footer e la sezione completa in home. Rimosso soltanto il rimando `Scopri tutti i canali` della home, ridondante con le quattro card già presenti. URL, ancore newsletter, posizione delle sezioni e introduzioni specifiche conservati.
