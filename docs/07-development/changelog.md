@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.72 — Privacy coerente con Eventi, Corsi e Blog
+
+- Fascia del titolo bordeaux compatta con accento oro, senza fotografia o eyebrow ridondante; H1 e sezioni Poppins alla scala dei dettagli Eventi/Corsi/Blog. Corpo 16–17 px, introduzione non più serif, colonna centrale massimo 48rem e spaziature ridotte.
+- Skill `clean-code-engineer`: riutilizzati i selettori comuni; classe `privacy-page` assegnata con la condizione nativa `is_privacy_policy()` e poche regole specifiche, senza duplicare template o logica nel plugin. Tema/asset `1.6.72`; contenuto della policy, titolo/URL, database, menu, Mailchimp e altre pagine invariati. Nessun nuovo asset, dipendenza o commit automatico.
+- Lint PHP e sintassi JS, HTTP privacy/Eventi/Corsi/Blog/Carta dei Valori/Cookie Policy/CSS 200 e `git diff --check` superati. Hash del contenuto privacy identico prima/dopo. Browser a 1440/768/390/320 px: un H1 e cinque H2, font caricati, nessun overflow o immagine fallita; link con focus visibile e console senza errori. Screenshot desktop/mobile e controllo di regressione dei template esistenti; viewport ripristinato e scheda temporanea chiusa.
+
 ## 10 ottobre 2026 — Pubblicata l’informativa newsletter locale
 
 - Su autorizzazione esplicita, sostituito il corpo dimostrativo della pagina WordPress `Privacy Policy` ID 10 con il testo newsletter proposto e i dati associativi forniti: denominazione completa/abbreviata, sede, C.F., P.IVA ed email. Blocco Paragrafo/Titolo nativo, cinque sezioni; nessuna certificazione legale o dichiarazione non verificata di assenza del tracking.

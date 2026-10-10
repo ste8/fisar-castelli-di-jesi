@@ -2,16 +2,23 @@
 get_header();
 the_post();
 $is_values_page = is_page( 'carta-dei-valori' );
+$is_privacy_page = ! $is_values_page && is_privacy_policy();
+$page_classes   = array( 'standard-page' );
+if ( $is_values_page ) {
+	$page_classes[] = 'values-page';
+} elseif ( $is_privacy_page ) {
+	$page_classes[] = 'privacy-page';
+}
 $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_the_content() ) : array();
 ?>
 <main id="main-content">
-	<article <?php post_class( $is_values_page ? 'standard-page values-page' : 'standard-page' ); ?>>
+	<article <?php post_class( $page_classes ); ?>>
 		<?php if ( $is_values_page ) : ?>
 			<?php get_template_part( 'template-parts/values-hero' ); ?>
 		<?php else : ?>
 		<header class="page-hero">
 			<div class="container page-hero__inner">
-				<p class="eyebrow">FISAR Castelli di Jesi</p>
+				<?php if ( ! $is_privacy_page ) : ?><p class="eyebrow">FISAR Castelli di Jesi</p><?php endif; ?>
 				<h1><?php the_title(); ?></h1>
 				<?php if ( has_excerpt() ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 			</div>

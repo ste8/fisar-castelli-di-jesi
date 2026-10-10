@@ -1992,27 +1992,27 @@ blockquote {
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero {
 	padding-block: clamp(2rem, 4vw, 3rem);
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero h1 {
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner > p:last-child {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero__inner > p:last-child {
 	color: var(--color-line);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero h1,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero h1,
 :is(.single-event, .single-course) .content-hero h1,
 .single-news .editorial-hero h1 {
 	position: relative;
@@ -2026,7 +2026,7 @@ blockquote {
 	text-wrap: balance;
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero h1::after,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero h1::after,
 :is(.single-event, .single-course) .content-hero h1::after,
 .single-news .editorial-hero h1::after {
 	position: absolute;
@@ -2038,7 +2038,7 @@ blockquote {
 	content: '';
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .page-hero__inner > p:last-child,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero__inner > p:last-child,
 :is(.single-event, .single-course) .content-hero__lead,
 .single-news .content-hero__lead {
 	max-width: 46rem;
@@ -2339,11 +2339,11 @@ blockquote {
 	}
 }
 
-:is(.single-event, .single-course, .single-news) .prose {
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose {
 	font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
-:is(.single-event, .single-course, .single-news) .prose :is(h2, h3, h4, h5, h6),
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose :is(h2, h3, h4, h5, h6),
 :is(.single-event, .single-course) .registration-box :is(h2, h3) {
 	font-family: var(--font-body);
 	font-weight: 500;
@@ -2352,26 +2352,52 @@ blockquote {
 	text-wrap: initial;
 }
 
-:is(.single-event, .single-course, .single-news) .prose h2,
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose h2,
 :is(.single-event, .single-course) .registration-box h2 {
 	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
 }
 
-:is(.single-event, .single-course, .single-news) .prose h3 {
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose h3 {
 	font-size: 1.25rem;
 }
 
-:is(.single-event, .single-course, .single-news) .prose h4 {
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose h4 {
 	font-size: 1.125rem;
 }
 
-:is(.single-event, .single-course, .single-news) .prose :is(h5, h6) {
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose :is(h5, h6) {
 	font-size: 1.0625rem;
 }
 
-:is(.single-event, .single-course, .single-news) .prose strong,
+:is(.single-event, .single-course, .single-news, .privacy-page) .prose strong,
 :is(.single-event, .single-course) .registration-box strong {
 	font-weight: 600;
+}
+
+.privacy-page .page-hero h1:last-child {
+	margin-bottom: 0;
+}
+
+.privacy-page .prose--page {
+	max-width: 48rem;
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	overflow-wrap: anywhere;
+}
+
+.privacy-page .prose .lead {
+	font-family: var(--font-body);
+	font-size: clamp(1rem, 1.4vw, 1.125rem);
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+.privacy-page .prose h2 {
+	margin-top: 2rem;
+	padding-top: 0;
+}
+
+.privacy-page .prose > :last-child {
+	margin-bottom: 0;
 }
 
 :is(.single-event, .single-course) .details-list > div {
