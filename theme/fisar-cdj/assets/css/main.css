@@ -854,9 +854,12 @@ blockquote {
 	padding-block: 1.25rem 2.75rem;
 }
 
-.course-card__media,
-.news-card__media {
+.course-card__media {
 	aspect-ratio: 16 / 10;
+}
+
+.news-card__media {
+	aspect-ratio: 1;
 }
 
 .course-card__image,
@@ -1948,6 +1951,7 @@ blockquote {
 .single-news .editorial-image {
 	width: 100%;
 	max-width: 22rem;
+	aspect-ratio: 1;
 	margin: 0 auto;
 	padding: .5rem;
 	border: 1px solid var(--color-line);
@@ -1959,6 +1963,7 @@ blockquote {
 .single-news .editorial-image__asset {
 	width: 100%;
 	height: auto;
+	aspect-ratio: 1;
 	max-height: 22rem;
 	border-radius: 0;
 	object-fit: contain;

@@ -1,5 +1,13 @@
 # Blog
 
+## Immagini principali quadrate — tema v1.6.70, 10 ottobre 2026
+
+Approvato il formato **1:1**, consigliato **1080 × 1080 px**, per riusare la stessa immagine principale su sito e post social. Non è un requisito di Instagram né un vincolo al caricamento. Questa revisione prevale sulle precedenti card 16:10 e sul riquadro a proporzioni naturali del dettaglio.
+
+- Home ed elenco: media quadrato sopra il testo, con `cover` conservato. Immagini preparate quadrate riempiono il riquadro; quelle precedenti con altre proporzioni sono adattate mediante ritaglio visivo, senza cambiare il file originale.
+- Dettaglio: riquadro quadrato fino a 352 px, ancora a destra su desktop e sotto l’introduzione sui formati piccoli. `contain` conserva intere anche le vecchie foto non quadrate, con spazio bianco quando necessario.
+- Formato di foto/gallerie nel corpo libero e lightbox invariata. Media assente omesso; numero articoli, griglie, CTA accessibili, query e dati preservati. Nessuna rigenerazione o modifica degli allegati.
+
 ## Immagine del dettaglio contenuta — tema v1.6.69, 9 ottobre 2026
 
 L’immagine in evidenza è nella hero chiara, a destra di titolo, metadata e abstract da `52rem`; sotto tale soglia segue il testo ed è centrata. Riutilizzata la griglia dei dettagli Eventi/Corsi, con contenitore fino a `68rem` solo quando c’è l’immagine. Riquadro bianco largo al massimo `22rem` (352 px), padding `.5rem`, bordo/angoli leggeri e ombra già usata nelle card. Foto intera con `object-fit: contain`, altezza massima `22rem`, senza formato quadrato forzato o ritagli.

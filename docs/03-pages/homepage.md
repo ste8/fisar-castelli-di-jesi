@@ -1,5 +1,9 @@
 # Homepage
 
+## Immagini Blog quadrate — v1.6.70
+
+Dal 10 ottobre 2026 anche le immagini delle card Blog sono **1:1**, per uniformare la preparazione delle immagini principali a Eventi/Corsi. Consigliato 1080 × 1080 px. Foto quadrate senza adattamento di proporzioni; quelle già presenti con altri formati continuano a riempire il riquadro con ritaglio solo visivo. Restano quattro articoli, griglia quattro/due/una colonna, titolo, estratto e CTA invariati. Questa revisione prevale sul 16:10 riportato sotto. Nessun allegato modificato; dettagli in `docs/03-pages/news.md`.
+
 ## Blog — v1.6.68
 
 Dal 9 ottobre 2026, su approvazione dell’utente, `Dal nostro blog` sostituisce `Ultime notizie dalla Delegazione`. Link sempre disponibile `Tutti gli articoli`, stato vuoto `Non ci sono articoli pubblicati al momento.`. Quattro articoli nativi, ordine, card, stile e CTA `Leggi l’articolo` invariati. La nuova denominazione prevale sui riferimenti storici a News sotto; URL esistente conservato. Specifica in `docs/03-pages/news.md`.
