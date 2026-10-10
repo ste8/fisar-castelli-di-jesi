@@ -1,5 +1,9 @@
 # Typography
 
+## Allineamento Privacy — v1.6.72
+
+Il 10 ottobre 2026, su richiesta dell’utente, la sola pagina privacy nativa riusa la scala Poppins di Eventi/Corsi/Blog: H1 500 da 32–44 px, corpo 16–17 px / 1.7, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px e grassetti 600. Introduzione Poppins 400 da 16–18 px / 1.7, non serif; colonna di lettura massimo 48rem. Prevale sul default generico per questa pagina, senza nuove famiglie o modifiche all’editor. Riferimento: `docs/03-pages/privacy.md`.
+
 ## Allineamento News — v1.6.67
 
 L’8 ottobre 2026, su richiesta dell’utente, elenco e dettaglio News adottano la scala Poppins di Eventi/Corsi. H1 500 da 32–44 px, titolo sezione elenco 32–40 px; card elenco 20–24 px e home 22 px / 1.3. Corpo dettaglio 16–17 px / 1.7, heading 500 / 1.35: H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px; grassetti 600. Titoli della navigazione precedente/successiva 18 px / 500. Prevale sul default serif per i soli template News; nessuna nuova famiglia o modifica al default dell’editor. Riferimento: `docs/03-pages/news.md`.

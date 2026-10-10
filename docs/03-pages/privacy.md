@@ -1,5 +1,11 @@
 # Informativa newsletter
 
+## Stile — tema v1.6.72
+
+La pagina privacy nativa adotta la fascia bordeaux compatta degli archivi Eventi/Corsi/Blog, senza fotografia o eyebrow associativa. H1 Poppins 500 da 32–44 px con accento oro; testo centrale largo al massimo 48rem, corpo 16–17 px / 1.7, introduzione Poppins 400, H2 20–24 px / 500 e grassetti 600. Spaziatura più contenuta tra le sezioni, link e focus visibile preservati.
+
+La classe di presentazione `privacy-page` viene assegnata da `page.php` tramite `is_privacy_policy()`, non tramite slug o ID cablato. Riutilizzate le regole tipografiche esistenti con pochi stili circoscritti: Carta dei Valori, Cookie Policy e altre pagine non cambiano. Contenuto editoriale, titolo, URL, database e configurazione Mailchimp invariati; nessun nuovo asset o script.
+
 ## Pubblicazione locale — 10 ottobre 2026
 
 Su richiesta esplicita dell’utente, la pagina nativa `Privacy Policy` all’URL `/privacy-policy/` pubblica il testo proposto nella conversazione con ragione sociale, abbreviazione, sede, C.F., P.IVA ed email forniti dall’utente. Testo iniziale versionato in `privacy-newsletter.html`, con blocchi WordPress nativi. Dopo la pubblicazione, eventuali modifiche editoriali si gestiscono dalla pagina WordPress; non esiste una sincronizzazione automatica con questo file.
