@@ -26,4 +26,4 @@ Dal 9 ottobre 2026 `Blog` sostituisce `News` nel menu principale e nel footer. R
 
 ## Come seguirci
 
-Pagina dedicata e condivisibile all’URL `/seguici/`, con spiegazione dei canali, link diretti ai social e modulo di iscrizione Mailchimp. La pagina è raggiungibile dalla voce `Seguici` del menu principale, dalla sezione omonima in homepage e dal footer.
+Pagina dedicata e condivisibile all’URL `/seguici/`, con spiegazione dei canali, link diretti ai social e modulo di iscrizione Mailchimp. La pagina è raggiungibile dalla voce `Seguici` del menu principale e dal footer. Dal 10 ottobre 2026 la sezione omonima in home offre direttamente gli stessi canali e modulo, senza il link ridondante `Scopri tutti i canali`; il menu non rimanda a un’ancora della homepage.

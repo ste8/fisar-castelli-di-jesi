@@ -9,7 +9,6 @@ $events_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_u
 $courses_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) : home_url( '/corsi/' );
 $news_page = (int) get_option( 'page_for_posts' );
 $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
-$follow_url = fisar_cdj_theme_page_url( 'seguici' );
 $home_events_limit = 4;
 $events = function_exists( 'fisar_cdj_get_upcoming_events' ) ? fisar_cdj_get_upcoming_events( $home_events_limit ) : null;
 $events_total = $events ? (int) $events->found_posts : 0;
@@ -150,19 +149,13 @@ $events_link_text = $has_more_events
 				</div>
 				<div class="follow-section__lead">
 					<p>Eventi, corsi e vita della Delegazione: scegli il canale che preferisci per seguirci nel modo più comodo per te.</p>
-					<a class="text-link" href="<?php echo esc_url( $follow_url ); ?>">Scopri tutti i canali <span aria-hidden="true">→</span></a>
 				</div>
 			</header>
 
 			<?php get_template_part( 'template-parts/follow-channels', null, array( 'newsletter_url' => '#newsletter-home', 'heading_level' => 3 ) ); ?>
 
 			<div class="newsletter-panel" id="newsletter-home">
-				<div class="newsletter-panel__intro">
-					<p class="eyebrow">Direttamente nella tua casella email</p>
-					<h3>Iscriviti alla newsletter</h3>
-					<p>Ricevi un riepilogo delle iniziative più importanti della Delegazione.</p>
-				</div>
-				<?php get_template_part( 'template-parts/newsletter-form', null, array( 'context' => 'home' ) ); ?>
+				<?php get_template_part( 'template-parts/newsletter-signup', null, array( 'context' => 'home', 'heading_level' => 3 ) ); ?>
 			</div>
 		</div>
 	</section>

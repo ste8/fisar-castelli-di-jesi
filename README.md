@@ -189,6 +189,8 @@ docker compose -f docker/compose.yaml run --rm --no-deps \
 
 I canali social sono un menu WordPress dedicato in **Aspetto → Menu**.
 
+La pagina `/seguici/` resta una destinazione autonoma nel menu e nel footer; la home presenta gli stessi canali senza il link ridondante `Scopri tutti i canali`. Card e pannello newsletter sono componenti condivisi del tema: descrizioni dei canali, titolo/testo del pannello e form si aggiornano in un solo punto. Titoli e introduzioni dei due contesti restano distinti; il testo della pagina Seguici è modificabile nell’editor nativo. Conservate le ancore `newsletter-home` e `newsletter-page`.
+
 La newsletter usa il form Mailchimp fornito: nome, cognome ed email vengono inviati direttamente a Mailchimp e non salvati in WordPress. Il frontend non carica CSS o JavaScript Mailchimp.
 
 ## Dati demo

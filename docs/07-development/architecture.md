@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Come seguirci — tema 1.6.71
+
+Home e `/seguici/` mantengono destinazioni e layout distinti, riusando `follow-channels.php` e il nuovo `newsletter-signup.php` per il contenuto comune del pannello. Quest’ultimo contiene un’unica introduzione e chiama il modulo esistente; riceve solo contesto per gli ID e livello heading. I wrapper conservano ancore e landmark; le introduzioni specifiche restano nel template home e nel contenuto nativo della pagina. Nessuna nuova opzione o scrittura editoriale: menu social e configurazione pubblica Mailchimp restano le fonti esistenti. Nessuna logica del plugin spostata nel tema o dipendenza introdotta.
+
 ### Immagine nel dettaglio Blog — tema 1.6.69
 
 `single.php` colloca l’immagine in evidenza nella hero, riusando la griglia `content-hero__grid` soltanto quando presente e il renderer immagini del tema. Regole circoscritte a `.single-news`, senza modificare griglie o media di Eventi/Corsi. Assenza dell’immagine conserva la colonna testuale; gallerie e contenuti continuano a passare dai filtri nativi WordPress. Nessun nuovo dato, componente astratto, script o dipendenza.
