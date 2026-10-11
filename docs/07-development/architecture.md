@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Footer e Contatti — tema 1.6.73 / plugin 1.3.24
+
+`fisar_cdj_get_delegation_details()` centralizza nel plugin dati associativi e recapiti forniti dall’utente. Footer e template nativo `page-contatti.php` leggono la stessa configurazione; `contact-emails.php` presenta i due indirizzi come alternative equivalenti. Nessun nuovo CPT, opzione amministrativa o dipendenza. Introduzione nella pagina nativa, resto della presentazione nel tema; aggiornato in modo mirato solo il testo demo di Contatti, con revisione e guardia sul contenuto precedente. Seed coerente senza reimport. La privacy resta un documento editoriale indipendente, non sincronizzato dal getter.
+
 ### Come seguirci — tema 1.6.71
 
 Home e `/seguici/` mantengono destinazioni e layout distinti, riusando `follow-channels.php` e il nuovo `newsletter-signup.php` per il contenuto comune del pannello. Quest’ultimo contiene un’unica introduzione e chiama il modulo esistente; riceve solo contesto per gli ID e livello heading. I wrapper conservano ancore e landmark; le introduzioni specifiche restano nel template home e nel contenuto nativo della pagina. Nessuna nuova opzione o scrittura editoriale: menu social e configurazione pubblica Mailchimp restano le fonti esistenti. Nessuna logica del plugin spostata nel tema o dipendenza introdotta.

@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.6.75 — Footer più essenziale
+
+- Rimossi dal solo footer il copyright, il payoff e il testo descrittivo sotto Seguici, come richiesto. Eliminati la riga finale ormai vuota e i relativi stili; payoff della top bar/home conservato. Dati associativi, recapiti, menu, social e CTA newsletter invariati; nessuna modifica al plugin o al database.
+- Tema/asset `1.6.75`, specifica Contatti aggiornata; nessun commit automatico.
+- Lint PHP/JS, HTTP home/Contatti/CSS 200 e `git diff --check` superati. Browser a 1440/768/390/320 px: i tre testi e la riga finale assenti dal solo footer, payoff della top bar conservato, recapiti/dati fiscali/CTA invariati, nessun overflow o errore console. Screenshot desktop, viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.74 — Unico footer bianco
+
+- Su richiesta esplicita, eliminata la fascia bordeaux separata. C.F. e P.IVA spostati sotto la sede nel blocco associativo; copyright e payoff nell’ultima riga della stessa griglia bianca. Nessuna informazione rimossa, nessuna modifica alla pagina Contatti o ai dati del plugin.
+- Skill `clean-code-engineer`: semplificato il markup, rimossi wrapper e selettori `footer-bottom`, riusati griglia e breakpoint esistenti. Tema/asset `1.6.74`, documentazione aggiornata; nessun commit automatico.
+- Lint PHP, HTTP home/Contatti 200 e `git diff --check` superati. Browser a 1440/768/390/320 px: un solo footer, fascia precedente assente, fondo bianco, dati/email conservati, nessun overflow o errore console. Verifica visiva desktop e screenshot; viewport ripristinato e schede temporanee chiuse.
+
+## v1.6.73 / plugin v1.3.24 — Footer e Contatti con i dati della Delegazione
+
+- Inseriti denominazione breve, sede, due email alternative e dati fiscali nel footer; rimossi telefono e avviso demo. Numero del Delegato, denominazione completa, SDI e RUNTS nella pagina Contatti, con iscrizione RUNTS separata dai dati per la fatturazione. Conservati menu, social e CTA newsletter.
+- Contatti con fascia bordeaux compatta e titoli Poppins, riquadro Scrivici, Delegato/sede e dati associativi. Layout mobile a una colonna, due su tablet; footer a quattro colonne solo da 1120 px per preservare leggibilità dei recapiti. Telefono con link `tel:`, senza attribuirgli automaticamente WhatsApp.
+- Skill `clean-code-engineer`: dati pubblici centralizzati nel getter del plugin e presentazione nel tema; componente email condiviso senza copie da mantenere. Nessun nuovo CPT, schermata backend, script, asset remoto o dipendenza. Introdotto `page-contatti.php`; solo il corpo demo della pagina ID 8 aggiornato con confronto esatto e revisione recuperabile, introduzione ancora editoriale. Seed allineato senza reimport; altri contenuti, menu, privacy e Mailchimp invariati. Nessun commit automatico.
+- Lint dei sette PHP e sintassi JS, HTTP home/Contatti/Eventi/Corsi/Blog/Privacy/Seguici/CSS 200 e `git diff --check` superati. Verificati blocco nativo dell’introduzione, revisioni e hash privacy invariato. Browser Contatti a 1440/1024/768/390/320 px e footer home a 1440/320 px: nessun overflow, ID duplicato, immagine fallita o errore console; un solo H1, email/telefono corretti e focus visibile nei due contesti. Screenshot desktop/mobile/footer, viewport ripristinato e scheda temporanea chiusa.
+
 ## v1.6.72 — Privacy coerente con Eventi, Corsi e Blog
 
 - Fascia del titolo bordeaux compatta con accento oro, senza fotografia o eyebrow ridondante; H1 e sezioni Poppins alla scala dei dettagli Eventi/Corsi/Blog. Corpo 16–17 px, introduzione non più serif, colonna centrale massimo 48rem e spaziature ridotte.

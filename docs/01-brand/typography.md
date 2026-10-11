@@ -1,5 +1,9 @@
 # Typography
 
+## Contatti — v1.6.73
+
+Contatti riusa l’H1 Poppins 500 da 32–44 px e la fascia compatta degli archivi. H2 20–24 px / 500, H3 18 px / 500, corpo 16 px, introduzione 16–18 px / 1.7. Email nel riquadro principale 16–20 px / 600, con `oppure` più discreto; footer alla scala esistente 15 px, dati fiscali e metadati 13 px sullo stesso fondo bianco (v1.6.74). Solo presentazione frontend, senza nuovi font o modifiche all’editor.
+
 ## Allineamento Privacy — v1.6.72
 
 Il 10 ottobre 2026, su richiesta dell’utente, la sola pagina privacy nativa riusa la scala Poppins di Eventi/Corsi/Blog: H1 500 da 32–44 px, corpo 16–17 px / 1.7, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px e grassetti 600. Introduzione Poppins 400 da 16–18 px / 1.7, non serif; colonna di lettura massimo 48rem. Prevale sul default generico per questa pagina, senza nuove famiglie o modifiche all’editor. Riferimento: `docs/03-pages/privacy.md`.

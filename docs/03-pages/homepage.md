@@ -2,7 +2,7 @@
 
 ## Come seguirci condiviso — v1.6.71
 
-Il 10 ottobre 2026 confermate home e pagina autonoma `/seguici/`, senza rimandare la voce del menu a un’ancora della homepage. La home non mostra più `Scopri tutti i canali`, perché tutte e quattro le opzioni sono già presenti. Card dei canali e contenuto del pannello newsletter condivisi: medesimi titolo, descrizione e modulo, con gerarchia H3 in home/H2 nella pagina e ID distinti. Testo comune del pannello: `Ricevi un riepilogo delle iniziative più importanti della Delegazione.`. Introduzioni specifiche dei contesti conservate, come le ancore, la posizione dopo la Carta e i link del footer. Questa decisione prevale sul rimando alla pagina descritto sotto.
+Il 10 ottobre 2026 confermate home e pagina autonoma `/seguici/`, senza rimandare la voce del menu a un’ancora della homepage. La home non mostra più `Scopri tutti i canali`, perché tutte e quattro le opzioni sono già presenti. Card dei canali e contenuto del pannello newsletter condivisi: medesimi titolo, descrizione e modulo, con gerarchia H3 in home/H2 nella pagina e ID distinti. Testo comune del pannello: `Ricevi un riepilogo delle notizie più importanti della Delegazione.`. Introduzioni specifiche dei contesti conservate, come le ancore, la posizione dopo la Carta e i link del footer. Questa decisione prevale sul rimando alla pagina descritto sotto.
 
 ## Immagini Blog quadrate — v1.6.70
 
