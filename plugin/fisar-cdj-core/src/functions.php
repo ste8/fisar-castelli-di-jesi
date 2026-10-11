@@ -596,6 +596,25 @@ function fisar_cdj_get_newsletter_signup_config(): array {
 }
 
 /**
+ * Dati associativi e recapiti ufficiali condivisi da footer e pagina Contatti.
+ */
+function fisar_cdj_get_delegation_details(): array {
+	return array(
+		'name'           => 'Delegazione F.I.S.A.R. Federazione Italiana Sommelier Albergatori Ristoratori Castelli di Jesi A.P.S.',
+		'short_name'     => 'Delegazione F.I.S.A.R. Castelli di Jesi A.P.S.',
+		'street'         => 'Via dei Faggi, 9',
+		'locality'       => '60019 Montemarciano (AN)',
+		'tax_code'       => '92024530427',
+		'vat_number'     => '02460560424',
+		'sdi_code'       => 'M5UXCR1',
+		'runts_number'   => '147380',
+		'emails'         => array( 'info@fisarcastellidijesi.it', 'jesi@fisar.com' ),
+		'delegate_name'  => 'Corrado De Michelis',
+		'delegate_phone' => '3388510934',
+	);
+}
+
+/**
  * Conserva i collegamenti alle pagine native rinominate.
  */
 function fisar_cdj_redirect_legacy_pages(): void {

@@ -158,7 +158,7 @@ final class Fisar_CDJ_Demo_Content {
 				'title'   => 'Contatti',
 				'slug'    => 'contatti',
 				'excerpt' => 'Scrivici: saremo felici di rispondere alle tue domande.',
-				'content' => '<p class="lead">Vuoi informazioni su un evento, un corso o sulla vita della Delegazione? Scegli il canale che preferisci.</p><h2>Email</h2><p><a href="mailto:info@fisarcastellidijesi.it">info@fisarcastellidijesi.it</a></p><h2>Telefono e WhatsApp</h2><p><a href="tel:+393331234567">+39 333 123 4567</a></p><h2>Dove ci incontriamo</h2><p>Le sedi cambiano in base all’attività. Ogni pagina Evento o Corso riporta sempre luogo, indirizzo e modalità aggiornati.</p><p><strong>Dati dimostrativi:</strong> sostituire email e telefono con i recapiti ufficiali prima della pubblicazione.</p>',
+				'content' => '<!-- wp:paragraph {"className":"lead"} --><p class="lead">Per informazioni su corsi, eventi o attività della Delegazione, scrivici o contatta il Delegato.</p><!-- /wp:paragraph -->',
 			),
 			'join' => array(
 				'title'   => 'Unisciti a noi',

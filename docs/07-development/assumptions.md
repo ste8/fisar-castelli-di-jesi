@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 11 ottobre 2026 — Footer e Contatti
+
+Approvata la proposta di separare recapiti e dati amministrativi, con entrambe le email collegate e separate da `oppure`, senza ruoli distinti. Nel footer sede, denominazione breve e dati fiscali; Contatti include il Delegato e dati completi con SDI distinto dal RUNTS. Il cellulare fornito è trattato come telefono, non automaticamente WhatsApp. La sede non è presentata come luogo abituale dei corsi o aperto senza appuntamento. Dati centralizzati nel plugin per evitare divergenze; non richiesta una nuova schermata di configurazione backend. Preservati documenti legali, menu, eventi, corsi e Mailchimp; rimossi i recapiti demo solo da footer/Contatti.
+
 ## 10 ottobre 2026 — Home e pagina Seguici
 
 Approvate entrambe le destinazioni con componenti comuni, non due copie da mantenere separatamente. Rimane `/seguici/` nel menu/footer; tolto solo `Scopri tutti i canali` nella sezione home, dove tutte le opzioni sono già disponibili. Condivisi card e pannello newsletter; le introduzioni dei contesti restano deliberatamente diverse. Nessuna richiesta di rendere tutti i testi modificabili dal backend: non introdotti nuovi campi o sincronizzazioni nel database. Preservati form, ancore, configurazione Mailchimp e contenuto editoriale della pagina; non eseguiti invii o nuove iscrizioni.

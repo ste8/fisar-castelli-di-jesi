@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.72' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.75' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -238,17 +238,17 @@ function fisar_cdj_theme_follow_channels( string $newsletter_url ): array {
 	$definitions = array(
 		'whatsapp' => array(
 			'title'       => 'WhatsApp',
-			'description' => 'Avvisi rapidi su eventi, posti disponibili e nuove iscrizioni.',
+			'description' => 'Il modo più semplice e immediato per ricevere le novità della Delegazione.',
 			'cta'         => 'Segui il canale WhatsApp',
 		),
 		'instagram' => array(
 			'title'       => 'Instagram',
-			'description' => 'Foto, storie e momenti vissuti insieme alla Delegazione.',
+			'description' => 'Novità, foto e racconti delle attività della Delegazione.',
 			'cta'         => 'Seguici su Instagram',
 		),
 		'facebook' => array(
 			'title'       => 'Facebook',
-			'description' => 'Eventi, comunicazioni e vita della nostra comunità.',
+			'description' => 'Novità, foto e racconti delle attività della Delegazione.',
 			'cta'         => 'Seguici su Facebook',
 		),
 	);
