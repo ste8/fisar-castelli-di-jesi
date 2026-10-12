@@ -112,7 +112,7 @@ Prossimi Eventi: futuri ASC. Corsi: attivi. News: ultime pubblicazioni.
 
 Sezione dedicata dopo la Carta dei Valori e prima del footer, come approvato il 4 ottobre 2026. L’intero blocco, incluso il form newsletter, è spostato senza modificarne contenuto o stile: le attività concrete precedono l’invito a mantenere il contatto. La voce `Seguici` nel menu e i collegamenti social in top bar e footer restano invariati. Presenta quattro canali con CTA esplicite:
 
-- Canale WhatsApp;
+- Gruppo WhatsApp (link e dicitura aggiornati il 12 ottobre 2026; dettagli in `docs/02-information-architecture/navigation.md`);
 - Instagram;
 - Facebook;
 - Newsletter Mailchimp.

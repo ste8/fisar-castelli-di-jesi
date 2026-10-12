@@ -1,5 +1,7 @@
 # Come seguirci
 
+Dal v1.6.82 i tre social puntano ai profili e al gruppo forniti dalla Delegazione, tramite il menu comune. WhatsApp usa la CTA `Unisciti al gruppo WhatsApp`, senza cambiare la descrizione approvata o il modulo newsletter. URL in `docs/02-information-architecture/navigation.md`.
+
 ## Stile e contenuti — v1.6.76, 11 ottobre 2026
 
 La pagina nativa `/seguici/` rimane autonoma nel menu e nel footer. Titolo `Come seguirci` ed estratto nativi conservati; fascia bordeaux compatta, senza fotografia o eyebrow associativa, H1 Poppins 500 da 32–44 px con accento oro, estratto 16–18 px / 1.7.

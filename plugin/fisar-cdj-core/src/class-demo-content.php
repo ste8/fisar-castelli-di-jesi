@@ -687,9 +687,9 @@ final class Fisar_CDJ_Demo_Content {
 		self::ensure_menu_item( $footer, 'Cookie Policy', get_permalink( $pages['cookies'] ), 60 );
 
 		$social = self::ensure_menu( 'Canali social' );
-		self::ensure_menu_item( $social, 'Canale WhatsApp', 'https://whatsapp.com/channel/', 10 );
-		self::ensure_menu_item( $social, 'Instagram', 'https://www.instagram.com/', 20 );
-		self::ensure_menu_item( $social, 'Facebook', 'https://www.facebook.com/', 30 );
+		self::ensure_menu_item( $social, 'Gruppo WhatsApp', 'https://chat.whatsapp.com/BYeE6Jg3LcYDvnmkr1X1xY', 10, array( 'Canale WhatsApp' ) );
+		self::ensure_menu_item( $social, 'Instagram', 'https://www.instagram.com/fisarcastellidijesi/', 20 );
+		self::ensure_menu_item( $social, 'Facebook', 'https://www.facebook.com/FISAR.Castelli.di.Jesi', 30 );
 
 		set_theme_mod(
 			'nav_menu_locations',
