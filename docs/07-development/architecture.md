@@ -8,6 +8,8 @@
 
 ### Come seguirci — tema 1.6.71
 
+Dal tema `1.6.76` Seguici riusa i selettori della hero degli archivi e ha spaziature/scala circoscritte a `.follow-page`, senza modificare i componenti comuni o la home. Rimosso il titolo introduttivo; card H2 e sezione con `aria-label`. Contenuto nativo vuoto dopo rimozione mirata del solo paragrafo richiesto, recuperabile nelle revisioni; eventuali nuove introduzioni continuano a passare da `the_content()`. Plugin `1.3.25` allinea soltanto il seed per i nuovi ambienti, senza migrazioni automatiche o nuove opzioni. Specifica corrente in `docs/03-pages/follow-us.md`, prevalente sull’introduzione distinta descritta nella versione precedente sotto.
+
 Home e `/seguici/` mantengono destinazioni e layout distinti, riusando `follow-channels.php` e il nuovo `newsletter-signup.php` per il contenuto comune del pannello. Quest’ultimo contiene un’unica introduzione e chiama il modulo esistente; riceve solo contesto per gli ID e livello heading. I wrapper conservano ancore e landmark; le introduzioni specifiche restano nel template home e nel contenuto nativo della pagina. Nessuna nuova opzione o scrittura editoriale: menu social e configurazione pubblica Mailchimp restano le fonti esistenti. Nessuna logica del plugin spostata nel tema o dipendenza introdotta.
 
 ### Immagine nel dettaglio Blog — tema 1.6.69

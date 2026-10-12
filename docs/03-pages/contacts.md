@@ -1,5 +1,15 @@
 # Contatti
 
+## Icone dei pannelli — v1.6.80, 12 ottobre 2026
+
+Titoli dei tre pannelli con icona e testo affiancati: busta per `Scrivici`, persona per `Il Delegato`, edificio istituzionale per `Dati dell’associazione`. Stessa dimensione di 24 px, colore bordeaux e distanza di `.65rem`. SVG locali nel renderer condiviso, decorativi (`aria-hidden` e non focalizzabili); nomi accessibili e ID degli H2 conservati. Il testo può andare a capo su schermi stretti, senza forzare `nowrap`.
+
+## Semplificazione — v1.6.79, 12 ottobre 2026
+
+Rimossi il riquadro separato `La sede` e la sottosezione `Dati per la fatturazione`, comprese le note. Indirizzo conservato nei dati dell’associazione e nel footer; `Codice SDI` (`M5UXCR1`) ora subito dopo `Iscrizione RUNTS`, come riga distinta della stessa lista. Questa revisione prevale sulla precedente struttura sotto.
+
+Restano due riquadri, `Scrivici` e `Il Delegato`, affiancati da 608 px e impilati su mobile, senza colonne vuote. Introduzione nativa invariata: rimosso il limite di 768 px del contenitore e quello generico del paragrafo, così usa la larghezza disponibile del corpo. `text-wrap: pretty` limita le parole isolate a fine frase sui browser compatibili, senza `nowrap`, interruzioni forzate o modifiche al database.
+
 ## Revisione approvata — 11 ottobre 2026
 
 La pagina `/contatti/` adotta lo stile di Eventi/Corsi/Blog: fascia bordeaux compatta, titolo Poppins con accento oro e riquadri chiari, senza fotografia. Gerarchia:

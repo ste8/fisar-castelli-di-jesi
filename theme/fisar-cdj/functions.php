@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.75' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.80' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -116,6 +116,8 @@ function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 		'instagram' => '<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r=".8" class="icon__fill"/>',
 		'facebook'  => '<path d="M13.7 20.5v-7.7h2.7l.4-3h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.8c-.8-.1-1.6-.2-2.4-.2-2.4 0-4.1 1.5-4.1 4.2v2H7.8v3h2.7v7.7"/>',
 		'mail'      => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+		'person'    => '<circle cx="12" cy="7" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>',
+		'building'  => '<path d="m3 9 9-6 9 6H3ZM3 21h18M5 18h14M6 9v9M12 9v9M18 9v9"/>',
 		'calendar'  => '<rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10h16"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01" class="icon__dots"/>',
 		'course'    => '<path d="m2.5 9 9.5-5 9.5 5-9.5 5-9.5-5Z"/><path d="M6.5 11.2v5.1c2.9 2.2 8.1 2.2 11 0v-5.1M21.5 9v6"/>',
 		'members'   => '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20v-2.2c0-3 2.4-5.4 5.4-5.4s5.4 2.4 5.4 5.4V20"/><circle cx="17" cy="9" r="2.4"/><path d="M15.7 13.2c.5-.2 1-.3 1.5-.3 2.4 0 4.3 2 4.3 4.4V20h-4.8"/>',

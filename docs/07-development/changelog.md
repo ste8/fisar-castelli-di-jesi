@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.6.80 — Titoli dei pannelli Contatti con icone coerenti
+
+- Busta affiancata a `Scrivici`, persona a `Il Delegato` ed edificio istituzionale a `Dati dell’associazione`. Titoli con identico allineamento, icone bordeaux da 24 px e distanza `.65rem`; testo libero di andare a capo su mobile. ID e nomi accessibili conservati; SVG decorativi e non focalizzabili.
+- Skill `clean-code-engineer`: riusato il renderer SVG locale, aggiunte soltanto due icone lineari e sostituito lo stile della busta separata con una regola comune ai tre titoli. Nessuna dipendenza, modifica ai dati, al plugin o al footer. Tema/asset `1.6.80`, specifica aggiornata; nessun commit automatico.
+- Lint dei due PHP, sintassi JS, HTTP Contatti/CSS 200 e `git diff --check` superati. Browser a 1440/768/390/320 px: icone da 24 px sempre a sinistra del testo, allineamento verticale desktop, heading accessibili invariati e nessun overflow o errore console. Screenshot desktop salvato; viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.79 — Blog e Contatti più essenziali
+
+- Rimossa dalla sola hero dell’elenco Blog la dicitura `Vita di Delegazione`. Titolo, descrizione, articoli, home e dettagli invariati.
+- Contatti: eliminati il riquadro `La sede` e la sottosezione `Dati per la fatturazione`; indirizzo conservato nei dati dell’associazione e SDI come riga distinta subito dopo RUNTS. Due riquadri di contatto affiancati da 608 px, uno per riga su mobile. Introduzione editoriale invariata: il ritorno a capo isolato dipendeva dal contenitore limitato a 768 px; ora usa la larghezza del corpo e `text-wrap: pretty` sui formati ridotti.
+- Skill `clean-code-engineer`: semplificati i template nativi e rimossi i selettori ormai inutilizzati, mantenendo i dati nel getter comune del plugin. Nessuna modifica al database, ai recapiti, al footer o al plugin; documentazione aggiornata e tema/asset `1.6.79`. Nessun commit automatico.
+- Lint dei tre PHP, sintassi JS, HTTP Contatti/Blog/CSS 200 e `git diff --check` superati. Browser sulle due pagine a 1440/768/390/320 px: eyebrow rimosso, due card, SDI dopo RUNTS, introduzione su una riga desktop, layout responsive e nessun overflow, immagine fallita o errore console. Screenshot Contatti salvato; viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.78 — Fondo uniforme su Seguici
+
+- Esteso alla sezione dei canali lo stesso fondo chiaro caldo della newsletter (`--color-tint`), eliminando lo stacco bianco tra le due sezioni. Card bianche, pannello bordeaux, hero, footer e distanze conservati. Skill `clean-code-engineer`: riusato il token esistente nel selettore circoscritto a `.follow-page`, senza alterare home, componenti, plugin o dati. Nessun commit automatico.
+- Lint PHP, sintassi JS, HTTP pagina/CSS 200 e `git diff --check` superati. Browser a 1440/768/390/320 px: fondo identico nelle due sezioni e nessun overflow; card bianche e modulo unico conservati su desktop, console senza errori. Screenshot desktop salvato, viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.77 — Canali e newsletter più vicini su Seguici
+
+- Ridotto il solo raccordo tra le quattro card e il pannello newsletter: distanza da 128 a 64 px su desktop e da 80 a 48 px su tablet/mobile. Selettori circoscritti a `.follow-page`; home, contenuti e modulo Mailchimp invariati. Tema/asset aggiornati, nessun commit automatico.
+- Lint PHP, sintassi JS, HTTP pagina/CSS 200 e `git diff --check` superati. Browser a 1440/768/390/320 px: distanze misurate come previsto, un solo modulo, nessun overflow o errore console. Screenshot desktop salvato; viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.76 / plugin v1.3.25 — Seguici allineata alle altre pagine
+
+- Hero bordeaux compatta, H1 Poppins con accento oro e senza eyebrow associativa. Rimossi il titolo `Segui la vita della Delegazione`, il relativo eyebrow e il paragrafo richiesto: dopo la hero si vedono direttamente i canali. Titolo ed estratto nativi conservati, card H2 da 20–24 px, titolo newsletter 24–32 px e spaziature più contenute, solo in `.follow-page`.
+- Skill `clean-code-engineer`: riusati stili hero e componenti comuni, nome accessibile della sezione tramite `aria-label`, gerarchia corretta senza heading vuoti. Solo il paragrafo della pagina ID 86 rimosso tramite API WordPress con confronto esatto e revisione recuperabile; future introduzioni restano native/editoriali. Seed del plugin allineato senza reimport; form, consenso, privacy, ancore, URL social/menu e home invariati. Nessuna modifica all’account Mailchimp o nuova dipendenza; nessun commit automatico.
+- Lint dei quattro PHP, sintassi JS, HTTP home/Seguici/Contatti/Eventi/Corsi/CSS 200 e `git diff --check` superati. Verificati metadati/revisioni e hash privacy invariato. Browser Seguici a 1440/768/390/320 px: testi rimossi assenti, un H1, quattro card H2 e un form, ID unici, font caricati e nessun overflow, immagine fallita o errore console. Ancora newsletter e Tab al campo Email con focus visibile, senza invii; home conserva card H3/28 px e modulo/ancora originali. Screenshot desktop/mobile, viewport ripristinato e scheda temporanea chiusa.
+
 ## v1.6.75 — Footer più essenziale
 
 - Rimossi dal solo footer il copyright, il payoff e il testo descrittivo sotto Seguici, come richiesto. Eliminati la riga finale ormai vuota e i relativi stili; payoff della top bar/home conservato. Dati associativi, recapiti, menu, social e CTA newsletter invariati; nessuna modifica al plugin o al database.
