@@ -32,7 +32,7 @@
 						);
 						?>
 					<?php endif; ?>
-					<li><a href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) . '#newsletter-page' ); ?>"><?php echo fisar_cdj_theme_icon( 'mail', 'social-link__icon' ); ?><span>Newsletter</span></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/newsletter/' ) ); ?>"><?php echo fisar_cdj_theme_icon( 'mail', 'social-link__icon' ); ?><span>Newsletter</span></a></li>
 				</ul>
 			</nav>
 		</div>

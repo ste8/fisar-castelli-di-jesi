@@ -619,10 +619,24 @@ function fisar_cdj_get_whatsapp_group_url(): string {
 	return 'https://chat.whatsapp.com/BYeE6Jg3LcYDvnmkr1X1xY';
 }
 
+/** Destinazioni fisse dei link brevi; Newsletter richiede una pagina pubblicata. */
+function fisar_cdj_get_follow_redirects(): array {
+	$redirects = array(
+		'whatsapp'  => fisar_cdj_get_whatsapp_group_url(),
+		'facebook'  => 'https://www.facebook.com/FISAR.Castelli.di.Jesi',
+		'instagram' => 'https://www.instagram.com/fisarcastellidijesi/',
+	);
+	$follow_page = get_page_by_path( 'seguici' );
+	if ( $follow_page && 'publish' === $follow_page->post_status ) {
+		$redirects['newsletter'] = get_permalink( $follow_page ) . '#newsletter-page';
+	}
+	return $redirects;
+}
+
 /**
- * Link breve condivisibile: niente pagina vuota, parametri di destinazione o cache.
+ * Link brevi condivisibili: niente pagine vuote, parametri di destinazione o cache.
  */
-function fisar_cdj_redirect_whatsapp(): void {
+function fisar_cdj_redirect_follow_channels(): void {
 	if ( is_admin() || ! is_404() ) {
 		return;
 	}
@@ -634,17 +648,19 @@ function fisar_cdj_redirect_whatsapp(): void {
 
 	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
-	$whatsapp_path = (string) wp_parse_url( home_url( '/whatsapp/' ), PHP_URL_PATH );
-	if ( untrailingslashit( $request_path ) !== untrailingslashit( $whatsapp_path ) ) {
+	foreach ( fisar_cdj_get_follow_redirects() as $slug => $destination ) {
+		$short_path = (string) wp_parse_url( home_url( '/' . $slug . '/' ), PHP_URL_PATH );
+		if ( untrailingslashit( $request_path ) !== untrailingslashit( $short_path ) ) {
+			continue;
+		}
+		nocache_headers();
+		if ( wp_redirect( $destination, 302, 'FISAR Castelli di Jesi' ) ) {
+			exit;
+		}
 		return;
 	}
-
-	nocache_headers();
-	if ( wp_redirect( fisar_cdj_get_whatsapp_group_url(), 302, 'FISAR Castelli di Jesi' ) ) {
-		exit;
-	}
 }
-add_action( 'template_redirect', 'fisar_cdj_redirect_whatsapp', 0 );
+add_action( 'template_redirect', 'fisar_cdj_redirect_follow_channels', 0 );
 
 /**
  * Conserva i collegamenti alle pagine native rinominate.
