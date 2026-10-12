@@ -1,5 +1,11 @@
 # Changelog
 
+## Plugin v1.3.27 — Link breve pubblico WhatsApp
+
+- Realizzato `/whatsapp/`, anche senza slash finale: redirect esterno 302 all’invito configurato, con header no-cache/no-store. La destinazione è unica nel getter del plugin; query ignorate, percorso esatto e soli GET/HEAD su 404, prima della canonicalizzazione. Nessuna pagina vuota, regola di rewrite, flush, nuovo plugin o dipendenza.
+- Skill `software-architect` e `clean-code-engineer`: logica funzionale nel plugin, menu sociale condiviso come fonte dei link pubblici, destinazione fissa per evitare open redirect. Seed aggiornato; nell’ambiente locale modificato solo l’URL della voce ID 36 tramite API native e controllo dei valori precedenti. Facebook/Instagram/Newsletter invariati: gli altri alias sono proposti, non ancora autorizzati. Tema `1.6.82` invariato; documentazione aggiornata, nessun commit automatico.
+- Lint dei tre PHP, sintassi JS e `git diff --check` superati. HTTP GET con/senza slash e HEAD con parametro `redirect_to`: 302 all’invito fisso e `Cache-Control` no-cache/no-store verificati senza seguire il redirect. POST e percorso `/whatsapp/altro/` restano 404; Seguici 200 e legacy Chi siamo 301 conservati. Browser: tre link brevi su home e Seguici, profili e Newsletter invariati; Seguici a 1440/768/390/320 px senza overflow, console senza errori. Screenshot salvato, viewport ripristinato e scheda temporanea chiusa; nessun accesso al gruppo esterno.
+
 ## v1.6.82 / plugin v1.3.26 — Link social della Delegazione
 
 - Inseriti gli URL Facebook, Instagram e WhatsApp forniti dall’utente nel menu social comune: si aggiornano top bar, footer e card di home/Seguici. WhatsApp punta a un gruppo: voce `Gruppo WhatsApp`, CTA `Unisciti al gruppo WhatsApp` e label mobile `WhatsApp`. Newsletter e recapiti personali per Eventi/Corsi invariati.

@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 12 ottobre 2026 — Alias WhatsApp
+
+Confermato `/whatsapp/` con redirect 302 non memorizzabile in cache e suo uso nei collegamenti pubblici. La domanda su Facebook, Instagram e Newsletter viene trattata come richiesta di consiglio, non conferma a crearne gli alias. Questi restano invariati; un eventuale `/newsletter/` dovrebbe portare al modulo Seguici, non saltare direttamente a Mailchimp. Destinazione WhatsApp nella configurazione del plugin, senza un nuovo editor o opzione amministrativa richiesti.
+
 ## 11 ottobre 2026 — Stile Seguici
 
 Richiesto lo stile delle altre pagine e la rimozione di titolo/paragrafo introduttivi. Conservati titolo ed estratto della hero, non inclusi nel testo da eliminare; rimosso anche l’eyebrow del blocco introduttivo per non lasciarlo isolato. Canali H2 dopo H1, modulo e contenuti condivisi invariati. Rimossa soltanto la copia del paragrafo nel corpo della pagina, con revisione e guardia sul precedente contenuto; l’editor resta utilizzabile per una futura introduzione. Nessun cambio alla home, ai menu o al double opt-in dell’account Mailchimp.
