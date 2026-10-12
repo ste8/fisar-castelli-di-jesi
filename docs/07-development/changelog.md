@@ -1,5 +1,19 @@
 # Changelog
 
+## Contenuti — Navigazione e cookie più sintetica, 12 ottobre 2026
+
+- Su richiesta, mantenuti solo i primi due paragrafi della sezione, fino a `Questi dati non sono cookie e non vengono utilizzati dal sito per profilare i visitatori.`. Rimossi i tre successivi senza testo sostitutivo. Titolo/ancora, titolare, introduzione e intera informativa newsletter invariati; nessuna modifica a codice, form, menu o redirect.
+- File documentale e pagina ID 10 allineati tramite API native, guardia hash e verifica che il cambiamento corrisponda esclusivamente alla rimozione richiesta; cinque revisioni, precedente testo recuperabile. Tema/plugin invariati e nessun commit automatico.
+- Sintassi PHP dello script di aggiornamento e `git diff --check` superati; privacy HTTP 200 e Cookie legacy 301 alla stessa ancora. Browser: esattamente due paragrafi prima della sezione newsletter, frase finale corretta e nessun overflow a 1440/768/390/320 px o errore console. Screenshot salvato, viewport ripristinato e scheda temporanea chiusa.
+
+## Plugin v1.3.29 — Privacy unica per navigazione, cookie e newsletter
+
+- Estesa l’introduzione della privacy e inserita `Navigazione e cookie` dopo titolare/recapito: assenza di analytics/pixel nella configurazione attuale, dati tecnici di navigazione distinti dai cookie, cookie WordPress per login/preferenze/lingua e servizi esterni. Newsletter conservata integralmente, con controllo del suffisso originale; nessuna modifica a consenso, form o Mailchimp. Testo in blocchi nativi, opzione privacy/titolo/slug invariati e revisione precedente conservata.
+- Cookie Policy ID 11 in bozza, contenuto intatto; voce ID 35 scollegata dal menu footer 3 senza eliminare il post, quindi recuperabile. Vecchio URL con 301 alla pagina privacy nativa e all’ancora `#navigazione-e-cookie`, soltanto GET/HEAD e path esatto. Seed senza pagina/link Cookie separati, privacy demo con sezione generica coerente, nessun reimport. Tema `1.6.83` invariato, plugin `1.3.29`, documentazione aggiornata; nessun commit automatico.
+- Skill `clean-code-engineer`: testo editoriale nella pagina, redirect nel plugin e rimozioni recuperabili tramite API native con guardie hash. Consultati FAQ del Garante e documentazione cookie WordPress; verificate configurazione locale e parti del core. Nessun banner, analytics, dipendenza o nuovo trattamento introdotto. Restano da verificare hosting/log/conservazione e configurazione effettiva Mailchimp prima del lancio: non certificata la futura conformità del sito in produzione.
+- Lint dei tre PHP, sintassi JS e `git diff --check` superati. Hash privacy uguale al file documentale, quattro revisioni, testo Cookie invariato, post-menu conservato e sei voci residue. HTTP Cookie GET con slash/HEAD senza slash: 301 alla nuova sezione; POST e sottopercorso 404. Privacy 200, Newsletter 302 e Chi siamo 301 invariati.
+- Browser dalla vecchia Cookie Policy alla privacy con ancora corretta, un H1, font locali e nessun link Cookie nel footer; 1440/768/390/320 px senza overflow. Su Seguici un form, consenso obbligatorio e link privacy conservati, console senza errori. Screenshot della sezione salvato, viewport ripristinato e scheda temporanea chiusa; nessun invio di prova o accesso ai servizi esterni.
+
 ## v1.6.83 / plugin v1.3.28 — Redirect Facebook, Instagram e Newsletter
 
 - Creati `/facebook/`, `/instagram/` e `/newsletter/`, anche senza slash finale, con 302/no-cache/no-store. Mappa di destinazioni fisse e gestore comune nel plugin, estendendo WhatsApp senza duplicare handler. Newsletter verso la pagina Seguici pubblicata e il modulo esistente; in sua assenza non redirige. Confermate guardie GET/HEAD, path esatto, 404 e nessun inoltro di query o destinazione da input.

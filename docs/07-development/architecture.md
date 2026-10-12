@@ -2,6 +2,12 @@
 
 ## Sintesi
 
+### Informativa unica e Cookie Policy archiviata — plugin 1.3.29
+
+Testo di navigazione/cookie nella privacy nativa, non generato dal tema; file documentale allineato e contenuti newsletter conservati. Cookie Policy locale in bozza, corpo invariato, voce del footer scollegata dal menu conservandone il post per recupero. Nessuna cancellazione permanente. Seed non crea più pagina/voce Cookie; privacy demo resta una bozza generica senza imporre il testo reale o reimport.
+
+Redirect legacy nel plugin: path esatto GET/HEAD su 404, 301 alla pagina indicata da `wp_page_for_privacy_policy` più `#navigazione-e-cookie`, solo se pubblicata. Non hardcodificato l’ID nel codice distribuito; opzione privacy e link dei form invariati. Nessun analytics, banner, script o nuovo trattamento introdotto. Verifiche specifiche di hosting e Mailchimp ancora da svolgere prima della produzione.
+
 ### Link brevi dei quattro canali — plugin 1.3.28 / tema 1.6.83
 
 Esteso il gestore WhatsApp a una mappa di destinazioni nel plugin, `fisar_cdj_get_follow_redirects()`: nessun handler duplicato. Facebook/Instagram verso URL fissi; Newsletter usa il permalink nativo di Seguici soltanto se pubblicata, più l’ancora del modulo esistente. Senza pagina pubblicata fallisce in modo chiuso (404). Getter WhatsApp conservato. Nessun input utente controlla la destinazione e nessuna query viene inoltrata; 302/no-store, GET/HEAD e path esatto come prima.

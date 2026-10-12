@@ -1,5 +1,9 @@
 # Navigation
 
+## Informativa unica — plugin v1.3.29, 12 ottobre 2026
+
+Nel footer resta solo `Privacy Policy`, estesa a navigazione/cookie e newsletter. Rimossa la voce Cookie Policy, pagina dimostrativa conservata come bozza. `/cookie-policy/` rimanda con 301 a `/privacy-policy/#navigazione-e-cookie`, usando il permalink della pagina impostata come privacy nativa. Questa revisione prevale sui riferimenti storici al doppio link; nessun analytics o banner introdotto.
+
 ## Link brevi per tutti i canali — v1.6.83 / plugin v1.3.28, 12 ottobre 2026
 
 Confermati anche `/facebook/`, `/instagram/` e `/newsletter/`: 302 non memorizzabili in cache, con e senza slash finale. I social rimandano ai profili forniti sotto; Newsletter al permalink della pagina Seguici pubblicata con ancora `#newsletter-page`, non a Mailchimp. Senza pagina Seguici pubblicata, `/newsletter/` non effettua redirect.

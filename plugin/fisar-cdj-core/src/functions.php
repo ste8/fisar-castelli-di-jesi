@@ -677,15 +677,16 @@ function fisar_cdj_redirect_legacy_pages(): void {
 
 	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
-	$redirects = array( 'resta-aggiornato' => 'seguici', 'chi-siamo' => 'la-nostra-delegazione' );
+	$redirects = array( 'resta-aggiornato' => 'seguici', 'chi-siamo' => 'la-nostra-delegazione', 'cookie-policy' => 'privacy-policy' );
 	foreach ( $redirects as $legacy_slug => $current_slug ) {
 		$legacy_path = (string) wp_parse_url( home_url( '/' . $legacy_slug . '/' ), PHP_URL_PATH );
 		if ( untrailingslashit( $request_path ) !== untrailingslashit( $legacy_path ) ) {
 			continue;
 		}
-		$page = get_page_by_path( $current_slug );
+		$page = 'cookie-policy' === $legacy_slug ? get_post( (int) get_option( 'wp_page_for_privacy_policy' ) ) : get_page_by_path( $current_slug );
 		if ( $page && 'publish' === $page->post_status ) {
-			wp_safe_redirect( get_permalink( $page ), 301, 'FISAR Castelli di Jesi' );
+			$destination = get_permalink( $page ) . ( 'cookie-policy' === $legacy_slug ? '#navigazione-e-cookie' : '' );
+			wp_safe_redirect( $destination, 301, 'FISAR Castelli di Jesi' );
 			exit;
 		}
 	}
