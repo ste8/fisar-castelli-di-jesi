@@ -1,6 +1,22 @@
 # Navigation
+
+## Link social — v1.6.82 / plugin v1.3.26, 12 ottobre 2026
+
+URL forniti dalla Delegazione, nel menu WordPress `social` condiviso da top bar, footer e card di home/Seguici:
+
+- Facebook: `https://www.facebook.com/FISAR.Castelli.di.Jesi`;
+- Instagram: `https://www.instagram.com/fisarcastellidijesi/`;
+- WhatsApp: `https://chat.whatsapp.com/BYeE6Jg3LcYDvnmkr1X1xY`.
+
+WhatsApp è un invito a un **gruppo**, non un canale: voce `Gruppo WhatsApp`, CTA delle card `Unisciti al gruppo WhatsApp`, label mobile compatta `WhatsApp`. Queste diciture prevalgono sui riferimenti a Canale nelle revisioni precedenti. Aggiornate solo le tre voci esistenti e il seed, senza reimport demo né modifiche ai numeri personali per iscriversi a Eventi/Corsi. Newsletter e relativo modulo invariati.
+
 ## Top bar
-Sinistra: payoff. Destra: Canale WhatsApp · Instagram · Facebook.
+
+Revisione v1.6.81, 12 ottobre 2026: barra di servizio senza payoff. A destra su desktop/tablet: **Canale WhatsApp · Instagram · Facebook · Newsletter**, con icone decorative. Newsletter rimanda a `/seguici/#newsletter-page`, senza modulo o iscrizione nella barra.
+
+Canali visibili anche su mobile: quattro elementi affiancati, icona sopra la label; `WhatsApp` abbreviato senza `Canale` soltanto sotto 608 px. Barra alta almeno 52 px su mobile e 44 px negli altri formati, con focus oro visibile e wrapping consentito. URL e ordine dei tre social dal menu WordPress, Newsletter aggiunta solo nella top bar dal template e presente anche se il menu social non è configurato. Nessuna modifica ai menu salvati o al footer.
+
+Payoff conservato nella hero della home e nella Carta dei Valori. Questa revisione prevale sul concept originale.
 
 ## Header
 Logo orizzontale linkato alla Home.

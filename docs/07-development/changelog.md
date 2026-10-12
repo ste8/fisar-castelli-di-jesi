@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.6.82 / plugin v1.3.26 — Link social della Delegazione
+
+- Inseriti gli URL Facebook, Instagram e WhatsApp forniti dall’utente nel menu social comune: si aggiornano top bar, footer e card di home/Seguici. WhatsApp punta a un gruppo: voce `Gruppo WhatsApp`, CTA `Unisciti al gruppo WhatsApp` e label mobile `WhatsApp`. Newsletter e recapiti personali per Eventi/Corsi invariati.
+- Skill `clean-code-engineer`: mantenuta la fonte comune nel menu WordPress, seed allineato con alias legacy per evitare duplicati. Nell’ambiente locale aggiornate tramite API native solo le voci ID 36/37/38 del menu 4, dopo controllo esatto di titoli/URL precedenti; conservati ID, ordine, parent e impostazioni. Nessun reimport demo o accesso/iscrizione ai servizi esterni. Tema/asset `1.6.82`, plugin `1.3.26`; documentazione aggiornata, nessun commit automatico.
+- Lint dei tre PHP, sintassi JS, HTTP home/Seguici/CSS 200 e `git diff --check` superati. Verificati tutti e tre gli URL nei tre contesti di entrambe le pagine, modulo Mailchimp invariato. Browser Seguici a 1440/768/390/320 px: etichette corrette, nessun overflow, immagine fallita o errore console. Screenshot desktop salvato; viewport ripristinato e scheda temporanea chiusa. Verificati i collegamenti configurati, non l’accesso agli account o la validità dell’invito esterno.
+
+## v1.6.81 — Top bar dedicata ai canali per seguirci
+
+- Tolto il payoff dalla barra, conservandolo nella hero e nella Carta dei Valori. Aggiunto `Newsletter` con busta e link a `/seguici/#newsletter-page`, accanto ai tre social del menu nativo. Newsletter presente anche senza menu social; nessuna voce aggiunta ai menu salvati e footer invariato.
+- Quattro canali visibili su mobile, con icona sopra il nome e barra da 52 px; da 608 px icone affiancate, gruppo a destra e altezza da 44 px. `Canale` abbreviato solo nella label WhatsApp della top bar mobile. Focus oro da 3 px; SVG decorativi, nomi testuali sempre visibili, wrapping consentito e nessun nuovo JavaScript.
+- Skill `clean-code-engineer`: riusati menu, formatter e icone locali; variazione della label circoscritta al contesto top bar e rimossi gli stili del payoff. Tema/asset `1.6.81`, specifiche navigazione/tipografia aggiornate; nessuna dipendenza, modifica al plugin, ai contenuti o a Mailchimp. Nessun commit automatico.
+- Lint dei due PHP, sintassi JS, HTTP home/Seguici/CSS 200 e `git diff --check` superati. Browser a 1440/1024/768/608/607/390/320 px: quattro link visibili, etichette corrette, payoff nella hero conservato e nessun overflow o immagine fallita. Click Newsletter porta al pannello con un solo modulo, senza invii; Tab da Facebook a Newsletter con focus oro verificato. Console senza errori, screenshot desktop/mobile salvati; viewport ripristinato e schede temporanee chiuse.
+
 ## v1.6.80 — Titoli dei pannelli Contatti con icone coerenti
 
 - Busta affiancata a `Scrivici`, persona a `Il Delegato` ed edificio istituzionale a `Dati dell’associazione`. Titoli con identico allineamento, icone bordeaux da 24 px e distanza `.65rem`; testo libero di andare a capo su mobile. ID e nomi accessibili conservati; SVG decorativi e non focalizzabili.

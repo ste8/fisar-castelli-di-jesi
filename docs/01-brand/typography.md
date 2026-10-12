@@ -232,7 +232,7 @@ font-weight: 500;
 line-height: 1.3;
 ```
 
-Il payoff nella top bar resta discreto e usa Poppins.
+Dal v1.6.81 il payoff non compare nella top bar: Poppins 500 per le label dei quattro canali, 12 px su mobile e 13 px da 608 px. Icone locali e testo sempre visibili; payoff della hero e della Carta dei Valori invariati.
 
 ## Card
 

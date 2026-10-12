@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.80' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.82' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -229,6 +229,10 @@ function fisar_cdj_theme_social_menu_title( string $title, WP_Post $item, stdCla
 	$network = fisar_cdj_theme_social_network( $title );
 	$label   = esc_html( wp_strip_all_tags( $title ) );
 
+	if ( 'topbar-social' === ( $args->menu_id ?? '' ) && 'Gruppo WhatsApp' === wp_strip_all_tags( $title ) ) {
+		$label = '<span class="social-link__prefix">Gruppo </span>WhatsApp';
+	}
+
 	return $network ? fisar_cdj_theme_icon( $network, 'social-link__icon' ) . '<span>' . $label . '</span>' : $label;
 }
 add_filter( 'nav_menu_item_title', 'fisar_cdj_theme_social_menu_title', 10, 4 );
@@ -241,7 +245,7 @@ function fisar_cdj_theme_follow_channels( string $newsletter_url ): array {
 		'whatsapp' => array(
 			'title'       => 'WhatsApp',
 			'description' => 'Il modo più semplice e immediato per ricevere le novità della Delegazione.',
-			'cta'         => 'Segui il canale WhatsApp',
+			'cta'         => 'Unisciti al gruppo WhatsApp',
 		),
 		'instagram' => array(
 			'title'       => 'Instagram',

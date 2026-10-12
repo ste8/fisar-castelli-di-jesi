@@ -16,21 +16,25 @@
 <header class="site-header">
 	<div class="topbar">
 		<div class="container topbar__inner">
-			<p class="topbar__payoff">Il vino come punto di partenza, le persone al centro.</p>
-			<?php if ( has_nav_menu( 'social' ) ) : ?>
-				<nav class="topbar__social" aria-label="Canali social">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'social',
-							'container'      => false,
-							'depth'          => 1,
-							'fallback_cb'    => false,
-						)
-					);
-					?>
-				</nav>
-			<?php endif; ?>
+			<nav class="topbar__social" aria-label="Canali per seguirci">
+				<ul class="menu topbar__channels">
+					<?php if ( has_nav_menu( 'social' ) ) : ?>
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'social',
+								'menu_id'        => 'topbar-social',
+								'container'      => false,
+								'items_wrap'     => '%3$s',
+								'depth'          => 1,
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+					<?php endif; ?>
+					<li><a href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) . '#newsletter-page' ); ?>"><?php echo fisar_cdj_theme_icon( 'mail', 'social-link__icon' ); ?><span>Newsletter</span></a></li>
+				</ul>
+			</nav>
 		</div>
 	</div>
 	<div class="main-header">
