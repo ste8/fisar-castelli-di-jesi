@@ -134,7 +134,7 @@ final class Fisar_CDJ_Demo_Content {
 				'title'   => 'Come seguirci',
 				'slug'    => 'seguici',
 				'excerpt' => 'Scegli il canale che preferisci per seguire eventi, corsi e vita della Delegazione.',
-				'content' => '<p class="lead">WhatsApp, Instagram, Facebook e newsletter raccontano la Delegazione con tempi e formati diversi. Scegli uno o più canali per non perdere le prossime iniziative.</p>',
+				'content' => '',
 			),
 			'values' => array(
 				'title'   => 'Carta dei Valori della nostra Delegazione',

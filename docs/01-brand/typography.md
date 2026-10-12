@@ -1,5 +1,9 @@
 # Typography
 
+## Come seguirci — v1.6.76
+
+Seguici adotta H1 Poppins 500 da 32–44 px ed estratto 16–18 px / 1.7 nella fascia bordeaux degli archivi. Card con H2 20–24 px / 500 / 1.3, titolo pannello newsletter H2 24–32 px / 500 / 1.3. Specificità `.follow-page`: home e componenti comuni mantengono la scala precedente. Nessun nuovo font o asset remoto; riferimento `docs/03-pages/follow-us.md`.
+
 ## Contatti — v1.6.73
 
 Contatti riusa l’H1 Poppins 500 da 32–44 px e la fascia compatta degli archivi. H2 20–24 px / 500, H3 18 px / 500, corpo 16 px, introduzione 16–18 px / 1.7. Email nel riquadro principale 16–20 px / 600, con `oppure` più discreto; footer alla scala esistente 15 px, dati fiscali e metadati 13 px sullo stesso fondo bianco (v1.6.74). Solo presentazione frontend, senza nuovi font o modifiche all’editor.

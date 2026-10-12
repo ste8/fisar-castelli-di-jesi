@@ -1,5 +1,9 @@
 # Blog
 
+## Titolo elenco — v1.6.79, 12 ottobre 2026
+
+Rimosso soltanto l’eyebrow `Vita di Delegazione` sopra `Blog`, per allineare la hero agli altri archivi. Conservati H1, descrizione, fascia bordeaux, accento oro e tutti i contenuti della sezione articoli; home e dettaglio invariati.
+
 ## Immagini principali quadrate — tema v1.6.70, 10 ottobre 2026
 
 Approvato il formato **1:1**, consigliato **1080 × 1080 px**, per riusare la stessa immagine principale su sito e post social. Non è un requisito di Instagram né un vincolo al caricamento. Questa revisione prevale sulle precedenti card 16:10 e sul riquadro a proporzioni naturali del dettaglio.

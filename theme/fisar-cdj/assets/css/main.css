@@ -1311,6 +1311,38 @@ blockquote {
 	font-size: var(--font-size-md);
 }
 
+.follow-page__intro .lead {
+	font-family: var(--font-body);
+	font-size: var(--font-size-md);
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+.follow-page :is(.follow-page__channels, .newsletter-section) {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+	background: var(--color-tint);
+}
+
+.follow-page .follow-page__channels {
+	padding-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.follow-page .newsletter-section {
+	padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.follow-page .follow-card__title {
+	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+}
+
+.follow-page .newsletter-panel {
+	margin-top: 0;
+}
+
+.follow-page .newsletter-panel h2 {
+	font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
 .newsletter-section {
 	padding-block: clamp(3.5rem, 7vw, 6rem);
 	background: var(--color-tint);
@@ -1865,10 +1897,6 @@ blockquote {
 }
 
 /* Content archives and details: same Poppins hierarchy as home and Values. */
-.news-archive .page-hero .eyebrow {
-	color: var(--color-line);
-}
-
 .news-card {
 	border-radius: var(--radius-small);
 	box-shadow: 0 8px 24px rgb(40 35 50 / 5%);
@@ -1992,27 +2020,27 @@ blockquote {
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page) .page-hero {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page) .page-hero {
 	padding-block: clamp(2rem, 4vw, 3rem);
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page) .page-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page) .page-hero h1 {
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero__inner > p:last-child {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .follow-page) .page-hero__inner > p:last-child {
 	color: var(--color-line);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page) .page-hero__inner {
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page) .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page) .page-hero h1,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page) .page-hero h1,
 :is(.single-event, .single-course) .content-hero h1,
 .single-news .editorial-hero h1 {
 	position: relative;
@@ -2026,7 +2054,7 @@ blockquote {
 	text-wrap: balance;
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page) .page-hero h1::after,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page) .page-hero h1::after,
 :is(.single-event, .single-course) .content-hero h1::after,
 .single-news .editorial-hero h1::after {
 	position: absolute;
@@ -2038,7 +2066,7 @@ blockquote {
 	content: '';
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page) .page-hero__inner > p:last-child,
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .follow-page) .page-hero__inner > p:last-child,
 :is(.single-event, .single-course) .content-hero__lead,
 .single-news .content-hero__lead {
 	max-width: 46rem;
@@ -2374,7 +2402,7 @@ blockquote {
 	font-weight: 600;
 }
 
-:is(.privacy-page, .contacts-page) .page-hero h1:last-child {
+:is(.privacy-page, .contacts-page, .follow-page) .page-hero h1:last-child {
 	margin-bottom: 0;
 }
 
@@ -2865,15 +2893,16 @@ blockquote {
 }
 
 .contacts-page__intro {
-	max-width: 48rem;
 	margin-bottom: 2rem;
 }
 
 .contacts-page__intro .lead {
+	max-width: none;
 	font-family: var(--font-body);
 	font-size: clamp(1rem, 1.4vw, 1.125rem);
 	font-weight: 400;
 	line-height: 1.7;
+	text-wrap: pretty;
 }
 
 .contacts-grid {
@@ -2893,9 +2922,15 @@ blockquote {
 	background: var(--color-tint);
 }
 
-.contact-card__icon {
-	width: 1.75rem;
-	margin-bottom: 1rem;
+.contact-panel-title {
+	display: flex;
+	align-items: center;
+	gap: .65rem;
+}
+
+.contact-panel-title__icon {
+	width: 1.5rem;
+	height: 1.5rem;
 	color: var(--color-bordeaux);
 }
 
@@ -2915,15 +2950,8 @@ blockquote {
 	font-weight: 600;
 }
 
-.contact-card address,
 .footer-brand address {
 	font-style: normal;
-}
-
-.contact-card__note {
-	margin-top: 1rem;
-	color: var(--color-muted);
-	font-size: var(--font-size-sm);
 }
 
 .contact-emails {
@@ -2971,21 +2999,13 @@ blockquote {
 	margin: 0;
 }
 
-.contact-details__billing {
-	padding-top: .5rem;
-}
-
-:is(.contact-card, .contact-details__billing) > :last-child {
+:is(.contact-card, .contact-details) > :last-child {
 	margin-bottom: 0;
 }
 
 @media (min-width: 38rem) {
 	.contacts-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.contact-card--email {
-		grid-column: 1 / -1;
 	}
 
 	.contact-details__list > div {

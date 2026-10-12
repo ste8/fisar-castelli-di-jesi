@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 11 ottobre 2026 — Stile Seguici
+
+Richiesto lo stile delle altre pagine e la rimozione di titolo/paragrafo introduttivi. Conservati titolo ed estratto della hero, non inclusi nel testo da eliminare; rimosso anche l’eyebrow del blocco introduttivo per non lasciarlo isolato. Canali H2 dopo H1, modulo e contenuti condivisi invariati. Rimossa soltanto la copia del paragrafo nel corpo della pagina, con revisione e guardia sul precedente contenuto; l’editor resta utilizzabile per una futura introduzione. Nessun cambio alla home, ai menu o al double opt-in dell’account Mailchimp.
+
 ## 11 ottobre 2026 — Footer e Contatti
 
 Approvata la proposta di separare recapiti e dati amministrativi, con entrambe le email collegate e separate da `oppure`, senza ruoli distinti. Nel footer sede, denominazione breve e dati fiscali; Contatti include il Delegato e dati completi con SDI distinto dal RUNTS. Il cellulare fornito è trattato come telefono, non automaticamente WhatsApp. La sede non è presentata come luogo abituale dei corsi o aperto senza appuntamento. Dati centralizzati nel plugin per evitare divergenze; non richiesta una nuova schermata di configurazione backend. Preservati documenti legali, menu, eventi, corsi e Mailchimp; rimossi i recapiti demo solo da footer/Contatti.

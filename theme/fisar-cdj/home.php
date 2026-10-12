@@ -2,7 +2,6 @@
 <main id="main-content" class="news-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
-			<p class="eyebrow">Vita di Delegazione</p>
 			<h1>Blog</h1>
 			<p>Approfondimenti, racconti e novità dalla nostra Delegazione.</p>
 		</div>
