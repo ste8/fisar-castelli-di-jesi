@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.83 / plugin v1.3.28 — Redirect Facebook, Instagram e Newsletter
+
+- Creati `/facebook/`, `/instagram/` e `/newsletter/`, anche senza slash finale, con 302/no-cache/no-store. Mappa di destinazioni fisse e gestore comune nel plugin, estendendo WhatsApp senza duplicare handler. Newsletter verso la pagina Seguici pubblicata e il modulo esistente; in sua assenza non redirige. Confermate guardie GET/HEAD, path esatto, 404 e nessun inoltro di query o destinazione da input.
+- Skill `software-architect` e `clean-code-engineer`: riuso della soluzione nativa, nessuna pagina vuota, rewrite/flush, dipendenza o configurazione server. Seed social con alias; nel database locale aggiornati soltanto gli URL delle voci ID 37/38 dopo controllo esatto, preservando impostazioni/ordine. Newsletter globale in header/footer con alias, ancore locali delle card conservate. Nessuna modifica a CSS, form, consenso, privacy o Mailchimp; documentazione aggiornata e nessun commit automatico.
+- Lint dei sei PHP, sintassi JS, HTTP home/CSS 200 e `git diff --check` superati. Tutti e quattro gli alias testati GET con/senza slash e HEAD con `redirect_to`: 302 alla destinazione prevista e no-store; POST e sottopercorsi restano 404. Legacy Chi siamo 301 conservato. Nessun redirect seguito verso i social esterni.
+- Browser home/Seguici: URL brevi nei componenti condivisi, Newsletter globale arriva al modulo con un solo form; ancore locali, consenso richiesto e privacy conservati. Seguici a 1440/768/390/320 px senza overflow o immagini fallite; Tab Email→Nome con focus visibile e console senza errori. Screenshot dell’arrivo al modulo salvato, viewport ripristinato e scheda temporanea chiusa; nessun invio di prova.
+
 ## Plugin v1.3.27 — Link breve pubblico WhatsApp
 
 - Realizzato `/whatsapp/`, anche senza slash finale: redirect esterno 302 all’invito configurato, con header no-cache/no-store. La destinazione è unica nel getter del plugin; query ignorate, percorso esatto e soli GET/HEAD su 404, prima della canonicalizzazione. Nessuna pagina vuota, regola di rewrite, flush, nuovo plugin o dipendenza.

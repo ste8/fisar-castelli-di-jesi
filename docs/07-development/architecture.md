@@ -2,6 +2,12 @@
 
 ## Sintesi
 
+### Link brevi dei quattro canali — plugin 1.3.28 / tema 1.6.83
+
+Esteso il gestore WhatsApp a una mappa di destinazioni nel plugin, `fisar_cdj_get_follow_redirects()`: nessun handler duplicato. Facebook/Instagram verso URL fissi; Newsletter usa il permalink nativo di Seguici soltanto se pubblicata, più l’ancora del modulo esistente. Senza pagina pubblicata fallisce in modo chiuso (404). Getter WhatsApp conservato. Nessun input utente controlla la destinazione e nessuna query viene inoltrata; 302/no-store, GET/HEAD e path esatto come prima.
+
+Menu social con alias portabili derivati da `home_url`; seed coerente e aggiornamento locale mirato delle sole voci Instagram/Facebook. Tema cambia solo i link Newsletter globali e la versione asset, senza toccare CSS, form o ancore delle card locali. Proporzioni, navigazione e privacy invariati. Confermata l’estensione proposta: non necessari server rewrite, plugin terzi o pagine vuote.
+
 ### Link breve WhatsApp — plugin 1.3.27
 
 Funzione di redirect e destinazione del gruppo nel plugin, non nel tema o in Docker. Il menu social contiene il link pubblico `home_url('/whatsapp/')`; tutti i componenti continuano a leggere il menu comune. Handler `template_redirect` prima della canonicalizzazione, confronto esatto con il path derivato da `home_url`, richieste GET/HEAD e guardia 404 per non sovrascrivere una pagina reale. Redirect esterno 302 verso destinazione fissa, senza parametri controllabili dall’utente, con `nocache_headers()` e uscita solo se il redirect riesce.

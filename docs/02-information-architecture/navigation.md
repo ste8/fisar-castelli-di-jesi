@@ -1,5 +1,11 @@
 # Navigation
 
+## Link brevi per tutti i canali — v1.6.83 / plugin v1.3.28, 12 ottobre 2026
+
+Confermati anche `/facebook/`, `/instagram/` e `/newsletter/`: 302 non memorizzabili in cache, con e senza slash finale. I social rimandano ai profili forniti sotto; Newsletter al permalink della pagina Seguici pubblicata con ancora `#newsletter-page`, non a Mailchimp. Senza pagina Seguici pubblicata, `/newsletter/` non effettua redirect.
+
+Barra, footer e card social leggono i tre alias dal menu comune. Newsletter nella barra e nel footer usa il suo link breve; le card Newsletter di home/Seguici conservano le ancore locali, perché il modulo è già presente nella stessa pagina. Destinazioni centralizzate in `fisar_cdj_get_follow_redirects()` nel plugin, con getter WhatsApp conservato. Stesse guardie del primo alias: path esatto, GET/HEAD, 404, nessun parametro di destinazione o inoltro di query. I quattro slug sono riservati agli alias; nessuna pagina nativa o dipendenza aggiunta. Questa revisione prevale sulla precedente proposta non implementata.
+
 ## Link breve WhatsApp — plugin v1.3.27, 12 ottobre 2026
 
 `/whatsapp/` (anche senza slash finale) rimanda all’invito del gruppo tramite HTTP 302 e header no-cache/no-store. La sola voce WhatsApp del menu social usa ora `home_url('/whatsapp/')`, aggiornando barra, footer e card senza copie nel tema. Destinazione configurata una sola volta nel plugin, in `fisar_cdj_get_whatsapp_group_url()`; modificarla lì mantiene invariato il link breve già stampato o condiviso. Il link usa il dominio effettivo di ogni ambiente, non localhost cablato nel codice.

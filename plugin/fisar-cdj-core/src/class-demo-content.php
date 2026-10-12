@@ -688,8 +688,8 @@ final class Fisar_CDJ_Demo_Content {
 
 		$social = self::ensure_menu( 'Canali social' );
 		self::ensure_menu_item( $social, 'Gruppo WhatsApp', home_url( '/whatsapp/' ), 10, array( 'Canale WhatsApp' ) );
-		self::ensure_menu_item( $social, 'Instagram', 'https://www.instagram.com/fisarcastellidijesi/', 20 );
-		self::ensure_menu_item( $social, 'Facebook', 'https://www.facebook.com/FISAR.Castelli.di.Jesi', 30 );
+		self::ensure_menu_item( $social, 'Instagram', home_url( '/instagram/' ), 20 );
+		self::ensure_menu_item( $social, 'Facebook', home_url( '/facebook/' ), 30 );
 
 		set_theme_mod(
 			'nav_menu_locations',

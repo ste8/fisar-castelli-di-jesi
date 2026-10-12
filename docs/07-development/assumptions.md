@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 12 ottobre 2026 — Estensione confermata dei link brevi
+
+Richiesta esplicita di creare anche Facebook, Instagram e Newsletter. Usati nei link social condivisi e nei link Newsletter di barra/footer; conservate le ancore Newsletter nelle card che hanno già il modulo nella stessa pagina. Nessuna iscrizione, invio dati o accesso ai servizi social durante i test. Questa conferma supera la precedente attesa di autorizzazione dei tre alias.
+
 ## 12 ottobre 2026 — Alias WhatsApp
 
 Confermato `/whatsapp/` con redirect 302 non memorizzabile in cache e suo uso nei collegamenti pubblici. La domanda su Facebook, Instagram e Newsletter viene trattata come richiesta di consiglio, non conferma a crearne gli alias. Questi restano invariati; un eventuale `/newsletter/` dovrebbe portare al modulo Seguici, non saltare direttamente a Mailchimp. Destinazione WhatsApp nella configurazione del plugin, senza un nuovo editor o opzione amministrativa richiesti.

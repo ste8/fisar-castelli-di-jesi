@@ -35,7 +35,7 @@ $delegation = fisar_cdj_get_delegation_details();
 		</div>
 		<div class="footer-newsletter">
 			<h2 class="footer-title">Seguici</h2>
-			<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) . '#newsletter-page' ); ?>">Iscriviti alla newsletter</a>
+			<a class="button" href="<?php echo esc_url( home_url( '/newsletter/' ) ); ?>">Iscriviti alla newsletter</a>
 			<a class="footer-newsletter__all" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'seguici' ) ); ?>">Scopri tutti i canali <span aria-hidden="true">→</span></a>
 			<?php if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="footer-social" aria-label="Canali social nel footer">
