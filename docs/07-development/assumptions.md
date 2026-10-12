@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 12 ottobre 2026 — Privacy e cookie in una sola pagina
+
+Approvati estensione della privacy, rimozione del link Cookie Policy e assenza di analytics. La pagina separata è conservata come bozza, non eliminata; il vecchio URL continua a funzionare come rimando alla sezione nuova. Descritte soltanto le funzioni verificate nella configurazione locale e i cookie tecnici nativi per accesso riservato; nessuna dichiarazione “non raccogliamo alcun dato” o dettaglio inventato di hosting/conservazione. Il testo dovrà essere rivisto quando sarà scelto l’hosting o attivato un nuovo servizio.
+
 ## 12 ottobre 2026 — Estensione confermata dei link brevi
 
 Richiesta esplicita di creare anche Facebook, Instagram e Newsletter. Usati nei link social condivisi e nei link Newsletter di barra/footer; conservate le ancore Newsletter nelle card che hanno già il modulo nella stessa pagina. Nessuna iscrizione, invio dati o accesso ai servizi social durante i test. Questa conferma supera la precedente attesa di autorizzazione dei tre alias.

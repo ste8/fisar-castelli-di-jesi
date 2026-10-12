@@ -169,12 +169,7 @@ final class Fisar_CDJ_Demo_Content {
 			'privacy' => array(
 				'title'   => 'Privacy Policy',
 				'slug'    => 'privacy-policy',
-				'content' => '<p><strong>Bozza dimostrativa.</strong> Prima della pubblicazione, sostituire questa pagina con l’informativa validata dal titolare del trattamento e coerente con i servizi effettivamente attivati.</p><p>Il modulo newsletter trasmette a Mailchimp nome, cognome e indirizzo email soltanto quando la persona richiede volontariamente l’iscrizione. Documentare finalità, base giuridica, tempi di conservazione, responsabili del trattamento e modalità di esercizio dei diritti.</p>',
-			),
-			'cookies' => array(
-				'title'   => 'Cookie Policy',
-				'slug'    => 'cookie-policy',
-				'content' => '<p><strong>Bozza dimostrativa.</strong> La V1 locale non integra strumenti di profilazione. Prima della pubblicazione, documentare i cookie e i servizi effettivamente presenti.</p>',
+				'content' => '<p><strong>Bozza dimostrativa.</strong> Prima della pubblicazione, sostituire questa pagina con l’informativa validata dal titolare del trattamento e coerente con i servizi effettivamente attivati.</p><h2 id="navigazione-e-cookie">Navigazione e cookie</h2><p>Documentare in questa informativa i dati di navigazione, i cookie e i servizi effettivamente presenti, verificando anche la configurazione dell’hosting.</p><p>Il modulo newsletter trasmette a Mailchimp nome, cognome e indirizzo email soltanto quando la persona richiede volontariamente l’iscrizione. Documentare finalità, base giuridica, tempi di conservazione, responsabili del trattamento e modalità di esercizio dei diritti.</p>',
 			),
 		);
 
@@ -684,7 +679,6 @@ final class Fisar_CDJ_Demo_Content {
 		self::ensure_menu_item( $footer, 'Carta dei Valori', get_permalink( $pages['values'] ), 40 );
 		self::ensure_menu_item( $footer, 'Seguici', get_permalink( $pages['follow'] ), 45, array( 'Resta aggiornato' ) );
 		self::ensure_menu_item( $footer, 'Privacy Policy', get_permalink( $pages['privacy'] ), 50 );
-		self::ensure_menu_item( $footer, 'Cookie Policy', get_permalink( $pages['cookies'] ), 60 );
 
 		$social = self::ensure_menu( 'Canali social' );
 		self::ensure_menu_item( $social, 'Gruppo WhatsApp', home_url( '/whatsapp/' ), 10, array( 'Canale WhatsApp' ) );

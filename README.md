@@ -195,7 +195,7 @@ La pagina `/seguici/` resta una destinazione autonoma nel menu e nel footer; la 
 
 La newsletter usa il form Mailchimp fornito: nome, cognome ed email vengono inviati direttamente a Mailchimp e non salvati in WordPress. Il frontend non carica CSS o JavaScript Mailchimp.
 
-Dal 10 ottobre 2026 la pagina locale `/privacy-policy/` contiene l’informativa newsletter autorizzata dall’utente con i dati reali della Delegazione, al posto del testo dimostrativo. Rimane modificabile nell’editor WordPress e collegata dai moduli home/Seguici. Testo iniziale e limiti in `docs/03-pages/privacy.md` / `privacy-newsletter.html`: prima del lancio pubblico verificare nell’account Mailchimp tracking, opt-in, prova del consenso e conservazione. Non è un’informativa generale su ogni trattamento del sito; il seed demo e la Cookie Policy restano dimostrativi.
+Dal 10 ottobre 2026 la pagina locale `/privacy-policy/` contiene l’informativa newsletter autorizzata dall’utente con i dati reali della Delegazione; dal 12 ottobre include anche navigazione e cookie della configurazione attuale. Rimane modificabile nell’editor WordPress e collegata dai moduli home/Seguici. Cookie Policy separata conservata come bozza, link rimosso dal footer e vecchio URL reindirizzato alla nuova sezione privacy. Testo e limiti in `docs/03-pages/privacy.md` / `privacy-newsletter.html`: prima del lancio pubblico verificare hosting/log/cookie effettivi e, nell’account Mailchimp, tracking, opt-in, prova del consenso e conservazione. Non certifica ogni trattamento futuro del sito o dell’associazione; il seed privacy resta genericamente dimostrativo.
 
 ## Dati demo
 
