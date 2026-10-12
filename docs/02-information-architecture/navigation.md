@@ -1,5 +1,11 @@
 # Navigation
 
+## Link breve WhatsApp — plugin v1.3.27, 12 ottobre 2026
+
+`/whatsapp/` (anche senza slash finale) rimanda all’invito del gruppo tramite HTTP 302 e header no-cache/no-store. La sola voce WhatsApp del menu social usa ora `home_url('/whatsapp/')`, aggiornando barra, footer e card senza copie nel tema. Destinazione configurata una sola volta nel plugin, in `fisar_cdj_get_whatsapp_group_url()`; modificarla lì mantiene invariato il link breve già stampato o condiviso. Il link usa il dominio effettivo di ogni ambiente, non localhost cablato nel codice.
+
+Redirect soltanto per richieste GET/HEAD al percorso esatto non occupato da una pagina, prima della canonicalizzazione; nessun inoltro di query, URL di destinazione da input, pagina nativa, rewrite rule o flush. Lo slug `whatsapp` è riservato a questo alias. Facebook e Instagram restano diretti, Newsletter continua a puntare al modulo su Seguici: i relativi alias sono soltanto proposti, non implementati.
+
 ## Link social — v1.6.82 / plugin v1.3.26, 12 ottobre 2026
 
 URL forniti dalla Delegazione, nel menu WordPress `social` condiviso da top bar, footer e card di home/Seguici:

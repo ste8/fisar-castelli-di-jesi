@@ -614,6 +614,38 @@ function fisar_cdj_get_delegation_details(): array {
 	);
 }
 
+/** Destinazione del link breve pubblico, indipendente dal tema e dal menu. */
+function fisar_cdj_get_whatsapp_group_url(): string {
+	return 'https://chat.whatsapp.com/BYeE6Jg3LcYDvnmkr1X1xY';
+}
+
+/**
+ * Link breve condivisibile: niente pagina vuota, parametri di destinazione o cache.
+ */
+function fisar_cdj_redirect_whatsapp(): void {
+	if ( is_admin() || ! is_404() ) {
+		return;
+	}
+
+	$request_method = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) : '';
+	if ( ! in_array( $request_method, array( 'GET', 'HEAD' ), true ) ) {
+		return;
+	}
+
+	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
+	$whatsapp_path = (string) wp_parse_url( home_url( '/whatsapp/' ), PHP_URL_PATH );
+	if ( untrailingslashit( $request_path ) !== untrailingslashit( $whatsapp_path ) ) {
+		return;
+	}
+
+	nocache_headers();
+	if ( wp_redirect( fisar_cdj_get_whatsapp_group_url(), 302, 'FISAR Castelli di Jesi' ) ) {
+		exit;
+	}
+}
+add_action( 'template_redirect', 'fisar_cdj_redirect_whatsapp', 0 );
+
 /**
  * Conserva i collegamenti alle pagine native rinominate.
  */

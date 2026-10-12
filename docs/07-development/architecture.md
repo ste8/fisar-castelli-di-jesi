@@ -2,6 +2,12 @@
 
 ## Sintesi
 
+### Link breve WhatsApp — plugin 1.3.27
+
+Funzione di redirect e destinazione del gruppo nel plugin, non nel tema o in Docker. Il menu social contiene il link pubblico `home_url('/whatsapp/')`; tutti i componenti continuano a leggere il menu comune. Handler `template_redirect` prima della canonicalizzazione, confronto esatto con il path derivato da `home_url`, richieste GET/HEAD e guardia 404 per non sovrascrivere una pagina reale. Redirect esterno 302 verso destinazione fissa, senza parametri controllabili dall’utente, con `nocache_headers()` e uscita solo se il redirect riesce.
+
+Alternative considerate: pagina vuota con redirect (contenuto nativo superfluo), nuovo plugin o configurazione server (dipendenza/accoppiamento all’hosting), regola di rewrite dedicata (flush e complessità evitabili). Scelta una soluzione WordPress nativa, reversibile e portabile, riservando lo slug `whatsapp`; il target si modifica nella configurazione del plugin, senza una nuova schermata backend. Nessun alias aggiuntivo senza conferma.
+
 ### Footer e Contatti — tema 1.6.73 / plugin 1.3.24
 
 `fisar_cdj_get_delegation_details()` centralizza nel plugin dati associativi e recapiti forniti dall’utente. Footer e template nativo `page-contatti.php` leggono la stessa configurazione; `contact-emails.php` presenta i due indirizzi come alternative equivalenti. Nessun nuovo CPT, opzione amministrativa o dipendenza. Introduzione nella pagina nativa, resto della presentazione nel tema; aggiornato in modo mirato solo il testo demo di Contatti, con revisione e guardia sul contenuto precedente. Seed coerente senza reimport. La privacy resta un documento editoriale indipendente, non sincronizzato dal getter.
