@@ -92,9 +92,13 @@ final class Fisar_CDJ_Demo_Content {
 		if ( false === $council_content ) {
 			return new WP_Error( 'fisar_council_content', 'Testo di Consiglio e incarichi non disponibile.' );
 		}
+		$statute_content = file_get_contents( __DIR__ . '/../content/delegazione-statuto.html' );
+		if ( false === $statute_content ) {
+			return new WP_Error( 'fisar_statute_content', 'Testo della sezione Statuto non disponibile.' );
+		}
 		return array(
 			'consiglio' => $council_content,
-			'statuto' => '<h2 id="statuto">Statuto</h2><p>Lo statuto definisce le finalità della Delegazione, gli organi associativi e le regole della vita sociale.</p><p><strong>Documento da aggiungere:</strong> caricare il PDF ufficiale nella Libreria media e inserire qui il collegamento “Scarica lo statuto”, indicando formato e dimensione del file.</p>',
+			'statuto'   => $statute_content,
 		);
 	}
 
@@ -130,6 +134,10 @@ final class Fisar_CDJ_Demo_Content {
 			array( 'href="' . esc_url( home_url( '/carta-dei-valori/' ) ) . '"', 'href="' . esc_url( home_url( '/la-nostra-delegazione/' ) ) . '"' ),
 			$fisar_content
 		);
+		$delegation_intro = file_get_contents( __DIR__ . '/../content/delegazione-introduzione.html' );
+		if ( false === $delegation_intro ) {
+			return new WP_Error( 'fisar_delegation_intro', 'Introduzione della delegazione non disponibile.' );
+		}
 
 		$definitions = array(
 			'home' => array(
@@ -159,7 +167,7 @@ final class Fisar_CDJ_Demo_Content {
 				'title'   => 'La nostra delegazione',
 				'slug'    => 'la-nostra-delegazione',
 				'excerpt' => 'Una comunità competente, accogliente, curiosa e conviviale.',
-				'content' => '<p class="lead">Siamo la Delegazione FISAR Castelli di Jesi: un luogo in cui imparare, incontrarsi e condividere la cultura del vino con semplicità.</p><h2>Una Delegazione aperta</h2><p>Organizziamo corsi per aspiranti sommelier, degustazioni, visite in cantina e momenti di approfondimento. Accogliamo chi muove i primi passi e chi desidera continuare a formarsi.</p><h2>Il territorio</h2><p>Viviamo tra i Castelli di Jesi, in un paesaggio di vigne, borghi e produttori. Partiamo da qui per esplorare vini, territori e culture vicine e lontane.</p><h2>Le persone</h2><p>La Delegazione cresce grazie a chi partecipa, propone idee e mette a disposizione tempo e competenze. È questo il cuore del nostro modo di lavorare.</p>',
+				'content' => $delegation_intro,
 			),
 			'fisar' => array(
 				'title'   => 'La FISAR',

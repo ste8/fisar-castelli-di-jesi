@@ -12,6 +12,9 @@ if ( $is_values_page ) {
 } elseif ( $is_association_page ) {
 	$page_classes[] = 'association-page';
 }
+if ( is_page( 'la-nostra-delegazione' ) ) {
+	$page_classes[] = 'delegation-page';
+}
 $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_the_content() ) : array();
 ?>
 <main id="main-content">

@@ -2462,6 +2462,182 @@ blockquote {
 	border-top: 0;
 }
 
+/* Delegation: native editorial groups, with clear sections and people to scan. */
+.delegation-page .delegation-index {
+	margin-block: 1.75rem 0;
+	padding-block: 1rem;
+	border-block: 1px solid var(--color-line);
+}
+
+.delegation-page .delegation-index__label {
+	margin: 0 0 .75rem;
+	color: var(--color-muted);
+	font-size: .8125rem;
+	font-weight: 600;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+.delegation-page .delegation-index ul {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	gap: .5rem .75rem;
+}
+
+.delegation-page .delegation-index li,
+.delegation-page .delegation-index li + li {
+	margin: 0;
+}
+
+.delegation-page .delegation-index a {
+	display: inline-flex;
+	min-height: 2.75rem;
+	align-items: center;
+	padding: .45rem .8rem;
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-small);
+	background: var(--color-paper);
+	font-size: .9375rem;
+	font-weight: 500;
+	text-decoration-thickness: 1px;
+	text-underline-offset: .2em;
+}
+
+.delegation-page .delegation-index a:hover {
+	border-color: var(--color-gold-dark);
+	background: var(--color-tint);
+}
+
+.delegation-page .delegation-section {
+	margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.delegation-page .delegation-section > h2 {
+	position: relative;
+	margin: 0 0 1.25rem;
+	padding: 0 0 .75rem;
+	border: 0;
+	color: var(--color-bordeaux-dark);
+	font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+	line-height: 1.3;
+}
+
+.delegation-page .delegation-section > h2::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 2.75rem;
+	height: 3px;
+	background: var(--color-gold);
+	content: '';
+}
+
+.delegation-page .delegation-section > :last-child {
+	margin-bottom: 0;
+}
+
+.delegation-page .delegation-section--intro h3 {
+	margin: 1.5rem 0 .65rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.delegation-page .delegation-council-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	margin-top: 1.5rem;
+	gap: 1rem;
+}
+
+.delegation-page .delegation-council-grid > .delegation-person {
+	min-width: 0;
+	margin: 0;
+	padding: 1.25rem;
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius);
+	background: var(--color-paper);
+}
+
+.delegation-page .delegation-person h3 {
+	margin: 0 0 .55rem;
+	color: var(--color-bordeaux);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.delegation-page .delegation-person__name {
+	margin: 0 0 .5rem;
+	color: var(--color-ink);
+	font-size: 1.25rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.delegation-page .delegation-person__contact {
+	margin: 0;
+	font-size: 1rem;
+}
+
+.delegation-page :is(.delegation-section--appointments, .delegation-section--statute) {
+	padding: clamp(1.25rem, 3vw, 2rem);
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius);
+	background: var(--color-tint);
+}
+
+.delegation-page .delegation-appointment {
+	margin: 0;
+	padding-block: 1rem;
+	border-bottom: 1px solid var(--color-line);
+}
+
+.delegation-page .delegation-appointment h3 {
+	margin: 0 0 .4rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.delegation-page .delegation-appointment p {
+	margin: 0;
+	font-size: 1.125rem;
+}
+
+.delegation-page .delegation-directors {
+	margin-top: 1.5rem;
+}
+
+.delegation-page .delegation-directors h3 {
+	margin: 0 0 .85rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.delegation-page .delegation-name-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	column-gap: 2rem;
+}
+
+.delegation-page .delegation-name-list li,
+.delegation-page .delegation-name-list li + li {
+	margin: 0 0 .6rem;
+	break-inside: avoid;
+}
+
+@media (min-width: 38rem) {
+	.delegation-page .delegation-council-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.delegation-page .delegation-name-list {
+		columns: 2;
+	}
+}
+
 :is(.single-event, .single-course) .details-list > div {
 	grid-template-columns: minmax(0, 1fr);
 	gap: .35rem;

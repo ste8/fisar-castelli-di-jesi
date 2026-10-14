@@ -182,6 +182,8 @@ Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e
 
 Dal tema `1.6.84`, La FISAR, La nostra delegazione e Diventa socio adottano la fascia bordeaux compatta e la scala Poppins di Eventi/Corsi/Blog, con separatori leggeri tra i capitoli. Carta dei Valori conserva la sua hero fotografica e lo stile già approvato. Soltanto presentazione frontend: contenuti, menu, ancore ed editor invariati; specifica `docs/03-pages/about.md`.
 
+Dal tema `1.6.85`, La nostra delegazione ha cinque sezioni principali, un indice interno, riquadri del Consiglio, incarichi su fondo chiaro, Squadra Sommelier su colonne e riquadro Statuto. Composizione con gruppi e blocchi WordPress nativi: conservare le classi `delegation-*` e le ancore quando si modificano i contenuti. Nomine, nomi, email e paragrafi restano quelli già approvati; storia e PDF ancora da completare. Seed in tre frammenti nella cartella `plugin/fisar-cdj-core/content/`, nessun reimport o aggiornamento automatico delle pagine pubblicate.
+
 Per aggiornare soltanto la struttura associativa su un ambiente demo già installato, senza reimportare gli altri contenuti:
 
 ```bash

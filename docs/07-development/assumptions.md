@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Prova della gerarchia della delegazione
+
+Approvata la proposta di cinque sezioni riconoscibili, indice, riquadri del Consiglio, fondo distinto per gli incarichi, Squadra autonoma su colonne e riquadro Statuto. Sono modifiche alla composizione e ai livelli dei titoli, non una riscrittura dei paragrafi o aggiornamento dei dati personali. Tutti i nomi, ruoli e recapiti restano quelli approvati; nessun nuovo incarico, biografia, data di fondazione o PDF. Eventi resta sotto Didattica in una sequenza verticale anche su desktop. Si usano gruppi nativi modificabili; niente contenuti nascosti, fotografie inventate o accordion. Il titolo La delegazione e le etichette dell’indice sono le sole aggiunte testuali organizzative.
+
 ## 14 ottobre 2026 — Consiglio e incarichi dalla pagina esistente
 
 Autorizzato il riuso dei contenuti del Consiglio sul sito attuale. `Sotto al ruolo Organizzazione Corsi e Didattica` è inteso come posizione della voce Responsabile Eventi — Stefano Ottaviani, non come assegnazione a Stefano del ruolo didattico: quest’ultimo resta a Corrado De Michelis. Tolta l’attribuzione Eventi al Segretario; Nicola Merli resta consigliere e Responsabile Servizi, con ruoli distinti. Importate data di elezione 26 novembre 2022 e liste complete, senza dedurre durata mandato o biografie. Nomi pubblici nella fonte, recapiti completi conservati; email Eventi incompleta omessa senza inventare il dominio. Storia e Statuto ancora da fornire; nessuna modifica ai testi introduttivi esistenti, al tema o ad altre pagine.
