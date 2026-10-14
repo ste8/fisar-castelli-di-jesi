@@ -1,5 +1,12 @@
 # Changelog
 
+## Contenuti — Consiglio e incarichi della delegazione, 14 ottobre 2026
+
+- Popolata la sola sezione `#consiglio` della pagina La nostra delegazione ID 7 con i contenuti della pagina del sito attuale indicata dall’utente: cinque componenti del Consiglio eletto il 26 novembre 2022, incarichi non elettivi, cinque Direttori di Corso e 22 componenti della Squadra Sommelier. Nomi resi Nome Cognome, ordine e grafie della fonte conservati. Responsabile Eventi — Stefano Ottaviani subito dopo Organizzazione Corsi e Didattica — Corrado De Michelis; rimossa l’attribuzione Eventi al Segretario. Nicola Merli resta consigliere e Responsabile Servizi in gruppi distinti. Nessuna durata mandato o storia inventata.
+- Cinque recapiti completi della tabella resi link email. `eventi@fisarcastellidijesi` è incompleto nella fonte: omesso senza dedurre il dominio o attribuire un recapito nuovo al Responsabile Eventi. Statuto/PDF e testi introduttivi restano invariati; storia da completare quando saranno disponibili le informazioni.
+- Skill `clean-code-engineer`: sezione in 16 blocchi nativi, copia del seed in `content/consiglio-e-incarichi.html`, lettura con errore esplicito propagato. Conservata la guardia del seed sulle ancore esistenti, nessun reimport o incremento della versione demo. Aggiornamento locale tramite API WordPress con hash del precedente testo, revisione recuperabile e verifica del resto della pagina e degli altri post invariati. Titolo, estratto, slug, stato, menu e tema conservati; documentazione aggiornata, nessun commit automatico.
+- Lint PHP del seed e dello script, sintassi JS della navigazione, round-trip dei blocchi, conteggi 5/5/22, corrispondenza file/lettore del seed e `git diff --check` superati. Pagina locale HTTP 200. Browser a 1440/768/390/320 px: ruoli/nominativi e ordine richiesto corretti, cinque link email, un H1, ancore uniche, nessun overflow, immagine fallita o errore console; focus email visibile da tastiera. Screenshot degli incarichi salvato e controllato; viewport ripristinato e schede temporanee chiuse. Fonte letta con il browser perché non accessibile allo strumento di ricerca web.
+
 ## v1.6.84 — Chi siamo allineata alle altre sezioni
 
 - Affinamento successivo del sottotitolo La FISAR: `Federazione Italiana Sommelier Albergatori Ristoratori (APS)`, senza punto finale. Solo estratto nativo ID 92 e seed allineati; revisione recuperabile e corpo verificato invariato. Nessun incremento di versione o reimport.

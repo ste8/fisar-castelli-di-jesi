@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Consiglio e incarichi dalla pagina esistente
+
+Autorizzato il riuso dei contenuti del Consiglio sul sito attuale. `Sotto al ruolo Organizzazione Corsi e Didattica` è inteso come posizione della voce Responsabile Eventi — Stefano Ottaviani, non come assegnazione a Stefano del ruolo didattico: quest’ultimo resta a Corrado De Michelis. Tolta l’attribuzione Eventi al Segretario; Nicola Merli resta consigliere e Responsabile Servizi, con ruoli distinti. Importate data di elezione 26 novembre 2022 e liste complete, senza dedurre durata mandato o biografie. Nomi pubblici nella fonte, recapiti completi conservati; email Eventi incompleta omessa senza inventare il dominio. Storia e Statuto ancora da fornire; nessuna modifica ai testi introduttivi esistenti, al tema o ad altre pagine.
+
 ## 14 ottobre 2026 — Stile di Chi siamo
 
 Richiesto l’allineamento di tutte le destinazioni del menu Chi siamo. Interpretato come La FISAR, La nostra delegazione e Diventa socio; Consiglio e Statuto rimangono sezioni ancorate della pagina locale, non diventano pagine nuove. Carta dei Valori è già allineata e conserva la hero fotografica scura approvata. Si trasferiscono fascia bordeaux compatta, scala Poppins e ritmo editoriale, non pannelli di prenotazione o dati dei CPT. Nessuna riscrittura dei testi ancora demo della delegazione/iscrizione né aggiunta di nominativi o PDF mancanti; font locali, editor nativo e contenuti invariati.

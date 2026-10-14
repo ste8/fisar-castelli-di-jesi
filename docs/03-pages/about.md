@@ -1,5 +1,16 @@
 # Chi siamo
 
+## Consiglio e incarichi — contenuti del 14 ottobre 2026
+
+Recuperati dalla [pagina del sito attuale](http://www.fisarcastellidijesi.it/il-consiglio-di-delegazione/) su autorizzazione dell’utente. Copia per il seed in `plugin/fisar-cdj-core/content/consiglio-e-incarichi.html`, in blocchi WordPress nativi. Aggiornata soltanto la sezione `#consiglio` della pagina locale ID 7; introduzione, territorio, persone e Statuto invariati. La storia sarà completata dopo che l’utente avrà recuperato le informazioni, senza inventare una data di fondazione.
+
+- Consiglio eletto il 26 novembre 2022: Delegato Corrado De Michelis, Segretario Gianfrancesco Innocente, Tesoriere Carla Brutti, consiglieri Nicola Merli e Loretta Gamma. Data ripresa dalla fonte, senza dedurre inizio/fine mandato aggiuntivi.
+- Incarichi non elettivi: Organizzazione Corsi e Didattica — Corrado De Michelis; subito sotto, Responsabile Eventi — Stefano Ottaviani, come richiesto; Responsabile Servizi — Nicola Merli; cinque Direttori di Corso e 22 componenti della Squadra Sommelier dalla fonte.
+- Il ruolo Eventi non è più attribuito al Segretario. Responsabile Servizi è distinto dal ruolo elettivo di consigliere; Nicola Merli compare in entrambi i gruppi. Nomi resi come Nome Cognome, conservando le grafie della fonte.
+- Conservati i cinque recapiti completi presenti nella tabella del Consiglio. L’indirizzo `eventi@fisarcastellidijesi` è incompleto nella fonte e non è importato né completato per deduzione; nessun nuovo recapito attribuito a Stefano Ottaviani.
+
+Revisione precedente recuperabile; titolo, estratto, URL, ancore e menu invariati. Nessun reimport generale o sincronizzazione automatica del contenuto pubblicato; nomi e ruoli restano modificabili nell’editor. I placeholder sul Consiglio e sugli incarichi sotto riportati descrivono la baseline del 4 ottobre e sono superati da questo aggiornamento; il PDF dello Statuto resta da fornire.
+
 ## Stile comune — tema v1.6.84, 14 ottobre 2026
 
 La FISAR, La nostra delegazione (incluse le ancore Consiglio e incarichi / Statuto) e Diventa socio (`/unisciti-a-noi/`) adottano lo stile delle pagine Eventi/Corsi/Blog:
