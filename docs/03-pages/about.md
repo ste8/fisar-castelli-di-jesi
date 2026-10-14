@@ -1,8 +1,22 @@
 # Chi siamo
 
+## Stile comune — tema v1.6.84, 14 ottobre 2026
+
+La FISAR, La nostra delegazione (incluse le ancore Consiglio e incarichi / Statuto) e Diventa socio (`/unisciti-a-noi/`) adottano lo stile delle pagine Eventi/Corsi/Blog:
+
+- fascia titolo bordeaux compatta, senza fotografia e senza la dicitura ridondante `FISAR Castelli di Jesi` sopra il titolo; titolo ed estratto nativi conservati;
+- H1 Poppins 500 da 32–44 px con accento oro; estratto e introduzione Poppins 400 da 16–18 px;
+- corpo 16–17 px / 1.7, colonna centrale massimo 48rem e spazio sopra/sotto da 40–64 px;
+- H2 Poppins 500 da 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px e grassetti 600;
+- capitoli separati da un sottile bordo chiaro con spaziature contenute, senza aggiungere pannelli o nuove informazioni.
+
+Il template standard assegna `.association-page` soltanto alle tre pagine elencate e riusa i selettori comuni; nessun nuovo template, script, font o campo editoriale. Carta dei Valori mantiene la sua hero fotografica scura, nota, icone e payoff già approvati. Menu, link, ancore, contenuti e struttura associativa restano invariati; nessuna scrittura nel database o migrazione.
+
 ## La FISAR — contenuti approvati, 14 ottobre 2026
 
 Testo completo in `plugin/fisar-cdj-core/content/la-fisar.html`, mantenuto anche come seed dei nuovi ambienti. La pagina pubblicata resta nativa e modificabile nell’editor a blocchi: nessun testo generato dal tema o sincronizzazione automatica sui contenuti esistenti.
+
+Sottotitolo (estratto nativo), affinamento del 14 ottobre: `Federazione Italiana Sommelier Albergatori Ristoratori (APS)`, senza punto finale. Aggiornati solo l’estratto locale e la definizione del seed; corpo della pagina e stile invariati.
 
 - Identità nazionale: nome esteso, associazione di promozione sociale (APS), senza scopo di lucro, nascita nel 1972, oltre 70 delegazioni e oltre 15.000 soci.
 - Formazione: tre livelli, destinatari appassionati/professionisti, C&D e tre esempi di formazione superiore; unico rimando didattico alla pagina nazionale dei corsi.

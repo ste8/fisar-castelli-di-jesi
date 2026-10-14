@@ -6,7 +6,7 @@ Implementazione completa e locale del sito della Delegazione FISAR Castelli di J
 
 La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, contenuti demo realistici e frontend responsive/accessibile. La documentazione in `docs/` resta la source of truth.
 
-La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi e Blog usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
+La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi, Blog e le pagine di Chi siamo usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
 
 ## Requisiti
 
@@ -179,6 +179,8 @@ La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragra
 La hero della Carta usa la sua immagine in evidenza o, in mancanza, il paesaggio di vigneti incluso nel tema. Titolo ed estratto nativi identificano la Carta della nostra Delegazione; il primo Paragrafo con classe `values-scope-note` è la nota sull’ambito locale, modificabile nell’editor e mostrata una sola volta nel riquadro informativo sotto la hero, con bordo oro e icona decorativa. Il payoff con classe `lead` resta nel corpo, sopra `Chi siamo`. URL e voce di menu non cambiano.
 
 Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e Statuto rimandano alle ancore `consiglio` e `statuto` della pagina La nostra delegazione: conservare questi ID quando si modificano i titoli nell’editor. Completare i nomi ufficiali e il mandato; caricare lo statuto nella Libreria media e aggiungere il collegamento al PDF nella stessa sezione.
+
+Dal tema `1.6.84`, La FISAR, La nostra delegazione e Diventa socio adottano la fascia bordeaux compatta e la scala Poppins di Eventi/Corsi/Blog, con separatori leggeri tra i capitoli. Carta dei Valori conserva la sua hero fotografica e lo stile già approvato. Soltanto presentazione frontend: contenuti, menu, ancore ed editor invariati; specifica `docs/03-pages/about.md`.
 
 Per aggiornare soltanto la struttura associativa su un ambiente demo già installato, senza reimportare gli altri contenuti:
 

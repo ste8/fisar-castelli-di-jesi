@@ -1,5 +1,9 @@
 # Typography
 
+## Chi siamo — v1.6.84
+
+La FISAR, La nostra delegazione (anche Consiglio/Statuto) e Diventa socio adottano la scala Poppins di Eventi/Corsi/Blog: H1 500 da 32–44 px, introduzione/estratto 400 da 16–18 px / 1.7, corpo 16–17 px / 1.7, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px e grassetti 600. Prevale sul default serif per le sole tre pagine `.association-page`; Carta dei Valori conserva i propri stili e il payoff serif. Nessuna nuova famiglia, font remoto o modifica agli editor. Specifica `docs/03-pages/about.md`.
+
 ## Come seguirci — v1.6.76
 
 Seguici adotta H1 Poppins 500 da 32–44 px ed estratto 16–18 px / 1.7 nella fascia bordeaux degli archivi. Card con H2 20–24 px / 500 / 1.3, titolo pannello newsletter H2 24–32 px / 500 / 1.3. Specificità `.follow-page`: home e componenti comuni mantengono la scala precedente. Nessun nuovo font o asset remoto; riferimento `docs/03-pages/follow-us.md`.
