@@ -1,5 +1,11 @@
 # Changelog
 
+## Contenuti — La FISAR, 14 ottobre 2026
+
+- Pubblicato il testo concordato sulla sola pagina La FISAR ID 92: identità APS, anno di nascita, oltre 70 delegazioni e oltre 15.000 soci; formazione in tre livelli e approfondimenti successivi; collaborazione con Slow Food/Slow Wine, FISAR in Rosa e rivista il Sommelier. Il paragrafo sui principi locali identifica esplicitamente la nostra Delegazione, evita la ripetizione `riferimento` e collega la Carta dei Valori nella frase, senza pulsante. Chiusura con rimandi distinti al sito nazionale e alla nostra delegazione.
+- Testo in 16 blocchi WordPress nativi, modificabile nell’editor. Copia versionata in `plugin/fisar-cdj-core/content/la-fisar.html`, letta dal seed con URL interni derivati da `home_url`; nessun reimport o incremento della versione demo. Skill `clean-code-engineer`: riuso del flusso nativo, nessuna duplicazione nel tema o nuova dipendenza. Aggiornamento locale tramite API con guardia hash, revisione precedente recuperabile, verifica di titolo/estratto/slug/stato invariati e confronto degli altri post prima/dopo. Specifica `about.md` aggiornata; nessun commit automatico.
+- Lint PHP del seed e dello script di aggiornamento, round-trip dei blocchi e `git diff --check` superati. La FISAR e le due destinazioni interne HTTP 200; browser a 1440/768/390/320 px senza overflow, immagini fallite o errori console, un H1 e tre H2, font caricati e quattro link editoriali corretti. Navigazione Tab e focus visibile verificati tra Carta e sito nazionale; screenshot salvati, viewport ripristinato e scheda temporanea chiusa. Stile esistente conservato: intervento sui contenuti, non restyling della pagina.
+
 ## Contenuti — Navigazione e cookie più sintetica, 12 ottobre 2026
 
 - Su richiesta, mantenuti solo i primi due paragrafi della sezione, fino a `Questi dati non sono cookie e non vengono utilizzati dal sito per profilare i visitatori.`. Rimossi i tre successivi senza testo sostitutivo. Titolo/ancora, titolare, introduzione e intera informativa newsletter invariati; nessuna modifica a codice, form, menu o redirect.

@@ -117,6 +117,15 @@ final class Fisar_CDJ_Demo_Content {
 		if ( false === $values_content ) {
 			return new WP_Error( 'fisar_values_content', 'Testo della Carta dei Valori non disponibile.' );
 		}
+		$fisar_content = file_get_contents( __DIR__ . '/../content/la-fisar.html' );
+		if ( false === $fisar_content ) {
+			return new WP_Error( 'fisar_national_content', 'Testo della pagina La FISAR non disponibile.' );
+		}
+		$fisar_content = str_replace(
+			array( 'href="/carta-dei-valori/"', 'href="/la-nostra-delegazione/"' ),
+			array( 'href="' . esc_url( home_url( '/carta-dei-valori/' ) ) . '"', 'href="' . esc_url( home_url( '/la-nostra-delegazione/' ) ) . '"' ),
+			$fisar_content
+		);
 
 		$definitions = array(
 			'home' => array(
@@ -152,7 +161,7 @@ final class Fisar_CDJ_Demo_Content {
 				'title'   => 'La FISAR',
 				'slug'    => 'la-fisar',
 				'excerpt' => 'Federazione Italiana Sommelier Albergatori Ristoratori APS.',
-				'content' => '<p class="lead">La FISAR — Federazione Italiana Sommelier Albergatori Ristoratori — è un’associazione di promozione sociale che diffonde la cultura del vino e dell’enogastronomia.</p><h2>Passione, cultura e formazione</h2><p>Attraverso i corsi per sommelier e le occasioni di approfondimento, la FISAR accompagna appassionati e professionisti in un percorso di conoscenza, degustazione e servizio del vino.</p><h2>Una rete di delegazioni</h2><p>Le delegazioni portano questa esperienza nei territori, con corsi, incontri e attività associative. La Delegazione Castelli di Jesi è il nostro punto di incontro locale.</p><p><a href="' . esc_url( home_url( '/la-nostra-delegazione/' ) ) . '">Scopri la nostra delegazione</a></p><h2>Approfondisci sul sito nazionale</h2><p>Per conoscere l’associazione e i suoi documenti ufficiali, visita il <a href="https://www.fisar.org/associazione/fisar-aps/chi-siamo/">sito nazionale FISAR</a>.</p>',
+				'content' => $fisar_content,
 			),
 			'contacts' => array(
 				'title'   => 'Contatti',
