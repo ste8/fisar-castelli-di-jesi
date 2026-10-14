@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Contenuti Consiglio e incarichi — 14 ottobre 2026
+
+Sezione editoriale in blocchi nativi WordPress, con copia `content/consiglio-e-incarichi.html` nel plugin per il seed. `delegation_sections()` legge il file e restituisce un errore esplicito se non disponibile; il chiamante lo propaga senza salvare contenuti incompleti. La guardia sulle ancore esistenti resta: i comandi demo non sincronizzano i nomi sul database pubblicato. Aggiornamento locale circoscritto al solo segmento tra `#consiglio` e `#statuto`, con revisione e confronto esatto del resto della pagina. Nessun nuovo modello di persone, campo, template, dipendenza o logica nel tema.
+
 ### Pagine Chi siamo — tema 1.6.84
 
 Il template standard riconosce La FISAR, La nostra delegazione e Unisciti a noi tramite `is_page()` e assegna la classe di presentazione `.association-page`. Riusa le regole della fascia bordeaux e la scala Poppins di Eventi/Corsi/Blog/Privacy; colonna di lettura e introduzione condividono gli stili della privacy, separatori dei capitoli circoscritti alla nuova classe. Carta dei Valori segue il ramo precedente senza variazioni. Nessun nuovo template, filtro sui contenuti, script, campo, logica nel plugin o scrittura nel database. Titoli, estratti, contenuti e ancore editoriali restano nativi.

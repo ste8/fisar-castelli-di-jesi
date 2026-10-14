@@ -87,9 +87,13 @@ final class Fisar_CDJ_Demo_Content {
 		WP_CLI::success( 'Pagine associative e menu aggiornati; contenuti esistenti conservati.' );
 	}
 
-	private static function delegation_sections(): array {
+	private static function delegation_sections(): array|WP_Error {
+		$council_content = file_get_contents( __DIR__ . '/../content/consiglio-e-incarichi.html' );
+		if ( false === $council_content ) {
+			return new WP_Error( 'fisar_council_content', 'Testo di Consiglio e incarichi non disponibile.' );
+		}
 		return array(
-			'consiglio' => '<h2 id="consiglio">Consiglio e incarichi</h2><h3>Consiglio di Delegazione</h3><p>Il Consiglio di Delegazione è l’organo eletto che guida la vita associativa locale.</p><p><strong>Contenuto da completare:</strong> inserire il Delegato, i componenti del Consiglio e il periodo del mandato dopo la conferma dei dati ufficiali.</p><h3>Incarichi non elettivi</h3><p>Accanto al Consiglio, questi incarichi contribuiscono all’organizzazione delle attività della Delegazione.</p><ul><li>Responsabile Eventi</li><li>Responsabile Servizi</li><li>Direttori di Corso</li><li>Organizzazione Corsi e Didattica</li></ul><p><strong>Contenuto da completare:</strong> aggiungere i nomi delle persone incaricate, anche quando una persona ricopre più ruoli.</p>',
+			'consiglio' => $council_content,
 			'statuto' => '<h2 id="statuto">Statuto</h2><p>Lo statuto definisce le finalità della Delegazione, gli organi associativi e le regole della vita sociale.</p><p><strong>Documento da aggiungere:</strong> caricare il PDF ufficiale nella Libreria media e inserire qui il collegamento “Scarica lo statuto”, indicando formato e dimensione del file.</p>',
 		);
 	}
@@ -203,7 +207,11 @@ final class Fisar_CDJ_Demo_Content {
 				}
 			}
 			if ( 'about' === $key ) {
-				foreach ( self::delegation_sections() as $anchor => $content ) {
+				$sections = self::delegation_sections();
+				if ( is_wp_error( $sections ) ) {
+					return $sections;
+				}
+				foreach ( $sections as $anchor => $content ) {
 					if ( ! preg_match( '/\bid=[\'"]' . preg_quote( $anchor, '/' ) . '[\'"]/', $definition['content'] ) ) {
 						$definition['content'] .= "\n" . $content;
 					}
