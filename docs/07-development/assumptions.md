@@ -1,5 +1,17 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Nota sui valori al posto della sezione introduttiva
+
+Richiesta la rimozione del gruppo La delegazione con le tre sottosezioni, non del primo paragrafo di presentazione o dell’indice. Aggiunta solo una breve nota con link alla Carta dei Valori locale subito dopo il rimando alla storia, senza ripetere i contenuti del documento. Consiglio, incarichi, Squadra, Statuto e storia finale conservati; nessuna variazione alla Carta o al menu globale.
+
+## 14 ottobre 2026 — Origini distinte dalle persone attuali
+
+Approvato lo spostamento della storia completa dopo Statuto e della relativa voce in fondo all’indice. In alto resta una breve nota sul 2010 con rimando interno. Nessuna riscrittura del testo storico, nuove informazioni o pubblicazione del PDF; soci fondatori e primo presidente restano identificati come tali nella sezione finale. Sei sezioni principali, stile nativo esistente riusato e seed allineato, senza sincronizzare automaticamente il database.
+
+## 14 ottobre 2026 — Pubblicazione della storia concordata
+
+Autorizzato il testo completo proposto dal primo atto e statuto del 2010, con le due correzioni approvate: `La nostra delegazione si costituisce come associazione` e `condividendo le finalità della FISAR`. Inserita una sottosezione nella parte introduttiva e aggiunto il suo link all’indice. La data documenta la costituzione dell’associazione, non necessariamente le prime attività precedenti; denominazione culturale del 2010, senza anticipare il successivo status APS. Non autorizzata la pubblicazione del PDF o il suo uso come statuto vigente: conservato il testo provvisorio della sezione Statuto, nessun codice fiscale o firma dei fondatori trascritto. Gli altri contenuti della pagina restano invariati.
+
 ## 14 ottobre 2026 — Prova della gerarchia della delegazione
 
 Approvata la proposta di cinque sezioni riconoscibili, indice, riquadri del Consiglio, fondo distinto per gli incarichi, Squadra autonoma su colonne e riquadro Statuto. Sono modifiche alla composizione e ai livelli dei titoli, non una riscrittura dei paragrafi o aggiornamento dei dati personali. Tutti i nomi, ruoli e recapiti restano quelli approvati; nessun nuovo incarico, biografia, data di fondazione o PDF. Eventi resta sotto Didattica in una sequenza verticale anche su desktop. Si usano gruppi nativi modificabili; niente contenuti nascosti, fotografie inventate o accordion. Il titolo La delegazione e le etichette dell’indice sono le sole aggiunte testuali organizzative.

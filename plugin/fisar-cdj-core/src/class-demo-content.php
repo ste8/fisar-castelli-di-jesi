@@ -96,9 +96,14 @@ final class Fisar_CDJ_Demo_Content {
 		if ( false === $statute_content ) {
 			return new WP_Error( 'fisar_statute_content', 'Testo della sezione Statuto non disponibile.' );
 		}
+		$history_content = file_get_contents( __DIR__ . '/../content/delegazione-storia.html' );
+		if ( false === $history_content ) {
+			return new WP_Error( 'fisar_history_content', 'Testo della storia della delegazione non disponibile.' );
+		}
 		return array(
 			'consiglio' => $council_content,
 			'statuto'   => $statute_content,
+			'storia'    => $history_content,
 		);
 	}
 
@@ -138,6 +143,11 @@ final class Fisar_CDJ_Demo_Content {
 		if ( false === $delegation_intro ) {
 			return new WP_Error( 'fisar_delegation_intro', 'Introduzione della delegazione non disponibile.' );
 		}
+		$delegation_intro = str_replace(
+			'href="/carta-dei-valori/"',
+			'href="' . esc_url( home_url( '/carta-dei-valori/' ) ) . '"',
+			$delegation_intro
+		);
 
 		$definitions = array(
 			'home' => array(
