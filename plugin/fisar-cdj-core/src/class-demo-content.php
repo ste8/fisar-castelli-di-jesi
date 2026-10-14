@@ -176,7 +176,7 @@ final class Fisar_CDJ_Demo_Content {
 			'about' => array(
 				'title'   => 'La nostra delegazione',
 				'slug'    => 'la-nostra-delegazione',
-				'excerpt' => 'Una comunità competente, accogliente, curiosa e conviviale.',
+				'excerpt' => 'FISAR Castelli di Jesi APS · Passione e cultura del vino dal 2010',
 				'content' => $delegation_intro,
 			),
 			'fisar' => array(
