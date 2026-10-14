@@ -1,5 +1,25 @@
 # Chi siamo
 
+## Introduzione essenziale e Carta dei Valori — 14 ottobre 2026
+
+Rimossa la sezione La delegazione (`#delegazione`) con Una Delegazione aperta, Il territorio e Le persone. Dopo la nota sul 2010 e il suo link alla storia, un paragrafo nativo: `La Carta dei Valori della nostra delegazione raccoglie i principi che guidano ogni nostra attività e scelta.` Il titolo del documento è il link alla Carta locale, senza pulsante o nuova sezione. Introduzione iniziale e indice conservati; seguono cinque sezioni: Consiglio, Incarichi, Squadra, Statuto, Storia. Questo aggiornamento supera i precedenti riferimenti a sei sezioni o alla sezione introduttiva.
+
+Contenuto pubblicato e frammento del seed allineati; URL della Carta derivato da `home_url` per i nuovi ambienti. Storia e dati delle persone invariati, nessun restyling o reimport.
+
+## Storia in fondo alla pagina — 14 ottobre 2026
+
+La nostra storia è ora l’ultima sezione H2 (`#storia`), dopo Statuto, per distinguere soci fondatori e primo presidente dai componenti attuali. I due paragrafi approvati sono conservati integralmente. In alto, dopo l’introduzione, resta solo: `La nostra delegazione si costituisce come associazione nel 2010. Scopri la nostra storia →`, con anno in grassetto e link interno. Ordine dell’indice: Consiglio, Incarichi, Squadra Sommelier, Statuto, Storia.
+
+Riutilizzato lo stile delle sezioni esistenti, senza nuovo CSS o JavaScript. Il frammento `delegazione-storia.html` è separato dall’introduzione e aggiunto dopo Statuto dal lettore del seed; guardie sulle ancore e nessun reimport delle pagine esistenti. Questa collocazione supera quella introduttiva descritta sotto; Consiglio, incarichi, Squadra, Statuto e altri paragrafi invariati.
+
+## La nostra storia — testo approvato, 14 ottobre 2026
+
+Aggiunta la sottosezione H3 `La nostra storia` (`#storia`) all’inizio di La delegazione, prima di Una Delegazione aperta; voce `Storia` aggiunta all’indice. Due paragrafi in blocchi WordPress nativi, con le formulazioni concordate `La nostra delegazione si costituisce come associazione` e `condividendo le finalità della FISAR`.
+
+Fonte: documento locale fornito dall’utente, `Atto costitutivo e statuto F.C.J. - 2010.pdf`, letto integralmente come scansione. L’atto costitutivo (pagina 1) attesta il 21 gennaio 2010, la denominazione Associazione Culturale Castelli di Jesi, i sette fondatori e il primo presidente Giovanni Elce Fabbretti; l’articolo 2 del primo statuto (pagina 2) indica la sede iniziale a Maiolati Spontini. Non dedotti avvio delle prime attività, passaggio ad APS o successive tappe. Codici fiscali e firme non trascritti; PDF storico non caricato né presentato come statuto attuale.
+
+Testo versionato in `plugin/fisar-cdj-core/content/delegazione-introduzione.html`, letto dal seed esistente. Aggiornamento locale della sola introduzione della pagina ID 7, con controllo esatto delle due aggiunte, guardia hash e revisione recuperabile. Tutti i precedenti paragrafi, Consiglio, incarichi, Squadra, Statuto, titolo/estratto/URL e menu globale conservati; tema e plugin senza incrementi di versione o reimport. La fonte copre le origini: altre tappe potranno essere aggiunte in seguito. Questo aggiornamento supera i riferimenti sotto alla storia ancora da fornire e porta a cinque le voci dell’indice.
+
 ## Gerarchia della delegazione — tema v1.6.85, 14 ottobre 2026
 
 Approvata la prova di una composizione più leggibile per la sola pagina La nostra delegazione. Cinque sezioni H2: La delegazione (`#delegazione`), Consiglio di Delegazione (`#consiglio`), Incarichi non elettivi (`#incarichi`), Squadra Sommelier (`#squadra`) e Statuto (`#statuto`). Titoli principali Poppins 500 da 24–28 px con accento oro; sottosezioni introduttive H3 da 18 px/600. La fascia bordeaux e gli altri template non cambiano.

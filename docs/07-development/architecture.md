@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Storia come ultima sezione — 14 ottobre 2026
+
+Il seed della delegazione legge ora quattro frammenti: introduzione/indice, Consiglio-Incarichi-Squadra, Statuto e Storia. `delegation_sections()` aggiunge la storia dopo Statuto con errore esplicito se manca il file e la stessa guardia sulle ancore delle altre sezioni: non sposta né sovrascrive contenuti esistenti. Lo spostamento autorizzato sulla pagina locale è mirato, via API con revisione e hash. Blocchi nativi e stile `.delegation-section` riusato; tema, versioni e dipendenze invariati.
+
 ### Gerarchia della delegazione — tema 1.6.85
 
 Il template standard aggiunge `.delegation-page` esclusivamente al permalink della delegazione; CSS circoscritto alle classi editoriali `delegation-*`, senza nuovo template o JavaScript. Gruppi nativi contengono sezioni, indice `nav`, riquadri delle persone ed elenchi: contenuto e nomi restano nel post, non generati dal tema. Il seed legge tre frammenti senza duplicarli: introduzione/indice, Consiglio-Incarichi-Squadra, Statuto; le guardie sulle ancore delle pagine esistenti restano invariate. Nessuna nuova entità persone, API, dipendenza o migrazione. Salvataggio locale via API con revisione, guardia hash e verifica semantica dei contenuti conservati.
