@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Indice e valori della delegazione — tema 1.6.86
+
+Valori è un gruppo editoriale nativo nella stessa introduzione del seed, subito dopo l’indice; quattro frammenti e guardie esistenti conservati. Titolo dell’indice da Paragrafo a Heading H2, con la regola CSS condivisa con `.delegation-section > h2`, circoscritta alla pagina locale. Non generati contenuti nel tema, nessun nuovo script o modello. Aggiornamento locale con API/hash/revisione e altri contenuti invariati; nessuna sincronizzazione automatica o reimport.
+
 ### Storia come ultima sezione — 14 ottobre 2026
 
 Il seed della delegazione legge ora quattro frammenti: introduzione/indice, Consiglio-Incarichi-Squadra, Statuto e Storia. `delegation_sections()` aggiunge la storia dopo Statuto con errore esplicito se manca il file e la stessa guardia sulle ancore delle altre sezioni: non sposta né sovrascrive contenuti esistenti. Lo spostamento autorizzato sulla pagina locale è mirato, via API con revisione e hash. Blocchi nativi e stile `.delegation-section` riusato; tema, versioni e dipendenze invariati.

@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.6.86 — Introduzione, indice e valori della delegazione
+
+- Conservato `un luogo` nell’introduzione, con finale `in un ambiente informale e accogliente`. Nota sulla nascita nel 2010 come associazione senza scopo di lucro, senza attribuire lo status APS al 2010. Sottotitolo approvato invariato.
+- Indice con H2 dello stesso stile delle sezioni; nuova prima voce I nostri valori e relativa sezione subito dopo, con breve paragrafo e rimando alla Carta completa. Rimossa la precedente nota prima dell’indice. Consiglio/incarichi/Squadra/Statuto/Storia e altri post conservati integralmente.
+- Skill `clean-code-engineer`: blocchi nativi e frammento introduttivo del seed allineati, regola heading riusata nel CSS senza duplicarla, nessun nuovo JS, dipendenza o logica funzionale nel tema. Aggiornamento ID 7 via API con hash e revisione recuperabile; titolo/estratto/URL/stato invariati, nessun reimport o incremento versione demo. Tema/asset `1.6.86`, documentazione aggiornata, nessun commit automatico.
+- Lint PHP del tema/seed, sintassi dei due JS esistenti, round-trip dei quattro frammenti e `git diff --check` superati; pagina/CSS/Carta HTTP 200. Browser a 1440/768/390/320 px: H2 indice e sezioni entrambi 28 px desktop / 24 px agli altri formati, sei link da 44 px con target presenti, un H1, cinque card e 22 componenti squadra conservati; nessun overflow, immagine fallita o errore console, font caricati. Indice porta a Valori con margine superiore 32 px, link alla Carta verificato, focus da tastiera 3 px. Screenshot controllato, viewport ripristinato e scheda temporanea chiusa.
+
+## Contenuti — Sottotitolo della delegazione, 14 ottobre 2026
+
+- Estratto sostituito con la formulazione scelta: `FISAR Castelli di Jesi APS · Passione e cultura del vino dal 2010`, senza punto finale. Pagina ID 7 e seed allineati, nessun reimport o modifica al corpo, all’indice, alle sezioni e allo stile. Aggiornamento tramite API nativa con guardia sui valori precedenti e revisione recuperabile; nessun commit automatico.
+- Lint PHP e `git diff --check` superati; pagina HTTP 200. Sottotitolo verificato nel browser a 1440/768/390/320 px senza overflow, font caricati. Anteprima controllata, viewport ripristinato e scheda temporanea chiusa.
+
 ## Contenuti — Introduzione della delegazione più essenziale, 14 ottobre 2026
 
 - Rimossa La delegazione con Una Delegazione aperta, Il territorio e Le persone. Subito dopo il link alla storia, aggiunta una sola nota sui principi con link `Carta dei Valori della nostra delegazione`. Introduzione iniziale, indice e tutte le altre sezioni conservati integralmente.

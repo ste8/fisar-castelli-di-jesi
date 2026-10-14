@@ -1,5 +1,20 @@
 # Chi siamo
 
+## Introduzione, indice e sezione valori — tema v1.6.86, 14 ottobre 2026
+
+Applicate le restanti proposte approvate, conservando il sottotitolo scelto e la parola `luogo`:
+
+- Introduzione: `Siamo la Delegazione FISAR Castelli di Jesi: un luogo in cui imparare, incontrarsi e condividere la cultura del vino, in un ambiente informale e accogliente.`
+- Nota: `La nostra delegazione nasce nel 2010 come associazione senza scopo di lucro. Scopri la nostra storia →`. Non attribuisce la qualifica APS al 2010.
+- `In questa pagina` diventa H2 con le stesse dimensioni, colore e accento oro dei titoli principali, senza piccolo maiuscolo. Landmark e nome accessibile dell’indice conservati.
+- Prima voce `I nostri valori`, a `#valori`; sezione H2 subito dopo l’indice, prima del Consiglio. Breve paragrafo `La nostra Carta dei Valori raccoglie i principi che guidano ogni nostra attività e scelta.` e link `Leggi la Carta dei Valori della nostra delegazione →` al documento locale. Tolta la precedente nota prima dell’indice.
+
+Sei sezioni principali: Valori, Consiglio, Incarichi, Squadra, Statuto e Storia. Blocchi WordPress nativi e quattro frammenti del seed, con Valori nell’introduzione; URL portabile già gestito dal plugin. CSS del titolo dell’indice riusa la regola dei titoli delle sezioni. Consiglio, incarichi, Squadra, Statuto e storia finale invariati; nessuna riscrittura della Carta, nuova dipendenza o reimport. Questa specifica supera le collocazioni e i testi precedenti sotto riportati.
+
+## Sottotitolo della delegazione — 14 ottobre 2026
+
+Estratto nativo approvato: `FISAR Castelli di Jesi APS · Passione e cultura del vino dal 2010`, senza punto finale. Aggiornati solo estratto della pagina locale e copia del seed. Corpo, indice, note e altre sezioni invariati; le ulteriori proposte su introduzione, indice e sezione valori non sono ancora applicate.
+
 ## Introduzione essenziale e Carta dei Valori — 14 ottobre 2026
 
 Rimossa la sezione La delegazione (`#delegazione`) con Una Delegazione aperta, Il territorio e Le persone. Dopo la nota sul 2010 e il suo link alla storia, un paragrafo nativo: `La Carta dei Valori della nostra delegazione raccoglie i principi che guidano ogni nostra attività e scelta.` Il titolo del documento è il link alla Carta locale, senza pulsante o nuova sezione. Introduzione iniziale e indice conservati; seguono cinque sezioni: Consiglio, Incarichi, Squadra, Statuto, Storia. Questo aggiornamento supera i precedenti riferimenti a sei sezioni o alla sezione introduttiva.

@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Affinamenti approvati dell’introduzione e dei valori
+
+Autorizzate le restanti modifiche proposte: `luogo` conservato, informalità e accoglienza dalla Carta, nascita nel 2010 come associazione senza scopo di lucro, titolo dell’indice più evidente e sezione Valori raggiungibile dalla sua prima voce. La nuova sezione resta breve e rimanda al documento completo, non ne duplica i principi. Sottotitolo approvato invariato; APS identifica l’associazione attuale, senza attribuirne lo status al 2010. Storia e persone non aggiornate o riscritte.
+
 ## 14 ottobre 2026 — Nota sui valori al posto della sezione introduttiva
 
 Richiesta la rimozione del gruppo La delegazione con le tre sottosezioni, non del primo paragrafo di presentazione o dell’indice. Aggiunta solo una breve nota con link alla Carta dei Valori locale subito dopo il rimando alla storia, senza ripetere i contenuti del documento. Consiglio, incarichi, Squadra, Statuto e storia finale conservati; nessuna variazione alla Carta o al menu globale.
