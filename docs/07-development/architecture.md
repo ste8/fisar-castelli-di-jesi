@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Pagine Chi siamo — tema 1.6.84
+
+Il template standard riconosce La FISAR, La nostra delegazione e Unisciti a noi tramite `is_page()` e assegna la classe di presentazione `.association-page`. Riusa le regole della fascia bordeaux e la scala Poppins di Eventi/Corsi/Blog/Privacy; colonna di lettura e introduzione condividono gli stili della privacy, separatori dei capitoli circoscritti alla nuova classe. Carta dei Valori segue il ramo precedente senza variazioni. Nessun nuovo template, filtro sui contenuti, script, campo, logica nel plugin o scrittura nel database. Titoli, estratti, contenuti e ancore editoriali restano nativi.
+
 ### Informativa unica e Cookie Policy archiviata — plugin 1.3.29
 
 Testo di navigazione/cookie nella privacy nativa, non generato dal tema; file documentale allineato e contenuti newsletter conservati. Cookie Policy locale in bozza, corpo invariato, voce del footer scollegata dal menu conservandone il post per recupero. Nessuna cancellazione permanente. Seed non crea più pagina/voce Cookie; privacy demo resta una bozza generica senza imporre il testo reale o reimport.

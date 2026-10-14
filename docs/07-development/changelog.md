@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.6.84 — Chi siamo allineata alle altre sezioni
+
+- Affinamento successivo del sottotitolo La FISAR: `Federazione Italiana Sommelier Albergatori Ristoratori (APS)`, senza punto finale. Solo estratto nativo ID 92 e seed allineati; revisione recuperabile e corpo verificato invariato. Nessun incremento di versione o reimport.
+
+- La FISAR, La nostra delegazione (incluse Consiglio e incarichi / Statuto) e Diventa socio adottano fascia bordeaux compatta, H1 Poppins 32–44 px con accento oro, introduzione Poppins, scala del corpo e heading di Eventi/Corsi/Blog. Colonna centrale massimo 48rem, spaziature più contenute e separatori sottili tra i capitoli; rimossa soltanto la dicitura ridondante sopra l’H1. Carta dei Valori conserva hero fotografica, nota, sette icone e payoff già approvati.
+- Skill `clean-code-engineer`: template standard riusato con la sola classe `.association-page` sulle tre destinazioni, estensione dei selettori condivisi senza duplicare template, dipendenze, font o logica di dominio. Nessun nuovo campo, script, reimport o scrittura editoriale; confronto prima/dopo conferma identici i contenuti e gli estratti di tutte le pagine. Menu, link e ancore nativi invariati. Tema/asset `1.6.84`; README, tipografia, specifica, architettura e assunzioni aggiornati. Nessun commit automatico.
+- Lint PHP dei due file e sintassi dei due JS esistenti superati; `git diff --check` pulito. Le quattro pagine associative, Eventi/Corsi, CSS aggiornato e font locali HTTP 200. Browser sulle tre pagine a 1440/768/390/320 px: un H1, font/scale previsti, nessun overflow, ID duplicato, immagine fallita o errore console. Regressione Carta/Eventi/Corsi/Privacy a 1440/320 px: nessun overflow; Carta con immagine, nota e sette icone conservate. Le tre immagini Eventi inizialmente non caricate erano lazy fuori viewport: asset HTTP 200, non errori di caricamento.
+- Verificati menu Chi siamo, arrivo visibile alle ancore Consiglio e Statuto e focus da tastiera sui link della FISAR. Screenshot desktop e mobile salvati e controllati, viewport ripristinato e scheda temporanea chiusa. Supporto reduced-motion e stili di focus esistenti conservati; contenuti demo ancora da completare nelle pagine locali, senza inventare nomi o statuto.
+
 ## Contenuti — La FISAR, 14 ottobre 2026
 
 - Pubblicato il testo concordato sulla sola pagina La FISAR ID 92: identità APS, anno di nascita, oltre 70 delegazioni e oltre 15.000 soci; formazione in tre livelli e approfondimenti successivi; collaborazione con Slow Food/Slow Wine, FISAR in Rosa e rivista il Sommelier. Il paragrafo sui principi locali identifica esplicitamente la nostra Delegazione, evita la ripetizione `riferimento` e collega la Carta dei Valori nella frase, senza pulsante. Chiusura con rimandi distinti al sito nazionale e alla nostra delegazione.

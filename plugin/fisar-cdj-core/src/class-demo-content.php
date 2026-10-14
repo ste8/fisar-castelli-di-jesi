@@ -160,7 +160,7 @@ final class Fisar_CDJ_Demo_Content {
 			'fisar' => array(
 				'title'   => 'La FISAR',
 				'slug'    => 'la-fisar',
-				'excerpt' => 'Federazione Italiana Sommelier Albergatori Ristoratori APS.',
+				'excerpt' => 'Federazione Italiana Sommelier Albergatori Ristoratori (APS)',
 				'content' => $fisar_content,
 			),
 			'contacts' => array(

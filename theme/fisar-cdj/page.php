@@ -1,13 +1,16 @@
 <?php
 get_header();
 the_post();
-$is_values_page = is_page( 'carta-dei-valori' );
-$is_privacy_page = ! $is_values_page && is_privacy_policy();
-$page_classes   = array( 'standard-page' );
+$is_values_page      = is_page( 'carta-dei-valori' );
+$is_privacy_page     = ! $is_values_page && is_privacy_policy();
+$is_association_page = is_page( array( 'la-fisar', 'la-nostra-delegazione', 'unisciti-a-noi' ) );
+$page_classes        = array( 'standard-page' );
 if ( $is_values_page ) {
 	$page_classes[] = 'values-page';
 } elseif ( $is_privacy_page ) {
 	$page_classes[] = 'privacy-page';
+} elseif ( $is_association_page ) {
+	$page_classes[] = 'association-page';
 }
 $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_the_content() ) : array();
 ?>
@@ -18,7 +21,7 @@ $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_th
 		<?php else : ?>
 		<header class="page-hero">
 			<div class="container page-hero__inner">
-				<?php if ( ! $is_privacy_page ) : ?><p class="eyebrow">FISAR Castelli di Jesi</p><?php endif; ?>
+				<?php if ( ! $is_privacy_page && ! $is_association_page ) : ?><p class="eyebrow">FISAR Castelli di Jesi</p><?php endif; ?>
 				<h1><?php the_title(); ?></h1>
 				<?php if ( has_excerpt() ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 			</div>

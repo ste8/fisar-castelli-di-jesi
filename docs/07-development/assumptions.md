@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Stile di Chi siamo
+
+Richiesto l’allineamento di tutte le destinazioni del menu Chi siamo. Interpretato come La FISAR, La nostra delegazione e Diventa socio; Consiglio e Statuto rimangono sezioni ancorate della pagina locale, non diventano pagine nuove. Carta dei Valori è già allineata e conserva la hero fotografica scura approvata. Si trasferiscono fascia bordeaux compatta, scala Poppins e ritmo editoriale, non pannelli di prenotazione o dati dei CPT. Nessuna riscrittura dei testi ancora demo della delegazione/iscrizione né aggiunta di nominativi o PDF mancanti; font locali, editor nativo e contenuti invariati.
+
 ## 12 ottobre 2026 — Privacy e cookie in una sola pagina
 
 Approvati estensione della privacy, rimozione del link Cookie Policy e assenza di analytics. La pagina separata è conservata come bozza, non eliminata; il vecchio URL continua a funzionare come rimando alla sezione nuova. Descritte soltanto le funzioni verificate nella configurazione locale e i cookie tecnici nativi per accesso riservato; nessuna dichiarazione “non raccogliamo alcun dato” o dettaglio inventato di hosting/conservazione. Il testo dovrà essere rivisto quando sarà scelto l’hosting o attivato un nuovo servizio.
