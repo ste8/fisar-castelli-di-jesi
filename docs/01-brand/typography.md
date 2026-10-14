@@ -1,5 +1,9 @@
 # Typography
 
+## Gerarchia La nostra delegazione — v1.6.85
+
+Nella sola `.delegation-page`, cinque H2 principali Poppins 500 da 24–28 px / 1.3 con accento oro, H3 introduttivi e incarichi 18 px/600, ruoli nei riquadri del Consiglio H3 16 px/600 bordeaux e nomi 20 px/500. Email 16 px; corpo e hero conservano la scala v1.6.84. Indice con label 13 px/600 e link 15 px/500, area cliccabile minima 44 px. Prevale sulle scale generiche delle pagine associative soltanto per i blocchi descritti in `docs/03-pages/about.md`. Font già locali, nessuna nuova famiglia o conversione dei payoff.
+
 ## Chi siamo — v1.6.84
 
 La FISAR, La nostra delegazione (anche Consiglio/Statuto) e Diventa socio adottano la scala Poppins di Eventi/Corsi/Blog: H1 500 da 32–44 px, introduzione/estratto 400 da 16–18 px / 1.7, corpo 16–17 px / 1.7, H2 20–24 px, H3 20 px, H4 18 px, H5/H6 17 px e grassetti 600. Prevale sul default serif per le sole tre pagine `.association-page`; Carta dei Valori conserva i propri stili e il payoff serif. Nessuna nuova famiglia, font remoto o modifica agli editor. Specifica `docs/03-pages/about.md`.

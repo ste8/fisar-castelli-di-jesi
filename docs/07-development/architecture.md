@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Gerarchia della delegazione — tema 1.6.85
+
+Il template standard aggiunge `.delegation-page` esclusivamente al permalink della delegazione; CSS circoscritto alle classi editoriali `delegation-*`, senza nuovo template o JavaScript. Gruppi nativi contengono sezioni, indice `nav`, riquadri delle persone ed elenchi: contenuto e nomi restano nel post, non generati dal tema. Il seed legge tre frammenti senza duplicarli: introduzione/indice, Consiglio-Incarichi-Squadra, Statuto; le guardie sulle ancore delle pagine esistenti restano invariate. Nessuna nuova entità persone, API, dipendenza o migrazione. Salvataggio locale via API con revisione, guardia hash e verifica semantica dei contenuti conservati.
+
 ### Contenuti Consiglio e incarichi — 14 ottobre 2026
 
 Sezione editoriale in blocchi nativi WordPress, con copia `content/consiglio-e-incarichi.html` nel plugin per il seed. `delegation_sections()` legge il file e restituisce un errore esplicito se non disponibile; il chiamante lo propaga senza salvare contenuti incompleti. La guardia sulle ancore esistenti resta: i comandi demo non sincronizzano i nomi sul database pubblicato. Aggiornamento locale circoscritto al solo segmento tra `#consiglio` e `#statuto`, con revisione e confronto esatto del resto della pagina. Nessun nuovo modello di persone, campo, template, dipendenza o logica nel tema.

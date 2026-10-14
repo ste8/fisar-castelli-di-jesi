@@ -1,5 +1,19 @@
 # Chi siamo
 
+## Gerarchia della delegazione — tema v1.6.85, 14 ottobre 2026
+
+Approvata la prova di una composizione più leggibile per la sola pagina La nostra delegazione. Cinque sezioni H2: La delegazione (`#delegazione`), Consiglio di Delegazione (`#consiglio`), Incarichi non elettivi (`#incarichi`), Squadra Sommelier (`#squadra`) e Statuto (`#statuto`). Titoli principali Poppins 500 da 24–28 px con accento oro; sottosezioni introduttive H3 da 18 px/600. La fascia bordeaux e gli altri template non cambiano.
+
+- Indice sotto il paragrafo introduttivo, con quattro link nativi a Consiglio, Incarichi, Squadra e Statuto, area cliccabile minima 44 px, wrapping su mobile e landmark `nav` con nome `In questa pagina`.
+- Cinque riquadri del Consiglio: ruolo H3 da 16 px/600 bordeaux, nome da 20 px/500 ed email da 16 px, su righe distinte. Due colonne da 608 px, una sotto questa soglia; nomi e recapiti possono andare a capo senza troncamento.
+- Incarichi su fondo chiaro caldo, distinti dal Consiglio. Didattica, Eventi e Servizi sono sottosezioni H3 da 18 px/600, in sequenza verticale; Eventi resta immediatamente dopo Didattica. Direttori di Corso nella propria sottosezione del medesimo riquadro.
+- Squadra Sommelier come sezione autonoma, non sottovoce di un incarico. Elenco su due colonne da 608 px, una su mobile, ordine DOM e nomi conservati. Anche la lista dei Direttori usa questo trattamento; niente accordion.
+- Statuto in un riquadro essenziale con descrizione e testo provvisorio preesistente. Non aggiunto alcun download fittizio o documento mancante.
+
+Gruppi, titoli, paragrafi ed elenchi sono blocchi WordPress nativi. Conservare classi `delegation-*` e ancore quando si modificano i contenuti. Copie per il seed in `delegazione-introduzione.html`, `consiglio-e-incarichi.html` e `delegazione-statuto.html`, nella cartella `plugin/fisar-cdj-core/content/`, senza duplicare i nomi nel tema. I paragrafi originali, nominativi, ruoli, email e data sono conservati; cambiati raggruppamenti e livelli degli heading, aggiunti solo indice e titolo La delegazione. Storia ancora da fornire. Aggiornamento locale con revisione recuperabile e verifica degli altri post invariati; nessun reimport o sincronizzazione automatica delle pagine esistenti.
+
+Questa specifica prevale sulle scale comuni v1.6.84 e sulla struttura del primo import qui sotto per la sola pagina locale.
+
 ## Consiglio e incarichi — contenuti del 14 ottobre 2026
 
 Recuperati dalla [pagina del sito attuale](http://www.fisarcastellidijesi.it/il-consiglio-di-delegazione/) su autorizzazione dell’utente. Copia per il seed in `plugin/fisar-cdj-core/content/consiglio-e-incarichi.html`, in blocchi WordPress nativi. Aggiornata soltanto la sezione `#consiglio` della pagina locale ID 7; introduzione, territorio, persone e Statuto invariati. La storia sarà completata dopo che l’utente avrà recuperato le informazioni, senza inventare una data di fondazione.
