@@ -1,5 +1,9 @@
 # Chi siamo
 
+## Statuto collegato — 14 ottobre 2026
+
+Nel riquadro Statuto conservati H2/ancora `#statuto` e descrizione; il testo provvisorio sostituito dal link nativo `Apri lo statuto (PDF) →` a `/statuto/`, che rimanda al documento Drive fornito. Non è un download diretto né un PDF ospitato nel sito. Seed portabile con URL derivato da `home_url`; menu e altre sezioni invariati. Questa decisione supera le indicazioni precedenti sul PDF mancante o da caricare nella Libreria media.
+
 ## Introduzione, indice e sezione valori — tema v1.6.86, 14 ottobre 2026
 
 Applicate le restanti proposte approvate, conservando il sottotitolo scelto e la parola `luogo`:

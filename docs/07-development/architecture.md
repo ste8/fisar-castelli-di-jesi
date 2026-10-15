@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Link breve Statuto — plugin 1.3.30
+
+Mappa generale `fisar_cdj_get_short_link_redirects()` composta dai canali esistenti e dalla destinazione fissa dello Statuto su Google Drive. Getter dei soli canali conservato; handler rinominato per descriverne lo scopo generale, senza duplicare controlli o hook. Stesse guardie GET/HEAD, path esatto, 404, 302/no-store; query del visitatore ignorate. Nessuna pagina vuota, rewrite/flush, upload, incorporamento o modifica editoriale.
+
 ### Indice e valori della delegazione — tema 1.6.86
 
 Valori è un gruppo editoriale nativo nella stessa introduzione del seed, subito dopo l’indice; quattro frammenti e guardie esistenti conservati. Titolo dell’indice da Paragrafo a Heading H2, con la regola CSS condivisa con `.delegation-section > h2`, circoscritta alla pagina locale. Non generati contenuti nel tema, nessun nuovo script o modello. Aggiornamento locale con API/hash/revisione e altri contenuti invariati; nessuna sincronizzazione automatica o reimport.

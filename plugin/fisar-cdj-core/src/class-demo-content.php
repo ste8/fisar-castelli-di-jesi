@@ -96,6 +96,11 @@ final class Fisar_CDJ_Demo_Content {
 		if ( false === $statute_content ) {
 			return new WP_Error( 'fisar_statute_content', 'Testo della sezione Statuto non disponibile.' );
 		}
+		$statute_content = str_replace(
+			'href="/statuto/"',
+			'href="' . esc_url( home_url( '/statuto/' ) ) . '"',
+			$statute_content
+		);
 		$history_content = file_get_contents( __DIR__ . '/../content/delegazione-storia.html' );
 		if ( false === $history_content ) {
 			return new WP_Error( 'fisar_history_content', 'Testo della storia della delegazione non disponibile.' );

@@ -633,10 +633,18 @@ function fisar_cdj_get_follow_redirects(): array {
 	return $redirects;
 }
 
+/** Link brevi dei canali e dei documenti pubblici della delegazione. */
+function fisar_cdj_get_short_link_redirects(): array {
+	return array_merge(
+		fisar_cdj_get_follow_redirects(),
+		array( 'statuto' => 'https://drive.google.com/file/d/167hX1txyjUhg5AZmzwZNbrrHG8odwr1D/view?usp=sharing' )
+	);
+}
+
 /**
  * Link brevi condivisibili: niente pagine vuote, parametri di destinazione o cache.
  */
-function fisar_cdj_redirect_follow_channels(): void {
+function fisar_cdj_redirect_short_links(): void {
 	if ( is_admin() || ! is_404() ) {
 		return;
 	}
@@ -648,7 +656,7 @@ function fisar_cdj_redirect_follow_channels(): void {
 
 	$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$request_path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
-	foreach ( fisar_cdj_get_follow_redirects() as $slug => $destination ) {
+	foreach ( fisar_cdj_get_short_link_redirects() as $slug => $destination ) {
 		$short_path = (string) wp_parse_url( home_url( '/' . $slug . '/' ), PHP_URL_PATH );
 		if ( untrailingslashit( $request_path ) !== untrailingslashit( $short_path ) ) {
 			continue;
@@ -660,7 +668,7 @@ function fisar_cdj_redirect_follow_channels(): void {
 		return;
 	}
 }
-add_action( 'template_redirect', 'fisar_cdj_redirect_follow_channels', 0 );
+add_action( 'template_redirect', 'fisar_cdj_redirect_short_links', 0 );
 
 /**
  * Conserva i collegamenti alle pagine native rinominate.
