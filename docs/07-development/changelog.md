@@ -1,5 +1,17 @@
 # Changelog
 
+## Contenuti — Statuto nella pagina della delegazione, 14 ottobre 2026
+
+- Sostituito il testo `Documento da aggiungere` con `Apri lo statuto (PDF) →` verso il link breve `/statuto/`; descrizione, titolo/ancora, menu e resto della pagina invariati. Nessun download diretto, incorporamento o copia del PDF.
+- Skill `clean-code-engineer`: paragrafo nativo e frammento del seed allineati, URL derivato da `home_url` nel lettore esistente. API WordPress con guardia hash, controllo della singola sostituzione, confronto degli altri post e revisione precedente recuperabile. Nessun CSS/JS, dipendenza, reimport, incremento di versione o commit automatico.
+- Lint PHP del seed, sintassi JS della navigazione, round-trip dei blocchi e `git diff --check` superati; pagina HTTP 200, alias HEAD 302/no-store alla destinazione prevista. Browser a 1440/768/390/320 px: link unico nel riquadro, placeholder assente, font caricati e nessun overflow o errore console. Clic verificato fino al visualizzatore Drive; screenshot controllato, viewport ripristinato e scheda temporanea chiusa.
+
+## Plugin v1.3.30 — Link breve Statuto
+
+- Creato `/statuto` (anche `/statuto/`) verso il documento Google Drive indicato dall’utente. Redirect 302 senza cache, destinazione fissa e parametri del visitatore ignorati; solo GET/HEAD e path esatto su 404, senza intercettare pagine reali.
+- Skill `clean-code-engineer`: estesa la mappa generale e riusato un solo handler nativo, conservando il getter dei quattro canali. Nessun tema, menu, contenuto, PDF locale, dipendenza, rewrite/flush o reimport modificato. Plugin `1.3.30`, demo invariata; nessun commit automatico.
+- Lint dei due PHP e sintassi JS della navigazione superati, `git diff --check` pulito. GET con/senza slash e parametro `redirect_to`, HEAD: 302 alla destinazione fissa e header no-cache/no-store; POST e sottopercorsi 404. Quattro redirect esistenti invariati. Browser dal link locale arriva al file indicato su Drive: dopo un errore transitorio di caricamento, anteprima della prima pagina e indicatore di 16 pagine visibili senza login. Screenshot salvato, scheda temporanea chiusa. Nessuna analisi giuridica del contenuto.
+
 ## v1.6.86 — Introduzione, indice e valori della delegazione
 
 - Conservato `un luogo` nell’introduzione, con finale `in un ambiente informale e accogliente`. Nota sulla nascita nel 2010 come associazione senza scopo di lucro, senza attribuire lo status APS al 2010. Sottotitolo approvato invariato.

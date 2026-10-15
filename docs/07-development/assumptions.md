@@ -1,5 +1,13 @@
 # Assunzioni di implementazione V1
 
+## 14 ottobre 2026 — Statuto nel riquadro della delegazione
+
+Autorizzato il collegamento al documento Drive tramite `/statuto/` nella sezione esistente. Rimossa la sola istruzione provvisoria di caricamento, mantenendo descrizione, ancora e menu. Etichetta `Apri` perché il link porta al visualizzatore, non a un download diretto; nessun file copiato, incorporato o modificato. Tutti gli altri contenuti conservati.
+
+## 14 ottobre 2026 — Link breve allo Statuto su Drive
+
+Autorizzato `/statuto` verso il preciso URL Google Drive fornito dall’utente, anche con slash finale. Richiesta circoscritta al redirect: menu Statuto e riquadro nella delegazione non modificati, nessun documento scaricato o caricato nel sito. Disponibilità e permessi del file restano gestiti in Google Drive. Nessuna verifica o revisione del contenuto giuridico del documento.
+
 ## 14 ottobre 2026 — Affinamenti approvati dell’introduzione e dei valori
 
 Autorizzate le restanti modifiche proposte: `luogo` conservato, informalità e accoglienza dalla Carta, nascita nel 2010 come associazione senza scopo di lucro, titolo dell’indice più evidente e sezione Valori raggiungibile dalla sua prima voce. La nuova sezione resta breve e rimanda al documento completo, non ne duplica i principi. Sottotitolo approvato invariato; APS identifica l’associazione attuale, senza attribuirne lo status al 2010. Storia e persone non aggiornate o riscritte.
