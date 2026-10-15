@@ -19,7 +19,11 @@ $events_link_text = $has_more_events
 ?>
 <main id="main-content">
 	<section class="hero" aria-labelledby="hero-title">
-		<img class="hero__media" src="<?php echo esc_url( $hero_url ); ?>" alt="" fetchpriority="high" decoding="async">
+		<?php if ( $hero_image_id ) : ?>
+			<?php echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'hero__media', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 90rem) 90rem, 100vw' ) ); ?>
+		<?php else : ?>
+			<img class="hero__media" src="<?php echo esc_url( $hero_url ); ?>" alt="" fetchpriority="high" decoding="async">
+		<?php endif; ?>
 		<div class="hero__overlay"></div>
 		<div class="container hero__content">
 			<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>

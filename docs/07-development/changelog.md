@@ -1,5 +1,47 @@
 # Changelog
 
+## Manutenzione — Pulizia delle prove hero, 15 ottobre 2026
+
+- Su approvazione dell’utente, tolti dal repository i nove file delle prove v1–v3 (tre PNG, tre WebP, tre JSON), per 5.608.123 byte. Conservati soltanto originale, WebP e provenienza della v4; vecchio asset demo conviviale già versionato non toccato. Prove spostate fuori repository in cartella temporanea recuperabile, non eliminate definitivamente.
+- Skill `clean-code-engineer`: verificato il riferimento unico alla v4 nel seed, aggiornati README/specifiche e provenienza senza riferimenti a file intermedi mancanti. I paragrafi sulle iterazioni restano storici; nessun cambio a codice, versioni, frontend, contenuti o Libreria media, nessun reimport o commit automatico.
+- Verificati nove file nell’archivio temporaneo, JSON valido e percorsi della v4 esistenti; PNG selezionato identico all’output approvato e WebP attuale invariato. Nessun riferimento ai vecchi nomi file rimasto nel repository e `git diff --check` superato. Home e hero HTTP 200; thumbnail 177 e hash degli allegati 85/174/175/176/177 invariati dopo la pulizia. Nessun test visivo ripetuto perché frontend e immagini servite non cambiano.
+
+## v1.6.93 — Calice più leggibile sui desktop, 15 ottobre 2026
+
+- Corretto l’overlay che oscurava il calice più centrale nella nuova scena, segnalato sul portatile. Da 64rem il gradiente resta intenso a sinistra ma scende al 4% dal 58% della fascia; ombra verticale inferiore leggera per descrizione e CTA. Immagine v4, maschera, limite 90rem, punti focali, testi e mobile/tablet invariati.
+- Skill `clean-code-engineer`: sola regola di presentazione nel tema, nessun nuovo asset, script, dipendenza o dato. Versione tema 1.6.93, nessun commit automatico. Lint PHP finale e `git diff --check` superati; home, v4 e CSS finale HTTP 200. Controllo visivo a 1709 px, coerente con lo screenshot del portatile, e a 1024/1440 px: marchio leggibile e testo protetto, senza overflow.
+- Focus da tastiera sulla CTA 3 px, console senza errori e overlay precedente confermato a 768 px. Screenshot finale salvato, viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.92 — Applicata la scena con sommelier e partecipanti, 15 ottobre 2026
+
+- Nuova immagine in evidenza della home con sommelier più definita, due ospiti sulla destra, senza tovagliolo e ciuffo vegetale. PNG 2110 × 745 px e provenienza/prompt nel progetto; WebP da 126.976 byte con derivati nativi. Conservati vino limpido, versioni precedenti e limite 90rem. Punti focali 45% smartphone/42% tablet per privilegiare il calice; ospiti ritagliabili.
+- Skill `clean-code-engineer`: nessuna nuova generazione o dipendenza; helper/renderer riusati, aggiornamento locale mirato con guardie e verifica degli altri contenuti/thumbnail invariati (177 al posto di 176). Seed allineato senza reimport o bump demo, plugin invariato; tema 1.6.92. Testi, CTA, altezza, overlay e maschera conservati; nessun commit automatico.
+- Lint dei tre PHP, sintassi dei due JS, JSON con entrambi i prompt e `git diff --check` superati. Browser a 1887/2560/1440/1024/768/390/320 px: caricamento corretto e nessun overflow; limite 1440 px mantenuto su desktop largo, un H1 e font locali caricati. La successiva segnalazione sul portatile porta alla correzione della sola velatura descritta sopra; verifiche HTTP eseguite sulla versione finale. Versione precedente e altri contenuti verificati invariati.
+
+## v1.6.91 — Vino più naturale e raccordo destro della hero, 15 ottobre 2026
+
+- Risolti i riflessi a cellette nell’originale con una correzione mirata image_gen; attenuata la zona luminosa dietro la sommelier all’estrema destra e ampliata la sfumatura CSS desktop. Conservati limite 90rem, testi, CTA e punti focali. Nuovo PNG v3, prompt esatto/provenienza e WebP da 104.746 byte nel progetto; vecchie versioni conservate.
+- Skill `imagegen`: modifica integrata sul PNG v2, output versionato e conversione nativa WordPress. Skill `clean-code-engineer`: helper e renderer esistenti riusati, cambio del solo thumbnail con guardie e verifica degli altri post/immagini invariati (176 al posto di 175); seed aggiornato senza reimport, plugin/demo invariati, tema 1.6.91. Nessuna nuova dipendenza o commit automatico.
+- Lint dei tre PHP, sintassi dei due JS, JSON di provenienza e `git diff --check` superati; home/immagine/derivato/CSS HTTP 200. Browser a 1887/2560/768/390 px: vino e raccordo controllati visivamente, limite 1440 px conservato sui desktop larghi, nessun overflow o immagine fallita, un H1 e font caricati. Focus CTA 3 px e console senza errori. Screenshot confrontabile con quello dell’utente salvato; viewport ripristinato e scheda di test chiusa.
+
+## v1.6.90 — Hero senza ingrandimento continuo sui desktop larghi, 15 ottobre 2026
+
+- Foto centrata e limitata a 90rem da quella stessa soglia, con bordi sfumati su fondo scuro caldo. A 1920 e 2560 px il box mantiene la stessa larghezza e altezza invece di ingrandire i soggetti. Composizione sotto 90rem, testi, CTA, altezza e overlay conservati.
+- Skill `clean-code-engineer`: sola presentazione nel tema, media query circoscritta e `sizes` allineato alla larghezza massima nel renderer nativo. Nessun JS aggiuntivo, asset rigenerato, scrittura nel database, reimport, dipendenza o modifica al plugin. Tema 1.6.90; nessun commit automatico.
+- Lint dei due PHP, sintassi dei due JS del tema e `git diff --check` superati; home/CSS/hero HTTP 200. Thumbnail 175 e hash del corpo home invariati. Browser a 2560/1920/1440/768/390 px: scala del box identica (1440 × 441 px) a 1920 e 2560, sfumatura visivamente controllata, nessun overflow o immagine fallita; tablet/mobile senza maschera e con punto focale precedente. Un H1, font caricati, focus CTA 3 px e console senza errori. Screenshot desktop largo salvato, viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.89 — Applicata la hero con sommelier, 15 ottobre 2026
+
+- Su approvazione dell’utente, nuova immagine in evidenza della home con calice personalizzato, sommelier in smoking/tastevin e bottiglia. Originale PNG e provenienza/prompt nel progetto; WebP 1942 × 809 px da 105.760 byte, con derivati responsive nativi. Le immagini precedenti restano disponibili. Nessuna nuova generazione in questa applicazione.
+- Skill `clean-code-engineer`: riusati allegato, renderer e helper di import esistenti; cambio locale mirato con guardie e verifica di altri post/thumbnail invariati (allegato 175 al posto di 174). Solo punto focale tablet affinato per non tagliare il viso; testi, overlay, layout e resto della home conservati. Seed aggiornato, plugin/demo invariati, tema 1.6.89; nessun reimport, dipendenza o commit automatico.
+- Lint PHP di seed/template/funzioni, sintassi dei due JS del tema e `git diff --check` superati. Home, immagine completa/derivato responsive e CSS HTTP 200. Browser a 1440/1024/768/390/320 px: nessun overflow o immagine fallita, un H1 e font caricati; focus 3 px sulla CTA via Tab, console senza errori. Ritaglio tablet controllato dopo il cambio; screenshot salvati, viewport ripristinato e scheda temporanea chiusa.
+
+## v1.6.88 — Prova hero con calice FISAR, 15 ottobre 2026
+
+- Applicata alla home l’immagine illustrativa generata del calice personalizzato, mantenendo identità, testi, CTA e altre sezioni. Originale PNG e provenienza in `assets/photography/`, WebP locale 1942 × 809 px da 99.182 byte nel plugin. Vecchia immagine conservata; anteprime successive con sommelier in smoking/tastevin non applicate.
+- Skill `imagegen`: generazione integrata con logo locale di riferimento, originale conservato e derivato WebP tramite editor immagini WordPress. Skill `clean-code-engineer`: renderer immagini nativo con srcset, eager/high priority, alt decorativo e punto focale responsive, senza nuove dipendenze. Aggiornato solo il riferimento asset del seed; nessun reimport, bump demo o commit automatico. Nell’ambiente locale allegato 174 al posto di 85, vecchio allegato e tutti gli altri post/immagini in evidenza verificati invariati.
+- Lint dei tre PHP interessati, sintassi dei due JS del tema e `git diff --check` superati; home, WebP e CSS HTTP 200. Verifica visiva desktop/tablet/mobile (1440/1024/768/390/320 px): immagine caricata, un H1 e nessun overflow orizzontale. Viewport ripristinato e scheda di test chiusa.
+
 ## v1.6.87 — Diventa socio, 15 ottobre 2026
 
 - Rinominata la pagina ID 9 e aggiornato il pulsante dell’header a Diventa socio, coerente con il sottomenu esistente. URL `/unisciti-a-noi/` e tutte le destinazioni conservati.

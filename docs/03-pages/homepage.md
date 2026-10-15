@@ -1,5 +1,51 @@
 # Homepage
 
+## Asset conservati — 15 ottobre 2026
+
+Per il commit restano soltanto PNG originale, JSON di provenienza e WebP della v4 attuale. Le prove v1–v3 (nove file PNG/WebP/JSON) sono rimosse dal repository; le sezioni storiche sotto descrivono le iterazioni, non ulteriori asset da distribuire. La Libreria media locale, compresi gli allegati precedenti, non è modificata. Il riferimento attuale del seed resta la v4.
+
+## Velatura desktop meno invasiva — v1.6.93, 15 ottobre 2026
+
+Il riscontro su portatile rileva che il calice, ora più centrale nell’inquadratura v4, cade sotto la parte troppo scura dell’overlay precedente. Da 64rem la sfumatura orizzontale passa da opacità 94% a sinistra a 80% al 28%, 28% al 43% e 4% dal 58%: il titolo conserva il fondo scuro, mentre marchio del calice e persone rimangono luminosi. Un secondo gradiente verticale leggero, trasparente a metà altezza e al 35% sul bordo inferiore, sostiene descrizione e pulsanti.
+
+Sotto 64rem resta l’overlay precedente. Nessuna modifica all’immagine, alla maschera sui bordi, al limite 90rem, ai punti focali o ai testi. Questa revisione supera l’indicazione di overlay invariato della v1.6.92.
+
+## Scena di degustazione con partecipanti — v1.6.92, 15 ottobre 2026
+
+Applicata su approvazione l’anteprima con sommelier più definita e due partecipanti alla sua destra, che danno un destinatario al gesto di presentazione della bottiglia. Rimossi tovagliolo e ciuffo vegetale vicino al piatto destro. Calice con logo e vino limpido conservati; scena immaginaria, non foto di un evento della delegazione. La nuova inquadratura è più panoramica della v3 e la sommelier precede ora l’area di dissolvenza della maschera desktop.
+
+Asset selezionato `assets/photography/hero-calice-degustazione-fisar-cdj-v4.png`, 2110 × 745 px; WebP qualità 85 da 126.976 byte in `plugin/fisar-cdj-core/assets/demo/hero-calice-degustazione-fisar-cdj-v4.webp`. Prompt delle due modifiche preparatorie e provenienza nel JSON omonimo. Le anteprime non selezionate non sono caricate nel sito; la v3 e gli allegati precedenti restano disponibili nella sola Libreria media locale.
+
+Immagine in evidenza nativa, renderer/srcset e limite 90rem invariati. Punti focali adattati al calice ora più centrale nell’originale: 45% su smartphone, 42% da 38rem, `center 10%` da 64rem. Su tablet/mobile i partecipanti possono uscire dall’inquadratura, come richiesto; priorità a identità, testo e calice. Nessun cambiamento a testi, CTA, altezza, overlay o altre sezioni. Seed allineato, nessun reimport.
+
+## Riflessi del vino e raccordo destro — v1.6.91, 15 ottobre 2026
+
+Il riscontro sullo screenshot rileva riflessi geometrici già presenti nel PNG originale e un raccordo troppo brusco dopo la sommelier. Correzione mirata con image_gen: vino bianco limpido, senza trama a cellette, e sfondo all’estrema destra più scuro, al posto della finestra luminosa. Conservati composizione, calice personalizzato, sommelier in smoking con tastevin e bottiglia. Maschera desktop più graduale: opacità piena fino all’80%, 95% all’88%, 60% al 95% e trasparenza al bordo, invece del solo ultimo 6%.
+
+La prova v3 usava un WebP 1942 × 809 px/qualità 85 da 104.746 byte, oggi sostituito dalla v4. I relativi file di prova non sono più distribuiti nel repository; l’allegato locale rimane nella Libreria media. All’epoca era stata sostituita solo l’immagine in evidenza della home via API, allineando il seed senza reimport. Limite 90rem, punti focali, testi, CTA, layout e altre pagine erano invariati.
+
+## Scala stabile della hero sui desktop larghi — v1.6.90, 15 ottobre 2026
+
+Il riempimento `cover` dell’intera finestra ingrandiva progressivamente calice e sommelier, tagliando la scena in verticale e rendendo più evidente la limitata risoluzione del file. Su richiesta dell’utente, da 90rem la foto occupa un box centrato di larghezza fissa 90rem (1440 px alla scala base); lo spazio aggiuntivo usa un fondo scuro caldo `#160f10`. Una maschera laterale sfuma l’immagine sul fondo senza duplicarla, deformarla o introdurre fasce nette.
+
+Altezza della hero, testo, CTA e overlay conservati. Sotto 90rem il comportamento precedente non cambia, compresi punto focale tablet e ritaglio mobile. `sizes` aggiornato a `(min-width: 90rem) 90rem, 100vw`, coerente con il box e i derivati nativi. Questa revisione prevale sull’immagine a tutta larghezza dei paragrafi precedenti; non aumenta la risoluzione originale, ma ne limita l’ingrandimento. Nessun nuovo asset, JS o aggiornamento WordPress.
+
+## Hero con sommelier sullo sfondo — v1.6.89, 15 ottobre 2026
+
+Su approvazione dell’utente applicata la variante con una sommelier immaginaria in smoking, papillon, tastevin e bottiglia. Una foto fornita dall’utente è usata soltanto come riferimento per forma del tastevin e posizione della catena, non per riprodurre il soggetto. Il calice resta protagonista; testi, CTA, altezza e overlay invariati. Questa decisione supera lo stato di sola anteprima riportato sotto.
+
+La prova v2 usava un WebP 1942 × 809 px/qualità 85 da 105.760 byte, oggi sostituito dalla v4. I relativi file di prova sono stati rimossi dal repository; gli allegati precedenti restano nella Libreria media locale. Il seed selezionava la variante senza modificare la versione demo o reimportare dati esistenti.
+
+Conservato il renderer nativo con srcset. Su smartphone il ritaglio privilegia il calice e la leggibilità, senza promettere la sommelier interamente visibile; tra 38 e 64rem punto focale a destra per evitare il taglio del viso sul bordo. Da 64rem resta `center 10%`. Nessuna immagine separata o nuova richiesta remota.
+
+## Hero con calice personalizzato — v1.6.88, 15 ottobre 2026
+
+Applicata in prova l’immagine illustrativa generata di un calice con logo FISAR e scritta Castelli di Jesi, protagonista a destra, con zona scura libera a sinistra. Identità, payoff, descrizione, pulsanti e composizione della home invariati. Il calice non è un prodotto reale disponibile e la scena non documenta un evento della delegazione.
+
+La prima prova usava un WebP 1942 × 809 px, qualità 85, da 99.182 byte, oggi sostituito dalla v4. PNG, WebP e JSON intermedi non fanno più parte del repository; l’allegato locale resta nella Libreria media. Il seed usava questo asset nei nuovi import; nell’ambiente esistente era cambiata soltanto l’immagine in evidenza della home, conservando la precedente in Libreria media, senza reimport o aggiornamento del testo.
+
+Il tema usa il renderer nativo WordPress con dimensioni e `srcset`, caricamento eager e priorità alta; immagine decorativa con alt vuoto, perché l’identità è già nell’H1. Punto focale a destra sui formati stretti e ritaglio superiore sul desktop, senza cambiare altezza della fascia o overlay. Varianti con una sommelier, anche in smoking e tastevin, sono per ora anteprime non applicate.
+
 ## Come seguirci condiviso — v1.6.71
 
 Il 10 ottobre 2026 confermate home e pagina autonoma `/seguici/`, senza rimandare la voce del menu a un’ancora della homepage. La home non mostra più `Scopri tutti i canali`, perché tutte e quattro le opzioni sono già presenti. Card dei canali e contenuto del pannello newsletter condivisi: medesimi titolo, descrizione e modulo, con gerarchia H3 in home/H2 nella pagina e ID distinti. Testo comune del pannello: `Ricevi un riepilogo delle notizie più importanti della Delegazione.`. Introduzioni specifiche dei contesti conservate, come le ancore, la posizione dopo la Carta e i link del footer. Questa decisione prevale sul rimando alla pagina descritto sotto.

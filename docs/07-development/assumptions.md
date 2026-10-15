@@ -1,5 +1,33 @@
 # Assunzioni di implementazione V1
 
+## 15 ottobre 2026 — Pulizia delle prove prima del commit
+
+Approvata la rimozione dal repository dei nove file PNG/WebP/JSON v1–v3, mantenendo solo i tre asset della v4 attuale. Le prove vengono spostate in una cartella temporanea esterna al repository, recuperabile finché non viene eliminata dal sistema; non è un archivio permanente. Restano intatte le copie nella Libreria media locale, anche per la verifica ancora prevista su schermo grande. Nessuna cancellazione di allegati WordPress, modifica del sito o rimozione del vecchio asset demo conviviale già versionato. Questa decisione supera la conservazione dei file intermedi nel progetto descritta nelle iterazioni storiche.
+
+## 15 ottobre 2026 — Luminosità della scena su portatile
+
+La scena v4 approvata rimane invariata; la scarsa leggibilità del marchio sul calice segnalata sul portatile dipende dalla velatura orizzontale, non richiede un’altra immagine. Alleggerita sul centro/destra solo da 64rem, preservando una protezione locale del testo e una lieve ombra inferiore. Nessun intervento sui colori del monitor o promessa di identica resa tra display diversi.
+
+## 15 ottobre 2026 — Applicata la scena con partecipanti
+
+Approvata l’anteprima generata con due persone rivolte alla sommelier più definita e rimozione di tovagliolo/ciuffo vegetale. Il ritaglio responsive può escludere gli ospiti al bordo, senza trattarli come contenuto essenziale. La nuova immagine più panoramica richiede punti focali adeguati; conservati limite d’ingrandimento, testi e struttura. Tutti i personaggi sono immaginari: non rappresentano soci reali o un evento documentato. Nessuna nuova generazione durante questa applicazione; v3 preservata per ripristino.
+
+## 15 ottobre 2026 — Riflessi artificiali e raccordo della hero
+
+Il feedback successivo alla limitazione di scala chiede di correggere il vino dall’aspetto a cellette e la fine brusca dell’immagine sul nero. Il motivo è presente nell’asset originale: non si tenta di nasconderlo con blur o ulteriore compressione. Generata una correzione circoscritta a vino e sfondo estremo destro, poi applicata conservando la versione precedente. La sommelier rimane una figura immaginaria e non sono introdotte nuove persone o contenuti. Raccordo CSS più graduale; limite 90rem e altri layout mantenuti.
+
+## 15 ottobre 2026 — Limitare l’effetto zoom della hero
+
+Approvata la limitazione dell’immagine sui desktop larghi e il proseguimento del fondo scuro ai lati, per ridurre ingrandimento e sgranatura. Scelta una soglia di 90rem, mantenendo la scala della composizione già controllata a 1440 px. Sotto tale soglia il normale adattamento continua; tablet e mobile non sono ridisegnati. Nessuna generazione di un’immagine più grande, rigenerazione della scena o modifica ai contenuti: il limite non aggiunge dettaglio al file originale.
+
+## 15 ottobre 2026 — Approvata la variante con sommelier
+
+La richiesta esplicita di applicarla autorizza ora la variante finale con sommelier immaginaria, smoking, tastevin corretto sulla foto di riferimento fornita e bottiglia sostenuta con entrambe le mani. Non è il ritratto di una socia reale o la documentazione di un evento. La foto di riferimento non è pubblicata né copiata tra gli asset del sito. Le due immagini precedenti restano recuperabili; nessuna modifica a testi o altre pagine. Su mobile la priorità rimane il calice e non la visibilità integrale della scena panoramica; sul tablet il punto focale è affinato per mantenere visibile il viso.
+
+## 15 ottobre 2026 — Calice illustrativo nella hero
+
+L’utente approva la prova sul sito del calice personalizzato generato, ispirato all’idea di una precedente locandina non più disponibile. Logo locale usato come riferimento; nessuna foto Facebook copiata o volto reale riprodotto. La scena e il calice sono illustrativi, non una testimonianza di eventi o merchandising reale. Conservata la foto precedente nella Libreria media e nel seed come asset non più selezionato. Testi, pagine interne e restante home invariati. La successiva richiesta di una sommelier sullo sfondo, con smoking e tastevin, produce varianti da valutare, non un’ulteriore sostituzione automatica.
+
 ## 15 ottobre 2026 — Diventa socio dalla fonte nazionale
 
 Richiesti rinomina della pagina e contenuti da Vantaggi FISAR, organizzati per argomento. Conservato lo slug esistente perché non richiesto un cambio di URL; etichetta header allineata al nuovo titolo e alla voce del sottomenu già presente. Quote e benefici sono quelli della pagina nazionale al 15 ottobre, non garantiti immutabili o specifici di un’annualità. Adesione/rinnovo rimandano ai contatti della delegazione, senza inventare IBAN, pagamenti, sconti ulteriori o requisiti. Testo dimostrativo precedente sostituito con revisione recuperabile, altre pagine conservate.
