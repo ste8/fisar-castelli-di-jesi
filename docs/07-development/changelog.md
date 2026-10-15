@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.87 — Diventa socio, 15 ottobre 2026
+
+- Rinominata la pagina ID 9 e aggiornato il pulsante dell’header a Diventa socio, coerente con il sottomenu esistente. URL `/unisciti-a-noi/` e tutte le destinazioni conservati.
+- Sostituito il testo demo con contenuti rielaborati dalla pagina Vantaggi FISAR: introduzione, vantaggi in elenco, quote ordinari 70 €/giovani 40 € (meno di 25 anni), modalità di adesione con rimando ai Contatti. Fonte nazionale e locali convenzionati collegati; nessuna quota aggiuntiva, procedura di pagamento o annualità dedotta.
+- Skill `clean-code-engineer`: blocchi nativi e stili associativi esistenti, contenuto del seed in file separato con errore esplicito e link interno portabile. Aggiornamento locale via API/hash/revisione, confronto degli altri post invariati; nessun reimport, nuova dipendenza o CSS/JS. Tema `1.6.87` per header, plugin/demo invariati; documentazione aggiornata, nessun commit automatico.
+- Lint dei tre PHP interessati, sintassi dei due JS esistenti, round-trip dei blocchi e `git diff --check` superati. Pagina, Contatti, altre pagine associative e CSS HTTP 200. Browser a 1440/1024/768/390/320 px: un H1, tre sezioni, importi e requisito under 25 corretti, font locali caricati, nessun overflow, immagine fallita o errore console. Tab→Invio sul rimando Contatti con focus 3 px e destinazione verificata; menu/sottomenu mobile Diventa socio corretti. Screenshot desktop integrale e di dettaglio controllati, viewport ripristinato e scheda temporanea chiusa.
+
 ## Contenuti — Statuto nella pagina della delegazione, 14 ottobre 2026
 
 - Sostituito il testo `Documento da aggiungere` con `Apri lo statuto (PDF) →` verso il link breve `/statuto/`; descrizione, titolo/ancora, menu e resto della pagina invariati. Nessun download diretto, incorporamento o copia del PDF.

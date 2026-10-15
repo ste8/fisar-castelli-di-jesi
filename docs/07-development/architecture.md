@@ -2,6 +2,10 @@
 
 ## Sintesi
 
+### Pagina Diventa socio — tema 1.6.87
+
+Contenuto editoriale nella pagina nativa e copia per i nuovi ambienti in `content/diventa-socio.html`, letta dal seed con errore esplicito e URL Contatti derivato da `home_url`. Il tema standard continua a gestire lo stesso slug e stile associativo; cambia solo l’etichetta dell’header. Nessuna nuova opzione, API di iscrizione, query, script, foglio stile o dipendenza. Fonte nazionale consultata manualmente, non interrogata a runtime; nessun reimport o aggiornamento automatico delle quote.
+
 ### Link breve Statuto — plugin 1.3.30
 
 Mappa generale `fisar_cdj_get_short_link_redirects()` composta dai canali esistenti e dalla destinazione fissa dello Statuto su Google Drive. Getter dei soli canali conservato; handler rinominato per descriverne lo scopo generale, senza duplicare controlli o hook. Stesse guardie GET/HEAD, path esatto, 404, 302/no-store; query del visitatore ignorate. Nessuna pagina vuota, rewrite/flush, upload, incorporamento o modifica editoriale.

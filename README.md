@@ -166,7 +166,9 @@ Dal plugin `1.3.20`, **Numero lezione** è il primo campo, manuale e facoltativo
 
 ### Blog, canali e pagine
 
-Il Blog usa gli **Articoli** WordPress nativi per approfondimenti, racconti degli eventi e comunicazioni associative. Dal 9 ottobre 2026 il nome Blog sostituisce News nei menu, nella pagina elenco e nei testi di navigazione; la home mostra `Dal nostro blog`. Restano l’URL `/news/`, i permalink degli articoli e la CTA `Leggi l’articolo`. Nessun nuovo CPT o categoria. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Unisciti a noi e Come seguirci sono pagine native modificabili con l’editor.
+Il Blog usa gli **Articoli** WordPress nativi per approfondimenti, racconti degli eventi e comunicazioni associative. Dal 9 ottobre 2026 il nome Blog sostituisce News nei menu, nella pagina elenco e nei testi di navigazione; la home mostra `Dal nostro blog`. Restano l’URL `/news/`, i permalink degli articoli e la CTA `Leggi l’articolo`. Nessun nuovo CPT o categoria. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Diventa socio e Come seguirci sono pagine native modificabili con l’editor.
+
+Dal 15 ottobre 2026 Diventa socio sostituisce il titolo Unisciti a noi, conservando `/unisciti-a-noi/`. Vantaggi, quote e modalità di adesione sono separati in blocchi nativi; dati dalla pagina ufficiale FISAR verificata alla stessa data, da ricontrollare ai rinnovi. Copia per il seed in `content/diventa-socio.html`, nessuna sincronizzazione automatica. Pulsante header rinominato, stile associativo conservato; tema `1.6.87`.
 
 Nel dettaglio Blog l’immagine in evidenza è contenuta nella hero, a destra del titolo su desktop e sotto l’introduzione sui formati più piccoli: riquadro fino a 352 px, fotografia intera senza ritaglio. Senza immagine resta la hero testuale; gallerie e foto nel corpo non cambiano.
 

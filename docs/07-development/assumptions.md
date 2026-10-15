@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 15 ottobre 2026 — Diventa socio dalla fonte nazionale
+
+Richiesti rinomina della pagina e contenuti da Vantaggi FISAR, organizzati per argomento. Conservato lo slug esistente perché non richiesto un cambio di URL; etichetta header allineata al nuovo titolo e alla voce del sottomenu già presente. Quote e benefici sono quelli della pagina nazionale al 15 ottobre, non garantiti immutabili o specifici di un’annualità. Adesione/rinnovo rimandano ai contatti della delegazione, senza inventare IBAN, pagamenti, sconti ulteriori o requisiti. Testo dimostrativo precedente sostituito con revisione recuperabile, altre pagine conservate.
+
 ## 14 ottobre 2026 — Statuto nel riquadro della delegazione
 
 Autorizzato il collegamento al documento Drive tramite `/statuto/` nella sezione esistente. Rimossa la sola istruzione provvisoria di caricamento, mantenendo descrizione, ancora e menu. Etichetta `Apri` perché il link porta al visualizzatore, non a un download diretto; nessun file copiato, incorporato o modificato. Tutti gli altri contenuti conservati.
