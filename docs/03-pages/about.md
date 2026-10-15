@@ -1,5 +1,17 @@
 # Chi siamo
 
+## Diventa socio — contenuti del 15 ottobre 2026
+
+Pagina nativa ID 9 rinominata da Unisciti a noi a `Diventa socio`, con estratto `Condividi la passione per il vino e scopri i vantaggi di essere socio FISAR.`. URL `/unisciti-a-noi/` conservato; la voce nel sottomenu era già Diventa socio e anche il pulsante dell’header usa ora questa etichetta.
+
+Contenuti rielaborati dalla [pagina ufficiale Vantaggi FISAR](https://www.fisar.org/live-fisar/diventa-socio/vantaggi/), consultata il 15 ottobre 2026:
+
+- `I vantaggi per i soci`: elenco con Slow Wine a domicilio, quattro numeri di il Sommelier, agevolazioni per eventi nazionali e delle delegazioni, locali convenzionati con link al relativo elenco ufficiale.
+- `Quote associative`: ordinari 70 €, giovani 40 € per chi non ha ancora compiuto 25 anni. Sono le quote riportate dalla fonte alla data di verifica, non un calcolo automatico o un’offerta locale. Da ricontrollare in occasione dei rinnovi; nessuna annualità o scadenza inventata.
+- `Come diventare socio`: rimando alla pagina Contatti locale per adesione e rinnovo, senza introdurre pagamenti, form, condizioni o modalità non fornite.
+
+Blocchi WordPress nativi (titoli, paragrafi, elenchi), etichette e importi in grassetto, separatori e scala Poppins già approvati per le pagine associative. Nessun nuovo CSS. Testo iniziale del seed in `plugin/fisar-cdj-core/content/diventa-socio.html` con link Contatti portabile; nessun reimport o sincronizzazione automatica. Tema `1.6.87` per l’etichetta nell’header; altre pagine e menu invariati.
+
 ## Statuto collegato — 14 ottobre 2026
 
 Nel riquadro Statuto conservati H2/ancora `#statuto` e descrizione; il testo provvisorio sostituito dal link nativo `Apri lo statuto (PDF) →` a `/statuto/`, che rimanda al documento Drive fornito. Non è un download diretto né un PDF ospitato nel sito. Seed portabile con URL derivato da `home_url`; menu e altre sezioni invariati. Questa decisione supera le indicazioni precedenti sul PDF mancante o da caricare nella Libreria media.

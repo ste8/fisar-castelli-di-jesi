@@ -58,7 +58,7 @@
 					?>
 				</nav>
 				<a class="button button--join" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'unisciti-a-noi' ) ); ?>">
-					<span>Unisciti a noi</span>
+					<span>Diventa socio</span>
 					<?php echo fisar_cdj_theme_icon( 'members', 'button__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</a>
 			</div>

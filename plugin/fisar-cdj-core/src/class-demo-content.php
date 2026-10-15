@@ -154,6 +154,16 @@ final class Fisar_CDJ_Demo_Content {
 			$delegation_intro
 		);
 
+		$membership_content = file_get_contents( __DIR__ . '/../content/diventa-socio.html' );
+		if ( false === $membership_content ) {
+			return new WP_Error( 'fisar_membership_content', 'Testo della pagina Diventa socio non disponibile.' );
+		}
+		$membership_content = str_replace(
+			'href="/contatti/"',
+			'href="' . esc_url( home_url( '/contatti/' ) ) . '"',
+			$membership_content
+		);
+
 		$definitions = array(
 			'home' => array(
 				'title'   => 'FISAR Castelli di Jesi',
@@ -197,10 +207,10 @@ final class Fisar_CDJ_Demo_Content {
 				'content' => '<!-- wp:paragraph {"className":"lead"} --><p class="lead">Per informazioni su corsi, eventi o attività della Delegazione, scrivici o contatta il Delegato.</p><!-- /wp:paragraph -->',
 			),
 			'join' => array(
-				'title'   => 'Unisciti a noi',
+				'title'   => 'Diventa socio',
 				'slug'    => 'unisciti-a-noi',
-				'excerpt' => 'Entra a far parte della nostra comunità e condividi la passione.',
-				'content' => '<p class="lead">Non serve essere esperti: bastano curiosità, rispetto e voglia di condividere.</p><h2>Partecipa a un’attività</h2><p>Il modo migliore per conoscerci è prendere parte a un evento aperto a tutti o alla serata di presentazione di un corso.</p><h2>Diventa socio</h2><p>Essere soci FISAR permette di partecipare alla vita associativa e accedere alle opportunità riservate. Contattaci per conoscere modalità e quota annuale aggiornate.</p><h2>Porta il tuo contributo</h2><p>Idee, proposte e una mano nell’organizzazione sono sempre benvenute, non solo da chi fa parte del Consiglio Direttivo.</p>',
+				'excerpt' => 'Condividi la passione per il vino e scopri i vantaggi di essere socio FISAR.',
+				'content' => $membership_content,
 			),
 			'privacy' => array(
 				'title'   => 'Privacy Policy',
