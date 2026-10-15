@@ -2,6 +2,34 @@
 
 ## Sintesi
 
+### Distribuzione degli asset hero — 15 ottobre 2026
+
+Il repository distribuisce soltanto PNG sorgente, JSON con prompt/provenienza e WebP ottimizzato della v4 attuale. I nove file di prova v1–v3 sono rimossi; i riferimenti delle sezioni precedenti sono storici, non dipendenze dell’applicazione. Il seed richiama soltanto la v4; nessuna modifica alla Libreria media locale, agli allegati precedenti o al database. Il vecchio asset demo conviviale già versionato rimane fuori da questa pulizia.
+
+### Velatura della hero sul desktop — tema 1.6.93
+
+Sola regola CSS da 64rem: due gradienti dell’overlay distinguono protezione del testo a sinistra e lieve ombra inferiore, senza oscurare il calice centrale della v4. Nessun filtro di luminosità sull’asset, rigenerazione o scrittura nel database. Overlay smartphone/tablet, maschera, renderer e limite massimo conservati.
+
+### Scena di degustazione nella hero — tema 1.6.92
+
+Nuovo PNG v4 e WebP versionati, riuso di allegato/derivati WordPress e helper del seed. Sostituzione del solo thumbnail con guardie su home, hash del corpo e allegato precedente, confronto degli altri post e immagini in evidenza invariati; nessun reimport o bump demo. Il tema cambia soltanto i punti focali smartphone/tablet per il nuovo rapporto panoramico; renderer, srcset, limite 90rem e maschera restano invariati. La sommelier nella nuova composizione non attraversa la dissolvenza a destra; gli ospiti sono elementi ritagliabili. Nessun JS, modello dati o servizio aggiuntivo.
+
+### Correzione asset e raccordo hero — tema 1.6.91
+
+Nuovo asset v3 registrato con lo stesso helper nativo e scelto come immagine in evidenza, conservando allegato precedente e altri post/thumbnail. Seed allineato senza bump demo o reimport. Originale/provenienza nel progetto, derivato WebP tramite editor immagini WordPress e srcset invariato. Maschera CSS del solo desktop largo con transizione destra più estesa; nessun nuovo script, filtro dell’immagine a runtime, provider o duplicazione come background. Limite di larghezza e regole tablet/mobile conservati.
+
+### Limite di ingrandimento hero — tema 1.6.90
+
+Da 90rem il solo CSS centra il box dell’immagine a larghezza fissa 90rem e sfuma i bordi con `mask-image` sul fondo della hero. Renderer e srcset nativi conservati, attributo `sizes` allineato al limite. Nessuna copia dell’immagine come background, nuova dipendenza o calcolo JavaScript. Media query e punti focali sotto la soglia restano invariati; database, allegati, seed e asset non modificati. La risoluzione del file resta quella precedente: si evita l’ingrandimento progressivo, non si ricostruiscono dettagli.
+
+### Variante hero con sommelier — tema 1.6.89
+
+Sostituzione dell’immagine in evidenza della home tramite API WordPress con guardie su ID, thumbnail precedente e hash del corpo, verificando altri post e immagini in evidenza invariati. Nuovo allegato e asset versionato, vecchi allegati conservati. Il seed puntava al nuovo WebP, senza reimport o incremento demo; il renderer della v1.6.88 restava invariato. Solo un punto focale CSS aggiuntivo da 38rem a 64rem, senza nuovi script o dipendenze. Iterazione storica v2: i relativi file intermedi sono stati rimossi dal repository dopo la scelta della v4.
+
+### Immagine hero della home — tema 1.6.88
+
+Immagine in evidenza nativa come unica fonte, emessa con `wp_get_attachment_image` e `srcset`/dimensioni WordPress, eager/high priority e alt decorativo vuoto. Fallback locale conservato. Originale generato e provenienza in `assets/photography/`; WebP distribuito con il seed del plugin per i nuovi ambienti, senza bump della versione demo né reimport. Punto focale nel CSS del tema; nessuna dipendenza o richiesta a servizi esterni a runtime. Nell’ambiente locale sostituzione mirata del thumbnail, altri contenuti e vecchio allegato preservati.
+
 ### Pagina Diventa socio — tema 1.6.87
 
 Contenuto editoriale nella pagina nativa e copia per i nuovi ambienti in `content/diventa-socio.html`, letta dal seed con errore esplicito e URL Contatti derivato da `home_url`. Il tema standard continua a gestire lo stesso slug e stile associativo; cambia solo l’etichetta dell’header. Nessuna nuova opzione, API di iscrizione, query, script, foglio stile o dipendenza. Fonte nazionale consultata manualmente, non interrogata a runtime; nessun reimport o aggiornamento automatico delle quote.

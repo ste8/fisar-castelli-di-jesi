@@ -606,7 +606,7 @@ blockquote {
 .hero__media {
 	z-index: -2;
 	object-fit: cover;
-	object-position: 35% center;
+	object-position: 45% center;
 }
 
 .hero__overlay {
@@ -3334,6 +3334,10 @@ blockquote {
 		width: min(100% - 3rem, var(--container));
 	}
 
+	.hero__media {
+		object-position: 42% center;
+	}
+
 	.hero__actions {
 		max-width: none;
 		flex-direction: row;
@@ -3501,7 +3505,13 @@ blockquote {
 	}
 
 	.hero__media {
-		object-position: center;
+		object-position: center 10%;
+	}
+
+	.hero__overlay {
+		background:
+			linear-gradient(0deg, rgba(13, 9, 10, .35), transparent 50%),
+			linear-gradient(90deg, rgba(13, 9, 10, .94) 0%, rgba(18, 12, 13, .8) 28%, rgba(18, 12, 13, .28) 43%, rgba(18, 12, 13, .04) 58%);
 	}
 
 	.newsletter-form__fields {
@@ -3648,6 +3658,21 @@ blockquote {
 		width: auto;
 		margin-top: 0;
 		white-space: nowrap;
+	}
+}
+
+/* Mantiene stabile la scala dei soggetti sui desktop larghi. */
+@media (min-width: 90rem) {
+	.hero {
+		background: #160f10;
+	}
+
+	.hero__media {
+		right: auto;
+		left: 50%;
+		width: 90rem;
+		transform: translateX(-50%);
+		mask-image: linear-gradient(90deg, transparent, #000 15%, #000 80%, rgba(0, 0, 0, .95) 88%, rgba(0, 0, 0, .6) 95%, transparent);
 	}
 }
 

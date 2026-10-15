@@ -271,9 +271,9 @@ final class Fisar_CDJ_Demo_Content {
 		}
 
 		$hero = self::create_bundled_attachment(
-			'hero-convivialita-webp',
-			'Un momento conviviale di degustazione',
-			FISAR_CDJ_CORE_DIR . 'assets/demo/hero-convivialita-demo.webp'
+			'hero-calice-degustazione-fisar-cdj-v4',
+			'Calice FISAR Castelli di Jesi e degustazione — immagine illustrativa generata',
+			FISAR_CDJ_CORE_DIR . 'assets/demo/hero-calice-degustazione-fisar-cdj-v4.webp'
 		);
 		if ( is_wp_error( $hero ) ) {
 			return $hero;

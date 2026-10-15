@@ -8,6 +8,8 @@ La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, conte
 
 La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi, Blog e le pagine di Chi siamo usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
 
+La hero della home usa in prova un calice personalizzato FISAR Castelli di Jesi con una sommelier e due partecipanti sullo sfondo: immagine illustrativa generata, non foto di un evento o prodotto disponibile. Il repository conserva solo originale e provenienza della v4 in `assets/photography/`, con il WebP ottimizzato incluso nel plugin per i nuovi ambienti; immagine in evidenza sostituibile dal backend. Sui desktop larghi la foto è limitata a 90rem, centrata e sfumata sul fondo scuro per evitare un ingrandimento continuo. I partecipanti possono essere esclusi dal ritaglio sui formati stretti. Le prove v1–v3 non sono incluse nel repository; le copie già presenti nella Libreria media locale restano disponibili. Dettagli e prompt in `assets/photography/hero-calice-degustazione-fisar-cdj-v4.json`.
+
 ## Requisiti
 
 - Docker Desktop o Docker Engine con Docker Compose v2;
