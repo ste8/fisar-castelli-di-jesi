@@ -2,6 +2,34 @@
 
 ## Sintesi
 
+### Correzione del calice — tema 1.6.98
+
+Solo asset illustrativo v2 e due offset CSS del livello opzionale, senza cambiare il contratto a blocchi della v1.6.97. Nuovo allegato nativo; sostituito il solo riferimento nel blocco `hero-glass` con revisione, guardie e confronti di preservazione. Seed idempotente punta alla v2 per i nuovi ambienti, nessuna migrazione o reimport. V1 e opzione 2 conservate; nessuna dipendenza aggiunta.
+
+### Variante reversibile con calice — tema 1.6.97
+
+La prima Immagine nativa top-level `hero-glass` nella Home fornisce l’allegato decorativo, validato con `wp_attachment_is_image`. Solo con una Galleria `hero-collage` valida il template emette il livello e la classe `hero--glass`. Renderer e srcset/sizes WordPress, alt vuoto e contenitore `aria-hidden`; nessun ID o URL di upload nel tema. Sovrapposizione assoluta CSS, larghezza limitata e nessuna altezza aggiunta; regole dell’opzione 2 intatte. La maschera desktop si applica alla sola galleria nella variante per non tagliare il calice.
+
+Seed aggiunge l’Immagine soltanto se manca, attraverso l’helper allegati esistente; non modifica il blocco Gallery. Nessun meta, script, nuova interfaccia o dipendenza. Modifica locale con revisione e guardie: introduzione, galleria a sei foto, thumbnail e altri contenuti preservati; verifica idempotenza/round-trip. Versioni plugin/demo invariate, nessun reimport. Calice generato come asset illustrativo distinto, originali reali non ritoccati. Rimuovendo solo il blocco si ripristina l’opzione 2; anteprime e procedura documentate in `docs/06-mockups/homepage-hero-options.md`.
+
+### Hero panoramica con sei foto — tema 1.6.96
+
+Stessa Galleria nativa e rendering core della prova precedente. Classe condizionale `hero--collage` sul solo template home: da 64rem il contenitore fotografico è assoluto e la griglia CSS non aumenta l’altezza della fascia; sotto, altezza esplicita del mosaico senza bloccare quella del testo. CSS circoscritto, focale sulle immagini e clipping decorativo, nessun nuovo JavaScript, campo o dipendenza. Fallback singolo invariato.
+
+Seed con sei foto ed esclusione di Varnelli, helper idempotenti conservati senza reimport. Aggiornamento locale della sola galleria con revisione/guardie e confronto del resto della home, altri contenuti e thumbnail invariati. Quattro nuovi WebP; tre sorgenti sono acquisizioni di anteprima del browser, esplicitate nella provenienza, non originali scaricati. Nessuna richiesta a Facebook a runtime o trasformazione generativa.
+
+### Collage fotografico della home — tema 1.6.95
+
+Foto e ordine in un blocco `core/gallery` top-level nella pagina Home, con classe `hero-collage`. Il template seleziona soltanto quel blocco e lo rende con `render_block` e `wp_filter_content_tags`; il CSS del tema gestisce cornici, posizioni, rotazioni statiche e nastro decorativo. Specificità circoscritta per superare le regole strutturali del Gallery core, senza modificarne le altre istanze. Fallback alla singola immagine in evidenza se il blocco non esiste/è vuoto; nessun ID di allegato o URL di upload hardcodificato nel tema.
+
+Il seed importa le due nuove foto attraverso l’helper esistente e costruisce blocchi Gallery/Image nativi; prima verifica l’assenza della galleria per non duplicarla o sovrascriverla. Nessun meta, CPT, script frontend, dipendenza o asset raster composito. Aggiornamento locale della sola Home con guardia, revisione e confronto degli altri contenuti e thumbnail; nessun reimport o bump demo/plugin. Immagini precedenti conservate.
+
+### Hero con foto reale e testo separato — tema 1.6.94
+
+Presentazione a griglia nel solo template home, con testo seguito dalla foto nel DOM: affiancati da 64rem e sovrapposti sotto tale soglia. Rimosse le vecchie regole di background/overlay/maschera e larghezza 90rem: foto in flusso, rapporto originale e larghezza massima del contenitore. Renderer `wp_get_attachment_image` conservato con srcset/sizes e alt editoriale nativo. Nessun JavaScript o dipendenza aggiunti.
+
+JPEG reale con provenienza nel progetto, WebP locale per il seed; helper di import esistente riusato. Aggiornamento locale del solo thumbnail della home da 177 a 178, verificando altri post/thumbnail e file precedente invariati. Nessun reimport, bump demo o sincronizzazione automatica; versione illustrativa v4 conservata per il confronto. Le sezioni successive descrivono le iterazioni precedenti.
+
 ### Distribuzione degli asset hero — 15 ottobre 2026
 
 Il repository distribuisce soltanto PNG sorgente, JSON con prompt/provenienza e WebP ottimizzato della v4 attuale. I nove file di prova v1–v3 sono rimossi; i riferimenti delle sezioni precedenti sono storici, non dipendenze dell’applicazione. Il seed richiama soltanto la v4; nessuna modifica alla Libreria media locale, agli allegati precedenti o al database. Il vecchio asset demo conviviale già versionato rimane fuori da questa pulizia.

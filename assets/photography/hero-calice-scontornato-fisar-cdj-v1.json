@@ -1,0 +1,33 @@
+{
+  "description": "Opzione 3 della hero: calice illustrativo scontornato sopra il collage di sei fotografie reali, conservato come opzione 2.",
+  "created_on": "2026-10-15",
+  "generation": {
+    "tool": "OpenAI image_gen.imagegen (strumento integrato)",
+    "transparent_background": true,
+    "reference": "assets/photography/hero-calice-degustazione-fisar-cdj-v4.png",
+    "generated_output": "/Users/stefanoottaviani/.codex/generated_images/01a0cd5c-0194-7101-9c5f-01298f272ee2/exec-a54c1e21-4289-4db8-a4fc-634002c5590c.png",
+    "prompt": "Use case: background-extraction.\nAsset type: transparent foreground cutout for a website hero.\nInput image 1 is the EDIT TARGET: the approved panoramic photograph with the large branded wine glass in the foreground.\nPrimary request: extract ONLY that single foreground wine glass onto a genuinely transparent background. Keep the entire glass from rim to stem to circular foot. Remove the room, people, table, plates, food, and every other object, including any background people or room shapes seen through the bowl. Preserve the same glass shape and proportions, calm pale white wine and current fill level, warm rim highlights, smooth continuous reflections, and the existing printed/etched logo exactly: gold FISAR grape emblem, white 'FISAR', fine green-white-red rule, and white 'CASTELLI DI JESI'. Exact spelling: C A S T E L L I  D I  J E S I. Do not redesign the mark or add other text.\nTransparent glass should retain subtle believable edges and soft highlights, not a solid opaque silhouette; wine remains softly luminous and clear. No honeycomb, facets, bubbles, warped lettering, dark rectangular remnants, photographic background, artificial haze, drop shadow, pedestal, hands, or extra props. Keep the complete foot visible, with a small transparent margin all around; portrait framing tightly around the glass. Photorealistic, clean refined edges suitable over a dark warm website background. Output the isolated glass only with real alpha transparency, not a checkerboard drawn into the pixels."
+  },
+  "original": {
+    "path": "assets/photography/hero-calice-scontornato-fisar-cdj-v1.png",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "alpha": true
+  },
+  "web": {
+    "path": "plugin/fisar-cdj-core/assets/demo/hero-calice-scontornato-fisar-cdj-v1.webp",
+    "dimensions": [
+      640,
+      960
+    ],
+    "bytes": 92488,
+    "quality": 85,
+    "processor": "Editor immagini WordPress; ridimensionamento e conversione WebP senza ritocco delle fotografie",
+    "alpha": true
+  },
+  "verification": "Canale alpha verificato sul PNG e sul WebP: angoli completamente trasparenti (GD alpha 127); nessuna scacchiera disegnata.",
+  "disclosure": "Calice generato a scopo illustrativo, non fotografia di un prodotto realmente esistente della Delegazione. Le sei fotografie documentarie rimangono inalterate, in una galleria nativa distinta.",
+  "variant": "Blocco immagine top-level hero-glass nella Home; eliminare soltanto questo blocco per ritornare all’opzione 2. Nessun file o foto della variante 2 sostituito."
+}

@@ -271,16 +271,95 @@ final class Fisar_CDJ_Demo_Content {
 		}
 
 		$hero = self::create_bundled_attachment(
-			'hero-calice-degustazione-fisar-cdj-v4',
-			'Calice FISAR Castelli di Jesi e degustazione — immagine illustrativa generata',
-			FISAR_CDJ_CORE_DIR . 'assets/demo/hero-calice-degustazione-fisar-cdj-v4.webp'
+			'hero-degustazione-sala-pietra-fisar-cdj',
+			'Degustazione della Delegazione FISAR Castelli di Jesi nella sala in pietra',
+			FISAR_CDJ_CORE_DIR . 'assets/demo/hero-degustazione-sala-pietra-fisar-cdj.webp'
 		);
 		if ( is_wp_error( $hero ) ) {
 			return $hero;
 		}
 		self::set_featured_asset( $ids['home'], $hero );
+		$gallery = self::create_home_hero_gallery( $ids['home'], $hero );
+		if ( is_wp_error( $gallery ) ) {
+			return $gallery;
+		}
+		$glass = self::create_home_hero_glass( $ids['home'] );
+		if ( is_wp_error( $glass ) ) {
+			return $glass;
+		}
 
 		return $ids;
+	}
+
+	private static function create_home_hero_gallery( int $home_id, int $primary_image_id ): bool|WP_Error {
+		$content = get_post_field( 'post_content', $home_id );
+		foreach ( parse_blocks( $content ) as $block ) {
+			$classes = preg_split( '/\s+/', $block['attrs']['className'] ?? '' );
+			if ( 'core/gallery' === $block['blockName'] && in_array( 'hero-collage', $classes, true ) ) {
+				return true;
+			}
+		}
+
+		$images = array( $primary_image_id );
+		foreach ( array(
+			array( 'hero-sommelier-fisar-cdj', 'Due sommelier FISAR durante una degustazione' ),
+			array( 'hero-sala-botti-fisar-cdj', 'Sala con botti durante una visita della Delegazione' ),
+			array( 'hero-calice-cantina-fisar-cdj', 'Calice e bottiglia sul tavolo di degustazione in cantina' ),
+			array( 'hero-tavolata-fisar-cdj', 'Partecipanti a un incontro della Delegazione attorno al tavolo' ),
+			array( 'hero-calici-reali-fisar-cdj', 'Tre calici di vino durante una degustazione' ),
+		) as $definition ) {
+			$image_id = self::create_bundled_attachment( $definition[0], $definition[1], FISAR_CDJ_CORE_DIR . 'assets/demo/' . $definition[0] . '.webp' );
+			if ( is_wp_error( $image_id ) ) {
+				return $image_id;
+			}
+			$images[] = $image_id;
+		}
+
+		$gallery = array(
+			'blockName' => 'core/gallery',
+			'attrs' => array( 'columns' => 3, 'imageCrop' => false, 'linkTo' => 'none', 'className' => 'hero-collage' ),
+			'innerBlocks' => array(),
+			'innerHTML' => '',
+			'innerContent' => array( '<figure class="wp-block-gallery has-nested-images columns-3 hero-collage">' ),
+		);
+		foreach ( $images as $image_id ) {
+			$html = '<figure class="wp-block-image size-large"><img src="' . esc_url( wp_get_attachment_image_url( $image_id, 'large' ) ) . '" alt="' . esc_attr( get_post_meta( $image_id, '_wp_attachment_image_alt', true ) ) . '" class="wp-image-' . (int) $image_id . '"/></figure>';
+			$gallery['innerBlocks'][] = array(
+				'blockName' => 'core/image',
+				'attrs' => array( 'id' => $image_id, 'sizeSlug' => 'large', 'linkDestination' => 'none' ),
+				'innerBlocks' => array(),
+				'innerHTML' => $html,
+				'innerContent' => array( $html ),
+			);
+			$gallery['innerContent'][] = null;
+		}
+		$gallery['innerContent'][] = '</figure>';
+		$updated = wp_update_post( array( 'ID' => $home_id, 'post_content' => wp_slash( $content . "\n\n" . serialize_block( $gallery ) ) ), true );
+		return is_wp_error( $updated ) ? $updated : true;
+	}
+
+	private static function create_home_hero_glass( int $home_id ): bool|WP_Error {
+		$content = get_post_field( 'post_content', $home_id );
+		foreach ( parse_blocks( $content ) as $block ) {
+			$classes = preg_split( '/\s+/', $block['attrs']['className'] ?? '' );
+			if ( 'core/image' === $block['blockName'] && in_array( 'hero-glass', $classes, true ) ) {
+				return true;
+			}
+		}
+		$image_id = self::create_bundled_attachment( 'hero-calice-scontornato-fisar-cdj-v2', 'Calice illustrativo FISAR Castelli di Jesi — vetro naturale, immagine generata', FISAR_CDJ_CORE_DIR . 'assets/demo/hero-calice-scontornato-fisar-cdj-v2.webp' );
+		if ( is_wp_error( $image_id ) ) {
+			return $image_id;
+		}
+		$html = '<figure class="wp-block-image size-large hero-glass"><img src="' . esc_url( wp_get_attachment_image_url( $image_id, 'large' ) ) . '" alt="Calice illustrativo FISAR Castelli di Jesi" class="wp-image-' . (int) $image_id . '"/></figure>';
+		$block = array(
+			'blockName' => 'core/image',
+			'attrs' => array( 'id' => $image_id, 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'hero-glass' ),
+			'innerBlocks' => array(),
+			'innerHTML' => $html,
+			'innerContent' => array( $html ),
+		);
+		$updated = wp_update_post( array( 'ID' => $home_id, 'post_content' => wp_slash( $content . "\n\n" . serialize_block( $block ) ) ), true );
+		return is_wp_error( $updated ) ? $updated : true;
 	}
 
 	private static function create_courses(): array|WP_Error {

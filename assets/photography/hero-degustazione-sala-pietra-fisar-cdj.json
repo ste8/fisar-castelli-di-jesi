@@ -1,0 +1,16 @@
+{
+  "description": "Foto reale della Delegazione durante una degustazione nella sala in pietra, selezionata per la prova hero opzione 1.",
+  "source_url": "https://www.facebook.com/photo.php?fbid=1515150007280198&set=pb.100063556402022.-2207520000&type=3",
+  "retrieved_on": "2026-10-15",
+  "source_file": "assets/photography/hero-degustazione-sala-pietra-fisar-cdj.jpg",
+  "source_dimensions": [2048, 1536],
+  "source_sha256": "54c12804faf25088f0e43b3074e00180e9b092a01432d4ba1b558e5511879211",
+  "webp_file": "plugin/fisar-cdj-core/assets/demo/hero-degustazione-sala-pietra-fisar-cdj.webp",
+  "webp_dimensions": [1600, 1200],
+  "webp_quality": 80,
+  "webp_bytes": 414464,
+  "webp_sha256": "b8b7301a6ac339be4667b6f61871eb87326af1d8836881e56645a07b97aebbc5",
+  "processing": "Ridimensionamento proporzionale e conversione WebP tramite editor immagini WordPress; nessun ritaglio, filtro, ritocco o generazione AI.",
+  "usage": "Prova locale richiesta dall’utente; verificare i diritti d’uso delle fotografie prima del lancio pubblico.",
+  "previous_option": "assets/photography/hero-calice-degustazione-fisar-cdj-v4.png"
+}

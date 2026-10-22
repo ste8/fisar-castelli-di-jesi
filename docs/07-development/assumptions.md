@@ -1,5 +1,31 @@
 # Assunzioni di implementazione V1
 
+## 15 ottobre 2026 — Colore naturale del calice e posizione
+
+L’utente rifiuta l’effetto dorato e chiede il calice un po’ più a sinistra: intervenire sul solo asset illustrativo e sulla sua posizione, non rigenerare il collage o le persone. Vetro neutro e vino chiaro; l’oro del simbolo FISAR rimane parte del marchio. Spostamento moderato di 24 px desktop e 16 px mobile alla scala normale, preservando testi/volti principali e altezza. Opzione 2 e asset precedenti non eliminati.
+
+## 15 ottobre 2026 — Opzione 2 conservata, variante con calice
+
+Il nuovo riscontro non sostituisce il collage accettato come seconda opzione: autorizza una prova aggiuntiva con il calice Castelli di Jesi già apprezzato. Conservati galleria, ordine e CSS di base; anteprima dell’opzione 2 salvata nel repository. Calice AI scontornato come livello separato, non ricostruzione delle persone o alterazione degli scatti reali. Natura illustrativa e prompt esplicitati nella provenienza; non affermare che esista realmente quel calice personalizzato.
+
+Nessun aumento di altezza, nessun carosello o animazione. Rimuovere soltanto il blocco Immagine `hero-glass` ripristina la seconda opzione. Varnelli resta esclusa; nessuna pulizia di asset/allegati o commit autorizzata da questa richiesta. Prima del lancio rimane da verificare l’utilizzabilità degli scatti reali e preferire gli originali alle anteprime acquisite dal browser.
+
+## 15 ottobre 2026 — Più fotografie, fascia meno alta, Varnelli esclusa
+
+L’utente rifiuta la precedente prova e chiede più immagini, più impatto visivo e meno altezza. La scena della produzione Varnelli è esclusa sia dalla selezione corrente sia dal seed, senza cancellarne il file o l’allegato recuperabile. Scelte sei foto reali coerenti con degustazione, sommelier e cantina; non usate le foto di birre già presenti nella Libreria, né il calice AI. Nuova composizione panoramica, non un ulteriore ampliamento dell’album verticale.
+
+Per superare i trasferimenti Facebook molto lenti, tre foto sono ritagli di anteprima acquisiti dal browser e conservati come tali, con dimensioni/provenienza esplicite. Nessuna ricostruzione o ritocco dei volti. La richiesta di una fascia più compatta comporta ora ritagli responsive e decorativi ai bordi: priorità alla leggibilità dei testi e ai soggetti delle due scene principali, senza promettere ogni dettaglio delle fotografie a ogni larghezza. Varianti e revisioni precedenti conservate, nessun commit automatico.
+
+## 15 ottobre 2026 — Album fotografico nella hero
+
+La richiesta autorizza una prova più artistica sulla home con più momenti reali della Delegazione. Scelte tre foto dalla galleria Facebook già indicata, mantenendo le persone e le scene originali. Calice AI escluso da questa variante per coerenza fotografica, non eliminato. Cornici Polaroid e nastro sono decorazioni CSS, non oggetti aggiunti alle fotografie. Le sovrapposizioni possono coprire piccoli dettagli periferici, non i volti; su mobile il collage è ridotto e resta sotto alle CTA. Nessun contenuto istituzionale o copy della hero cambiato.
+
+Galleria nativa nella Home come unica fonte della selezione, senza editor o pannelli aggiuntivi; tre immagini senza didascalie per evitare testi sovrapposti. Immagine in evidenza e asset precedenti preservati. Foto rese locali e ottimizzate, nessun collegamento remoto runtime; autorizzazione al lancio pubblico da verificare come già indicato nella prova precedente.
+
+## 15 ottobre 2026 — Prova dell’opzione fotografica reale 1
+
+“Proviamo l’opzione 1” autorizza l’applicazione alla home della foto della degustazione nella sala in pietra e della composizione proposta con testo separato a sinistra, non una nuova generazione. Foto recuperata dalla galleria Facebook indicata dall’utente e servita localmente, senza collegamenti a Facebook a runtime. Persone e scena conservate, nessuna identificazione o ricostruzione dei volti. Il layout sui formati piccoli mette la foto sotto il testo per evitare ritagli e sovrapposizioni. La precedente hero generata resta recuperabile nel progetto/Git e nella Libreria media; nessuna pulizia delle alternative o modifica di altre pagine autorizzata da questa prova. Prima del lancio pubblico resta da confermare l’utilizzabilità delle fotografie delle persone sul sito.
+
 ## 15 ottobre 2026 — Pulizia delle prove prima del commit
 
 Approvata la rimozione dal repository dei nove file PNG/WebP/JSON v1–v3, mantenendo solo i tre asset della v4 attuale. Le prove vengono spostate in una cartella temporanea esterna al repository, recuperabile finché non viene eliminata dal sistema; non è un archivio permanente. Restano intatte le copie nella Libreria media locale, anche per la verifica ancora prevista su schermo grande. Nessuna cancellazione di allegati WordPress, modifica del sito o rimozione del vecchio asset demo conviviale già versionato. Questa decisione supera la conservazione dei file intermedi nel progetto descritta nelle iterazioni storiche.

@@ -586,36 +586,239 @@ blockquote {
 
 /* Homepage hero */
 .hero {
-	display: grid;
-	position: relative;
-	min-height: 32rem;
-	isolation: isolate;
-	align-items: center;
-	overflow: hidden;
-	background: var(--color-dark);
+	background: radial-gradient(ellipse at 80% 40%, #382421 0, #160f10 65%);
 }
 
-.hero__media,
-.hero__overlay {
-	position: absolute;
-	inset: 0;
+.hero__inner {
+	display: grid;
+	align-items: center;
+	gap: 2rem;
+	padding-block: 2.5rem;
+}
+
+.hero__photo {
 	width: 100%;
-	height: 100%;
+	max-width: 36rem;
+	justify-self: center;
+	overflow: hidden;
+	border-radius: var(--radius-small);
 }
 
 .hero__media {
-	z-index: -2;
-	object-fit: cover;
-	object-position: 45% center;
+	display: block;
+	width: 100%;
+	height: auto;
 }
 
-.hero__overlay {
+/* Parete fotografica: sei scene, altezza indipendente dalle proporzioni degli scatti. */
+.hero--collage {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	background: #160f10;
+}
+
+.hero--collage .hero__inner {
+	display: block;
+	position: relative;
+	padding-block: 2rem 1.5rem;
+}
+
+.hero--collage .hero__content {
+	position: relative;
+	z-index: 2;
+	max-width: 35rem;
+}
+
+.hero--collage .hero__content h1 {
+	margin-bottom: 1rem;
+}
+
+.hero--collage .hero__payoff::after {
+	margin-block: 1rem;
+}
+
+.hero--collage .hero__actions {
+	margin-top: 1rem;
+}
+
+.hero__album {
+	position: relative;
+	width: 100%;
+	height: 14rem;
+	min-width: 0;
+	margin-top: 2rem;
+}
+
+#main-content .hero__album .hero-collage {
+	display: grid;
+	position: absolute;
+	inset: -.75rem -1.75rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	gap: .5rem;
+	margin: 0;
+	padding: 0;
+	transform: rotate(-5deg);
+}
+
+#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image {
+	display: block;
+	position: relative;
+	flex: none;
+	width: 100%;
+	height: 100%;
+	min-width: 0;
+	min-height: 0;
+	margin: 0;
+	padding: .25rem .25rem .65rem;
+	background: #f7f1e6;
+	box-shadow: 0 .7rem 1.5rem #0008;
+	transform: rotate(2deg);
+}
+
+#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(even) {
+	transform: rotate(-3deg);
+}
+
+#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	min-height: 0;
+	flex: none;
+	object-fit: cover;
+	object-position: center;
+}
+
+#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:first-child img {
+	object-position: center 65%;
+}
+
+#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(2) img {
+	object-position: center 28%;
+}
+
+@media (min-width: 38rem) {
+	.hero__album {
+		height: 18rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.hero--collage .hero__inner {
+		display: flex;
+		align-items: center;
+		min-height: 28rem;
+		padding-block: 2rem;
+	}
+
+	.hero--collage .hero__content {
+		width: 47%;
+	}
+
+	.hero__album {
+		position: absolute;
+		top: 1.5rem;
+		bottom: -1.5rem;
+		left: 49%;
+		width: min(54rem, calc(50vw - 3rem));
+		height: auto;
+		margin: 0;
+		mask-image: linear-gradient(90deg, transparent, #000 7%, #000 94%, transparent);
+	}
+
+	#main-content .hero__album .hero-collage {
+		inset: 0 -1rem;
+		grid-template-columns: 1fr 1.15fr 1fr 1fr;
+		gap: .8rem;
+		transform: rotate(-4deg);
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image {
+		padding: .35rem .35rem .9rem;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:first-child {
+		grid-area: 1 / 1 / 2 / 3;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(2) {
+		grid-area: 1 / 3 / 2 / 5;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(3) {
+		grid-area: 2 / 1 / 3 / 2;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(4) {
+		grid-area: 2 / 2 / 3 / 3;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(5) {
+		grid-area: 2 / 3 / 3 / 4;
+	}
+
+	#main-content .hero__album .wp-block-gallery.hero-collage > figure.wp-block-image:nth-child(6) {
+		grid-area: 2 / 4 / 3 / 5;
+	}
+}
+
+/* Variante con calice: il mosaico dell’opzione 2 resta immutato sotto questo livello. */
+.hero__glass {
+	position: absolute;
+	right: 1rem;
+	bottom: -.5rem;
+	z-index: 1;
+	width: 10rem;
+	height: 15rem;
+	pointer-events: none;
+}
+
+.hero__glass::before {
+	position: absolute;
+	inset: 8% -12% 5%;
 	z-index: -1;
-	background: linear-gradient(90deg, rgba(13, 9, 10, .94) 0%, rgba(18, 12, 13, .76) 46%, rgba(18, 12, 13, .2) 80%);
+	background: radial-gradient(ellipse, rgba(22, 15, 16, .88), rgba(22, 15, 16, .55) 40%, transparent 70%);
+	content: '';
+}
+
+.hero__glass-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	filter: drop-shadow(0 .5rem .8rem #0008);
+}
+
+@media (min-width: 38rem) {
+	.hero__glass {
+		width: 12.67rem;
+		height: 19rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.hero--glass .hero__album {
+		mask-image: none;
+	}
+
+	.hero--glass .hero-collage {
+		mask-image: linear-gradient(90deg, transparent, #000 7%, #000 94%, transparent);
+	}
+
+	.hero__glass {
+		right: auto;
+		bottom: 1rem;
+		left: -8.5rem;
+		width: 18rem;
+		height: 27rem;
+	}
 }
 
 .hero__content {
-	padding-block: 3.5rem;
+	min-width: 0;
 	color: #fff;
 }
 
@@ -3334,10 +3537,6 @@ blockquote {
 		width: min(100% - 3rem, var(--container));
 	}
 
-	.hero__media {
-		object-position: 42% center;
-	}
-
 	.hero__actions {
 		max-width: none;
 		flex-direction: row;
@@ -3496,22 +3695,14 @@ blockquote {
 		height: 4.7rem;
 	}
 
-	.hero {
-		min-height: 24rem;
-	}
-
-	.hero__content {
+	.hero__inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+		gap: 2.5rem;
 		padding-block: 2.75rem;
 	}
 
-	.hero__media {
-		object-position: center 10%;
-	}
-
-	.hero__overlay {
-		background:
-			linear-gradient(0deg, rgba(13, 9, 10, .35), transparent 50%),
-			linear-gradient(90deg, rgba(13, 9, 10, .94) 0%, rgba(18, 12, 13, .8) 28%, rgba(18, 12, 13, .28) 43%, rgba(18, 12, 13, .04) 58%);
+	.hero__photo {
+		max-width: none;
 	}
 
 	.newsletter-form__fields {
@@ -3658,21 +3849,6 @@ blockquote {
 		width: auto;
 		margin-top: 0;
 		white-space: nowrap;
-	}
-}
-
-/* Mantiene stabile la scala dei soggetti sui desktop larghi. */
-@media (min-width: 90rem) {
-	.hero {
-		background: #160f10;
-	}
-
-	.hero__media {
-		right: auto;
-		left: 50%;
-		width: 90rem;
-		transform: translateX(-50%);
-		mask-image: linear-gradient(90deg, transparent, #000 15%, #000 80%, rgba(0, 0, 0, .95) 88%, rgba(0, 0, 0, .6) 95%, transparent);
 	}
 }
 
