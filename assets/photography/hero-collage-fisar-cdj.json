@@ -1,0 +1,32 @@
+{
+  "description": "Tre fotografie reali per il collage CSS della hero; nessuna generazione AI o alterazione delle persone.",
+  "selected_on": "2026-10-15",
+  "layout": "Galleria WordPress nativa, classe hero-collage; cornici, rotazioni e nastro solo CSS.",
+  "photos": [
+    {
+      "description": "Degustazione nella sala in pietra",
+      "source_url": "https://www.facebook.com/photo.php?fbid=1515150007280198&set=pb.100063556402022.-2207520000&type=3",
+      "provenance": "assets/photography/hero-degustazione-sala-pietra-fisar-cdj.json"
+    },
+    {
+      "description": "Due sommelier FISAR durante una degustazione",
+      "source_url": "https://www.facebook.com/photo.php?fbid=1707016394760224&set=pb.100063556402022.-2207520000&type=3",
+      "original": "assets/photography/hero-sommelier-fisar-cdj.jpg",
+      "original_dimensions": [1536, 2048],
+      "webp": "plugin/fisar-cdj-core/assets/demo/hero-sommelier-fisar-cdj.webp",
+      "webp_dimensions": [750, 1000],
+      "webp_bytes": 127186
+    },
+    {
+      "description": "Visita alla Distilleria Varnelli",
+      "source_url": "https://www.facebook.com/photo.php?fbid=1572836371511561&set=pb.100063556402022.-2207520000&type=3",
+      "original": "assets/photography/hero-visita-varnelli-fisar-cdj.jpg",
+      "original_dimensions": [1536, 2048],
+      "webp": "plugin/fisar-cdj-core/assets/demo/hero-visita-varnelli-fisar-cdj.webp",
+      "webp_dimensions": [750, 1000],
+      "webp_bytes": 54630
+    }
+  ],
+  "processing": "Solo ridimensionamento proporzionale e conversione WebP, qualità 80, tramite editor immagini WordPress. Nessun ritaglio o ritocco dei volti.",
+  "usage": "Prova locale richiesta dall’utente; confermare i diritti delle fotografie prima del lancio pubblico."
+}

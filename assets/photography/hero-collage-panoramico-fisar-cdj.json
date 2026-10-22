@@ -1,0 +1,16 @@
+{
+  "description": "Prova panoramica a sei foto reali, senza Varnelli né immagini generate.",
+  "selected_on": "2026-10-15",
+  "layout": "Galleria WordPress hero-collage, sei immagini; composizione e ritagli responsive CSS, nessun fotomontaggio generativo.",
+  "photos": [
+    {"description": "Degustazione nella sala in pietra", "provenance": "assets/photography/hero-degustazione-sala-pietra-fisar-cdj.json"},
+    {"description": "Due sommelier FISAR", "source_url": "https://www.facebook.com/photo.php?fbid=1707016394760224&set=pb.100063556402022.-2207520000&type=3", "original": "assets/photography/hero-sommelier-fisar-cdj.jpg", "webp": "plugin/fisar-cdj-core/assets/demo/hero-sommelier-fisar-cdj.webp"},
+    {"description": "Sala con botti", "source_url": "https://www.facebook.com/photo.php?fbid=1515150067280192&set=pb.100063556402022.-2207520000&type=3", "original": "assets/photography/hero-sala-botti-fisar-cdj.jpg", "original_dimensions": [2048,1536], "webp": "plugin/fisar-cdj-core/assets/demo/hero-sala-botti-fisar-cdj.webp", "webp_dimensions": [900,675], "webp_bytes": 82392},
+    {"description": "Calice e bottiglia in cantina", "source_url": "https://www.facebook.com/photo.php?fbid=1515150030613529&set=pb.100063556402022.-2207520000&type=3", "capture": "assets/photography/hero-calice-cantina-fisar-cdj.png", "capture_dimensions": [498,664], "capture_method": "Screenshot ritagliato del browser, sola fotografia, non file originale", "webp": "plugin/fisar-cdj-core/assets/demo/hero-calice-cantina-fisar-cdj.webp", "webp_dimensions": [498,664], "webp_bytes": 49466},
+    {"description": "Tavolata della Delegazione", "source_url": "https://www.facebook.com/photo.php?fbid=1707016171426913&set=pb.100063556402022.-2207520000&type=3", "capture": "assets/photography/hero-tavolata-fisar-cdj.png", "capture_dimensions": [884,592], "capture_method": "Screenshot ritagliato del browser, sola fotografia, non file originale", "webp": "plugin/fisar-cdj-core/assets/demo/hero-tavolata-fisar-cdj.webp", "webp_dimensions": [884,592], "webp_bytes": 113926},
+    {"description": "Tre calici durante una degustazione", "source_url": "https://www.facebook.com/photo.php?fbid=1591736156288249&set=pb.100063556402022.-2207520000&type=3", "capture": "assets/photography/hero-calici-reali-fisar-cdj.png", "capture_dimensions": [884,604], "capture_method": "Screenshot ritagliato del browser, sola fotografia, non file originale", "webp": "plugin/fisar-cdj-core/assets/demo/hero-calici-reali-fisar-cdj.webp", "webp_dimensions": [884,604], "webp_bytes": 52808}
+  ],
+  "processing": "Conversione WebP qualità 80 con editor WordPress; nessun ingrandimento o ritocco generativo. Ritagli di presentazione nel CSS.",
+  "excluded": ["Visita alla Distilleria Varnelli", "Calice illustrativo generato AI"],
+  "usage": "Prova locale richiesta; verificare i diritti prima del lancio e preferire i file originali per eventuali usi a risoluzione maggiore."
+}

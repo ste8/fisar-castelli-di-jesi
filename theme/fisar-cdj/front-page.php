@@ -5,6 +5,17 @@ $front_id  = (int) get_option( 'page_on_front' );
 $hero_id   = $front_id ?: get_the_ID();
 $hero_image_id = get_post_thumbnail_id( $hero_id );
 $hero_url  = $hero_image_id ? wp_get_attachment_url( $hero_image_id ) : get_template_directory_uri() . '/assets/images/hero-fallback.svg';
+$hero_gallery = null;
+$hero_glass_id = 0;
+foreach ( parse_blocks( get_post_field( 'post_content', $hero_id ) ) as $block ) {
+	$block_classes = preg_split( '/\s+/', $block['attrs']['className'] ?? '' );
+	if ( ! $hero_gallery && 'core/gallery' === $block['blockName'] && in_array( 'hero-collage', $block_classes, true ) && ! empty( $block['innerBlocks'] ) ) {
+		$hero_gallery = $block;
+	}
+	if ( ! $hero_glass_id && 'core/image' === $block['blockName'] && in_array( 'hero-glass', $block_classes, true ) && wp_attachment_is_image( (int) ( $block['attrs']['id'] ?? 0 ) ) ) {
+		$hero_glass_id = (int) $block['attrs']['id'];
+	}
+}
 $events_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) : home_url( '/eventi/' );
 $courses_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) : home_url( '/corsi/' );
 $news_page = (int) get_option( 'page_for_posts' );
@@ -18,21 +29,35 @@ $events_link_text = $has_more_events
 	: 'Tutti gli eventi';
 ?>
 <main id="main-content">
-	<section class="hero" aria-labelledby="hero-title">
-		<?php if ( $hero_image_id ) : ?>
-			<?php echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'hero__media', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 90rem) 90rem, 100vw' ) ); ?>
-		<?php else : ?>
-			<img class="hero__media" src="<?php echo esc_url( $hero_url ); ?>" alt="" fetchpriority="high" decoding="async">
-		<?php endif; ?>
-		<div class="hero__overlay"></div>
-		<div class="container hero__content">
-			<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
-			<p class="hero__payoff"><span>Il vino come punto di partenza,</span> <span>le persone al centro.</span></p>
-			<p class="hero__description">Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.</p>
-			<div class="hero__actions">
-				<a class="button" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi</a>
-				<a class="button button--outline-light" href="<?php echo esc_url( $events_url ); ?>">Scopri gli eventi</a>
+	<section class="hero<?php echo $hero_gallery ? ' hero--collage' : ''; ?><?php echo $hero_gallery && $hero_glass_id ? ' hero--glass' : ''; ?>" aria-labelledby="hero-title">
+		<div class="container hero__inner">
+			<div class="hero__content">
+				<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
+				<p class="hero__payoff"><span>Il vino come punto di partenza,</span> <span>le persone al centro.</span></p>
+				<p class="hero__description">Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.</p>
+				<div class="hero__actions">
+					<a class="button" href="<?php echo esc_url( $courses_url ); ?>">Scopri i corsi</a>
+					<a class="button button--outline-light" href="<?php echo esc_url( $events_url ); ?>">Scopri gli eventi</a>
+				</div>
 			</div>
+			<?php if ( $hero_gallery ) : ?>
+				<div class="hero__album">
+					<?php echo wp_filter_content_tags( render_block( $hero_gallery ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Native editor blocks, same rendering as post content. ?>
+					<?php if ( $hero_glass_id ) : ?>
+						<div class="hero__glass" aria-hidden="true">
+							<?php echo wp_get_attachment_image( $hero_glass_id, 'large', false, array( 'class' => 'hero__glass-image', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 64rem) 18rem, (min-width: 38rem) 12.67rem, 10rem' ) ); ?>
+						</div>
+					<?php endif; ?>
+				</div>
+			<?php else : ?>
+			<div class="hero__photo">
+				<?php if ( $hero_image_id ) : ?>
+					<?php echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'hero__media', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 81rem) 38.5rem, (min-width: 64rem) 48vw, (min-width: 38rem) 36rem, calc(100vw - 2rem)' ) ); ?>
+				<?php else : ?>
+					<img class="hero__media" src="<?php echo esc_url( $hero_url ); ?>" alt="" fetchpriority="high" decoding="async">
+				<?php endif; ?>
+			</div>
+			<?php endif; ?>
 		</div>
 	</section>
 

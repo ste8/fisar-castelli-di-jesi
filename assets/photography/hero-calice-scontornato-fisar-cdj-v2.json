@@ -1,0 +1,32 @@
+{
+  "description": "Correzione dell’opzione 3: calice di vetro naturale con riflessi neutri, senza dominante dorata, spostato leggermente a sinistra via CSS.",
+  "created_on": "2026-10-15",
+  "generation": {
+    "tool": "OpenAI image_gen.imagegen (integrato)",
+    "reference": "assets/photography/hero-calice-scontornato-fisar-cdj-v1.png",
+    "generated_output": "/Users/stefanoottaviani/.codex/generated_images/01a0cd5c-0194-7101-9c5f-01298f272ee2/exec-dfe514f5-b70e-4ae7-a16e-660bfa5df1b8.png",
+    "transparent_background": true,
+    "prompt": "Use case: precise-object-edit.\nAsset type: transparent foreground wine-glass cutout for a website hero.\nInput image 1 is the EDIT TARGET. Change ONLY the material lighting and color cast of this glass, keeping its exact silhouette, proportions, full rim, stem, complete circular foot, framing and label placement.\nPrimary request: this currently looks like a golden trophy. Make it unmistakably ordinary CLEAR COLORLESS transparent wine-glass crystal, with restrained neutral white/silver-gray reflections. Remove the amber/gold cast from the glass rim, bowl, stem and foot. NO gold metal, brass, gilding, yellow edge lights, glowing outline, orange halos or warm aura. Slim neutral highlights, realistic refraction and genuinely clear glass, not opaque gray metal. Keep a modest amount of pale straw-yellow white wine at the same fill level, smooth and still; the liquid should not look orange, syrupy or luminous.\nPreserve the printed logo exactly: the FISAR grape emblem stays muted FISAR gold (only the emblem, NOT the glass), the white triangle and white 'FISAR', the fine green-white-red rule, and white 'CASTELLI DI JESI'. Exact text unchanged, no redesign, no additional letters or words. Natural photographic lighting, not jewelry/product glamour lighting.\nPreserve actual alpha transparency: isolated glass only on a genuinely transparent background, including outside rim/stem/foot and translucent clear areas in the bowl. Remove any background haze, reflected room silhouettes or golden backdrop. No table, people, props, pedestal, cast shadow, drawn checkerboard or background. Entire glass visible with the same small transparent margins, portrait composition. Photorealistic everyday clear glass, not a golden object."
+  },
+  "original": {
+    "path": "assets/photography/hero-calice-scontornato-fisar-cdj-v2.png",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "alpha": true
+  },
+  "web": {
+    "path": "plugin/fisar-cdj-core/assets/demo/hero-calice-scontornato-fisar-cdj-v2.webp",
+    "dimensions": [
+      640,
+      960
+    ],
+    "bytes": 67560,
+    "quality": 85,
+    "processor": "Editor immagini WordPress: ridimensionamento e WebP, alpha preservato"
+  },
+  "verification": "PNG e WebP: angolo completamente trasparente (GD alpha 127). Verifica visiva vetro neutro, vino giallo paglierino e marchio invariato.",
+  "disclosure": "Illustrazione generata, non fotografia di un calice realmente esistente. Fotografie reali della galleria inalterate. Variante precedente e opzione 2 conservate.",
+  "placement": "CSS: sinistra -8.5rem invece di -7rem da 64rem; destra 1rem invece di 0 sui formati piccoli; nessuna altezza aggiunta."
+}

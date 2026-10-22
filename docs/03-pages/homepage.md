@@ -1,5 +1,43 @@
 # Homepage
 
+## Calice con vetro naturale — v1.6.98, 15 ottobre 2026
+
+Corretto il calice dell’opzione 3 su riscontro dell’utente: vetro incolore con riflessi neutri al posto della dominante dorata, vino giallo paglierino chiaro; marchio e forma conservati. Asset illustrativo v2, PNG con alpha e WebP 640 × 960/qualità 85 da 67.560 byte, con prompt/provenienza nel JSON dedicato. Nessun ritocco alle foto reali.
+
+Spostamento a sinistra del solo livello: 1.5rem da 64rem (left da −7rem a −8.5rem), 1rem sui formati più piccoli (right da 0 a 1rem). Dimensioni e altezza della hero invariate; testo e volti principali liberi. Opzione 2 e prima prova del calice conservate. Seed allineato alla v2, aggiornamento locale del solo blocco immagine senza reimport.
+
+## Variante con calice, opzione 3 — v1.6.97, 15 ottobre 2026
+
+L’utente conserva il collage panoramico come **opzione 2** e richiede una variante con il calice Castelli di Jesi. Galleria a sei immagini, ordine, cornici e layout di base invariati; il calice è un livello decorativo indipendente, derivato con imagegen dalla precedente scena illustrativa approvata. PNG con trasparenza e WebP 640 × 960, 92.488 byte; vino liscio, marchio leggibile, nessuno sfondo, persona o oggetto aggiunto. Non è una fotografia documentaria né un prodotto reale. Le sei fotografie restano inalterate; Varnelli esclusa.
+
+Blocco Immagine nativo top-level con classe `hero-glass`, separato dalla Galleria `hero-collage`. Il template lo mostra soltanto in presenza della galleria: calice in primo piano sul suo margine sinistro da 64rem, nella colonna destra della fascia fotografica sotto tale soglia. Posizionamento assoluto: nessuna altezza aggiunta; desktop sempre circa 448 px. Larghezza massima del calice 18rem, niente zoom progressivo sui monitor grandi. Sfumatura locale dietro il calice e lieve ombra CSS; testo, CTA e volti principali liberi. Elemento decorativo escluso dall’albero accessibile, immagini documentarie con alt conservati; nessuna animazione.
+
+Rimuovendo soltanto il blocco `hero-glass` si torna all’opzione 2, senza cambiare galleria o CSS di base. Anteprime stabili e istruzioni in `docs/06-mockups/homepage-hero-options.md`; prompt e provenienza in `assets/photography/hero-calice-scontornato-fisar-cdj-v1.json`. Questa prova supera solo l’esclusione del calice AI dalla variante precedente, non quella di Varnelli.
+
+## Parete fotografica panoramica — v1.6.96, 15 ottobre 2026
+
+Il feedback rifiuta la composizione a tre foto perché poco incisiva e troppo alta, escludendo espressamente la scena Varnelli. Nuova selezione di sei fotografie reali: sala di degustazione, due sommelier, sala con botti, calice/bottiglia in cantina, tavolata e tre calici. Nessun calice generato o foto di birre della Libreria media utilizzato. Varnelli non è più nel seed né nella galleria corrente; il vecchio allegato rimane conservato, non pubblicato nella hero.
+
+Da 64rem la parete occupa il lato destro in posizione assoluta, senza determinare l’altezza della fascia. Griglia inclinata con due foto grandi sopra e quattro dettagli sotto, cornici sottili e ombre; niente nastro o ampio margine Polaroid inferiore. Il titolo resta separato e leggibile a sinistra; maschera laterale e clipping sui bordi della fascia raccordano le foto allo sfondo. Inquadrature `cover`, focale dedicato per degustazione/sommelier, dettagli periferici ritagliabili. Altezza minima 28rem, 448 px a 1440 px nella verifica, contro circa 669 px della prova precedente; contenuto libero di espandersi allo zoom, non `max-height` bloccante.
+
+Sotto 64rem mosaico a sei riquadri su tre colonne/due righe, sotto alle CTA: fascia alta 14rem su smartphone e 18rem su tablet, non più una composizione quasi quadrata. Font, copy, link e altre sezioni invariati. La Galleria nativa `hero-collage` resta la fonte modificabile, ora prevista per sei immagini senza link/didascalie; fallback singolo conservato. Seed allineato senza reimport.
+
+Originale JPEG della sala con botti e tre acquisizioni fotografiche dal browser (884 × 604, 498 × 664, 884 × 592) conservati con provenienza esplicita per la prova; non dichiarati originali ad alta risoluzione. WebP ottimizzati locali, nessuna generazione o ritocco dei volti. Questa revisione supera le indicazioni a tre foto e sui ritagli delle prove precedenti.
+
+## Collage di momenti reali — v1.6.95, 15 ottobre 2026
+
+Su richiesta, la fotografia singola lascia spazio a tre scatti reali, con cornici avorio tipo Polaroid, inclinazioni leggere e ombre. Degustazione nella sala in pietra più grande, due sommelier e visita alla Distilleria Varnelli più piccoli. Sovrapposizioni limitate ai margini e alle zone periferiche; nessun volto ritoccato, scena ricostruita, filtro o calice generato mescolato alle foto documentarie. Piccolo nastro decorativo CSS e fondo radiale caldo; testo e CTA invariati.
+
+La sorgente è un blocco Galleria nativo in Home, classe aggiuntiva `hero-collage`, con tre immagini senza link/didascalie; selezione e ordine modificabili dall’editor. Il tema presenta la prima galleria top-level con quella classe nella hero, senza mostrare il restante corpo Home. La composizione corrente è progettata per tre immagini. Se il blocco viene rimosso o è vuoto, resta il fallback dell’immagine in evidenza della v1.6.94. Rendering e immagini responsive nativi; nessun carosello, animazione o richiesta a Facebook a runtime.
+
+Collage a destra da 64rem, sotto il testo sui formati più piccoli; stessa composizione compatta ma cornici e rotazioni più lievi sotto 38rem. Originali delle due foto aggiunte conservati con provenienza; WebP 750 × 1000, qualità 80, da 127.186 e 54.630 byte. Seed aggiunge la galleria solo se manca, riusando gli allegati e conservando il testo introduttivo; nessun reimport. Precedenti foto/hero e revisioni preservate per confronto. Questa prova supera la composizione con singola foto descritta sotto.
+
+## Prova con fotografia reale — v1.6.94, 15 ottobre 2026
+
+Applicata su richiesta l’opzione 1: degustazione nella sala in pietra dalla galleria Facebook della Delegazione (foto `1515150007280198`). Identità, payoff, descrizione e CTA invariati. Da 64rem, due colonne nel contenitore massimo di 76rem: testo a sinistra, fotografia intera a destra; sotto 64rem foto dopo testo e CTA, larga al massimo 36rem. L’immagine conserva il rapporto 4:3, senza overlay, maschera, ingrandimento progressivo o taglio delle persone. Il nuovo layout supera le regole fotografiche/overlay delle iterazioni sotto; il mockup rimane riferimento di tono, non vincolo su questa composizione approvata in prova.
+
+JPEG Facebook 2048 × 1536 conservato con provenienza in `assets/photography/`; WebP 1600 × 1200, qualità 80, 414.464 byte nel plugin. Nessun intervento generativo, ritocco dei volti o alterazione della scena. Immagine in evidenza e srcset nativi, caricamento prioritario, `sizes` adeguato al riquadro e testo alternativo dalla Libreria media. Seed allineato per i nuovi ambienti, senza reimport. Variante generata v4 e allegato precedente conservati per confronto; resto della homepage invariato.
+
 ## Asset conservati — 15 ottobre 2026
 
 Per il commit restano soltanto PNG originale, JSON di provenienza e WebP della v4 attuale. Le prove v1–v3 (nove file PNG/WebP/JSON) sono rimosse dal repository; le sezioni storiche sotto descrivono le iterazioni, non ulteriori asset da distribuire. La Libreria media locale, compresi gli allegati precedenti, non è modificata. Il riferimento attuale del seed resta la v4.
