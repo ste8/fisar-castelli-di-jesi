@@ -1,5 +1,39 @@
 # Changelog
 
+## Apertura anteprima Aruba — 22 ottobre 2026
+
+- Su conferma esplicita dell’utente, sostituito il blocco temporaneo del solo `/anteprima/.htaccess` con le regole predisposte: frontend senza password, noindex via header/meta, divieto di listing e accesso a config/archivi/dump/log. Homepage anteprima e sito pubblico HTTP 200; nessuna modifica al sito pubblico, email, PHP globale o DNS.
+- Collaudati archivi, pagine istituzionali e dettagli campione (HTTP 200), asset locali e alias 302; admin anonimo reindirizzato al login dell’anteprima, config e ZIP protetti con 403. Homepage a 1440/768/390/320 px senza overflow, Poppins e collage caricati, un H1 e nessun link/src localhost nei campioni. Lightbox Blog aperta/chiusa con foto visibile; console senza errori rilevati, viewport ripristinato e screenshot salvati. Nessun modulo inviato, login autenticato/editor remoto da verificare con l’utente.
+- Skill `clean-code-engineer`: sola configurazione di accesso e documentazione, nessun cambio a tema/plugin o contenuti. Da ora Aruba è la fonte editoriale; vietato sovrascriverne il database con futuri deploy locali. ZIP temporaneo ancora protetto, eliminazione da confermare separatamente; copia privata locale conservata. Nessun commit automatico.
+
+## Trasferimento anteprima protetta — 22 ottobre 2026
+
+- Backup pubblico TGZ individuato nei Download e verificato (`gzip -t`, indice completo: 8.906 elementi, config/core/uploads presenti, nessun traversal); copia privata da 1.185.963.396 byte con hash corrispondente, permessi 600 anche sull’originale. Test di ripristino completo non eseguito.
+- Skill `software-architect`/`clean-code-engineer`: copia locale DB isolata, sostituzione URL nativa serializzazione-safe, noindex e pulizia di sessioni/cache/lock/cron solo sulla copia. Conteggio 170 post/un utente e password conservati; fonte locale ancora `http://localhost:8090`. Configurazione staging privata generata dai soli valori DB letterali del backup, senza eseguirlo o esporre segreti; salt nuovi e controlli PHP superati. Hash e percorsi documentati nel runbook, niente dipendenze o modifiche a tema/plugin.
+- Creata soltanto `/anteprima/` sullo spazio web, con blocco di installazione HTTP 403; sito pubblico controllato HTTP 200. Dopo il riaccesso MySQL dell’utente, secondo database ricontrollato vuoto e import riuscito: 159 query. SQL mai caricato sul web. ZIP codice/media trasferito ed estratto, configurazione propria caricata nella sola anteprima; protezione temporanea preservata.
+- Anteprima **non ancora aperta o collaudata**: richiesta conferma per il frontend senza password/noindex e la rimozione del solo ZIP temporaneo, la cui copia locale resta conservata. Screenshot di preparazione salvato; dati/editoria non ancora trasferiti operativamente ad Aruba. Sito pubblico, email, DNS e PHP globale invariati; nessun commit automatico.
+
+## Preparazione file anteprima e stato backup — 22 ottobre 2026
+
+- L’utente conferma il backup completo dopo il collegamento FTPS; percorso e integrità non ancora verificati, nessun nuovo archivio nei download recenti del Mac controllati. Distinto il completamento dichiarato dalla verifica tecnica; installazione remota non avviata.
+- Skill `software-architect`/`clean-code-engineer`: preparazione locale senza toccare database o sito pubblico. ZIP dei soli file WordPress 7.1.3, tema/plugin custom, lingue e uploads generato con allowlist; esclusi configurazioni Docker e reali, `.htaccess`, `.env`, log, SQL e archivi. 3.772 file, 63.544.874 byte, integrità ZIP e indice superati; SHA-256 e limiti documentati in `deployment-aruba.md`, permessi 600 e cartella ignorata da Git. Non contiene l’export DB o la configurazione remota, non è ancora pronto da installare.
+- Script temporaneo PHP verificato, documentazione allineata; nessuna dipendenza, modifica al tema/plugin o commit automatico. Il sito pubblico e l’assenza dell’anteprima restano invariati.
+
+## Manutenzione — WordPress locale 7.1.3, 22 ottobre 2026
+
+- Dopo il cambio password eseguito dall’utente, acquisiti backup SQL e archivio completo dei file locali (core, configurazione, uploads, tema/plugin; escluso il log), con permessi privati nella cartella ignorata `.local-deployment/backups/2026-10-22/wp-before-7.1.3/`. Baseline di impronte per contenuti, meta, tassonomie, utenti, opzioni principali e file.
+- Aggiornamento nativo WP-CLI da 7.1 a **7.1.3 it_IT**; schema DB già all’ultima versione. Checksum ufficiali superati, con la sola segnalazione attesa del file extra `wp-config-docker.php` dell’immagine ufficiale. Allineato Compose a `wordpress:7.1.3-php8.3-apache`, ricreato soltanto il servizio WordPress; database e volumi conservati, servizi healthy.
+- Confronto esatto pre/post superato prima degli smoke test editor: contenuti, meta, tassonomie, utenti, opzioni principali, immagini e file custom invariati. Nuova password conservata e password demo non valida; nessun seed, reset o aggiornamento del codice tema/plugin. Gli editor di Corsi, Eventi e Articoli si aprono senza errori JavaScript rilevati; nessun contenuto salvato durante le verifiche (possibili soli lock di modifica WordPress).
+- Lint di tutti i PHP custom e dei sei JS superato; undici URL frontend, inclusi archivi e dettagli, HTTP 200. Homepage controllata a 320/390/768/1440 px: un H1, Poppins, immagini caricate e nessun overflow. Dettagli Evento/Corso controllati a desktop, console senza errori rilevati e log Apache senza errori PHP recenti. Conferma visiva della versione in bacheca salvata; viewport ripristinato.
+- Skill `clean-code-engineer`: intervento limitato a core e infrastruttura locale, documentazione allineata senza dipendenze né bump del tema/plugin. Il precedente archivio di migrazione è ora **obsoleto**, da rigenerare escludendo anche `wp-config-docker.php`; corretta la precedente descrizione troppo ampia dell’esclusione dei file Docker. Aruba, email e DNS non toccati, nessun commit automatico. Il backup dei file pubblici rimane necessario prima del trasferimento.
+
+## Preparazione pubblicazione Aruba — 22 ottobre 2026
+
+- Autorizzati backup del sito pubblico e futura installazione separata in `/anteprima/`, senza password frontend ma con noindex, usando un database vuoto. Ricognizione in sola lettura: Linux, MySQL 8.0, PHP 8.5; configurazione e database pubblico identificati, secondo database senza tabelle, copie file presenti ma nessun backup DB disponibile nel pannello.
+- Acquisito backup SQL pubblico in cartella locale protetta e ignorata da Git: verificati 30 CREATE TABLE, 44 INSERT, COMMIT finale e SHA-256; non ancora provato il ripristino. Tentativo di download file completo bloccato durante la preparazione dell’archivio nel File Manager: copia file non confermata, non dichiarata riuscita.
+- Preparato solo localmente un archivio preliminare di 3.763 file/63.432.744 byte, privo di configurazione Docker, credenziali, log e dump. Core, contenuti e password locale invariati; patch core segnalata e credenziali demo ancora da risolvere prima del rilascio.
+- Skill `software-architect` e `clean-code-engineer`: percorso reversibile documentato in `deployment-aruba.md`, separazione dati/codice, nessun plugin di migrazione aggiunto e nessun import del seed. Aggiunta l’esclusione `.local-deployment/` da Git; nessuna modifica a tema/plugin, sito pubblico, email o DNS e nessun commit automatico. Anteprima **non ancora creata né pubblicata**; servono backup file affidabile e cambio password eseguito dall’utente.
+
 ## v1.6.98 — Calice naturale e leggermente più a sinistra, 15 ottobre 2026
 
 - Corretto il solo calice illustrativo con `imagegen` integrato: vetro incolore e riflessi neutri, vino giallo paglierino, niente dominante dorata. Forma e marchio conservati; fotografie documentarie inalterate. PNG v2 con alpha e WebP 640 × 960/qualità 85 da 67.560 byte; prompt e provenienza nel JSON dedicato.

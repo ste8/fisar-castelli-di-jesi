@@ -220,7 +220,7 @@ Contatti WhatsApp Eventi v1.6.40/plugin v1.3.8: il plugin registra e sanitizza l
 
 ## Dipendenze
 
-- WordPress 7.1.0 con PHP 8.3 (immagine ufficiale Apache).
+- WordPress 7.1.3 con PHP 8.3 (immagine ufficiale Apache; core locale e tag Docker allineati il 22 ottobre 2026).
 - MariaDB 11.4 LTS.
 - WP-CLI 2.12 per il bootstrap.
 - Nessun framework frontend, page builder, libreria JavaScript, font remoto o plugin di campi esterno.
