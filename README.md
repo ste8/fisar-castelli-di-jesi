@@ -45,6 +45,8 @@ Lo stato atteso è:
 - utente demo: `admin`
 - password demo: `admin_local_change_me`
 
+Queste credenziali valgono per una nuova installazione demo. Nell’ambiente locale corrente la password è già stata sostituita dall’utente: quella demo non funziona più. Core locale e immagine Docker sono allineati a WordPress **7.1.3** dal 22 ottobre 2026; tema, plugin e contenuti sono preservati.
+
 Modifica credenziali, porta e URL in `docker/.env` prima del primo avvio. Il file è ignorato da Git. Se cambi la porta, aggiorna sia `WP_PORT` sia `WORDPRESS_SITE_URL`.
 
 ## Comandi quotidiani
@@ -96,6 +98,8 @@ assets/                 brand guideline, logo originali e mockup approvato
 Il tema non ricalcola gli stati temporali né le relazioni: usa le funzioni pubbliche del plugin. La descrizione completa è in [`docs/07-development/architecture.md`](docs/07-development/architecture.md); le assunzioni sono in [`docs/07-development/assumptions.md`](docs/07-development/assumptions.md).
 
 ## Gestione contenuti
+
+L’[anteprima Aruba](https://www.fisarcastellidijesi.it/anteprima/) è attiva dal 22 ottobre 2026, senza password frontend e con noindex; admin con credenziali già impostate dall’utente. **Aruba è ora la fonte editoriale principale**: aggiornare lì i contenuti e non sovrascriverne il database dal locale. Backup pubblico SQL e file verificati; core 7.1.3 e frontend collaudati, vecchio sito invariato. Login/editor remoto da verificare con l’utente; ZIP temporaneo protetto, pulizia ancora da confermare. Runbook e limiti in [`docs/07-development/deployment-aruba.md`](docs/07-development/deployment-aruba.md). Backup, credenziali e artefatti locali restano nella cartella privata `.local-deployment/`, esclusa da Git; mai pubblicarli sullo spazio web.
 
 ### Eventi
 

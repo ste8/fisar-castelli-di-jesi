@@ -1,5 +1,13 @@
 # Assunzioni di implementazione V1
 
+## 22 ottobre 2026 — Apertura dell’anteprima Aruba
+
+Il sì dell’utente, dopo la spiegazione del Forbidden temporaneo, autorizza a sostituire il blocco di installazione della sola anteprima con frontend senza password/noindex e collaudo. Non autorizza modifiche al sito pubblico o la sua pagina di manutenzione in questo passaggio. La pulizia irreversibile dello ZIP temporaneo rimane separata; nel frattempo l’archivio è protetto dal server. Aruba diventa la fonte editoriale e il locale resta per sviluppo del codice: nessun reimport del DB locale dopo questo trasferimento. Login remoto autenticato e salvataggio editor richiedono la prova dell’utente con la password che ha impostato, senza leggerla in chat.
+
+## 22 ottobre 2026 — Aggiornamento del solo core locale
+
+L’utente autorizza backup completo, aggiornamento locale da WordPress 7.1 a 7.1.3, allineamento Docker e verifiche di sito/editor. Non autorizza in questa fase aggiornamenti di plugin o modifiche ad Aruba. La nuova password è stata inserita personalmente dall’utente e non deve essere letta o registrata; verificarne soltanto la conservazione e la disattivazione della password demo. Nessun reimport del seed, reset dei volumi o salvataggio dei contenuti durante gli smoke test. Il precedente ZIP di migrazione è obsoleto e va rigenerato dopo il completamento dei prerequisiti di pubblicazione.
+
 ## 15 ottobre 2026 — Colore naturale del calice e posizione
 
 L’utente rifiuta l’effetto dorato e chiede il calice un po’ più a sinistra: intervenire sul solo asset illustrativo e sulla sua posizione, non rigenerare il collage o le persone. Vetro neutro e vino chiaro; l’oro del simbolo FISAR rimane parte del marchio. Spostamento moderato di 24 px desktop e 16 px mobile alla scala normale, preservando testi/volti principali e altezza. Opzione 2 e asset precedenti non eliminati.
