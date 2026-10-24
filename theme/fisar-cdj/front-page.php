@@ -29,7 +29,7 @@ $events_link_text = $has_more_events
 	: 'Tutti gli eventi';
 ?>
 <main id="main-content">
-	<section class="hero<?php echo $hero_gallery ? ' hero--collage' : ''; ?><?php echo $hero_gallery && $hero_glass_id ? ' hero--glass' : ''; ?>" aria-labelledby="hero-title">
+	<section class="hero<?php echo $hero_gallery ? ' hero--collage hero--carousel' : ''; ?><?php echo $hero_gallery && $hero_glass_id ? ' hero--glass' : ''; ?>" aria-labelledby="hero-title">
 		<div class="container hero__inner">
 			<div class="hero__content">
 				<h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
@@ -42,7 +42,7 @@ $events_link_text = $has_more_events
 			</div>
 			<?php if ( $hero_gallery ) : ?>
 				<div class="hero__album">
-					<?php echo wp_filter_content_tags( render_block( $hero_gallery ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Native editor blocks, same rendering as post content. ?>
+					<?php get_template_part( 'template-parts/hero-collage', null, array( 'gallery' => $hero_gallery ) ); ?>
 					<?php if ( $hero_glass_id ) : ?>
 						<div class="hero__glass" aria-hidden="true">
 							<?php echo wp_get_attachment_image( $hero_glass_id, 'large', false, array( 'class' => 'hero__glass-image', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 64rem) 18rem, (min-width: 38rem) 12.67rem, 10rem' ) ); ?>

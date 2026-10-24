@@ -1,5 +1,15 @@
 # Pubblicazione su Aruba
 
+## Aggiornamento mirato hero — 24 ottobre 2026
+
+Su richiesta esplicita, applicata la hero E a locale e alla sola anteprima. Tema remoto verificato 1.6.98, aggiornato a 1.6.99 dal caricamento nativo WordPress, senza FTP, modifica file dal backend o accesso DB. Pacchetto `release/hero-2026-10-24/fisar-cdj-1.6.99.zip` nella cartella privata `.local-deployment/`, SHA-256 `a29a5a02771e8ef63ad5bc66c78b2b3a75a2a937630c6261602ee45a4de77ac0`, 72 voci, privo di configurazioni/credenziali/database. Copia della precedente versione dal repository in `backups/2026-10-24/fisar-cdj-1.6.98-rollback.zip`, 69 voci, verificata; non è un nuovo backup completo del server.
+
+L’utente ha completato il login WordPress; nessuna password letta o memorizzata. Esportazioni native WXR dei contenuti prima/dopo conservate privatamente in `backups/2026-10-24/aruba-before-hero.xml` e `aruba-after-hero.xml`; HTML Home precedente e mapping dei media salvati nella stessa area privata. Sono copie dei contenuti, non backup SQL o dei file media. I backup completi del 22 ottobre restano conservati.
+
+Caricati soltanto 18 WebP selezionati nella Libreria media Aruba (204–221), tutti con alt; nel blocco Galleria `hero-collage` dell’editor Home aggiornati ordine, allegati e punti focali. Introduzione, calice, thumbnail e contenuti esterni alla galleria preservati. Confronto WXR: 102 → 120 elementi, 101 elementi preesistenti diversi dalla Home invariati nei campi titolo/contenuto/estratto/stato/slug/tipo. Vecchi media non cancellati. Nessun import del DB locale, seed, nuovo plugin o modifica alla root pubblica.
+
+Collaudo browser locale/remoto responsive 320–1440 px e soglia 1023/1024, caricamento dei tre collage/18 foto uniche, tastiera, pausa/ripresa e assenza di overflow. Un H1 e noindex meta/HTTP conservati; home/CSS/JS HTTP 200, root pubblica HTTP 200. Il codice rispetta movimento ridotto verificato anche con test unitario, senza cambiare le preferenze del Mac. Rilasci futuri continuano a preservare il database editoriale di Aruba; nessun commit automatico.
+
 ## Sintesi e stato — 22 ottobre 2026
 
 Obiettivo autorizzato: trasferire il sito locale in `/anteprima/` sullo spazio Linux esistente, usando un database separato già verificato vuoto. L’anteprima diventerà il sito definitivo senza reinserire i contenuti. Nessuna password sul frontend, ma richiesta di non indicizzazione; il link non rende privati i contenuti. Backend con credenziali sicure, mai quelle demo.

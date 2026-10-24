@@ -2,6 +2,14 @@
 
 ## Sintesi
 
+### Carosello hero approvato — tema 1.6.99
+
+La galleria nativa `hero-collage` resta la fonte editoriale di allegati e ordine. `template-parts/hero-collage.php` valida le immagini, le divide in gruppi di sei e usa `wp_get_attachment_image` con srcset e alt della Libreria media; classi editoriali `hero-focus-X-Y` forniscono il punto focale percentuale, limitato a 0–100. Nessun ID/URL di upload nel tema. CSS e JS dedicati caricati soltanto in home, senza librerie, JSON del provino o controlli di test a runtime. Primo gruppo reso dal server; senza JS resta visibile e i controlli rimangono nascosti. Senza galleria si conserva il fallback precedente.
+
+Timer di sei secondi, dissolvenza 500 ms, tre pallini e pausa/ripresa; stop al focus o scelta manuale e sospensione con hover, scheda nascosta, fuori viewport e sotto 64rem. Movimento ridotto nativo disattiva automatismo e dissolvenza, lasciando i pallini. Solo il gruppo attivo è esposto alle tecnologie assistive; annunci soltanto manuali. Album, calice e controlli nascosti sotto 64rem senza spazio riservato; desktop circa 448 px. Unit test senza dipendenze in `tests/hero-collage.test.cjs`.
+
+Import esplicito locale in `plugin/fisar-cdj-core/tools/import-home-collage.php`, non caricato dal plugin: solo WP-CLI/ambiente locale, guardia SHA-256 della Home, validazione dei file, riuso degli allegati via chiave, revisione e sostituzione del solo blocco riconosciuto. Aruba aggiornata dall’editor/Libreria media propri e dal pacchetto del tema, non tramite questo script o database locale. Il seed demo precedente è conservato e non sincronizza i contenuti approvati.
+
 ### Correzione del calice — tema 1.6.98
 
 Solo asset illustrativo v2 e due offset CSS del livello opzionale, senza cambiare il contratto a blocchi della v1.6.97. Nuovo allegato nativo; sostituito il solo riferimento nel blocco `hero-glass` con revisione, guardie e confronti di preservazione. Seed idempotente punta alla v2 per i nuovi ambienti, nessuna migrazione o reimport. V1 e opzione 2 conservate; nessuna dipendenza aggiunta.

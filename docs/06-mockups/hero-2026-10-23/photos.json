@@ -1,0 +1,32 @@
+{
+  "source": "assets/photography/sito-home/originals",
+  "originalSource": "Desktop/Desk 2/FISAR/sito-home",
+  "processing": "Derivati WebP qualità 86, lato massimo 1200 px, senza ingrandimento. Originali intatti; nessun ritocco generativo. Inquadrature e lievi regolazioni non distruttive nel CSS della sola anteprima.",
+  "photos": {
+    "tavolata": {"original": "492347273_1218417843620084_4123868337473958306_n.jpg", "alt": "Un brindisi durante un incontro della Delegazione", "focus": "50% 66%"},
+    "sommelier": {"original": "492158017_1217812933680575_9081233171864074986_n.jpg", "alt": "Quattro sommelier FISAR al banco di degustazione", "focus": "50% 30%"},
+    "uva": {"original": "493842061_1219135806881621_8859061939583253829_n.jpg", "alt": "Raccolta di un grappolo in vigna", "focus": "50% 50%"},
+    "cantina": {"original": "50063288_10155923690091787_9028326984849031168_n.jpg", "alt": "Una cantina con botti di legno", "focus": "48% 50%"},
+    "degustazione-te": {"original": "650762430_18309835036286417_8434553365697611929_n.jpg", "alt": "Partecipanti a una degustazione di tè", "focus": "50% 27%"},
+    "calici": {"original": "492712664_1219604986834703_1671554451820884914_n.jpg", "alt": "Calici con vini rosati sul tavolo di degustazione", "focus": "50% 37%"},
+    "gruppo": {"original": "711474718_1572836248178240_7688189797339435547_n.jpg", "alt": "Foto di gruppo con attestati FISAR", "focus": "50% 45%"},
+    "cena": {"original": "846505553_1707016178093579_3774927979427105929_n.jpg", "alt": "Partecipanti riuniti attorno a un tavolo durante una serata", "focus": "50% 50%"},
+    "servizio": {"original": "495274743_1230561605739041_1057093969816691176_n.jpg", "alt": "Dettaglio del servizio del vino con calice e tastevin", "focus": "50% 50%"},
+    "tastevin": {"original": "421161654_874366258025246_7484931043855230420_n.jpg", "alt": "Tastevin e calici preparati per un incontro FISAR", "focus": "50% 55%"},
+    "tavolo-fisar": {"original": "626458321_18390822076196090_7858729818264163963_n.jpg", "alt": "Materiale da degustazione e gagliardetto FISAR", "focus": "50% 48%"},
+    "sommelier-gruppo": {"original": "67166063_10156301871636787_4954051270479446016_n.jpg", "alt": "Un gruppo di sommelier in divisa FISAR", "focus": "50% 47%"},
+    "brindisi-cantina": {"original": "493675322_1220866356708566_9167211596760308218_n.jpg", "alt": "Un gruppo con i calici in una sala in pietra", "focus": "50% 43%"},
+    "masterclass": {"original": "494192203_1220965010032034_4017474832204963653_n.jpg", "alt": "Calici e scheda di una masterclass sul Brunello di Montalcino", "focus": "50% 48%"},
+    "sommelier-mare": {"original": "477484250_1156062356522300_6377082355308908179_n.jpg", "alt": "Due sommelier FISAR con bottiglie davanti al mare", "focus": "50% 40%"},
+    "sommelier-bottiglia": {"original": "492016059_1217812630347272_5851988290565723146_n.jpg", "alt": "Una sommelier presenta una bottiglia al banco di servizio", "focus": "68% 25%"},
+    "calice-panorama": {"original": "492236525_1218417590286776_4753442666852368571_n.jpg", "alt": "Un calice davanti al panorama delle colline al tramonto", "focus": "64% 40%"},
+    "attestati-sala": {"original": "503638206_1255122829949585_2674674909175776036_n.jpg", "alt": "Partecipanti con attestati e tastevin in una sala con archi", "focus": "50% 43%"}
+  },
+  "variants": [
+    {"id": "A", "title": "Persone e convivialità", "description": "Il brindisi e le sommelier in primo piano; vigna, cantina e degustazioni completano il racconto. La proposta più equilibrata per la home.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici"]},
+    {"id": "B", "title": "Imparare e condividere", "description": "Il gruppo e la degustazione di tè come scene principali: formazione, curiosità e cultura anche oltre il vino.", "photos": ["gruppo", "degustazione-te", "tastevin", "servizio", "sommelier", "calici"]},
+    {"id": "C", "title": "Cantina e incontri", "description": "Il calore delle botti e della tavola, con dettagli di servizio, sommelier e vigna. Una lettura più calda e legata all’esperienza del vino.", "photos": ["cantina", "cena", "uva", "sommelier-gruppo", "tavolo-fisar", "servizio"]},
+    {"id": "D", "title": "Album in movimento", "motion": true, "description": "Dodici foto diverse in un unico album che scorre lentamente. Testi e calice restano fermi. Puoi fermarlo o usare le frecce; il movimento ridotto disattiva lo scorrimento automatico.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici", "gruppo", "cena", "tastevin", "servizio", "sommelier-gruppo", "tavolo-fisar"]},
+    {"id": "E", "title": "Carosello di collage", "motion": true, "classic": true, "description": "Tre collage diversi con sei foto ciascuno, visibili soltanto quando possono stare a destra del titolo. Sulle finestre strette restano testo e pulsanti. Cambio ogni sei secondi; controlli compatti e smorzati in basso a destra, senza box o frecce.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici", "gruppo", "cena", "tastevin", "servizio", "sommelier-gruppo", "tavolo-fisar", "brindisi-cantina", "masterclass", "sommelier-mare", "sommelier-bottiglia", "calice-panorama", "attestati-sala"]}
+  ]
+}

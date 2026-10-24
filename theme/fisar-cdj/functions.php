@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.98' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.99' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -59,6 +59,10 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	if ( is_front_page() ) {
+		wp_enqueue_style( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/css/hero-collage.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
+		wp_enqueue_script( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/js/hero-collage.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	}
 	if ( is_front_page() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) || is_post_type_archive( Fisar_CDJ_Post_Types::COURSE ) ) {
 		wp_enqueue_script( 'fisar-cdj-event-dates', get_template_directory_uri() . '/assets/js/event-dates.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
