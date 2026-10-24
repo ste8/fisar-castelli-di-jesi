@@ -1,5 +1,9 @@
 # Assunzioni di implementazione V1
 
+## 24 ottobre 2026 — Applicazione della hero locale e Aruba
+
+La richiesta esplicita autorizza E nella home locale e nella sola anteprima Aruba, non il lancio sulla root pubblica. Un successivo messaggio seleziona la risposta alla precedente domanda sul locale: non revoca la richiesta esplicita di aggiornare anche Aruba. Contenuti remoti attuali autorevoli; aggiornati solo tema e galleria della Home, conservando gli altri dati, senza importare database/seed locali. Fotografie selezionate fornite e approvate dall’utente, nessuna nuova generazione. Archivio completo sorgente nel repository, non pubblicato sul web. Il login remoto è stato completato dall’utente; nessuna credenziale letta o scritta in chat. Nessuna eliminazione di foto precedenti o commit automatico.
+
 ## 22 ottobre 2026 — Apertura dell’anteprima Aruba
 
 Il sì dell’utente, dopo la spiegazione del Forbidden temporaneo, autorizza a sostituire il blocco di installazione della sola anteprima con frontend senza password/noindex e collaudo. Non autorizza modifiche al sito pubblico o la sua pagina di manutenzione in questo passaggio. La pulizia irreversibile dello ZIP temporaneo rimane separata; nel frattempo l’archivio è protetto dal server. Aruba diventa la fonte editoriale e il locale resta per sviluppo del codice: nessun reimport del DB locale dopo questo trasferimento. Login remoto autenticato e salvataggio editor richiedono la prova dell’utente con la password che ha impostato, senza leggerla in chat.

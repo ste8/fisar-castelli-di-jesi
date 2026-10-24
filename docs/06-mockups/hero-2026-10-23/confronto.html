@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FISAR — confronto collage home</title>
+  <link rel="stylesheet" href="../../../theme/fisar-cdj/assets/css/main.css">
+  <link rel="stylesheet" href="preview.css">
+  <script src="carousel.js" defer></script>
+  <script src="classic-carousel.js" defer></script>
+  <script src="preview.js" defer></script>
+</head>
+<body>
+  <header class="review-header">
+    <div class="container">
+      <img src="../../../theme/fisar-cdj/assets/images/logo-orizzontale-header.svg" width="208" height="72" alt="FISAR Castelli di Jesi">
+      <span>Prove fotografiche · 23 ottobre 2026</span>
+    </div>
+  </header>
+  <nav class="review-controls container" aria-label="Scegli la proposta"></nav>
+  <main id="main-content">
+    <section class="hero hero--collage hero--glass" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 id="hero-title"><span>FISAR</span> <span>Delegazione</span> <span>Castelli di Jesi</span></h1>
+          <p class="hero__payoff"><span>Il vino come punto di partenza,</span> <span>le persone al centro.</span></p>
+          <p class="hero__description">Corsi per sommelier, degustazioni e incontri per conoscere il mondo del vino.</p>
+          <div class="hero__actions">
+            <a class="button" href="https://www.fisarcastellidijesi.it/anteprima/corsi/">Scopri i corsi</a>
+            <a class="button button--outline-light" href="https://www.fisarcastellidijesi.it/anteprima/eventi/">Scopri gli eventi</a>
+          </div>
+        </div>
+        <div class="hero__album">
+          <figure class="wp-block-gallery hero-collage" aria-label="Momenti della Delegazione"></figure>
+          <div class="hero__glass" aria-hidden="true">
+            <img class="hero__glass-image" src="../../../plugin/fisar-cdj-core/assets/demo/hero-calice-scontornato-fisar-cdj-v2.webp" width="640" height="960" alt="" fetchpriority="high">
+          </div>
+          <div class="review-carousel-controls" hidden aria-label="Controlli dell’album">
+            <button type="button" data-action="previous" aria-label="Mostra le foto precedenti">←</button>
+            <div class="review-classic-dots" hidden aria-label="Scegli il collage"></div>
+            <button type="button" data-action="pause">Pausa</button>
+            <button type="button" data-action="next" aria-label="Mostra le foto successive">→</button>
+            <span class="screen-reader-text" role="status"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="review-notes container" aria-labelledby="variant-title">
+      <h2 id="variant-title"></h2>
+      <p id="variant-description" aria-live="polite"></p>
+      <p class="review-caption">Stesso layout e stessa altezza della hero attuale. Calice illustrativo approvato; fotografie reali fornite dalla Delegazione. Le correzioni di luminosità sono leggere e disattivabili.</p>
+      <label><input type="checkbox" id="photo-tone" checked> Lievi correzioni di luminosità</label>
+      <label><input type="checkbox" id="show-glass" checked> Mostra il calice</label>
+      <label id="reduced-motion-label" hidden><input type="checkbox" id="simulate-reduced-motion"> Simula movimento ridotto</label>
+      <label id="collage-select-label" hidden>Collage da confrontare <select id="collage-preview" aria-label="Collage da confrontare"></select></label>
+      <p id="motion-note" class="review-caption" hidden></p>
+      <details>
+        <summary>Fotografie di questa proposta, senza ritaglio</summary>
+        <div class="review-sources"></div>
+      </details>
+      <p id="review-error" role="alert"></p>
+      <noscript>Per confrontare le proposte attiva JavaScript. Le anteprime PNG restano disponibili nella stessa cartella.</noscript>
+    </section>
+  </main>
+</body>
+</html>

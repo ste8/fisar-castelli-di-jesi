@@ -1,5 +1,72 @@
 # Changelog
 
+## v1.6.99 — Hero approvata su WordPress locale e Aruba, 24 ottobre 2026
+
+- Portata E nella vera Home: tre gruppi da sei foto diverse, calice naturale e testi fermi, cambio ogni sei secondi con dissolvenza 500 ms. Solo pallini/pausa compatti a destra, nessun comando del provino. Album nascosto sotto 64rem senza spazio vuoto e timer sospeso; focus/navigazione manuale fermano l’automatismo, movimento ridotto lo disattiva e conserva i pallini. Senza JS resta il primo collage.
+- Skill `clean-code-engineer` e `software-architect`: componente/CSS/JS del solo tema per la presentazione, galleria e immagini native nell’editor; nessun ID di upload, foto raster composita o libreria nel tema. Import locale esplicito nel plugin, non caricato a runtime, con guardia dell’impronta, revisione e riuso dei media. Test idempotente: nessuna seconda scrittura o allegato duplicato. Seed demo e versione plugin invariati, nessun reimport.
+- Locale: copia privata della Home e confronto dei contenuti prima/dopo; importate 18 foto e sostituita soltanto la galleria, introduzione/calice/thumbnail e altri contenuti invariati. Aruba: esportazione WXR prima/dopo, pacchetto del solo tema 1.6.99 tramite aggiornamento nativo, 18 WebP nella Libreria media (ID 204–221) con testi alternativi, galleria aggiornata nell’editor remoto. Verificati 101 elementi preesistenti diversi dalla Home invariati nei campi editoriali; nella Home identici tutti i contenuti esterni alla galleria. Esattamente 18 media aggiunti; nessun database o contenuto locale importato.
+- Verifiche browser locale/remoto a 320/390/768/1023/1024/1440 px senza overflow: tre gruppi, 18 sorgenti uniche, alt completi, un H1, album solo da 1024 e altezza desktop 448 px. Immagini caricate, selezione e ritorno ultimo/primo con tastiera, pausa/ripresa, editor senza segnalazioni di blocchi invalidi. Unit test JS per timer/breakpoint/focus/visibilità/movimento ridotto; lint PHP/JS e whitespace superati. Anteprima, CSS e JS HTTP 200, noindex HTTP/meta conservati e sito pubblico ancora HTTP 200. Screenshot di collaudo conservati; nessun commit automatico.
+- Backup e pacchetto di rollback 1.6.98 in `.local-deployment/backups/2026-10-24/`, esclusi da Git. Archivio originale delle 27 foto rimane nel repository, non distribuito; vecchi allegati e foto non cancellati. Root pubblica, DNS, email, credenziali e plugin Aruba invariati.
+
+## Hero E approvata e archivio fotografico completo — 24 ottobre 2026
+
+- Confermata E: indirizzo principale dell'anteprima senza selettori A–E, simulazioni, opzioni calice/luminosità o note. Restano tre pallini e pausa approvati. Vecchie prove conservate in `confronto.html`; stesso controller con strumenti di test facoltativi, nessuna dipendenza o duplicazione della logica E.
+- Copiate tutte le 27 immagini originali in `assets/photography/sito-home/originals/` (12.332.695 byte), comprese quelle non usate e la copia esatta duplicata. Escluso solo `Thumbs.db`, cache Windows. Inventario byte/SHA-256, provenienza e script di rigenerazione WebP; selezione di 18 scatti unici collegata agli originali nel repository. File dell'utente invariati, nessun invio a servizi esterni.
+- Skill `clean-code-engineer`: separata la pagina approvata dagli strumenti di confronto, controller comune conservato. Verificati originali/derivati, sintassi JS e responsive 320/390/768/1023/1024/1440 px: nessun comando test o overflow, 18 sorgenti uniche caricate, album nascosto sotto soglia e hero desktop 448 px. Nessuna modifica a tema/plugin, database, WordPress/Aruba o commit automatico.
+
+## E: collage solo affiancato al titolo — 24 ottobre 2026
+
+- Su richiesta, sotto 64rem (1024 px) nascosto l'intero album della sola E: collage, calice e controlli. Nessuna fascia fotografica sotto il testo o spazio riservato; hero dimensionata naturalmente da titolo, testi e CTA. Desktop invariato, A–D conservate.
+- Skill `clean-code-engineer`: riusato il breakpoint di affiancamento del tema; sospensione del timer quando l'album è nascosto, ascoltatore ripulito al cambio proposta e rispetto della pausa manuale/movimento ridotto. Nessuna libreria; immagini ancora caricate dal provino, nessuna ottimizzazione dei download dichiarata.
+- Verifiche responsive a 320/390/768/1023/1024/1280/1440 px: nessun overflow, controlli nascosti sotto soglia e visibili da 1024 px, desktop 448 px. Screenshot mobile aggiornato e sintassi JS/whitespace controllati. Nessun intervento su tema/plugin, database, Aruba o commit.
+
+## E: controlli a destra, compatti e smorzati — 24 ottobre 2026
+
+- Su richiesta, riga dei controlli allineata a destra sotto il collage; bersagli 32 × 32 px, ingombro totale 130 px e pausa in linea a 2 px dai pallini. Mantenute dimensioni visive 6/8/16 px, senza box. Oro-grigio meno luminoso su pallini e icona (`currentColor`), contrasto superiore a 5:1 sul fondo; focus visibile e nomi invariati.
+- Skill `clean-code-engineer`: CSS circoscritto a E e soli colori SVG nel controller, nessuna libreria. Verificati clic, Tab/Spazio e responsive 320/390/768/1440 px senza overflow o sovrapposizioni tra calice e controlli. Screenshot aggiornati; foto, tempi, altre proposte, WordPress/Aruba e commit invariati.
+
+## E: controlli più piccoli e delicati — 24 ottobre 2026
+
+- Su richiesta, ridotti solo gli elementi visivi: pallino attivo 12 → 8 px, altri 8 → 6 px con contorno avorio meno acceso, pausa/riprendi 20 → 16 px. Invariati bersagli 44 × 44 px, centratura, focus, nomi accessibili e comportamento.
+- Skill `clean-code-engineer`: sola modifica CSS circoscritta al provino E; fotografie, geometria, tempi e altre proposte conservati. Verifiche browser desktop/mobile, clic e tastiera; screenshot aggiornati. Nessuna modifica a WordPress/Aruba o commit.
+
+## E: pallini cliccabili sotto il collage — 24 ottobre 2026
+
+- Su conferma dell’utente, tre pallini centrati sotto le foto con indicatore attivo pieno oro e altri vuoti; pausa/riprendi accanto, nessun box o freccia. Foto, tre gruppi da sei, testi, calice e tempi invariati; spazio inferiore riservato ai controlli senza aumentare la hero.
+- Sotto 64rem adattate dimensioni/posizione del solo calice E per liberare la riga dei controlli dal suo piede; asset e resa desktop invariati. Nessuna sovrapposizione con pulsanti o CTA nei controlli responsive.
+- Skill `clean-code-engineer`: riusati i pulsanti nativi e il controller esistenti, nessuna libreria. Bersagli 44 × 44 px, nomi/tooltip, `aria-current`, ordine DOM/Tab coerente e focus conservato; clic manuale ferma il cambio automatico, ripresa esplicita. Pallini attivi anche con movimento ridotto e sincronizzati con il selettore del provino.
+- Verificati clic, Tab/Spazio, pausa/ripresa e simulazione movimento ridotto; a 320/390/768/1024/1440/2560 px centratura esatta, quattro controlli entro la fascia, asset caricati, 18 sorgenti uniche e nessun overflow; desktop 448 px. Sintassi JS e screenshot E aggiornati. Tema/plugin, WordPress/Aruba e commit invariati.
+
+## E: tre collage e sola pausa discreta — 23 ottobre 2026
+
+- Alla conferma di 3–4 collage differenti, ampliata E a tre gruppi di sei: diciotto sorgenti uniche, sei nuovi WebP dalla cartella fornita, nessuna ripetizione nel giro e nessun originale modificato. Invariati tempi, testi, calice e altezza; A/B/C/D preservate.
+- Skill `clean-code-engineer`: nella sola E rimossi box, frecce e pallini della hero, lasciando pausa/riprendi a icona, senza sfondo, con bersaglio 44 px, nome accessibile, tooltip e focus visibile. Nel pannello del solo provino aggiunto il selettore nativo dei tre collage, utile anche con movimento ridotto; gestione e pulizia nel controller esistente.
+- Verificati unicità delle diciotto sorgenti, gruppi 6/6/6, selezione manuale, pausa/ripresa, tastiera, movimento ridotto, caricamento dei nuovi asset e responsive 320–2560 px senza overflow. Screenshot E aggiornati, incluso il terzo gruppo. Nessuna dipendenza, modifica a WordPress/Aruba o commit.
+
+## Correzione E: carosello di collage, non di foto singole — 23 ottobre 2026
+
+- Il chiarimento dell’utente supera la precedente interpretazione: E mostra ora sei fotografie per slide, due collage con dodici sorgenti uniche, senza ripetizioni tra i gruppi. Collage fermo per sei secondi e breve dissolvenza verso il successivo, non scorrimento continuo. Ripristinati cornici, inclinazioni e calice delle prove iniziali; titoli e altezza invariati.
+- Skill `clean-code-engineer`: riusato il controller con pausa/frecce/indicatori; raggruppamento in blocchi di sei validato e nomi accessibili aggiornati. Unico collage attivo esposto alle tecnologie assistive; movimento ridotto, focus e sospensione per visibilità conservati. Nessuna dipendenza o nuovo asset fotografico.
+- Test JS su raggruppamento, sorgenti uniche e indici circolari; controlli automatici/manuali, movimento ridotto e responsive 320–2560 px verificati. Screenshot E sostituiti e aggiunta anteprima del secondo collage. A/B/C/D, tema/plugin, database, Aruba e commit invariati.
+
+## Quinta prova hero: carosello classico — 23 ottobre 2026
+
+- Su richiesta, alternativa E al movimento continuo: otto foto uniche già disponibili, una per slide, cambio ogni sei secondi con dissolvenza di 500 ms. Foto intere in cornice avorio, calice più piccolo e fermo, stessi testi e altezza. A/B/C/D conservate; nessun nuovo asset fotografico.
+- Skill `clean-code-engineer`: controller isolato nel provino, senza librerie. Frecce, indicatori e pausa/ripresa; stop con focus e navigazione manuale, sospensione con hover/visibilità. Movimento ridotto disattiva automatismo e dissolvenza; sola slide attiva esposta alle tecnologie assistive, annunci solo manuali. Pulizia dei timer/eventi al cambio proposta.
+- Verificati indici circolari, sorgenti uniche, cambio automatico reale, pausa, indicatori, ritorno ultima/prima, frecce da tastiera e simulazione movimento ridotto; responsive alle sei larghezze 320–2560 px senza overflow, desktop 448 px, asset e controlli verificati. Sintassi JS e screenshot desktop/mobile. Prova locale: tema/plugin, database, Aruba e commit invariati.
+
+## Quarta prova hero: album in movimento — 23 ottobre 2026
+
+- Aggiunta su richiesta la variante D al solo confronto fotografico locale: dodici foto diverse, con verifica dell’unicità anche dei file sorgente. Scorrimento continuo a 14 px/s e riciclo delle porzioni uscite, senza cloni; layout compatto, calice e testi invariati. A/B/C preservate.
+- Skill `clean-code-engineer`: codice circoscritto al provino, senza dipendenze. Pausa/ripresa e frecce native; stop al focus, sospensione con hover mouse, scheda nascosta o hero fuori viewport; `prefers-reduced-motion` disattiva l’automatismo e mantiene l’esplorazione manuale. Pulizia di observer/eventi al cambio variante.
+- Verificati geometria del riciclo, dodici sorgenti uniche, sintassi JS, controlli manuali/da tastiera e simulazione movimento ridotto; controllo responsive 320/390/768/1024/1440/2560 px senza overflow, controlli dentro la fascia e desktop 448 px. Screenshot D desktop/mobile conservati. Nessun cambiamento a tema/plugin, database, Aruba o commit.
+
+## Proposte fotografiche della hero — 23 ottobre 2026
+
+- Esaminati 27 file forniti dall’utente (26 scatti unici); selezionati 12 per tre collage A/B/C, sei foto per proposta. Derivati WebP locali, originali intatti, nessuna generazione o ricostruzione delle persone. Lievi regolazioni CSS disattivabili nel solo provino.
+- Skill `clean-code-engineer`: confronto isolato in `docs/06-mockups/hero-2026-10-23/`, con CSS reale del tema, calice v2, testi e geometria invariati; pulsanti per confrontare le selezioni e consultare gli scatti senza ritaglio. Server locale standard-library limitato agli asset necessari, niente dipendenze.
+- Verificate tutte le proposte a 320/390/768/1024/1440/2560 px: immagini caricate, nessun overflow, desktop 448 px; font locali e sintassi JS controllati, PNG desktop/mobile conservati. Non è ancora una selezione approvata o applicata: tema/plugin, seed, database e Aruba invariati; nessun commit automatico.
+
 ## Apertura anteprima Aruba — 22 ottobre 2026
 
 - Su conferma esplicita dell’utente, sostituito il blocco temporaneo del solo `/anteprima/.htaccess` con le regole predisposte: frontend senza password, noindex via header/meta, divieto di listing e accesso a config/archivi/dump/log. Homepage anteprima e sito pubblico HTTP 200; nessuna modifica al sito pubblico, email, PHP globale o DNS.

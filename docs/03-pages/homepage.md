@@ -1,5 +1,11 @@
 # Homepage
 
+## Hero E approvata — 24 ottobre 2026
+
+Confermata la composizione E: tre collage da sei foto uniche (18 scatti), fermo immagine per sei secondi e dissolvenza di 500 ms; testo e calice naturale fissi. Pallini e pausa compatti e smorzati a destra; nessun selettore di varianti, simulazione o nota di test nella versione approvata. Sotto 64rem (1024 px) l'intero album, calice e controlli sono nascosti senza spazio vuoto e il cambio automatico è sospeso. Movimento ridotto e pausa manuale conservati. Questa decisione supera le precedenti composizioni fotografiche della hero, non copy, tipografia o altre sezioni.
+
+Applicata alla Home WordPress locale e ad Aruba il 24 ottobre, tema `1.6.99`. Galleria nativa `hero-collage`, in gruppi di sei secondo l’ordine; classi `hero-focus-X-Y` delle immagini conservano i punti focali percentuali, alt nella Libreria media. Il tema rende le immagini responsive native e solo il primo gruppo senza JS; controlli attivati dal JavaScript della sola home. Senza galleria rimane il fallback singolo precedente. Le altre gallerie del sito non sono coinvolte. Tutte le 27 foto originali sono archiviate in `assets/photography/sito-home/`; selezione e derivati documentati nel provino. Aruba aggiornata dalla propria Libreria media e dal proprio editor, senza import di database o seed locali.
+
 ## Calice con vetro naturale — v1.6.98, 15 ottobre 2026
 
 Corretto il calice dell’opzione 3 su riscontro dell’utente: vetro incolore con riflessi neutri al posto della dominante dorata, vino giallo paglierino chiaro; marchio e forma conservati. Asset illustrativo v2, PNG con alpha e WebP 640 × 960/qualità 85 da 67.560 byte, con prompt/provenienza nel JSON dedicato. Nessun ritocco alle foto reali.
