@@ -1,9 +1,9 @@
 # Font del tema
 
-I file WOFF2 sono ospitati localmente dal tema e limitati al subset latino e ai pesi previsti da `docs/01-brand/typography.md`:
+I file WOFF2 sono ospitati localmente dal tema e limitati al subset latino e ai pesi previsti dal [sistema visivo](../../../../docs/design-system.md#tipografia-attuale):
 
-- Cormorant Garamond, pesi `600–700`: titoli e contenuti display;
-- Poppins, pesi `400`, `500`, `600`, `700`: corpo testo, interfaccia e nome della Delegazione nella hero. Sono quattro file statici; solo il Regular è precaricato.
+- Cormorant Garamond, pesi `600–700`: payoff e accenti editoriali;
+- Poppins, pesi `400`, `500`, `600`, `700`: corpo testo, interfaccia e titoli. Sono quattro file statici; solo il Regular è precaricato.
 
 Entrambe le famiglie sono distribuite con licenza SIL Open Font License 1.1, riportata nei rispettivi file `OFL.txt`.
 

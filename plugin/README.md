@@ -13,3 +13,5 @@ Responsabilità:
 - comando WP-CLI idempotente `wp fisar-cdj demo install`.
 
 Non contiene markup o regole di layout del frontend.
+
+Regole correnti, API e confini del seed in [Architettura](../docs/architecture.md); compilazione dei campi nella [Guida editoriale](../docs/editorial-guide.md).

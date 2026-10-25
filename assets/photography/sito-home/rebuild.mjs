@@ -6,8 +6,8 @@ import { execFileSync } from 'node:child_process';
 
 const archive = dirname(fileURLToPath(import.meta.url));
 const originals = resolve(archive, 'originals');
-const preview = resolve(archive, '../../../docs/06-mockups/hero-2026-10-23');
-const manifest = JSON.parse(readFileSync(resolve(preview, 'photos.json'), 'utf8'));
+const derivatives = resolve(archive, 'optimized');
+const manifest = JSON.parse(readFileSync(resolve(archive, 'selection.json'), 'utf8'));
 const inventory = JSON.parse(readFileSync(resolve(archive, 'inventory.json'), 'utf8'));
 const checkOnly = process.argv.includes('--check');
 const recorded = new Set(inventory.files.map(entry => entry.file));
@@ -28,7 +28,7 @@ for (const [key, photo] of Object.entries(manifest.photos)) {
   if (!/^[a-z0-9-]+$/.test(key) || !recorded.has(photo.original)) {
     throw new Error(`Selezione non valida: ${key}`);
   }
-  if (checkOnly && !existsSync(resolve(preview, 'images', `${key}.webp`))) {
+  if (checkOnly && !existsSync(resolve(derivatives, `${key}.webp`))) {
     throw new Error(`Derivato mancante: ${key}`);
   }
 }
@@ -46,7 +46,7 @@ if (new Set(hashes).size !== hashes.length) {
 }
 if (!checkOnly) {
   for (const [key, photo] of Object.entries(manifest.photos)) {
-    execFileSync('magick', [resolve(originals, photo.original), '-auto-orient', '-resize', '1200x1200>', '-quality', '86', resolve(preview, 'images', `${key}.webp`)]);
+    execFileSync('magick', [resolve(originals, photo.original), '-auto-orient', '-resize', '1200x1200>', '-quality', '86', resolve(derivatives, `${key}.webp`)]);
   }
 }
 console.log(`${inventory.files.length} originali verificati; ${Object.keys(manifest.photos).length} derivati ${checkOnly ? 'presenti' : 'rigenerati'}.`);
