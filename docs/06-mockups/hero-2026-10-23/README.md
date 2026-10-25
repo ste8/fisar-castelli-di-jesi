@@ -1,5 +1,7 @@
 # Collage con le fotografie fornite — 23 ottobre 2026
 
+**25 ottobre:** E comprende ora quattro collage e 24 scatti unici. Il quarto usa le foto numerate 1, 2, 4, 5, 6 e 8 scelte dall’utente; i primi tre sono invariati. Aggiunti sei derivati dagli originali già archiviati; nessuna ricompressione dei primi 18. Applicato anche alle Home locale e Aruba, senza modificare il tema. I riferimenti a tre collage sotto descrivono le prove precedenti.
+
 **Versione E approvata e applicata a WordPress locale/Aruba il 24 ottobre 2026, tema 1.6.99.** Questo indirizzo resta un confronto isolato con la stessa composizione, senza selettori delle alternative, simulatore, opzioni calice/luminosità o note. Restano i tre pallini e pausa/riprendi approvati. Il piccolo header contestualizza l’anteprima; non è il menu del sito. Per il risultato reale usare localhost:8090 o l’anteprima Aruba.
 
 Le cinque prove precedenti restano conservate nella pagina separata [confronto.html](http://127.0.0.1:8092/docs/06-mockups/hero-2026-10-23/confronto.html#E), con gli strumenti di test. Entrambe le pagine riusano il CSS del tema e lo stesso controller E, che non richiede selettori o simulazioni.

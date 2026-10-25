@@ -1,5 +1,9 @@
 # Pubblicazione su Aruba
 
+## Quarto collage — 25 ottobre 2026
+
+Aggiornamento solo editoriale, senza nuovo deploy del tema 1.6.99: aggiunti sei WebP nella Libreria media (223–228), alt salvati e soli sei blocchi aggiunti in fondo alla galleria Home dall’editor nativo. I primi 18 blocchi restano byte per byte invariati, così come il contenuto esterno alla galleria; nessun import di DB/seed locale. Copia HTML precedente, risultato e mapping dei nuovi media nell’area privata `.local-deployment/backups/2026-10-25/` e `release/hero-2026-10-25/`, escluse da Git. Collaudo del quarto gruppo, 24 sorgenti uniche, quattro pallini, tastiera e breakpoint superato; screenshot `docs/06-mockups/homepage-hero-collage-04-aruba.png`. Sito pubblico e foto precedenti invariati.
+
 ## Aggiornamento mirato hero — 24 ottobre 2026
 
 Su richiesta esplicita, applicata la hero E a locale e alla sola anteprima. Tema remoto verificato 1.6.98, aggiornato a 1.6.99 dal caricamento nativo WordPress, senza FTP, modifica file dal backend o accesso DB. Pacchetto `release/hero-2026-10-24/fisar-cdj-1.6.99.zip` nella cartella privata `.local-deployment/`, SHA-256 `a29a5a02771e8ef63ad5bc66c78b2b3a75a2a937630c6261602ee45a4de77ac0`, 72 voci, privo di configurazioni/credenziali/database. Copia della precedente versione dal repository in `backups/2026-10-24/fisar-cdj-1.6.98-rollback.zip`, 69 voci, verificata; non è un nuovo backup completo del server.
