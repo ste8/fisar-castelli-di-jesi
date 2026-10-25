@@ -1,7 +1,7 @@
 {
   "source": "assets/photography/sito-home/originals",
   "originalSource": "Desktop/Desk 2/FISAR/sito-home",
-  "processing": "Derivati WebP qualità 86, lato massimo 1200 px, senza ingrandimento. Originali intatti; nessun ritocco generativo. Inquadrature e lievi regolazioni non distruttive nel CSS della sola anteprima.",
+  "processing": "Derivati WebP qualità 86, lato massimo 1200 px, senza ingrandimento. Originali intatti; nessun ritocco generativo. Inquadrature e lievi regolazioni non distruttive nel CSS della hero.",
   "photos": {
     "tavolata": {"original": "492347273_1218417843620084_4123868337473958306_n.jpg", "alt": "Un brindisi durante un incontro della Delegazione", "focus": "50% 66%"},
     "sommelier": {"original": "492158017_1217812933680575_9081233171864074986_n.jpg", "alt": "Quattro sommelier FISAR al banco di degustazione", "focus": "50% 30%"},
@@ -29,10 +29,6 @@
     "bottiglie-scala": {"original": "IMG_8857.jpeg", "alt": "Bottiglie di vino disposte lungo una scalinata", "focus": "50% 58%"}
   },
   "variants": [
-    {"id": "A", "title": "Persone e convivialità", "description": "Il brindisi e le sommelier in primo piano; vigna, cantina e degustazioni completano il racconto. La proposta più equilibrata per la home.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici"]},
-    {"id": "B", "title": "Imparare e condividere", "description": "Il gruppo e la degustazione di tè come scene principali: formazione, curiosità e cultura anche oltre il vino.", "photos": ["gruppo", "degustazione-te", "tastevin", "servizio", "sommelier", "calici"]},
-    {"id": "C", "title": "Cantina e incontri", "description": "Il calore delle botti e della tavola, con dettagli di servizio, sommelier e vigna. Una lettura più calda e legata all’esperienza del vino.", "photos": ["cantina", "cena", "uva", "sommelier-gruppo", "tavolo-fisar", "servizio"]},
-    {"id": "D", "title": "Album in movimento", "motion": true, "description": "Dodici foto diverse in un unico album che scorre lentamente. Testi e calice restano fermi. Puoi fermarlo o usare le frecce; il movimento ridotto disattiva lo scorrimento automatico.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici", "gruppo", "cena", "tastevin", "servizio", "sommelier-gruppo", "tavolo-fisar"]},
     {"id": "E", "title": "Carosello di collage", "motion": true, "classic": true, "description": "Quattro collage diversi con sei foto ciascuno, visibili soltanto quando possono stare a destra del titolo. Sulle finestre strette restano testo e pulsanti. Cambio ogni sei secondi; controlli compatti e smorzati in basso a destra, senza box o frecce.", "photos": ["tavolata", "sommelier", "uva", "cantina", "degustazione-te", "calici", "gruppo", "cena", "tastevin", "servizio", "sommelier-gruppo", "tavolo-fisar", "brindisi-cantina", "masterclass", "sommelier-mare", "sommelier-bottiglia", "calice-panorama", "attestati-sala", "gruppo-natale", "rosato-abbinamento", "tappi", "sommelier-banner", "attestati-tastevin", "bottiglie-scala"]}
   ]
 }

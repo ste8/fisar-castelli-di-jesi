@@ -1,0 +1,14 @@
+# Decisioni durature
+
+Questa pagina conserva i motivi non evidenti dal solo codice, non il diario delle prove. Stato funzionale in [Architettura](architecture.md), uso in [Guida editoriale](editorial-guide.md), aspetto in [Design system](design-system.md).
+
+1. **WordPress nativo, senza page builder.** Plugin per dati/regole e tema per presentazione: il contenuto non deve dipendere da un framework frontend o dal layout del tema. Campi nativi e blocchi coprono le esigenze attuali; niente dipendenze solo per comodità.
+2. **Aruba autorevole per i contenuti.** Dopo la migrazione iniziale, sviluppare il codice in locale ma pubblicare preservando DB, media e aggiornamenti editoriali remoti. Niente sincronizzazione locale → Aruba indiscriminata.
+3. **Blog come Articoli.** Racconti, approfondimenti e annunci non richiedono un CPT News. Mantenuti `/news/` e i permalink esistenti, anche se l’etichetta è Blog. Analogamente Diventa socio conserva `/unisciti-a-noi/`.
+4. **Contatto manuale, non piattaforma di booking.** Eventi con prenotazione tramite canali, Corsi con informazioni/iscrizioni; nessun pagamento, conteggio posti o lista d’attesa nel DB. Sold-out e lista d’attesa sono un enum, non flag combinabili contraddittori.
+5. **Disponibilità distinta dal calendario.** Un corso può essere attivo ma chiuso alle iscrizioni. Date inclusive e stato derivato dal fuso WordPress, senza cron o riscritture giornaliere.
+6. **Sito locale, identità nazionale distinta.** La FISAR racconta la federazione; Delegazione, Consiglio/incarichi, Statuto e Carta appartengono al contesto locale. La Carta non è attribuita alla FISAR nazionale. Storia in fondo per non confondere fondatori e direttivo attuale; non attribuire automaticamente APS al 2010.
+7. **Home con attività concrete.** Niente Quattro Porte o fascia istituzionale ridondante. Eventi/Corsi subito dopo la hero, poi Blog, Carta e Come seguirci; pagina Seguici autonoma con componenti condivisi.
+8. **Foto singole, non collage raster.** Galleria ordinata in gruppi di sei, nessuna scelta casuale; modificabile dall’editor. Calice illustrativo distinto dalle foto reali e non presentato come prodotto esistente. Album solo quando affiancabile al titolo; pausa e movimento ridotto necessari anche con controlli discreti. Tutti gli originali ricevuti restano nell’archivio sorgente.
+9. **Comunicazioni e privacy essenziali.** Mailchimp esistente, invio diretto del form senza copie contatti in WordPress. Nessun analytics/pixel introdotto; informativa unica, non una Cookie Policy vuota. Impostazioni reali di servizio e hosting da verificare prima del lancio.
+10. **Documentazione di stato, non cronologia parallela.** Ogni argomento ha una guida principale; aggiornare il paragrafo corrente anziché aggiungere una nuova “revisione prevalente”. Changelog solo per cambiamenti sostanziali, storia completa in Git. Nessun documento separato di attività aperte: checklist di lancio nella guida Aruba.

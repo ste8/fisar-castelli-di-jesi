@@ -1,246 +1,57 @@
-# FISAR Castelli di Jesi — sito WordPress V1
+# FISAR Castelli di Jesi — sito WordPress
 
-Implementazione completa e locale del sito della Delegazione FISAR Castelli di Jesi.
+Sito della Delegazione FISAR Castelli di Jesi APS: Eventi, Corsi, Blog e pagine associative, con plugin e tema custom, editor nativo e ambiente Docker.
 
-> Il vino come punto di partenza, le persone al centro.
+## Da dove partire
 
-La V1 comprende ambiente Docker, plugin e tema custom, backend editoriale, contenuti demo realistici e frontend responsive/accessibile. La documentazione in `docs/` resta la source of truth.
+Questa è la documentazione corrente: descrive le regole da preservare, non la cronologia di tutte le prove grafiche. Per l’aspetto effettivo il riferimento è il sito approvato; in caso di discrepanze con le guide, segnalarle prima di reinterpretare o modificare il comportamento.
 
-La homepage mette in primo piano `FISAR Delegazione Castelli di Jesi`. Il tema usa Poppins per corpo, interfaccia e identità nella hero; Poppins Medium è approvato per i titoli delle sezioni della homepage e dei componenti. Carta dei Valori, Eventi, Corsi, Blog e le pagine di Chi siamo usano anch’essi titoli Poppins per coerenza con la home. Cormorant Garamond resta per payoff e heading editoriali delle altre pagine interne; entrambi sono WOFF2 self-hosted senza font remoti a runtime.
+| Guida | Quando leggerla |
+|---|---|
+| [Architettura](docs/architecture.md) | Responsabilità, modello dati, API e regole funzionali |
+| [Guida editoriale](docs/editorial-guide.md) | Gestione di pagine, Eventi, Corsi, Blog, gallerie e canali |
+| [Sistema visivo](docs/design-system.md) | Stile approvato, tipografia, componenti, responsive e accessibilità |
+| [Sviluppo locale](docs/local-development.md) | Docker, verifiche, import espliciti e backup |
+| [Pubblicazione Aruba](docs/deployment-aruba.md) | Rilasci, protezione dei contenuti, rollback e checklist di lancio |
+| [Decisioni](docs/decisions.md) | Scelte durevoli e motivazioni |
+| [Changelog](docs/changelog.md) | Cambiamenti sostanziali, senza diario delle micro-revisioni |
 
-La hero usa il carosello E approvato e applicato alla Home locale e all’anteprima Aruba il 24 ottobre (tema `1.6.99`): tre collage, ciascuno con sei fotografie reali diverse. Ogni gruppo rimane fermo sei secondi, poi dissolve nel successivo in 500 ms; testo e calice illustrativo naturale v2 restano fissi. Pallini e pausa discreti in basso a destra; rispetto del movimento ridotto e pausa con focus/hover/visibilità. Sotto 1024 px l’intero album è nascosto, senza spazio vuoto. Galleria nativa `hero-collage` nell’editor: l’ordine determina i gruppi da sei; il blocco separato `hero-glass` conserva il calice. Senza JavaScript resta il primo collage, senza galleria rimane il fallback singolo. Nessuna libreria o richiesta a Facebook; asset serviti dalla Libreria media del rispettivo sito.
+Prima di intervenire: leggere questa pagina, controllare Git e gli ultimi commit, consultare le guide pertinenti ed esaminare l’implementazione. Preservare le modifiche esistenti, verificare in proporzione al rischio e aggiornare le guide quando cambia una regola. Nessun commit automatico.
 
-Tutte le 27 immagini originali ricevute sono conservate in [`assets/photography/sito-home/`](assets/photography/sito-home/README.md), con inventario e procedura di rigenerazione; solo i 18 WebP selezionati sono caricati nel sito. [Anteprima isolata pulita](http://127.0.0.1:8092/docs/06-mockups/hero-2026-10-23/#E) e confronto storico in `confronto.html` conservati. Non distribuire l’intero archivio sorgente sul server web. Nessun database locale importato su Aruba; seed demo precedente conservato, senza reimport o sincronizzazione automatica.
-
-Aggiornamento del 25 ottobre: aggiunto un quarto collage con le sei foto scelte dall’utente (1, 2, 4, 5, 6, 8 nell’elenco di selezione), sia nel locale sia su Aruba. La galleria contiene ora 24 foto distinte e quattro gruppi/pallini; primi tre gruppi e tema 1.6.99 invariati. Originali sempre tutti e 27 nel repository.
-
-## Requisiti
-
-- Docker Desktop o Docker Engine con Docker Compose v2;
-- porta locale `8090` libera, oppure una porta alternativa configurata in `docker/.env`.
-
-Non servono PHP, Composer, Node o WordPress installati sul computer.
-
-## Primo avvio
-
-```bash
-cp docker/.env.example docker/.env
-docker compose --env-file docker/.env -f docker/compose.yaml up -d
-```
-
-Il primo avvio scarica le immagini, inizializza MariaDB e WordPress, installa la lingua italiana, attiva plugin e tema, configura i permalink e importa i dati demo. Può richiedere alcuni minuti.
-
-Controlla il risultato:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml ps -a
-```
-
-Lo stato atteso è:
-
-- `database`: `Up (healthy)`;
-- `wordpress`: `Up (healthy)`;
-- `wordpress_cli`: `Exited (0)`; è un processo one-shot, quindi l’uscita con codice zero è corretta.
-
-## Accesso
-
-- sito: [http://localhost:8090](http://localhost:8090)
-- backend: [http://localhost:8090/wp-admin/](http://localhost:8090/wp-admin/)
-- utente demo: `admin`
-- password demo: `admin_local_change_me`
-
-Queste credenziali valgono per una nuova installazione demo. Nell’ambiente locale corrente la password è già stata sostituita dall’utente: quella demo non funziona più. Core locale e immagine Docker sono allineati a WordPress **7.1.3** dal 22 ottobre 2026; tema, plugin e contenuti sono preservati.
-
-Modifica credenziali, porta e URL in `docker/.env` prima del primo avvio. Il file è ignorato da Git. Se cambi la porta, aggiorna sia `WP_PORT` sia `WORDPRESS_SITE_URL`.
-
-## Comandi quotidiani
-
-Avvio:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml up -d
-```
-
-Log:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml logs -f wordpress
-```
-
-Arresto senza perdere i dati:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml down
-```
-
-Reimport forzato dei dati demo:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml run --rm --no-deps \
-  --entrypoint /bin/sh wordpress_cli -c 'wp fisar-cdj demo install --force'
-```
-
-Reset completo dell’ambiente locale:
-
-```bash
-docker compose --env-file docker/.env -f docker/compose.yaml down -v
-docker compose --env-file docker/.env -f docker/compose.yaml up -d
-```
-
-Attenzione: `down -v` elimina definitivamente database e media del solo progetto Docker locale.
-
-## Struttura
+## Codice e contenuti
 
 ```text
-plugin/fisar-cdj-core/  CPT, meta, relazioni, import calendario, API di dominio, seed demo
-theme/fisar-cdj/        template PHP, componenti, CSS, JavaScript e asset ufficiali
-docker/                 Compose, variabili d’ambiente e bootstrap WP-CLI
-docs/                   specifiche, decisioni, architettura e assunzioni
-assets/                 brand guideline, logo originali e mockup approvato
+plugin/fisar-cdj-core/  CPT, campi, relazioni, import e logica funzionale
+theme/fisar-cdj/        presentazione, template, componenti e frontend
+docker/                 solo ambiente locale
+docs/                   guide correnti e sorgenti testuali
+assets/                 brand e archivio fotografico di progetto
+tests/                  test automatici
 ```
 
-Il tema non ricalcola gli stati temporali né le relazioni: usa le funzioni pubbliche del plugin. La descrizione completa è in [`docs/07-development/architecture.md`](docs/07-development/architecture.md); le assunzioni sono in [`docs/07-development/assumptions.md`](docs/07-development/assumptions.md).
+Soluzioni WordPress native, senza page builder o framework frontend. La logica del plugin non va duplicata nel tema.
 
-## Gestione contenuti
+L’[anteprima Aruba](https://www.fisarcastellidijesi.it/anteprima/) è la **fonte principale dei contenuti**: non sovrascriverne il database con quello locale. È accessibile senza password frontend e impostata noindex, non privata; l’admin richiede login. Un aggiornamento del codice non deve alterare pagine, media o menu.
 
-L’[anteprima Aruba](https://www.fisarcastellidijesi.it/anteprima/) è attiva dal 22 ottobre 2026, senza password frontend e con noindex; admin con credenziali già impostate dall’utente. **Aruba è ora la fonte editoriale principale**: aggiornare lì i contenuti e non sovrascriverne il database dal locale. Backup pubblico SQL e file verificati; core 7.1.3 e frontend collaudati, vecchio sito invariato. Login/editor remoto da verificare con l’utente; ZIP temporaneo protetto, pulizia ancora da confermare. Runbook e limiti in [`docs/07-development/deployment-aruba.md`](docs/07-development/deployment-aruba.md). Backup, credenziali e artefatti locali restano nella cartella privata `.local-deployment/`, esclusa da Git; mai pubblicarli sullo spazio web.
+I frammenti in `plugin/fisar-cdj-core/content/` servono al seed, non sincronizzano il sito pubblicato. Anche le [sorgenti testuali](docs/sources/README.md) sono distinte dai contenuti WordPress.
 
-### Eventi
+## Avvio locale
 
-Archivio e dettaglio Eventi riprendono lo stile Poppins della home e della Carta dei Valori: intestazioni compatte, locandine intere su bianco e accenti oro leggeri. Le card dell’archivio conservano gli abstract; il dettaglio mantiene il contenuto completo e presenta informazioni pratiche e iscrizioni in riquadri leggibili. Specifiche in `docs/03-pages/events.md` e `docs/03-pages/event.md`.
+Per l’ambiente già installato, con Docker attivo:
 
-Gli eventi in programma hanno un unico riquadro finale `Iscrizione` (titolo semplificato dal v1.6.32), dopo le informazioni pratiche: quote, scadenza evidenziata e recapiti testuali oltre ai pulsanti. `Come prenotare` nella hero porta direttamente al riquadro; per gli eventi senza prenotazione, `Come partecipare` e pannello `Partecipazione`. Corpo in una colonna centrale, senza sidebar. La scadenza resta anche nel riepilogo iniziale, mentre le quote compaiono una sola volta; gli importi numerici senza valuta mostrano `€`, senza alterare i dati salvati o duplicare la valuta già presente. La scadenza include il giorno della settimana e l’eventuale nota flessibile dentro entrambi i box; la scorciatoia è raccolta nel box iniziale. Quote, condizioni e modalità di prenotazione hanno una gerarchia più evidente, con pulsanti `Prenota via WhatsApp`/`Prenota via mail`. Le informazioni pratiche omettono la modalità per gli eventi in presenza, conservandola per online e ibridi. Per WhatsApp negli Eventi basta il numero italiano, con o senza `+39`: il link alla chat aggiunge il prefisso quando manca. Nessuna modifica automatica ai dati esistenti.
-
-Gli editor di Eventi e Corsi hanno stili del canvas dedicati: stessi font locali, gerarchia dei titoli Poppins, spaziature e larghezza di lettura delle rispettive pagine, alla scala desktop (H2 24 px, H3 20 px, H4 18 px). Non è un’anteprima del template completo; calendari, riepiloghi e iscrizioni restano generati dal frontend. Nessuna modifica ai contenuti salvati o agli editor delle altre pagine.
-
-Dal plugin `1.3.14`, **Breve descrizione** è il primo campo nel box **Dettagli dell’evento** o **Dettagli del corso**, insieme agli altri dati. È lo stesso Riassunto nativo di WordPress, senza un secondo campo da compilare nella barra laterale. Compare nelle card dell’archivio e sotto il titolo del dettaglio; se vuoto, l’archivio ricava un estratto dalla descrizione completa e il dettaglio non mostra il sottotitolo. Le card compatte della homepage continuano a ometterlo. I testi esistenti sono conservati.
-
-Dal menu **Eventi** del backend puoi gestire data e orari, modalità, luogo o piattaforma, partecipazione, gratuità, quote, iscrizioni, deadline, avviso posti limitati e Corso collegato. I campi non pertinenti vengono nascosti in base a modalità, gratuità e richiesta di iscrizione.
-
-Nel box **Partecipazione e costi**, oltre alle quote Soci/Non soci, puoi compilare una **Nota generale sulle quote** e aggiungere altre opzioni con **Aggiungi quota**: etichetta, importo e nota facoltativa. Per esempio `Menu senza vini`, con una nota che chiarisca cosa comprende e per chi vale. Le righe senza etichetta o importo sono ignorate; `0` è un importo valido. Per una quota unica puoi lasciare vuoti Soci/Non soci e usare una voce personalizzata. Un importo numerico mostra automaticamente `€`; per un supplemento specificare esplicitamente etichetta e valuta, per esempio `Supplemento …` / `+10 €`. Non viene calcolato né sommato alcun importo. `Evento gratuito` nasconde tutte le quote e le relative note, senza cancellarle. Senza JavaScript rimane una riga vuota compilabile: salva per aggiungerne un’altra, oppure svuota etichetta e importo per rimuoverla. Gli eventi già inseriti non richiedono migrazioni.
-
-Un Evento passa automaticamente tra futuro e concluso confrontando la data evento con la data corrente del sito.
-
-Dal plugin `1.3.10`, con **Iscrizione richiesta** e **Tipo di termine data prenotazione → Tassativo**, una scadenza valida superata mostra **Iscrizioni chiuse** nei due riepiloghi dell’Evento e nasconde canali, pulsanti e inviti a prenotare. Le quote restano consultabili. La data indicata è inclusa: chiusura dal giorno successivo nel fuso WordPress. Il termine **Flessibile** non chiude automaticamente; i dati salvati non vengono cancellati. Corsi invariati.
-
-Dal plugin `1.3.11`, nello stesso box **Iscrizioni**, con **Iscrizione richiesta** attivo, il menu **Disponibilità dell’evento** offre **Ordinaria (non sold-out)**, **Sold-out** e **Sold-out con lista d’attesa**. Sold-out nasconde i canali; la lista d’attesa riusa tutti i contatti già inseriti, con etichette dedicate e avviso che la richiesta non garantisce la partecipazione. Lo stato compare nel dettaglio e nelle card home/archivio. Evento concluso e termine tassativo superato prevalgono sulla lista d’attesa. Tornando a Ordinaria si ripristina il comportamento usuale, senza cancellare contatti o quote. Le richieste sono gestite manualmente tramite i canali: nessuna lista viene salvata nel sito.
-
-Dal tema `1.6.44`, il sold-out è evidenziato da una fascia sotto la locandina, senza coprirla, nelle card e nel dettaglio. Con lista d’attesa la fascia lo specifica; senza lista d’attesa non viene mostrata la scadenza delle prenotazioni, che resta salvata nell’editor.
-
-Nel box **Modalità e luogo** puoi compilare il campo facoltativo **Link Google Maps**, incollando il collegamento condiviso da Maps (anche abbreviato, completo di `https://`). Per presenza e ibrido compare `Apri in Google Maps` nei riepiloghi del luogo. Il campo non incorpora una mappa, non richiede una chiave API e non viene compilato automaticamente dall’indirizzo; se vuoto, il sito resta invariato.
-
-Dal plugin `1.3.12`, per Eventi online e ibridi nello stesso box trovi **Mostra le informazioni per partecipare online**, disattivato per default anche per gli eventi esistenti. Piattaforma e link restano compilabili e salvati, ma sono pubblicati solo attivando questa casella e salvando l’evento. I canali per prenotare non cambiano. Non è un invio automatico agli iscritti né una pubblicazione programmata: se vuoi riservare l’accesso agli iscritti, tieni la casella disattivata e comunica loro il link separatamente, senza inserirlo nel testo pubblico dell’evento. Negli eventi conclusi non viene mostrato il link di accesso.
-
-La homepage mostra fino a quattro eventi futuri in ordine cronologico: due card per riga su desktop/tablet e una su mobile, senza ridurre le locandine. Il link all’archivio resta sempre accanto al titolo su desktop e sotto le card su mobile: `Tutti gli eventi`, oppure `Tutti gli eventi (N)` quando il totale supera quattro. L’archivio conserva l’elenco completo e gli eventi passati.
-
-Nelle card Eventi di home e archivio il mese è per esteso quando entra su una riga, abbreviato soltanto quando non basta lo spazio. Il testo per screen reader resta completo; senza JavaScript o a forte ingrandimento è consentito il ritorno a capo. Controllo leggero nel tema, senza dipendenze.
-
-Dal plugin `1.3.9`, nel box **Iscrizioni** degli Eventi trovi **Contatti WhatsApp per le prenotazioni**: ogni voce ha **Nominativo (facoltativo)** e **Numero WhatsApp**, con pulsanti **Aggiungi contatto WhatsApp** e **Rimuovi contatto**. Il numero esistente compare automaticamente come prima voce. Le righe senza numero sono ignorate; nomi e numeri inseriti saranno pubblici nel dettaglio evento, con un pulsante per destinatario. Puoi scrivere `335 1234567` oppure `+39 335 1234567`: entrambi generano la stessa chat, senza duplicare il prefisso. Spazi, parentesi e trattini sono accettati; per numeri esteri indica il prefisso internazionale. Il dato salvato resta quello inserito e i vecchi link rimangono compatibili. Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra, oppure svuota il numero per rimuoverla. Dal plugin `1.3.13` lo stesso elenco è disponibile anche nei Corsi, come descritto sotto.
-
-### Corsi
-
-Dal plugin `1.3.19` / tema `1.6.60`, nel box **Quota e dotazione** puoi attivare **Corso in offerta** e compilare **Fine offerta (facoltativa)**. La fascia sotto la locandina compare in home, elenco e dettaglio: **In offerta**, oppure **In offerta — Fino al [data]**. La data è inclusa; dal giorno successivo il banner sparisce, senza cancellare i dati. Senza data disattiva manualmente la spunta. Sold-out, lista d’attesa, iscrizioni chiuse e corso concluso nascondono il banner. Importi e condizioni restano nel campo **Quota di partecipazione** e non vengono modificati automaticamente; il termine d’iscrizione è separato. Corsi esistenti non attivati automaticamente.
-
-Dal menu **Corsi** puoi gestire Direttore, livello, date, sede, canali e termine di iscrizione, quota, tesseramento, dotazione e calendario. Un Corso con data di fine compilata è attivo finché questa non è precedente a oggi; questo stato è distinto dalla possibilità di iscriversi.
-
-Dal plugin `1.3.13`, il box **Sede** include **Link Google Maps**, facoltativo. Nel box **Iscrizioni** trovi **Disponibilità del corso** (Ordinaria, Sold-out, Sold-out con lista d’attesa), **Mostra avviso posti limitati** e più contatti WhatsApp, ciascuno con nominativo facoltativo e numero con o senza `+39`. Il contatto precedente resta disponibile senza migrazioni; il nuovo elenco viene salvato soltanto quando aggiorni il corso. Numero e mail restano leggibili accanto ai pulsanti.
-
-**Tipo di termine data iscrizione → Tassativo** chiude le iscrizioni dal giorno successivo alla scadenza nel fuso WordPress, anche se il corso è ancora attivo. Con **Flessibile** i contatti rimangono disponibili e compare la nota sulla disponibilità non garantita. Il termine tassativo superato prevale sulla lista d’attesa; un corso concluso non accetta iscrizioni. Sold-out senza lista nasconde i canali e la data di scadenza, senza cancellarli. La lista d’attesa usa gli stessi contatti e non memorizza richieste nel sito.
-
-Tema `1.6.48`: home, archivio e dettaglio sono allineati agli Eventi, con Poppins, immagini quadrate non ritagliate e stati visibili. Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall’alto; quota, tesseramento e dotazione restano distinti. La quota conserva l’editor libero per condizioni personalizzate: `€` viene aggiunto solo a un importo numerico isolato. La home conserva fino a tre corsi attivi e mostra il totale nel link **Tutti i corsi (N)** se sono di più.
-
-Dal tema `1.6.56` / plugin `1.3.17`, il pannello e la scorciatoia ordinaria del dettaglio Corsi diventano **Informazioni e iscrizioni**: invito a contattarci per conoscere meglio il corso e sapere come iscriversi, pulsanti **Contattaci via WhatsApp** / **Contattaci via mail**. Non è un’iscrizione automatica. Scadenze e disponibilità conservano le regole precedenti; Eventi invariati.
-
-Nell’archivio Corsi, le card mostrano la data di inizio e il nome della **Sede**, con ripiego sulla città se non compilata. La data di fine non compare nelle card dell’elenco, ma resta nell’editor e nel dettaglio e continua a determinare lo stato del corso. Homepage invariata.
-
-Dal tema `1.6.50`, le card standard dell’archivio separano **Corso Sommelier** da **1° livello · Città (Provincia)**, senza ripetere il livello sopra. Sede con pin decorativo `📍`; quando la sede manca, la città è già nella riga del livello e non viene duplicata. Le card Eventi di home e archivio mostrano `📍 Sede · Città (Provincia)`; dal tema `1.6.55` anche gli eventi solo online mostrano `📍 Online`. Provincia omessa se vuota.
-
-Dal tema `1.6.51`, livello e città sono più evidenti di `Corso Sommelier`, che diventa una piccola introduzione; provincia più discreta accanto alla città. Solo card automatiche dell’archivio, senza modificare home, dettaglio, titoli personalizzati o dati salvati.
-
-Dal plugin `1.3.15`, nel box **Dettagli del corso** scegli **Titolo del corso → Automatico / Personalizzato**. Automatico genera il titolo nativo WordPress dai campi Livello, Città e Provincia, anche se lasci il titolo vuoto, e lo ricompone al salvataggio se cambi questi dati. Personalizzato conserva il titolo libero WordPress. Anteprima nel metabox; modificare i campi in Automatico aggiorna anche il titolo nell’editor. I corsi esistenti con livello valido usano la card strutturata senza migrazioni: il titolo nel database resta quello attuale finché non salvi in Automatico. I corsi senza livello valido restano personalizzati. Per mantenere un nome particolare scegli Personalizzato; gli URL esistenti non vengono rinominati. La città non viene ricavata dal testo del titolo: controlla il campo Città.
-
-Gli Eventi associati dal campo **Corso collegato** compaiono automaticamente nella pagina del Corso; quelli passati sono marcati “(concluso)”.
-
-### Import calendario
-
-Nel box **Calendario lezioni** di un Corso:
-
-1. copia da Excel o Google Sheets le colonne `Numero lezione`, `Data`, `Orario`, `Titolo lezione`, `Relatore`, `Note`;
-2. incollale nel campo tabulato;
-3. usa **Importa e mostra anteprima** per controllare le righe;
-4. salva o aggiorna il Corso.
-
-Sono accettate date `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA` e `AAAA-MM-GG`. I dati vengono salvati come righe strutturate, non come HTML.
-
-Dal plugin `1.3.20`, **Numero lezione** è il primo campo, manuale e facoltativo (per esempio `1`, `03`, `3 bis`); è anche la prima colonna pubblica. Nessuna rinumerazione automatica: le righe seguono data e orario. I calendari esistenti e gli import nel precedente formato senza numero sono conservati, con numero vuoto (`—` sul sito). Dopo un’anteprima riuscita il testo incollato viene svuotato: puoi modificare le righe e i numeri prima di salvare, senza che il testo originale li sovrascriva.
-
-### Blog, canali e pagine
-
-Il Blog usa gli **Articoli** WordPress nativi per approfondimenti, racconti degli eventi e comunicazioni associative. Dal 9 ottobre 2026 il nome Blog sostituisce News nei menu, nella pagina elenco e nei testi di navigazione; la home mostra `Dal nostro blog`. Restano l’URL `/news/`, i permalink degli articoli e la CTA `Leggi l’articolo`. Nessun nuovo CPT o categoria. Homepage, Carta dei Valori, La FISAR, La nostra delegazione, Contatti, Diventa socio e Come seguirci sono pagine native modificabili con l’editor.
-
-Dal 15 ottobre 2026 Diventa socio sostituisce il titolo Unisciti a noi, conservando `/unisciti-a-noi/`. Vantaggi, quote e modalità di adesione sono separati in blocchi nativi; dati dalla pagina ufficiale FISAR verificata alla stessa data, da ricontrollare ai rinnovi. Copia per il seed in `content/diventa-socio.html`, nessuna sincronizzazione automatica. Pulsante header rinominato, stile associativo conservato; tema `1.6.87`.
-
-Nel dettaglio Blog l’immagine in evidenza è contenuta nella hero, a destra del titolo su desktop e sotto l’introduzione sui formati più piccoli: riquadro fino a 352 px, fotografia intera senza ritaglio. Senza immagine resta la hero testuale; gallerie e foto nel corpo non cambiano.
-
-Dal tema `1.6.70`, anche le immagini principali del Blog usano riquadri **quadrati** in home, elenco e dettaglio. Formato consigliato **1080 × 1080 px**, per riusare la stessa immagine sul sito e sui social. Non è obbligatorio: le immagini non quadrate vengono ritagliate solo visivamente nelle card e mostrate intere nel riquadro bianco del dettaglio. I file originali e le immagini delle gallerie non vengono modificati.
-
-Dal plugin `1.3.22`, le nuove **Gallerie** inserite dal pannello standard dell’editor degli Articoli hanno l’ingrandimento al clic già attivo, con navigazione tra le foto gestita da WordPress. Puoi disattivarlo selezionando la galleria e scegliendo **Collegamento → Nessuno** nella barra del blocco. Ricarica gli editor già aperti per caricare il nuovo default. Gallerie già salvate o copiate/incollate e immagini singole mantengono le proprie impostazioni; nessuna conversione dei contenuti esistenti.
-
-La Carta dei Valori riporta il testo integrale della bozza V2 in blocchi Paragrafo/Titolo, con titoli Poppins e impaginazione coerente con la homepage. Le icone dei sette capitoli vengono aggiunte dal tema in frontend: conservare le ancore dei titoli descritte in [`docs/03-pages/values.md`](docs/03-pages/values.md), anche se si modifica il testo.
-
-La hero della Carta usa la sua immagine in evidenza o, in mancanza, il paesaggio di vigneti incluso nel tema. Titolo ed estratto nativi identificano la Carta della nostra Delegazione; il primo Paragrafo con classe `values-scope-note` è la nota sull’ambito locale, modificabile nell’editor e mostrata una sola volta nel riquadro informativo sotto la hero, con bordo oro e icona decorativa. Il payoff con classe `lead` resta nel corpo, sopra `Chi siamo`. URL e voce di menu non cambiano.
-
-Il menu `Chi siamo` si gestisce in **Aspetto → Menu**. Consiglio e incarichi e Statuto rimandano alle ancore `consiglio` e `statuto` della pagina La nostra delegazione: conservare questi ID quando si modificano i titoli nell’editor. Dal 14 ottobre 2026, Consiglio, incarichi non elettivi e Squadra Sommelier riportano i nominativi della pagina del sito esistente, con Responsabile Eventi Stefano Ottaviani subito dopo Organizzazione Corsi e Didattica. Testo modificabile nell’editor e copia per il seed in `plugin/fisar-cdj-core/content/consiglio-e-incarichi.html`; data di elezione 26 novembre 2022 ripresa dalla fonte, senza dedurre durata del mandato. Confermare eventuali aggiornamenti dei nominativi e caricare lo statuto vigente nella Libreria media con collegamento al PDF nella stessa sezione. L’email Eventi incompleta nella fonte non è stata importata.
-
-Dal tema `1.6.84`, La FISAR, La nostra delegazione e Diventa socio adottano la fascia bordeaux compatta e la scala Poppins di Eventi/Corsi/Blog, con separatori leggeri tra i capitoli. Carta dei Valori conserva la sua hero fotografica e lo stile già approvato. Soltanto presentazione frontend: contenuti, menu, ancore ed editor invariati; specifica `docs/03-pages/about.md`.
-
-Dal tema `1.6.85`, La nostra delegazione ha un indice interno, riquadri del Consiglio, incarichi su fondo chiaro, Squadra Sommelier su colonne e riquadro Statuto. Composizione con gruppi e blocchi WordPress nativi: conservare le classi `delegation-*` e le ancore quando si modificano i contenuti. Nomine, nomi, email e paragrafi restano quelli già approvati. Il 14 ottobre è stata aggiunta La nostra storia (`#storia`), con data di costituzione 21 gennaio 2010, denominazione originaria, fondatori, prima sede e primo presidente dal documento storico fornito. È la sesta e ultima sezione, dopo Statuto, con voce Storia in fondo all’indice e breve nota sul 2010 con rimando in alto; testo completo in `delegazione-storia.html`. PDF del 2010 non pubblicato come statuto vigente, documento attuale ancora da fornire. Seed in quattro frammenti nella cartella `plugin/fisar-cdj-core/content/`, nessun reimport o aggiornamento automatico delle pagine pubblicate.
-
-Affinamento del 14 ottobre, tema `1.6.86`: rimossa La delegazione con le tre sottosezioni introduttive. Presentazione con `un luogo` e ambiente informale e accogliente, nota sulla nascita nel 2010 come associazione senza scopo di lucro. Indice con titolo evidente e sei voci: I nostri valori, Consiglio, Incarichi, Squadra, Statuto, Storia. Valori ha un breve paragrafo e rimando alla Carta locale; Storia resta ultima. Sottotitolo `FISAR Castelli di Jesi APS · Passione e cultura del vino dal 2010`; seed allineato, altre sezioni invariate.
-
-Per aggiornare soltanto la struttura associativa su un ambiente demo già installato, senza reimportare gli altri contenuti:
-
-```bash
-docker compose -f docker/compose.yaml run --rm --no-deps \
-  --entrypoint /bin/sh wordpress_cli -c 'wp fisar-cdj demo association'
+```sh
+docker compose -f docker/compose.yaml up -d database wordpress
 ```
 
-I canali social sono un menu WordPress dedicato in **Aspetto → Menu**.
+- [Sito locale](http://localhost:8090/)
+- [Amministrazione locale](http://localhost:8090/wp-admin/)
 
-Dal plugin `1.3.30`, `/statuto` e `/statuto/` rimandano con 302/no-cache al documento Google Drive fornito dall’utente. Destinazione centralizzata nel plugin insieme agli altri link brevi. Il riquadro Statuto nella delegazione contiene `Apri lo statuto (PDF) →` verso questo alias, al posto dell’istruzione provvisoria; menu invariato. Il documento non è copiato nel sito e i permessi di lettura sono gestiti su Drive.
+Se si usa `docker/.env`, aggiungere `--env-file docker/.env` prima di `-f`. Per una **nuova installazione**, configurazione, credenziali e bootstrap demo seguire [Sviluppo locale](docs/local-development.md). Non reimportare il seed o eliminare volumi per aggiornare un ambiente esistente.
 
-Footer e pagina `/contatti/` usano i recapiti e i dati associativi reali forniti dall’utente, condivisi dal getter `fisar_cdj_get_delegation_details()` nel plugin. Le due email sono alternative equivalenti; telefono del Delegato, denominazione completa, SDI e RUNTS sono nella pagina Contatti, mentre sede, denominazione abbreviata, C.F. e P.IVA compaiono anche nel footer. L’introduzione resta modificabile nell’editor nativo; i dati comuni si aggiornano in `plugin/fisar-cdj-core/src/functions.php`, non in due copie separate. Specifiche in `docs/03-pages/contacts.md`.
+## Fotografie e materiali
 
-La pagina `/seguici/` resta una destinazione autonoma nel menu e nel footer; la home presenta gli stessi canali senza il link ridondante `Scopri tutti i canali`. Card e pannello newsletter sono componenti condivisi del tema: descrizioni dei canali, titolo/testo del pannello e form si aggiornano in un solo punto. Dal tema `1.6.76`, Seguici adotta la fascia bordeaux compatta e la scala Poppins delle altre pagine; tolti il titolo introduttivo e il paragrafo nel corpo, mostra direttamente i canali. Un’eventuale futura introduzione resta modificabile nell’editor nativo. Conservate le ancore `newsletter-home` e `newsletter-page`; home e configurazione Mailchimp invariati. Specifica in `docs/03-pages/follow-us.md`.
+L’[archivio della hero](assets/photography/sito-home/README.md) contiene tutti i **27 originali**, inventario, selezione corrente e **24 WebP** per quattro collage da sei foto. Non dipende più dai mockup: lo script di rigenerazione lavora all’interno dell’archivio. Il sito legge la galleria nativa della Home, non questi file direttamente.
 
-La newsletter usa il form Mailchimp fornito: nome, cognome ed email vengono inviati direttamente a Mailchimp e non salvati in WordPress. Il frontend non carica CSS o JavaScript Mailchimp.
+I vecchi mockup e le specifiche superate sono stati rimossi dal worktree; restano recuperabili nella storia Git, prima della pulizia al commit `6ec7e27`. Conservati brand, sorgenti fotografiche e documenti istituzionali utili. Non caricare l’intero archivio sorgente sul server.
 
-Dal 10 ottobre 2026 la pagina locale `/privacy-policy/` contiene l’informativa newsletter autorizzata dall’utente con i dati reali della Delegazione; dal 12 ottobre include anche navigazione e cookie della configurazione attuale. Rimane modificabile nell’editor WordPress e collegata dai moduli home/Seguici. Cookie Policy separata conservata come bozza, link rimosso dal footer e vecchio URL reindirizzato alla nuova sezione privacy. Testo e limiti in `docs/03-pages/privacy.md` / `privacy-newsletter.html`: prima del lancio pubblico verificare hosting/log/cookie effettivi e, nell’account Mailchimp, tracking, opt-in, prova del consenso e conservazione. Non certifica ogni trattamento futuro del sito o dell’associazione; il seed privacy resta genericamente dimostrativo.
-
-## Dati demo
-
-Il bootstrap crea in modo idempotente:
-
-- cinque Eventi futuri e uno concluso;
-- modalità in presenza, online e ibrida;
-- eventi gratuiti con e senza prenotazione e un evento con posti limitati;
-- un Corso attivo con cinque lezioni e un Corso concluso;
-- una serata di presentazione collegata al Corso attivo;
-- quattro articoli del Blog;
-- Carta dei Valori e tutte le pagine istituzionali;
-- menu principale, footer e social;
-- immagini demo locali in PNG.
-
-Email, telefono, profili social, link di iscrizione, immagini demo e bozze legali sono volutamente riconoscibili come contenuti da sostituire prima della pubblicazione.
-
-## Verifiche eseguite sulla V1
-
-- bootstrap Docker e healthcheck;
-- attivazione plugin e tema;
-- lint PHP di tutti i file e controllo sintattico JavaScript/JSON;
-- CPT, query futuri/conclusi, relazione Evento → Corso e seed idempotente;
-- parser TSV del calendario;
-- risposte HTTP di homepage, archivi, singoli e pagine istituzionali;
-- review visiva desktop e mobile con browser headless;
-- review DOM di landmark, unico H1, gerarchia heading, `alt`, nomi accessibili, lingua e ID duplicati;
-- verifica dei log PHP e Apache.
+Backup, esportazioni e credenziali restano fuori da Git e dallo spazio web pubblico, nella cartella privata `.local-deployment/`. La checklist di lancio è nella guida Aruba: nessun documento separato di “Attività aperte”.
