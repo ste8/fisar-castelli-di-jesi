@@ -1,0 +1,30 @@
+{
+  "description": "Immagine illustrativa generata per la Carta dei Valori: vigneto, paesaggio caldo e mano che raccoglie un grappolo. Non fotografia documentaria della Delegazione.",
+  "created_on": "2026-10-25",
+  "generation": {
+    "tool": "OpenAI image_gen.imagegen (integrato)",
+    "reference": "theme/fisar-cdj/assets/images/valori-vigneti-demo.webp",
+    "reference_role": "Solo atmosfera e colori; nuova composizione",
+    "prompt": "Use case: photorealistic-natural.\nAsset type: warm panoramic website background for an Italian wine-culture association's local Charter of Values, used behind white text in a homepage section and a compact page header.\nInput image 1 is a COLOR AND ATMOSPHERE REFERENCE ONLY: its soft sunset, olive vineyard greens and warm amber hills. Create a NEW composition, not a reproduction of that landscape.\nPrimary request: vineyard landscape at late afternoon golden hour with a clearly visible human hand gently picking a bunch of ripe white wine grapes directly from a living grapevine. Show the connection between the care of people, the vine and the landscape.\nScene/backdrop: plausible rolling rural hills of central Italy, cultivated vineyard rows receding toward a softly hazy horizon, restrained pale golden sky. Natural vineyard, not fantasy Tuscany or a recognizable place.\nSubject: on the right third of the image, a single anatomically correct lightly weathered adult hand and a modest part of its forearm entering naturally from the right edge, grasping the stem of one healthy ripe pale-green/gold grape bunch among believable vine leaves. The grapes and hand are the main detail, clearly separated from the background; no face or torso. Realistic thumb/fingers and tendons; relaxed working gesture, not a posed jewelry advertisement.\nComposition/framing: wide panoramic landscape approximately 2:1. Close foreground grapevine and hand around 72% across and 50% down; the left half opens into vineyard rows and hills with calm texture suitable for white website copy. Keep the hand and bunch comfortably inside the frame with crop-safe margins for a wide horizontal header. One continuous photograph, not collage, no inset.\nLighting/mood: luminous gentle sidelight, warm but not heavy orange, true foliage greens, natural skin texture, powdery bloom and tiny natural variations on grapes, soft rather than plastic highlights. Moderate depth of field: hand and grapes crisp, vineyard and hills recognizable, not a wall of blur. Quiet, human, grounded, understated editorial photography.\nConstraints: photographic illustration; no claim to depict an actual member or event. No writing, logos, watermarks, glassware, bottles, winery buildings, baskets or extra people. No extra hands/fingers, no huge fake-looking grapes, no painted effect, no HDR, no dark overlay baked into the pixels. Do not reproduce the reference village.",
+    "transparent_background": false
+  },
+  "original": {
+    "path": "assets/photography/valori-vendemmia-v1.png",
+    "dimensions": [
+      1983,
+      793
+    ]
+  },
+  "web": {
+    "path": "theme/fisar-cdj/assets/images/valori-vendemmia-v1.webp",
+    "dimensions": [
+      1920,
+      768
+    ],
+    "bytes": 223614,
+    "quality": 85,
+    "processor": "ImageMagick: sola conversione WebP, ridimensionamento e rimozione metadati"
+  },
+  "placement": "Home: sfondo della fascia Valori; pagina Carta: fallback se non è impostata un’immagine in evidenza. Punto focale orizzontale 70%, overlay CSS distinti. Non è la hero principale della Home.",
+  "disclosure": "Illustrazione generata, non attribuita a un luogo, produttore o membro reale; fotografie reali della galleria Home inalterate. Applicazione locale, Aruba non aggiornato."
+}

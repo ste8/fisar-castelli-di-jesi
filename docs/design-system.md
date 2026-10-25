@@ -44,7 +44,7 @@ Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccez
 - Header bianco e top bar bordeaux con gruppo WhatsApp/Instagram/Facebook/Newsletter, senza payoff. Menu a due livelli accessibile; CTA Diventa socio.
 - Home: testo a sinistra, collage/calice a destra da 64rem; nessuna fascia fotografica sotto il testo sui formati stretti. Quattro gruppi attuali da sei foto, cornici avorio, rotazioni leggere, toni non distruttivi. Fotografie reali non ricostruite; calice v2 esplicitamente illustrativo.
 - Segue Eventi/Corsi, Blog, Carta dei Valori, Come seguirci e footer. Niente Quattro Porte o fascia di affiliazione sotto la hero.
-- Hero interne bordeaux compatte per archivi/pagine associative/privacy/Seguici; Carta dei Valori con propria foto di vigneti, overlay e nota locale sotto l’immagine. Non riciclare la foto Home per tutte le intestazioni.
+- Hero interne bordeaux compatte per archivi/pagine associative/privacy/Seguici; Carta dei Valori con immagine illustrativa di vigneto e mano che raccoglie un grappolo, luce calda, overlay e nota locale sotto l’immagine. La stessa immagine è usata nella fascia Valori della Home, non nella sua hero. Sorgente e prompt in `assets/photography/valori-vendemmia-v1.*`; focalizzazione sul 70% orizzontale per conservare il gesto nei ritagli stretti. Non riciclare la foto Home per tutte le intestazioni.
 - Dettagli Eventi/Corsi: locandina contenuta in alto a destra; corpo centrale circa 48rem. Calendario Corso autonomo fino al contenitore largo 76rem, non costretto alla larghezza del testo.
 - Dettaglio Blog: immagine quadrata contenuta a destra del titolo, intera su bianco, non un’immagine enorme sopra il corpo.
 - Footer unico bianco, distinto dal corpo a tinta calda delle pagine dove previsto. Nessuna seconda fascia bordeaux di footer.
@@ -59,7 +59,7 @@ Date/orari/luogo leggibili: Accoglienza, Inizio ed eventuale Fine sulla stessa r
 
 Un solo pannello finale di iscrizione/contatto, quote vicine ai canali, scorciatoia nel riepilogo iniziale. Fasce sold-out sotto la locandina, non sopra. Offerta Corsi con cornice e fondo gialli, scadenza facoltativa, senza cambiare prezzi o logiche del plugin.
 
-Carta: testo integrale con sette capitoli e icone decorative oro; Home con introduzione e sei sintesi, non sostituti del documento. Nota locale informativa con icona info, non allarme. In Delegazione: indice, Consiglio distinto da incarichi non elettivi, Squadra, Statuto e Storia finale; no accordion o nominativi inventati.
+Carta: testo integrale con sette capitoli e icone decorative oro. Nella Home una sola frase introduttiva, sette titoli numerati da 1 a 7 come nel documento, con le stesse icone e link alle ancore dei capitoli, senza descrizioni; CTA “Leggi la Carta dei Valori completa”. Indice compatto a una/due colonne, link sottolineati anche senza hover, frecce decorative e area cliccabile dell’intera riga. Nota locale informativa con icona info, non allarme. In Delegazione: indice, Consiglio distinto da incarichi non elettivi, Squadra, Statuto e Storia finale; no accordion o nominativi inventati.
 
 Seguici: card bianche, fondo caldo comune e pannello newsletter bordeaux, spaziatura compatta. Stessi componenti e descrizioni della Home, non due versioni da mantenere separatamente.
 

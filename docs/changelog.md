@@ -2,6 +2,14 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 25 ottobre 2026 — Carta in Home come indice, tema 1.6.102 locale
+
+Fascia Valori accorciata: una frase introduttiva e sette titoli con icone, numerati da 1 a 7 come nella Carta, senza descrizioni. Ogni titolo è un link nativo all’ancora del capitolo nella Carta; aggiunto “Chi siamo”, titoli allineati al documento e CTA “Leggi la Carta dei Valori completa”. Link riconoscibili senza hover, righe cliccabili e griglia responsive compatta. Immagine generata approvata conservata; documento completo e database invariati. Solo locale, nessun deploy Aruba.
+
+## 25 ottobre 2026 — Immagine Carta dei Valori, tema 1.6.100 locale
+
+Nuova illustrazione fotografica generata: filari al tramonto e mano che raccoglie uva, comune alla fascia Valori della Home e al fallback della pagina Carta. WebP ottimizzato, sorgente PNG e prompt conservati; precedente asset mantenuto. Overlay e punto focale adeguati ai due contesti, senza cambiare testi o struttura. L’immagine in evidenza della pagina resta prioritaria se impostata nell’editor. Applicazione solo locale, nessun deploy Aruba o modifica al database.
+
 ## 25 ottobre 2026 — Documentazione compatta
 
 - Accorpate specifiche e istruzioni in guide di stato; eliminati roadmap completata, assunzioni/decisioni superate e mockup/provini dalla versione corrente. Nessun documento “Attività aperte”; verifiche di lancio nella guida Aruba.

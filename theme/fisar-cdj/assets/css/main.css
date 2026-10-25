@@ -1229,8 +1229,8 @@ blockquote {
 	position: relative;
 	padding-block: clamp(2.75rem, 5vw, 4rem);
 	overflow: hidden;
-	background-image: linear-gradient(90deg, rgba(18, 14, 10, .94), rgba(18, 14, 10, .79)), url('../images/valori-vigneti-demo.webp');
-	background-position: center;
+	background-image: linear-gradient(90deg, rgba(18, 14, 10, .92), rgba(18, 14, 10, .68)), url('../images/valori-vendemmia-v1.webp');
+	background-position: 70% center;
 	background-size: cover;
 	color: #fff;
 }
@@ -1278,44 +1278,63 @@ blockquote {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	gap: 1.5rem 2rem;
+	gap: .25rem 1.75rem;
 }
 
 .values-list li {
-	display: grid;
-	grid-template-columns: 1.75rem minmax(0, 1fr);
-	align-content: start;
 	min-width: 0;
-	padding-top: 1rem;
 	border-top: 1px solid rgba(255, 255, 255, .25);
-	column-gap: .75rem;
 }
 
 .values-list__icon {
-	grid-column: 1;
-	grid-row: 1 / span 2;
-	width: 1.75rem;
-	height: 1.75rem;
+	width: 1.5rem;
+	height: 1.5rem;
 	color: var(--color-gold);
 }
 
 .values-list h3 {
-	grid-column: 2;
-	margin-bottom: .5rem;
+	margin: 0;
 	color: #fff;
 	font-family: var(--font-body);
-	font-size: var(--font-size-lg);
+	font-size: clamp(1rem, 1.5vw, 1.125rem);
 	font-weight: 500;
-	line-height: 1.3;
+	line-height: 1.4;
 	overflow-wrap: anywhere;
 }
 
-.values-list p {
-	grid-column: 2;
-	margin-bottom: 0;
-	color: #e4dee1;
-	font-size: var(--font-size-base);
-	line-height: var(--line-height-body);
+.values-list__link {
+	display: grid;
+	grid-template-columns: 1.5rem minmax(0, 1fr) 1rem;
+	align-items: start;
+	min-height: 3.25rem;
+	padding-block: .75rem;
+	gap: .75rem;
+	color: #fff;
+	text-decoration: none;
+}
+
+.values-list__title {
+	text-decoration: underline;
+	text-decoration-color: rgba(255, 255, 255, .5);
+	text-underline-offset: .2em;
+}
+
+.values-list__arrow {
+	color: #e5d98f;
+}
+
+.values-list__link:hover,
+.values-list__link:focus-visible {
+	color: #fff;
+}
+
+.values-list__link:focus-visible {
+	outline-color: var(--color-gold);
+}
+
+.values-list__link:hover .values-list__title,
+.values-list__link:focus-visible .values-list__title {
+	text-decoration-color: currentColor;
 }
 
 .follow-section {
@@ -1974,12 +1993,12 @@ blockquote {
 .values-hero__image {
 	z-index: -2;
 	object-fit: cover;
-	object-position: center 45%;
+	object-position: 70% 45%;
 }
 
 .values-hero__overlay {
 	z-index: -1;
-	background: linear-gradient(90deg, rgba(18, 14, 10, .94), rgba(18, 14, 10, .85) 62%, rgba(18, 14, 10, .55));
+	background: linear-gradient(90deg, rgba(18, 14, 10, .92), rgba(18, 14, 10, .78) 54%, rgba(18, 14, 10, .46));
 }
 
 .values-hero__content {

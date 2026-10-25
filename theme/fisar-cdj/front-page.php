@@ -20,6 +20,16 @@ $events_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_u
 $courses_url = class_exists( 'Fisar_CDJ_Post_Types' ) ? fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) : home_url( '/corsi/' );
 $news_page = (int) get_option( 'page_for_posts' );
 $news_url  = $news_page ? get_permalink( $news_page ) : home_url( '/news/' );
+$values_url = fisar_cdj_theme_page_url( 'carta-dei-valori' );
+$values_chapters = array(
+	'chi-siamo'                 => array( 'title' => '1. Chi siamo', 'icon' => 'heart' ),
+	'persone-e-modo-di-lavorare' => array( 'title' => '2. Il valore delle persone e del modo di lavorare', 'icon' => 'leaf' ),
+	'curiosita-e-apertura'       => array( 'title' => '3. Curiosità e apertura', 'icon' => 'compass' ),
+	'vino-con-consapevolezza'   => array( 'title' => '4. Il vino con consapevolezza', 'icon' => 'shield' ),
+	'semplicita-e-informalita'   => array( 'title' => '5. Semplicità e informalità', 'icon' => 'chat' ),
+	'inclusione-e-accoglienza'   => array( 'title' => '6. Inclusione e accoglienza', 'icon' => 'members' ),
+	'ognuno-puo-contribuire'     => array( 'title' => '7. Ognuno può contribuire', 'icon' => 'idea' ),
+);
 $home_events_limit = 4;
 $events = function_exists( 'fisar_cdj_get_upcoming_events' ) ? fisar_cdj_get_upcoming_events( $home_events_limit ) : null;
 $events_total = $events ? (int) $events->found_posts : 0;
@@ -131,41 +141,23 @@ $events_link_text = $has_more_events
 			<div class="values-banner__intro">
 				<h2 id="values-title">La nostra Carta dei Valori</h2>
 				<p>Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.</p>
-				<p>Attraverso corsi ed eventi coltiviamo competenza e professionalità, in un ambiente informale.</p>
-				<a class="button" href="<?php echo esc_url( fisar_cdj_theme_page_url( 'carta-dei-valori' ) ); ?>">Leggi la Carta dei Valori</a>
+				<a class="button" href="<?php echo esc_url( $values_url ); ?>">Leggi la Carta dei Valori completa</a>
 			</div>
-			<ul class="values-list">
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'leaf', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Il modo di lavorare dei produttori</h3>
-					<p>Privilegiamo chi ha cura della terra, dell’ambiente e delle persone, e cerca la qualità in vigna.</p>
-				</li>
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'compass', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Curiosità e apertura</h3>
-					<p>Partiamo dal vino per esplorare anche il mondo del cibo e delle altre bevande, come birra, distillati, tè e caffè.</p>
-				</li>
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'shield', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Il vino con consapevolezza</h3>
-					<p>Un approccio al vino basato sulla conoscenza e sulla consapevolezza.</p>
-				</li>
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'chat', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Informalità</h3>
-					<p>Seguiamo le regole del servizio e della degustazione, senza eccessivi formalismi.</p>
-				</li>
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'members', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Inclusione e accoglienza</h3>
-					<p>Le nostre attività sono aperte a tutti, anche a chi non ha mai frequentato un corso da sommelier e a chi fa parte di altre associazioni.</p>
-				</li>
-				<li>
-					<?php echo fisar_cdj_theme_icon( 'idea', 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<h3>Ognuno può contribuire</h3>
-					<p>Idee, proposte e iniziative possono arrivare da tutti, non solo dal Consiglio Direttivo.</p>
-				</li>
-			</ul>
+			<nav aria-label="I sette punti della Carta dei Valori">
+				<ul class="values-list">
+					<?php foreach ( $values_chapters as $anchor => $chapter ) : ?>
+						<li>
+							<h3>
+								<a class="values-list__link" href="<?php echo esc_url( $values_url . '#' . $anchor ); ?>">
+									<?php echo fisar_cdj_theme_icon( $chapter['icon'], 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<span class="values-list__title"><?php echo esc_html( $chapter['title'] ); ?></span>
+									<span class="values-list__arrow" aria-hidden="true">→</span>
+								</a>
+							</h3>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</nav>
 		</div>
 	</section>
 
