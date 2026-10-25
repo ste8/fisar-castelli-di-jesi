@@ -1,5 +1,9 @@
 # Homepage
 
+## Quarto collage — 25 ottobre 2026
+
+Aggiunto su scelta dell’utente il quarto gruppo con sei foto precedentemente non usate (numeri 1, 2, 4, 5, 6 e 8 del provino numerato). Gruppo natalizio e rosato/cibo nei due riquadri grandi; dettagli nell’ordine tappi, sommelier/banner, attestati/tastevin e bottiglie sulla scala. I tappi sono vicini al calice per non coprire un volto con la sovrapposizione. Ora 24 foto distinte, quattro collage e quattro pallini generati automaticamente dal componente esistente. Primi 18 blocchi immagine preservati esattamente; testi, calice, tempi e breakpoint invariati. Applicato sia al locale sia ad Aruba; tema sempre 1.6.99, nessun import di database remoto o reimport del seed.
+
 ## Hero E approvata — 24 ottobre 2026
 
 Confermata la composizione E: tre collage da sei foto uniche (18 scatti), fermo immagine per sei secondi e dissolvenza di 500 ms; testo e calice naturale fissi. Pallini e pausa compatti e smorzati a destra; nessun selettore di varianti, simulazione o nota di test nella versione approvata. Sotto 64rem (1024 px) l'intero album, calice e controlli sono nascosti senza spazio vuoto e il cambio automatico è sospeso. Movimento ridotto e pausa manuale conservati. Questa decisione supera le precedenti composizioni fotografiche della hero, non copy, tipografia o altre sezioni.

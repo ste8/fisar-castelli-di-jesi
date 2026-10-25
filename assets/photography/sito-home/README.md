@@ -6,7 +6,7 @@ Archivio completo delle **27 immagini** ricevute da `Desktop/Desk 2/FISAR/sito-h
 
 ## Collage approvato
 
-La selezione E usa 18 foto differenti, divise in tre gruppi da sei. Selezione, ordine, testi alternativi e punti focali sono in [`photos.json`](../../../docs/06-mockups/hero-2026-10-23/photos.json); il campo `original` di ogni voce identifica il file in `originals/`. Non tutte le foto archiviate sono pubblicate nella hero.
+Dal 25 ottobre la selezione E usa 24 foto differenti, divise in quattro gruppi da sei. Il quarto aggiunge le immagini 1, 2, 4, 5, 6 e 8 scelte dall’utente nell’elenco delle foto non usate: gruppo natalizio, rosato/cibo, sommelier/banner, attestati/tastevin, tappi e bottiglie sulla scala. Selezione, ordine, testi alternativi e punti focali sono in [`photos.json`](../../../docs/06-mockups/hero-2026-10-23/photos.json); il campo `original` identifica il file in `originals/`. I primi tre gruppi sono invariati; non tutte le foto archiviate sono pubblicate nella hero.
 
 Per aggiungere foto in futuro:
 

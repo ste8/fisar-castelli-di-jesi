@@ -79,8 +79,8 @@ function createClassicCollageCarousel(gallery, keys, makePhoto) {
     if (note) note.textContent = !desktopLayout.matches
       ? 'Su questa larghezza il collage, il calice e i controlli sono nascosti. Il cambio automatico è sospeso: allarga la finestra per confrontare le immagini accanto al titolo.'
       : reduced()
-        ? 'Movimento ridotto: collage fermo e nessuna dissolvenza. I tre pallini permettono comunque di scegliere il gruppo da vedere.'
-        : 'Un collage di sei foto ogni sei secondi. I tre pallini sotto le foto scelgono il gruppo e fermano il cambio automatico; l’icona accanto mette in pausa o riprende il giro.';
+        ? 'Movimento ridotto: collage fermo e nessuna dissolvenza. I pallini permettono comunque di scegliere il gruppo da vedere.'
+        : 'Un collage di sei foto ogni sei secondi. I pallini sotto le foto scelgono il gruppo e fermano il cambio automatico; l’icona accanto mette in pausa o riprende il giro.';
     if (!destroyed && !paused && !hovered && !reduced() && desktopLayout.matches && visible && !document.hidden) {
       timer = setTimeout(() => showPhoto(index + 1, false), INTERVAL_MS);
     }

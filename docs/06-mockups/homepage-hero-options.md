@@ -1,5 +1,7 @@
 # Alternative della hero — 15 ottobre 2026
 
+**25 ottobre — quarto collage:** E estesa a 24 scatti distinti e quattro gruppi, con la selezione 1, 2, 4, 5, 6, 8 dell’utente. Primi tre collage preservati; nuovo gruppo in fondo alla galleria locale e Aruba, quarto pallino automatico. Tema, layout, calice e breakpoint invariati; nessun nuovo deploy di codice su Aruba.
+
 **Stato finale del 24 ottobre: E applicata alla Home locale e all’anteprima Aruba, tema 1.6.99.** Tre collage da sei, fotografie native nella Libreria media di ciascun ambiente, comandi solo pallini/pausa, album nascosto sotto 1024 px. Nessun import del database locale, nessuna modifica al sito pubblico precedente. Le note sotto documentano le prove storiche; provino pulito e alternative restano disponibili.
 
 **24 ottobre — versione E confermata:** l'indirizzo principale mostra l'anteprima pulita, senza comandi o note di test; mantenuti solo pallini e pausa del carosello. Alternative conservate in `hero-2026-10-23/confronto.html`. Tutte le 27 foto archiviate integralmente in `assets/photography/sito-home/originals/`, incluse quelle non selezionate e la copia duplicata; esclusa solo la cache `Thumbs.db`. Inventario e rigenerazione documentati nella stessa cartella. Approvazione visiva, non ancora applicazione a WordPress/Aruba.

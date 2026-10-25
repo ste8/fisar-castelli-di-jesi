@@ -1,5 +1,12 @@
 # Changelog
 
+## Quarto collage della hero — 25 ottobre 2026
+
+- Aggiunte le sei foto scelte nell’elenco numerato (1, 2, 4, 5, 6, 8): gruppo natalizio e rosato/cibo come scene grandi; tappi, sommelier/banner, attestati/tastevin e bottiglie sulla scala nei dettagli. Tappi nel riquadro vicino al calice per evitare un volto nella zona sovrapposta. Ora 24 sorgenti diverse, quattro gruppi e quattro pallini; primi 18 blocchi immagine esattamente invariati.
+- Skill `clean-code-engineer`: riutilizzati import locale, galleria nativa e raggruppamento dinamico esistenti, senza cambiare tema/plugin o tempi/breakpoint. Sei WebP nuovi qualità 86, massimo 1200 px, circa 1,05 MB totali; originali e primi 18 derivati intatti. Manifest/provino allineati; nessun ritocco generativo o nuovo asset fuori dalla selezione.
+- Locale: copia privata prima/dopo e confronto esatto dei primi tre collage, altri blocchi Home, thumbnail e altri contenuti superato. Aruba: backup del contenuto corrente prima dell’aggiunta, sei upload nativi (ID 223–228) con alt, append dei soli sei blocchi nella galleria già presente e conferma del salvataggio. Nessun import DB/seed, codice o nuovo tema remoto; versione 1.6.99 conservata, altri media non cancellati.
+- Verificati quarto gruppo/immagini/alt, cinque controlli totali (quattro pallini e pausa), ritorno quarto/primo da tastiera, responsive 390/768/1023/1024/1440 px senza overflow e album nascosto sotto soglia. Test JS e inventario/derivati verificati; screenshot quarto collage Aruba conservato. Nessun commit automatico.
+
 ## v1.6.99 — Hero approvata su WordPress locale e Aruba, 24 ottobre 2026
 
 - Portata E nella vera Home: tre gruppi da sei foto diverse, calice naturale e testi fermi, cambio ogni sei secondi con dissolvenza 500 ms. Solo pallini/pausa compatti a destra, nessun comando del provino. Album nascosto sotto 64rem senza spazio vuoto e timer sospeso; focus/navigazione manuale fermano l’automatismo, movimento ridotto lo disattiva e conserva i pallini. Senza JS resta il primo collage.

@@ -12,6 +12,8 @@ La hero usa il carosello E approvato e applicato alla Home locale e all’antepr
 
 Tutte le 27 immagini originali ricevute sono conservate in [`assets/photography/sito-home/`](assets/photography/sito-home/README.md), con inventario e procedura di rigenerazione; solo i 18 WebP selezionati sono caricati nel sito. [Anteprima isolata pulita](http://127.0.0.1:8092/docs/06-mockups/hero-2026-10-23/#E) e confronto storico in `confronto.html` conservati. Non distribuire l’intero archivio sorgente sul server web. Nessun database locale importato su Aruba; seed demo precedente conservato, senza reimport o sincronizzazione automatica.
 
+Aggiornamento del 25 ottobre: aggiunto un quarto collage con le sei foto scelte dall’utente (1, 2, 4, 5, 6, 8 nell’elenco di selezione), sia nel locale sia su Aruba. La galleria contiene ora 24 foto distinte e quattro gruppi/pallini; primi tre gruppi e tema 1.6.99 invariati. Originali sempre tutti e 27 nel repository.
+
 ## Requisiti
 
 - Docker Desktop o Docker Engine con Docker Compose v2;
