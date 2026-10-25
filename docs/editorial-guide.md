@@ -69,7 +69,7 @@ Nel corpo degli Articoli inserire blocchi Galleria nativi. Le nuove gallerie han
 
 ## Home e carosello
 
-La Home mostra sezioni generate: Hero → Eventi/Corsi → Blog → Carta dei Valori → Come seguirci → footer. Copy della hero, limiti e sintesi Valori sono nel tema, non nel normale corpo della pagina. Le Quattro Porte e la fascia istituzionale sotto la hero non ci sono.
+La Home mostra sezioni generate: Hero → Eventi/Corsi → Blog → Carta dei Valori → Come seguirci → footer. Copy della hero, limiti e indice Valori sono nel tema, non nel normale corpo della pagina. La fascia Valori presenta una frase introduttiva e sette titoli numerati da 1 a 7, senza descrizioni: ogni titolo porta al capitolo corrispondente della Carta tramite la sua ancora. Il pulsante apre il documento completo. Le Quattro Porte e la fascia istituzionale sotto la hero non ci sono.
 
 Per la galleria: Pagine → Home “FISAR Castelli di Jesi” → Modifica → Riepilogo del documento → **Galleria**. È la Galleria top-level con classe `hero-collage`, senza link/didascalie. Non è un album separato in Media.
 
