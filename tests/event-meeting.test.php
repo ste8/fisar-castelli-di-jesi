@@ -86,7 +86,31 @@ try {
 	ob_start();
 	Fisar_CDJ_Meta_Boxes::render_event_schedule( get_post( $meeting_only ) );
 	$schedule_editor = ob_get_clean();
-	$check( ! preg_match( '/id="_fisar_event_start_time"[^>]*\brequired\b/', $schedule_editor ), 'The editor must allow an unknown actual start time.' );
+	$check( ! str_contains( $schedule_editor, 'id="_fisar_event_start_time"' ), 'Event times no longer belong in the general details box.' );
+	$check( str_contains( $schedule_editor, 'Breve descrizione (facoltativa)' ) && ! str_contains( $schedule_editor, 'È il Riassunto' ) && ! str_contains( $schedule_editor, 'ricava un estratto' ), 'Optional event description must have accurate, non-technical guidance.' );
+	ob_start();
+	Fisar_CDJ_Meta_Boxes::render_event_location( get_post( $meeting_only ) );
+	$location_editor = ob_get_clean();
+	$check( str_contains( $location_editor, 'id="_fisar_event_start_time"' ) && ! preg_match( '/id="_fisar_event_start_time"[^>]*\brequired\b/', $location_editor ), 'Actual event times must be optional and grouped below the venue.' );
+	$check( strpos( $location_editor, 'id="_fisar_event_venue"' ) < strpos( $location_editor, 'id="_fisar_event_start_time"' ), 'Venue must precede actual event times.' );
+	ob_start();
+	Fisar_CDJ_Meta_Boxes::render_event_registration( get_post( $both ) );
+	$registration_editor = ob_get_clean();
+	$dom = new DOMDocument();
+	@$dom->loadHTML( '<?xml encoding="UTF-8">' . $registration_editor );
+	$xpath = new DOMXPath( $dom );
+	$deadline_row = $xpath->query( '//div[contains(@class,"fisar-admin-grid--deadline")]' )->item( 0 );
+	$check( $deadline_row && $xpath->query( './/input[@id="_fisar_event_deadline"]', $deadline_row )->length === 1 && $xpath->query( './/select[@id="_fisar_event_deadline_type"]', $deadline_row )->length === 1, 'Deadline date and type must share their own row.' );
+	$check( strpos( $registration_editor, 'id="_fisar_event_deadline"' ) < strpos( $registration_editor, 'id="_fisar_event_deadline_type"' ), 'Deadline date must precede its type.' );
+	foreach ( array( 'fisar-whatsapp-title', 'fisar-other-contacts-title', 'fisar-deadline-title', 'fisar-event-registration-notes-title' ) as $heading ) {
+		$check( $xpath->query( '//section[@aria-labelledby="' . $heading . '"]//h3[@id="' . $heading . '"]' )->length === 1, 'Registration groups need distinct accessible headings.' );
+	}
+	$check( ! str_contains( $registration_editor, 'frontend' ), 'Editor instructions must avoid frontend jargon.' );
+	$old_order = array( 'normal' => 'fisar-event-meeting,third-party,fisar-event-schedule,fisar-event-location,fisar-event-registration', 'side' => 'fisar-event-course,submitdiv' );
+	$expected_order = array( 'normal' => 'third-party,fisar-event-schedule,fisar-event-location,fisar-event-meeting,fisar-event-registration', 'side' => 'fisar-event-course,submitdiv' );
+	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $old_order ), 'Saved box order must put meeting immediately after venue without moving unrelated boxes.' );
+	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $expected_order ), 'Box-order adjustment must be idempotent.' );
+	$check( false === Fisar_CDJ_Meta_Boxes::event_meta_box_order( false ), 'Default registration order must remain available to new users.' );
 	ob_start();
 	Fisar_CDJ_Meta_Boxes::render_event_meeting( get_post( $both ) );
 	$meeting_editor = ob_get_clean();

@@ -77,11 +77,41 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_action( 'save_post_' . Fisar_CDJ_Post_Types::COURSE, array( self::class, 'save_course' ) );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue_assets' ) );
 		add_action( 'admin_notices', array( self::class, 'show_import_notice' ) );
+		add_filter( 'get_user_option_meta-box-order_' . Fisar_CDJ_Post_Types::EVENT, array( self::class, 'event_meta_box_order' ) );
+	}
+
+	/** Keep the optional meeting after the actual venue, even with a saved box order. */
+	public static function event_meta_box_order( mixed $order ): mixed {
+		if ( ! is_array( $order ) ) {
+			return $order;
+		}
+		$location_context = null;
+		foreach ( $order as $context => $ids ) {
+			if ( is_string( $ids ) && in_array( 'fisar-event-location', explode( ',', $ids ), true ) ) {
+				$location_context = $context;
+				break;
+			}
+		}
+		if ( null === $location_context ) {
+			return $order;
+		}
+		foreach ( $order as $context => $ids ) {
+			if ( ! is_string( $ids ) ) {
+				continue;
+			}
+			$boxes = array_values( array_diff( explode( ',', $ids ), array( 'fisar-event-meeting' ) ) );
+			if ( $context === $location_context ) {
+				$position = array_search( 'fisar-event-location', $boxes, true );
+				array_splice( $boxes, $position + 1, 0, array( 'fisar-event-meeting' ) );
+			}
+			$order[ $context ] = implode( ',', $boxes );
+		}
+		return $order;
 	}
 
 	public static function add_meta_boxes(): void {
 		add_meta_box( 'fisar-event-schedule', 'Dettagli dell’evento', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
-		add_meta_box( 'fisar-event-location', 'Modalità e luogo dell’evento', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
+		add_meta_box( 'fisar-event-location', 'Modalità, luogo e orari dell’evento', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-meeting', 'Ritrovo e spostamenti (facoltativo)', array( self::class, 'render_event_meeting' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
@@ -123,12 +153,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function render_event_schedule( WP_Post $post ): void {
 		self::nonce_field();
 		self::render_excerpt( $post );
-		echo '<div class="fisar-admin-grid fisar-admin-grid--4">';
 		self::input( $post->ID, '_fisar_event_date', 'Data evento', 'date', 'La data determina automaticamente se l’evento è futuro o concluso.', true );
-		self::input( $post->ID, '_fisar_event_welcome_time', 'Ora accoglienza', 'time', 'Facoltativa.' );
-		self::input( $post->ID, '_fisar_event_start_time', 'Ora inizio', 'time', 'Lascia vuoto se è noto solo l’orario di ritrovo, da inserire nel riquadro Ritrovo e spostamenti.' );
-		self::input( $post->ID, '_fisar_event_end_time', 'Ora fine', 'time', 'Facoltativa.' );
-		echo '</div>';
 	}
 
 	public static function render_event_location( WP_Post $post ): void {
@@ -160,10 +185,16 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<input type="hidden" name="_fisar_event_online_access_present" value="1">';
 		self::checkbox( $post->ID, '_fisar_event_online_access_public', 'Mostra le informazioni per partecipare online', 'Disattivato per default, anche per gli eventi già inseriti. Attiva per rendere pubblici piattaforma e link di accesso nella pagina dell’evento. Se disattivato, i dati restano salvati ma non compaiono sul sito. Non modifica i canali di prenotazione.' );
 		echo '</div>';
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-event-times-title"><h3 id="fisar-event-times-title">Orari dell’evento</h3>';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--times">';
+		self::input( $post->ID, '_fisar_event_welcome_time', 'Ora accoglienza', 'time', 'Facoltativa.' );
+		self::input( $post->ID, '_fisar_event_start_time', 'Ora inizio', 'time', 'Lascia vuoto se è noto solo l’orario di ritrovo, da inserire nel riquadro Ritrovo e spostamenti.' );
+		self::input( $post->ID, '_fisar_event_end_time', 'Ora fine', 'time', 'Facoltativa.' );
+		echo '</div></section>';
 	}
 
 	public static function render_event_meeting( WP_Post $post ): void {
-		echo '<p class="description">Compila solo se è previsto un ritrovo distinto dal luogo dell’evento. Puoi indicare solo il ritrovo oppure anche sede e orari effettivi nei riquadri precedenti. I dati del ritrovo non compaiono per gli eventi solo online.</p>';
+		echo '<p class="description">Compila solo se è previsto un ritrovo distinto dal luogo dell’evento. Puoi indicare solo il ritrovo oppure anche sede e orari effettivi nell’apposito riquadro. I dati del ritrovo non compaiono per gli eventi solo online.</p>';
 		echo '<input type="hidden" name="_fisar_event_meeting_present" value="1">';
 		echo '<div class="fisar-conditional" data-show-modes="presence,hybrid">';
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
@@ -204,7 +235,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	public static function render_event_registration( WP_Post $post ): void {
-		self::checkbox( $post->ID, '_fisar_event_registration_required', 'Iscrizione richiesta', 'Se non selezionato, i canali non vengono mostrati nel frontend.' );
+		self::checkbox( $post->ID, '_fisar_event_registration_required', 'Iscrizione richiesta', 'Se non selezionato, i canali di prenotazione non vengono mostrati nella pagina dell’evento.' );
 		echo '<div class="fisar-conditional" data-show-when-checked="_fisar_event_registration_required">';
 		self::select(
 			$post->ID,
@@ -215,8 +246,9 @@ final class Fisar_CDJ_Meta_Boxes {
 			'available'
 		);
 		self::render_registration_fields( $post->ID, 'event' );
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-event-registration-notes-title"><h3 id="fisar-event-registration-notes-title">Altre informazioni sulle prenotazioni</h3>';
 		self::editor( $post->ID, '_fisar_event_registration_notes', 'Informazioni aggiuntive', 'Dettagli utili non coperti dai campi precedenti.' );
-		echo '</div>';
+		echo '</section></div>';
 	}
 
 	private static function render_event_fee_options( int $post_id ): void {
@@ -475,25 +507,32 @@ final class Fisar_CDJ_Meta_Boxes {
 	private static function render_excerpt( WP_Post $post ): void {
 		$excerpt = (string) get_post_field( 'post_excerpt', $post->ID, 'raw' );
 		$archive = Fisar_CDJ_Post_Types::EVENT === $post->post_type ? 'degli eventi' : 'dei corsi';
+		$empty_help = Fisar_CDJ_Post_Types::EVENT === $post->post_type
+			? 'Se la lasci vuota, non compare né nella lista né sotto il titolo.'
+			: 'Se la lasci vuota, la lista ricava un estratto dal testo del corso; sotto il titolo non compare.';
 		// Keep the native ID/name: classic autosave reads and restores #excerpt.
 		?>
 		<div class="fisar-field">
-			<label for="excerpt"><strong>Breve descrizione</strong></label>
+			<label for="excerpt"><strong>Breve descrizione (facoltativa)</strong></label>
 			<textarea class="widefat" id="excerpt" name="excerpt" rows="3" aria-describedby="fisar-post-excerpt-help"><?php echo esc_textarea( $excerpt ); ?></textarea>
-			<p class="description" id="fisar-post-excerpt-help">Compare nella lista <?php echo esc_html( $archive ); ?> e sotto il titolo della pagina di dettaglio. È il Riassunto di WordPress. Se lo lasci vuoto, la lista ricava un estratto dalla descrizione; nel dettaglio il sottotitolo non compare.</p>
+			<p class="description" id="fisar-post-excerpt-help">Compare nella lista <?php echo esc_html( $archive ); ?> e sotto il titolo della pagina di dettaglio. <?php echo esc_html( $empty_help ); ?></p>
 		</div>
 		<?php
 	}
 
 	private static function render_registration_fields( int $post_id, string $prefix ): void {
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-whatsapp-title">';
 		self::render_whatsapp_contacts( $post_id, $prefix );
+		echo '</section><section class="fisar-admin-section" aria-labelledby="fisar-other-contacts-title"><h3 id="fisar-other-contacts-title">Altri canali di contatto</h3>';
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post_id, "_fisar_{$prefix}_email", 'Email', 'email' );
 		self::input( $post_id, "_fisar_{$prefix}_phone", 'Telefono', 'tel' );
 		self::input( $post_id, "_fisar_{$prefix}_form_url", 'Modulo online', 'url', 'Link completo al modulo.' );
 		self::input( $post_id, "_fisar_{$prefix}_other_channel", 'Altro canale', 'text' );
+		echo '</div></section>';
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-deadline-title"><h3 id="fisar-deadline-title">' . ( 'course' === $prefix ? 'Termine delle iscrizioni' : 'Termine delle prenotazioni' ) . '</h3>';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--deadline">';
 		self::input( $post_id, "_fisar_{$prefix}_deadline", 'course' === $prefix ? 'Termine iscrizioni' : 'Termine prenotazioni', 'date' );
-		echo '</div>';
 		self::select(
 			$post_id,
 			"_fisar_{$prefix}_deadline_type",
@@ -502,14 +541,15 @@ final class Fisar_CDJ_Meta_Boxes {
 				'strict'   => 'Tassativo',
 				'flexible' => 'Flessibile',
 			),
-			'Con il termine flessibile, il frontend invita comunque a contattare la Delegazione.'
+			'Con il termine flessibile, dopo la data indicata sarà comunque possibile contattarci per iscriversi, ma non potremo garantire la disponibilità.'
 		);
+		echo '</div></section>';
 	}
 
 	private static function render_whatsapp_contacts( int $post_id, string $prefix ): void {
 		$contacts = fisar_cdj_get_registration_whatsapp_contacts( $post_id, $prefix );
 		?>
-		<h3>Contatti WhatsApp per le <?php echo 'course' === $prefix ? 'iscrizioni' : 'prenotazioni'; ?></h3>
+		<h3 id="fisar-whatsapp-title">Contatti WhatsApp per le <?php echo 'course' === $prefix ? 'iscrizioni' : 'prenotazioni'; ?></h3>
 		<input type="hidden" name="_fisar_<?php echo esc_attr( $prefix ); ?>_whatsapp_contacts_present" value="1">
 		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria) e numero WhatsApp, con o senza +39: per esempio 335 1234567. Se manca il prefisso, il numero è considerato italiano e il link alla chat viene generato automaticamente. Per numeri esteri indica il prefisso internazionale. Le righe senza numero vengono ignorate. I contatti saranno pubblici nella pagina <?php echo 'course' === $prefix ? 'del corso' : 'dell’evento'; ?>.</p>
 		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ) + 1; ?>">

@@ -19,6 +19,8 @@ Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eve
 
 Compilare data, orari (accoglienza, inizio, eventuale fine), modalità, luogo/indirizzo/città/provincia e, se disponibile, link Maps. Il nome della sede e l’indirizzo sono distinti; non incollare tutto nel solo nome. Per gli ibridi il luogo evidenzia anche la partecipazione online.
 
+Nel riquadro **Dettagli dell’evento** ci sono la data e la **Breve descrizione (facoltativa)**. Quest’ultima compare nelle liste e sotto il titolo del dettaglio solo se compilata: per gli Eventi non c’è un estratto automatico dal testo. Gli orari effettivi sono sotto il luogo nel riquadro **Modalità, luogo e orari dell’evento**. Il riquadro facoltativo **Ritrovo e spostamenti** segue quello del luogo anche quando WordPress ha già memorizzato un ordine personale dei riquadri; non vengono riscritte le preferenze salvate.
+
 ### Ritrovo e spostamenti
 
 Se prima dell’attività ci si incontra altrove, compilare il riquadro facoltativo **Ritrovo e spostamenti**: ora, punto di ritrovo, indirizzo, città/provincia, Maps e indicazioni organizzative. Queste ultime sono pubbliche e compaiono nel riepilogo iniziale e nelle informazioni pratiche: usarle per auto condivise, arrivi successivi o coordinate da comunicare separatamente, non per dati riservati agli iscritti.
@@ -37,6 +39,8 @@ Il link di partecipazione online è nascosto per default. Attivare **Mostra le i
 ### Prenotazioni
 
 Inserire recapiti e termine **Tassativo** o **Flessibile**. Il termine tassativo include la data indicata: iscrizioni chiuse dal giorno successivo nel fuso del sito. Quello flessibile lascia i canali disponibili con la nota sulla disponibilità non garantita. Le quote restano leggibili anche a iscrizioni chiuse.
+
+L’editor separa **Contatti WhatsApp**, **Altri canali di contatto**, **Termine delle prenotazioni** e **Altre informazioni sulle prenotazioni**. Data e tipo di termine sono affiancati, con la data per prima in un campo compatto; sui formati stretti vanno a capo mantenendo lo stesso ordine.
 
 Disponibilità: Ordinaria, Sold-out, Sold-out con lista d’attesa. Sold-out semplice nasconde contatti operativi e termine; lista d’attesa usa gli stessi contatti con messaggi dedicati. La scadenza tassativa superata e l’evento concluso impediscono di riproporre un’iscrizione ordinaria. Tornare a Ordinaria non cancella i recapiti. L’avviso posti limitati non conta o prenota posti.
 
