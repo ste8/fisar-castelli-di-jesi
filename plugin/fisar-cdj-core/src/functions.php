@@ -15,6 +15,38 @@ function fisar_cdj_is_event_past( int|WP_Post $event ): bool {
 	return '' !== $date && $date < fisar_cdj_today();
 }
 
+/** Meeting data is independent of the event's actual venue and start time. */
+function fisar_cdj_sanitize_event_meeting_value( mixed $value, string $field ): string {
+	if ( ! is_string( $value ) ) {
+		return '';
+	}
+	$value = trim( $value );
+	if ( 'time' === $field ) {
+		return preg_match( '/^(?:[01]\d|2[0-3]):[0-5]\d$/', $value ) ? $value : '';
+	}
+	if ( 'maps_url' === $field ) {
+		return esc_url_raw( $value, array( 'http', 'https' ) );
+	}
+	if ( 'province' === $field ) {
+		return strtoupper( substr( preg_replace( '/[^a-z]/i', '', $value ), 0, 2 ) );
+	}
+	return 'notes' === $field ? sanitize_textarea_field( $value ) : sanitize_text_field( $value );
+}
+
+/** Read-only public meeting details; online-only events never expose a meeting. */
+function fisar_cdj_get_event_meeting( int $event_id ): array {
+	$meeting = array_fill_keys( Fisar_CDJ_Post_Types::EVENT_MEETING_FIELDS, '' );
+	if ( 'online' !== get_post_meta( $event_id, '_fisar_event_mode', true ) ) {
+		foreach ( Fisar_CDJ_Post_Types::EVENT_MEETING_FIELDS as $field ) {
+			$meeting[ $field ] = fisar_cdj_sanitize_event_meeting_value( get_post_meta( $event_id, '_fisar_event_meeting_' . $field, true ), $field );
+		}
+	}
+	$meeting['city'] = fisar_cdj_format_city( $meeting['city'], $meeting['province'] );
+	$meeting['has_location'] = (bool) ( $meeting['venue'] || $meeting['address'] || $meeting['city'] || $meeting['maps_url'] );
+	$meeting['has_details'] = (bool) ( $meeting['time'] || $meeting['has_location'] || $meeting['notes'] );
+	return $meeting;
+}
+
 /** Public online participation data; hidden unless explicitly enabled. */
 function fisar_cdj_get_event_online_access( int $event_id ): array {
 	$hidden = array( 'platform' => '', 'url' => '' );

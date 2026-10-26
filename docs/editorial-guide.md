@@ -19,6 +19,12 @@ Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eve
 
 Compilare data, orari (accoglienza, inizio, eventuale fine), modalità, luogo/indirizzo/città/provincia e, se disponibile, link Maps. Il nome della sede e l’indirizzo sono distinti; non incollare tutto nel solo nome. Per gli ibridi il luogo evidenzia anche la partecipazione online.
 
+### Ritrovo e spostamenti
+
+Se prima dell’attività ci si incontra altrove, compilare il riquadro facoltativo **Ritrovo e spostamenti**: ora, punto di ritrovo, indirizzo, città/provincia, Maps e indicazioni organizzative. Queste ultime sono pubbliche e compaiono nel riepilogo iniziale e nelle informazioni pratiche: usarle per auto condivise, arrivi successivi o coordinate da comunicare separatamente, non per dati riservati agli iscritti.
+
+Si può indicare solo il ritrovo, solo sede/orari dell’evento oppure entrambi. Se è noto solo il ritrovo, lasciare vuoti sede e ora d’inizio effettivi, senza duplicare i dati. Nel dettaglio il blocco Ritrovo è distinto da Orario evento e Luogo evento; le righe vuote non compaiono. Nelle card si dà precedenza al punto di ritrovo con l’etichetta “Ritrovo:”. Gli eventi ordinari restano invariati; negli eventi solo online il ritrovo non viene pubblicato, ma eventuali dati già inseriti restano salvati.
+
 Il link di partecipazione online è nascosto per default. Attivare **Mostra le informazioni per partecipare online** soltanto se deve essere pubblico; altrimenti comunicarlo agli iscritti separatamente, senza inserirlo nel corpo pubblico. Non esiste invio automatico del link.
 
 ### Partecipazione e quote

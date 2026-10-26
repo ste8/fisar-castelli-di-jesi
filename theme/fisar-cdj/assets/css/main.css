@@ -1273,6 +1273,12 @@ blockquote {
 	content: '';
 }
 
+.values-index {
+	display: grid;
+	align-items: start;
+	gap: .25rem 1.75rem;
+}
+
 .values-list {
 	display: grid;
 	margin: 0;
@@ -1283,7 +1289,6 @@ blockquote {
 
 .values-list li {
 	min-width: 0;
-	border-top: 1px solid rgba(255, 255, 255, .25);
 }
 
 .values-list__icon {
@@ -1304,7 +1309,7 @@ blockquote {
 
 .values-list__link {
 	display: grid;
-	grid-template-columns: 1.5rem minmax(0, 1fr) 1rem;
+	grid-template-columns: 1.5rem minmax(0, 1fr);
 	align-items: start;
 	min-height: 3.25rem;
 	padding-block: .75rem;
@@ -1317,10 +1322,6 @@ blockquote {
 	text-decoration: underline;
 	text-decoration-color: rgba(255, 255, 255, .5);
 	text-underline-offset: .2em;
-}
-
-.values-list__arrow {
-	color: #e5d98f;
 }
 
 .values-list__link:hover,
@@ -2604,6 +2605,30 @@ blockquote {
 	line-height: 1.4;
 }
 
+.single-event .event-meeting,
+.single-event .details-list .event-meeting {
+	display: block;
+	min-width: 0;
+	padding: 0;
+	border: 0;
+	overflow-wrap: anywhere;
+}
+
+.single-event .event-meeting__time {
+	display: block;
+	margin-bottom: .4rem;
+	font-size: 1rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.single-event .event-meeting__notes {
+	margin: .65rem 0 0;
+	color: var(--color-ink);
+	font-size: .9375rem;
+	line-height: 1.65;
+}
+
 @media (max-width: 37.999rem) {
 	:is(.single-event, .single-course) .hero-facts .event-schedule-row {
 		grid-template-columns: minmax(0, 1fr);
@@ -3579,7 +3604,7 @@ blockquote {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
-	.values-list {
+	.values-index {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 

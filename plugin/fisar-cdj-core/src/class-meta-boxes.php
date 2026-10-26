@@ -81,7 +81,8 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	public static function add_meta_boxes(): void {
 		add_meta_box( 'fisar-event-schedule', 'Dettagli dell’evento', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
-		add_meta_box( 'fisar-event-location', 'Modalità e luogo', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
+		add_meta_box( 'fisar-event-location', 'Modalità e luogo dell’evento', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
+		add_meta_box( 'fisar-event-meeting', 'Ritrovo e spostamenti (facoltativo)', array( self::class, 'render_event_meeting' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-course', 'Corso collegato', array( self::class, 'render_event_course' ), Fisar_CDJ_Post_Types::EVENT, 'side', 'default' );
@@ -125,7 +126,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<div class="fisar-admin-grid fisar-admin-grid--4">';
 		self::input( $post->ID, '_fisar_event_date', 'Data evento', 'date', 'La data determina automaticamente se l’evento è futuro o concluso.', true );
 		self::input( $post->ID, '_fisar_event_welcome_time', 'Ora accoglienza', 'time', 'Facoltativa.' );
-		self::input( $post->ID, '_fisar_event_start_time', 'Ora inizio', 'time', '', true );
+		self::input( $post->ID, '_fisar_event_start_time', 'Ora inizio', 'time', 'Lascia vuoto se è noto solo l’orario di ritrovo, da inserire nel riquadro Ritrovo e spostamenti.' );
 		self::input( $post->ID, '_fisar_event_end_time', 'Ora fine', 'time', 'Facoltativa.' );
 		echo '</div>';
 	}
@@ -144,7 +145,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		);
 
 		echo '<div class="fisar-conditional fisar-admin-grid fisar-admin-grid--2" data-show-modes="presence,hybrid">';
-		self::input( $post->ID, '_fisar_event_venue', 'Sede', 'text', 'Per esempio: Enoteca Regionale.' );
+		self::input( $post->ID, '_fisar_event_venue', 'Sede dell’evento', 'text', 'Luogo effettivo dell’attività. Se è noto solo il punto di ritrovo, lascia vuoti questi dati e compila Ritrovo e spostamenti.' );
 		self::input( $post->ID, '_fisar_event_address', 'Indirizzo', 'text' );
 		self::input( $post->ID, '_fisar_event_city', 'Città', 'text' );
 		self::input( $post->ID, '_fisar_event_province', 'Provincia', 'text', 'Sigla di due lettere.', false, 2 );
@@ -159,6 +160,24 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<input type="hidden" name="_fisar_event_online_access_present" value="1">';
 		self::checkbox( $post->ID, '_fisar_event_online_access_public', 'Mostra le informazioni per partecipare online', 'Disattivato per default, anche per gli eventi già inseriti. Attiva per rendere pubblici piattaforma e link di accesso nella pagina dell’evento. Se disattivato, i dati restano salvati ma non compaiono sul sito. Non modifica i canali di prenotazione.' );
 		echo '</div>';
+	}
+
+	public static function render_event_meeting( WP_Post $post ): void {
+		echo '<p class="description">Compila solo se è previsto un ritrovo distinto dal luogo dell’evento. Puoi indicare solo il ritrovo oppure anche sede e orari effettivi nei riquadri precedenti. I dati del ritrovo non compaiono per gli eventi solo online.</p>';
+		echo '<input type="hidden" name="_fisar_event_meeting_present" value="1">';
+		echo '<div class="fisar-conditional" data-show-modes="presence,hybrid">';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
+		self::input( $post->ID, '_fisar_event_meeting_time', 'Ora di ritrovo', 'time' );
+		self::input( $post->ID, '_fisar_event_meeting_venue', 'Punto di ritrovo', 'text', 'Per esempio: Parcheggio Gala Superstore.' );
+		self::input( $post->ID, '_fisar_event_meeting_address', 'Indirizzo del ritrovo', 'text' );
+		self::input( $post->ID, '_fisar_event_meeting_city', 'Città del ritrovo', 'text' );
+		self::input( $post->ID, '_fisar_event_meeting_province', 'Provincia del ritrovo', 'text', 'Sigla di due lettere.', false, 2 );
+		self::input( $post->ID, '_fisar_event_meeting_maps_url', 'Link Google Maps del ritrovo', 'url', 'Facoltativo, distinto dal link alla sede effettiva dell’evento.' );
+		echo '</div>';
+		$notes = (string) get_post_meta( $post->ID, '_fisar_event_meeting_notes', true );
+		echo '<div class="fisar-field"><label for="_fisar_event_meeting_notes"><strong>Indicazioni su ritrovo e spostamenti</strong></label>';
+		echo '<textarea class="widefat" id="_fisar_event_meeting_notes" name="_fisar_event_meeting_notes" rows="4" aria-describedby="fisar-event-meeting-help">' . esc_textarea( $notes ) . '</textarea>';
+		echo '<p class="description" id="fisar-event-meeting-help">Testo pubblico, mostrato nel riepilogo iniziale e nelle informazioni pratiche. Per esempio: spostamento in auto condivise, arrivo diretto per i ritardatari o coordinate che saranno comunicate in seguito. Non inserire informazioni riservate agli iscritti.</p></div></div>';
 	}
 
 	public static function render_event_participation( WP_Post $post ): void {
@@ -347,6 +366,15 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function save_event( int $post_id ): void {
 		if ( ! self::can_save( $post_id ) ) {
 			return;
+		}
+		if ( isset( $_POST['_fisar_event_meeting_present'] ) ) {
+			foreach ( Fisar_CDJ_Post_Types::EVENT_MEETING_FIELDS as $field ) {
+				$key = '_fisar_event_meeting_' . $field;
+				if ( isset( $_POST[ $key ] ) ) {
+					$value = fisar_cdj_sanitize_event_meeting_value( wp_unslash( $_POST[ $key ] ), $field );
+					update_post_meta( $post_id, $key, wp_slash( $value ) );
+				}
+			}
 		}
 
 		$text_fields = self::EVENT_TEXT_FIELDS;
