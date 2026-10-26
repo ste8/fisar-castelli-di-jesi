@@ -46,6 +46,7 @@ API di riferimento in `src/functions.php`:
 - iscrizioni: `fisar_cdj_get_event_booking_status`, `fisar_cdj_get_course_booking_status`, `fisar_cdj_get_event_registration_details`, `fisar_cdj_get_course_registration_details`, `fisar_cdj_get_registration_channels`;
 - quote: `fisar_cdj_get_event_fees`; offerta: `fisar_cdj_get_course_offer`;
 - identità Corsi: `fisar_cdj_get_course_identity`; calendario: `fisar_cdj_get_course_calendar`.
+- ritrovo Eventi: `fisar_cdj_get_event_meeting`, gruppo opzionale indipendente da sede e orari effettivi; nascosto per gli eventi solo online. Meta registrati/sanitizzati nel plugin, salvataggio protetto da marker per preservare dati da editor precedenti; nessuna migrazione degli eventi esistenti o deduzione dell’ora d’inizio dal ritrovo.
 
 Il tema usa queste API, senza ricalcolare disponibilità, gratuità o scadenze. Un’eventuale cache HTML deve scadere/invalidarsi al cambio di giorno per non mostrare stati superati.
 

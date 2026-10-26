@@ -18,6 +18,7 @@ $participation = (string) get_post_meta( $event_id, '_fisar_event_participation'
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
+$meeting       = function_exists( 'fisar_cdj_get_event_meeting' ) ? fisar_cdj_get_event_meeting( $event_id ) : array( 'has_details' => false );
 
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
 $schedule = array_filter( array( 'Accoglienza' => $welcome_time, 'Inizio' => $start_time, 'Fine' => $end_time ) );
@@ -51,12 +52,15 @@ if ( $deadline['waiting_list'] ) {
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
 						<li><strong>Data</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span></li>
+						<?php if ( $meeting['has_details'] ) : ?>
+							<li><strong>Ritrovo</strong><?php get_template_part( 'template-parts/event-meeting', null, array( 'meeting' => $meeting ) ); ?></li>
+						<?php endif; ?>
 						<?php if ( $schedule ) : ?>
-							<li class="event-schedule-row"><strong>Orario</strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
+							<li class="event-schedule-row"><strong><?php echo $meeting['has_details'] ? 'Orario evento' : 'Orario'; ?></strong><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></li>
 						<?php endif; ?>
 						<?php if ( $has_location ) : ?>
 							<li>
-								<strong>Luogo</strong>
+								<strong><?php echo $meeting['has_details'] ? 'Luogo evento' : 'Luogo'; ?></strong>
 								<?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?>
 							</li>
 						<?php endif; ?>
@@ -91,10 +95,11 @@ if ( $deadline['waiting_list'] ) {
 					<h2 id="event-details-title">Informazioni pratiche</h2>
 					<dl class="details-list">
 						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
-						<?php if ( $schedule ) : ?><div><dt>Orario</dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
+						<?php if ( $meeting['has_details'] ) : ?><div><dt>Ritrovo</dt><dd><?php get_template_part( 'template-parts/event-meeting', null, array( 'meeting' => $meeting ) ); ?></dd></div><?php endif; ?>
+						<?php if ( $schedule ) : ?><div><dt><?php echo $meeting['has_details'] ? 'Orario evento' : 'Orario'; ?></dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
 						<?php if ( $has_location ) : ?>
 							<div>
-								<dt>Luogo</dt>
+								<dt><?php echo $meeting['has_details'] ? 'Luogo evento' : 'Luogo'; ?></dt>
 								<dd>
 									<?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?>
 								</dd>

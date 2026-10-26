@@ -56,6 +56,17 @@ Eseguire lint PHP/JS dei file effettivamente cambiati. Dopo modifiche frontend c
 
 I test del carosello sono unitari senza dipendenze: timer, breakpoint, focus, tastiera, visibilità e preferenza di movimento ridotto. Non sostituiscono una verifica browser. Uno screenshot da solo non dimostra la pausa o il cambio automatico.
 
+Il test d’integrazione del ritrovo Eventi usa WordPress locale e crea/rimuove soltanto eventi di prova dedicati:
+
+```sh
+docker compose -f docker/compose.yaml run --rm --no-deps \
+  -v "$PWD/tests:/tmp/fisar-tests:ro" --entrypoint wp wordpress_cli \
+  --exec='define("WP_ENVIRONMENT_TYPE", "local");' \
+  eval-file /tmp/fisar-tests/event-meeting.test.php
+```
+
+Verifica eventi ordinari, solo ritrovo, entrambi, sanitizzazione, autorizzazioni/nonce, salvataggi da editor precedenti, svuotamento esplicito, online/ibridi e card nei diversi contesti. L’argomento esplicito `fixtures` conserva i tre eventi per il collaudo browser: rimuoverli al termine usando gli ID restituiti. Non eseguire su Aruba.
+
 ## Foto della hero
 
 Sorgenti, inventario, selezione e derivati in `assets/photography/sito-home/`; istruzioni nel suo [README](../assets/photography/sito-home/README.md). Nessuna dipendenza da mockup o server di prova. Il sito legge invece la galleria della Home nel proprio WordPress.

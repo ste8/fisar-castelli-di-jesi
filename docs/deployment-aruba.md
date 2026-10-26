@@ -6,7 +6,7 @@ Anteprima: [www.fisarcastellidijesi.it/anteprima/](https://www.fisarcastellidije
 
 **Aruba è la fonte principale dei contenuti dal trasferimento iniziale. Non importare più il database locale per un aggiornamento di codice.** Editor, gallerie, menu e configurazione del database devono essere preservati. Root pubblica precedente, DNS, email e impostazioni PHP globali non sono parte di un normale aggiornamento dell’anteprima.
 
-Ultimo rilascio tema: 1.6.99; quattro collage/24 foto aggiornati dalla Libreria media Aruba. Core trasferito 7.1.3; PHP remoto osservato 8.5/MySQL 8, distinto da PHP 8.3/MariaDB locale. Ricontrollare l’ambiente prima di un rilascio, senza presumere che le versioni rimangano immutate. Login/editor remoto verificati con l’utente; non chiedere la password in chat o inserirla nella documentazione.
+Ultimo rilascio: tema 1.6.106 e plugin Core 1.3.31, il 26 ottobre 2026: ritrovo Eventi facoltativo distinto da luogo e orari effettivi, senza modificare gli eventi esistenti. Indice Valori a colonne indipendenti, immagine generata della Carta e quattro collage/24 foto della Home preservati. Core trasferito 7.1.3; PHP remoto osservato 8.5/MySQL 8, distinto da PHP 8.3/MariaDB locale. Ricontrollare l’ambiente prima di un rilascio, senza presumere che le versioni rimangano immutate. Login/editor remoto verificati con l’utente; non chiedere la password in chat o inserirla nella documentazione.
 
 ## Prima di aggiornare
 
@@ -51,6 +51,9 @@ Solo percorsi relativi alla cartella privata ignorata `.local-deployment/`; ness
 | `backups/2026-10-22/wp-before-7.1.3/` | Database/file locali prima dell’aggiornamento core |
 | `backups/2026-10-24/` | WXR Aruba prima/dopo hero, copie Home e ZIP rollback tema 1.6.98 |
 | `backups/2026-10-25/`, `release/hero-2026-10-25/` | Copie Home e mapping dei sei media del quarto collage |
+| `backups/2026-10-26/`, `release/values-2026-10-26/` | Export WXR prima del rilascio, ZIP rollback 1.6.99, pagine/CSS precedenti e pacchetto 1.6.102; confronti e schermate dopo il rilascio. WXR non è un backup SQL |
+| `release/values-layout-2026-10-26/` | Pacchetto 1.6.105, Home/CSS/root prima e dopo, schermata desktop Aruba. Rollback al pacchetto 1.6.102 in `release/values-2026-10-26/`, verificato contro il CSS remoto precedente |
+| `release/event-meeting-2026-10-26/` | Pacchetti plugin 1.3.31/tema 1.6.106, rollback plugin 1.3.30, confronti pubblici prima/dopo e schermata editor Aruba. Rollback tema 1.6.105 in `release/values-layout-2026-10-26/`. Nessuna migrazione/import DB |
 
 I pacchetti di trasferimento iniziale e la copia DB di build del 22 ottobre **non sono la fonte editoriale e non vanno reimportati**. Le vecchie impronte e i resoconti dettagliati di migrazione sono recuperabili in Git prima della pulizia documentale (`6ec7e27`). Verificare esistenza/integrità delle copie prima di usarle; non trattare un vecchio backup come attuale.
 

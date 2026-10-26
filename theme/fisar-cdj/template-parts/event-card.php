@@ -19,6 +19,14 @@ if ( 'online' === $mode ) {
 } elseif ( 'hybrid' === $mode ) {
 	$place = $has_physical_place ? $place . ' + online' : 'In presenza e online';
 }
+$meeting = function_exists( 'fisar_cdj_get_event_meeting' ) ? fisar_cdj_get_event_meeting( $event_id ) : array( 'has_location' => false );
+if ( $meeting['has_location'] ) {
+	$meeting_place = implode( ' · ', array_filter( array( $meeting['venue'] ?: $meeting['address'], $meeting['city'] ) ) );
+	if ( $meeting_place ) {
+		$place = 'Ritrovo: ' . $meeting_place . ( 'hybrid' === $mode ? ' + online' : '' );
+		$has_physical_place = true;
+	}
+}
 ?>
 <article <?php post_class( 'event-card' ); ?>>
 	<a class="event-card__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">

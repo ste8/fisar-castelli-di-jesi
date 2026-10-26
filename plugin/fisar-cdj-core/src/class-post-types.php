@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Fisar_CDJ_Post_Types {
 	public const EVENT = 'fisar_evento';
 	public const COURSE = 'fisar_corso';
+	public const EVENT_MEETING_FIELDS = array( 'time', 'venue', 'address', 'city', 'province', 'maps_url', 'notes' );
 
 	public static function init(): void {
 		add_action( 'init', array( self::class, 'register' ) );
@@ -121,6 +122,9 @@ final class Fisar_CDJ_Post_Types {
 		foreach ( $event_fields as $key => $type ) {
 			self::register_single_meta( self::EVENT, $key, $type );
 		}
+		foreach ( self::EVENT_MEETING_FIELDS as $field ) {
+			self::register_single_meta( self::EVENT, '_fisar_event_meeting_' . $field, 'string' );
+		}
 
 		foreach ( $course_fields as $key => $type ) {
 			self::register_single_meta( self::COURSE, $key, $type );
@@ -141,6 +145,9 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( str_starts_with( $key, '_fisar_event_meeting_' ) ) {
+					return fisar_cdj_sanitize_event_meeting_value( $value, substr( $key, strlen( '_fisar_event_meeting_' ) ) );
+				}
 				if ( '_fisar_course_offer_enabled' === $key ) {
 					return in_array( $value, array( true, 1, '1' ), true );
 				}

@@ -143,20 +143,21 @@ $events_link_text = $has_more_events
 				<p>Ci uniscono la passione per il vino, la voglia di conoscerlo e il piacere di condividerlo.</p>
 				<a class="button" href="<?php echo esc_url( $values_url ); ?>">Leggi la Carta dei Valori completa</a>
 			</div>
-			<nav aria-label="I sette punti della Carta dei Valori">
-				<ul class="values-list">
-					<?php foreach ( $values_chapters as $anchor => $chapter ) : ?>
-						<li>
-							<h3>
-								<a class="values-list__link" href="<?php echo esc_url( $values_url . '#' . $anchor ); ?>">
-									<?php echo fisar_cdj_theme_icon( $chapter['icon'], 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-									<span class="values-list__title"><?php echo esc_html( $chapter['title'] ); ?></span>
-									<span class="values-list__arrow" aria-hidden="true">→</span>
-								</a>
-							</h3>
-						</li>
-					<?php endforeach; ?>
-				</ul>
+			<nav class="values-index" aria-label="I sette punti della Carta dei Valori">
+				<?php foreach ( array_chunk( $values_chapters, 4, true ) as $column_chapters ) : ?>
+					<ul class="values-list">
+						<?php foreach ( $column_chapters as $anchor => $chapter ) : ?>
+							<li>
+								<h3>
+									<a class="values-list__link" href="<?php echo esc_url( $values_url . '#' . $anchor ); ?>">
+										<?php echo fisar_cdj_theme_icon( $chapter['icon'], 'values-list__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<span class="values-list__title"><?php echo esc_html( $chapter['title'] ); ?></span>
+									</a>
+								</h3>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endforeach; ?>
 			</nav>
 		</div>
 	</section>
