@@ -9,6 +9,48 @@
 	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
+#poststuff :is([id^="fisar-event-"], [id^="fisar-course-"]) .postbox-header .hndle {
+	font-size: 20px;
+	line-height: 1.4;
+	padding-block: 14px;
+}
+
+.fisar-admin-section {
+	margin-top: 1.75rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid #c3c4c7;
+}
+
+.fisar-admin-section > h3 {
+	margin: 0 0 .75rem;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.fisar-admin-grid--times {
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+	max-width: 42rem;
+}
+
+.fisar-admin-grid--deadline {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: start;
+}
+
+.fisar-admin-grid--deadline > .fisar-field:first-child {
+	flex: 0 1 12rem;
+}
+
+.fisar-admin-grid--deadline > .fisar-field:last-child {
+	flex: 1 1 18rem;
+	min-width: 0;
+}
+
+.fisar-admin-grid--deadline input[type="date"] {
+	max-width: 12rem;
+}
+
 .fisar-field {
 	margin: 1rem 0;
 }

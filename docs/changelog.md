@@ -2,6 +2,12 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 26 ottobre 2026 — Editor Eventi più leggibile, plugin 1.3.32 locale
+
+Orari spostati sotto il luogo effettivo; ritrovo subito dopo il relativo riquadro anche con ordine personale già memorizzato, tramite filtro di sola lettura. Titoli dei riquadri più grandi delle sottosezioni e dei campi. Separati WhatsApp, altri canali, scadenza e note; data compatta prima del tipo di termine nella stessa riga adattiva. Aiuti senza gergo tecnico e breve descrizione dichiarata facoltativa, con comportamento degli estratti corretto. Campi e salvataggi invariati; nessuna modifica al sito pubblico o ad Aruba. I miglioramenti ai gruppi condivisi e ai titoli si applicano anche all’editor Corsi.
+
+Collaudo nell’editor locale autenticato a 1280, 822 e 390 px, senza salvare l’evento: titoli principali 20 px, sottosezioni 16 px, data 192 px affiancata al tipo su desktop e a capo su mobile, nessun overflow. Regola dei titoli resa specifica per prevalere sugli stili nativi WordPress. Test d’integrazione su ordine, gruppi, aiuti e salvataggi superati.
+
 ## 26 ottobre 2026 — Ritrovo Eventi pubblicato su Aruba
 
 Aggiornamento nativo del plugin Core a 1.3.31 e del tema a 1.6.106 nell’anteprima. Verificati versioni attive, nuovo riquadro e inizio facoltativo nell’editor remoto senza salvare l’evento aperto. Home, archivio e dettaglio esistente invariati salvo versione asset/spaziatura del markup; root identica, CSS remoto uguale al locale, noindex conservato. Pacchetti precedenti conservati; nessun import DB, reimport demo o modifica a contenuti/media/menu. I tre eventi creati per il collaudo sono rimasti solo locali e sono stati rimossi.
