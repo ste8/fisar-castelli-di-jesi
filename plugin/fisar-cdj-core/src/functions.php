@@ -47,8 +47,8 @@ function fisar_cdj_get_event_meeting( int $event_id ): array {
 	return $meeting;
 }
 
-/** Public online participation data; hidden unless explicitly enabled. */
-function fisar_cdj_get_event_online_access( int $event_id ): array {
+/** Hidden unless explicitly enabled; editorial exports may ignore elapsed dates. */
+function fisar_cdj_get_event_online_access( int $event_id, bool $ignore_elapsed_dates = false ): array {
 	$hidden = array( 'platform' => '', 'url' => '' );
 	$enabled = in_array( get_post_meta( $event_id, '_fisar_event_online_access_public', true ), array( true, 1, '1' ), true );
 	if ( ! $enabled || ! in_array( get_post_meta( $event_id, '_fisar_event_mode', true ), array( 'online', 'hybrid' ), true ) ) {
@@ -56,7 +56,7 @@ function fisar_cdj_get_event_online_access( int $event_id ): array {
 	}
 	return array(
 		'platform' => (string) get_post_meta( $event_id, '_fisar_event_platform', true ),
-		'url'      => fisar_cdj_is_event_past( $event_id ) ? '' : esc_url_raw( (string) get_post_meta( $event_id, '_fisar_event_online_url', true ), array( 'http', 'https' ) ),
+		'url'      => ! $ignore_elapsed_dates && fisar_cdj_is_event_past( $event_id ) ? '' : esc_url_raw( (string) get_post_meta( $event_id, '_fisar_event_online_url', true ), array( 'http', 'https' ) ),
 	);
 }
 
@@ -354,9 +354,9 @@ function fisar_cdj_get_course_registration_details( int $course_id ): array {
 	);
 }
 
-/** A strict expired deadline takes priority over editorial availability. */
-function fisar_cdj_get_event_booking_status( int $event_id ): string {
-	if ( fisar_cdj_has_event_registration_deadline_passed( $event_id ) ) {
+/** A strict expired deadline takes priority, except in editorial exports. */
+function fisar_cdj_get_event_booking_status( int $event_id, bool $ignore_elapsed_dates = false ): string {
+	if ( ! $ignore_elapsed_dates && fisar_cdj_has_event_registration_deadline_passed( $event_id ) ) {
 		return 'closed';
 	}
 	if ( ! get_post_meta( $event_id, '_fisar_event_registration_required', true ) ) {
@@ -370,12 +370,12 @@ function fisar_cdj_is_event_registration_closed( int $event_id ): bool {
 }
 
 /** Registration data shared by summaries and booking panels. */
-function fisar_cdj_get_event_registration_details( int $event_id ): array {
+function fisar_cdj_get_event_registration_details( int $event_id, bool $ignore_elapsed_dates = false ): array {
 	$is_free      = (bool) get_post_meta( $event_id, '_fisar_event_is_free', true );
 	$is_required  = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 	$deadline     = (string) get_post_meta( $event_id, '_fisar_event_deadline', true );
 	$deadline_type = (string) get_post_meta( $event_id, '_fisar_event_deadline_type', true );
-	$status       = fisar_cdj_get_event_booking_status( $event_id );
+	$status       = fisar_cdj_get_event_booking_status( $event_id, $ignore_elapsed_dates );
 	$closed       = in_array( $status, array( 'closed', 'sold_out' ), true );
 	$waiting_list = 'waitlist' === $status;
 	$status_notice = match ( $status ) {
@@ -528,8 +528,9 @@ function fisar_cdj_get_registration_whatsapp_contacts( int $post_id, string $pre
 	) );
 }
 
-function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): array {
-	if ( 'event' === $prefix && fisar_cdj_is_event_registration_closed( $post_id ) ) {
+/** The elapsed-date override is event-only and reserved for editorial exports. */
+function fisar_cdj_get_registration_channels( int $post_id, string $prefix, bool $ignore_elapsed_dates = false ): array {
+	if ( 'event' === $prefix && in_array( fisar_cdj_get_event_booking_status( $post_id, $ignore_elapsed_dates ), array( 'closed', 'sold_out' ), true ) ) {
 		return array();
 	}
 	if ( 'course' === $prefix && in_array( fisar_cdj_get_course_booking_status( $post_id ), array( 'closed', 'sold_out', 'concluded' ), true ) ) {
@@ -549,7 +550,7 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix ): ar
 			$definitions['form_url']['label'] = 'Apri il modulo';
 			$definitions['other_channel']['label'] = 'Altro contatto';
 		}
-		$status = 'course' === $prefix ? fisar_cdj_get_course_booking_status( $post_id ) : fisar_cdj_get_event_booking_status( $post_id );
+		$status = 'course' === $prefix ? fisar_cdj_get_course_booking_status( $post_id ) : fisar_cdj_get_event_booking_status( $post_id, $ignore_elapsed_dates );
 		if ( 'waitlist' === $status ) {
 			$definitions['whatsapp']['label'] = 'Lista d’attesa via WhatsApp';
 			$definitions['email']['label'] = 'Lista d’attesa via mail';

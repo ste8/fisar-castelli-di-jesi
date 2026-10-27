@@ -46,6 +46,7 @@ Il tag Docker non aggiorna da solo il core nel volume persistente. Per aggiornar
 git diff --check
 node tests/hero-collage.test.cjs
 node tests/editor-excerpt.test.cjs
+node tests/event-whatsapp-message.test.cjs
 node assets/photography/sito-home/rebuild.mjs --check
 node --check theme/fisar-cdj/assets/js/hero-collage.js
 docker compose -f docker/compose.yaml exec -T wordpress \
@@ -69,6 +70,8 @@ docker compose -f docker/compose.yaml run --rm --no-deps \
 Verifica eventi ordinari, solo ritrovo, entrambi, sanitizzazione, autorizzazioni/nonce, salvataggi da editor precedenti, svuotamento esplicito, online/ibridi e card nei diversi contesti. L’argomento esplicito `fixtures` conserva i tre eventi per il collaudo browser: rimuoverli al termine usando gli ID restituiti. Non eseguire su Aruba.
 
 Con lo stesso comando, `eval-file /tmp/fisar-tests/editor-workflow.test.php` verifica gruppi, date, quote, calendario, descrizione nativa e riquadri WhatsApp con zero/uno/più contatti, senza riscrivere contenuti esistenti. Crea e rimuove tre bozze dedicate (Evento, Corso, Articolo); `fixtures` le conserva per il collaudo nell’interfaccia. Controllare inserimento e svuotamento della descrizione, aggiunta/rimozione dei contatti e refresh, poi rimuovere solo quelle bozze.
+
+`eval-file /tmp/fisar-tests/event-whatsapp-message.test.php` verifica esportazione WhatsApp, titolo maiuscolo Unicode e sezioni compatte, ordine dei riquadri, quote personalizzate, ritrovo/evento, stati d’iscrizione, riservatezza link online, nonce/autorizzazioni e assenza di scritture durante la generazione. Verifica anche che le date trascorse siano ignorate nel solo messaggio, senza cambiare gli stati pubblici. Rimuove le proprie bozze; `fixtures` conserva i due contenuti creati (Evento e Articolo usato per negare il tipo sbagliato) per il collaudo browser. Il test JavaScript copre anteprima sicura, copia, riapertura, avviso essenziale senza istruzioni nascoste nella descrizione accessibile, modifiche non salvate di documento/campi/note/contatti, esito del salvataggio nativo, autosave, errori e modifiche durante il salvataggio. Nel browser salvare solo la bozza dedicata per verificare il ritorno allo stato pronto senza refresh.
 
 ## Foto della hero
 
