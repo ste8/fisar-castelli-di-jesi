@@ -48,6 +48,20 @@ Più contatti WhatsApp con nome facoltativo e numero: accettati `335 1234567` e 
 
 Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall’alto. Scadenza e nota restano anche nel riepilogo iniziale; non aggiungere manualmente un secondo pannello nel testo. Un Evento può essere collegato a un Corso dal campo apposito.
 
+### Messaggio da incollare in WhatsApp
+
+Nel riquadro autonomo **Messaggio WhatsApp**, in fondo ai campi dell’evento, usare **Genera messaggio WhatsApp**. La generazione legge la versione salvata: con modifiche non salvate, evento nuovo o salvataggio in corso la finestra mostra un avviso e non genera/copia dati precedenti. Chiudere, salvare l’evento e riaprire; non occorre ricaricare la pagina dopo un salvataggio riuscito. Sono controllati titolo/testo WordPress e campi aggiuntivi, inclusi contatti, quote e note. Non salva, pubblica o invia nulla.
+
+La finestra presenta il testo modificabile e un’anteprima della formattazione. **Copia messaggio** copia il testo con `*grassetto*` e `_corsivo_`, non HTML o Markdown con doppi asterischi. Se il browser nega la copia, seleziona il testo per la copia manuale. Per generare nuovamente chiudere e riaprire la finestra: le modifiche fatte solo nell’anteprima vengono sostituite. Chiudendola, il contenuto dell’evento resta invariato.
+
+Ordine standard: titolo in MAIUSCOLO → descrizione → data/ritrovo/luogo/orari → partecipazione → quote → scadenza/disponibilità → contatti → note → “🌐 TROVI I DETTAGLI ANCHE SUL SITO” con link alla pagina, solo se pubblicata senza password. I titoli di sezione del corpo, anche in paragrafi in grassetto con emoji, precedono la riga successiva senza riga vuota. Gli avvisi su bozze, data mancante e messaggi lunghi sono fuori dal testo da copiare.
+
+Il messaggio ignora le date trascorse: anche un evento passato o con termine tassativo già superato mantiene dati, scadenza e contatti per prenotare. Restano invece rispettati gratuità, sold-out/lista d’attesa scelti nell’editor e la visibilità dell’accesso online. È una regola del solo generatore: il sito continua a chiudere le iscrizioni e a nascondere i link online quando previsto. Controllare le date prima di condividere un evento vecchio.
+
+Scadenza nel formato **PRENOTAZIONI ENTRO DOMENICA 4 OTTOBRE**, tutto maiuscolo e senza anno; la data dell’evento resta completa. Per la lista d’attesa: **SOLD-OUT - LISTA D’ATTESA** e scadenza con suffisso **(LISTA DI ATTESA)**. I contatti sono sempre introdotti da **INFO E PRENOTAZIONI**, anche con lista d’attesa.
+
+Presentazione, vini in degustazione, menu e altri dettagli editoriali vengono dal testo dell’evento: titoli, paragrafi, grassetti, corsivi, elenchi e link sono convertiti, senza inventare o riassumere contenuti. Immagini/gallerie non sono copiate: allegare separatamente la locandina. Non vengono eseguiti shortcode o contenuti incorporati. Il numero esatto di posti non è un campo strutturato: se necessario, indicarlo nella descrizione o correggere l’anteprima. Controllare eventuali ripetizioni se informazioni pratiche già compilate nei campi sono state scritte anche nel corpo.
+
 ## Corsi
 
 Compilare livello, città e provincia, sede/indirizzo/Maps, Direttore e date di inizio/fine. Il corso è attivo in base alla data di fine, non alla possibilità di iscriversi: può essere in svolgimento e avere iscrizioni chiuse. Senza data fine non risulta attivo.

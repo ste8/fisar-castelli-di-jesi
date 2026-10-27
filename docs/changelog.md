@@ -2,6 +2,44 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 27 ottobre 2026 — Correzione anteprima WhatsApp pubblicata su Aruba, plugin 1.3.39
+
+Aggiornato nativamente il solo plugin dalla 1.3.38 alla 1.3.39. Versione attiva e script remoto verificati; nell’evento “Visita alla cantina Edoardo Dottori” il nome dell’azienda è in grassetto anche dopo l’apostrofo, senza modificare o salvare l’evento. Console senza errori osservati, dialog senza overflow desktop. Home e root identiche prima/dopo, noindex HTTP/meta conservati. Nessun import DB, modifica al tema o invio WhatsApp; rollback 1.3.38 verificato e conservato. Prove in `.local-deployment/release/whatsapp-apostrophe-2026-10-27/`.
+
+## 27 ottobre 2026 — Anteprima WhatsApp dopo apostrofo, plugin 1.3.39 locale
+
+Il parser dell’anteprima riconosce grassetto e corsivo anche accanto ad apostrofi semplici o tipografici, per esempio `l'*Azienda Agricola Edoardo Dottori*`. Il testo da copiare resta identico; nessuna modifica al contenuto dell’evento o alla generazione PHP. Test di regressione con titolo, apostrofi, citazioni, corsivo, testo non formattato e copia invariata. Verificato l’esempio nel browser locale modificando solo il messaggio temporaneo, senza salvare l’evento; console senza errori osservati, sintassi JS/PHP regolare. Solo locale; Aruba resta alla 1.3.38.
+
+## 27 ottobre 2026 — Generatore WhatsApp pubblicato su Aruba, plugin 1.3.38
+
+Aggiornato il solo plugin nell’anteprima tramite caricamento e sostituzione nativi WordPress, dalla 1.3.34 alla 1.3.38. Versione attiva e asset CSS/JS verificati; generazione provata sull’evento “Alla scoperta dei vini giapponesi” senza modificare o salvare contenuti, con titolo maiuscolo, scadenza senza anno e diciture lista d’attesa/contatti approvate. Console senza errori osservati, dialog senza overflow desktop; endpoint anonimo negato, archivio/dettaglio HTTP 200. Home e root pubblica identiche prima/dopo, noindex HTTP/meta conservati. Tema invariato a 1.6.107; nessun import DB, reimport demo, invio WhatsApp o modifica a media/menu. Pacchetto precedente 1.3.34 verificato e conservato per rollback; prove in `.local-deployment/release/whatsapp-generator-2026-10-27/`.
+
+## 27 ottobre 2026 — Esempi editoriali WhatsApp nella documentazione
+
+I tre TXT originali spostati dalla root a `docs/sources/whatsapp/`, senza modificarne il contenuto. Collegati nell’indice delle sorgenti e distinti dalle specifiche correnti del generatore; nessuna modifica al sito o al deploy.
+
+## 27 ottobre 2026 — Diciture prenotazioni WhatsApp, plugin 1.3.38 locale
+
+Scadenza tutta maiuscola senza anno, mantenendo completa la data dell’evento. Contatti sempre sotto “INFO E PRENOTAZIONI”, anche per la lista d’attesa; stato “SOLD-OUT - LISTA D’ATTESA” e scadenza ordinaria con suffisso “(LISTA DI ATTESA)”. Test dedicati per entrambe le varianti. Solo generatore locale, nessuna modifica al frontend o ai contenuti Aruba.
+
+## 27 ottobre 2026 — Testo WhatsApp e dialog essenziale, plugin 1.3.37 locale
+
+Titolo evento in maiuscolo Unicode, etichetta “Posizione” e icona web nel richiamo finale. Il generatore ignora eventi e scadenze trascorsi, preservando sold-out/lista d’attesa espliciti e accessi online nascosti; opzione dedicata nelle API condivise, disattivata per default, senza modificare il sito pubblico o i dati. Avviso modifiche non salvate senza istruzioni di formattazione; rimossi messaggio “pronto” e nota finale ridondante. Solo locale, Aruba invariato.
+
+Test PHP/JS dedicati e regressioni editor/ritrovo/carosello superati, con verifica delle regole temporali pubbliche invariate. Browser desktop/mobile: avviso essenziale, istruzioni ripristinate alla riapertura senza modifiche, nessun overflow o errore console osservato; Escape regolare. Lint e HTTP regolari; rimosse le sole due bozze create per il collaudo, nessun contenuto reale modificato.
+
+## 27 ottobre 2026 — Affinamenti generatore WhatsApp, plugin 1.3.36 locale
+
+Funzione spostata in una sezione autonoma finale, anche con ordine personale dei riquadri. Avviso bloccante per eventi nuovi, modifiche non salvate o salvataggi pendenti: controllo nativo del documento e confronto dei campi aggiuntivi, comprese note visuali e contatti dinamici. Il salvataggio riuscito aggiorna l’istantanea senza refresh, autosave/errori non la azzerano. Rimossa la rigenerazione interna: chiusura e riapertura rinnovano il testo. Nessuna riga vuota dopo i titoli di sezione del corpo; link finale introdotto da “TROVI I DETTAGLI ANCHE SUL SITO”. Solo locale; Aruba invariato.
+
+Test PHP/JS e regressioni editor/ritrovo superati; collaudo browser di avviso su data e note, salvataggio della sola bozza di prova e riapertura con dati aggiornati senza refresh. Desktop/mobile senza overflow, Escape/focus e console regolari. Fixture rimosse; contenuti reali non salvati.
+
+## 27 ottobre 2026 — Generatore messaggio WhatsApp Eventi, plugin 1.3.35 locale
+
+Pulsante nel riquadro Dettagli dell’evento con dialog modale, testo modificabile, anteprima di grassetto/corsivo, copia e rigenerazione. Struttura standard ispirata ai tre esempi editoriali ora conservati in `docs/sources/whatsapp/`; titoli, paragrafi, elenchi, enfasi e link convertiti in formato WhatsApp. Dati salvati, API funzionali esistenti e regole coerenti su quote/ritrovo/scadenze/stati; nessun salvataggio, pubblicazione o invio automatico. Endpoint autenticato protetto da nonce/autorizzazione sul singolo Evento; accesso online nascosto non esportato. Anteprima testuale sicura, senza HTML interpolato o esecuzione dei contenuti.
+
+Test PHP/JS dedicati e regressioni editor/ritrovo/carosello superati, incluse generazione read-only e autorizzazioni. Prova browser locale su bozza dedicata: copia con marcatori, modifica/rigenerazione, Escape/focus, desktop 1280, tablet 768 e mobile 390 px senza overflow; console senza errori osservati. HTTP regolare, richieste anonime negate. Bozze temporanee rimosse, nessuna modifica ai contenuti reali. Solo locale, Aruba invariato; esempi originali conservati senza modifiche.
+
 ## 26 ottobre 2026 — Correzione WhatsApp pubblicata su Aruba, plugin 1.3.34
 
 Aggiornato nativamente il solo plugin nell’anteprima. Versione attiva e asset JS/CSS verificati; editor Evento aperto e ricaricato senza salvarlo: un solo contatto compilato, nessun riquadro vuoto aggiuntivo. Console senza errori osservati; Home e root identiche prima/dopo, noindex conservato. Tema, contenuti e database non trasferiti. Pacchetto 1.3.33 verificato e conservato per rollback.

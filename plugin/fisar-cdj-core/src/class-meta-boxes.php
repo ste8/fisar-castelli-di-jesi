@@ -80,7 +80,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_filter( 'get_user_option_meta-box-order_' . Fisar_CDJ_Post_Types::EVENT, array( self::class, 'event_meta_box_order' ) );
 	}
 
-	/** Keep the optional meeting after the actual venue, even with a saved box order. */
+	/** Keep the meeting after the venue and communication tools last, without writing preferences. */
 	public static function event_meta_box_order( mixed $order ): mixed {
 		if ( ! is_array( $order ) ) {
 			return $order;
@@ -92,19 +92,23 @@ final class Fisar_CDJ_Meta_Boxes {
 				break;
 			}
 		}
-		if ( null === $location_context ) {
-			return $order;
-		}
 		foreach ( $order as $context => $ids ) {
 			if ( ! is_string( $ids ) ) {
 				continue;
 			}
-			$boxes = array_values( array_diff( explode( ',', $ids ), array( 'fisar-event-meeting' ) ) );
+			$remove = array( 'fisar-event-whatsapp-message' );
+			if ( null !== $location_context ) { $remove[] = 'fisar-event-meeting'; }
+			$boxes = array_values( array_diff( explode( ',', $ids ), $remove ) );
 			if ( $context === $location_context ) {
 				$position = array_search( 'fisar-event-location', $boxes, true );
 				array_splice( $boxes, $position + 1, 0, array( 'fisar-event-meeting' ) );
 			}
 			$order[ $context ] = implode( ',', $boxes );
+		}
+		if ( is_string( $order['normal'] ?? null ) && '' !== $order['normal'] ) {
+			$normal = array_filter( explode( ',', $order['normal'] ) );
+			$normal[] = 'fisar-event-whatsapp-message';
+			$order['normal'] = implode( ',', $normal );
 		}
 		return $order;
 	}
@@ -115,6 +119,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_meta_box( 'fisar-event-meeting', 'Ritrovo e spostamenti (facoltativo)', array( self::class, 'render_event_meeting' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
+		add_meta_box( 'fisar-event-whatsapp-message', 'Messaggio WhatsApp', array( Fisar_CDJ_Event_WhatsApp_Message::class, 'render' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'low' );
 		add_meta_box( 'fisar-event-course', 'Corso collegato', array( self::class, 'render_event_course' ), Fisar_CDJ_Post_Types::EVENT, 'side', 'default' );
 
 		add_meta_box( 'fisar-course-details', 'Dettagli del corso', array( self::class, 'render_course_details' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'high' );
