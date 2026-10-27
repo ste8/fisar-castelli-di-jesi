@@ -133,7 +133,6 @@
 			return;
 		}
 		addButton.hidden = false;
-		field('fisar-whatsapp-noscript').hidden = true;
 		document.querySelectorAll('.fisar-whatsapp-remove').forEach(function (button) {
 			button.hidden = false;
 		});

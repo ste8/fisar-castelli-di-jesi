@@ -45,6 +45,7 @@ Il tag Docker non aggiorna da solo il core nel volume persistente. Per aggiornar
 ```sh
 git diff --check
 node tests/hero-collage.test.cjs
+node tests/editor-excerpt.test.cjs
 node assets/photography/sito-home/rebuild.mjs --check
 node --check theme/fisar-cdj/assets/js/hero-collage.js
 docker compose -f docker/compose.yaml exec -T wordpress \
@@ -66,6 +67,8 @@ docker compose -f docker/compose.yaml run --rm --no-deps \
 ```
 
 Verifica eventi ordinari, solo ritrovo, entrambi, sanitizzazione, autorizzazioni/nonce, salvataggi da editor precedenti, svuotamento esplicito, online/ibridi e card nei diversi contesti. L’argomento esplicito `fixtures` conserva i tre eventi per il collaudo browser: rimuoverli al termine usando gli ID restituiti. Non eseguire su Aruba.
+
+Con lo stesso comando, `eval-file /tmp/fisar-tests/editor-workflow.test.php` verifica gruppi, date, quote, calendario, descrizione nativa e riquadri WhatsApp con zero/uno/più contatti, senza riscrivere contenuti esistenti. Crea e rimuove tre bozze dedicate (Evento, Corso, Articolo); `fixtures` le conserva per il collaudo nell’interfaccia. Controllare inserimento e svuotamento della descrizione, aggiunta/rimozione dei contatti e refresh, poi rimuovere solo quelle bozze.
 
 ## Foto della hero
 

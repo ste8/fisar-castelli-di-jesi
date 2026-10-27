@@ -34,10 +34,10 @@ Asset ufficiali in `assets/brand/`, originale in `assets/logo-original/`. Header
 | Titolo pagina interna | Poppins 500, 32–44 px |
 | Card | Poppins 500, circa 20–24 px secondo contesto |
 | Corpo interno | Poppins 400, 16–17 px / 1.7; UI almeno 16 px salvo metadati |
-| H2/H3/H4 del corpo Eventi/Corsi | Poppins 500, 24/20/18 px alla scala desktop |
+| H2/H3/H4 del corpo Eventi/Corsi/Blog | Poppins 500, 24/20/18 px alla scala desktop |
 | Grassetti editoriali | Poppins 600 |
 
-Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccezioni dimensionali dei componenti vivono nel CSS. Il canvas degli editor Eventi/Corsi usa gli stessi font e gerarchia, non i grandi titoli predefiniti di WordPress.
+Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccezioni dimensionali dei componenti vivono nel CSS. Il canvas degli editor Eventi/Corsi/Articoli usa gli stessi font e gerarchia, non i grandi titoli predefiniti di WordPress. La scala condivisa risiede in `editor-content.css`; i titoli dei riquadri amministrativi sono 20 px, le sottosezioni 16 px.
 
 ## Composizione
 

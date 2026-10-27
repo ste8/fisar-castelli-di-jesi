@@ -122,9 +122,10 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_meta_box( 'fisar-course-registration', 'Iscrizioni', array( self::class, 'render_course_registration' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
 		add_meta_box( 'fisar-course-offer', 'Quota e dotazione', array( self::class, 'render_course_offer' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
 		add_meta_box( 'fisar-course-calendar', 'Calendario lezioni', array( self::class, 'render_course_calendar' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
+		add_meta_box( 'fisar-post-summary', 'Descrizione e immagini dell’articolo', array( self::class, 'render_post_summary' ), 'post', 'normal', 'high' );
 
 		// The native excerpt is rendered inside the main details box, not duplicated.
-		foreach ( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) as $post_type ) {
+		foreach ( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE, 'post' ) as $post_type ) {
 			remove_meta_box( 'postexcerpt', $post_type, 'normal' );
 		}
 	}
@@ -135,12 +136,14 @@ final class Fisar_CDJ_Meta_Boxes {
 		}
 
 		$screen = get_current_screen();
-		if ( ! $screen || ! in_array( $screen->post_type, array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ), true ) ) {
+		if ( ! $screen || ! in_array( $screen->post_type, array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE, 'post' ), true ) ) {
 			return;
 		}
 
 		wp_enqueue_style( 'fisar-cdj-admin', FISAR_CDJ_CORE_URL . 'assets/css/admin.css', array(), FISAR_CDJ_CORE_VERSION );
-		wp_enqueue_script( 'fisar-cdj-admin', FISAR_CDJ_CORE_URL . 'assets/js/admin.js', array(), FISAR_CDJ_CORE_VERSION, true );
+		if ( 'post' !== $screen->post_type ) {
+			wp_enqueue_script( 'fisar-cdj-admin', FISAR_CDJ_CORE_URL . 'assets/js/admin.js', array(), FISAR_CDJ_CORE_VERSION, true );
+		}
 		if ( Fisar_CDJ_Post_Types::COURSE === $screen->post_type ) {
 			$dependencies = $screen->is_block_editor() ? array( 'wp-dom-ready', 'wp-data', 'wp-editor' ) : array( 'wp-dom-ready' );
 			wp_enqueue_script( 'fisar-cdj-course-title', FISAR_CDJ_CORE_URL . 'assets/js/course-title.js', $dependencies, FISAR_CDJ_CORE_VERSION, true );
@@ -321,9 +324,10 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::nonce_field();
 		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 		echo '<div id="fisar-course-title-settings" data-editor="' . ( $screen && $screen->is_block_editor() ? 'block' : 'classic' ) . '">';
-		self::select( $post->ID, '_fisar_course_title_mode', 'Titolo del corso', array( 'automatic' => 'Automatico — da livello e città', 'custom' => 'Personalizzato — titolo libero' ), 'Automatico compone il titolo al salvataggio. Per un nome diverso scegli Personalizzato e usa il titolo WordPress in alto. Controlla Città e Provincia nel box Sede.', fisar_cdj_get_course_title_mode( $post->ID ) );
+		self::select( $post->ID, '_fisar_course_title_mode', 'Titolo del corso', array( 'automatic' => 'Automatico — da livello e città', 'custom' => 'Personalizzato — titolo libero' ), 'Automatico compone il titolo al salvataggio. Per un nome diverso scegli Personalizzato e scrivi il titolo in alto. Città e Provincia si compilano nel riquadro Sede.', fisar_cdj_get_course_title_mode( $post->ID ) );
 		echo '<p class="description">Titolo automatico: <output id="fisar-course-title-preview">' . esc_html( fisar_cdj_compose_course_title( (string) get_post_meta( $post->ID, '_fisar_course_level', true ), (string) get_post_meta( $post->ID, '_fisar_course_city', true ), (string) get_post_meta( $post->ID, '_fisar_course_province', true ) ) ) . '</output></p></div>';
 		self::render_excerpt( $post );
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-identity-title"><h3 id="fisar-course-identity-title">Percorso e direzione</h3>';
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post->ID, '_fisar_course_director', 'Direttore del Corso', 'text', 'Nome e cognome.', true );
 		self::select(
@@ -337,9 +341,12 @@ final class Fisar_CDJ_Meta_Boxes {
 			),
 			'Il livello FISAR del percorso.'
 		);
+		echo '</div></section>';
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-duration-title"><h3 id="fisar-course-duration-title">Durata del corso</h3>';
+		echo '<div class="fisar-admin-grid fisar-admin-grid--dates">';
 		self::input( $post->ID, '_fisar_course_start_date', 'Data inizio', 'date', '', true );
-		self::input( $post->ID, '_fisar_course_end_date', 'Data fine', 'date', 'Determina automaticamente se il corso è attivo o concluso.', true );
-		echo '</div>';
+		self::input( $post->ID, '_fisar_course_end_date', 'Data fine', 'date', '', true );
+		echo '</div><p class="description">La data di fine determina se il corso è in programma o concluso: indica quella dell’ultima attività prevista. È distinta dal termine delle iscrizioni.</p></section>';
 	}
 
 	public static function render_course_location( WP_Post $post ): void {
@@ -359,27 +366,40 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<input type="hidden" name="_fisar_course_booking_present" value="1">';
 		self::checkbox( $post->ID, '_fisar_course_limited_seats', 'Mostra avviso posti limitati', 'Non viene memorizzato il numero di posti.' );
 		self::render_registration_fields( $post->ID, 'course' );
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-registration-notes-title"><h3 id="fisar-course-registration-notes-title">Altre informazioni sulle iscrizioni</h3>';
 		self::editor( $post->ID, '_fisar_course_registration_notes', 'Informazioni aggiuntive', 'Modalità o dettagli utili per l’iscrizione.' );
+		echo '</section>';
 	}
 
 	public static function render_course_offer( WP_Post $post ): void {
+		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-fee-title"><h3 id="fisar-course-fee-title">Quota di partecipazione</h3>';
+		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento. Se inserisci solo un importo numerico, per esempio 590, il sito aggiunge €. Nei testi con condizioni specifiche indica anche la valuta.', false );
+		echo '</section><section class="fisar-admin-section" aria-labelledby="fisar-course-includes-title"><h3 id="fisar-course-includes-title">Cosa comprende il corso</h3>';
+		self::editor( $post->ID, '_fisar_course_includes', 'Cosa comprende il corso', 'Per esempio kit, manuali, calici, degustazioni, software e attestato.', false );
+		echo '</section><section class="fisar-admin-section" aria-labelledby="fisar-course-membership-title"><h3 id="fisar-course-membership-title">Tesseramento FISAR</h3>';
+		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.', false );
+		echo '</section><section class="fisar-admin-section" aria-labelledby="fisar-course-promotion-title"><h3 id="fisar-course-promotion-title">Offerta promozionale</h3>';
 		echo '<input type="hidden" name="_fisar_course_offer_present" value="1">';
 		self::checkbox( $post->ID, '_fisar_course_offer_enabled', 'Corso in offerta', 'Mostra una fascia in home, elenco e dettaglio. Non modifica la quota: specifica importo e condizioni nel campo Quota di partecipazione. La fascia non compare se il corso è concluso, sold-out o le iscrizioni sono chiuse.' );
-		self::input( $post->ID, '_fisar_course_offer_end_date', 'Fine offerta (facoltativa)', 'date', 'Offerta valida fino a questa data inclusa, nel fuso del sito. Dal giorno successivo la fascia scompare. Senza data resta finché disattivi Corso in offerta; la data da sola non attiva l’offerta. Il termine d’iscrizione è distinto.' );
-		self::editor( $post->ID, '_fisar_course_fee', 'Quota di partecipazione', 'Può includere quota standard, Early Bird, Under 25, gruppi e modalità di pagamento. Se inserisci solo un importo numerico, per esempio 590, il sito aggiunge €. Nei testi con condizioni specifiche indica anche la valuta.' );
-		self::editor( $post->ID, '_fisar_course_includes', 'Cosa comprende il corso', 'Per esempio kit, manuali, calici, degustazioni, software e attestato.' );
-		self::editor( $post->ID, '_fisar_course_membership', 'Tesseramento FISAR', 'Tenere separato dal costo del corso.' );
+		self::input( $post->ID, '_fisar_course_offer_end_date', 'Fine offerta (facoltativa)', 'date', 'Offerta valida fino a questa data inclusa. Dal giorno successivo la fascia scompare. Senza data resta finché disattivi Corso in offerta; la data da sola non attiva l’offerta. Il termine d’iscrizione è distinto.' );
+		echo '</section>';
 	}
 
 	public static function render_course_calendar( WP_Post $post ): void {
 		$rows = fisar_cdj_get_course_calendar( $post->ID );
 		?>
-		<p>Il <strong>Numero lezione</strong> si inserisce manualmente, per esempio 1, 2 o 3 bis. È facoltativo e non viene rinumerato automaticamente; le righe seguono data e orario.</p>
+		<p>Puoi <strong>compilare direttamente la tabella delle lezioni</strong> oppure importare un elenco da Excel o Google Sheets. L’importazione è facoltativa.</p>
+		<section class="fisar-admin-section" aria-labelledby="fisar-calendar-import-title">
+		<h3 id="fisar-calendar-import-title">Importa da un foglio di calcolo (facoltativo)</h3>
 		<p>Incolla da Excel o Google Sheets le colonne <strong>Numero lezione, Data, Orario, Titolo, Relatore, Note</strong>, separate da tabulazioni. È accettato anche il formato precedente senza numero. Salvando il corso, il testo viene convertito in righe strutturate.</p>
 		<label for="fisar_course_calendar_import"><strong>Dati tabulati da importare</strong></label>
 		<textarea class="widefat code" id="fisar_course_calendar_import" name="fisar_course_calendar_import" rows="6" placeholder="Numero lezione&#9;Data&#9;Orario&#9;Titolo lezione&#9;Relatore&#9;Note"></textarea>
 		<p><button type="button" class="button" id="fisar-calendar-preview">Importa e mostra anteprima</button></p>
 		<p id="fisar-calendar-status" role="status" aria-live="polite"></p>
+		</section>
+		<section class="fisar-admin-section" aria-labelledby="fisar-calendar-lessons-title">
+		<h3 id="fisar-calendar-lessons-title">Lezioni del corso</h3>
+		<p>Aggiungi o modifica le righe qui sotto. Il <strong>Numero lezione</strong> è facoltativo e si inserisce manualmente, per esempio 1, 2 o 3 bis; le righe vengono ordinate per data e orario, senza rinumerazione automatica.</p>
 		<div class="fisar-calendar-table-wrap">
 			<table class="widefat striped" id="fisar-calendar-table">
 				<thead><tr><th>Numero lezione</th><th>Data</th><th>Orario</th><th>Titolo lezione</th><th>Relatore</th><th>Note</th><th><span class="screen-reader-text">Azioni</span></th></tr></thead>
@@ -392,6 +412,21 @@ final class Fisar_CDJ_Meta_Boxes {
 		</div>
 		<p><button type="button" class="button" id="fisar-calendar-add-row">Aggiungi una riga</button></p>
 		<p class="description"><?php echo esc_html( Fisar_CDJ_Calendar_Importer::NOTICE ); ?></p>
+		</section>
+		<?php
+	}
+
+	public static function render_post_summary( WP_Post $post ): void {
+		self::render_excerpt( $post );
+		?>
+		<section class="fisar-admin-section" aria-labelledby="fisar-post-image-title">
+			<h3 id="fisar-post-image-title">Immagine principale</h3>
+			<p>Imposta l’<strong>Immagine in evidenza</strong> nelle impostazioni dell’articolo. Usa preferibilmente una foto quadrata di <strong>1080 × 1080 px</strong>, evitando testi importanti vicino ai bordi. La stessa immagine compare nella home, nell’elenco del Blog e accanto al titolo dell’articolo.</p>
+		</section>
+		<section class="fisar-admin-section" aria-labelledby="fisar-post-gallery-title">
+			<h3 id="fisar-post-gallery-title">Fotografie nel testo</h3>
+			<p>Per raccontare un evento con più foto, aggiungi un blocco <strong>Galleria</strong> nel testo: è distinto dall’immagine principale. Le nuove gallerie permettono di ingrandire le foto al clic; puoi disattivarlo nelle opzioni del blocco. Le gallerie già presenti mantengono le proprie impostazioni.</p>
+		</section>
 		<?php
 	}
 
@@ -506,10 +541,14 @@ final class Fisar_CDJ_Meta_Boxes {
 
 	private static function render_excerpt( WP_Post $post ): void {
 		$excerpt = (string) get_post_field( 'post_excerpt', $post->ID, 'raw' );
-		$archive = Fisar_CDJ_Post_Types::EVENT === $post->post_type ? 'degli eventi' : 'dei corsi';
+		$archive = match ( $post->post_type ) {
+			Fisar_CDJ_Post_Types::EVENT => 'degli eventi',
+			Fisar_CDJ_Post_Types::COURSE => 'dei corsi',
+			default => 'degli articoli',
+		};
 		$empty_help = Fisar_CDJ_Post_Types::EVENT === $post->post_type
 			? 'Se la lasci vuota, non compare né nella lista né sotto il titolo.'
-			: 'Se la lasci vuota, la lista ricava un estratto dal testo del corso; sotto il titolo non compare.';
+			: 'Se la lasci vuota, la lista ricava un estratto dal testo; sotto il titolo non compare.';
 		// Keep the native ID/name: classic autosave reads and restores #excerpt.
 		?>
 		<div class="fisar-field">
@@ -552,13 +591,15 @@ final class Fisar_CDJ_Meta_Boxes {
 		<h3 id="fisar-whatsapp-title">Contatti WhatsApp per le <?php echo 'course' === $prefix ? 'iscrizioni' : 'prenotazioni'; ?></h3>
 		<input type="hidden" name="_fisar_<?php echo esc_attr( $prefix ); ?>_whatsapp_contacts_present" value="1">
 		<p class="description" id="fisar-whatsapp-help">Nominativo facoltativo (persona o segreteria) e numero WhatsApp, con o senza +39: per esempio 335 1234567. Se manca il prefisso, il numero è considerato italiano e il link alla chat viene generato automaticamente. Per numeri esteri indica il prefisso internazionale. Le righe senza numero vengono ignorate. I contatti saranno pubblici nella pagina <?php echo 'course' === $prefix ? 'del corso' : 'dell’evento'; ?>.</p>
-		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ) + 1; ?>">
+		<div id="fisar-whatsapp-contacts" data-next-index="<?php echo count( $contacts ); ?>">
 			<?php foreach ( $contacts as $index => $contact ) { self::whatsapp_contact( $index, $contact, $prefix ); } ?>
-			<?php self::whatsapp_contact( count( $contacts ), array(), $prefix ); ?>
 		</div>
+		<noscript>
+			<?php self::whatsapp_contact( count( $contacts ), array(), $prefix ); ?>
+			<p class="description">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero.</p>
+		</noscript>
 		<template id="fisar-whatsapp-template"><?php self::whatsapp_contact( '__INDEX__', array(), $prefix ); ?></template>
 		<p><button type="button" class="button" id="fisar-whatsapp-add" hidden>Aggiungi contatto WhatsApp</button></p>
-		<p class="description" id="fisar-whatsapp-noscript">Senza JavaScript compila la riga vuota e salva per aggiungerne un’altra. Per rimuovere un contatto, svuota il numero.</p>
 		<span class="screen-reader-text" id="fisar-whatsapp-status" role="status" aria-live="polite"></span>
 		<?php
 	}
@@ -626,10 +667,10 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '</div>';
 	}
 
-	private static function editor( int $post_id, string $key, string $label, string $description = '' ): void {
+	private static function editor( int $post_id, string $key, string $label, string $description = '', bool $show_label = true ): void {
 		$value = (string) get_post_meta( $post_id, $key, true );
 		echo '<div class="fisar-field fisar-field--editor">';
-		printf( '<p><strong>%s</strong></p>', esc_html( $label ) );
+		printf( '<p%s><strong>%s</strong></p>', $show_label ? '' : ' class="screen-reader-text"', esc_html( $label ) );
 		if ( '' !== $description ) {
 			printf( '<p class="description">%s</p>', esc_html( $description ) );
 		}

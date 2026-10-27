@@ -2,6 +2,24 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 26 ottobre 2026 — Correzione WhatsApp pubblicata su Aruba, plugin 1.3.34
+
+Aggiornato nativamente il solo plugin nell’anteprima. Versione attiva e asset JS/CSS verificati; editor Evento aperto e ricaricato senza salvarlo: un solo contatto compilato, nessun riquadro vuoto aggiuntivo. Console senza errori osservati; Home e root identiche prima/dopo, noindex conservato. Tema, contenuti e database non trasferiti. Pacchetto 1.3.33 verificato e conservato per rollback.
+
+## 26 ottobre 2026 — WhatsApp senza riquadro vuoto aggiuntivo, plugin 1.3.34 locale
+
+Negli editor Eventi e Corsi compaiono solo i contatti già salvati; un altro riquadro si apre tramite “Aggiungi contatto WhatsApp”. La riga vuota di fallback è riservata a `noscript`, fuori dall’elenco interattivo, e l’indice dei nuovi contatti parte dal numero di quelli esistenti. Nessuna modifica ai dati o alle regole di salvataggio. Test d’integrazione per zero/uno/più contatti nei due editor, prova browser di aggiunta/rimozione (anche dell’ultimo) e refresh senza salvare contenuti reali; bozze di collaudo rimosse. Sintassi PHP/JS regolare. Solo locale, nessun deploy Aruba.
+
+## 26 ottobre 2026 — Editor pubblicati su Aruba, plugin 1.3.33 e tema 1.6.107
+
+Aggiornamento nativo dei due componenti nell’anteprima, inclusi i miglioramenti Eventi della 1.3.32. Conservati export editoriale e pacchetti precedenti verificati per rollback. Versione plugin attiva e nuovi pannelli Corsi/Articoli verificati nell’admin remoto senza salvare i contenuti aperti; CSS remoti identici ai locali. Home invariata salvo versione delle risorse, root pubblica identica, noindex HTTP/meta conservati; archivi e font HTTP 200. Nessun import DB, reimport demo, modifica a contenuti/media/menu o aggiornamento del core.
+
+## 26 ottobre 2026 — Editor Corsi e Articoli, plugin 1.3.33 e tema 1.6.107 locale
+
+Corsi con sezioni distinte per percorso/direzione, durata, quota, dotazione, tesseramento e promozione; date compatte affiancate, note d’iscrizione separate e calendario diviso fra import facoltativo e tabella modificabile. Nomi dei campi, meta, importazione e salvataggi invariati. Articoli con un riquadro per breve descrizione nativa e indicazioni su immagine principale e Galleria, senza nuovi campi duplicati. Scala del canvas condivisa da Eventi, Corsi e Articoli in `editor-content.css`, eliminando le due copie specifiche recuperabili da Git.
+
+Test d’integrazione su bozze dedicate e test del collegamento al Riassunto superati; provati inserimento, ricaricamento e svuotamento nell’editor con blocchi del testo invariati. Pannelli verificati a 1280, 768 e 390 px, date a capo su mobile, calendario con scorrimento interno e nessun overflow della pagina. Il browser integrato non rendeva il canvas Gutenberg (già vuoto prima dell’intervento): verifiche visive limitate ai pannelli, non certificano il rendering del testo nel canvas. Sintassi PHP/JS, test carosello e HTTP di sito/CSS/font regolari. Bozze di prova rimosse, contenuti esistenti non salvati; nessun deploy Aruba.
+
 ## 26 ottobre 2026 — Editor Eventi più leggibile, plugin 1.3.32 locale
 
 Orari spostati sotto il luogo effettivo; ritrovo subito dopo il relativo riquadro anche con ordine personale già memorizzato, tramite filtro di sola lettura. Titoli dei riquadri più grandi delle sottosezioni e dei campi. Separati WhatsApp, altri canali, scadenza e note; data compatta prima del tipo di termine nella stessa riga adattiva. Aiuti senza gergo tecnico e breve descrizione dichiarata facoltativa, con comportamento degli estratti corretto. Campi e salvataggi invariati; nessuna modifica al sito pubblico o ad Aruba. I miglioramenti ai gruppi condivisi e ai titoli si applicano anche all’editor Corsi.

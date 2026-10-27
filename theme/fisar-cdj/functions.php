@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.106' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.107' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -45,12 +45,8 @@ function fisar_cdj_theme_content_editor_styles(): void {
 		return;
 	}
 
-	$styles = array(
-		Fisar_CDJ_Post_Types::EVENT  => 'assets/css/editor-event.css',
-		Fisar_CDJ_Post_Types::COURSE => 'assets/css/editor-course.css',
-	);
-	if ( isset( $styles[ $screen->post_type ] ) ) {
-		add_editor_style( array( 'assets/css/editor-content.css', $styles[ $screen->post_type ] ) );
+	if ( in_array( $screen->post_type, array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE, 'post' ), true ) ) {
+		add_editor_style( 'assets/css/editor-content.css' );
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'fisar_cdj_theme_content_editor_styles' );
