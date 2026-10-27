@@ -1,6 +1,6 @@
 /* WordPress scopes editor styles to the canvas. Keep toolbar/admin UI native.
  * Font-face definitions and local font URLs come from the existing main.css.
- * Mirror .prose defaults here; post-type files supply each template's scale.
+ * Events, courses and Blog share the published .prose reading scale.
  */
 body {
 	--font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -16,8 +16,30 @@ body {
 	color: var(--color-ink);
 	font-family: var(--font-body);
 	font-weight: 400;
+	font-size: 1.0625rem;
 	line-height: 1.7;
 }
+
+/* Fixed desktop sizes: the editing canvas is narrower than the public page. */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-body);
+	font-weight: 500;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-wrap: initial;
+}
+
+h1,
+.editor-post-title__input {
+	font-size: 2.75rem;
+	line-height: 1.15;
+}
+
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+h5, h6 { font-size: 1.0625rem; }
+strong, b { font-weight: 600; }
 
 /* Match the readable content measure, rather than the full page layout. */
 .block-editor-block-list__layout > .wp-block,

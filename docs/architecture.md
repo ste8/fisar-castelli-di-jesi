@@ -18,7 +18,7 @@ WordPress nativo, tema classico PHP, nessun page builder, framework frontend, AC
 - Corsi: CPT `fisar_corso`, archivio `/corsi/`, meta `_fisar_course_*`.
 - Blog: Articoli nativi (`post`), pagina articoli `/news/`; non introdurre un CPT News o duplicati dei campi nativi.
 - Home e pagine associative/editoriali: pagine native, menu WordPress `primary`, `footer`, `social`.
-- Breve descrizione di Eventi/Corsi: `post_excerpt`, presentato nel metabox principale; nessun meta parallelo.
+- Breve descrizione di Eventi/Corsi/Articoli: `post_excerpt`, presentato nel metabox principale (Articoli: “Descrizione e immagini dell’articolo”); nessun meta parallelo. Nell’editor a blocchi `editor-excerpt.js` sincronizza il campo nativo e nasconde il pannello duplicato.
 - Un Evento può riferirsi a un Corso. La relazione è salvata sull’Evento; la pagina Corso interroga gli Eventi collegati.
 
 `class-post-types.php` registra CPT/meta, `class-meta-boxes.php` gestisce editor e salvataggi, `class-calendar-importer.php` importa le lezioni, `class-course-titles.php` compone i titoli. Le definizioni dei campi restano nel codice: non mantenerne una seconda copia esaustiva nella documentazione.
@@ -74,7 +74,7 @@ La hero legge la Galleria top-level `hero-collage`: immagini native in gruppi di
 
 CSS/JS del carosello solo in home; un pallino per gruppo e pausa, cambio ogni sei secondi/dissolvenza 500 ms. Stop dopo focus/scelta manuale fino a ripresa esplicita; sospensione con hover, scheda nascosta, fuori viewport e sotto 64rem. Movimento ridotto disattiva automatismo e transizione. Solo il gruppo attivo è esposto alle tecnologie assistive; annunci solo manuali.
 
-`event-dates.js` abbrevia il mese quando la data estesa non entra, dopo caricamento font e resize; senza JS o a forte zoom si può andare a capo. Gli editor Eventi/Corsi usano CSS dedicati al canvas, non una simulazione completa della pagina. Le nuove Gallerie del Blog ricevono il default lightbox tramite variante nativa; blocchi esistenti restano invariati.
+`event-dates.js` abbrevia il mese quando la data estesa non entra, dopo caricamento font e resize; senza JS o a forte zoom si può andare a capo. Gli editor Eventi/Corsi/Articoli condividono `editor-content.css` per la scala del canvas, non una simulazione completa della pagina; non mantenere copie separate per tipo di contenuto. Le nuove Gallerie del Blog ricevono il default lightbox tramite variante nativa; blocchi esistenti restano invariati.
 
 ## Configurazione condivisa e redirect
 

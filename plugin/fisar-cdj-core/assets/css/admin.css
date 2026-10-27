@@ -9,7 +9,7 @@
 	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
-#poststuff :is([id^="fisar-event-"], [id^="fisar-course-"]) .postbox-header .hndle {
+#poststuff :is([id^="fisar-event-"], [id^="fisar-course-"], #fisar-post-summary) .postbox-header .hndle {
 	font-size: 20px;
 	line-height: 1.4;
 	padding-block: 14px;
@@ -25,6 +25,21 @@
 	margin: 0 0 .75rem;
 	font-size: 16px;
 	line-height: 1.5;
+}
+
+.postbox .inside > .fisar-admin-section:first-child {
+	margin-top: .5rem;
+	padding-top: 0;
+	border-top: 0;
+}
+
+.fisar-admin-grid--dates {
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 12rem));
+}
+
+.fisar-admin-grid--dates input[type="date"],
+#_fisar_course_offer_end_date {
+	max-width: 12rem;
 }
 
 .fisar-admin-grid--times {
@@ -125,7 +140,6 @@
 .fisar-event-fee-remove[hidden],
 #fisar-event-fee-noscript[hidden],
 #fisar-whatsapp-add[hidden],
-.fisar-whatsapp-remove[hidden],
-#fisar-whatsapp-noscript[hidden] {
+.fisar-whatsapp-remove[hidden] {
 	display: none;
 }

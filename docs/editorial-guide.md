@@ -13,7 +13,7 @@ Lavorare nell’[admin Aruba](https://www.fisarcastellidijesi.it/anteprima/wp-ad
 | Foto e alt | Media; la singola galleria si gestisce invece nella pagina che la contiene |
 | Dati associativi condivisi / Mailchimp / destinazioni alias | Configurazione nel plugin, con intervento sul codice |
 
-Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eventi/Corsi mostrano nel canvas font e scala del frontend, ma riepiloghi, quote e calendari sono generati dai campi. La **Breve descrizione** nel metabox è il Riassunto nativo; non duplicarla nel testo.
+Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eventi, Corsi e Articoli usano nel canvas font e scala del frontend, ma riepiloghi, quote e calendari sono generati dai campi. La **Breve descrizione** nel metabox è il Riassunto nativo; non duplicarla nel testo.
 
 ## Eventi
 
@@ -44,7 +44,7 @@ L’editor separa **Contatti WhatsApp**, **Altri canali di contatto**, **Termine
 
 Disponibilità: Ordinaria, Sold-out, Sold-out con lista d’attesa. Sold-out semplice nasconde contatti operativi e termine; lista d’attesa usa gli stessi contatti con messaggi dedicati. La scadenza tassativa superata e l’evento concluso impediscono di riproporre un’iscrizione ordinaria. Tornare a Ordinaria non cancella i recapiti. L’avviso posti limitati non conta o prenota posti.
 
-Più contatti WhatsApp con nome facoltativo e numero: accettati `335 1234567` e `+39 335 1234567`; per esteri indicare il prefisso. Nomi e numeri saranno pubblici, anche come testo oltre ai pulsanti. Le righe senza numero sono ignorate. Senza JavaScript compilare la riga vuota e salvare per aggiungerne una; svuotare il numero per rimuoverla. I recapiti personali non sono il gruppo WhatsApp pubblico.
+Più contatti WhatsApp con nome facoltativo e numero: accettati `335 1234567` e `+39 335 1234567`; per esteri indicare il prefisso. Nomi e numeri saranno pubblici, anche come testo oltre ai pulsanti. All’apertura compaiono solo i contatti salvati: usare **Aggiungi contatto WhatsApp** per un altro riquadro, anche nei Corsi. Le righe senza numero sono ignorate. Solo senza JavaScript compare una riga vuota da compilare e salvare per aggiungerne una; svuotare il numero per rimuoverla. I recapiti personali non sono il gruppo WhatsApp pubblico.
 
 Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall’alto. Scadenza e nota restano anche nel riepilogo iniziale; non aggiungere manualmente un secondo pannello nel testo. Un Evento può essere collegato a un Corso dal campo apposito.
 
@@ -52,15 +52,19 @@ Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall�
 
 Compilare livello, città e provincia, sede/indirizzo/Maps, Direttore e date di inizio/fine. Il corso è attivo in base alla data di fine, non alla possibilità di iscriversi: può essere in svolgimento e avere iscrizioni chiuse. Senza data fine non risulta attivo.
 
+L’editor distingue **Percorso e direzione** da **Durata del corso**: inizio e fine sono campi compatti affiancati, separati dal termine delle iscrizioni. Recapiti, termine e informazioni aggiuntive hanno sottosezioni distinte, come negli Eventi.
+
 **Titolo Automatico** compone “Corso Sommelier [livello] – [città (provincia)]” e lo aggiorna al salvataggio. **Personalizzato** mantiene il testo libero. La città va compilata nel campo, non viene letta dal titolo; lo slug esistente non cambia automaticamente. Nell’archivio la data visibile è quella di inizio; la sede sostituisce la sola città quando disponibile.
 
 Il pannello finale è **Informazioni e iscrizioni**: invito a contattare la Delegazione, non iscrizione automatica. Disponibilità, scadenze e WhatsApp multipli funzionano come per gli Eventi, ma senza il flag “Iscrizione richiesta”. Non ci sono quote Soci/Non soci imposte né modalità online/ibrida dei Corsi.
 
-Separare **Quota di partecipazione**, **Cosa comprende il corso** e **Tesseramento FISAR**, in questo ordine nel dettaglio. I testi liberi possono spiegare rate, condizioni e dotazioni. Un numero isolato riceve `€`; non servono duplicazioni del riepilogo pratico nel corpo.
+Separare **Quota di partecipazione**, **Cosa comprende il corso** e **Tesseramento FISAR**, in questo ordine nell’editor e nel dettaglio. Nell’editor segue **Offerta promozionale**, con data compatta facoltativa. I testi liberi possono spiegare rate, condizioni e dotazioni. Un numero isolato riceve `€`; non servono duplicazioni del riepilogo pratico nel corpo.
 
 **Corso in offerta** rende visibile la fascia gialla. Fine offerta facoltativa e inclusiva; senza data va disattivata manualmente. Sold-out, lista, chiusura o corso concluso nascondono il banner. Prezzi e termine iscrizioni sono indipendenti: il flag non li modifica.
 
 ### Calendario lezioni
+
+Si può compilare direttamente **Lezioni del corso**; la sezione **Importa da un foglio di calcolo** è un’alternativa facoltativa.
 
 1. Da Excel/Sheets copiare celle tabulate: **Numero lezione, Data, Orario, Titolo, Relatore, Note**.
 2. Incollare nel campo di importazione e controllare l’anteprima; poi salvare il Corso.
@@ -72,6 +76,8 @@ Data e titolo sono necessari; non incollare una tabella HTML. Dopo import riusci
 ## Blog e fotografie
 
 Il Blog raccoglie racconti, approfondimenti e annunci negli **Articoli**, mantenendo `/news/`. Categorie e tag sono quelli nativi, senza una tassonomia custom obbligatoria.
+
+Nel riquadro **Descrizione e immagini dell’articolo** si trova la **Breve descrizione (facoltativa)**: compare nelle liste e sotto il titolo del dettaglio. Se vuota, le liste ricavano un estratto dal testo, mentre sotto il titolo non compare. È un unico campo nativo, non una copia del Riassunto. Le indicazioni successive distinguono l’immagine principale dalla galleria nel testo; l’immagine si imposta ancora tramite **Immagine in evidenza** nelle impostazioni dell’articolo.
 
 Per le immagini principali di Eventi, Corsi e Blog usare preferibilmente **1080 × 1080 px**. Le locandine di Eventi/Corsi rimangono intere su bianco; le foto Blog non quadrate possono essere ritagliate nelle card, ma sono intere nel dettaglio. Evitare testi essenziali ai bordi.
 
