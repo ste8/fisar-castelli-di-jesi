@@ -71,6 +71,11 @@ try {
 	$html = $render( 'event-reports', array( 'reports' => $reports ) );
 	$check( substr_count( $html, '<li>' ) === 2 && str_contains( $html, esc_url( get_permalink( $report ) ) ), 'Render each published report with its own link.' );
 	$check( '' === $render( 'event-reports', array( 'reports' => array() ) ), 'Events without reports have no empty section.' );
+	$check( '' === $render( 'event-report-preview', array( 'reports' => array() ) ), 'Events without reports have no empty preview.' );
+	$preview = $render( 'event-report-preview', array( 'reports' => array( get_post( $report ) ) ) );
+	$check( str_contains( $preview, 'event-report-preview--without-image' ) && str_contains( $preview, esc_url( get_permalink( $report ) ) ) && ! str_contains( $preview, 'target=' ), 'A report without a cover remains readable and opens in the same tab.' );
+	$preview = $render( 'event-report-preview', array( 'reports' => $reports ) );
+	$check( str_contains( $preview, 'href="#event-reports"' ) && str_contains( $preview, 'leggendo i racconti' ), 'Multiple reports link to the complete list rather than selecting a single article.' );
 	$links = $render( 'report-links', array( 'post_id' => $report ) );
 	$check( str_contains( $links, esc_url( get_permalink( $event ) ) ) && str_contains( $links, 'Guarda il racconto su Instagram' ), 'The article links back to its event and its social reports.' );
 	$check( '' === $render( 'report-links', array( 'post_id' => $ordinary ) ), 'Ordinary articles remain unchanged.' );

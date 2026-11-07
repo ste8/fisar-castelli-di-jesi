@@ -50,6 +50,7 @@ if ( $deadline['waiting_list'] ) {
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>"><span aria-hidden="true">←</span> Tutti gli eventi</a>
 					<p class="eyebrow"><?php echo $past ? 'Evento concluso' : 'Evento in programma'; ?></p>
 					<h1><?php the_title(); ?></h1>
+					<?php get_template_part( 'template-parts/event-report-preview', null, array( 'reports' => $reports ) ); ?>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
 						<li><strong>Data</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span></li>
@@ -73,9 +74,6 @@ if ( $deadline['waiting_list'] ) {
 							</li>
 						<?php endif; ?>
 					</ul>
-					<?php if ( $reports ) : ?>
-						<a class="button" href="<?php echo esc_url( 1 === count( $reports ) ? get_permalink( $reports[0] ) : '#event-reports' ); ?>"><?php echo 1 === count( $reports ) ? 'Leggi il racconto' : 'Leggi i racconti'; ?> <span aria-hidden="true">→</span></a>
-					<?php endif; ?>
 					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] && ! $deadline['status_notice'] ) : ?>
 						<a class="button event-registration-link" href="#event-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>

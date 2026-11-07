@@ -12,6 +12,12 @@ Aggiornamento successivo del 7 novembre 2026: tema 1.6.110 per lo stile facoltat
 
 Ultimo aggiornamento del 7 novembre 2026: tema 1.6.111 per allineare titoli, date, estratti e collegamenti nelle righe dell’archivio Blog, mantenendo i titoli completi. Plugin invariato a 1.3.40. Collaudo locale e remoto a 1280/768/390 px, nessun overflow; HTML del contenuto Blog identico prima/dopo e noindex conservato. Pacchetto, rollback 1.6.110 e prove in `release/blog-card-alignment-2026-11-07/`. Nessun import DB o modifica ai contenuti editoriali.
 
+Aggiornamento del 7 novembre 2026: tema 1.6.112 per distanziare il pulsante dei racconti dal separatore dei dettagli Evento (20 px), con spaziatura coerente della freccia. Verificato in locale e su Aruba a 1280/768/390 px, senza overflow; contenuto Evento invariato e noindex conservato. Pacchetto, rollback 1.6.111 e prove in `release/report-button-spacing-2026-11-07/`. Plugin invariato, nessun import DB.
+
+Rilascio del 7 novembre 2026: tema 1.6.113 con anteprima del racconto sotto il titolo Evento, foto dell’articolo e invito “Rivivi l’evento leggendo il racconto”, nella stessa scheda. Gestiti più racconti e articoli senza copertina; il riquadro non compare senza racconti pubblici. Lint PHP e test WordPress superati; verifiche Aruba a 1280/768/390 px, navigazione reale nella stessa scheda, testi/dettagli evento invariati e noindex conservato. Pacchetto, rollback 1.6.112 e prove in `release/report-preview-2026-11-07/`. Solo tema, nessun import DB.
+
+Rilascio del 7 novembre 2026: tema 1.6.114 con sfondo bordò, testo bianco e freccia oro nel banner del racconto. Fotografia, testi, collegamento nella stessa scheda e markup pubblico invariati. Verificato su Aruba a 1280/768/390 px, senza overflow e con noindex conservato. Pacchetto, rollback 1.6.113 e prove in `release/report-bordeaux-2026-11-07/`.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.
