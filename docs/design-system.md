@@ -19,7 +19,7 @@ Voce competente, diretta, accogliente, curiosa e informale; evitare burocratese,
 
 Valori CSS e varianti effettive in `theme/fisar-cdj/assets/css/main.css`; modificare i token, non creare una seconda palette per ogni pagina. Contrasto da verificare per il contesto, non garantito dalla sola scelta della tinta.
 
-Asset ufficiali in `assets/brand/`, originale in `assets/logo-original/`. Header usa il fallback `logo-orizzontale-header.svg`, con FISAR, tricolore e CASTELLI DI JESI allineati; logo personalizzato WordPress prioritario. Non deformare, ruotare, alterare i colori, eliminare il tricolore o rigenerare il marchio con AI. Il logo non è composto con Poppins.
+Loghi ufficiali e originale in `assets/brand/logo/`, guida del brand in `assets/brand/brand-guideline-v1.png`. Header usa il fallback `logo-orizzontale-header.svg`, con FISAR, tricolore e CASTELLI DI JESI allineati; logo personalizzato WordPress prioritario. Non deformare, ruotare, alterare i colori, eliminare il tricolore o rigenerare il marchio con AI. Il logo non è composto con Poppins.
 
 ## Tipografia attuale
 
