@@ -18,6 +18,8 @@ Rilascio del 7 novembre 2026: tema 1.6.113 con anteprima del racconto sotto il t
 
 Rilascio del 7 novembre 2026: tema 1.6.114 con sfondo bordò, testo bianco e freccia oro nel banner del racconto. Fotografia, testi, collegamento nella stessa scheda e markup pubblico invariati. Verificato su Aruba a 1280/768/390 px, senza overflow e con noindex conservato. Pacchetto, rollback 1.6.113 e prove in `release/report-bordeaux-2026-11-07/`.
 
+Rilascio del 7 novembre 2026: tema 1.6.115 con Poppins 500 come font predefinito dei titoli, correggendo gli stati vuoti, i risultati di ricerca e la pagina 404. Audit prima/dopo su 16 pagine: tutti i titoli verificati in Poppins, testi invariati; Cormorant mantenuto nel motto della Home e della Carta dei Valori. Controlli locali e Aruba desktop/mobile senza overflow; noindex conservato. Pacchetto, rollback 1.6.114 e prove in `release/typography-2026-11-07/`.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.

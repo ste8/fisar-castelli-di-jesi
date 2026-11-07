@@ -144,8 +144,8 @@ h3,
 h4 {
 	margin: 0 0 .65em;
 	color: var(--color-ink);
-	font-family: var(--font-display);
-	font-weight: 600;
+	font-family: var(--font-body);
+	font-weight: 500;
 	line-height: var(--line-height-heading);
 	text-wrap: balance;
 }
