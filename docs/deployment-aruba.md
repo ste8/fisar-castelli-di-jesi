@@ -20,6 +20,12 @@ Rilascio del 7 novembre 2026: tema 1.6.114 con sfondo bordò, testo bianco e fre
 
 Rilascio del 7 novembre 2026: tema 1.6.115 con Poppins 500 come font predefinito dei titoli, correggendo gli stati vuoti, i risultati di ricerca e la pagina 404. Audit prima/dopo su 16 pagine: tutti i titoli verificati in Poppins, testi invariati; Cormorant mantenuto nel motto della Home e della Carta dei Valori. Controlli locali e Aruba desktop/mobile senza overflow; noindex conservato. Pacchetto, rollback 1.6.114 e prove in `release/typography-2026-11-07/`.
 
+Rilascio del 7 novembre 2026: tema 1.6.116 con 12 articoli per pagina nel Blog, contatore sopra la griglia e nel pannello inferiore, pulsante “Altri articoli →”. Test WordPress locale su tre pagine superato; su Aruba i 32 articoli mantengono URL, titoli, date e ordine, distribuiti 12/12/8 invece di 10/10/10/2. Controlli a 1280/768/390 px senza overflow, noindex conservato. Plugin invariato a 1.3.40; nessuna modifica editoriale o import DB. Pacchetto, rollback 1.6.115 e confronti in `release/blog-pagination-2026-11-07/`.
+
+Correzione successiva: tema 1.6.117, rimossi i contatori testuali “Pagina X di Y” su richiesta dell’utente. Azzerato il margine ereditato dalla navigazione interna: controlli centrati nel riquadro con 21 px sopra e sotto. Prima e ultima pagina verificate su Aruba a 1280/390 px, senza overflow; dimensione pagina e collegamenti preservati. Pacchetto, rollback 1.6.116 e misure in `release/blog-pagination-spacing-2026-11-07/`.
+
+Rilascio del 7 novembre 2026: tema 1.6.118 e Core 1.3.41. Applicata la variante approvata con fondo bianco, bordo/pulsante bordò e controlli centrati a Blog ed Eventi. Archivio Eventi con due paginazioni indipendenti da 12 elementi e link alla relativa sezione; chiamate esistenti alle API preservate. Test locali Blog/Eventi superati; confronto Aruba dei 25 eventi identico per URL, titolo, data e ordine su pagine 12/12/1. Blog ed Eventi verificati a 1280/768/390 px senza overflow, spaziatura verticale simmetrica; noindex mantenuto. Pacchetti, rollback tema 1.6.117/Core 1.3.40 e prove in `release/archive-pagination-2026-11-07/`. Aggiornare prima Core e poi tema; per il rollback ripristinare prima il tema e poi Core. Nessun import DB o modifica editoriale.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.

@@ -71,6 +71,10 @@ Modalità titolo Automatico/Personalizzato: Automatico compone il titolo nativo 
 
 Template condividono componenti per date/orari, luogo, quote, scadenze, canali, newsletter. Home: fino a quattro Eventi, tre Corsi attivi e quattro Articoli; i totali dei link arrivano dalla query originale, senza seconda query di conteggio. Archivi mantengono i contenuti completi previsti.
 
+Il tema imposta 12 articoli per pagina nella sola query principale pubblica del Blog tramite `pre_get_posts`. Amministrazione, feed, ricerca e query secondarie mantengono le proprie dimensioni. La navigazione nativa usa `max_num_pages` della stessa query, senza conteggi aggiuntivi.
+
+L’archivio Eventi pagina separatamente i prossimi e i conclusi, 12 per sezione, attraverso i parametri pubblici `eventi_futuri` / `eventi_conclusi`; i link riportano al titolo della rispettiva sezione. Non usa la pagina della query principale WordPress, che mescola entrambe le categorie. Le API `fisar_cdj_get_upcoming_events` / `fisar_cdj_get_past_events` accettano un secondo argomento pagina (default 1) e conservano il limite predefinito senza paginazione. Ordinamento per data, poi ID crescente a parità di data, per evitare duplicati tra pagine; Home e relazioni Corso non cambiano.
+
 La hero legge la Galleria top-level `hero-collage`: immagini native in gruppi di sei, validazione degli allegati, `srcset`, alt della Libreria media e classi `hero-focus-X-Y` limitate a 0–100. Calice da Immagine top-level `hero-glass`, decorativo. Nessun ID di upload o manifest fotografico letto dal tema. Senza JS resta il primo gruppo; senza galleria resta l’immagine in evidenza/fallback. Selezione e rigenerazione sono descritte nell’[archivio fotografico](../assets/photography/sito-home/README.md).
 
 CSS/JS del carosello solo in home; un pallino per gruppo e pausa, cambio ogni sei secondi/dissolvenza 500 ms. Stop dopo focus/scelta manuale fino a ripresa esplicita; sospensione con hover, scheda nascosta, fuori viewport e sotto 64rem. Movimento ridotto disattiva automatismo e transizione. Solo il gruppo attivo è esposto alle tecnologie assistive; annunci solo manuali.

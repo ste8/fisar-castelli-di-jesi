@@ -75,6 +75,10 @@ Con lo stesso comando, `eval-file /tmp/fisar-tests/editor-workflow.test.php` ver
 
 `eval-file /tmp/fisar-tests/event-reports.test.php` con lo stesso comando WP-CLI verifica i racconti degli Eventi: salvataggi con nonce/autorizzazioni, campi omessi preservati, nessuna modifica al testo o all’Evento, esclusione dei contenuti non pubblici, più racconti, cambio Evento, svuotamento e diciture social. Crea/rimuove solo fixture locali; `fixtures` le conserva e stampa ID/URL per il controllo desktop/mobile. Non eseguire su Aruba.
 
+`eval-file /tmp/fisar-tests/blog-pagination.test.php` con lo stesso comando WP-CLI verifica 25 articoli temporanei su tre pagine (12/12/1), ordine completo senza duplicati, collegamenti avanti/indietro e indipendenza da ricerca/query secondarie. Rimuove sempre i propri articoli al termine, anche in caso di errore; non prevede fixture persistenti. Non eseguire su Aruba.
+
+`eval-file /tmp/fisar-tests/event-pagination.test.php` verifica gli elenchi indipendenti di eventi conclusi (12/12/1) e futuri (12/1), inclusione di oggi tra i futuri, esclusione di bozze/eventi senza data, ordine stabile a parità di data e collegamenti con parametro/ancora corretti. Controlla anche le chiamate API senza limite e l’assenza del pannello per una sola pagina. Crea e rimuove sempre solo i propri eventi temporanei; non eseguire su Aruba.
+
 ## Foto della hero
 
 Sorgenti, inventario, selezione e derivati in `assets/photography/sito-home/`; istruzioni nel suo [README](../assets/photography/sito-home/README.md). Nessuna dipendenza da mockup o server di prova. Il sito legge invece la galleria della Home nel proprio WordPress.

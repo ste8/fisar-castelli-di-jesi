@@ -3556,6 +3556,57 @@ blockquote {
 	color: #fff;
 }
 
+.pagination--archive {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.25rem;
+	border: 1px solid var(--color-bordeaux);
+	border-radius: var(--radius-small);
+	background: var(--color-paper);
+}
+
+.pagination--archive > .pagination {
+	margin: 0;
+}
+
+.pagination--archive .nav-links {
+	align-items: center;
+	justify-content: center;
+}
+
+.pagination--archive .page-numbers {
+	border-color: color-mix(in srgb, var(--color-bordeaux) 53%, transparent);
+}
+
+.pagination--archive .current {
+	border-color: var(--color-bordeaux);
+}
+
+.pagination--archive .next {
+	padding-inline: 1rem;
+	border-color: var(--color-bordeaux);
+	background: var(--color-bordeaux);
+	color: #fff;
+	font-weight: 600;
+}
+
+.pagination--archive a:hover {
+	border-color: var(--color-bordeaux-dark);
+	background: var(--color-bordeaux-dark);
+	color: #fff;
+}
+
+@media (max-width: 27.5rem) {
+	.pagination--archive {
+		padding: 1rem;
+	}
+
+	.pagination--archive .prev {
+		flex-basis: 100%;
+	}
+}
+
 .empty-state {
 	grid-column: 1 / -1;
 	padding: 2rem;

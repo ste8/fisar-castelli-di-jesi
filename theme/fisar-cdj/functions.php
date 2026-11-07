@@ -4,7 +4,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.115' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.118' );
+
+function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
+	$vars[] = 'eventi_futuri';
+	$vars[] = 'eventi_conclusi';
+	return $vars;
+}
+add_filter( 'query_vars', 'fisar_cdj_theme_event_pagination_query_vars' );
+
+/** Keep full rows in the Blog's two- and three-column archive layouts. */
+function fisar_cdj_theme_blog_page_size( WP_Query $query ): void {
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_home() || $query->is_feed() ) {
+		return;
+	}
+
+	$query->set( 'posts_per_page', 12 );
+}
+add_action( 'pre_get_posts', 'fisar_cdj_theme_blog_page_size' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );

@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+get_header();
+global $wp_query;
+$total_pages  = max( 1, (int) $wp_query->max_num_pages );
+?>
 <main id="main-content" class="news-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
@@ -13,7 +17,11 @@
 				<div class="news-grid news-grid--archive">
 					<?php while ( have_posts() ) : the_post(); get_template_part( 'template-parts/news-card' ); endwhile; ?>
 				</div>
-				<div class="pagination"><?php the_posts_pagination( array( 'mid_size' => 1, 'prev_text' => '← Articoli più recenti', 'next_text' => 'Articoli precedenti →', 'aria_label' => 'Paginazione del blog', 'screen_reader_text' => 'Paginazione del blog' ) ); ?></div>
+				<?php if ( $total_pages > 1 ) : ?>
+					<div class="pagination pagination--archive">
+						<?php the_posts_pagination( array( 'mid_size' => 1, 'prev_text' => '← Articoli più recenti', 'next_text' => 'Altri articoli →', 'aria_label' => 'Paginazione del blog', 'screen_reader_text' => 'Paginazione del blog' ) ); ?>
+					</div>
+				<?php endif; ?>
 			<?php else : get_template_part( 'template-parts/empty-state' ); endif; ?>
 		</div>
 	</section>
