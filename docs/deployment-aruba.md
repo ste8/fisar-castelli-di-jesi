@@ -10,6 +10,8 @@ Ultimo rilascio: plugin Core 1.3.40 e tema 1.6.108, il 6 novembre 2026: metadati
 
 Aggiornamento successivo del 7 novembre 2026: tema 1.6.110 per lo stile facoltativo Griglia uniforme dei racconti; plugin invariato a 1.3.40. Stile applicato al solo articolo sui vini giapponesi, con foto ad alta risoluzione e prima foto della galleria come copertina. Data dell’articolo corretta al 12 ottobre 2026, ore 20:39; recuperato e aggiunto anche il link Instagram tramite accesso personale, con rimando pubblico verificato. Backup del tema 1.6.108 e contenuto precedente conservati; native gallerie/immagini originali e metadati preservati, nessun import DB. Prove e pacchetti in `release/photo-grid-2026-11-07/`.
 
+Ultimo aggiornamento del 7 novembre 2026: tema 1.6.111 per allineare titoli, date, estratti e collegamenti nelle righe dell’archivio Blog, mantenendo i titoli completi. Plugin invariato a 1.3.40. Collaudo locale e remoto a 1280/768/390 px, nessun overflow; HTML del contenuto Blog identico prima/dopo e noindex conservato. Pacchetto, rollback 1.6.110 e prove in `release/blog-card-alignment-2026-11-07/`. Nessun import DB o modifica ai contenuti editoriali.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.

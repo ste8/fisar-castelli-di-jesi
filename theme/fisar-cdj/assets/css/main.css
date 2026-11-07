@@ -2175,6 +2175,50 @@ blockquote {
 	min-width: 0;
 }
 
+/* Share content rows across each archive row without shortening article titles. */
+@supports (grid-template-rows: subgrid) {
+	@media (min-width: 38rem) {
+		.news-grid--archive .news-card {
+			display: grid;
+			grid-row: span 5;
+			grid-template-rows: subgrid;
+			row-gap: 0;
+		}
+
+		.news-grid--archive .news-card__media {
+			grid-row: 1;
+		}
+
+		.news-grid--archive .news-card__body {
+			display: grid;
+			grid-row: 2 / span 4;
+			grid-template-rows: subgrid;
+			row-gap: 0;
+			justify-items: start;
+			align-items: start;
+		}
+
+		.news-grid--archive .news-card__title {
+			grid-row: 1;
+			align-self: stretch;
+		}
+
+		.news-grid--archive .news-card__date {
+			grid-row: 2;
+		}
+
+		.news-grid--archive .news-card__body > p:not(.news-card__date) {
+			grid-row: 3;
+		}
+
+		.news-grid--archive .news-card__body > .text-link {
+			grid-row: 4;
+			align-self: end;
+			margin-top: 0;
+		}
+	}
+}
+
 .single-news .editorial-hero {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 	border-bottom: 1px solid var(--color-line);

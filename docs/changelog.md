@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 7 novembre 2026 — Allineamento schede Blog, tema 1.6.111 su Aruba
+
+Nell’archivio Blog i titoli di diversa lunghezza sfalsavano date ed estratti. Le schede ora condividono le righe di contenuto tramite CSS subgrid da 38rem: titoli completi, date, estratti e collegamenti allineati per riga, senza altezze fisse. Home indipendente, mobile a colonna singola e fallback flex preservati. Verificate dieci schede a 1280, 768 e 390 px, in anteprima locale e su Aruba: allineamento entro un pixel, nessun overflow o errore console osservato. HTML del contenuto del Blog identico prima/dopo. Aggiornamento nativo del solo tema; rollback 1.6.110 e prove in `.local-deployment/release/blog-card-alignment-2026-11-07/`.
+
 ## 7 novembre 2026 — Galleria uniforme dei racconti, tema 1.6.110 su Aruba
 
 Nuovo stile nativo facoltativo della Galleria: miniature quadrate su tre colonne desktop/due mobile, ultima riga della stessa misura e priorità ai volti nelle immagini verticali. La cornice ritaglia la miniatura mantenendo le dimensioni proporzionate dell’immagine per il lightbox WordPress: le foto ingrandite restano intere, senza un visualizzatore aggiuntivo. Stile applicato al solo racconto dei vini giapponesi, con testo, foto ad alta risoluzione e metadati preservati. Copertina impostata sulla prima foto della galleria e data dell’articolo allineata al resoconto Facebook del 12 ottobre 2026, ore 20:39. Recuperato anche il resoconto Instagram tramite accesso personale e verificato il collegamento pubblico “Guarda il racconto su Instagram”. Verificati quadrati di tutte le dieci miniature, foto orizzontale/verticale, mobile e assenza di overflow/errori console; tema aggiornato nativamente, plugin invariato a 1.3.40. Rollback 1.6.108 e contenuto precedente conservati in `.local-deployment/release/photo-grid-2026-11-07/`; nessun import DB.
