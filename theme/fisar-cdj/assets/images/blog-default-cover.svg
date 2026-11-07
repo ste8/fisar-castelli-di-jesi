@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <title>Grappolo FISAR su fondo chiaro</title>
+  <defs>
+    <mask id="fisar-grape" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="2000">
+      <rect width="2000" height="2000" fill="black"/>
+      <g fill="white">
+        <circle cx="713" cy="505" r="161"/><circle cx="1000" cy="505" r="161"/><circle cx="1287" cy="505" r="161"/>
+        <circle cx="856" cy="738" r="161"/><circle cx="1144" cy="738" r="161"/><circle cx="1000" cy="970" r="161"/>
+      </g>
+      <g fill="black">
+        <circle cx="713" cy="505" r="104"/><circle cx="1000" cy="505" r="104"/><circle cx="1287" cy="505" r="104"/>
+        <circle cx="856" cy="738" r="104"/><circle cx="1144" cy="738" r="104"/><circle cx="1000" cy="970" r="104"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="800" height="800" fill="#f7f3ef"/>
+  <g transform="translate(400 400) scale(.34) translate(-1000 -601.5)">
+    <path d="M928 72 L1072 72 L1000 238 Z" fill="#839091"/>
+    <rect width="2000" height="2000" fill="#b1a65d" mask="url(#fisar-grape)"/>
+  </g>
+</svg>

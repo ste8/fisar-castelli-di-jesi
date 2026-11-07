@@ -5,6 +5,7 @@ Questa cartella contiene gli asset di riferimento approvati per il brand della D
 ## File inclusi
 
 - `brand-guideline-v1.png`: guida del brand approvata.
+- `blog-default-cover.svg`: copertina quadrata per le anteprime Blog prive di foto; grappolo vettoriale del logo, colori originali e fondo chiaro. Copia distribuita nel tema; nessuna immagine in evidenza viene assegnata nel database.
 - `logo/logo-fisar-cdj-originale.png`: logo originale; le due copie precedenti erano identiche e sono state riunite in questo file.
 - `logo/logo-orizzontale.*` e `logo/logo-verticale.*`: varianti in SVG, PNG e JPG.
 - `logo/logo-orizzontale-on-dark.*` e `logo/logo-verticale-on-dark.*`: varianti per fondi scuri in SVG e PNG.

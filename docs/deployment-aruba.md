@@ -26,6 +26,8 @@ Correzione successiva: tema 1.6.117, rimossi i contatori testuali “Pagina X di
 
 Rilascio del 7 novembre 2026: tema 1.6.118 e Core 1.3.41. Applicata la variante approvata con fondo bianco, bordo/pulsante bordò e controlli centrati a Blog ed Eventi. Archivio Eventi con due paginazioni indipendenti da 12 elementi e link alla relativa sezione; chiamate esistenti alle API preservate. Test locali Blog/Eventi superati; confronto Aruba dei 25 eventi identico per URL, titolo, data e ordine su pagine 12/12/1. Blog ed Eventi verificati a 1280/768/390 px senza overflow, spaziatura verticale simmetrica; noindex mantenuto. Pacchetti, rollback tema 1.6.117/Core 1.3.40 e prove in `release/archive-pagination-2026-11-07/`. Aggiornare prima Core e poi tema; per il rollback ripristinare prima il tema e poi Core. Nessun import DB o modifica editoriale.
 
+Rilascio del 7 novembre 2026: tema 1.6.119 con copertina automatica delle card Blog/Home senza foto (grappolo originale FISAR su fondo chiaro), senza assegnazioni nel database. Core invariato a 1.3.41. Aggiornamento editoriale separato, richiesto dall’utente: immagini in evidenza per i ricordi di Carlo Pigini Campanari (anteprima Facebook dell’articolo WineSurf, 966 × 504), Ampelio Bucci (foto originale FIVI, 2048 × 1365) e il servizio alla Slow Wine Fair 2025 (prima foto del post FISAR Nazionale condiviso, 1440 × 1267, credito Michele Purin). Provenienza e crediti registrati nei media. Titoli, corpi, date e collegamenti social dei tre articoli identici prima/dopo. Pacchetto, rollback 1.6.118, foto e confronti in `release/blog-default-cover-2026-11-07/`. Nessun import DB.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.
