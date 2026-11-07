@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.107' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.110' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -37,6 +37,28 @@ function fisar_cdj_theme_setup(): void {
 	);
 }
 add_action( 'after_setup_theme', 'fisar_cdj_theme_setup' );
+
+function fisar_cdj_theme_gallery_style(): void {
+	register_block_style( 'core/gallery', array( 'name' => 'fisar-photo-grid', 'label' => 'Griglia uniforme' ) );
+}
+add_action( 'init', 'fisar_cdj_theme_gallery_style' );
+
+/** Keep the image box proportional inside a clipped square, including for the native lightbox. */
+function fisar_cdj_theme_gallery_image_orientation( string $html, array $block ): string {
+	if ( is_admin() || ! is_singular( 'post' ) || empty( $block['attrs']['id'] ) ) {
+		return $html;
+	}
+	$metadata = wp_get_attachment_metadata( (int) $block['attrs']['id'] );
+	if ( empty( $metadata['width'] ) || empty( $metadata['height'] ) ) {
+		return $html;
+	}
+	$processor = new WP_HTML_Tag_Processor( $html );
+	if ( $processor->next_tag( 'IMG' ) ) {
+		$processor->add_class( $metadata['height'] > $metadata['width'] ? 'fisar-photo-portrait' : 'fisar-photo-landscape' );
+	}
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/image', 'fisar_cdj_theme_gallery_image_orientation', 20, 2 );
 
 /** Match the editing canvas to each content template, not the admin interface. */
 function fisar_cdj_theme_content_editor_styles(): void {

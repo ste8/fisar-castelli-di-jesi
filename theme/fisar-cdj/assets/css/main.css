@@ -2247,8 +2247,88 @@ blockquote {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
+/* Crop only the square frame. Image dimensions stay proportional for the native lightbox. */
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: start;
+	gap: clamp(.5rem, 1.5vw, 1rem);
+}
+
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid > figure.wp-block-image:not(#individual-image) {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	aspect-ratio: 1;
+	overflow: hidden;
+}
+
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid > figure.wp-block-image img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: auto !important;
+	height: 100% !important;
+	max-width: none !important; /* Override the native gallery's important image limit. */
+	max-height: none;
+	transform: translate(-50%, -50%);
+}
+
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid > figure.wp-block-image img.fisar-photo-portrait {
+	top: 0;
+	width: 100% !important;
+	height: auto !important;
+	transform: translateX(-50%);
+}
+
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid .lightbox-trigger {
+	top: .5rem !important;
+	right: .5rem !important;
+}
+
+@media (min-width: 38rem) {
+	.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
 .single-news .post-navigation {
 	padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.event-reports,
+.single-news .report-links {
+	margin-block: 2.5rem;
+	padding: clamp(1.25rem, 3vw, 2rem);
+	border: 1px solid var(--color-line);
+	border-left: 3px solid var(--color-gold);
+	border-radius: var(--radius-small);
+	background: var(--color-tint);
+}
+
+.single-news .report-links {
+	max-width: 48rem;
+	width: min(48rem, calc(100% - 2 * var(--container-gutter, 1.5rem)));
+	overflow-wrap: anywhere;
+}
+
+.event-reports h2 {
+	margin-top: 0;
+}
+
+.event-reports__list,
+.report-links__social {
+	display: grid;
+	gap: .75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.report-links__event + .report-links__social {
+	margin-top: 1.25rem;
 }
 
 .single-news .post-navigation a strong {

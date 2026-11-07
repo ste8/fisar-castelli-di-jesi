@@ -2,6 +2,16 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 7 novembre 2026 — Galleria uniforme dei racconti, tema 1.6.110 su Aruba
+
+Nuovo stile nativo facoltativo della Galleria: miniature quadrate su tre colonne desktop/due mobile, ultima riga della stessa misura e priorità ai volti nelle immagini verticali. La cornice ritaglia la miniatura mantenendo le dimensioni proporzionate dell’immagine per il lightbox WordPress: le foto ingrandite restano intere, senza un visualizzatore aggiuntivo. Stile applicato al solo racconto dei vini giapponesi, con testo, foto ad alta risoluzione e metadati preservati. Copertina impostata sulla prima foto della galleria e data dell’articolo allineata al resoconto Facebook del 12 ottobre 2026, ore 20:39. Recuperato anche il resoconto Instagram tramite accesso personale e verificato il collegamento pubblico “Guarda il racconto su Instagram”. Verificati quadrati di tutte le dieci miniature, foto orizzontale/verticale, mobile e assenza di overflow/errori console; tema aggiornato nativamente, plugin invariato a 1.3.40. Rollback 1.6.108 e contenuto precedente conservati in `.local-deployment/release/photo-grid-2026-11-07/`; nessun import DB.
+
+## 6 novembre 2026 — Racconti degli Eventi, Core 1.3.40 e tema 1.6.108 su Aruba
+
+Gli Articoli hanno Evento collegato e URL facoltativi Facebook/Instagram. L’Evento trova automaticamente tutti i racconti pubblici e mostra Leggi il racconto / Leggi i racconti; l’Articolo rimanda all’Evento e usa le diciture Guarda il racconto su Facebook / Instagram. Nessun doppio salvataggio dell’Evento; bozze, privati, programmati, cestinati e contenuti protetti non compaiono nei rimandi pubblici.
+
+Test WordPress per salvataggi autorizzati, nonce, campi omessi, sanitizzazione, pubblicazione, cambio relazione, rimozione e più racconti; regressione editor/riassunto superata. Controllo browser desktop/mobile, nessun overflow o errore console osservato. Rilascio nativo su Aruba con rollback e WXR prima/dopo; 155 contenuti precedenti invariati. Primo racconto sui vini giapponesi dell’8 ottobre 2026 con testo e dieci foto Facebook, inizialmente in bozza, poi pubblicato su richiesta dell’utente: CTA nell’Evento verificata senza modificarlo. Instagram da completare quando sarà disponibile l’accesso. Nessun import DB, aggiornamento core o modifica alla root precedente.
+
 ## 27 ottobre 2026 — Correzione anteprima WhatsApp pubblicata su Aruba, plugin 1.3.39
 
 Aggiornato nativamente il solo plugin dalla 1.3.38 alla 1.3.39. Versione attiva e script remoto verificati; nell’evento “Visita alla cantina Edoardo Dottori” il nome dell’azienda è in grassetto anche dopo l’apostrofo, senza modificare o salvare l’evento. Console senza errori osservati, dialog senza overflow desktop. Home e root identiche prima/dopo, noindex HTTP/meta conservati. Nessun import DB, modifica al tema o invio WhatsApp; rollback 1.3.38 verificato e conservato. Prove in `.local-deployment/release/whatsapp-apostrophe-2026-10-27/`.

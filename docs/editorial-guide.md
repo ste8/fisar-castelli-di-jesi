@@ -15,6 +15,20 @@ Lavorare nell’[admin Aruba](https://www.fisarcastellidijesi.it/anteprima/wp-ad
 
 Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eventi, Corsi e Articoli usano nel canvas font e scala del frontend, ma riepiloghi, quote e calendari sono generati dai campi. La **Breve descrizione** nel metabox è il Riassunto nativo; non duplicarla nel testo.
 
+## Racconti degli eventi nel Blog
+
+In **Articoli → Aggiungi articolo**, il riquadro **Racconto dell’evento** contiene **Evento collegato** e i due URL facoltativi **Racconto su Facebook** / **Racconto su Instagram**. Scegliere l’evento dall’elenco (titolo e data), poi incollare i link ai singoli post social disponibili. Per un normale articolo lasciare Nessun evento e i link vuoti.
+
+Il racconto mostra in fondo il rimando all’evento e i collegamenti **Guarda il racconto su Facebook** / **Guarda il racconto su Instagram**. L’evento mostra automaticamente **Leggi il racconto** appena l’articolo è pubblicato; se i racconti sono più di uno, mostra **Leggi i racconti** e l’elenco. Non occorre modificare anche l’evento. Cambiare evento, scollegare un articolo o riportarlo in bozza aggiorna automaticamente i rimandi. Articoli privati, programmati o protetti da password non compaiono nell’evento pubblico.
+
+Per ricostruire i racconti storici usare il testo originale del resoconto Facebook, senza riscriverlo, senza ripetere il titolo nel corpo e senza compilare un summary aggiuntivo. Foto originali nella Libreria media, copertina e Galleria nativa con ingrandimento. I link social appartengono ai metadati, non vanno aggiunti manualmente al corpo. Preparare il primo racconto in bozza per la revisione prima di procedere con gli altri.
+
+Impostare la data di pubblicazione dell’articolo alla data del resoconto originale su Facebook, con l’ora quando disponibile, anziché al giorno del caricamento sul sito. Per il racconto dei vini giapponesi: 12 ottobre 2026, ore 20:39.
+
+L’esportazione Facebook può contenere foto ridotte: prima di caricarle, confrontarne le dimensioni con le versioni disponibili nel visualizzatore Facebook e preferire quelle più grandi, senza interpolazione. Per le gallerie dei racconti conservare le proporzioni originali (ritaglio disattivato) e verificare anche l’immagine ingrandita: il ritaglio delle miniature può essere ripreso dal lightbox nativo. Per il racconto sui vini giapponesi sono state recuperate e sostituite tutte e dieci le foto, fino a 2048 px sul lato lungo, inclusa la copertina.
+
+Per una composizione regolare scegliere lo stile della Galleria **Griglia uniforme**: miniature quadrate su tre colonne da 38rem, due sotto questa soglia; anche l’ultima riga mantiene le stesse dimensioni. Il ritaglio è solo della cornice, con priorità alla parte alta delle foto verticali per conservare i volti. Le immagini ingrandite restano intere. Lasciare disattivato il ritaglio nativo; lo stile uniforme gestisce la presentazione senza modificare gli originali. Lo stile è facoltativo e attualmente applicato al solo racconto dei vini giapponesi.
+
 ## Eventi
 
 Compilare data, orari (accoglienza, inizio, eventuale fine), modalità, luogo/indirizzo/città/provincia e, se disponibile, link Maps. Il nome della sede e l’indirizzo sono distinti; non incollare tutto nel solo nome. Per gli ibridi il luogo evidenzia anche la partecipazione online.

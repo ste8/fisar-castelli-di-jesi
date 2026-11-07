@@ -20,6 +20,7 @@ WordPress nativo, tema classico PHP, nessun page builder, framework frontend, AC
 - Home e pagine associative/editoriali: pagine native, menu WordPress `primary`, `footer`, `social`.
 - Breve descrizione di Eventi/Corsi/Articoli: `post_excerpt`, presentato nel metabox principale (Articoli: “Descrizione e immagini dell’articolo”); nessun meta parallelo. Nell’editor a blocchi `editor-excerpt.js` sincronizza il campo nativo e nasconde il pannello duplicato.
 - Un Evento può riferirsi a un Corso. La relazione è salvata sull’Evento; la pagina Corso interroga gli Eventi collegati.
+- Un Articolo può raccontare un Evento: `_fisar_report_event_id` è salvato soltanto sull’Articolo. `Fisar_CDJ_Event_Reports` gestisce editor, sanitizzazione, salvataggi e query inversa: l’Evento elenca tutti i racconti pubblicati senza essere risalvato. Bozze, privati, programmati, cestinati e protetti da password sono esclusi; anche l’Evento collegato deve essere pubblico. I due URL social facoltativi (`_fisar_report_facebook_url`, `_fisar_report_instagram_url`) appartengono all’Articolo, con soli protocolli HTTP/HTTPS. Nessuna copia dei link nell’Evento o migrazione dei contenuti.
 
 `class-post-types.php` registra CPT/meta, `class-meta-boxes.php` gestisce editor e salvataggi, `class-calendar-importer.php` importa le lezioni, `class-course-titles.php` compone i titoli. Le definizioni dei campi restano nel codice: non mantenerne una seconda copia esaustiva nella documentazione.
 

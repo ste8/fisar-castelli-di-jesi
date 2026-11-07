@@ -6,7 +6,9 @@ Anteprima: [www.fisarcastellidijesi.it/anteprima/](https://www.fisarcastellidije
 
 **Aruba è la fonte principale dei contenuti dal trasferimento iniziale. Non importare più il database locale per un aggiornamento di codice.** Editor, gallerie, menu e configurazione del database devono essere preservati. Root pubblica precedente, DNS, email e impostazioni PHP globali non sono parte di un normale aggiornamento dell’anteprima.
 
-Ultimo rilascio: plugin Core 1.3.39, il 27 ottobre 2026: corretta l’anteprima del grassetto/corsivo accanto agli apostrofi nel generatore WhatsApp Eventi. Tema invariato a 1.6.107, con scala del canvas condivisa. Nessun import DB o modifica ai contenuti; ritrovo Eventi, indice Valori e quattro collage/24 foto della Home preservati. Core remoto osservato 7.1.3; PHP remoto osservato in precedenza 8.5/MySQL 8, distinto da PHP 8.3/MariaDB locale. Ricontrollare l’ambiente prima di un rilascio, senza presumere che le versioni rimangano immutate. Login/editor remoto verificati; non chiedere la password in chat o inserirla nella documentazione.
+Ultimo rilascio: plugin Core 1.3.40 e tema 1.6.108, il 6 novembre 2026: metadati dei racconti nel Blog, collegamento inverso automatico dagli Eventi e rimandi Facebook/Instagram. Aggiornamento nativo dei soli componenti, nessun import DB o migrazione dei contenuti. Primo resoconto sui vini giapponesi dell’8 ottobre preparato in bozza e poi pubblicato su richiesta dell’utente, con testo originale Facebook e dieci foto originali. Instagram lasciato vuoto perché l’accesso richiede una verifica sul telefono di un’altra persona. Versioni attive, galleria/ingrandimento, CTA automatica e noindex verificati; 155 contenuti preesistenti invariati nel confronto WXR prima/dopo la preparazione. Core remoto osservato 7.1.3; PHP remoto osservato in precedenza 8.5/MySQL 8, distinto da PHP 8.3/MariaDB locale. Ricontrollare l’ambiente prima di un rilascio; non chiedere password in chat né salvarle nella documentazione.
+
+Aggiornamento successivo del 7 novembre 2026: tema 1.6.110 per lo stile facoltativo Griglia uniforme dei racconti; plugin invariato a 1.3.40. Stile applicato al solo articolo sui vini giapponesi, con foto ad alta risoluzione e prima foto della galleria come copertina. Data dell’articolo corretta al 12 ottobre 2026, ore 20:39; recuperato e aggiunto anche il link Instagram tramite accesso personale, con rimando pubblico verificato. Backup del tema 1.6.108 e contenuto precedente conservati; native gallerie/immagini originali e metadati preservati, nessun import DB. Prove e pacchetti in `release/photo-grid-2026-11-07/`.
 
 ## Prima di aggiornare
 
@@ -47,6 +49,7 @@ Solo percorsi relativi alla cartella privata ignorata `.local-deployment/`; ness
 
 | Posizione | Contenuto / limite |
 |---|---|
+| `release/event-reports-2026-11-06/` | Pacchetti Core 1.3.40/tema 1.6.108 e rollback 1.3.39/1.6.107, WXR prima/dopo la preparazione, confronto dei 155 contenuti precedenti, sorgente Facebook e mapping delle dieci foto. Prima una sola bozza, poi pubblicazione esplicitamente richiesta e CTA verificata nel dettaglio dell’Evento. Nessun import DB; WXR non è un backup SQL |
 | `backups/2026-10-22/public-files.tgz` e `public-database.sql` | Backup del vecchio sito: archivio e SQL verificati strutturalmente, non un ripristino completo provato |
 | `backups/2026-10-22/wp-before-7.1.3/` | Database/file locali prima dell’aggiornamento core |
 | `backups/2026-10-24/` | WXR Aruba prima/dopo hero, copie Home e ZIP rollback tema 1.6.98 |

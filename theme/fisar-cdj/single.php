@@ -24,6 +24,7 @@ $has_image = has_post_thumbnail();
 			</div>
 		</header>
 		<div class="container prose prose--narrow"><?php the_content(); ?></div>
+		<?php get_template_part( 'template-parts/report-links', null, array( 'post_id' => get_the_ID() ) ); ?>
 		<div class="container news-navigation">
 			<?php
 			the_post_navigation( array(

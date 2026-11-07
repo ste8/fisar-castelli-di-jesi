@@ -18,6 +18,7 @@ $participation = (string) get_post_meta( $event_id, '_fisar_event_participation'
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
+$reports       = class_exists( 'Fisar_CDJ_Event_Reports' ) ? Fisar_CDJ_Event_Reports::for_event( $event_id ) : array();
 $meeting       = function_exists( 'fisar_cdj_get_event_meeting' ) ? fisar_cdj_get_event_meeting( $event_id ) : array( 'has_details' => false );
 
 $participation_labels = array( 'all' => 'Aperto a tutti', 'members' => 'Riservato ai soci', 'members_and_companions' => 'Soci e accompagnatori' );
@@ -72,6 +73,9 @@ if ( $deadline['waiting_list'] ) {
 							</li>
 						<?php endif; ?>
 					</ul>
+					<?php if ( $reports ) : ?>
+						<a class="button" href="<?php echo esc_url( 1 === count( $reports ) ? get_permalink( $reports[0] ) : '#event-reports' ); ?>"><?php echo 1 === count( $reports ) ? 'Leggi il racconto' : 'Leggi i racconti'; ?> <span aria-hidden="true">→</span></a>
+					<?php endif; ?>
 					<?php if ( ! $past && ! $deadline['deadline'] && ! $deadline['limited_seats_notice'] && ! $deadline['status_notice'] ) : ?>
 						<a class="button event-registration-link" href="#event-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a>
 					<?php endif; ?>
@@ -90,6 +94,7 @@ if ( $deadline['waiting_list'] ) {
 		<div class="container content-layout">
 			<div class="prose">
 				<?php the_content(); ?>
+				<?php get_template_part( 'template-parts/event-reports', null, array( 'reports' => $reports ) ); ?>
 
 				<section aria-labelledby="event-details-title">
 					<h2 id="event-details-title">Informazioni pratiche</h2>

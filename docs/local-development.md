@@ -73,6 +73,8 @@ Con lo stesso comando, `eval-file /tmp/fisar-tests/editor-workflow.test.php` ver
 
 `eval-file /tmp/fisar-tests/event-whatsapp-message.test.php` verifica esportazione WhatsApp, titolo maiuscolo Unicode e sezioni compatte, ordine dei riquadri, quote personalizzate, ritrovo/evento, stati d’iscrizione, riservatezza link online, nonce/autorizzazioni e assenza di scritture durante la generazione. Verifica anche che le date trascorse siano ignorate nel solo messaggio, senza cambiare gli stati pubblici. Rimuove le proprie bozze; `fixtures` conserva i due contenuti creati (Evento e Articolo usato per negare il tipo sbagliato) per il collaudo browser. Il test JavaScript copre anteprima sicura, copia, riapertura, avviso essenziale senza istruzioni nascoste nella descrizione accessibile, modifiche non salvate di documento/campi/note/contatti, esito del salvataggio nativo, autosave, errori e modifiche durante il salvataggio. Nel browser salvare solo la bozza dedicata per verificare il ritorno allo stato pronto senza refresh.
 
+`eval-file /tmp/fisar-tests/event-reports.test.php` con lo stesso comando WP-CLI verifica i racconti degli Eventi: salvataggi con nonce/autorizzazioni, campi omessi preservati, nessuna modifica al testo o all’Evento, esclusione dei contenuti non pubblici, più racconti, cambio Evento, svuotamento e diciture social. Crea/rimuove solo fixture locali; `fixtures` le conserva e stampa ID/URL per il controllo desktop/mobile. Non eseguire su Aruba.
+
 ## Foto della hero
 
 Sorgenti, inventario, selezione e derivati in `assets/photography/sito-home/`; istruzioni nel suo [README](../assets/photography/sito-home/README.md). Nessuna dipendenza da mockup o server di prova. Il sito legge invece la galleria della Home nel proprio WordPress.
