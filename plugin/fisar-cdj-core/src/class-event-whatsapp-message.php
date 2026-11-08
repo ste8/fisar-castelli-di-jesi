@@ -82,10 +82,12 @@ final class Fisar_CDJ_Event_WhatsApp_Message {
 		if ( preg_match( '/<(?:img|iframe|video|audio)\b|<!-- wp:(?:gallery|embed|shortcode)\b/i', $post->post_content ) ) {
 			$warnings[] = 'Immagini, gallerie e contenuti incorporati non vengono copiati: allega separatamente l’eventuale locandina.';
 		}
-		$date = self::date( $meta( 'date' ) );
+		$dates = Fisar_CDJ_Event_Calendar::for_event( $id );
 		$info = array( '*ℹ️ DATA E LUOGO*' );
-		if ( $date ) {
-			$info[] = '📅 ' . $date;
+		if ( $dates ) {
+			foreach ( $dates as $period ) {
+				$info[] = '📅 ' . Fisar_CDJ_Event_Calendar::period_label( $period ) . ( $period['note'] ? ' — ' . self::plain( $period['note'] ) : '' );
+			}
 		} else {
 			$warnings[] = 'La data dell’evento manca o non è valida: completala prima di condividere il messaggio.';
 		}

@@ -42,6 +42,33 @@
 	max-width: 12rem;
 }
 
+.fisar-event-calendar-main {
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 18rem));
+}
+
+.fisar-event-date-row {
+	display: grid;
+	grid-template-columns: minmax(10rem, 12rem) minmax(10rem, 1fr) auto;
+	align-items: center;
+	gap: 1rem;
+	border-bottom: 1px solid #dcdcde;
+}
+
+#fisar-event-calendar input,
+#fisar-event-calendar select {
+	max-width: 100%;
+}
+
+.fisar-event-date-error {
+	padding: .75rem;
+	border-left: 4px solid #d63638;
+	background: #fcf0f1;
+}
+
+@media (max-width: 600px) {
+	.fisar-event-date-row { grid-template-columns: 1fr; gap: 0; padding-block: .5rem; }
+}
+
 .fisar-admin-grid--times {
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
 	max-width: 42rem;

@@ -56,6 +56,10 @@ final class Fisar_CDJ_Post_Types {
 	private static function register_meta_fields(): void {
 		$event_fields = array(
 			'_fisar_event_date'                  => 'string',
+			'_fisar_event_date_mode'             => 'string',
+			'_fisar_event_end_date'              => 'string',
+			'_fisar_event_date_note'             => 'string',
+			'_fisar_event_additional_dates'      => 'array',
 			'_fisar_event_welcome_time'          => 'string',
 			'_fisar_event_start_time'            => 'string',
 			'_fisar_event_end_time'              => 'string',
@@ -145,6 +149,10 @@ final class Fisar_CDJ_Post_Types {
 			'show_in_rest'      => false,
 			'auth_callback'     => static fn(): bool => current_user_can( 'edit_posts' ),
 			'sanitize_callback' => static function ( mixed $value ) use ( $type, $key, $rich_text_fields ): mixed {
+				if ( in_array( $key, array( '_fisar_event_date', '_fisar_event_end_date' ), true ) ) { return Fisar_CDJ_Event_Calendar::date( $value ); }
+				if ( '_fisar_event_date_mode' === $key ) { return Fisar_CDJ_Event_Calendar::mode( $value ); }
+				if ( '_fisar_event_date_note' === $key ) { return Fisar_CDJ_Event_Calendar::note( $value ); }
+				if ( '_fisar_event_additional_dates' === $key ) { return Fisar_CDJ_Event_Calendar::additional_dates( $value ); }
 				if ( str_starts_with( $key, '_fisar_event_meeting_' ) ) {
 					return fisar_cdj_sanitize_event_meeting_value( $value, substr( $key, strlen( '_fisar_event_meeting_' ) ) );
 				}

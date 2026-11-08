@@ -14,7 +14,7 @@ function row(full, short) {
 	const classes = new Set();
 	const time = { width: 100, getBoundingClientRect() { return { width: this.width }; } };
 	const label = { textContent: full, dataset: { dateShort: short }, getBoundingClientRect() { return { width: this.textContent.length * 10 }; } };
-	return { time, label, classes, classList: { add: value => classes.add(value), remove: value => classes.delete(value) }, querySelector: selector => selector === 'time' ? time : label };
+	return { time, label, classes, classList: { add: value => classes.add(value), remove: value => classes.delete(value) }, querySelector: selector => selector === 'time' || selector === '.event-card__date-value' ? time : label };
 }
 const window = { ResizeObserver: Observer, addEventListener: (name, callback) => { listeners[name] = callback; }, requestAnimationFrame: callback => frames.push(callback) };
 vm.runInNewContext(source, { document: { querySelectorAll: () => rows }, window, ResizeObserver: Observer });

@@ -3,7 +3,8 @@ get_header();
 the_post();
 
 $event_id      = get_the_ID();
-$date          = (string) get_post_meta( $event_id, '_fisar_event_date', true );
+$event_dates   = Fisar_CDJ_Event_Calendar::for_event( $event_id );
+$date_label    = count( $event_dates ) > 1 ? 'Date' : 'Data';
 $welcome_time  = (string) get_post_meta( $event_id, '_fisar_event_welcome_time', true );
 $start_time    = (string) get_post_meta( $event_id, '_fisar_event_start_time', true );
 $end_time      = (string) get_post_meta( $event_id, '_fisar_event_end_time', true );
@@ -18,6 +19,7 @@ $participation = (string) get_post_meta( $event_id, '_fisar_event_participation'
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
 $past          = fisar_cdj_is_event_past( $event_id );
+$ongoing       = count( $event_dates ) === 1 && $event_dates[0]['start'] < fisar_cdj_today() && $event_dates[0]['end'] >= fisar_cdj_today();
 $reports       = class_exists( 'Fisar_CDJ_Event_Reports' ) ? Fisar_CDJ_Event_Reports::for_event( $event_id ) : array();
 $meeting       = function_exists( 'fisar_cdj_get_event_meeting' ) ? fisar_cdj_get_event_meeting( $event_id ) : array( 'has_details' => false );
 
@@ -48,12 +50,12 @@ if ( $deadline['waiting_list'] ) {
 			<div class="container content-hero__grid">
 				<div class="content-hero__copy">
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::EVENT, 'eventi' ) ); ?>"><span aria-hidden="true">←</span> Tutti gli eventi</a>
-					<p class="eyebrow"><?php echo $past ? 'Evento concluso' : 'Evento in programma'; ?></p>
+					<p class="eyebrow"><?php echo $past ? 'Evento concluso' : ( $ongoing ? 'Evento in corso' : 'Evento in programma' ); ?></p>
 					<h1><?php the_title(); ?></h1>
 					<?php get_template_part( 'template-parts/event-report-preview', null, array( 'reports' => $reports ) ); ?>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
-						<li><strong>Data</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span></li>
+						<li><strong><?php echo $date_label; ?></strong><div><?php get_template_part( 'template-parts/event-calendar', null, array( 'event_id' => $event_id ) ); ?></div></li>
 						<?php if ( $meeting['has_details'] ) : ?>
 							<li><strong>Ritrovo</strong><?php get_template_part( 'template-parts/event-meeting', null, array( 'meeting' => $meeting ) ); ?></li>
 						<?php endif; ?>
@@ -97,7 +99,7 @@ if ( $deadline['waiting_list'] ) {
 				<section aria-labelledby="event-details-title">
 					<h2 id="event-details-title">Informazioni pratiche</h2>
 					<dl class="details-list">
-						<div><dt>Data</dt><dd><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></dd></div>
+						<div><dt><?php echo $date_label; ?></dt><dd><?php get_template_part( 'template-parts/event-calendar', null, array( 'event_id' => $event_id ) ); ?></dd></div>
 						<?php if ( $meeting['has_details'] ) : ?><div><dt>Ritrovo</dt><dd><?php get_template_part( 'template-parts/event-meeting', null, array( 'meeting' => $meeting ) ); ?></dd></div><?php endif; ?>
 						<?php if ( $schedule ) : ?><div><dt><?php echo $meeting['has_details'] ? 'Orario evento' : 'Orario'; ?></dt><dd><?php get_template_part( 'template-parts/event-schedule', null, array( 'schedule' => $schedule ) ); ?></dd></div><?php endif; ?>
 						<?php if ( $has_location ) : ?>

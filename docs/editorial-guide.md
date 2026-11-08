@@ -35,6 +35,18 @@ Compilare data, orari (accoglienza, inizio, eventuale fine), modalità, luogo/in
 
 Nel riquadro **Dettagli dell’evento** ci sono la data e la **Breve descrizione (facoltativa)**. Quest’ultima compare nelle liste e sotto il titolo del dettaglio solo se compilata: per gli Eventi non c’è un estratto automatico dal testo. Gli orari effettivi sono sotto il luogo nel riquadro **Modalità, luogo e orari dell’evento**. Il riquadro facoltativo **Ritrovo e spostamenti** segue quello del luogo anche quando WordPress ha già memorizzato un ordine personale dei riquadri; non vengono riscritte le preferenze salvate.
 
+### Una giornata, un periodo o più date
+
+In **Dettagli dell’evento**, scegliere **Svolgimento**:
+
+- **Una sola giornata**: compilare Data evento, come prima.
+- **Periodo continuativo**: compilare Data evento e Data finale (inclusa), per esempio dal 23 al 24 novembre.
+- **Più date distinte**: inserire la prima data, poi **Aggiungi data** per le altre giornate. Ogni data può avere una nota pubblica, per esempio “Uscita in giornata con Francesco”. **Rimuovi** elimina la riga; senza JavaScript svuotare data e nota e salvare per ottenere una nuova riga vuota.
+
+Due uscite alternative al FIVI usano date distinte; una permanenza continuativa di due giorni usa un periodo. Appuntamenti con programmi o iscrizioni autonomi possono rimanere eventi separati. Luogo e orari generali valgono per tutte le giornate: le note precisano eventuali differenze. Il calendario viene riordinato cronologicamente, portando con sé le note. Date duplicate, righe con nota ma senza data e periodi invertiti vanno corretti prima di salvare. Il server conserva il calendario precedente se riceve un calendario non valido.
+
+L’evento rimane in programma fino all’ultima giornata, anche negli intervalli fra due appuntamenti. Le card evidenziano la prossima data o il periodo in corso; il dettaglio e WhatsApp elencano tutte le giornate. I filtri anno/mese trovano anche gli eventi che attraversano mesi o anni, senza far coincidere un intervallo vuoto con un evento continuativo. Gli eventi già presenti rimangono di una giornata; nessuna modifica automatica ai loro dati.
+
 ### Ritrovo e spostamenti
 
 Se prima dell’attività ci si incontra altrove, compilare il riquadro facoltativo **Ritrovo e spostamenti**: ora, punto di ritrovo, indirizzo, città/provincia, Maps e indicazioni organizzative. Queste ultime sono pubbliche e compaiono nel riepilogo iniziale e nelle informazioni pratiche: usarle per auto condivise, arrivi successivi o coordinate da comunicare separatamente, non per dati riservati agli iscritti.

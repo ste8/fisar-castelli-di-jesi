@@ -10,7 +10,7 @@ function fisar_cdj_today(): string {
 
 function fisar_cdj_is_event_past( int|WP_Post $event ): bool {
 	$event_id = $event instanceof WP_Post ? $event->ID : $event;
-	$date     = (string) get_post_meta( $event_id, '_fisar_event_date', true );
+	$date = Fisar_CDJ_Event_Calendar::last_date( Fisar_CDJ_Event_Calendar::for_event( $event_id ) );
 
 	return '' !== $date && $date < fisar_cdj_today();
 }
@@ -145,45 +145,21 @@ function fisar_cdj_get_course_identity( int $course_id ): array {
 }
 
 function fisar_cdj_get_upcoming_events( int $limit = -1, int $page = 1, array $filters = array() ): WP_Query {
-	return new WP_Query(
-		Fisar_CDJ_Archive_Filters::event_query_args( array(
-			'post_type'      => Fisar_CDJ_Post_Types::EVENT,
-			'post_status'    => 'publish',
-			'posts_per_page' => $limit,
-			'paged'          => max( 1, $page ),
-			'meta_key'       => '_fisar_event_date',
-			'orderby'        => array( 'meta_value' => 'ASC', 'ID' => 'ASC' ),
-			'meta_query'     => array(
-				array(
-					'key'     => '_fisar_event_date',
-					'value'   => fisar_cdj_today(),
-					'compare' => '>=',
-					'type'    => 'DATE',
-				),
-			),
-		), $filters )
-	);
+	return new WP_Query( Fisar_CDJ_Archive_Filters::event_query_args( array(
+		'post_type' => Fisar_CDJ_Post_Types::EVENT,
+		'post_status' => 'publish',
+		'posts_per_page' => $limit,
+		'paged' => max( 1, $page ),
+	), $filters, 'upcoming' ) );
 }
 
 function fisar_cdj_get_past_events( int $limit = -1, int $page = 1, array $filters = array() ): WP_Query {
-	return new WP_Query(
-		Fisar_CDJ_Archive_Filters::event_query_args( array(
-			'post_type'      => Fisar_CDJ_Post_Types::EVENT,
-			'post_status'    => 'publish',
-			'posts_per_page' => $limit,
-			'paged'          => max( 1, $page ),
-			'meta_key'       => '_fisar_event_date',
-			'orderby'        => array( 'meta_value' => 'DESC', 'ID' => 'ASC' ),
-			'meta_query'     => array(
-				array(
-					'key'     => '_fisar_event_date',
-					'value'   => fisar_cdj_today(),
-					'compare' => '<',
-					'type'    => 'DATE',
-				),
-			),
-		), $filters )
-	);
+	return new WP_Query( Fisar_CDJ_Archive_Filters::event_query_args( array(
+		'post_type' => Fisar_CDJ_Post_Types::EVENT,
+		'post_status' => 'publish',
+		'posts_per_page' => $limit,
+		'paged' => max( 1, $page ),
+	), $filters, 'past' ) );
 }
 
 function fisar_cdj_get_active_courses( int $limit = -1 ): WP_Query {
@@ -230,13 +206,10 @@ function fisar_cdj_get_past_courses( int $limit = -1 ): WP_Query {
 
 function fisar_cdj_get_course_events( int $course_id ): WP_Query {
 	return new WP_Query(
-		array(
+		Fisar_CDJ_Event_Calendar::query_args( array(
 			'post_type'      => Fisar_CDJ_Post_Types::EVENT,
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_key'       => '_fisar_event_date',
-			'orderby'        => 'meta_value',
-			'order'          => 'ASC',
 			'meta_query'     => array(
 				array(
 					'key'     => '_fisar_event_course_id',
@@ -245,7 +218,7 @@ function fisar_cdj_get_course_events( int $course_id ): WP_Query {
 					'type'    => 'NUMERIC',
 				),
 			),
-		)
+		), 'all' )
 	);
 }
 

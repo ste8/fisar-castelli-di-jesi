@@ -95,14 +95,7 @@ final class Fisar_CDJ_Archive_Filters {
 	public static function available_years( string $scope, bool $past_only = false ): array {
 		global $wpdb;
 		if ( 'events' === $scope ) {
-			$sql = $wpdb->prepare(
-				"SELECT DISTINCT LEFT(m.meta_value, 4) FROM {$wpdb->postmeta} m INNER JOIN {$wpdb->posts} p ON p.ID = m.post_id WHERE p.post_type = %s AND p.post_status = 'publish' AND m.meta_key = '_fisar_event_date' AND m.meta_value REGEXP '^[1-9][0-9]{3}-[0-9]{2}-[0-9]{2}$'",
-				Fisar_CDJ_Post_Types::EVENT
-			);
-			if ( $past_only ) {
-				$sql .= $wpdb->prepare( ' AND m.meta_value < %s', fisar_cdj_today() );
-			}
-			$years = $wpdb->get_col( $sql . ' ORDER BY 1 DESC' );
+			return Fisar_CDJ_Event_Calendar::years( $past_only );
 		} else {
 			$years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) > 0 ORDER BY 1 DESC" );
 		}
@@ -139,19 +132,12 @@ final class Fisar_CDJ_Archive_Filters {
 		}
 	}
 
-	public static function event_query_args( array $args, array $values ): array {
+	public static function event_query_args( array $args, array $values, string $state = 'all' ): array {
 		$filters = self::normalize( $values, false );
-		if ( $filters['year'] ) {
-			$start = new DateTimeImmutable( sprintf( '%04d-%02d-01', $filters['year'], $filters['month'] ?: 1 ) );
-			$end = $filters['month'] ? $start->modify( 'last day of this month' ) : $start->setDate( $filters['year'], 12, 31 );
-			$args['meta_query'][] = array( 'key' => '_fisar_event_date', 'value' => array( $start->format( 'Y-m-d' ), $end->format( 'Y-m-d' ) ), 'compare' => 'BETWEEN', 'type' => 'DATE' );
-		} elseif ( $filters['month'] ) {
-			$args['meta_query'][] = array( 'key' => '_fisar_event_date', 'value' => sprintf( '-%02d-', $filters['month'] ), 'compare' => 'LIKE' );
-		}
 		if ( '' !== $filters['text'] ) {
 			$args['s'] = $filters['text'];
 			$args['search_columns'] = array( 'post_title', 'post_content' );
 		}
-		return $args;
+		return Fisar_CDJ_Event_Calendar::query_args( $args, $state, $filters );
 	}
 }

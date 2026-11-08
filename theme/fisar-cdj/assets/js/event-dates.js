@@ -9,7 +9,7 @@
 			var label = row.querySelector('.event-card__date-label');
 			label.dataset.dateFull = label.dataset.dateFull || label.textContent;
 			if (observer) observer.observe(row);
-			return { row: row, time: row.querySelector('time'), label: label, full: label.dataset.dateFull, short: label.dataset.dateShort };
+			return { row: row, time: row.querySelector('.event-card__date-value') || row.querySelector('time'), label: label, full: label.dataset.dateFull, short: label.dataset.dateShort };
 		});
 	}
 

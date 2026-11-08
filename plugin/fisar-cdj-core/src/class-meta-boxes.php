@@ -153,6 +153,10 @@ final class Fisar_CDJ_Meta_Boxes {
 			$dependencies = $screen->is_block_editor() ? array( 'wp-dom-ready', 'wp-data', 'wp-editor' ) : array( 'wp-dom-ready' );
 			wp_enqueue_script( 'fisar-cdj-course-title', FISAR_CDJ_CORE_URL . 'assets/js/course-title.js', $dependencies, FISAR_CDJ_CORE_VERSION, true );
 		}
+		if ( Fisar_CDJ_Post_Types::EVENT === $screen->post_type ) {
+			$dependencies = $screen->is_block_editor() ? array( 'wp-dom-ready', 'wp-data', 'wp-editor' ) : array( 'wp-dom-ready' );
+			wp_enqueue_script( 'fisar-cdj-event-calendar', FISAR_CDJ_CORE_URL . 'assets/js/event-calendar.js', $dependencies, FISAR_CDJ_CORE_VERSION, true );
+		}
 		if ( $screen->is_block_editor() ) {
 			wp_enqueue_script( 'fisar-cdj-editor-excerpt', FISAR_CDJ_CORE_URL . 'assets/js/editor-excerpt.js', array( 'wp-data', 'wp-dom-ready', 'wp-editor' ), FISAR_CDJ_CORE_VERSION, true );
 		}
@@ -161,7 +165,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function render_event_schedule( WP_Post $post ): void {
 		self::nonce_field();
 		self::render_excerpt( $post );
-		self::input( $post->ID, '_fisar_event_date', 'Data evento', 'date', 'La data determina automaticamente se l’evento è futuro o concluso.', true );
+		Fisar_CDJ_Event_Calendar_Editor::render( $post );
 	}
 
 	public static function render_event_location( WP_Post $post ): void {
@@ -450,6 +454,12 @@ final class Fisar_CDJ_Meta_Boxes {
 		}
 
 		$text_fields = self::EVENT_TEXT_FIELDS;
+		if ( isset( $_POST['_fisar_event_calendar_present'] ) ) {
+			Fisar_CDJ_Event_Calendar::save_request( $post_id, wp_unslash( $_POST ) );
+			$text_fields = array_diff( $text_fields, array( '_fisar_event_date' ) );
+		} elseif ( ! isset( $_POST['_fisar_event_date'] ) ) {
+			$text_fields = array_diff( $text_fields, array( '_fisar_event_date' ) );
+		}
 		if ( ! isset( $_POST['_fisar_event_whatsapp'] ) || metadata_exists( 'post', $post_id, '_fisar_event_whatsapp_contacts' ) ) {
 			$text_fields = array_diff( $text_fields, array( '_fisar_event_whatsapp' ) );
 		}

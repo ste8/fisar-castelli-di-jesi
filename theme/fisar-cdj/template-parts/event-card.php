@@ -8,6 +8,8 @@ $is_home_card = isset( $args['context'] ) && 'home' === $args['context'];
 $is_archive_card = isset( $args['context'] ) && 'archive' === $args['context'];
 $has_compact_date = $is_home_card || $is_archive_card;
 $date     = (string) get_post_meta( $event_id, '_fisar_event_date', true );
+$periods = Fisar_CDJ_Event_Calendar::for_event( $event_id );
+$date_tag = count( $periods ) === 1 && $periods[0]['start'] === $periods[0]['end'] ? 'time' : 'span';
 $venue    = (string) get_post_meta( $event_id, '_fisar_event_venue', true );
 $city     = (string) get_post_meta( $event_id, '_fisar_event_city', true );
 $province = (string) get_post_meta( $event_id, '_fisar_event_province', true );
@@ -38,13 +40,13 @@ if ( $meeting['has_location'] ) {
 		<?php if ( $has_compact_date ) : ?>
 			<p class="event-card__date event-card__date--compact">
 				<?php echo fisar_cdj_theme_icon( 'calendar', 'event-card__date-icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<time datetime="<?php echo esc_attr( $date ); ?>">
-					<span class="event-card__date-label" data-date-short="<?php echo esc_attr( fisar_cdj_theme_format_date_compact( $date ) ); ?>" aria-hidden="true"><?php echo esc_html( fisar_cdj_theme_format_date_compact( $date, false ) ); ?></span>
-					<span class="screen-reader-text"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></span>
-				</time>
+				<<?php echo $date_tag; ?> class="event-card__date-value"<?php if ( 'time' === $date_tag ) : ?> datetime="<?php echo esc_attr( $date ); ?>"<?php endif; ?>>
+					<span class="event-card__date-label" data-date-short="<?php echo esc_attr( Fisar_CDJ_Event_Calendar::card_label( $event_id, true ) ); ?>" aria-hidden="true"><?php echo esc_html( Fisar_CDJ_Event_Calendar::card_label( $event_id ) ); ?></span>
+					<span class="screen-reader-text"><?php echo esc_html( implode( '; ', array_map( static fn( $period ) => Fisar_CDJ_Event_Calendar::period_label( $period ), $periods ) ) ); ?></span>
+				</<?php echo $date_tag; ?>>
 			</p>
 		<?php else : ?>
-			<p class="event-card__date"><time datetime="<?php echo esc_attr( $date ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $date ) ); ?></time></p>
+			<div class="event-card__date"><?php get_template_part( 'template-parts/event-calendar', null, array( 'event_id' => $event_id ) ); ?></div>
 		<?php endif; ?>
 		<?php if ( 'closed' === ( $booking['status'] ?? '' ) ) : ?><p class="event-card__booking-status"><?php echo esc_html( $booking['status_notice'] ); ?></p><?php endif; ?>
 		<?php if ( ! $is_home_card && ! $is_archive_card ) : ?><h3 class="event-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3><?php endif; ?>

@@ -1014,7 +1014,7 @@ blockquote {
 	gap: .35rem;
 }
 
-.event-card__date--compact time {
+.event-card__date--compact :is(time, .event-card__date-value) {
 	flex: 1;
 	min-width: 0;
 }
@@ -1691,7 +1691,7 @@ blockquote {
 	gap: .85rem;
 }
 
-.hero-facts li {
+.hero-facts > li {
 	display: grid;
 	grid-template-columns: minmax(5rem, .35fr) 1fr;
 	padding-bottom: .85rem;
@@ -2697,7 +2697,7 @@ blockquote {
 	font-size: .9375rem;
 }
 
-:is(.single-event, .single-course) .hero-facts li {
+:is(.single-event, .single-course) .hero-facts > li {
 	grid-template-columns: 5.5rem minmax(0, 1fr);
 	border-color: var(--color-line);
 }
@@ -3365,7 +3365,7 @@ blockquote {
 }
 
 /* Course cards keep the compact home composition, without cropping their artwork. */
-.single-course .hero-facts li:not(.event-deadline-row) {
+.single-course .hero-facts > li:not(.event-deadline-row) {
 	grid-template-columns: 7rem minmax(0, 1fr);
 }
 
@@ -4345,4 +4345,28 @@ blockquote {
 	.single-news .editorial-hero h1::after {
 		background: CanvasText;
 	}
+}
+
+.event-calendar-dates {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.event-calendar-dates > li + li {
+	margin-top: .7rem;
+}
+
+.event-calendar-dates__note {
+	display: block;
+	color: var(--color-muted);
+	font-size: .9375em;
+}
+
+.event-calendar-dates__next {
+	display: block;
+	color: var(--color-bordeaux);
+	font-size: .8125rem;
+	font-weight: 600;
+	text-transform: uppercase;
 }
