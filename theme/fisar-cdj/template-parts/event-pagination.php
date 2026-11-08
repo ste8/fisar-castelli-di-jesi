@@ -14,6 +14,7 @@ $links = paginate_links(
 		'prev_text'    => $args['prev_text'],
 		'next_text'    => 'Altri eventi →',
 		'add_fragment' => '#' . $args['anchor'],
+		'add_args'     => Fisar_CDJ_Archive_Filters::url_args( Fisar_CDJ_Archive_Filters::current( 'events' ) ),
 	)
 );
 ?>

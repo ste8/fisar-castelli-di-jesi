@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.119' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.122' );
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';
@@ -19,7 +19,8 @@ function fisar_cdj_theme_blog_page_size( WP_Query $query ): void {
 		return;
 	}
 
-	$query->set( 'posts_per_page', 12 );
+	$filters = Fisar_CDJ_Archive_Filters::normalize( array( 'per_page' => $query->get( 'fisar_per_page' ) ) );
+	$query->set( 'posts_per_page', $filters['per_page'] );
 }
 add_action( 'pre_get_posts', 'fisar_cdj_theme_blog_page_size' );
 
@@ -94,6 +95,9 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	if ( is_home() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) {
+		wp_enqueue_script( 'fisar-cdj-archive-filters', get_template_directory_uri() . '/assets/js/archive-filters.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	}
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/css/hero-collage.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
 		wp_enqueue_script( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/js/hero-collage.js', array(), FISAR_CDJ_THEME_VERSION, true );

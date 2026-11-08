@@ -1,18 +1,16 @@
 (function () {
 	'use strict';
 
-	var dates = Array.from(document.querySelectorAll('.event-card__date--compact')).map(function (row) {
-		var label = row.querySelector('.event-card__date-label');
-		return {
-			row: row,
-			time: row.querySelector('time'),
-			label: label,
-			full: label.textContent,
-			short: label.dataset.dateShort
-		};
-	});
-	if (!dates.length) {
-		return;
+	var dates = [];
+	var observer;
+	function collectDates() {
+		if (observer) observer.disconnect();
+		dates = Array.from(document.querySelectorAll('.event-card__date--compact')).map(function (row) {
+			var label = row.querySelector('.event-card__date-label');
+			label.dataset.dateFull = label.dataset.dateFull || label.textContent;
+			if (observer) observer.observe(row);
+			return { row: row, time: row.querySelector('time'), label: label, full: label.dataset.dateFull, short: label.dataset.dateShort };
+		});
 	}
 
 	function fitDate(date) {
@@ -46,11 +44,10 @@
 	}
 
 	if ('ResizeObserver' in window) {
-		var observer = new ResizeObserver(scheduleUpdate);
-		dates.forEach(function (date) {
-			observer.observe(date.row);
-		});
+		observer = new ResizeObserver(scheduleUpdate);
 	}
+	collectDates();
+	window.addEventListener('fisar:archive-updated', function () { collectDates(); scheduleUpdate(); });
 	window.addEventListener('resize', scheduleUpdate);
 	if (document.fonts) {
 		document.fonts.ready.then(scheduleUpdate);
