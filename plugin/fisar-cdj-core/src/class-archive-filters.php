@@ -1,7 +1,8 @@
 <?php
 /** Public archive filters; reads native post categories and dates without changing content. */
 final class Fisar_CDJ_Archive_Filters {
-	private const QUERY_VARS = array( 'year' => 'fisar_year', 'month' => 'fisar_month', 'text' => 'fisar_text', 'category' => 'fisar_category', 'per_page' => 'fisar_per_page' );
+	private const QUERY_VARS = array( 'year' => 'anno', 'month' => 'mese', 'text' => 'search', 'category' => 'categoria', 'per_page' => 'per_pagina' );
+	private const LEGACY_QUERY_VARS = array( 'year' => 'fisar_year', 'month' => 'fisar_month', 'text' => 'fisar_text', 'category' => 'fisar_category', 'per_page' => 'fisar_per_page' );
 
 	public static function page_sizes(): array {
 		return array( 12, 24, 36, 48 );
@@ -10,10 +11,11 @@ final class Fisar_CDJ_Archive_Filters {
 	public static function init(): void {
 		add_filter( 'query_vars', array( self::class, 'query_vars' ) );
 		add_action( 'pre_get_posts', array( self::class, 'filter_blog' ) );
+		add_filter( 'paginate_links', array( self::class, 'pagination_url' ) );
 	}
 
 	public static function query_vars( array $vars ): array {
-		return array_merge( $vars, array_values( self::QUERY_VARS ) );
+		return array_merge( $vars, array_values( self::QUERY_VARS ), array_values( self::LEGACY_QUERY_VARS ) );
 	}
 
 	public static function categories(): array {
@@ -45,11 +47,30 @@ final class Fisar_CDJ_Archive_Filters {
 	}
 
 	public static function current( string $scope ): array {
+		global $wp_query;
+		return self::from_query( $wp_query, $scope );
+	}
+
+	public static function from_query( WP_Query $query, string $scope ): array {
 		$values = array();
 		foreach ( self::QUERY_VARS as $name => $query_var ) {
-			$values[ $name ] = get_query_var( $query_var, '' );
+			$values[ $name ] = $query->get( $query_var, null ) ?? $query->get( self::LEGACY_QUERY_VARS[ $name ], '' );
 		}
 		return self::normalize( $values, 'blog' === $scope );
+	}
+
+	public static function pagination_url( string $url ): string {
+		if ( is_admin() || ( ! is_home() && ! is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) ) {
+			return $url;
+		}
+		parse_str( wp_parse_url( $url, PHP_URL_QUERY ) ?? '', $parameters );
+		foreach ( self::QUERY_VARS as $name => $query_var ) {
+			$legacy = self::LEGACY_QUERY_VARS[ $name ];
+			if ( array_key_exists( $legacy, $parameters ) && ! array_key_exists( $query_var, $parameters ) ) {
+				$url = add_query_arg( $query_var, $parameters[ $legacy ], $url );
+			}
+		}
+		return remove_query_arg( array_values( self::LEGACY_QUERY_VARS ), $url );
 	}
 
 	public static function url_args( array $filters ): array {
@@ -67,7 +88,7 @@ final class Fisar_CDJ_Archive_Filters {
 
 	public static function has_criteria( array $filters ): bool {
 		$args = self::url_args( $filters );
-		unset( $args['fisar_per_page'] );
+		unset( $args['per_pagina'] );
 		return (bool) $args;
 	}
 
@@ -92,11 +113,7 @@ final class Fisar_CDJ_Archive_Filters {
 		if ( is_admin() || ! $query->is_main_query() || ! $query->is_home() || $query->is_feed() ) {
 			return;
 		}
-		$values = array();
-		foreach ( self::QUERY_VARS as $name => $query_var ) {
-			$values[ $name ] = $query->get( $query_var );
-		}
-		$filters = self::normalize( $values );
+		$filters = self::from_query( $query, 'blog' );
 		$date = array_filter( array( 'year' => $filters['year'], 'month' => $filters['month'] ) );
 		if ( $date ) {
 			$existing = $query->get( 'date_query' );

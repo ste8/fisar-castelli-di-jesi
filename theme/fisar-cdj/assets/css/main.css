@@ -3540,7 +3540,7 @@ blockquote {
 }
 
 .archive-filters--blog {
-	grid-template-columns: minmax(10rem, 1fr) 6rem 8.5rem minmax(12rem, 1fr) 10rem auto;
+	grid-template-columns: minmax(10rem, 1fr) 6rem 8.5rem minmax(14rem, 1fr) 10rem auto;
 }
 
 .archive-filters__field {
@@ -3563,6 +3563,25 @@ blockquote {
 	border-radius: var(--radius-small);
 	background: var(--color-paper);
 	font-size: 1rem;
+}
+
+.archive-filters select {
+	-webkit-appearance: none;
+	appearance: none;
+	padding-inline-end: 2.25rem;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E%3Cpath d='m2 2 6 6 6-6' fill='none' stroke='%23625d69' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right .75rem center;
+	background-size: 1rem .625rem;
+}
+
+@media (forced-colors: active) {
+	.archive-filters select {
+		-webkit-appearance: auto;
+		appearance: auto;
+		padding-inline-end: .75rem;
+		background-image: none;
+	}
 }
 
 .archive-filters .button {
@@ -3628,7 +3647,7 @@ blockquote {
 	}
 
 	.archive-filters select {
-		padding-inline: .5rem;
+		padding-inline-start: .5rem;
 	}
 }
 

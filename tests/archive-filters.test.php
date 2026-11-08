@@ -52,12 +52,18 @@ try {
 	$create( 'post', 'Solo estratto', 'Nessuna corrispondenza', array( 'post_excerpt' => 'Barrique' ), array( $memories ) );
 	$uncategorized = $create( 'post', 'Nessuna categoria principale', 'Territorio' );
 	$sub = $create( 'post', 'Barrique sottocategoria', 'Territorio', array(), array( $child ) );
-	$combined = array( 'fisar_year' => $year, 'fisar_month' => 3, 'fisar_text' => 'Barrique' );
+	$combined = array( 'anno' => $year, 'mese' => 3, 'search' => 'Barrique' );
 	$check( wp_list_pluck( $query_blog( $combined )->posts, 'ID' ) === array( $a, $b, $sub ), 'Combine publication year/month and title/body search; exclude excerpt-only matches.' );
-	$check( wp_list_pluck( $query_blog( $combined + array( 'fisar_category' => 'servizi' ) )->posts, 'ID' ) === array( $a, $sub ), 'Use native categories, including their descendants.' );
-	$check( wp_list_pluck( $query_blog( array( 'fisar_category' => 'altro' ) )->posts, 'ID' ) === array( $c, $uncategorized ), 'Other is the complement of all main categories, including uncategorized posts but excluding mixed/main/child categories.' );
-	$check( $query_blog( array( 'fisar_text' => 'unmatchedtestword' ) )->found_posts === 0, 'A search without matches returns no results.' );
-	$secondary = $query_blog( array( 'fisar_text' => 'unmatchedtestword' ), 1, false );
+	$check( wp_list_pluck( $query_blog( array( 'fisar_year' => $year, 'fisar_month' => 3, 'fisar_text' => 'Barrique', 'fisar_category' => 'servizi' ) )->posts, 'ID' ) === array( $a, $sub ), 'Keep old URLs working with the same combined filters.' );
+	$check( $query_blog( array( 'search' => '', 'fisar_text' => 'unmatchedtestword' ) )->found_posts === count( $blog_ids ), 'An explicitly empty new parameter takes precedence over an old parameter.' );
+	$registered = apply_filters( 'query_vars', array() );
+	foreach ( array( 'search', 'anno', 'mese', 'categoria', 'per_pagina', 'fisar_text', 'fisar_year', 'fisar_month', 'fisar_category', 'fisar_per_page' ) as $name ) {
+		$check( in_array( $name, $registered, true ), 'Register new public names and their backward-compatible aliases.' );
+	}
+	$check( wp_list_pluck( $query_blog( $combined + array( 'categoria' => 'servizi' ) )->posts, 'ID' ) === array( $a, $sub ), 'Use native categories, including their descendants.' );
+	$check( wp_list_pluck( $query_blog( array( 'categoria' => 'altro' ) )->posts, 'ID' ) === array( $c, $uncategorized ), 'Other is the complement of all main categories, including uncategorized posts but excluding mixed/main/child categories.' );
+	$check( $query_blog( array( 'search' => 'unmatchedtestword' ) )->found_posts === 0, 'A search without matches returns no results.' );
+	$secondary = $query_blog( array( 'search' => 'unmatchedtestword' ), 1, false );
 	$check( $secondary->found_posts === count( $blog_ids ), 'Home and other secondary queries are not filtered implicitly.' );
 	$normalized = Fisar_CDJ_Archive_Filters::normalize( array( 'year' => array( 2025 ), 'month' => '13', 'text' => array( 'bad' ), 'category' => 'unknown' ) );
 	$check( array( 'year' => 0, 'month' => 0, 'text' => '', 'category' => '', 'per_page' => 12 ) === $normalized, 'Ignore malformed values and unknown categories.' );
@@ -65,7 +71,13 @@ try {
 	$check( ! Fisar_CDJ_Archive_Filters::has_criteria( array( 'per_page' => 24 ) ), 'Page size is a view preference, not a search criterion.' );
 	$pages = array();
 	for ( $n = 0; $n < 25; $n++ ) { $pages[] = $create( 'post', 'FiltroCompleto ' . $n, 'Territorio', array(), array( $services ) ); }
-	$filters = array( 'fisar_year' => $year, 'fisar_month' => 3, 'fisar_text' => 'FiltroCompleto', 'fisar_category' => 'servizi' );
+	$filters = array( 'anno' => $year, 'mese' => 3, 'search' => 'FiltroCompleto', 'categoria' => 'servizi' );
+	$legacy = array( 'fisar_year' => $year, 'fisar_month' => 3, 'fisar_text' => 'FiltroCompleto', 'fisar_category' => 'servizi', 'fisar_per_page' => 24 );
+	$_SERVER['REQUEST_URI'] = '/news/?' . http_build_query( $legacy );
+	$old_query = $query_blog( $legacy );
+	$check( 24 === $old_query->post_count && 25 === $old_query->found_posts, 'Old page-size URLs preserve their result counts.' );
+	$html = get_the_posts_pagination( array( 'add_args' => Fisar_CDJ_Archive_Filters::url_args( Fisar_CDJ_Archive_Filters::current( 'blog' ) ) ) );
+	$check( ! str_contains( $html, 'fisar_' ) && str_contains( $html, 'search=FiltroCompleto' ) && str_contains( $html, 'per_pagina=24' ), 'Pagination emitted from old URLs uses only the simplified names.' );
 	$_SERVER['REQUEST_URI'] = '/news/?' . http_build_query( $filters );
 	$seen = array();
 	foreach ( array( 12, 12, 1 ) as $i => $count ) {
@@ -81,14 +93,14 @@ try {
 	}
 	$check( $pages === $seen, 'Do not lose or duplicate articles between filtered pages.' );
 	foreach ( array( 24, 36, 48 ) as $size ) {
-		$one = $query_blog( $filters + array( 'fisar_per_page' => $size ) );
+		$one = $query_blog( $filters + array( 'per_pagina' => $size ) );
 		$check( min( $size, 25 ) === $one->post_count && 25 === $one->found_posts, 'Use the selected multiple of twelve without changing the total result count.' );
 		$check( Fisar_CDJ_Archive_Filters::current( 'blog' )['per_page'] === $size, 'Keep the page-size selection in the current URL state.' );
 		if ( 24 === $size ) {
 			$seen = wp_list_pluck( $one->posts, 'ID' );
 			$html = get_the_posts_pagination( array( 'add_args' => Fisar_CDJ_Archive_Filters::url_args( Fisar_CDJ_Archive_Filters::current( 'blog' ) ) ) );
-			$check( str_contains( $html, 'fisar_per_page=24' ), 'Preserve page size in next-page links.' );
-			$two = $query_blog( $filters + array( 'fisar_per_page' => 24 ), 2 );
+			$check( str_contains( $html, 'per_pagina=24' ), 'Preserve page size in next-page links.' );
+			$two = $query_blog( $filters + array( 'per_pagina' => 24 ), 2 );
 			$check( array_merge( $seen, wp_list_pluck( $two->posts, 'ID' ) ) === $pages, 'Cover all filtered results with 24/1 pagination.' );
 		}
 	}
@@ -110,7 +122,7 @@ try {
 	$check( array( $future ) === wp_list_pluck( fisar_cdj_get_upcoming_events( 12, 1, array( 'year' => 2087, 'month' => 3, 'text' => 'FiltroEvento' ) )->posts, 'ID' ), 'Upcoming events use the same explicit filters without mixing past events.' );
 	$check( in_array( 2087, Fisar_CDJ_Archive_Filters::available_years( 'events' ), true ), 'Event year options come from event metadata.' );
 	$check( ! in_array( 2087, Fisar_CDJ_Archive_Filters::available_years( 'events', true ), true ), 'Past-event year options exclude years containing only future events.' );
-	$query_blog( array( 'fisar_year' => $year, 'fisar_month' => 3, 'fisar_text' => 'FiltroEvento', 'fisar_per_page' => 24 ) );
+	$query_blog( array( 'anno' => $year, 'mese' => 3, 'search' => 'FiltroEvento', 'per_pagina' => 24 ) );
 	ob_start();
 	include get_template_directory() . '/archive-fisar_evento.php';
 	$archive = ob_get_clean();
@@ -124,7 +136,7 @@ try {
 	$check( 1 === $xpath->query( '//div[@data-archive-summary]//p[@class="archive-results"]' )->length, 'Show the result count in the summary row below the controls.' );
 	$check( 0 === $xpath->query( '//h2[@id="past-events"]//*[@class="archive-results"]' )->length, 'Do not repeat the count in the heading.' );
 	$reset = $xpath->query( '//a[@data-archive-reset]' )->item( 0 )->getAttribute( 'href' );
-	$check( str_contains( $reset, 'fisar_per_page=24' ) && ! str_contains( $reset, 'fisar_year' ), 'Reset clears criteria while preserving the chosen page size.' );
+	$check( str_contains( $reset, 'per_pagina=24' ) && ! str_contains( $reset, 'anno' ), 'Reset clears criteria while preserving the chosen page size.' );
 	$check( str_contains( $archive, '#past-events' ), 'Filtering and clearing return to the past section.' );
 	$query_blog( array() );
 	ob_start();

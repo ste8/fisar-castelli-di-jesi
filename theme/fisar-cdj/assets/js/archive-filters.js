@@ -8,17 +8,18 @@
 	if (!form || !results || !counter || !window.fetch || !window.AbortController || !window.DOMParser) {
 		return;
 	}
-	const textField = form.querySelector('[name="fisar_text"]');
+	const textField = form.querySelector('[name="search"]');
+	results.setAttribute('tabindex', '-1');
 	const controls = Array.from(form.elements).filter(control => control.name);
+	const legacyNames = { search: 'fisar_text', anno: 'fisar_year', mese: 'fisar_month', categoria: 'fisar_category', per_pagina: 'fisar_per_page' };
 	const hint = document.getElementById('archive-auto-hint');
 	if (hint) {
-		hint.textContent = 'I risultati si aggiornano automaticamente quando cambi una selezione o fai una breve pausa nella scrittura. Puoi anche premere Filtra.';
+		hint.textContent = 'I risultati si aggiornano automaticamente quando cambi una selezione o fai una breve pausa nella scrittura. Puoi anche premere Cerca.';
 	}
 	let timer;
 	let controller;
 	let version = 0;
 	let composing = false;
-	let nativeFallback = false;
 	let lastCount = counter.textContent;
 
 	function cancelPending() {
@@ -34,7 +35,7 @@
 		const url = new URL(form.action, window.location.href);
 		for (const control of controls) {
 			const value = control.value.trim();
-			if (value && !(control.name === 'fisar_per_page' && value === '12')) {
+			if (value && !(control.name === 'per_pagina' && value === '12')) {
 				url.searchParams.set(control.name, value);
 			}
 		}
@@ -43,11 +44,11 @@
 
 	function restoreControls(url) {
 		for (const control of controls) {
-			control.value = url.searchParams.get(control.name) || (control.name === 'fisar_per_page' ? '12' : '');
+			control.value = url.searchParams.get(control.name) ?? url.searchParams.get(legacyNames[control.name]) ?? (control.name === 'per_pagina' ? '12' : '');
 		}
 	}
 
-	async function load(url, historyMode) {
+	async function load(url, historyMode, focusTarget = null) {
 		cancelPending();
 		const requestVersion = version;
 		controller = new window.AbortController();
@@ -75,13 +76,15 @@
 			if (url.href !== window.location.href && historyMode !== 'none') {
 				window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](null, '', url.href);
 			}
-			nativeFallback = false;
+			if (focusTarget) {
+				focusTarget.focus({ preventScroll: true });
+				if (focusTarget === results) results.scrollIntoView({ block: 'start', behavior: 'instant' });
+			}
 			window.dispatchEvent(new CustomEvent('fisar:archive-updated'));
 		} catch (error) {
 			if (requestVersion !== version) return;
 			results.setAttribute('aria-busy', 'false');
-			counter.textContent = 'Non riesco ad aggiornare i risultati. Premi Filtra per riprovare.';
-			nativeFallback = true;
+			counter.textContent = 'Non riesco ad aggiornare i risultati. Premi Cerca per riprovare.';
 		}
 	}
 
@@ -98,10 +101,21 @@
 	textField.addEventListener('compositionstart', () => { composing = true; cancelPending(); });
 	textField.addEventListener('compositionend', () => { composing = false; schedule(650, 'replace'); });
 	form.addEventListener('submit', event => {
-		if (nativeFallback) return;
 		event.preventDefault();
 		if (!composing) load(formUrl(), 'push');
 	});
+	function followArchiveLink(event, selector, focusTarget) {
+		if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+		const link = event.target.closest(selector);
+		if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+		const url = new URL(link.href, window.location.href);
+		if (url.origin !== window.location.origin) return;
+		event.preventDefault();
+		restoreControls(url);
+		load(url, 'push', focusTarget);
+	}
+	summary.addEventListener('click', event => followArchiveLink(event, '[data-archive-reset]', textField));
+	results.addEventListener('click', event => followArchiveLink(event, '.pagination--archive a.page-numbers', results));
 	function restorePage() {
 		const url = new URL(window.location.href);
 		restoreControls(url);
