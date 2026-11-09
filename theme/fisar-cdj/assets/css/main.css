@@ -2309,7 +2309,7 @@ blockquote {
 	overflow: hidden;
 }
 
-.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid > figure.wp-block-image img {
+.wp-block-gallery.has-nested-images.is-style-fisar-photo-grid > figure.wp-block-image img:not(.emoji) {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -2566,6 +2566,19 @@ blockquote {
 
 :is(.events-archive, .courses-archive, .news-archive) .section {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.events-archive .section[aria-labelledby="past-events"] {
+	padding-top: 1.5rem;
+}
+
+.events-archive .events-archive__empty-upcoming {
+	padding-block: 1.5rem 2rem;
+}
+
+.events-archive__empty-upcoming p {
+	margin: 0;
+	color: var(--color-muted);
 }
 
 :is(.events-archive, .courses-archive, .news-archive) .section-heading h2 {

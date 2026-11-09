@@ -3,6 +3,7 @@ get_header();
 $filters = Fisar_CDJ_Archive_Filters::current( 'events' );
 $filtered = Fisar_CDJ_Archive_Filters::has_criteria( $filters );
 $upcoming = fisar_cdj_get_upcoming_events( 12, max( 1, (int) get_query_var( 'eventi_futuri', 1 ) ) );
+$has_upcoming = $upcoming->have_posts();
 $past = fisar_cdj_get_past_events( $filters['per_page'], max( 1, (int) get_query_var( 'eventi_conclusi', 1 ) ), $filters );
 ?>
 <main id="main-content" class="events-archive">
@@ -12,15 +13,18 @@ $past = fisar_cdj_get_past_events( $filters['per_page'], max( 1, (int) get_query
 			<p>Degustazioni, visite e incontri per scoprire e condividere.</p>
 		</div>
 	</header>
-	<section class="section" aria-labelledby="future-events">
+	<section class="section<?php echo $has_upcoming ? '' : ' events-archive__empty-upcoming'; ?>" aria-labelledby="future-events">
 		<div class="container">
-			<div class="section-heading"><p class="eyebrow">In programma</p><h2 id="future-events">Prossimi eventi</h2></div>
-			<?php if ( $upcoming->have_posts() ) : ?>
+			<?php if ( $has_upcoming ) : ?>
+				<div class="section-heading"><p class="eyebrow">In programma</p><h2 id="future-events">Prossimi eventi</h2></div>
 				<div class="event-grid">
 					<?php while ( $upcoming->have_posts() ) : $upcoming->the_post(); get_template_part( 'template-parts/event-card', null, array( 'context' => 'archive' ) ); endwhile; ?>
 				</div>
 				<?php get_template_part( 'template-parts/event-pagination', null, array( 'query' => $upcoming, 'query_var' => 'eventi_futuri', 'anchor' => 'future-events', 'label' => 'Paginazione dei prossimi eventi', 'prev_text' => '← Eventi precedenti' ) ); ?>
-			<?php else : get_template_part( 'template-parts/empty-state' ); endif; wp_reset_postdata(); ?>
+			<?php else : ?>
+				<div class="section-heading section-heading--compact"><h2 id="future-events">Prossimi eventi</h2></div>
+				<p>Al momento non ci sono eventi in programma. Torna presto per scoprire i prossimi appuntamenti.</p>
+			<?php endif; wp_reset_postdata(); ?>
 		</div>
 	</section>
 	<section class="section section--tinted" aria-labelledby="past-events">

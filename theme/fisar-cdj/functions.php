@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.126' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.130' );
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';
