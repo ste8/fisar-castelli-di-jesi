@@ -10,6 +10,7 @@ Lavorare nell’[admin Aruba](https://www.fisarcastellidijesi.it/anteprima/wp-ad
 | Blog | Articoli WordPress, categorie/tag nativi se utili |
 | Home e pagine associative | Pagine; nella Home il tema usa solo i blocchi fotografici riconosciuti |
 | Menu | Aspetto → Menu, posizioni principale/footer/social |
+| Favicon | Impostazioni → Generali → Icona del sito; usare il PNG da 512 × 512 in `assets/brand/favicon/` |
 | Foto e alt | Media; la singola galleria si gestisce invece nella pagina che la contiene |
 | Dati associativi condivisi / Mailchimp / destinazioni alias | Configurazione nel plugin, con intervento sul codice |
 

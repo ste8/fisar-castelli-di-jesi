@@ -42,6 +42,7 @@ Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccez
 ## Composizione
 
 - Header bianco e top bar bordeaux con gruppo WhatsApp/Instagram/Facebook/Newsletter, senza payoff. Menu a due livelli accessibile; CTA Diventa socio.
+- Favicon con il solo grappolo del logo FISAR, triangolo grigio e acini oro nei colori originali su fondo chiaro. Sorgente vettoriale in `assets/brand/favicon/`; impostazione nativa WordPress, senza markup aggiuntivo nel tema.
 - Home: testo a sinistra, collage/calice a destra da 64rem; nessuna fascia fotografica sotto il testo sui formati stretti. Quattro gruppi attuali da sei foto, cornici avorio, rotazioni leggere, toni non distruttivi. Fotografie reali non ricostruite; calice v2 esplicitamente illustrativo.
 - Segue Eventi/Corsi, Blog, Carta dei Valori, Come seguirci e footer. Niente Quattro Porte o fascia di affiliazione sotto la hero.
 - Hero interne bordeaux compatte per archivi/pagine associative/privacy/Seguici; Carta dei Valori con immagine illustrativa di vigneto e mano che raccoglie un grappolo, luce calda, overlay e nota locale sotto l’immagine. La stessa immagine è usata nella fascia Valori della Home, non nella sua hero. Sorgente e prompt in `assets/photography/valori-vendemmia-v1.*`; focalizzazione sul 70% orizzontale per conservare il gesto nei ritagli stretti. Non riciclare la foto Home per tutte le intestazioni.
