@@ -18,6 +18,8 @@ Questa è la documentazione corrente: descrive le regole da preservare, non la c
 
 Prima di intervenire: leggere questa pagina, controllare Git e gli ultimi commit, consultare le guide pertinenti ed esaminare l’implementazione. Preservare le modifiche esistenti, verificare in proporzione al rischio e aggiornare le guide quando cambia una regola. Nessun commit automatico.
 
+Quando viene richiesto un commit, scrivere il messaggio **in italiano**, con il formato **`area: descrizione`**: prefisso dell’area in minuscolo e descrizione con verbo all’imperativo, per esempio `eventi: aggiorna le copertine originali`, `archivi: migliora i filtri` o `docs: completa la guida editoriale`. Usare l’italiano anche nell’eventuale corpo del messaggio. Eseguire commit e push soltanto su richiesta esplicita.
+
 ## Codice e contenuti
 
 ```text

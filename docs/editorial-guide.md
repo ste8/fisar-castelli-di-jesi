@@ -15,6 +15,24 @@ Lavorare nell’[admin Aruba](https://www.fisarcastellidijesi.it/anteprima/wp-ad
 
 Titolo della pagina già H1: nel corpo iniziare con H2, H3 per sottosezioni. Eventi, Corsi e Articoli usano nel canvas font e scala del frontend, ma riepiloghi, quote e calendari sono generati dai campi. La **Breve descrizione** nel metabox è il Riassunto nativo; non duplicarla nel testo.
 
+## Ricostruzione e importazione dei contenuti storici dai social
+
+Queste regole si applicano alla selezione e al caricamento di eventi, racconti, servizi e altri articoli storici. Le sezioni successive spiegano come gestirli nell’editor.
+
+- **Un solo evento per appuntamento**, riunendo annuncio, promemoria e altri post collegati. Prima controllare che non sia già presente sul sito. Per periodi continuativi e più date distinte seguire le indicazioni del calendario degli Eventi.
+- **Testo originale di Facebook**, senza riscriverlo né aggiungere un summary. Togliere dal corpo il titolo ripetuto e spostare le informazioni pratiche nei campi dedicati.
+- **Veri elenchi puntati o numerati**: convertire le liste scritte su Facebook con trattini o numeri nei corrispondenti elenchi del sito, mantenendo invariati testo, ordine ed eventuali sottolivelli.
+- **Metadati solo quando documentati**: data, accoglienza, inizio, luogo, indirizzo, quote e contatti. Se un’informazione manca, lasciarla vuota; non interpretare una quota assente come gratuità.
+- **Copertina dell’evento presa dall’annuncio**, preferendo la locandina quadrata originale del post Facebook o Instagram, oppure il file originale fornito dalla Delegazione. Verificare titolo, anno, edizione, data e dimensioni effettive del file; non scegliere automaticamente la copertina orizzontale della scheda Evento Facebook e non usare una foto del resoconto. Controllare che il file non contenga bordi o spazi vuoti aggiunti. Se non si trova una versione quadrata corretta, segnalare l’evento e chiedere l’originale, proseguendo con gli altri contenuti verificati. Seguire la [procedura per le copertine](#copertine-degli-eventi-ricostruiti-dai-social).
+- **Resoconti nel Blog**, separati dagli eventi, con testo originale e data di pubblicazione del post Facebook, inclusa l’ora quando disponibile.
+- **Anche servizi e altri contenuti associativi possono diventare articoli**, senza un evento collegato. Assegnare la categoria appropriata: Racconti degli eventi, Servizi, Corsi, Vita della Delegazione o Ricordi.
+- **Foto alla migliore risoluzione recuperabile**, cercandole anche nel visualizzatore Facebook quando l’esportazione contiene miniature, senza interpolazione. Se il post rimanda a un articolo esterno, cercare lì l’immagine originale e registrarne provenienza e crediti.
+- **Gallerie uniformi con ingrandimento**: miniature regolari e immagini intere nel lightbox. Come copertina del racconto usare una foto rappresentativa, generalmente la prima della galleria. Se non si recuperano immagini adatte, usare il fallback con il grappolo previsto per il Blog.
+- **Collegamento evento–racconto inserito nell’articolo**: il banner sull’evento compare automaticamente. Sono possibili più racconti dello stesso evento.
+- **Link Facebook e Instagram nei metadati del racconto**, con i testi “Guarda il racconto su Facebook” e “Guarda il racconto su Instagram”; niente link social aggiunti nel corpo dell’evento.
+- **Selezione editoriale prima del caricamento**: niente duplicati di corsi già presenti; segnalare partecipazioni esterne e casi di organizzazione dubbia. Le esclusioni decise per singoli appuntamenti o annualità non si estendono automaticamente agli altri anni: per esempio, quelle del 2026 non si applicano automaticamente al 2024.
+- **Commit e push solo su richiesta**, con messaggi in italiano e prefisso dell’area nel formato `area: descrizione`, come `eventi: aggiorna le copertine originali`. Seguire la [convenzione Git del progetto](../README.md#da-dove-partire).
+
 ## Racconti degli eventi nel Blog
 
 In **Articoli → Aggiungi articolo**, il riquadro **Racconto dell’evento** contiene **Evento collegato** e i due URL facoltativi **Racconto su Facebook** / **Racconto su Instagram**. Scegliere l’evento dall’elenco (titolo e data), poi incollare i link ai singoli post social disponibili. Per un normale articolo lasciare Nessun evento e i link vuoti.
@@ -27,13 +45,23 @@ Impostare la data di pubblicazione dell’articolo alla data del resoconto origi
 
 L’esportazione Facebook può contenere foto ridotte: prima di caricarle, confrontarne le dimensioni con le versioni disponibili nel visualizzatore Facebook e preferire quelle più grandi, senza interpolazione. Per le gallerie dei racconti conservare le proporzioni originali (ritaglio disattivato) e verificare anche l’immagine ingrandita: il ritaglio delle miniature può essere ripreso dal lightbox nativo. Per il racconto sui vini giapponesi sono state recuperate e sostituite tutte e dieci le foto, fino a 2048 px sul lato lungo, inclusa la copertina.
 
-Per una composizione regolare scegliere lo stile della Galleria **Griglia uniforme**: miniature quadrate su tre colonne da 38rem, due sotto questa soglia; anche l’ultima riga mantiene le stesse dimensioni. Il ritaglio è solo della cornice, con priorità alla parte alta delle foto verticali per conservare i volti. Le immagini ingrandite restano intere. Lasciare disattivato il ritaglio nativo; lo stile uniforme gestisce la presentazione senza modificare gli originali. Lo stile è facoltativo e attualmente applicato al solo racconto dei vini giapponesi.
+Per una composizione regolare scegliere lo stile della Galleria **Griglia uniforme**: miniature quadrate su tre colonne da 38rem, due sotto questa soglia; anche l’ultima riga mantiene le stesse dimensioni. Il ritaglio è solo della cornice, con priorità alla parte alta delle foto verticali per conservare i volti. Le immagini ingrandite restano intere. Lasciare disattivato il ritaglio nativo; lo stile uniforme gestisce la presentazione senza modificare gli originali. Applicarlo ai racconti storici importati dai social; per le altre gallerie resta facoltativo.
 
 ## Eventi
 
 Compilare data, orari (accoglienza, inizio, eventuale fine), modalità, luogo/indirizzo/città/provincia e, se disponibile, link Maps. Il nome della sede e l’indirizzo sono distinti; non incollare tutto nel solo nome. Per gli ibridi il luogo evidenzia anche la partecipazione online.
 
 Nel riquadro **Dettagli dell’evento** ci sono la data e la **Breve descrizione (facoltativa)**. Quest’ultima compare nelle liste e sotto il titolo del dettaglio solo se compilata: per gli Eventi non c’è un estratto automatico dal testo. Gli orari effettivi sono sotto il luogo nel riquadro **Modalità, luogo e orari dell’evento**. Il riquadro facoltativo **Ritrovo e spostamenti** segue quello del luogo anche quando WordPress ha già memorizzato un ordine personale dei riquadri; non vengono riscritte le preferenze salvate.
+
+### Copertine degli eventi ricostruiti dai social
+
+**Preferire la locandina quadrata originale del post di annuncio, relativa all’edizione e alla data corrette.** La copertina della scheda Evento Facebook può essere una grafica orizzontale diversa; le fotografie del resoconto appartengono invece al Blog.
+
+1. Se la Delegazione fornisce il file originale, usare quello. Altrimenti cercare nei post di annuncio e nei promemoria sia su Facebook sia su Instagram, controllando anche tutte le immagini degli album e dei caroselli. Non limitarsi all’esportazione Facebook o alla scheda Evento.
+2. Confrontare titolo, anno, edizione, data e dettagli stampati sulla locandina con l’evento. In caso di rinvio o correzione, cercare la versione aggiornata: una locandina quadrata con la vecchia data non è una sostituzione valida.
+3. Verificare le dimensioni effettive del file aperto: la miniatura quadrata nella griglia di un social non dimostra che l’originale sia quadrato. Fra le versioni corrette preferire quella quadrata alla copertina orizzontale, poi scegliere la risoluzione maggiore disponibile, idealmente 1080 × 1080 px o superiore.
+4. Se non si trova una locandina quadrata corretta, segnalare l’evento e le fonti controllate e chiedere il file originale alla Delegazione. Non sostituirla automaticamente con la copertina della scheda Evento Facebook, una foto del resoconto o una versione con data errata. Proseguire con gli altri eventi verificati.
+5. Conservare il file senza interpolazione, ritagli o margini aggiunti per renderlo quadrato. Registrare la provenienza (link al singolo post oppure file fornito dalla Delegazione) e controllare la copertina pubblicata sia nell’elenco sia nel dettaglio dell’evento.
 
 ### Una giornata, un periodo o più date
 
