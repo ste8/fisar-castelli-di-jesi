@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 10 novembre 2026 — Archivio Corsi senza nota introduttiva, tema 1.6.135 su Aruba
+
+Rimossa la nota sulla ricostruzione dello storico: i filtri seguono direttamente il titolo Corsi conclusi. Eliminati i soli stili inutilizzati; nota della Carta dei Valori conservata. Lint PHP e confronto Aruba completati: corsi attivi, risultati, filtri e noindex invariati, 63 corsi storici disponibili.
+
 ## 10 novembre 2026 — Copertina predefinita Corsi Sommelier, tema 1.6.134 su Aruba
 
 Fotografia generica fornita dalla Delegazione, mostrata automaticamente nelle nove edizioni Sommelier prive di copertina: miniatura quadrata nell’elenco, immagine intera nel dettaglio. Le locandine editoriali hanno precedenza; minicorsi e corsi tematici esclusi. Nessuna assegnazione nel database. WebP ottimizzato senza interpolazione, provenienza e originale conservati. Lint PHP, verifica locale e Aruba desktop/mobile completati; testi, URL e immagini preesistenti delle 37 card invariati. Core invariato a 1.3.49.

@@ -25,14 +25,6 @@ $past = fisar_cdj_get_past_courses( $filters['per_page'], max( 1, (int) get_quer
 	<section class="section section--tinted" aria-labelledby="past-courses">
 		<div class="container">
 			<div class="section-heading"><p class="eyebrow">Archivio</p><h2 id="past-courses">Corsi conclusi</h2></div>
-			<aside class="archive-note" aria-labelledby="course-archive-note-title">
-				<?php echo fisar_cdj_theme_icon( 'info', 'archive-note__icon' ); ?>
-				<div class="archive-note__content">
-					<p id="course-archive-note-title"><strong>Nota sull’archivio</strong></p>
-					<p>Stiamo ricostruendo la storia dei nostri corsi per sommelier, dei minicorsi e dei corsi tematici.</p>
-					<p>L’archivio viene completato progressivamente con le informazioni documentate: per alcune edizioni sono disponibili solo l’anno o parte delle date.</p>
-				</div>
-			</aside>
 			<?php get_template_part( 'template-parts/archive-filters', null, array( 'scope' => 'courses', 'count' => $past->found_posts ) ); ?>
 			<div data-archive-results>
 			<?php if ( $past->have_posts() ) : ?>
