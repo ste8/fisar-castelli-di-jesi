@@ -63,6 +63,7 @@ Nel riquadro **Dettagli dell’evento** ci sono la data e la **Breve descrizione
 3. Verificare le dimensioni effettive del file aperto: la miniatura quadrata nella griglia di un social non dimostra che l’originale sia quadrato. Fra le versioni corrette preferire quella quadrata alla copertina orizzontale, poi scegliere la risoluzione maggiore disponibile, idealmente 1080 × 1080 px o superiore.
 4. Se non si trova una locandina quadrata corretta nei post, aprire la scheda Evento Facebook e recuperare la sua copertina originale, anche se rettangolare, verificandone data, edizione e dettagli. Se manca anche questa o non è adatta, segnalare l’evento e le fonti controllate e chiedere il file originale alla Delegazione. Non usare una foto del resoconto o una versione con data errata. Proseguire con gli altri eventi verificati.
 5. Conservare il file senza interpolazione, ritagli o margini aggiunti per renderlo quadrato. Registrare la provenienza (link al singolo post oppure file fornito dalla Delegazione) e controllare la copertina pubblicata sia nell’elenco sia nel dettaglio dell’evento.
+6. Nelle importazioni multiple, verificare ogni abbinamento evento–copertina contro il piano delle fonti approvato, indipendentemente dal file generato dallo script d’importazione. Controllare ID del media, nome del file e immagine effettivamente mostrata sul sito. Copertine identiche assegnate a eventi diversi richiedono una verifica esplicita: la sola corrispondenza fra file d’importazione ed esportazione WordPress non basta.
 
 ### Una giornata, un periodo o più date
 
