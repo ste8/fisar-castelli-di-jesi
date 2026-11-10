@@ -2557,7 +2557,7 @@ blockquote {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
-.events-archive .section[aria-labelledby="past-events"] {
+:is(.events-archive, .courses-archive, .news-archive) :is(.page-hero, .section) {
 	padding-top: 1.5rem;
 }
 

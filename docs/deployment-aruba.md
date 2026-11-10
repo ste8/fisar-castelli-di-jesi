@@ -96,6 +96,8 @@ Integrazione Corsi del 10 novembre 2026 su richiesta dell’utente: pubblicato *
 
 Rilascio del 10 novembre 2026: tema **1.6.135** pubblicato su Aruba. Rimossa la nota sulla ricostruzione dell’archivio Corsi e i relativi stili inutilizzati; conservati gli stili della nota della Carta dei Valori. Dopo il titolo Corsi conclusi compaiono direttamente i filtri. Confronto DOM prima/dopo: sezione attiva, risultati e filtri identici, conteggio 63 corsi storici e noindex conservati; nessun overflow desktop osservato. Lint PHP dei file modificati e integrità del pacchetto superati. Aggiornamento nativo del solo tema, nessuna modifica ai contenuti o al Core 1.3.49. Pacchetto, rollback 1.6.134, confronto e screenshot in `release/remove-course-note-2026-11-10/`.
 
+Rilascio successivo del 10 novembre 2026: tema **1.6.136** pubblicato su Aruba. Uniformato a 24 px il padding superiore delle intestazioni principali e delle sezioni nelle sole pagine Corsi, Eventi e Blog, riprendendo la misura già applicata agli Eventi conclusi. Prima su desktop: 48 px nelle intestazioni e 64 px nelle sezioni ordinarie; spazi inferiori invariati. Verificati anteprima locale e Aruba desktop/mobile (390 px nominali, 375 px utili), nessun overflow e contenuto HTML delle tre pagine identico prima/dopo; noindex conservato. Solo CSS e versione del tema, nessuna modifica editoriale o al Core. Pacchetto, rollback 1.6.135 e prove in `release/archive-heading-spacing-2026-11-10/`.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.
