@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.137' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.138' );
+
+require_once __DIR__ . '/inc/social-metadata.php';
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';

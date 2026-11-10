@@ -18,3 +18,7 @@ Tutti i loghi di riferimento sono raccolti in `assets/brand/logo/`. La brand gui
 Il sito usa i file distribuiti in `theme/fisar-cdj/assets/images/`, separati da questo archivio sorgente.
 
 La favicon usa invece l’impostazione nativa **Impostazioni → Generali → Icona del sito** e i file della Libreria media. Non aggiungere collegamenti duplicati nell’header del tema. Il PNG si rigenera con `rsvg-convert --width 512 --height 512 --output assets/brand/favicon/favicon-512.png assets/brand/favicon/favicon.svg`; il file ICO con `magick assets/brand/favicon/favicon-512.png -define icon:auto-resize=64,48,32,16 assets/brand/favicon/favicon.ico`.
+
+## Anteprima istituzionale dei link
+
+`social/social-default-cover.svg` deriva dal logo orizzontale approvato, su fondo chiaro con colori del sito. Il PNG 1200 × 630 distribuito nel tema si rigenera con `rsvg-convert assets/brand/social/social-default-cover.svg -o theme/fisar-cdj/assets/images/social-default-cover.png`. È usato soltanto nei metadati social di Home/archivi e dei contenuti senza copertina; non assegna immagini nel database e non modifica le card del sito.

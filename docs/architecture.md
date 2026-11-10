@@ -128,3 +128,9 @@ Newsletter: POST diretto al form Mailchimp, nome/cognome/email e consenso, honey
 ### Ricerca nello storico Corsi
 
 `Fisar_CDJ_Course_Filters` applica criteri solo alle query esplicite dello storico: anno da inizio, poi anno archivio, poi fine; nessun anno dedotto dalla pubblicazione. Ricerca con parsing WordPress dei termini/frasi su titolo/corpo e metadati città/sede/indirizzo tramite `EXISTS`, senza duplicazioni delle righe. Tipo mancante compatibile con Sommelier. Opzioni anno/città ricavate dai soli corsi conclusi pubblicati. Il form condiviso usa `anno`, `search`, `tipologia`, `citta`, `per_pagina`; `corsi_conclusi` gestisce la pagina. Il miglioramento JavaScript già usato da Blog/Eventi sostituisce solo risultati/contatore e preserva focus, reset, cronologia e fallback GET. Nessuna query globale Corsi, scrittura o migrazione automatica.
+
+## Metadati delle anteprime social
+
+`theme/fisar-cdj/inc/social-metadata.php` genera in `wp_head` Open Graph e la descrizione HTML usando la query pubblica corrente. Dati calcolati a ogni richiesta, senza nuovi campi, scritture editoriali o duplicazione del riassunto. URL canonico WordPress per i dettagli, URL generale per gli archivi, nessuna query arbitraria inoltrata. L’estrazione legge i blocchi salvati senza eseguire rendering, shortcode o contenuti dinamici; elenchi e titoli nativi vengono letti dal loro HTML statico.
+
+Immagine in evidenza nel formato `large` non ritagliato; fallback istituzionale PNG 1200 × 630 del tema per immagini mancanti/non supportate e Home/archivi. I riferimenti sono generati con le API WordPress dell’ambiente corrente, senza dominio o `/anteprima/` codificati. Nessuna uscita per contenuti non pubblici/protetti, ricerche, 404 o anteprime. Non altera canonical o robots nativi. Se si introduce in futuro un plugin che genera Open Graph, disattivare uno dei due generatori per evitare duplicati.

@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 10 novembre 2026 — Anteprime automatiche dei link, tema 1.6.138 su Aruba
+
+Open Graph per Home, pagine, Eventi, Corsi e Blog: titolo corrente, descrizione nativa o testo originale abbreviato, copertina editoriale oppure immagine istituzionale con logo. Aggiornamento automatico anche per nuovi contenuti, senza nuovi campi o modifiche ai testi salvati. Test locali su creazione/modifica e contenuti non pubblici, confronto di sette pagine Aruba con contenuti/robots invariati.
+
 ## 10 novembre 2026 — Barre bordò più compatte, tema 1.6.137 su Aruba
 
 Ridotti padding verticale e distanze sotto il titolo nelle intestazioni principali bordò, mantenendo le dimensioni del testo. Corsi, Eventi e Blog passano da circa 198 a 164 px su desktop; stessa regola nelle altre pagine con intestazione bordò. Verificati desktop/mobile, titoli lunghi e pagine senza sottotitolo; contenuti e noindex invariati.

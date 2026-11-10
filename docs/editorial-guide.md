@@ -159,6 +159,14 @@ Per le immagini principali di Eventi, Corsi e Blog usare preferibilmente **1080 
 
 Nel corpo degli Articoli inserire blocchi Galleria nativi. Le nuove gallerie hanno l’ingrandimento al clic predefinito; si disattiva con Collegamento → Nessuno. Gallerie già esistenti/copiate e immagini singole mantengono le impostazioni proprie. Aggiungere alt informativi; un’immagine decorativa può avere alt vuoto.
 
+## Anteprime dei link condivisi
+
+Le anteprime di Home, pagine, Eventi, Corsi e Articoli sono automatiche: titolo corrente, copertina in evidenza e breve descrizione nativa, se compilata; altrimenti fino a 200 caratteri dal testo, senza modificare il corpo o salvare un riassunto. Non occorre compilare nuovi campi o risalvare le schede già pubblicate. Cambiare titolo, testo o copertina aggiorna i metadati alla successiva richiesta. WhatsApp e Facebook possono conservare in cache un’anteprima già acquisita.
+
+La copertina viene proposta intera nella variante grande di WordPress, senza un nuovo ritaglio; il formato finale della card dipende dall’app. Se manca una copertina raster utilizzabile, interviene l’immagine istituzionale PNG con logo FISAR. Home e archivi usano l’immagine istituzionale. Non viene cercata automaticamente una fotografia dentro le gallerie. Gli archivi filtrati condividono i metadati dell’archivio generale.
+
+I metadati non includono gallerie, file incorporati, shortcode, blocchi dinamici o campi pratici riservati. Bozze, anteprime e contenuti privati, programmati o protetti da password sono esclusi. Il noindex dell’ambiente di anteprima resta indipendente e non viene disattivato. Nessun plugin social esterno richiesto.
+
 ## Home e carosello
 
 La Home mostra sezioni generate: Hero → Eventi/Corsi → Blog → Carta dei Valori → Come seguirci → footer. Copy della hero, limiti e indice Valori sono nel tema, non nel normale corpo della pagina. La fascia Valori presenta una frase introduttiva e sette titoli numerati da 1 a 7, senza descrizioni: ogni titolo porta al capitolo corrispondente della Carta tramite la sua ancora. Il pulsante apre il documento completo. Le Quattro Porte e la fascia istituzionale sotto la hero non ci sono.
