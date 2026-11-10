@@ -2498,7 +2498,7 @@ blockquote {
 }
 
 :is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero {
-	padding-block: clamp(2rem, 4vw, 3rem);
+	padding-block: 1.5rem;
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
@@ -2529,6 +2529,11 @@ blockquote {
 	line-height: 1.2;
 	letter-spacing: -.02em;
 	text-wrap: balance;
+}
+
+:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1 {
+	margin-bottom: 1rem;
+	padding-bottom: .35em;
 }
 
 :is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1::after,

@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 10 novembre 2026 — Barre bordò più compatte, tema 1.6.137 su Aruba
+
+Ridotti padding verticale e distanze sotto il titolo nelle intestazioni principali bordò, mantenendo le dimensioni del testo. Corsi, Eventi e Blog passano da circa 198 a 164 px su desktop; stessa regola nelle altre pagine con intestazione bordò. Verificati desktop/mobile, titoli lunghi e pagine senza sottotitolo; contenuti e noindex invariati.
+
 ## 10 novembre 2026 — Titoli più vicini al contenuto, tema 1.6.136 su Aruba
 
 Spazio superiore ridotto a 24 px per intestazioni e sezioni delle pagine Corsi, Eventi e Blog, come negli Eventi conclusi. Verificati desktop e mobile senza overflow; HTML dei contenuti, filtri e noindex invariati.
