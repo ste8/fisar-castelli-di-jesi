@@ -99,6 +99,9 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_course_level'              => 'string',
 			'_fisar_course_start_date'         => 'string',
 			'_fisar_course_end_date'           => 'string',
+			'_fisar_course_archived'           => 'boolean',
+			'_fisar_course_archive_year'       => 'string',
+			'_fisar_course_type'               => 'string',
 			'_fisar_course_venue'              => 'string',
 			'_fisar_course_address'            => 'string',
 			'_fisar_course_city'               => 'string',
@@ -156,8 +159,14 @@ final class Fisar_CDJ_Post_Types {
 				if ( str_starts_with( $key, '_fisar_event_meeting_' ) ) {
 					return fisar_cdj_sanitize_event_meeting_value( $value, substr( $key, strlen( '_fisar_event_meeting_' ) ) );
 				}
-				if ( '_fisar_course_offer_enabled' === $key ) {
+				if ( in_array( $key, array( '_fisar_course_offer_enabled', '_fisar_course_archived' ), true ) ) {
 					return in_array( $value, array( true, 1, '1' ), true );
+				}
+				if ( '_fisar_course_archive_year' === $key ) {
+					return fisar_cdj_sanitize_course_archive_year( $value );
+				}
+				if ( '_fisar_course_type' === $key ) {
+					return in_array( $value, array( 'sommelier', 'introductory', 'thematic' ), true ) ? $value : '';
 				}
 				if ( '_fisar_course_offer_end_date' === $key ) {
 					return fisar_cdj_sanitize_course_offer_end_date( $value );

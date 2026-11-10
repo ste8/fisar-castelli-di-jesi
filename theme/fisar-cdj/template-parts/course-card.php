@@ -6,6 +6,7 @@ $course_id = get_the_ID();
 $is_home_card = isset( $args['context'] ) && 'home' === $args['context'];
 $level     = (string) get_post_meta( $course_id, '_fisar_course_level', true );
 $start     = (string) get_post_meta( $course_id, '_fisar_course_start_date', true );
+$archive_year = fisar_cdj_get_course_archive_year( $course_id );
 $venue     = (string) get_post_meta( $course_id, '_fisar_course_venue', true );
 $identity  = fisar_cdj_get_course_identity( $course_id );
 $structured = ! $is_home_card && $identity['automatic'];
@@ -22,7 +23,7 @@ $offer = fisar_cdj_get_course_offer( $course_id );
 <article <?php post_class( 'course-card' ); ?>>
 	<div class="course-card__visual<?php echo $offer['active'] ? ' course-promotion' : ''; ?>">
 		<a class="course-card__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-			<?php fisar_cdj_theme_post_image( $course_id, 'course-card__image' ); ?>
+			<?php fisar_cdj_theme_course_image( $course_id, 'course-card__image' ); ?>
 		</a>
 		<?php if ( $active ) : ?><?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $details ) ); ?><?php endif; ?>
 		<?php get_template_part( 'template-parts/course-offer', null, array( 'offer' => $offer ) ); ?>
@@ -49,6 +50,8 @@ $offer = fisar_cdj_get_course_offer( $course_id );
 					<span class="screen-reader-text">Inizio: <?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></span>
 				</time>
 			</p>
+		<?php elseif ( $archive_year ) : ?>
+			<p class="course-card__dates"><?php echo fisar_cdj_theme_icon( 'calendar', 'event-card__date-icon' ); ?> Edizione <?php echo esc_html( $archive_year ); ?></p>
 		<?php endif; ?>
 		<?php get_template_part( 'template-parts/card-place', null, array( 'place' => $place, 'class' => 'course-card__place' ) ); ?>
 		<?php if ( ! $is_home_card ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>

@@ -7,6 +7,7 @@ $level      = (string) get_post_meta( $course_id, '_fisar_course_level', true );
 $director   = (string) get_post_meta( $course_id, '_fisar_course_director', true );
 $start      = (string) get_post_meta( $course_id, '_fisar_course_start_date', true );
 $end        = (string) get_post_meta( $course_id, '_fisar_course_end_date', true );
+$archive_year = fisar_cdj_get_course_archive_year( $course_id );
 $venue      = (string) get_post_meta( $course_id, '_fisar_course_venue', true );
 $address    = (string) get_post_meta( $course_id, '_fisar_course_address', true );
 $city       = (string) get_post_meta( $course_id, '_fisar_course_city', true );
@@ -42,11 +43,12 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 			<div class="container content-hero__grid">
 				<div class="content-hero__copy">
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>"><span aria-hidden="true">←</span> Tutti i corsi</a>
-					<p class="eyebrow"><?php echo $level ? esc_html( $level ) . '° livello' : 'Formazione FISAR'; ?> · <?php echo $active ? 'Corso attivo' : 'Corso concluso'; ?></p>
+					<p class="eyebrow"><?php echo $level ? esc_html( $level ) . '° livello' : esc_html( fisar_cdj_get_course_type_label( $course_id ) ); ?> · <?php echo $active ? 'Corso attivo' : 'Corso concluso'; ?></p>
 					<h1><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
 						<?php if ( $start ) : ?><li><strong>Inizio</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></span></li><?php endif; ?>
+						<?php if ( ! $start && $archive_year ) : ?><li><strong>Edizione</strong><span><?php echo esc_html( $archive_year ); ?></span></li><?php endif; ?>
 						<?php if ( $end ) : ?><li><strong>Fine</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $end ) ); ?></span></li><?php endif; ?>
 						<?php if ( $has_location ) : ?><li><strong>Luogo</strong><?php get_template_part( 'template-parts/event-location', null, array( 'location' => $location ) ); ?></li><?php endif; ?>
 						<?php if ( $director ) : ?><li><strong>Direttore</strong><span><?php echo esc_html( $director ); ?></span></li><?php endif; ?>
@@ -61,7 +63,7 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 					<?php if ( $active && ! $details['deadline'] && ! $details['status_notice'] && ! $details['limited_seats_notice'] ) : ?><a class="button event-registration-link" href="#course-registration"><?php echo esc_html( $registration_link_label ); ?> <span aria-hidden="true">↓</span></a><?php endif; ?>
 				</div>
 				<div class="event-poster<?php echo $offer['active'] ? ' course-promotion' : ''; ?>">
-					<div class="content-hero__media content-hero__media--poster"><?php fisar_cdj_theme_post_image( $course_id, 'single-course-image', true, 'eager' ); ?></div>
+					<div class="content-hero__media content-hero__media--poster"><?php fisar_cdj_theme_course_image( $course_id, 'single-course-image', true, 'eager' ); ?></div>
 					<?php if ( $active ) : ?><?php get_template_part( 'template-parts/event-sold-out', null, array( 'details' => $details ) ); ?><?php endif; ?>
 					<?php get_template_part( 'template-parts/course-offer', null, array( 'offer' => $offer ) ); ?>
 				</div>
@@ -87,7 +89,7 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 									<th scope="row"><time datetime="<?php echo esc_attr( $lesson['date'] ); ?>"><?php echo esc_html( fisar_cdj_theme_format_date( $lesson['date'] ) ); ?></time></th>
 									<td><?php echo esc_html( $lesson['time'] ); ?></td>
 									<td><?php echo esc_html( $lesson['title'] ); ?></td>
-									<td><?php echo esc_html( $lesson['speaker'] ?: 'Da definire' ); ?></td>
+									<td><?php echo esc_html( $lesson['speaker'] ?: ( $active ? 'Da definire' : '—' ) ); ?></td>
 									<?php if ( $has_calendar_notes ) : ?><td><?php echo esc_html( $lesson['notes'] ); ?></td><?php endif; ?>
 								</tr>
 							<?php endforeach; ?>

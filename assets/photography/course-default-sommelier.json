@@ -1,0 +1,12 @@
+{
+  "description": "Sommelier FISAR con calice di vino e tovagliolo; foto generica per le edizioni Sommelier prive di copertina.",
+  "source": "File fornito dall’utente nella conversazione del 10 novembre 2026.",
+  "source_filename": "codex-clipboard-a894b7c0-ed26-4161-8e2e-38e51d2bf2d8.png",
+  "original": "assets/photography/course-default-sommelier.png",
+  "original_sha256": "07cc0ef6a191b826f8041bc31fa79a7deaf7565ee854ad5b1cbced6c70f3a1fc",
+  "webp": "theme/fisar-cdj/assets/images/course-default-sommelier.webp",
+  "width": 800,
+  "height": 534,
+  "processing": "Conversione WebP qualità 85, metadati rimossi; nessun ritaglio o interpolazione del file. Ritaglio CSS delle sole miniature quadrate.",
+  "usage": "Fallback automatico nel tema per corsi Sommelier senza immagine in evidenza; non identifica una specifica edizione."
+}

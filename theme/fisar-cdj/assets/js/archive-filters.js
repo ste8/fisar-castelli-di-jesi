@@ -44,7 +44,8 @@
 
 	function restoreControls(url) {
 		for (const control of controls) {
-			control.value = url.searchParams.get(control.name) ?? url.searchParams.get(legacyNames[control.name]) ?? (control.name === 'per_pagina' ? '12' : '');
+			const legacy = legacyNames[control.name];
+			control.value = url.searchParams.get(control.name) ?? (legacy ? url.searchParams.get(legacy) : null) ?? (control.name === 'per_pagina' ? '12' : '');
 		}
 	}
 

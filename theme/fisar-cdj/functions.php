@@ -4,11 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.130' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.134' );
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';
 	$vars[] = 'eventi_conclusi';
+	$vars[] = 'corsi_conclusi';
 	return $vars;
 }
 add_filter( 'query_vars', 'fisar_cdj_theme_event_pagination_query_vars' );
@@ -95,7 +96,7 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
-	if ( is_home() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) {
+	if ( is_home() || is_post_type_archive( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) ) ) {
 		wp_enqueue_script( 'fisar-cdj-archive-filters', get_template_directory_uri() . '/assets/js/archive-filters.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
 	if ( is_front_page() ) {
@@ -374,6 +375,24 @@ function fisar_cdj_theme_logo( bool $on_dark = false, bool $for_header = false )
 		esc_attr( $alt ),
 		$on_dark ? 160 : ( $for_header ? 290 : 240 ),
 		$on_dark ? 188 : 96
+	);
+}
+
+/** Generic photo only for Sommelier editions without an editorial cover. */
+function fisar_cdj_theme_course_image( int $course_id, string $class, bool $informative = false, string $loading = 'lazy' ): void {
+	if ( get_post_thumbnail_id( $course_id ) ) {
+		fisar_cdj_theme_post_image( $course_id, $class, $informative, $loading );
+		return;
+	}
+	if ( ! in_array( get_post_meta( $course_id, '_fisar_course_type', true ), array( '', 'sommelier' ), true ) ) {
+		return;
+	}
+	printf(
+		'<img class="%1$s course-image--default" src="%2$s" alt="%3$s" width="800" height="534" loading="%4$s" decoding="async">',
+		esc_attr( $class ),
+		esc_url( get_template_directory_uri() . '/assets/images/course-default-sommelier.webp' ),
+		$informative ? 'Immagine rappresentativa dei corsi Sommelier FISAR' : '',
+		esc_attr( $loading )
 	);
 }
 

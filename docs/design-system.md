@@ -81,3 +81,5 @@ HTML semantico, un H1 frontend, H2/H3 coerenti, label dei campi, intestazioni di
 Alt informativi per foto, alt vuoto/`aria-hidden` per decorazioni e icone. Carosello con nomi completi, indicatore attivo e pausa; movimento ridotto senza automatismo/dissolvenze, navigazione manuale disponibile. I controlli attuali sono discreti ma conservano aree cliccabili e focus. Non nasconderli soltanto per motivi estetici.
 
 Il sito implementato è il riferimento visivo, non una giustificazione per trasformare un bug in requisito. Se codice, risultato e queste regole divergono, segnalare la discrepanza prima di introdurre una reinterpretazione. Vecchi mockup e screenshot intermedi sono nella storia Git, non specifiche correnti.
+
+- Corsi Sommelier senza immagine in evidenza: fotografia generica `course-default-sommelier.webp` fornita dalla Delegazione, miniatura quadrata nell’elenco e foto intera nel dettaglio. Nessuna assegnazione al database; qualsiasi copertina editoriale ha precedenza. Il fallback non si applica a minicorsi e corsi tematici. Originale e provenienza in `assets/photography/course-default-sommelier.*`.

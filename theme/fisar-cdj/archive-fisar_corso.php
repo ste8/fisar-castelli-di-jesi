@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php
+get_header();
+$filters = Fisar_CDJ_Archive_Filters::current( 'courses' );
+$filtered = Fisar_CDJ_Archive_Filters::has_criteria( $filters );
+$past = fisar_cdj_get_past_courses( $filters['per_page'], max( 1, (int) get_query_var( 'corsi_conclusi', 1 ) ), $filters );
+?>
 <main id="main-content" class="courses-archive">
 	<header class="page-hero page-hero--archive">
 		<div class="container page-hero__inner">
@@ -24,16 +29,20 @@
 				<?php echo fisar_cdj_theme_icon( 'info', 'archive-note__icon' ); ?>
 				<div class="archive-note__content">
 					<p id="course-archive-note-title"><strong>Nota sull’archivio</strong></p>
-					<p>Da 15 anni organizziamo corsi per sommelier in città come Jesi, Ancona, Senigallia e Falconara.</p>
-					<p>Questo archivio raccoglie solo le edizioni pubblicate nella nuova versione del sito e non comprende tutti i corsi svolti negli anni.</p>
+					<p>Stiamo ricostruendo la storia dei nostri corsi per sommelier, dei minicorsi e dei corsi tematici.</p>
+					<p>L’archivio viene completato progressivamente con le informazioni documentate: per alcune edizioni sono disponibili solo l’anno o parte delle date.</p>
 				</div>
 			</aside>
-			<?php $past = fisar_cdj_get_past_courses(); ?>
+			<?php get_template_part( 'template-parts/archive-filters', null, array( 'scope' => 'courses', 'count' => $past->found_posts ) ); ?>
+			<div data-archive-results>
 			<?php if ( $past->have_posts() ) : ?>
 				<div class="course-grid course-grid--past">
 					<?php while ( $past->have_posts() ) : $past->the_post(); get_template_part( 'template-parts/course-card' ); endwhile; ?>
 				</div>
+			<?php get_template_part( 'template-parts/course-pagination', null, array( 'query' => $past, 'filters' => $filters ) ); ?>
+			<?php elseif ( $filtered ) : ?><p class="archive-no-results">Nessun corso concluso corrisponde alla ricerca. Prova a cambiare o azzerare i filtri.</p>
 			<?php else : ?><p>I corsi conclusi compariranno qui.</p><?php endif; wp_reset_postdata(); ?>
+			</div>
 		</div>
 	</section>
 </main>

@@ -1,7 +1,7 @@
 <?php
 /** Public archive filters; reads native post categories and dates without changing content. */
 final class Fisar_CDJ_Archive_Filters {
-	private const QUERY_VARS = array( 'year' => 'anno', 'month' => 'mese', 'text' => 'search', 'category' => 'categoria', 'per_page' => 'per_pagina' );
+	private const QUERY_VARS = array( 'year' => 'anno', 'month' => 'mese', 'text' => 'search', 'category' => 'categoria', 'per_page' => 'per_pagina', 'type' => 'tipologia', 'city' => 'citta' );
 	private const LEGACY_QUERY_VARS = array( 'year' => 'fisar_year', 'month' => 'fisar_month', 'text' => 'fisar_text', 'category' => 'fisar_category', 'per_page' => 'fisar_per_page' );
 
 	public static function page_sizes(): array {
@@ -54,17 +54,21 @@ final class Fisar_CDJ_Archive_Filters {
 	public static function from_query( WP_Query $query, string $scope ): array {
 		$values = array();
 		foreach ( self::QUERY_VARS as $name => $query_var ) {
-			$values[ $name ] = $query->get( $query_var, null ) ?? $query->get( self::LEGACY_QUERY_VARS[ $name ], '' );
+			$values[ $name ] = $query->get( $query_var, null ) ?? ( isset( self::LEGACY_QUERY_VARS[ $name ] ) ? $query->get( self::LEGACY_QUERY_VARS[ $name ], '' ) : '' );
+		}
+		if ( 'courses' === $scope ) {
+			return Fisar_CDJ_Course_Filters::normalize( $values );
 		}
 		return self::normalize( $values, 'blog' === $scope );
 	}
 
 	public static function pagination_url( string $url ): string {
-		if ( is_admin() || ( ! is_home() && ! is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) ) ) {
+		if ( is_admin() || ( ! is_home() && ! is_post_type_archive( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) ) ) ) {
 			return $url;
 		}
 		parse_str( wp_parse_url( $url, PHP_URL_QUERY ) ?? '', $parameters );
 		foreach ( self::QUERY_VARS as $name => $query_var ) {
+			if ( ! isset( self::LEGACY_QUERY_VARS[ $name ] ) ) { continue; }
 			$legacy = self::LEGACY_QUERY_VARS[ $name ];
 			if ( array_key_exists( $legacy, $parameters ) && ! array_key_exists( $query_var, $parameters ) ) {
 				$url = add_query_arg( $query_var, $parameters[ $legacy ], $url );
@@ -75,7 +79,8 @@ final class Fisar_CDJ_Archive_Filters {
 
 	public static function url_args( array $filters ): array {
 		$args = array();
-		foreach ( self::normalize( $filters ) as $name => $value ) {
+		$normalized = isset( $filters['type'] ) || isset( $filters['city'] ) ? Fisar_CDJ_Course_Filters::normalize( $filters ) : self::normalize( $filters );
+		foreach ( $normalized as $name => $value ) {
 			if ( 'per_page' === $name && 12 === $value ) {
 				continue;
 			}
@@ -96,6 +101,8 @@ final class Fisar_CDJ_Archive_Filters {
 		global $wpdb;
 		if ( 'events' === $scope ) {
 			return Fisar_CDJ_Event_Calendar::years( $past_only );
+		} elseif ( 'courses' === $scope ) {
+			return Fisar_CDJ_Course_Filters::options()['years'];
 		} else {
 			$years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) > 0 ORDER BY 1 DESC" );
 		}

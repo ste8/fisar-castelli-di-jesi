@@ -120,7 +120,9 @@ Presentazione, vini in degustazione, menu e altri dettagli editoriali vengono da
 
 ## Corsi
 
-Compilare livello, città e provincia, sede/indirizzo/Maps, Direttore e date di inizio/fine. Il corso è attivo in base alla data di fine, non alla possibilità di iscriversi: può essere in svolgimento e avere iscrizioni chiuse. Senza data fine non risulta attivo.
+Compilare tipo di corso (Percorso Sommelier, Minicorso di avvicinamento al vino o Corso tematico), eventuale livello, città e provincia, sede/indirizzo/Maps, Direttore e date documentate. Il corso è attivo in base alla data di fine, non alla possibilità di iscriversi: può essere in svolgimento e avere iscrizioni chiuse. Senza data fine non risulta attivo.
+
+Per un’edizione storica già terminata, selezionare **Corso storico concluso**, anche se la data finale è sconosciuta: compare nei Corsi conclusi e non accetta iscrizioni né mostra offerte. Le date mancanti rimangono vuote. Se non si conosce l’inizio esatto, compilare **Anno dell’edizione** con il solo anno documentato: card e dettaglio mostrano “Edizione 2023”, senza inventare giorno o mese. Una data di inizio conosciuta ha precedenza sull’anno. L’archivio è ordinato per inizio, oppure anno quando l’inizio manca; in assenza di entrambi usa la fine o la data editoriale. Non selezionare Corso storico concluso per corsi ancora in svolgimento. Minicorsi e corsi tematici usano titolo personalizzato e livello vuoto se non previsto.
 
 L’editor distingue **Percorso e direzione** da **Durata del corso**: inizio e fine sono campi compatti affiancati, separati dal termine delle iscrizioni. Recapiti, termine e informazioni aggiuntive hanno sottosezioni distinte, come negli Eventi.
 
@@ -141,7 +143,7 @@ Si può compilare direttamente **Lezioni del corso**; la sezione **Importa da un
 3. Il numero è manuale/facoltativo (`03`, `3 bis`), non rinumerato dal sito. L’ordine segue data e orario.
 4. Date accettate: `GG/MM/AAAA`, `GG-MM-AAAA`, `GG.MM.AAAA`, `AAAA-MM-GG`. Anche il precedente formato senza numero è supportato.
 
-Data e titolo sono necessari; non incollare una tabella HTML. Dopo import riuscito il testo sorgente si svuota, così le correzioni alle righe non vengono sovrascritte al salvataggio. Righe senza numero mostrano `—`; il giorno della settimana è automatico. La colonna Note pubblica compare solo se almeno una nota è presente. L’avviso sulle possibili variazioni resta sotto la tabella. Eventi collegati compaiono automaticamente nella pagina Corso.
+Data e titolo sono necessari; non incollare una tabella HTML. Dopo import riuscito il testo sorgente si svuota, così le correzioni alle righe non vengono sovrascritte al salvataggio. Righe senza numero mostrano `—`; il giorno della settimana è automatico. La colonna Note pubblica compare solo se almeno una nota è presente. Se un relatore storico non è documentato, lasciare vuoto il campo: nei corsi conclusi compare `—`; nei corsi attivi resta “Da definire”. L’avviso sulle possibili variazioni resta sotto la tabella. Eventi collegati compaiono automaticamente nella pagina Corso.
 
 ## Blog e fotografie
 
@@ -198,3 +200,7 @@ Menu social comune per barra/footer/card. Destinazioni brevi: `/whatsapp/` (grup
 Nome, cognome ed email inviati direttamente a Mailchimp, non archiviati in WordPress. Consenso obbligatorio e link all’informativa; conferma email, tracking e messaggi dipendono dall’Audience Mailchimp. Non dedurre che siano configurati dal solo funzionamento del modulo.
 
 Nessun analytics o pixel custom previsto nel progetto; informativa unica, Cookie Policy precedente in bozza e alias verso la sezione privacy. I testi legali pubblicati si modificano su Aruba; la copia nelle sorgenti è storica e non certifica la configurazione futura. Le verifiche prima del lancio sono nella [guida di pubblicazione](deployment-aruba.md), non in un documento separato di attività.
+
+Nell’archivio pubblico Corsi la ricerca comprende titolo, testo, città, sede e indirizzo. Anno, tipologia e città si possono combinare; l’anno segue l’inizio documentato oppure l’anno dell’edizione se manca una data precisa. Il mese non viene proposto. I menu anno/città comprendono solo i corsi conclusi pubblicati; mantenere città e sede nei rispettivi campi per consentire il ritrovamento. I filtri non modificano i corsi attivi.
+
+Per i corsi Sommelier senza una locandina documentata il tema mostra automaticamente la fotografia generica fornita dalla Delegazione; non viene presentata come foto di quella specifica edizione. Lasciare vuota l’immagine in evidenza finché non si trova l’originale: assegnandola, questa sostituirà automaticamente il fallback. Minicorsi e corsi tematici mantengono le proprie immagini o l’assenza di copertina.

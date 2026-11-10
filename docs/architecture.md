@@ -118,3 +118,13 @@ Newsletter: POST diretto al form Mailchimp, nome/cognome/email e consenso, honey
 `class-demo-content.php` e `content/` sono materiale di bootstrap per nuovi ambienti, non sincronizzazione delle pagine esistenti. Il database Aruba è più aggiornato del seed. I file editoriali del plugin sono dipendenze operative e non vanno rimossi come documentazione duplicata.
 
 `tools/import-home-collage.php` è un import locale esplicito, non caricato dal plugin: WP-CLI/ambiente locale, manifest, WebP e SHA-256 atteso della Home; validazione, riuso allegati, revisione, sostituzione del solo blocco riconosciuto e verifica di idempotenza. Non eseguirlo su Aruba.
+
+### Corsi storici con date incomplete
+
+`_fisar_course_archived` indica esplicitamente un’edizione conclusa e prevale sulla data finale per stato, iscrizioni e offerte. Le edizioni senza termine non entrano automaticamente nello storico: il flag è una decisione editoriale. `_fisar_course_archive_year` conserva il solo anno documentato quando manca l’inizio esatto; non viene trasformato in una data. `_fisar_course_type` distingue `sommelier`, `introductory` e `thematic`, con comportamento precedente per i corsi senza tipo.
+
+`fisar_cdj_get_past_courses` include le edizioni archiviate e quelle con data finale non vuota trascorsa. L’ordinamento SQL è limitato alle query Corso con marker `fisar_cdj_course_archive`: inizio, anno, fine o data editoriale, poi ID decrescente per stabilità. Nessuna migrazione dei contenuti o scrittura nelle query.
+
+### Ricerca nello storico Corsi
+
+`Fisar_CDJ_Course_Filters` applica criteri solo alle query esplicite dello storico: anno da inizio, poi anno archivio, poi fine; nessun anno dedotto dalla pubblicazione. Ricerca con parsing WordPress dei termini/frasi su titolo/corpo e metadati città/sede/indirizzo tramite `EXISTS`, senza duplicazioni delle righe. Tipo mancante compatibile con Sommelier. Opzioni anno/città ricavate dai soli corsi conclusi pubblicati. Il form condiviso usa `anno`, `search`, `tipologia`, `citta`, `per_pagina`; `corsi_conclusi` gestisce la pagina. Il miglioramento JavaScript già usato da Blog/Eventi sostituisce solo risultati/contatore e preserva focus, reset, cronologia e fallback GET. Nessuna query globale Corsi, scrittura o migrazione automatica.

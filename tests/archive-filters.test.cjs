@@ -29,14 +29,14 @@ class Element {
 	}
 }
 
-function setup(withFetch = true) {
-	const names = ['search', 'anno', 'mese', 'categoria', 'per_pagina'];
+function setup(withFetch = true, scope = 'blog') {
+	const names = scope === 'courses' ? ['search', 'anno', 'tipologia', 'citta', 'per_pagina'] : ['search', 'anno', 'mese', 'categoria', 'per_pagina'];
 	const fields = Object.fromEntries(names.map(name => [name, new Element(name)]));
 	fields.per_pagina.value = '12';
 	for (const field of Object.values(fields)) field.tagName = field.name === 'search' ? 'INPUT' : 'SELECT';
 	const form = new Element();
-	form.action = 'https://example.test/news/';
-	form.dataset.archiveScope = 'blog';
+	form.action = scope === 'courses' ? 'https://example.test/corsi/#past-courses' : 'https://example.test/news/';
+	form.dataset.archiveScope = scope;
 	form.elements = Object.values(fields);
 	form.querySelector = () => fields.search;
 	const results = new Element();
@@ -219,6 +219,29 @@ async function run() {
 	hidden.requests[0].resolve('Too late'); await tick();
 	assert.equal(hidden.results.children[0].textContent, 'Original results');
 	assert.equal(hidden.counter.textContent, '32 risultati');
+	const courses = setup(true, 'courses');
+	courses.fields.anno.value = '2022';
+	courses.fields.tipologia.value = 'introductory';
+	courses.change('citta', 'Città d’Arco'); courses.flush();
+	const courseUrl = new URL(courses.requests[0].url);
+	assert.equal(courseUrl.searchParams.get('citta'), 'Città d’Arco');
+	assert.equal(courseUrl.searchParams.get('tipologia'), 'introductory');
+	assert.equal(courseUrl.searchParams.has('mese'), false);
+	courses.requests[0].resolve('Courses', '2 risultati'); await tick();
+	const courseNext = Object.assign(new Element(), { matches: '.pagination--archive a.page-numbers', href: 'https://example.test/corsi/?anno=2022&tipologia=introductory&citta=Citt%C3%A0%20d%E2%80%99Arco&corsi_conclusi=2#past-courses' });
+	assert.equal(courses.results.fire('click', { target: courseNext }).prevented, true);
+	courses.requests[1].resolve('Course page two', '2 risultati'); await tick();
+	assert.equal(courses.fields.citta.value, 'Città d’Arco');
+	const courseReset = Object.assign(new Element(), { matches: '[data-archive-reset]', href: 'https://example.test/corsi/?per_pagina=24#past-courses' });
+	courses.summary.fire('click', { target: courseReset });
+	assert.equal(courses.fields.tipologia.value, '');
+	assert.equal(courses.fields.citta.value, '');
+	assert.equal(courses.fields.per_pagina.value, '24');
+	courses.requests[2].resolve('All courses', '36 risultati'); await tick();
+	courses.window.location.href = courseNext.href;
+	courses.fire('popstate'); courses.requests[3].resolve('Course page two', '2 risultati'); await tick();
+	assert.equal(courses.fields.tipologia.value, 'introductory');
+	assert.equal(courses.fields.citta.value, 'Città d’Arco');
 	const fallback = setup(false);
 	assert.equal(Object.keys(fallback.form.handlers).length, 0);
 	console.log('Archive live filters: focus, debounce/IME, stale requests, URL/history, page size, partial reset/pagination, retries and cleanup passed.');

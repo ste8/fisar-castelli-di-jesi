@@ -7,14 +7,20 @@ if ( $filters['year'] && ! in_array( $filters['year'], $years, true ) ) {
 	$years[] = $filters['year'];
 	rsort( $years );
 }
-$action = 'blog' === $scope ? get_permalink( (int) get_option( 'page_for_posts' ) ) : get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) . '#past-events';
+$is_course = 'courses' === $scope;
+$action = match ( $scope ) {
+	'blog' => get_permalink( (int) get_option( 'page_for_posts' ) ),
+	'courses' => get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) . '#past-courses',
+	default => get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) . '#past-events',
+};
+$form_label = match ( $scope ) { 'blog' => 'Filtra gli articoli', 'courses' => 'Filtra i corsi conclusi', default => 'Filtra gli eventi conclusi' };
 $reset = 12 === $filters['per_page'] ? $action : add_query_arg( 'per_pagina', $filters['per_page'], $action );
 global $wp_locale;
 ?>
 <div class="archive-tools">
-	<form class="archive-filters<?php echo 'blog' === $scope ? ' archive-filters--blog' : ''; ?>" method="get" action="<?php echo esc_url( $action ); ?>" aria-label="<?php echo 'blog' === $scope ? 'Filtra gli articoli' : 'Filtra gli eventi conclusi'; ?>" data-archive-scope="<?php echo esc_attr( $scope ); ?>" aria-describedby="archive-auto-hint">
+	<form class="archive-filters<?php echo in_array( $scope, array( 'blog', 'courses' ), true ) ? ' archive-filters--extended' : ''; ?>" method="get" action="<?php echo esc_url( $action ); ?>" aria-label="<?php echo esc_attr( $form_label ); ?>" data-archive-scope="<?php echo esc_attr( $scope ); ?>" aria-describedby="archive-auto-hint">
 		<div class="archive-filters__field archive-filters__search">
-			<label for="archive-text">Cerca nel titolo e nel testo</label>
+			<label for="archive-text"><?php echo $is_course ? 'Cerca per testo o luogo' : 'Cerca nel titolo e nel testo'; ?></label>
 			<input id="archive-text" type="search" name="search" value="<?php echo esc_attr( $filters['text'] ); ?>" maxlength="200" placeholder="Che cosa cerchi?">
 		</div>
 		<div class="archive-filters__field">
@@ -24,6 +30,7 @@ global $wp_locale;
 				<?php foreach ( $years as $year ) : ?><option value="<?php echo esc_attr( $year ); ?>" <?php selected( $filters['year'], $year ); ?>><?php echo esc_html( $year ); ?></option><?php endforeach; ?>
 			</select>
 		</div>
+		<?php if ( ! $is_course ) : ?>
 		<div class="archive-filters__field">
 			<label for="archive-month">Mese</label>
 			<select id="archive-month" name="mese">
@@ -31,6 +38,7 @@ global $wp_locale;
 				<?php for ( $month = 1; $month <= 12; $month++ ) : ?><option value="<?php echo esc_attr( $month ); ?>" <?php selected( $filters['month'], $month ); ?>><?php echo esc_html( ucfirst( $wp_locale->get_month( $month ) ) ); ?></option><?php endfor; ?>
 			</select>
 		</div>
+		<?php endif; ?>
 		<?php if ( 'blog' === $scope ) : ?>
 			<div class="archive-filters__field archive-filters__category">
 				<label for="archive-category">Categoria</label>
@@ -38,6 +46,25 @@ global $wp_locale;
 					<option value="">Tutte le categorie</option>
 					<?php foreach ( Fisar_CDJ_Archive_Filters::categories() as $slug => $label ) : ?><option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $filters['category'], $slug ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?>
 					<option value="altro" <?php selected( $filters['category'], 'altro' ); ?>>Altro</option>
+				</select>
+			</div>
+		<?php endif; ?>
+		<?php if ( $is_course ) : ?>
+			<div class="archive-filters__field archive-filters__course-type">
+				<label for="archive-type">Tipologia</label>
+				<select id="archive-type" name="tipologia">
+					<option value="">Tutte</option>
+					<?php foreach ( Fisar_CDJ_Course_Filters::types() as $value => $label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $filters['type'], $value ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?>
+				</select>
+			</div>
+			<div class="archive-filters__field archive-filters__city">
+				<label for="archive-city">Città</label>
+				<select id="archive-city" name="citta">
+					<option value="">Tutte</option>
+					<?php
+					$cities = Fisar_CDJ_Course_Filters::options()['cities'];
+					if ( $filters['city'] && ! in_array( $filters['city'], $cities, true ) ) { $cities[] = $filters['city']; natcasesort( $cities ); }
+					foreach ( $cities as $city ) : ?><option value="<?php echo esc_attr( $city ); ?>" <?php selected( $filters['city'], $city ); ?>><?php echo esc_html( $city ); ?></option><?php endforeach; ?>
 				</select>
 			</div>
 		<?php endif; ?>

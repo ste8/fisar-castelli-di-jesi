@@ -64,7 +64,24 @@ function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	$course_id = $course instanceof WP_Post ? $course->ID : $course;
 	$end_date  = (string) get_post_meta( $course_id, '_fisar_course_end_date', true );
 
-	return '' !== $end_date && $end_date >= fisar_cdj_today();
+	return ! get_post_meta( $course_id, '_fisar_course_archived', true ) && '' !== $end_date && $end_date >= fisar_cdj_today();
+}
+
+/** A year is a separate fact, never a fabricated first or last day. */
+function fisar_cdj_sanitize_course_archive_year( mixed $year ): string {
+	return is_string( $year ) && preg_match( '/^(?:19|20)\d{2}$/', $year ) ? $year : '';
+}
+
+function fisar_cdj_get_course_archive_year( int $course_id ): string {
+	return fisar_cdj_sanitize_course_archive_year( get_post_meta( $course_id, '_fisar_course_archive_year', true ) );
+}
+
+function fisar_cdj_get_course_type_label( int $course_id ): string {
+	return match ( get_post_meta( $course_id, '_fisar_course_type', true ) ) {
+		'introductory' => 'Minicorso di avvicinamento al vino',
+		'thematic'     => 'Corso tematico',
+		default        => 'Percorso Sommelier',
+	};
 }
 
 /** Optional promotion deadline, validated independently of registration deadlines. */
@@ -172,6 +189,10 @@ function fisar_cdj_get_active_courses( int $limit = -1 ): WP_Query {
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
 			'meta_query'     => array(
+				array( 'relation' => 'OR',
+					array( 'key' => '_fisar_course_archived', 'compare' => 'NOT EXISTS' ),
+					array( 'key' => '_fisar_course_archived', 'value' => '1', 'compare' => '!=' ),
+				),
 				array(
 					'key'     => '_fisar_course_end_date',
 					'value'   => fisar_cdj_today(),
@@ -183,26 +204,39 @@ function fisar_cdj_get_active_courses( int $limit = -1 ): WP_Query {
 	);
 }
 
-function fisar_cdj_get_past_courses( int $limit = -1 ): WP_Query {
+function fisar_cdj_get_past_courses( int $limit = -1, int $page = 1, array $filters = array() ): WP_Query {
 	return new WP_Query(
-		array(
+		Fisar_CDJ_Course_Filters::query_args( array(
 			'post_type'      => Fisar_CDJ_Post_Types::COURSE,
 			'post_status'    => 'publish',
 			'posts_per_page' => $limit,
-			'meta_key'       => '_fisar_course_end_date',
-			'orderby'        => 'meta_value',
-			'order'          => 'DESC',
+			'fisar_cdj_course_archive' => true,
+			'paged' => max( 1, $page ),
 			'meta_query'     => array(
+				'relation' => 'OR',
+				array( 'key' => '_fisar_course_archived', 'value' => '1', 'compare' => '=' ),
 				array(
-					'key'     => '_fisar_course_end_date',
-					'value'   => fisar_cdj_today(),
-					'compare' => '<',
-					'type'    => 'DATE',
+					'relation' => 'AND',
+					array( 'key' => '_fisar_course_end_date', 'value' => '', 'compare' => '!=' ),
+					array( 'key' => '_fisar_course_end_date', 'value' => fisar_cdj_today(), 'compare' => '<', 'type' => 'DATE' ),
 				),
 			),
-		)
+		), $filters )
 	);
 }
+
+/** Scoped ordering also includes courses whose exact start/end dates are unknown. */
+function fisar_cdj_course_archive_orderby( string $orderby, WP_Query $query ): string {
+	if ( ! $query->get( 'fisar_cdj_course_archive' ) || Fisar_CDJ_Post_Types::COURSE !== $query->get( 'post_type' ) ) {
+		return $orderby;
+	}
+	global $wpdb;
+	$start = "(SELECT NULLIF(MAX(meta_value), '') FROM {$wpdb->postmeta} WHERE post_id = {$wpdb->posts}.ID AND meta_key = '_fisar_course_start_date')";
+	$year  = "(SELECT CONCAT(NULLIF(MAX(meta_value), ''), '-00-00') FROM {$wpdb->postmeta} WHERE post_id = {$wpdb->posts}.ID AND meta_key = '_fisar_course_archive_year')";
+	$end   = "(SELECT NULLIF(MAX(meta_value), '') FROM {$wpdb->postmeta} WHERE post_id = {$wpdb->posts}.ID AND meta_key = '_fisar_course_end_date')";
+	return "COALESCE({$start}, {$year}, {$end}, LEFT({$wpdb->posts}.post_date, 10)) DESC, {$wpdb->posts}.ID DESC";
+}
+add_filter( 'posts_orderby', 'fisar_cdj_course_archive_orderby', 10, 2 );
 
 function fisar_cdj_get_course_events( int $course_id ): WP_Query {
 	return new WP_Query(

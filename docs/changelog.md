@@ -2,6 +2,14 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 10 novembre 2026 — Copertina predefinita Corsi Sommelier, tema 1.6.134 su Aruba
+
+Fotografia generica fornita dalla Delegazione, mostrata automaticamente nelle nove edizioni Sommelier prive di copertina: miniatura quadrata nell’elenco, immagine intera nel dettaglio. Le locandine editoriali hanno precedenza; minicorsi e corsi tematici esclusi. Nessuna assegnazione nel database. WebP ottimizzato senza interpolazione, provenienza e originale conservati. Lint PHP, verifica locale e Aruba desktop/mobile completati; testi, URL e immagini preesistenti delle 37 card invariati. Core invariato a 1.3.49.
+
+## 10 novembre 2026 — Filtri dell’archivio Corsi, Core 1.3.49 e tema 1.6.133
+
+L’archivio dei corsi conclusi dispone di ricerca in titolo, corpo, città, sede e indirizzo; filtri combinabili per anno dell’edizione, tipologia e città, senza mese. Le edizioni con solo anno restano ricercabili e i corsi attivi non vengono filtrati. Risultati 12/24/36/48 per pagina, conteggio, reset e paginazione con aggiornamento parziale e cronologia come Blog/Eventi. Nessuna modifica ai dati editoriali. Test WordPress dedicati e regressioni archivio Corsi/Blog/Eventi/JavaScript superati; collaudo responsive locale e Aruba completato. Pubblicazione nativa verificata sulle 36 schede storiche: copertura completa 12/12/12 e 24/12, corso attivo e card invariati, noindex conservato.
+
 ## 7 novembre 2026 — Allineamento schede Blog, tema 1.6.111 su Aruba
 
 Nell’archivio Blog i titoli di diversa lunghezza sfalsavano date ed estratti. Le schede ora condividono le righe di contenuto tramite CSS subgrid da 38rem: titoli completi, date, estratti e collegamenti allineati per riga, senza altezze fisse. Home indipendente, mobile a colonna singola e fallback flex preservati. Verificate dieci schede a 1280, 768 e 390 px, in anteprima locale e su Aruba: allineamento entro un pixel, nessun overflow o errore console osservato. HTML del contenuto del Blog identico prima/dopo. Aggiornamento nativo del solo tema; rollback 1.6.110 e prove in `.local-deployment/release/blog-card-alignment-2026-11-07/`.
@@ -139,3 +147,11 @@ Core locale aggiornato a WordPress 7.1.3 con backup e confronto dati/file, tag D
 - CPT Eventi/Corsi, backend nativo, calendario strutturato/import TSV, titoli automatici Corsi, stati temporali, scadenze, sold-out/lista d’attesa, quote flessibili, contatti WhatsApp multipli e link Maps. Accesso online Eventi pubblicabile solo esplicitamente.
 - Home, archivi/dettagli e pagine associative coerenti; Poppins/Cormorant self-hosted, immagini principali quadrate, focus e responsive, canvas editoriale Eventi/Corsi allineato. Blog su Articoli e gallerie lightbox native.
 - Contatti e dati associativi condivisi, Seguici/Newsletter Mailchimp, link brevi, privacy unica, Carta V2 e contenuti associativi in pagine native. Bootstrap demo separato dai dati pubblicati.
+
+## 10 novembre 2026 — Archivio storico dei corsi
+
+- Gestione esplicita delle edizioni concluse senza data finale e del solo anno quando l’inizio non è documentato, con iscrizioni/offerte chiuse e campi storici facoltativi.
+- Distinzione fra percorso Sommelier, minicorsi di avvicinamento e corsi tematici. Nessuna migrazione dei corsi esistenti.
+- Importate su Aruba 36 edizioni 2020–2026 con testi originali, dati verificati e 17 locandine per 24 schede; corso attivo Falconara 2026 conservato. Copertine ancora mancanti e un annuncio 2020 dubbio registrati separatamente.
+
+- Completato il corso Ancona febbraio 2026 dalla pagina originale: presentazione e 14 lezioni, quote, materiale e tesseramento; due date corrette a marzo su conferma dell’utente e fine al 21 aprile. Relatori storici non documentati mostrati con un trattino.

@@ -337,8 +337,9 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<p class="description">Titolo automatico: <output id="fisar-course-title-preview">' . esc_html( fisar_cdj_compose_course_title( (string) get_post_meta( $post->ID, '_fisar_course_level', true ), (string) get_post_meta( $post->ID, '_fisar_course_city', true ), (string) get_post_meta( $post->ID, '_fisar_course_province', true ) ) ) . '</output></p></div>';
 		self::render_excerpt( $post );
 		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-identity-title"><h3 id="fisar-course-identity-title">Percorso e direzione</h3>';
+		self::select( $post->ID, '_fisar_course_type', 'Tipo di corso', array( 'sommelier' => 'Percorso Sommelier', 'introductory' => 'Minicorso di avvicinamento al vino', 'thematic' => 'Corso tematico' ), 'Per minicorsi e corsi tematici usare un titolo personalizzato e lasciare vuoto il livello se non previsto.', 'sommelier' );
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
-		self::input( $post->ID, '_fisar_course_director', 'Direttore del Corso', 'text', 'Nome e cognome.', true );
+		self::input( $post->ID, '_fisar_course_director', 'Direttore del Corso', 'text', 'Nome e cognome, se documentato.' );
 		self::select(
 			$post->ID,
 			'_fisar_course_level',
@@ -353,9 +354,13 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '</div></section>';
 		echo '<section class="fisar-admin-section" aria-labelledby="fisar-course-duration-title"><h3 id="fisar-course-duration-title">Durata del corso</h3>';
 		echo '<div class="fisar-admin-grid fisar-admin-grid--dates">';
-		self::input( $post->ID, '_fisar_course_start_date', 'Data inizio', 'date', '', true );
-		self::input( $post->ID, '_fisar_course_end_date', 'Data fine', 'date', '', true );
-		echo '</div><p class="description">La data di fine determina se il corso è in programma o concluso: indica quella dell’ultima attività prevista. È distinta dal termine delle iscrizioni.</p></section>';
+		self::input( $post->ID, '_fisar_course_start_date', 'Data inizio', 'date' );
+		self::input( $post->ID, '_fisar_course_end_date', 'Data fine', 'date' );
+		echo '</div><p class="description">La data di fine determina se il corso è attivo: indica quella dell’ultima attività prevista. È distinta dal termine delle iscrizioni. Per lo storico lascia vuote le date non documentate.</p>';
+		echo '<input type="hidden" name="_fisar_course_archive_present" value="1">';
+		self::checkbox( $post->ID, '_fisar_course_archived', 'Corso storico concluso', 'Inserisce questa edizione nell’archivio e chiude le iscrizioni anche senza data finale. Non selezionare per corsi ancora in svolgimento.' );
+		self::input( $post->ID, '_fisar_course_archive_year', 'Anno dell’edizione', 'text', 'Per i corsi storici con data iniziale sconosciuta. Il sito mostra solo l’anno, senza inventare giorno e mese.', false, 4 );
+		echo '</section>';
 	}
 
 	public static function render_course_location( WP_Post $post ): void {
@@ -363,8 +368,8 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<div class="fisar-admin-grid fisar-admin-grid--2">';
 		self::input( $post->ID, '_fisar_course_venue', 'Sede', 'text' );
 		self::input( $post->ID, '_fisar_course_address', 'Indirizzo', 'text' );
-		self::input( $post->ID, '_fisar_course_city', 'Città', 'text', '', true );
-		self::input( $post->ID, '_fisar_course_province', 'Provincia', 'text', 'Sigla di due lettere.', true, 2 );
+		self::input( $post->ID, '_fisar_course_city', 'Città', 'text' );
+		self::input( $post->ID, '_fisar_course_province', 'Provincia', 'text', 'Sigla di due lettere, se documentata.', false, 2 );
 		echo '<input type="hidden" name="_fisar_course_maps_present" value="1">';
 		self::input( $post->ID, '_fisar_course_maps_url', 'Link Google Maps', 'url', 'Facoltativo. Incolla il link della posizione condiviso da Google Maps, incluso https://. Nel sito compare solo il collegamento, senza mappa incorporata.' );
 		echo '</div>';
@@ -498,6 +503,14 @@ final class Fisar_CDJ_Meta_Boxes {
 			$text_fields = array_diff( $text_fields, array( '_fisar_course_whatsapp' ) );
 		}
 		self::save_text_fields( $post_id, $text_fields );
+		if ( isset( $_POST['_fisar_course_archive_present'] ) ) {
+			update_post_meta( $post_id, '_fisar_course_archived', isset( $_POST['_fisar_course_archived'] ) ? 1 : 0 );
+			update_post_meta( $post_id, '_fisar_course_archive_year', fisar_cdj_sanitize_course_archive_year( wp_unslash( $_POST['_fisar_course_archive_year'] ?? '' ) ) );
+		}
+		if ( isset( $_POST['_fisar_course_type'] ) ) {
+			$type = wp_unslash( $_POST['_fisar_course_type'] );
+			update_post_meta( $post_id, '_fisar_course_type', in_array( $type, array( 'sommelier', 'introductory', 'thematic' ), true ) ? $type : '' );
+		}
 		if ( isset( $_POST['_fisar_course_offer_present'] ) ) {
 			$raw_date = wp_unslash( $_POST['_fisar_course_offer_end_date'] ?? '' );
 			$end_date = fisar_cdj_sanitize_course_offer_end_date( $raw_date );
