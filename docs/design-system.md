@@ -70,6 +70,8 @@ Un solo pannello finale di iscrizione/contatto, quote vicine ai canali, scorciat
 
 Carta: testo integrale con sette capitoli e icone decorative oro. Nella Home una sola frase introduttiva, sette titoli numerati da 1 a 7 come nel documento, con le stesse icone e link alle ancore dei capitoli, senza descrizioni; CTA “Leggi la Carta dei Valori completa”. Indice compatto senza separatori o frecce: da 1 a 4 dall’alto verso il basso nella prima colonna, da 5 a 7 nella seconda; colonne indipendenti per non trasferire i ritorni a capo nella spaziatura dell’altra colonna. Su mobile una sola colonna da 1 a 7. Ordine DOM e tastiera invariato, link sottolineati anche senza hover e area cliccabile dell’intera riga. Nota locale informativa con icona info, non allarme. In Delegazione: indice, Consiglio distinto da incarichi non elettivi, Squadra, Statuto e Storia finale; no accordion o nominativi inventati.
 
+Servizi: intestazione bordò compatta, presentazione con fotografia reale affiancata, attività su due colonne e tre passaggi numerati. Racconti su tre colonne con righe condivise tramite subgrid quando disponibile, foto regolari e credito visibile; singola colonna su telefono. Invito finale bordò con pulsante bianco verso il riquadro Responsabile Servizi in Contatti. Durante la revisione la pagina è raggiungibile dal solo URL, senza menu o richiamo Home; componente compatto Home conservato per la riattivazione.
+
 Seguici: card bianche, fondo caldo comune e pannello newsletter bordeaux, spaziatura compatta. Stessi componenti e descrizioni della Home, non due versioni da mantenere separatamente.
 
 ## Responsive e accessibilità

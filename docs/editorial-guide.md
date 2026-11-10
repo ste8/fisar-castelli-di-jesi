@@ -192,7 +192,8 @@ Menu principale: Chi siamo, Eventi, Corsi, Blog, Seguici, Contatti; CTA **Divent
 | Carta dei Valori | `/carta-dei-valori/`; primo Paragrafo `values-scope-note` per la nota locale, payoff `lead` nel corpo |
 | Diventa socio | `/unisciti-a-noi/`; vantaggi, quote e modalità di adesione da ricontrollare ai rinnovi |
 | Seguici | `/seguici/`; canali/modulo condivisi con Home, ancora `newsletter-page` |
-| Contatti | `/contatti/`; introduzione editoriale, dati comuni generati dal plugin |
+| Servizi sommelier | `/servizi/`; pagina nativa a blocchi, contatto tramite `/contatti/#servizi` |
+| Contatti | `/contatti/`; introduzione editoriale, dati comuni generati dal plugin, ancora `servizi` per il Responsabile Servizi |
 | Privacy | Pagina scelta nelle impostazioni Privacy; conservare `navigazione-e-cookie` |
 
 Nella Delegazione la storia è ultima, per distinguere i fondatori dal direttivo attuale; nota introduttiva sul 2010. Il documento storico del 2010 non è lo statuto vigente. Nel riquadro Statuto usare `/statuto/`, alias al documento Drive fornito: non è un download diretto. Incarichi non elettivi distinti dal Consiglio; Eventi dopo Organizzazione Corsi e Didattica.
@@ -200,6 +201,10 @@ Nella Delegazione la storia è ultima, per distinguere i fondatori dal direttivo
 Le icone della Carta sono aggiunte dal tema in base alle ancore H2: `chi-siamo`, `persone-e-modo-di-lavorare`, `curiosita-e-apertura`, `vino-con-consapevolezza`, `semplicita-e-informalita`, `inclusione-e-accoglienza`, `ognuno-puo-contribuire`. Non rinominarle insieme ai titoli. La Carta è locale e non rappresenta necessariamente i principi della FISAR nazionale; la trascrizione V2 di riferimento è nelle [sorgenti](sources/README.md).
 
 Footer unico bianco. Dati/recapiti ufficiali, SDI e RUNTS provengono da `fisar_cdj_get_delegation_details()` nel plugin; non duplicarli nei testi di Contatti. Le due mail sono alternative equivalenti; il telefono del Delegato non è automaticamente un contatto WhatsApp. La sede associativa non è necessariamente la sede delle attività.
+
+La pagina **Servizi sommelier** si modifica da Pagine: presentazione con foto, attività (incluse feste, sagre ed eventi aziendali), tre passaggi organizzativi, racconti e invito al contatto. Conservare le classi dei gruppi `services-*` e dei pulsanti `services-button` per il layout. I tre racconti di Staffolo, Slow Wine Fair e Merano sono una selezione manuale di blocchi nativi, non un elenco automatico; mantenere fonti e crediti delle immagini, incluso Michele Purin per Slow Wine Fair. Il collegamento al Blog filtrato per Servizi apre gli altri articoli. Non aggiungere prezzi, disponibilità o dotazioni non concordati.
+
+I pulsanti Servizi rimandano a `/contatti/#servizi`: nome ed email del responsabile sono centralizzati nelle chiavi `services_name` e `services_email` della configurazione comune del plugin. Non copiarli nel corpo della pagina Servizi. La pagina Servizi è temporaneamente raggiungibile solo dal suo URL durante la revisione: nessuna voce nei menu principale/footer né richiamo Home. Il componente Home è conservato ma non incluso nel template; quando sarà riattivato usa la copertina della pagina pubblica senza password. Il riquadro del responsabile in Contatti resta disponibile e non contiene link alla pagina Servizi.
 
 Menu social comune per barra/footer/card. Destinazioni brevi: `/whatsapp/` (gruppo, non canale), `/facebook/`, `/instagram/`, `/newsletter/`. Aggiornare destinazioni/configurazione nel plugin e non creare pagine che occupino questi alias. Il modulo newsletter è condiviso: modificare le descrizioni nei componenti comuni, non in copie separate dei template.
 

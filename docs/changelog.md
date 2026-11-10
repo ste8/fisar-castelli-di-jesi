@@ -2,6 +2,18 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 10 novembre 2026 — Servizi accessibile dal solo URL, tema 1.6.140 su Aruba
+
+Sospesi i punti di ingresso della pagina durante la revisione: rimosse le voci dai menu principale/footer e il richiamo dalla Home. La pagina pubblica `/servizi/` conserva contenuto, copertina e URL; il riferimento al responsabile in Contatti resta e non rimanda alla pagina. Il componente Home è conservato per una futura riattivazione.
+
+Pubblicazione nativa e accesso diretto verificati su Aruba, Home/Contatti senza rimandi e menu pubblici aggiornati; noindex conservato. Rollback e prova visiva in `.local-deployment/release/services-unlisted-2026-11-10/`.
+
+## 10 novembre 2026 — Pagina Servizi, Core 1.3.50 e tema 1.6.139 su Aruba
+
+Prima versione di Servizi sommelier pubblicata come pagina WordPress nativa: feste, sagre, iniziative in cantina, degustazioni ed eventi aziendali, modalità organizzative e racconti di Staffolo, Slow Wine Fair e Merano. Riutilizzate quattro immagini esistenti, conservando il credito Michele Purin. Aggiunti voce principale/footer e richiamo condizionale in Home; pulsanti verso il nuovo riquadro del Responsabile Servizi in Contatti, con nome/email nella configurazione condivisa del plugin.
+
+Verificati locale e Aruba su sei larghezze da 320 a 1280 px, immagini, allineamento racconti, menu, metadati social e percorso dei pulsanti. Nessun overflow; dati e HTML dei precedenti riquadri Contatti preservati, noindex conservato. Pagina salvata e pubblicazione verificata; il canvas visuale Gutenberg nel browser integrato resta vuoto, quindi il controllo editoriale si basa su codice nativo e risultato pubblico. Aggiornamento nativo dei pacchetti, senza import DB; rollback e prove in `.local-deployment/release/services-page-2026-11-10/`.
+
 ## 10 novembre 2026 — Anteprime automatiche dei link, tema 1.6.138 su Aruba
 
 Open Graph per Home, pagine, Eventi, Corsi e Blog: titolo corrente, descrizione nativa o testo originale abbreviato, copertina editoriale oppure immagine istituzionale con logo. Aggiornamento automatico anche per nuovi contenuti, senza nuovi campi o modifiche ai testi salvati. Test locali su creazione/modifica e contenuti non pubblici, confronto di sette pagine Aruba con contenuti/robots invariati.

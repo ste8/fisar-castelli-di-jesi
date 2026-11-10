@@ -21,6 +21,12 @@ $delegation = fisar_cdj_get_delegation_details();
 					<p class="contact-card__name"><?php echo esc_html( $delegation['delegate_name'] ); ?></p>
 					<p>Cellulare: <a href="<?php echo esc_url( 'tel:+39' . $delegation['delegate_phone'] ); ?>"><?php echo esc_html( $delegation['delegate_phone'] ); ?></a></p>
 				</section>
+				<section class="contact-card contact-card--services" id="servizi" aria-labelledby="contact-services-title">
+					<h2 class="contact-panel-title" id="contact-services-title"><?php echo fisar_cdj_theme_icon( 'person', 'contact-panel-title__icon' ); ?><span>Responsabile Servizi</span></h2>
+					<p class="contact-card__name"><?php echo esc_html( $delegation['services_name'] ); ?></p>
+					<p>Per il servizio dei sommelier a feste, sagre, degustazioni ed eventi aziendali.</p>
+					<p><a href="<?php echo esc_url( 'mailto:' . $delegation['services_email'] ); ?>"><?php echo esc_html( $delegation['services_email'] ); ?></a></p>
+				</section>
 			</div>
 			<section class="contact-details" aria-labelledby="contact-details-title">
 				<h2 class="contact-panel-title" id="contact-details-title"><?php echo fisar_cdj_theme_icon( 'building', 'contact-panel-title__icon' ); ?><span>Dati dell’associazione</span></h2>

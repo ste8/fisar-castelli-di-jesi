@@ -651,6 +651,8 @@ function fisar_cdj_get_delegation_details(): array {
 		'emails'         => array( 'info@fisarcastellidijesi.it', 'jesi@fisar.com' ),
 		'delegate_name'  => 'Corrado De Michelis',
 		'delegate_phone' => '3388510934',
+		'services_name'  => 'Nicola Merli',
+		'services_email' => 'servizi@fisarcastellidijesi.it',
 	);
 }
 
