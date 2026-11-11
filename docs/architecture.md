@@ -33,13 +33,18 @@ Date canoniche `YYYY-MM-DD`, confrontate nel fuso WordPress (`Europe/Rome`). Le 
 | Regola | Comportamento |
 |---|---|
 | Evento concluso | Ultima giornata valida non vuota e precedente a oggi; i template non propongono una prenotazione operativa |
-| Corso attivo | Data fine non vuota e maggiore o uguale a oggi; distinto dalle iscrizioni disponibili |
+| Corso attivo | Non annullato né archiviato esplicitamente, con data fine non vuota e maggiore o uguale a oggi; distinto dalle iscrizioni disponibili |
+| Corso annullato | Meta `_fisar_course_cancelled`; escluso dagli elenchi pubblici, iscrizioni/offerte chiuse; scheda e dati conservati nell’amministrazione |
 | Termine tassativo | Data valida inclusa: chiusura dal giorno successivo. Per gli Eventi richiede anche `Iscrizione richiesta` |
 | Termine flessibile | Non chiude automaticamente; avviso sulla disponibilità non garantita |
 | Sold-out semplice | Nessun canale operativo; la scadenza non è mostrata, ma resta salvata |
 | Sold-out con lista d’attesa | Riusa i recapiti esistenti; richiesta manuale, nessuna garanzia o lista memorizzata dal sito |
 
 La scadenza tassativa superata prevale sulla disponibilità editoriale. Per i Corsi lo stato concluso prevale su tutto; per gli Eventi i template gestiscono separatamente la data passata. Senza richiesta di iscrizione gli Eventi non applicano il sold-out come vincolo di prenotazione. Non confondere l’avviso `Posti limitati` con un conteggio: non esistono disponibilità numeriche, pagamenti o prenotazioni automatiche.
+
+Per i Corsi, il valore interno `concluded` resta compatibile con le API precedenti ma il frontend usa **In archivio**, senza dedurre il completamento effettivo dalle date. L’annullamento ha precedenza sulle date e restituisce lo stato interno `cancelled`, chiudendo anche i canali di iscrizione. Il flag è booleano, non esposto nei metadati REST pubblici; il marker indipendente `_fisar_course_cancellation_present` consente di togliere la spunta senza azzerarla con salvataggi di editor precedenti. Nessuna riscrittura di contenuti, date, calendario, quote o stato di pubblicazione.
+
+`Fisar_CDJ_Course_Filters` esclude i corsi annullati dalle query pubbliche con `NOT EXISTS`, prima di conteggi e paginazione, senza join che duplicano risultati. Le API dei corsi attivi/passati usano il marker interno `fisar_cdj_public_courses`, mantenendo l’esclusione anche quando chiamate dall’amministrazione. Le altre query di elenco dei Corsi e le ricerche pubbliche miste applicano la stessa regola solo ai record Corso; singoli URL e normali query amministrative rimangono disponibili. Le opzioni anno/città derivano dalla stessa query pubblica e non espongono attributi di soli corsi annullati. Nessuna migrazione o cache persistente.
 
 API di riferimento in `src/functions.php`:
 

@@ -3,13 +3,13 @@ $registration = $args['registration'];
 $details = $registration['details'];
 ?>
 <section id="course-registration" class="registration-box" aria-labelledby="course-registration-title" tabindex="-1">
-	<h2 id="course-registration-title"><?php echo $registration['active'] ? 'Informazioni e iscrizioni' : 'Corso concluso'; ?></h2>
+	<h2 id="course-registration-title"><?php echo $registration['active'] ? 'Informazioni e iscrizioni' : 'In archivio'; ?></h2>
 	<?php if ( ! $details['closed'] && ! $details['waiting_list'] && $registration['channels'] ) : ?><p>Contattaci per conoscere meglio il corso e ricevere tutte le informazioni per iscriverti.</p><?php endif; ?>
 	<?php if ( $registration['active'] ) : ?>
 		<?php get_template_part( 'template-parts/event-deadline', null, array( 'details' => $details, 'label' => 'Iscrizioni entro', 'past_label' => 'Termine iscrizioni' ) ); ?>
 		<?php get_template_part( 'template-parts/event-limited-seats', null, array( 'details' => $details ) ); ?>
 	<?php else : ?>
-		<p>Questa edizione è terminata. Consulta i corsi attivi per trovare il prossimo percorso.</p>
+		<p>Questa scheda è in archivio. Consulta i corsi attivi per trovare il prossimo percorso.</p>
 		<a class="button" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>">Vedi i corsi attivi</a>
 	<?php endif; ?>
 	<?php foreach ( array( 'fee' => 'Quota di partecipazione', 'includes' => 'Cosa comprende il corso', 'membership' => 'Tesseramento FISAR' ) as $key => $title ) : ?>

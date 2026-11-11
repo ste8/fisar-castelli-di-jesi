@@ -24,7 +24,7 @@ $past = fisar_cdj_get_past_courses( $filters['per_page'], max( 1, (int) get_quer
 	</section>
 	<section class="section section--tinted" aria-labelledby="past-courses">
 		<div class="container">
-			<div class="section-heading"><p class="eyebrow">Archivio</p><h2 id="past-courses">Corsi conclusi</h2></div>
+			<div class="section-heading"><p class="eyebrow">Archivio</p><h2 id="past-courses">Corsi passati</h2></div>
 			<?php get_template_part( 'template-parts/archive-filters', null, array( 'scope' => 'courses', 'count' => $past->found_posts ) ); ?>
 			<div data-archive-results>
 			<?php if ( $past->have_posts() ) : ?>
@@ -32,8 +32,8 @@ $past = fisar_cdj_get_past_courses( $filters['per_page'], max( 1, (int) get_quer
 					<?php while ( $past->have_posts() ) : $past->the_post(); get_template_part( 'template-parts/course-card' ); endwhile; ?>
 				</div>
 			<?php get_template_part( 'template-parts/course-pagination', null, array( 'query' => $past, 'filters' => $filters ) ); ?>
-			<?php elseif ( $filtered ) : ?><p class="archive-no-results">Nessun corso concluso corrisponde alla ricerca. Prova a cambiare o azzerare i filtri.</p>
-			<?php else : ?><p>I corsi conclusi compariranno qui.</p><?php endif; wp_reset_postdata(); ?>
+			<?php elseif ( $filtered ) : ?><p class="archive-no-results">Nessun corso in archivio corrisponde alla ricerca. Prova a cambiare o azzerare i filtri.</p>
+			<?php else : ?><p>I corsi archiviati compariranno qui.</p><?php endif; wp_reset_postdata(); ?>
 			</div>
 		</div>
 	</section>

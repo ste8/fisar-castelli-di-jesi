@@ -358,7 +358,9 @@ final class Fisar_CDJ_Meta_Boxes {
 		self::input( $post->ID, '_fisar_course_end_date', 'Data fine', 'date' );
 		echo '</div><p class="description">La data di fine determina se il corso è attivo: indica quella dell’ultima attività prevista. È distinta dal termine delle iscrizioni. Per lo storico lascia vuote le date non documentate.</p>';
 		echo '<input type="hidden" name="_fisar_course_archive_present" value="1">';
-		self::checkbox( $post->ID, '_fisar_course_archived', 'Corso storico concluso', 'Inserisce questa edizione nell’archivio e chiude le iscrizioni anche senza data finale. Non selezionare per corsi ancora in svolgimento.' );
+		self::checkbox( $post->ID, '_fisar_course_archived', 'Corso in archivio', 'Inserisce questa scheda nell’archivio e chiude le iscrizioni anche senza data finale. Non selezionare per corsi ancora in svolgimento.' );
+		echo '<input type="hidden" name="_fisar_course_cancellation_present" value="1">';
+		self::checkbox( $post->ID, '_fisar_course_cancelled', 'Corso annullato', 'Il corso è stato annullato. La scheda resta nell’amministrazione e viene esclusa dagli elenchi pubblici.' );
 		self::input( $post->ID, '_fisar_course_archive_year', 'Anno dell’edizione', 'text', 'Per i corsi storici con data iniziale sconosciuta. Il sito mostra solo l’anno, senza inventare giorno e mese.', false, 4 );
 		echo '</section>';
 	}
@@ -506,6 +508,10 @@ final class Fisar_CDJ_Meta_Boxes {
 		if ( isset( $_POST['_fisar_course_archive_present'] ) ) {
 			update_post_meta( $post_id, '_fisar_course_archived', isset( $_POST['_fisar_course_archived'] ) ? 1 : 0 );
 			update_post_meta( $post_id, '_fisar_course_archive_year', fisar_cdj_sanitize_course_archive_year( wp_unslash( $_POST['_fisar_course_archive_year'] ?? '' ) ) );
+		}
+		if ( isset( $_POST['_fisar_course_cancellation_present'] ) ) {
+			$cancelled = in_array( wp_unslash( $_POST['_fisar_course_cancelled'] ?? false ), array( true, 1, '1' ), true );
+			update_post_meta( $post_id, '_fisar_course_cancelled', $cancelled ? 1 : 0 );
 		}
 		if ( isset( $_POST['_fisar_course_type'] ) ) {
 			$type = wp_unslash( $_POST['_fisar_course_type'] );

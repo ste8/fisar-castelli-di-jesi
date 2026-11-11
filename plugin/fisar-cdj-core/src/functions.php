@@ -60,11 +60,16 @@ function fisar_cdj_get_event_online_access( int $event_id, bool $ignore_elapsed_
 	);
 }
 
+function fisar_cdj_is_course_cancelled( int|WP_Post $course ): bool {
+	$course_id = $course instanceof WP_Post ? $course->ID : $course;
+	return in_array( get_post_meta( $course_id, '_fisar_course_cancelled', true ), array( true, 1, '1' ), true );
+}
+
 function fisar_cdj_is_course_active( int|WP_Post $course ): bool {
 	$course_id = $course instanceof WP_Post ? $course->ID : $course;
 	$end_date  = (string) get_post_meta( $course_id, '_fisar_course_end_date', true );
 
-	return ! get_post_meta( $course_id, '_fisar_course_archived', true ) && '' !== $end_date && $end_date >= fisar_cdj_today();
+	return ! fisar_cdj_is_course_cancelled( $course_id ) && ! get_post_meta( $course_id, '_fisar_course_archived', true ) && '' !== $end_date && $end_date >= fisar_cdj_today();
 }
 
 /** A year is a separate fact, never a fabricated first or last day. */
@@ -183,6 +188,7 @@ function fisar_cdj_get_active_courses( int $limit = -1 ): WP_Query {
 	return new WP_Query(
 		array(
 			'post_type'      => Fisar_CDJ_Post_Types::COURSE,
+			'fisar_cdj_public_courses' => true,
 			'post_status'    => 'publish',
 			'posts_per_page' => $limit,
 			'meta_key'       => '_fisar_course_start_date',
@@ -211,6 +217,7 @@ function fisar_cdj_get_past_courses( int $limit = -1, int $page = 1, array $filt
 			'post_status'    => 'publish',
 			'posts_per_page' => $limit,
 			'fisar_cdj_course_archive' => true,
+			'fisar_cdj_public_courses' => true,
 			'paged' => max( 1, $page ),
 			'meta_query'     => array(
 				'relation' => 'OR',
@@ -324,6 +331,9 @@ function fisar_cdj_sanitize_booking_status( mixed $status ): string {
 
 /** A course remains active during lessons, independently of booking availability. */
 function fisar_cdj_get_course_booking_status( int $course_id ): string {
+	if ( fisar_cdj_is_course_cancelled( $course_id ) ) {
+		return 'cancelled';
+	}
 	if ( ! fisar_cdj_is_course_active( $course_id ) ) {
 		return 'concluded';
 	}
@@ -340,7 +350,7 @@ function fisar_cdj_get_course_registration_details( int $course_id ): array {
 	$deadline = $date && $date->format( 'Y-m-d' ) === $deadline ? $deadline : '';
 	return array(
 		'status' => $status,
-		'closed' => in_array( $status, array( 'closed', 'sold_out', 'concluded' ), true ),
+		'closed' => in_array( $status, array( 'closed', 'sold_out', 'concluded', 'cancelled' ), true ),
 		'waiting_list' => 'waitlist' === $status,
 		'status_notice' => match ( $status ) {
 			'closed' => 'Iscrizioni chiuse',
@@ -540,7 +550,7 @@ function fisar_cdj_get_registration_channels( int $post_id, string $prefix, bool
 	if ( 'event' === $prefix && in_array( fisar_cdj_get_event_booking_status( $post_id, $ignore_elapsed_dates ), array( 'closed', 'sold_out' ), true ) ) {
 		return array();
 	}
-	if ( 'course' === $prefix && in_array( fisar_cdj_get_course_booking_status( $post_id ), array( 'closed', 'sold_out', 'concluded' ), true ) ) {
+	if ( 'course' === $prefix && in_array( fisar_cdj_get_course_booking_status( $post_id ), array( 'closed', 'sold_out', 'concluded', 'cancelled' ), true ) ) {
 		return array();
 	}
 	$definitions = array(

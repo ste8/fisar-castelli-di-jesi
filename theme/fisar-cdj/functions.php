@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.142' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.144' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 

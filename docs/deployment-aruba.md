@@ -110,6 +110,10 @@ Aggiunto il riquadro `/contatti/#servizi` con Nicola Merli e l’email già pubb
 
 Aggiornamento successivo del 10 novembre 2026: tema **1.6.140** pubblicato tramite sostituzione nativa per sospendere il richiamo Servizi dalla Home. Rimosse tramite Aspetto → Menu le sole voci Servizi dai menu principale e footer, anche nella copia locale; pagina 3909 pubblica e invariata, accessibile a `/servizi/`. Verificati assenza di link verso la pagina in Home e Contatti, menu pubblici senza Servizi e apertura diretta del contenuto; il riquadro del Responsabile Servizi resta in Contatti senza collegamento alla pagina. Noindex conservato. Componente Home conservato ma non incluso, nessuna modifica al Core 1.3.50 o ai contenuti della pagina; lint PHP e pacchetto verificati. Rollback tema 1.6.139 e screenshot in `release/services-unlisted-2026-11-10/`.
 
+Rilascio dell’11 novembre 2026: Core **1.3.51** e tema **1.6.144** aggiornati nativamente per la gestione dei corsi annullati e la dicitura neutra **In archivio**. Selezionata la checkbox Corso annullato per il solo corso 3855, Ancona dal 17 febbraio 2026; la scheda rimane pubblicata e conservata nell’amministrazione, esclusa dagli elenchi/ricerche pubbliche. Nessun avviso di annullamento aggiunto al frontend. La pubblicazione e gli URL non sono modificati dalla spunta.
+
+Backup WXR prima/dopo e confronto: aggiunto soltanto `_fisar_course_cancelled = 1`; testo, titolo, estratto, calendario, quote, contatti, copertina e tutti gli altri record invariati. Test locale dell’annullamento reversibile, regressioni archivio/filtri e lint PHP superati. Pacchetti e rollback Core 1.3.50/tema 1.6.140 in `release/course-cancellation-2026-11-11/`. Nessun trasferimento del database locale, modifica a menu o root precedente; la pagina Diventare sommelier resta solo in locale, accessibile dal suo URL.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.

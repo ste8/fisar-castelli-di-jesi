@@ -31,7 +31,7 @@ $offer = fisar_cdj_get_course_offer( $course_id );
 	<div class="course-card__body">
 		<div class="course-card__meta<?php echo $structured ? ' course-card__meta--structured' : ''; ?>">
 			<?php if ( ! $structured && '' !== $level ) : ?><span class="eyebrow"><?php echo esc_html( $level ); ?>° livello</span><?php endif; ?>
-			<span class="status <?php echo $active ? 'status--active' : 'status--past'; ?>"><?php echo $active ? 'Attivo' : 'Concluso'; ?></span>
+			<span class="status <?php echo $active ? 'status--active' : 'status--past'; ?>"><?php echo $active ? 'Attivo' : 'In archivio'; ?></span>
 		</div>
 		<?php if ( 'closed' === $details['status'] ) : ?><p class="event-card__booking-status"><?php echo esc_html( $details['status_notice'] ); ?></p><?php endif; ?>
 		<h3 class="course-card__title<?php echo $structured ? ' course-card__title--intro' : ''; ?>"><a href="<?php the_permalink(); ?>"<?php if ( $structured ) : ?> aria-label="<?php echo esc_attr( $card_title ); ?>"<?php endif; ?>><?php echo esc_html( $structured ? $identity['name'] : $card_title ); ?></a></h3>

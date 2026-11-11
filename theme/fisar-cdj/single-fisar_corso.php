@@ -43,7 +43,7 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 			<div class="container content-hero__grid">
 				<div class="content-hero__copy">
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>"><span aria-hidden="true">←</span> Tutti i corsi</a>
-					<p class="eyebrow"><?php echo $level ? esc_html( $level ) . '° livello' : esc_html( fisar_cdj_get_course_type_label( $course_id ) ); ?> · <?php echo $active ? 'Corso attivo' : 'Corso concluso'; ?></p>
+					<p class="eyebrow"><?php echo $level ? esc_html( $level ) . '° livello' : esc_html( fisar_cdj_get_course_type_label( $course_id ) ); ?> · <?php echo $active ? 'Corso attivo' : 'In archivio'; ?></p>
 					<h1><?php the_title(); ?></h1>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">

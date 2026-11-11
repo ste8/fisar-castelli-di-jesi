@@ -13,7 +13,7 @@ $action = match ( $scope ) {
 	'courses' => get_post_type_archive_link( Fisar_CDJ_Post_Types::COURSE ) . '#past-courses',
 	default => get_post_type_archive_link( Fisar_CDJ_Post_Types::EVENT ) . '#past-events',
 };
-$form_label = match ( $scope ) { 'blog' => 'Filtra gli articoli', 'courses' => 'Filtra i corsi conclusi', default => 'Filtra gli eventi conclusi' };
+$form_label = match ( $scope ) { 'blog' => 'Filtra gli articoli', 'courses' => 'Filtra i corsi in archivio', default => 'Filtra gli eventi conclusi' };
 $reset = 12 === $filters['per_page'] ? $action : add_query_arg( 'per_pagina', $filters['per_page'], $action );
 global $wp_locale;
 ?>

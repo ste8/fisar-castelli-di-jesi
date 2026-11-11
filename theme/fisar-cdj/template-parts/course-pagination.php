@@ -19,7 +19,7 @@ $links = paginate_links(
 );
 ?>
 <div class="pagination pagination--archive">
-	<nav aria-label="Paginazione dei corsi conclusi">
+	<nav aria-label="Paginazione dei corsi in archivio">
 		<div class="nav-links"><?php echo wp_kses_post( $links ); ?></div>
 	</nav>
 </div>

@@ -2,6 +2,12 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 11 novembre 2026 — Corsi annullati e stato In archivio, Core 1.3.51 e tema 1.6.144 su Aruba
+
+Aggiunta la checkbox **Corso annullato** nel riquadro Durata del corso: conserva la scheda, esclude gli elenchi e le ricerche pubbliche prima di conteggi/paginazione e chiude iscrizioni/offerte. Flag reversibile, protetto e preservato dai salvataggi di editor precedenti; visibile nell’elenco amministrativo, senza avviso pubblico di annullamento. Stato di pubblicazione e singoli URL non modificati. Corsi storici etichettati **In archivio** nelle card, nel dettaglio e nel pannello finale, con testo neutro; sezione pubblica Corsi passati.
+
+Aggiornamento nativo dei componenti su Aruba e corso Ancona previsto dal 17 febbraio 2026 (3855) contrassegnato come annullato. Il confronto WXR rileva il solo nuovo flag sul corso: contenuti, calendari, quote, copertina e altri record invariati. Superati test dedicato, regressioni archivio/filtri e lint PHP. Pacchetti, rollback Core 1.3.50/tema 1.6.140, WXR e verifiche in `.local-deployment/release/course-cancellation-2026-11-11/`; nessun import DB o pubblicazione della pagina formativa ancora in revisione locale.
+
 ## 11 novembre 2026 — Percorso sommelier accessibile dal solo URL, in locale
 
 Durante la revisione editoriale rimossi il richiamo dall’archivio Corsi e il collegamento dalla pagina La FISAR, nella quale è stato ripristinato il riferimento nazionale precedente. La nuova pagina resta pubblica nel solo ambiente locale e invariata nel contenuto, accessibile direttamente a `/diventare-sommelier/`. Nessuna voce di menu o richiamo Home; verificati anche gli altri contenuti locali. Tema locale **1.6.142**, Aruba invariata a 1.6.140.
