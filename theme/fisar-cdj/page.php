@@ -3,7 +3,7 @@ get_header();
 the_post();
 $is_values_page      = is_page( 'carta-dei-valori' );
 $is_privacy_page     = ! $is_values_page && is_privacy_policy();
-$is_association_page = is_page( array( 'la-fisar', 'la-nostra-delegazione', 'unisciti-a-noi', 'servizi' ) );
+$is_association_page = is_page( array( 'la-fisar', 'la-nostra-delegazione', 'unisciti-a-noi', 'servizi', 'diventare-sommelier' ) );
 $page_classes        = array( 'standard-page' );
 if ( $is_values_page ) {
 	$page_classes[] = 'values-page';
@@ -17,6 +17,9 @@ if ( is_page( 'la-nostra-delegazione' ) ) {
 }
 if ( is_page( 'servizi' ) ) {
 	$page_classes[] = 'services-page';
+}
+if ( is_page( 'diventare-sommelier' ) ) {
+	$page_classes[] = 'training-page';
 }
 $values_parts   = $is_values_page ? fisar_cdj_theme_values_content_parts( get_the_content() ) : array();
 ?>

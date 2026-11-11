@@ -2,6 +2,16 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 11 novembre 2026 — Percorso sommelier accessibile dal solo URL, in locale
+
+Durante la revisione editoriale rimossi il richiamo dall’archivio Corsi e il collegamento dalla pagina La FISAR, nella quale è stato ripristinato il riferimento nazionale precedente. La nuova pagina resta pubblica nel solo ambiente locale e invariata nel contenuto, accessibile direttamente a `/diventare-sommelier/`. Nessuna voce di menu o richiamo Home; verificati anche gli altri contenuti locali. Tema locale **1.6.142**, Aruba invariata a 1.6.140.
+
+## 10 novembre 2026 — Percorso per diventare sommelier, prima versione locale
+
+Preparata la pagina nativa `/diventare-sommelier/`: tre livelli ed esame finale, C&D come passaggio propedeutico, percorsi distinti per Relatore, Degustatore ufficiale, Direttore di corso e tecnica di servizio. Domande frequenti e rimandi ai corsi attivi/Contatti; sintesi basata sulle pagine FISAR, con fonti consultabili e senza trasferire prezzi, calendari o requisiti particolari di altre Delegazioni. Fotografia già presente nella Libreria media.
+
+Tema locale **1.6.141**: stile coerente con le pagine associative e collegamento discreto nell’archivio Corsi, solo per pagina pubblica senza password. In La FISAR locale sostituito il solo rimando formativo nazionale con la nuova pagina; menu e Home invariati. Contenuti modificabili a blocchi nativi, sorgente e riferimenti in `docs/sources/percorso-sommelier*`. Preparazione e prove locali in `.local-deployment/release/training-path-2026-11-10/`; Aruba resta al tema 1.6.140.
+
 ## 10 novembre 2026 — Servizi accessibile dal solo URL, tema 1.6.140 su Aruba
 
 Sospesi i punti di ingresso della pagina durante la revisione: rimosse le voci dai menu principale/footer e il richiamo dalla Home. La pagina pubblica `/servizi/` conserva contenuto, copertina e URL; il riferimento al responsabile in Contatti resta e non rimanda alla pagina. Il componente Home è conservato per una futura riattivazione.

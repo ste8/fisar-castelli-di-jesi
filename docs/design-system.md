@@ -72,6 +72,8 @@ Carta: testo integrale con sette capitoli e icone decorative oro. Nella Home una
 
 Servizi: intestazione bordò compatta, presentazione con fotografia reale affiancata, attività su due colonne e tre passaggi numerati. Racconti su tre colonne con righe condivise tramite subgrid quando disponibile, foto regolari e credito visibile; singola colonna su telefono. Invito finale bordò con pulsante bianco verso il riquadro Responsabile Servizi in Contatti. Durante la revisione la pagina è raggiungibile dal solo URL, senza menu o richiamo Home; componente compatto Home conservato per la riattivazione.
 
+Percorso sommelier (prima versione locale): intestazione bordò compatta, introduzione con foto reale di attestati/tastevin, indice ad ancore. Tre livelli con bordo oro, in colonne da 64rem e in sequenza verticale sotto; qualifica finale in evidenza. C&D e percorsi superiori separati, griglia a due colonne da 38rem senza margini automatici tra i gruppi; singola colonna su telefono. Domande e fonti in Dettagli nativi, invito finale bordò verso Corsi/Contatti. Nessun nuovo JavaScript o font, testi sempre leggibili e link nella stessa scheda. Durante la revisione accesso dal solo URL, senza richiami da altre pagine o menu.
+
 Seguici: card bianche, fondo caldo comune e pannello newsletter bordeaux, spaziatura compatta. Stessi componenti e descrizioni della Home, non due versioni da mantenere separatamente.
 
 ## Responsive e accessibilità
