@@ -114,6 +114,8 @@ Rilascio dell’11 novembre 2026: Core **1.3.51** e tema **1.6.144** aggiornati 
 
 Backup WXR prima/dopo e confronto: aggiunto soltanto `_fisar_course_cancelled = 1`; testo, titolo, estratto, calendario, quote, contatti, copertina e tutti gli altri record invariati. Test locale dell’annullamento reversibile, regressioni archivio/filtri e lint PHP superati. Pacchetti e rollback Core 1.3.50/tema 1.6.140 in `release/course-cancellation-2026-11-11/`. Nessun trasferimento del database locale, modifica a menu o root precedente; la pagina Diventare sommelier resta solo in locale, accessibile dal suo URL.
 
+Rilascio del 12 novembre 2026: Core **1.3.52** aggiornato nativamente su Aruba. Su richiesta dell’utente, i corsi annullati pubblicati tornano nell’archivio, nelle ricerche e nei filtri con la dicitura **In archivio**. Le query dei corsi attivi continuano a escluderli e le iscrizioni/offerte restano chiuse. Il corso Ancona febbraio 2026 ricompare tra i 63 risultati storici; tema invariato a 1.6.144. Nessun salvataggio editoriale o import DB. Test annullamenti, archivio e filtri e lint PHP superati. Pacchetto, rollback Core 1.3.51, confronto del frontend e screenshot in `release/course-archive-inclusion-2026-11-12/`.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.

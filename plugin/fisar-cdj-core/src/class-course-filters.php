@@ -66,17 +66,6 @@ final class Fisar_CDJ_Course_Filters {
 		return $wpdb->prepare( "(SELECT NULLIF(TRIM(MAX(meta_value)), '') FROM {$wpdb->postmeta} WHERE post_id = {$wpdb->posts}.ID AND meta_key = %s)", $key );
 	}
 
-	/** Explicit public APIs also exclude cancellations when called from an admin screen. */
-	private static function is_public_listing( WP_Query $query ): bool {
-		if ( $query->get( 'fisar_cdj_public_courses' ) ) { return true; }
-		if ( is_admin() || $query->is_singular() ) { return false; }
-		$types = $query->get( 'post_type' );
-		return Fisar_CDJ_Post_Types::COURSE === $types
-			|| ( is_array( $types ) && in_array( Fisar_CDJ_Post_Types::COURSE, $types, true ) )
-			|| 'any' === $types
-			|| ( $query->is_search() && ! $types );
-	}
-
 	public static function post_states( array $states, WP_Post $post ): array {
 		if ( Fisar_CDJ_Post_Types::COURSE === $post->post_type && fisar_cdj_is_course_cancelled( $post ) ) {
 			$states['fisar_course_cancelled'] = 'Corso annullato';
@@ -86,9 +75,6 @@ final class Fisar_CDJ_Course_Filters {
 
 	public static function where( string $where, WP_Query $query ): string {
 		global $wpdb;
-		if ( self::is_public_listing( $query ) ) {
-			$where .= $wpdb->prepare( " AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} cancelled_course WHERE cancelled_course.post_id = {$wpdb->posts}.ID AND {$wpdb->posts}.post_type = %s AND cancelled_course.meta_key = %s AND cancelled_course.meta_value = '1')", Fisar_CDJ_Post_Types::COURSE, '_fisar_course_cancelled' );
-		}
 		if ( ! self::applies( $query ) ) { return $where; }
 		$filters = $query->get( 'fisar_cdj_course_filters' );
 		if ( $filters['year'] ) {

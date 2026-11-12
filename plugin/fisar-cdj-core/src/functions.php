@@ -188,13 +188,16 @@ function fisar_cdj_get_active_courses( int $limit = -1 ): WP_Query {
 	return new WP_Query(
 		array(
 			'post_type'      => Fisar_CDJ_Post_Types::COURSE,
-			'fisar_cdj_public_courses' => true,
 			'post_status'    => 'publish',
 			'posts_per_page' => $limit,
 			'meta_key'       => '_fisar_course_start_date',
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
 			'meta_query'     => array(
+				array( 'relation' => 'OR',
+					array( 'key' => '_fisar_course_cancelled', 'compare' => 'NOT EXISTS' ),
+					array( 'key' => '_fisar_course_cancelled', 'value' => '1', 'compare' => '!=' ),
+				),
 				array( 'relation' => 'OR',
 					array( 'key' => '_fisar_course_archived', 'compare' => 'NOT EXISTS' ),
 					array( 'key' => '_fisar_course_archived', 'value' => '1', 'compare' => '!=' ),
@@ -217,10 +220,10 @@ function fisar_cdj_get_past_courses( int $limit = -1, int $page = 1, array $filt
 			'post_status'    => 'publish',
 			'posts_per_page' => $limit,
 			'fisar_cdj_course_archive' => true,
-			'fisar_cdj_public_courses' => true,
 			'paged' => max( 1, $page ),
 			'meta_query'     => array(
 				'relation' => 'OR',
+				array( 'key' => '_fisar_course_cancelled', 'value' => '1', 'compare' => '=' ),
 				array( 'key' => '_fisar_course_archived', 'value' => '1', 'compare' => '=' ),
 				array(
 					'relation' => 'AND',

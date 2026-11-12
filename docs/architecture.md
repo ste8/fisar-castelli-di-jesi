@@ -34,7 +34,7 @@ Date canoniche `YYYY-MM-DD`, confrontate nel fuso WordPress (`Europe/Rome`). Le 
 |---|---|
 | Evento concluso | Ultima giornata valida non vuota e precedente a oggi; i template non propongono una prenotazione operativa |
 | Corso attivo | Non annullato né archiviato esplicitamente, con data fine non vuota e maggiore o uguale a oggi; distinto dalle iscrizioni disponibili |
-| Corso annullato | Meta `_fisar_course_cancelled`; escluso dagli elenchi pubblici, iscrizioni/offerte chiuse; scheda e dati conservati nell’amministrazione |
+| Corso annullato | Meta `_fisar_course_cancelled`; incluso nei Corsi passati con dicitura In archivio, iscrizioni/offerte chiuse; dati conservati |
 | Termine tassativo | Data valida inclusa: chiusura dal giorno successivo. Per gli Eventi richiede anche `Iscrizione richiesta` |
 | Termine flessibile | Non chiude automaticamente; avviso sulla disponibilità non garantita |
 | Sold-out semplice | Nessun canale operativo; la scadenza non è mostrata, ma resta salvata |
@@ -44,7 +44,7 @@ La scadenza tassativa superata prevale sulla disponibilità editoriale. Per i Co
 
 Per i Corsi, il valore interno `concluded` resta compatibile con le API precedenti ma il frontend usa **In archivio**, senza dedurre il completamento effettivo dalle date. L’annullamento ha precedenza sulle date e restituisce lo stato interno `cancelled`, chiudendo anche i canali di iscrizione. Il flag è booleano, non esposto nei metadati REST pubblici; il marker indipendente `_fisar_course_cancellation_present` consente di togliere la spunta senza azzerarla con salvataggi di editor precedenti. Nessuna riscrittura di contenuti, date, calendario, quote o stato di pubblicazione.
 
-`Fisar_CDJ_Course_Filters` esclude i corsi annullati dalle query pubbliche con `NOT EXISTS`, prima di conteggi e paginazione, senza join che duplicano risultati. Le API dei corsi attivi/passati usano il marker interno `fisar_cdj_public_courses`, mantenendo l’esclusione anche quando chiamate dall’amministrazione. Le altre query di elenco dei Corsi e le ricerche pubbliche miste applicano la stessa regola solo ai record Corso; singoli URL e normali query amministrative rimangono disponibili. Le opzioni anno/città derivano dalla stessa query pubblica e non espongono attributi di soli corsi annullati. Nessuna migrazione o cache persistente.
+I corsi annullati pubblicati sono inclusi nell’archivio, nelle ricerche e nelle opzioni anno/città, con la stessa dicitura **In archivio** degli altri corsi storici. La query dei corsi attivi li esclude, mentre quella dei passati li include anche con date future o senza data finale. Conteggi e paginazione seguono la stessa selezione. Nessuna migrazione o cache persistente.
 
 API di riferimento in `src/functions.php`:
 

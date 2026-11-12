@@ -360,7 +360,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		echo '<input type="hidden" name="_fisar_course_archive_present" value="1">';
 		self::checkbox( $post->ID, '_fisar_course_archived', 'Corso in archivio', 'Inserisce questa scheda nell’archivio e chiude le iscrizioni anche senza data finale. Non selezionare per corsi ancora in svolgimento.' );
 		echo '<input type="hidden" name="_fisar_course_cancellation_present" value="1">';
-		self::checkbox( $post->ID, '_fisar_course_cancelled', 'Corso annullato', 'Il corso è stato annullato. La scheda resta nell’amministrazione e viene esclusa dagli elenchi pubblici.' );
+		self::checkbox( $post->ID, '_fisar_course_cancelled', 'Corso annullato', 'La scheda compare nell’archivio con la dicitura In archivio. Iscrizioni e offerte sono disattivate.' );
 		self::input( $post->ID, '_fisar_course_archive_year', 'Anno dell’edizione', 'text', 'Per i corsi storici con data iniziale sconosciuta. Il sito mostra solo l’anno, senza inventare giorno e mese.', false, 4 );
 		echo '</section>';
 	}

@@ -2,6 +2,12 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 12 novembre 2026 — Corsi annullati inclusi nell’archivio, Core 1.3.52 su Aruba
+
+I corsi annullati pubblicati compaiono nell’archivio, nelle ricerche e nei filtri con la stessa dicitura **In archivio** degli altri corsi storici, anche se hanno date future o mancanti. Restano esclusi dai corsi attivi, con iscrizioni e offerte disattivate; checkbox e indicazione nell’elenco amministrativo conservate. Nessuna nuova etichetta pubblica, riscrittura dei testi o modifica ai dati editoriali.
+
+Aggiornamento nativo del solo Core su Aruba; tema invariato a 1.6.144. Il corso Ancona febbraio 2026 ricompare nell’archivio, che torna a 63 risultati. Test annullamenti, archivio e filtri superati, sintassi PHP e pacchetto verificati. Rollback Core 1.3.51 e prove in `.local-deployment/release/course-archive-inclusion-2026-11-12/`.
+
 ## 11 novembre 2026 — Corsi annullati e stato In archivio, Core 1.3.51 e tema 1.6.144 su Aruba
 
 Aggiunta la checkbox **Corso annullato** nel riquadro Durata del corso: conserva la scheda, esclude gli elenchi e le ricerche pubbliche prima di conteggi/paginazione e chiude iscrizioni/offerte. Flag reversibile, protetto e preservato dai salvataggi di editor precedenti; visibile nell’elenco amministrativo, senza avviso pubblico di annullamento. Stato di pubblicazione e singoli URL non modificati. Corsi storici etichettati **In archivio** nelle card, nel dettaglio e nel pannello finale, con testo neutro; sezione pubblica Corsi passati.
