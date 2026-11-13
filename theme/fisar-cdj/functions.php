@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.148' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.149' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 
@@ -121,7 +121,6 @@ add_action( 'wp_enqueue_scripts', 'fisar_cdj_theme_assets' );
 function fisar_cdj_theme_preload_fonts(): void {
 	$font_base_url = get_template_directory_uri() . '/assets/fonts/';
 	$fonts         = array(
-		$font_base_url . 'cormorant-garamond/cormorant-garamond-latin-600-700.woff2',
 		$font_base_url . 'poppins/poppins-latin-400.woff2',
 	);
 

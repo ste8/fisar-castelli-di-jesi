@@ -24,8 +24,8 @@ Loghi ufficiali e originale in `assets/brand/logo/`, guida del brand in `assets/
 ## Tipografia attuale
 
 - **Poppins 400/500/600/700**: corpo, UI, navigazione, hero Home e titoli delle sezioni/card. È anche il font predefinito dei titoli, con peso 500: include messaggi senza contenuti, risultati di ricerca e pagina 404, oltre a Eventi/Corsi/Blog, Carta e pagine associative.
-- **Cormorant Garamond 600–700**: payoff, citazioni e residui contesti editoriali previsti dal tema, non testo lungo o metadati.
-- WOFF2 self-hosted, subset latino, `font-display: swap`; preload above-the-fold di Poppins 400 e Cormorant. Nessun font remoto, Inter non usato.
+- **Poppins anche per payoff, motto della Carta dei Valori, citazioni e introduzioni editoriali**: il tema e il canvas dell’editor condividono la stessa famiglia. Il preset storico `fisar-heading` resta come alias Poppins per compatibilità con eventuali blocchi salvati.
+- WOFF2 self-hosted, subset latino, `font-display: swap`; preload above-the-fold del solo Poppins 400. Nessun font remoto, Inter non usato.
 
 | Contesto | Scala di riferimento desktop |
 |---|---|

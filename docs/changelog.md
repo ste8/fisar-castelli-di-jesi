@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 13 novembre 2026 — Tipografia uniforme Poppins, tema 1.6.149
+
+Motto della Home e della Carta dei Valori uniformati a Poppins, insieme a citazioni e stili editoriali residui nel frontend e nel canvas dell’editor. Rimosso Cormorant, relativo caricamento e preload. Il preset storico `fisar-heading` resta come alias Poppins per compatibilità con eventuali blocchi salvati; titoli globali WordPress allineati a Poppins 500. Nessuna modifica ai testi.
+
 ## 13 novembre 2026 — Calice stabile e movimento nel liquido, tema 1.6.148
 
 Eliminato lo scambio immagine/canvas a ogni oscillazione: dopo il primo frame il renderer resta visibile anche a riposo, senza animazione continua. Preparazione alla dimensione finale, render serializzati e pixel conservati tra replay. Muovere il mouse di almeno 4 px dentro il liquido può riattivare l’oscillazione terminata, senza dover uscire; il movimento già attivo o in pausa non viene riavviato. Ampiezza originale e animazioni delle foto invariate. Test dedicati del calice, test del carosello e sintassi JavaScript superati.
