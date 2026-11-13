@@ -2,6 +2,18 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 13 novembre 2026 — Oscillazione soltanto all’apertura, tema 1.6.146 su Aruba
+
+Il vino si muove soltanto durante l’ingresso iniziale della Home. I cambi delle fotografie, automatici, manuali o da tastiera, mantengono il calice statico; A e B delle foto restano invariati. Test del carosello aggiornato con verifica esplicita dell’unico avvio. Aggiornamento nativo del solo tema, contenuto Home e noindex conservati; pacchetto, rollback 1.6.145 e prove in `.local-deployment/release/hero-wine-once-2026-11-13/`.
+
+## 13 novembre 2026 — Home con ingresso e cambio delle foto, tema 1.6.145 su Aruba
+
+Integrate le varianti approvate: A all’apertura (le fotografie si compongono nell’album) e B ai cambi (sostituzione una foto alla volta), mantenendo i quattro gruppi nativi e gli intervalli di sei secondi. Piccola oscillazione del vino dalla prima prova, per 4,8 secondi, con ritorno al calice statico; nessun riempimento o impulso amplificato. L’effetto è separato e disattivabile con `fisar_cdj_hero_wine_enabled`. Controlli standard del carosello preservati; selettori, cursore, iframe e caselle della prova non distribuiti.
+
+Clayzo WebGL 0.3.21 originale e licenze inclusi nel tema; import dinamico solo su desktop con movimento consentito e calice disponibile. Fallback all’immagine nativa in caso di indisponibilità del motore. Pausa/ripresa, interruzioni, movimento ridotto, layout stretti e singolo gruppo verificati; ritorno da cache e pulizia delle animazioni gestiti. Sorgente del solo documento approvato in `tools/hero-animation/`.
+
+Aggiornamento nativo del solo tema su Aruba, Core invariato a 1.3.52. Confronto delle pagine anonime: contenuto Home invariato salvo gli attributi di caricamento del vino, Corsi identico nel corpo, root precedente identica; noindex conservato. Verificati asset, console, fotografie senza duplicati e responsive locale/remoto. Pacchetto, rollback 1.6.144, confronti e screenshot in `.local-deployment/release/hero-motion-2026-11-13/`. Server della prova arrestato e cartella dell’esperimento rimossa nel Cestino recuperabile, conservando sorgenti di produzione e backup. Nessun import DB o modifica editoriale.
+
 ## 12 novembre 2026 — Corsi annullati inclusi nell’archivio, Core 1.3.52 su Aruba
 
 I corsi annullati pubblicati compaiono nell’archivio, nelle ricerche e nei filtri con la stessa dicitura **In archivio** degli altri corsi storici, anche se hanno date future o mancanti. Restano esclusi dai corsi attivi, con iscrizioni e offerte disattivate; checkbox e indicazione nell’elenco amministrativo conservate. Nessuna nuova etichetta pubblica, riscrittura dei testi o modifica ai dati editoriali.

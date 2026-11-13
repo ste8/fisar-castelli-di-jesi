@@ -54,6 +54,8 @@ docker compose -f docker/compose.yaml exec -T wordpress \
 curl -I http://localhost:8090/
 ```
 
+Il test `hero-collage.test.cjs` verifica ingresso e sostituzione delle foto native, aria dei gruppi, pause/ripresa, interruzioni e decodifica tardiva, gruppo singolo e fallback senza Web Animations. Nel browser verificare anche il caricamento dinamico del vino, pausa, ritorno statico e assenza del runtime sotto 64rem; il calice deve restare visibile se WebGL non è disponibile.
+
 Eseguire lint PHP/JS dei file effettivamente cambiati. Dopo modifiche frontend controllare Home e pagine coinvolte a desktop/tablet/mobile: immagini/font caricati, nessun overflow, CTA complete, focus, tastiera, movimento ridotto e fallback senza JS se pertinente. Per modifiche ai dati confrontare ciò che deve restare invariato; non inviare moduli newsletter o iscrizioni senza richiesta.
 
 I test del carosello sono unitari senza dipendenze: timer, breakpoint, focus, tastiera, visibilità e preferenza di movimento ridotto. Non sostituiscono una verifica browser. Uno screenshot da solo non dimostra la pausa o il cambio automatico.

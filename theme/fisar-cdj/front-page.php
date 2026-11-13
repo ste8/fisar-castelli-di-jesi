@@ -54,7 +54,7 @@ $events_link_text = $has_more_events
 				<div class="hero__album">
 					<?php get_template_part( 'template-parts/hero-collage', null, array( 'gallery' => $hero_gallery ) ); ?>
 					<?php if ( $hero_glass_id ) : ?>
-						<div class="hero__glass" aria-hidden="true">
+						<div class="hero__glass" aria-hidden="true"<?php if ( apply_filters( 'fisar_cdj_hero_wine_enabled', true ) ) : ?> data-wine-document="<?php echo esc_url( get_template_directory_uri() . '/assets/animations/hero-wine.json?ver=' . FISAR_CDJ_THEME_VERSION ); ?>" data-wine-player="<?php echo esc_url( get_template_directory_uri() . '/assets/js/vendor/clayzo/index.js?ver=0.3.21' ); ?>"<?php endif; ?>>
 							<?php echo wp_get_attachment_image( $hero_glass_id, 'large', false, array( 'class' => 'hero__glass-image', 'alt' => '', 'loading' => 'eager', 'fetchpriority' => 'high', 'decoding' => 'async', 'sizes' => '(min-width: 64rem) 18rem, (min-width: 38rem) 12.67rem, 10rem' ) ); ?>
 						</div>
 					<?php endif; ?>

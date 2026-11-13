@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.144' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.146' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 
@@ -103,7 +103,8 @@ function fisar_cdj_theme_assets(): void {
 	}
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/css/hero-collage.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
-		wp_enqueue_script( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/js/hero-collage.js', array(), FISAR_CDJ_THEME_VERSION, true );
+		wp_enqueue_script( 'fisar-cdj-hero-wine', get_template_directory_uri() . '/assets/js/hero-wine.js', array(), FISAR_CDJ_THEME_VERSION, true );
+		wp_enqueue_script( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/js/hero-collage.js', array( 'fisar-cdj-hero-wine' ), FISAR_CDJ_THEME_VERSION, true );
 	}
 	if ( is_front_page() || is_post_type_archive( Fisar_CDJ_Post_Types::EVENT ) || is_post_type_archive( Fisar_CDJ_Post_Types::COURSE ) ) {
 		wp_enqueue_script( 'fisar-cdj-event-dates', get_template_directory_uri() . '/assets/js/event-dates.js', array(), FISAR_CDJ_THEME_VERSION, true );

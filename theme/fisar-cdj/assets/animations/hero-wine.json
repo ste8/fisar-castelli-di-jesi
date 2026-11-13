@@ -1,0 +1,232 @@
+{
+  "version": 2,
+  "id": "fisar-calice-prova",
+  "revision": "sha256:8088855b45183fb9b1ca08b6b6295a139153d7cf5189cd8e2dab7f6a8dcaa43a",
+  "name": "Calice FISAR — vino e riflesso",
+  "canvas": {
+    "width": 640,
+    "height": 960,
+    "pixelAspectRatio": 1,
+    "backgroundColor": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0
+    }
+  },
+  "timing": {
+    "ticksPerSecond": 240,
+    "frameRate": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "durationTicks": 1152,
+    "displayStartTick": 0
+  },
+  "assets": {
+    "glass": {
+      "id": "glass",
+      "type": "image",
+      "uri": "./calice.webp",
+      "width": 640,
+      "height": 960,
+      "mimeType": "image/webp"
+    }
+  },
+  "compositions": {
+    "main": {
+      "id": "main",
+      "name": "Calice",
+      "width": 640,
+      "height": 960,
+      "durationTicks": 1152,
+      "nodes": {
+        "glass": {
+          "id": "glass",
+          "name": "glass",
+          "visible": true,
+          "inTick": 0,
+          "outTick": 1152,
+          "opacity": {
+            "kind": "constant",
+            "value": 1
+          },
+          "transform": {
+            "position": {
+              "kind": "constant",
+              "value": {
+                "x": 320,
+                "y": 480,
+                "z": 0
+              }
+            },
+            "anchor": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "scale": {
+              "kind": "constant",
+              "value": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            },
+            "rotation": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "skew": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          },
+          "blendMode": "normal",
+          "type": "image",
+          "assetId": "glass",
+          "size": {
+            "kind": "constant",
+            "value": {
+              "width": 640,
+              "height": 960
+            }
+          },
+          "fit": "contain"
+        },
+        "wine": {
+          "id": "wine",
+          "name": "wine",
+          "visible": true,
+          "inTick": 0,
+          "outTick": 1152,
+          "opacity": {
+            "kind": "constant",
+            "value": 1
+          },
+          "transform": {
+            "position": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "anchor": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "scale": {
+              "kind": "constant",
+              "value": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            },
+            "rotation": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "skew": {
+              "kind": "constant",
+              "value": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          },
+          "blendMode": "normal",
+          "type": "effect",
+          "inputId": "glass",
+          "effect": "custom-sksl",
+          "implementation": "\nuniform shader inputImage;\nuniform float elapsed;\nuniform float2 unitScale;\nhalf4 main(float2 p) {\n  float2 uv=p/unitScale;\n  float t=clamp(elapsed/4.8,0.0,1.0);\n  float envelope=sin(t*3.14159265)*exp(-t*1.45);\n  float nx=(uv.x-320.0)/180.0;\n  float sides=1.0-smoothstep(0.72,0.98,abs(nx));\n  float liquid=smoothstep(370.0,389.0,uv.y)*(1.0-smoothstep(460.0,530.0,uv.y))*sides;\n  float rocking=sin(elapsed*3.3)*nx*10.0;\n  float ripple=sin(nx*4.2-elapsed*3.3)*2.0;\n  float dy=(rocking+ripple)*envelope*liquid;\n  half4 moved=unpremul(inputImage.eval(p+float2(0.0,dy)*unitScale));\n  float top=smoothstep(36.0,72.0,uv.y)*(1.0-smoothstep(145.0,165.0,uv.y));\n  float left=exp(-pow((uv.x-(218.0-uv.y*0.20))/12.0,2.0));\n  float right=exp(-pow((uv.x-(424.0+uv.y*0.18))/9.0,2.0));\n  float light=(left+right*0.6)*top*envelope*0.15;\n  moved.rgb=mix(moved.rgb,half3(1.0),light);\n  return half4(moved.rgb*moved.a,moved.a);\n}",
+          "parameters": [
+            {
+              "id": "elapsed",
+              "name": "elapsed",
+              "valueType": "number",
+              "minimum": 0,
+              "maximum": 4.8,
+              "value": {
+                "kind": "keyframed",
+                "keyframes": [
+                  {
+                    "id": "time-start",
+                    "tick": 0,
+                    "value": 0,
+                    "interpolation": "linear"
+                  },
+                  {
+                    "id": "time-end",
+                    "tick": 1152,
+                    "value": 4.8,
+                    "interpolation": "hold"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "unitScale",
+              "name": "unitScale",
+              "valueType": "point",
+              "minimum": {
+                "x": 0,
+                "y": 0
+              },
+              "maximum": {
+                "x": 2,
+                "y": 2
+              },
+              "value": {
+                "kind": "constant",
+                "value": {
+                  "x": 1,
+                  "y": 1
+                }
+              }
+            }
+          ],
+          "capability": {
+            "requires": [
+              "runtime-effect",
+              "offscreen-surface"
+            ],
+            "fallback": "error",
+            "maxTemporarySurfaces": 2
+          }
+        }
+      },
+      "rootNodeIds": [
+        "wine"
+      ]
+    }
+  },
+  "rootCompositionId": "main",
+  "components": {},
+  "markers": [],
+  "capabilities": {
+    "required": [],
+    "optional": [],
+    "unsupportedPolicy": "error"
+  }
+}
