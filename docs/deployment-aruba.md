@@ -122,6 +122,8 @@ Superati test del carosello (pause/ripresa, selezioni manuali, aria, interruzion
 
 Rifinitura del 13 novembre 2026: tema **1.6.146** pubblicato nativamente. L’oscillazione del calice parte soltanto all’ingresso iniziale; i cambi automatici, manuali e da tastiera non la riavviano. Animazioni A/B delle foto e documento del vino invariati. Test del carosello e sintassi JavaScript superati; JavaScript remoto confrontato con la sorgente e corpo Home identico salvo la versione nell’URL del documento. Noindex conservato, nessun intervento editoriale o al Core. Pacchetto, rollback 1.6.145 e verifiche in `release/hero-wine-once-2026-11-13/`.
 
+Rifinitura del 13 novembre 2026: tema **1.6.147** aggiornato nativamente. Il mouse nella sola zona del vino riattiva l’oscillazione leggera, una volta per ingresso, senza riavvio durante permanenza o animazione già attiva/in pausa. Touch e movimento ridotto non la attivano. Restano invariati l’effetto all’apertura e il calice statico durante i cambi automatici delle foto. Verifica locale e Aruba di avvio, ritorno statico e nuovo ingresso superata; nessun errore/warning osservato. Asset pubblicati confrontati, corpo Home e noindex invariati. Nessuna modifica editoriale o al Core. Pacchetto, rollback 1.6.146 e prove in `release/hero-wine-hover-2026-11-13/`.
+
 ## Prima di aggiornare
 
 1. Verificare branch/worktree, differenza da distribuire, versione remota e ambiente `/anteprima/` corretto.
@@ -187,3 +189,5 @@ I pacchetti di trasferimento iniziale e la copia DB di build del 22 ottobre **no
 - Verificare permalink, media, redirect, form, HTTPS e admin. Rimuovere noindex soltanto al lancio autorizzato e verificare gli header effettivi.
 
 Questa checklist sostituisce un elenco separato di “Attività aperte”. Non implica che ogni verifica sia già completata o che il lancio sia autorizzato.
+
+Rifinitura del 13 novembre 2026: tema **1.6.148** aggiornato nativamente. Il canvas mantiene il calice anche a riposo, eliminando lo scambio con l’immagine nativa a ogni oscillazione. Il movimento del mouse nel liquido può riavviare un’oscillazione terminata senza uscita/rientro; nessun reset durante movimento già attivo o pausa. Test dedicati del calice e del carosello superati; asset pubblicati identici alle sorgenti, corpo Home e noindex conservati. Nessun intervento editoriale o al Core. Pacchetto, rollback 1.6.147 e prove in `release/hero-wine-stable-2026-11-13/`.

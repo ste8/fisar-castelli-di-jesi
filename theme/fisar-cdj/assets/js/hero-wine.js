@@ -9,23 +9,51 @@ window.fisarCdjCreateHeroWine = function (glass) {
   canvas.hidden = true;
   canvas.setAttribute('aria-hidden', 'true');
   glass.append(canvas);
+  const trigger = document.createElement('span');
+  trigger.className = 'hero__wine-trigger';
+  trigger.setAttribute('aria-hidden', 'true');
+  glass.append(trigger);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const duration = 4800;
   let player, ready, frame, token = 0, running = false, elapsed = 0, started = 0, lastFrame = -1, disabled = false;
+  let painting = Promise.resolve(), pointer = null;
+
+  function restoreImage() {
+    canvas.hidden = true;
+    canvas.style.visibility = '';
+    glass.classList.remove('has-wine-renderer');
+    glass.classList.remove('has-wine-motion');
+  }
+
+  // Serialize renders so an old frame cannot overwrite a later stop or restart.
+  function paint(tick, id) {
+    painting = painting.then(async () => {
+      if (disabled || token !== id || !player) return;
+      await player.seek(tick);
+      if (disabled || token !== id) return;
+      canvas.hidden = false;
+      canvas.style.visibility = '';
+      if (!glass.classList.contains('has-wine-renderer')) glass.classList.add('has-wine-renderer');
+    }).catch(error => { if (token === id) fail(error); });
+    return painting;
+  }
 
   function finish() {
-    token++;
+    const id = ++token;
     running = false;
     elapsed = duration;
     cancelAnimationFrame(frame);
-    canvas.hidden = true;
     glass.classList.remove('has-wine-motion');
     player?.pause();
+    // Keep the already-presented glass on screen. Never hide/reveal the canvas on replay.
+    if (player && !disabled) void paint(0, id);
   }
 
   function fail(error) {
     if (disabled) return;
-    finish();
     disabled = true;
+    finish();
+    restoreImage();
     player?.dispose();
     player = null;
     console.warn('Calice animato non disponibile: immagine statica mantenuta.', error);
@@ -47,8 +75,11 @@ window.fisarCdjCreateHeroWine = function (glass) {
       ]);
       const coverage = await runtime.checkCoverage(animation);
       if (!coverage.supported) throw new Error(coverage.reasons.join('; '));
+      // Measure the final canvas size before its first presentation, without hiding the native image.
+      canvas.style.visibility = 'hidden';
+      canvas.hidden = false;
       const created = await runtime.createPlayer({ canvas, document: animation, loop: false, muted: true,
-        maxPixelRatio: 2, loaders: { imageAssetLoader: () => bytes }, onError: fail });
+        maxPixelRatio: 2, releaseWhenOffscreen: false, loaders: { imageAssetLoader: () => bytes }, onError: fail });
       if (disabled) { created.dispose(); return; }
       player = created;
       await player.seek(0);
@@ -65,10 +96,8 @@ window.fisarCdjCreateHeroWine = function (glass) {
     const position = Math.floor(elapsed / (1000 / 30));
     if (position !== lastFrame) {
       lastFrame = position;
-      try { await player.seek(Math.round(elapsed * 240 / 1000)); }
-      catch (error) { if (token === id) fail(error); return; }
+      await paint(Math.round(elapsed * 240 / 1000), id);
       if (!running || token !== id) return;
-      canvas.hidden = false;
       glass.classList.add('has-wine-motion');
     }
     frame = requestAnimationFrame(time => { void draw(id, time); });
@@ -83,8 +112,33 @@ window.fisarCdjCreateHeroWine = function (glass) {
     }).catch(error => { if (!disabled) fail(error); });
   }
 
+  function start() {
+    if (disabled) return;
+    elapsed = 0;
+    lastFrame = -1;
+    activate();
+  }
+
+  function reactToMouse(event) {
+    if (event.pointerType !== 'mouse' || document.hidden || reduced.matches || running || elapsed < duration) return;
+    start();
+  }
+  trigger.addEventListener('pointerenter', event => {
+    pointer = { x: event.clientX, y: event.clientY };
+    reactToMouse(event);
+  });
+  trigger.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'mouse') return;
+    const next = { x: event.clientX, y: event.clientY };
+    if (pointer && Math.hypot(next.x - pointer.x, next.y - pointer.y) < 4) return;
+    pointer = next;
+    // Movement can replay a settled wave without requiring an exit, but never resets a live one.
+    reactToMouse(event);
+  });
+  trigger.addEventListener('pointerleave', () => { pointer = null; });
+
   return {
-    start() { if (!disabled) { elapsed = 0; lastFrame = -1; activate(); } },
+    start,
     pause() {
       if (!running) return;
       elapsed = Math.min(duration, performance.now() - started);
@@ -94,6 +148,6 @@ window.fisarCdjCreateHeroWine = function (glass) {
     },
     resume() { if (!disabled && !running && elapsed < duration) activate(); },
     finish,
-    dispose() { finish(); disabled = true; player?.dispose(); canvas.remove(); }
+    dispose() { disabled = true; finish(); restoreImage(); player?.dispose(); canvas.remove(); trigger.remove(); }
   };
 };

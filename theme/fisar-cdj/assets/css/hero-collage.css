@@ -33,8 +33,17 @@
 .hero__glass { isolation: isolate; }
 .hero__wine { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 .5rem .8rem #0008); }
 .hero__wine[hidden] { display: none; }
-.hero__glass.has-wine-motion .hero__glass-image { visibility: hidden; }
+.hero__glass.has-wine-renderer .hero__glass-image { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
  .hero__wine { display: none; }
- .hero__glass.has-wine-motion .hero__glass-image { visibility: visible; }
+ .hero__glass.has-wine-renderer .hero__glass-image { visibility: visible; }
+}
+
+/* Hit area follows only the wine in the approved glass; the rest stays click-through. */
+.hero__wine-trigger {
+ position: absolute; left: 22.5%; top: 41%; width: 55%; height: 14%; z-index: 1; pointer-events: none;
+ clip-path: polygon(1% 0, 99% 0, 97% 22%, 88% 48%, 72% 73%, 50% 94%, 28% 73%, 12% 48%, 3% 22%);
+}
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+ .hero__wine-trigger { pointer-events: auto; }
 }
