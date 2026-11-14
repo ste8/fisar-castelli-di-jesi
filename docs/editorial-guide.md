@@ -149,6 +149,12 @@ Data e titolo sono necessari; non incollare una tabella HTML. Dopo import riusci
 
 ## Blog e fotografie
 
+### Racconti collegati ai corsi
+
+Nel riquadro **Racconto di eventi e corsi** dell’articolo, selezionare **Corsi collegati (facoltativi)**. È possibile scegliere più corsi per una visita condivisa o una consegna degli attestati. Il collegamento si inserisce soltanto nell’articolo: banner ed elenco nella pagina del corso e rimando dal racconto sono automatici. I racconti del corso seguono la data di pubblicazione, dal più vecchio al più recente; si possono inserire durante il corso o dopo la conclusione. Senza racconti non compaiono sezioni vuote. Bozze, articoli privati, programmati o protetti da password sono esclusi dai rimandi pubblici, così come i corsi non pubblici.
+
+Collegare l’edizione documentata da sede, livello e date, non semplicemente il corso più vicino nel tempo. Un racconto pubblicato nell’anno successivo può appartenere a un corso iniziato l’anno precedente, soprattutto per esami, consegne e recuperi del periodo pandemico. Non collegare una notizia sul terzo livello alla scheda del primo livello solo perché la città coincide. Nei post collettivi confermare le classi partecipanti prima di selezionarle tutte. Conservare testo, data, copertina, gallerie, categoria e metadati social dell’articolo; la relazione con un Evento può coesistere con quelle ai Corsi.
+
 Il Blog raccoglie racconti, approfondimenti e annunci negli **Articoli**, mantenendo `/news/`. Categorie e tag sono quelli nativi, senza una tassonomia custom obbligatoria.
 
 I filtri pubblici usano le categorie **Racconti degli eventi**, **Servizi**, **Corsi**, **Vita della Delegazione**, **Ricordi**. Si assegnano dal pannello Categorie dell’articolo o dalla modifica di gruppo. **Altro** è un filtro automatico, non una categoria da assegnare: mostra gli articoli fuori da tutte le categorie principali, inclusi quelli ancora da classificare. **Tutte le categorie** mostra invece l’intero archivio. Le categorie principali sono riconosciute tramite gli slug documentati nell’architettura; nuove categorie non principali confluiscono in Altro.

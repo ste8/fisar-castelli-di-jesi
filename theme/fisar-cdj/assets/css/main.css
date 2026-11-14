@@ -2470,8 +2470,18 @@ blockquote {
 	list-style: none;
 }
 
+.report-links__event + .report-links__event,
 .report-links__event + .report-links__social {
 	margin-top: 1.25rem;
+}
+
+#course-reports .event-reports__list li {
+	display: grid;
+	gap: .25rem;
+}
+
+#course-reports time {
+	color: var(--color-muted);
 }
 
 .single-news .post-navigation a strong {

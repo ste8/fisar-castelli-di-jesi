@@ -4,9 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** A report belongs to one event; event pages find their published reports. */
+/** Articles link to an event and/or courses; their pages find public reports automatically. */
 final class Fisar_CDJ_Event_Reports {
 	public const EVENT_META = '_fisar_report_event_id';
+	/** One integer per metadata row also supports reports about several courses. */
+	public const COURSE_META = '_fisar_report_course_id';
 	public const SOCIAL_FIELDS = array(
 		'_fisar_report_facebook_url'  => 'Facebook',
 		'_fisar_report_instagram_url' => 'Instagram',
@@ -21,6 +23,13 @@ final class Fisar_CDJ_Event_Reports {
 	}
 
 	public static function register_meta(): void {
+		register_post_meta( 'post', self::COURSE_META, array(
+			'single' => false,
+			'type' => 'integer',
+			'show_in_rest' => false,
+			'auth_callback' => static fn(): bool => current_user_can( 'edit_posts' ),
+			'sanitize_callback' => array( self::class, 'sanitize_course_id' ),
+		) );
 		register_post_meta( 'post', self::EVENT_META, array(
 			'single' => true,
 			'type' => 'integer',
@@ -51,6 +60,14 @@ final class Fisar_CDJ_Event_Reports {
 		return is_string( $value ) ? esc_url_raw( trim( $value ), array( 'http', 'https' ) ) : '';
 	}
 
+	public static function sanitize_course_id( mixed $value ): int {
+		if ( ! is_scalar( $value ) || ! ctype_digit( (string) $value ) || (int) $value < 1 ) {
+			return 0;
+		}
+		$course = get_post( (int) $value );
+		return $course && Fisar_CDJ_Post_Types::COURSE === $course->post_type && 'publish' === $course->post_status && '' === $course->post_password ? $course->ID : 0;
+	}
+
 	private static function is_public_event( int $event_id ): bool {
 		if ( $event_id < 1 ) {
 			return false;
@@ -60,7 +77,7 @@ final class Fisar_CDJ_Event_Reports {
 	}
 
 	public static function add_meta_box(): void {
-		add_meta_box( 'fisar-post-report', 'Racconto dell’evento', array( self::class, 'render' ), 'post', 'normal', 'default' );
+		add_meta_box( 'fisar-post-report', 'Racconto di eventi e corsi', array( self::class, 'render' ), 'post', 'normal', 'default' );
 	}
 
 	public static function render( WP_Post $post ): void {
@@ -74,6 +91,14 @@ final class Fisar_CDJ_Event_Reports {
 			'meta_key' => '_fisar_event_date',
 			'orderby' => array( 'meta_value' => 'DESC', 'ID' => 'DESC' ),
 		) );
+		$courses = get_posts( array(
+			'post_type' => Fisar_CDJ_Post_Types::COURSE,
+			'post_status' => 'publish',
+			'has_password' => false,
+			'posts_per_page' => -1,
+			'orderby' => array( 'title' => 'ASC', 'ID' => 'ASC' ),
+		) );
+		$selected_courses = self::courses_for_report( $post->ID );
 		?>
 		<input type="hidden" name="_fisar_report_fields_present" value="1">
 		<div class="fisar-field">
@@ -86,6 +111,17 @@ final class Fisar_CDJ_Event_Reports {
 			</select>
 			<p class="description">Quando pubblichi questo articolo, il collegamento al racconto compare automaticamente nella pagina dell’evento. Non occorre modificare l’evento.</p>
 		</div>
+		<fieldset class="fisar-field">
+			<legend><strong>Corsi collegati (facoltativi)</strong></legend>
+			<input type="hidden" name="_fisar_report_courses_present" value="1">
+			<p class="description" id="fisar-report-courses-help">Seleziona il corso raccontato. Puoi sceglierne più di uno per visite condivise o consegne degli attestati. I rimandi compaiono automaticamente nelle pagine dei corsi e nell’articolo.</p>
+			<div class="fisar-report-courses" role="group" aria-label="Corsi disponibili" aria-describedby="fisar-report-courses-help" tabindex="0">
+				<?php foreach ( $courses as $course ) : ?>
+					<p><label><input type="checkbox" name="<?php echo esc_attr( self::COURSE_META ); ?>[]" value="<?php echo (int) $course->ID; ?>"<?php checked( in_array( $course->ID, $selected_courses, true ) ); ?>> <?php echo esc_html( get_the_title( $course ) ); ?></label></p>
+				<?php endforeach; ?>
+				<?php if ( ! $courses ) : ?><p>Nessun corso pubblicato disponibile.</p><?php endif; ?>
+			</div>
+		</fieldset>
 		<div class="fisar-admin-grid fisar-admin-grid--2">
 			<?php foreach ( self::SOCIAL_FIELDS as $key => $label ) : ?>
 				<div class="fisar-field">
@@ -107,6 +143,17 @@ final class Fisar_CDJ_Event_Reports {
 		}
 		if ( isset( $_POST[ self::EVENT_META ] ) ) {
 			update_post_meta( $post_id, self::EVENT_META, self::sanitize_event_id( wp_unslash( $_POST[ self::EVENT_META ] ) ) );
+		}
+		// The separate marker preserves links when an older editor omits these controls.
+		if ( isset( $_POST['_fisar_report_courses_present'] ) && ( ! isset( $_POST[ self::COURSE_META ] ) || is_array( $_POST[ self::COURSE_META ] ) ) ) {
+			$course_ids = array_unique( array_filter( array_map( array( self::class, 'sanitize_course_id' ), wp_unslash( $_POST[ self::COURSE_META ] ?? array() ) ) ) );
+			$stored_ids = array_map( 'intval', get_post_meta( $post_id, self::COURSE_META, false ) );
+			foreach ( array_diff( $stored_ids, $course_ids ) as $course_id ) {
+				delete_post_meta( $post_id, self::COURSE_META, $course_id );
+			}
+			foreach ( array_diff( $course_ids, $stored_ids ) as $course_id ) {
+				add_post_meta( $post_id, self::COURSE_META, $course_id );
+			}
 		}
 		foreach ( self::SOCIAL_FIELDS as $key => $label ) {
 			if ( isset( $_POST[ $key ] ) ) {
@@ -133,6 +180,26 @@ final class Fisar_CDJ_Event_Reports {
 
 	public static function event_for_report( int $post_id ): int {
 		return self::sanitize_event_id( get_post_meta( $post_id, self::EVENT_META, true ) );
+	}
+
+	/** Find reports in reading order without changing the course itself. */
+	public static function for_course( int $course_id ): array {
+		if ( ! self::sanitize_course_id( $course_id ) ) {
+			return array();
+		}
+		return get_posts( array(
+			'post_type' => 'post',
+			'post_status' => 'publish',
+			'has_password' => false,
+			'posts_per_page' => -1,
+			'meta_key' => self::COURSE_META,
+			'meta_value' => $course_id,
+			'orderby' => array( 'date' => 'ASC', 'ID' => 'ASC' ),
+		) );
+	}
+
+	public static function courses_for_report( int $post_id ): array {
+		return array_values( array_unique( array_filter( array_map( array( self::class, 'sanitize_course_id' ), get_post_meta( $post_id, self::COURSE_META, false ) ) ) ) );
 	}
 
 	public static function social_links( int $post_id ): array {

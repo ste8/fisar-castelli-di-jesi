@@ -16,6 +16,7 @@ $active     = fisar_cdj_is_course_active( $course_id );
 $calendar   = fisar_cdj_get_course_calendar( $course_id );
 $has_calendar_notes = (bool) array_filter( $calendar, static fn( array $lesson ): bool => '' !== trim( $lesson['notes'] ) );
 $events     = fisar_cdj_get_course_events( $course_id );
+$reports    = class_exists( 'Fisar_CDJ_Event_Reports' ) && method_exists( 'Fisar_CDJ_Event_Reports', 'for_course' ) ? Fisar_CDJ_Event_Reports::for_course( $course_id ) : array();
 $details    = fisar_cdj_get_course_registration_details( $course_id );
 $offer      = fisar_cdj_get_course_offer( $course_id );
 $location   = array(
@@ -45,6 +46,12 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 					<a class="back-link" href="<?php echo esc_url( fisar_cdj_theme_archive_url( Fisar_CDJ_Post_Types::COURSE, 'corsi' ) ); ?>"><span aria-hidden="true">←</span> Tutti i corsi</a>
 					<p class="eyebrow"><?php echo $level ? esc_html( $level ) . '° livello' : esc_html( fisar_cdj_get_course_type_label( $course_id ) ); ?> · <?php echo $active ? 'Corso attivo' : 'In archivio'; ?></p>
 					<h1><?php the_title(); ?></h1>
+					<?php get_template_part( 'template-parts/event-report-preview', null, array(
+						'reports' => $reports,
+						'label' => 'Il corso raccontato',
+						'cta' => 1 === count( $reports ) ? 'leggi il racconto' : 'leggi i racconti',
+						'list_url' => '#course-reports',
+					) ); ?>
 					<?php if ( has_excerpt() ) : ?><p class="content-hero__lead"><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 					<ul class="hero-facts">
 						<?php if ( $start ) : ?><li><strong>Inizio</strong><span><?php echo esc_html( fisar_cdj_theme_format_date_with_day( $start ) ); ?></span></li><?php endif; ?>
@@ -101,6 +108,7 @@ $registration_link_label = $details['closed'] ? 'Informazioni sulle iscrizioni' 
 			<?php endif; ?>
 
 			<div class="prose course-follow-up">
+				<?php get_template_part( 'template-parts/course-reports', null, array( 'reports' => $reports ) ); ?>
 				<?php if ( $events->have_posts() ) : ?>
 					<section aria-labelledby="course-events-title">
 						<h2 id="course-events-title">Eventi collegati al corso</h2>

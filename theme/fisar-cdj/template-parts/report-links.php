@@ -4,8 +4,9 @@ if ( ! class_exists( 'Fisar_CDJ_Event_Reports' ) ) {
 }
 $post_id = (int) ( $args['post_id'] ?? get_the_ID() );
 $event_id = Fisar_CDJ_Event_Reports::event_for_report( $post_id );
+$course_ids = Fisar_CDJ_Event_Reports::courses_for_report( $post_id );
 $social_links = Fisar_CDJ_Event_Reports::social_links( $post_id );
-if ( ! $event_id && ! $social_links ) {
+if ( ! $event_id && ! $course_ids && ! $social_links ) {
 	return;
 }
 ?>
@@ -14,6 +15,16 @@ if ( ! $event_id && ! $social_links ) {
 		<div class="report-links__event">
 			<p class="eyebrow">L’evento raccontato</p>
 			<a class="text-link" href="<?php echo esc_url( get_permalink( $event_id ) ); ?>"><?php echo esc_html( get_the_title( $event_id ) ); ?> <span aria-hidden="true">→</span></a>
+		</div>
+	<?php endif; ?>
+	<?php if ( $course_ids ) : ?>
+		<div class="report-links__event">
+			<p class="eyebrow"><?php echo 1 === count( $course_ids ) ? 'Il corso raccontato' : 'I corsi raccontati'; ?></p>
+			<ul class="report-links__social">
+				<?php foreach ( $course_ids as $course_id ) : ?>
+					<li><a class="text-link" href="<?php echo esc_url( get_permalink( $course_id ) ); ?>"><?php echo esc_html( get_the_title( $course_id ) ); ?> <span aria-hidden="true">→</span></a></li>
+				<?php endforeach; ?>
+			</ul>
 		</div>
 	<?php endif; ?>
 	<?php if ( $social_links ) : ?>
