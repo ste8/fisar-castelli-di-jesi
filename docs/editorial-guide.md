@@ -195,7 +195,7 @@ Menu principale: Chi siamo, Eventi, Corsi, Blog, Seguici, Contatti; CTA **Divent
 | Diventa socio | `/unisciti-a-noi/`; vantaggi, quote e modalità di adesione da ricontrollare ai rinnovi |
 | Seguici | `/seguici/`; canali/modulo condivisi con Home, ancora `newsletter-page` |
 | Servizi sommelier | `/servizi/`; pagina nativa a blocchi, contatto tramite `/contatti/#servizi` |
-| Diventare sommelier | `/diventare-sommelier/`; prima versione locale, tre livelli, esame e formazione superiore; corsi attivi e Contatti come destinazioni operative |
+| Diventare sommelier | `/diventare-sommelier/`; pubblica su Aruba dal solo URL durante la revisione, tre livelli, esame e formazione superiore; corsi attivi e Contatti come destinazioni operative |
 | Contatti | `/contatti/`; introduzione editoriale, dati comuni generati dal plugin, ancora `servizi` per il Responsabile Servizi |
 | Privacy | Pagina scelta nelle impostazioni Privacy; conservare `navigazione-e-cookie` |
 

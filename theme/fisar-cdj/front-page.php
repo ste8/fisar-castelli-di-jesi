@@ -174,7 +174,7 @@ $events_link_text = $has_more_events
 				</div>
 			</header>
 
-			<?php get_template_part( 'template-parts/follow-channels', null, array( 'newsletter_url' => '#newsletter-home', 'heading_level' => 3 ) ); ?>
+			<?php get_template_part( 'template-parts/follow-channels', null, array( 'newsletter_url' => '#newsletter-home', 'heading_level' => 3, 'animate_icons' => true ) ); ?>
 
 			<div class="newsletter-panel" id="newsletter-home">
 				<?php get_template_part( 'template-parts/newsletter-signup', null, array( 'context' => 'home', 'heading_level' => 3 ) ); ?>

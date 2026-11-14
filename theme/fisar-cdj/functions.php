@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.150' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.153' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 require_once __DIR__ . '/inc/training-journey.php';
@@ -107,6 +107,8 @@ function fisar_cdj_theme_assets(): void {
 		wp_enqueue_script( 'fisar-cdj-training-journey', get_template_directory_uri() . '/assets/js/training-journey.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
 	if ( is_front_page() ) {
+		wp_enqueue_style( 'fisar-cdj-follow-motion', get_template_directory_uri() . '/assets/css/follow-motion.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
+		wp_enqueue_script( 'fisar-cdj-follow-motion', get_template_directory_uri() . '/assets/js/follow-motion.js', array(), FISAR_CDJ_THEME_VERSION, true );
 		wp_enqueue_style( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/css/hero-collage.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
 		wp_enqueue_script( 'fisar-cdj-hero-wine', get_template_directory_uri() . '/assets/js/hero-wine.js', array(), FISAR_CDJ_THEME_VERSION, true );
 		wp_enqueue_script( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/js/hero-collage.js', array( 'fisar-cdj-hero-wine' ), FISAR_CDJ_THEME_VERSION, true );

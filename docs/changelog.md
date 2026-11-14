@@ -2,6 +2,14 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 14 novembre 2026 — Effetti delle icone Come seguirci, tema 1.6.153
+
+Mantenuti soltanto i quattro effetti brevi su mouse/focus nella Home: puntini WhatsApp, riflesso Instagram (1,6 secondi), alone Facebook e apertura della busta Newsletter. Icone complete al caricamento, nessun disegno iniziale, observer o timer di avvio. SVG e Web Animations native senza nuovo runtime; testi, card e link restano fermi. Supporto tastiera, touch senza hover, movimento ridotto e pulizia su scheda nascosta/pagehide; protezione dalle promesse annullate. Header/footer e pagina Seguici invariati. Pubblicato il tema nativamente su Aruba; verificati tutti e quattro gli effetti, nessun ingresso automatico o errore console. Test dedicati superati, asset remoti identici alle sorgenti, testi e link Home preservati, Seguici/percorso e noindex invariati. Pacchetto, rollback 1.6.150 e prove in `.local-deployment/release/follow-hover-2026-11-14/`.
+
+## 14 novembre 2026 — Percorso sommelier pubblicato su Aruba
+
+Aggiornato nativamente il tema 1.6.150 e creata la pagina 3926 `/diventare-sommelier/`, con contenuto approvato a blocchi e foto 223 già in Libreria. Accesso diretto, senza voci di menu o richiami da Home/Corsi/La FISAR. Testi, link e immagini del corpo preservati; editor nativo salvato e riaperto. Sequenza illustrata, stato finale e ripetizione esplicita verificati nel browser. Home, Corsi, La FISAR e pagine precedenti invariati, noindex conservato, nessun URL localhost. Pacchetto, rollback 1.6.149 e confronti in `.local-deployment/release/training-journey-2026-11-14/`. Nessun import del database locale o aggiornamento del Core.
+
 ## 13 novembre 2026 — Prova locale del percorso animato, tema 1.6.150
 
 Preparata una sequenza illustrata sui tre livelli nella pagina locale `/diventare-sommelier/#tre-livelli`: calice, territori e abbinamento si disegnano progressivamente e vengono collegati da una linea dorata. Riproduzione unica all’entrata in viewport, fermo finale e pulsante per rivederla. Runtime Clayzo originale 0.3.21 già nel tema, importato solo quando necessario; fallback SVG e rispetto del movimento ridotto. Contenuto e database invariati: inserimento sul rendering della lista nativa. Sorgente riproducibile in `tools/training-animation/`. Aruba resta al tema 1.6.149 e la pagina non è pubblicata sul server.
