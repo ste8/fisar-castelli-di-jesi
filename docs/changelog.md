@@ -2,6 +2,10 @@
 
 Solo cambiamenti significativi. Dettagli, prove e versioni precedenti sono nella cronologia Git; il diario pre-pulizia è nel commit `6ec7e27`, al percorso storico `docs/07-development/changelog.md`. Le guide correnti non richiedono di leggere quel diario.
 
+## 13 novembre 2026 — Prova locale del percorso animato, tema 1.6.150
+
+Preparata una sequenza illustrata sui tre livelli nella pagina locale `/diventare-sommelier/#tre-livelli`: calice, territori e abbinamento si disegnano progressivamente e vengono collegati da una linea dorata. Riproduzione unica all’entrata in viewport, fermo finale e pulsante per rivederla. Runtime Clayzo originale 0.3.21 già nel tema, importato solo quando necessario; fallback SVG e rispetto del movimento ridotto. Contenuto e database invariati: inserimento sul rendering della lista nativa. Sorgente riproducibile in `tools/training-animation/`. Aruba resta al tema 1.6.149 e la pagina non è pubblicata sul server.
+
 ## 13 novembre 2026 — Tipografia uniforme Poppins, tema 1.6.149
 
 Motto della Home e della Carta dei Valori uniformati a Poppins, insieme a citazioni e stili editoriali residui nel frontend e nel canvas dell’editor. Rimosso Cormorant, relativo caricamento e preload. Il preset storico `fisar-heading` resta come alias Poppins per compatibilità con eventuali blocchi salvati; titoli globali WordPress allineati a Poppins 500. Nessuna modifica ai testi.

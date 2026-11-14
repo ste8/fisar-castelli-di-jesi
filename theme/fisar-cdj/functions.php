@@ -4,9 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.149' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.150' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
+require_once __DIR__ . '/inc/training-journey.php';
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';
@@ -100,6 +101,10 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	if ( is_home() || is_post_type_archive( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) ) ) {
 		wp_enqueue_script( 'fisar-cdj-archive-filters', get_template_directory_uri() . '/assets/js/archive-filters.js', array(), FISAR_CDJ_THEME_VERSION, true );
+	}
+	if ( is_page( 'diventare-sommelier' ) ) {
+		wp_enqueue_style( 'fisar-cdj-training-journey', get_template_directory_uri() . '/assets/css/training-journey.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
+		wp_enqueue_script( 'fisar-cdj-training-journey', get_template_directory_uri() . '/assets/js/training-journey.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'fisar-cdj-hero', get_template_directory_uri() . '/assets/css/hero-collage.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );

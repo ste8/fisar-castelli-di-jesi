@@ -46,6 +46,7 @@ Il tag Docker non aggiorna da solo il core nel volume persistente. Per aggiornar
 git diff --check
 node tests/hero-collage.test.cjs
 node --experimental-vm-modules tests/hero-wine.test.cjs
+node --experimental-vm-modules tests/training-journey.test.cjs
 node tests/editor-excerpt.test.cjs
 node tests/event-whatsapp-message.test.cjs
 node assets/photography/sito-home/rebuild.mjs --check
@@ -119,3 +120,5 @@ Per lavori solo di codice/documentazione non modificare contenuti, utenti o volu
 ## Anteprime social
 
 `eval-file /tmp/fisar-tests/social-metadata.test.php`, con il comando WP-CLI locale documentato sopra, verifica creazione e successive modifiche di un Evento, precedenza della copertina e del riassunto nativo, fallback istituzionale, elenchi/Unicode e escaping degli attributi. Verifica l’esclusione di gallerie, shortcode, blocchi dinamici, campi pratici riservati, bozze, privati, programmati, password, anteprime e ricerche. Controlla Home e URL degli archivi filtrati. Crea e rimuove solo fixture locali e una propria immagine temporanea; non eseguire su Aruba.
+
+La prova locale del percorso animato è a `http://localhost:8090/diventare-sommelier/#tre-livelli`. `training-journey.test.cjs` verifica caricamento solo in viewport, riproduzione unica/ripetizione esplicita, scheda nascosta, movimento ridotto, uscita durante caricamento e fallback su errore. Nel browser controllare disegno progressivo dei tre simboli, stato finale fermo, pulsante Rivedi e impaginazione a 390 px. La pagina non è pubblicata su Aruba.
