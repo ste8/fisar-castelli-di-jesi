@@ -1,0 +1,18 @@
+{
+  "description": "Fotografia rappresentativa di una lezione FISAR, con docente, partecipanti e calici in primo piano.",
+  "source": "Sito ufficiale FISAR, home, sezione Formazione: Esame per aspiranti relatori (RF).",
+  "source_page": "https://www.fisar.org/",
+  "source_url": "https://www.fisar.org/contents/delegations/3/images/ef1a42fd7237a76eaceb2de722a554c7ca694f0a.jpg",
+  "credit": "Fonte: FISAR. Il riquadro della home non indica un credito fotografico.",
+  "approved_on": "2026-11-14",
+  "original": "assets/photography/course-default-introductory.jpg",
+  "original_sha256": "e37e2092184e3237eb0a0befda552ddf996806d14b8a8c2ce1eed3b3d1bd8a79",
+  "original_width": 800,
+  "original_height": 534,
+  "webp": "theme/fisar-cdj/assets/images/course-default-introductory-fisar.webp",
+  "webp_sha256": "2bd9692fd458c0997da53b555d6d0e00039fdabdcc44de19586477525b7c8b87",
+  "width": 800,
+  "height": 534,
+  "processing": "Conversione WebP qualità 85, metadati rimossi; dimensioni e composizione originali conservate. Ritaglio quadrato soltanto tramite CSS nelle card; immagine intera nel dettaglio.",
+  "usage": "Fallback automatico per i minicorsi introductory senza immagine in evidenza. Fotografia rappresentativa FISAR, non attribuita alle specifiche edizioni storiche. Se esiste una copertina editoriale, questa mantiene la precedenza."
+}

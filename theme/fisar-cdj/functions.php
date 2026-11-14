@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.155' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.157' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 require_once __DIR__ . '/inc/training-journey.php';
@@ -387,20 +387,37 @@ function fisar_cdj_theme_logo( bool $on_dark = false, bool $for_header = false )
 	);
 }
 
-/** Generic photo only for Sommelier editions without an editorial cover. */
+/** Generic illustrations by course type, only without an editorial cover. */
 function fisar_cdj_theme_course_image( int $course_id, string $class, bool $informative = false, string $loading = 'lazy' ): void {
 	if ( get_post_thumbnail_id( $course_id ) ) {
 		fisar_cdj_theme_post_image( $course_id, $class, $informative, $loading );
 		return;
 	}
-	if ( ! in_array( get_post_meta( $course_id, '_fisar_course_type', true ), array( '', 'sommelier' ), true ) ) {
+	$default = match ( get_post_meta( $course_id, '_fisar_course_type', true ) ) {
+		'introductory' => array(
+			'file' => 'course-default-introductory-fisar.webp',
+			'width' => 800,
+			'height' => 534,
+			'alt' => 'Fotografia rappresentativa di una lezione FISAR con docente e partecipanti.',
+		),
+		'', 'sommelier' => array(
+			'file' => 'course-default-sommelier.webp',
+			'width' => 800,
+			'height' => 534,
+			'alt' => 'Immagine rappresentativa dei corsi Sommelier FISAR',
+		),
+		default => null,
+	};
+	if ( null === $default ) {
 		return;
 	}
 	printf(
-		'<img class="%1$s course-image--default" src="%2$s" alt="%3$s" width="800" height="534" loading="%4$s" decoding="async">',
+		'<img class="%1$s course-image--default" src="%2$s" alt="%3$s" width="%4$d" height="%5$d" loading="%6$s" decoding="async">',
 		esc_attr( $class ),
-		esc_url( get_template_directory_uri() . '/assets/images/course-default-sommelier.webp' ),
-		$informative ? 'Immagine rappresentativa dei corsi Sommelier FISAR' : '',
+		esc_url( get_template_directory_uri() . '/assets/images/' . $default['file'] ),
+		$informative ? esc_attr( $default['alt'] ) : '',
+		$default['width'],
+		$default['height'],
 		esc_attr( $loading )
 	);
 }
