@@ -39,14 +39,20 @@ try {
 	$message = $result['message'];
 	$check( str_starts_with( $message, '🍷 *TEST LOCALE — DEGUSTAZIONE DI TÈ E VINI*' ), 'Uppercase the event title, including accented letters.' );
 	$check( str_contains( $message, 'Posizione: https://maps.google.com/' ) && ! str_contains( $message, 'Posizione dell’evento' ), 'Use the shorter map label.' );
-	foreach ( array( '*vini giapponesi*', '_light dinner_', '*In degustazione*', "1. Koshu & sakè\n2. Rosato", "- Tempura\n- Risotto", 'Il menu (https://example.org/menu)', 'Accoglienza dalle 19:45 · Inizio ore 20:00 · Fine ore 23:00', 'Via delle Vigne, 4', 'Montemarciano (AN)', 'Soci FISAR: 50 €', 'Non soci: 60 €', 'Menu senza vini: 40 €', 'Percorso gastronomico senza abbinamento.', 'POSTI LIMITATI', 'Dopo tale termine', 'WhatsApp: Contatto uno 3350000001', 'WhatsApp: Contatto due 3350000002', 'eventi@example.org', 'https://example.org/prenota', '*esigenze alimentari*' ) as $expected ) {
+	foreach ( array( '*vini giapponesi*', '_light dinner_', '*🔹 IN DEGUSTAZIONE*', "1. Koshu & sakè\n2. Rosato", "- Tempura\n- Risotto", 'Il menu (https://example.org/menu)', 'Accoglienza dalle 19:45 · Inizio ore 20:00 · Fine ore 23:00', 'Via delle Vigne, 4', 'Montemarciano (AN)', 'Soci FISAR: 50 €', 'Non soci: 60 €', 'Menu senza vini: 40 €', 'Percorso gastronomico senza abbinamento.', 'POSTI LIMITATI', 'Dopo tale termine', 'WhatsApp: Contatto uno 3350000001', 'WhatsApp: Contatto due 3350000002', 'eventi@example.org', 'https://example.org/prenota', '*esigenze alimentari*' ) as $expected ) {
 		$check( str_contains( $message, $expected ), 'Expected in message: ' . $expected );
 	}
 	$check( ! str_contains( $message, '**' ) && ! str_contains( $message, '<p>' ) && ! str_contains( $message, '<!--' ), 'WhatsApp markers, not Markdown/HTML/block comments.' );
-	$check( str_contains( $message, "*In degustazione*\n1. Koshu" ) && str_contains( $message, "*In abbinamento*\n- Tempura" ), 'No empty line after section headings, including before lists.' );
+	$check( str_contains( $message, "*🔹 IN DEGUSTAZIONE*\n1. Koshu" ) && str_contains( $message, "*🔹 IN ABBINAMENTO*\n- Tempura" ), 'No empty line after section headings, including before lists.' );
 	$check( ! str_contains( $message, 'Estratto da non duplicare' ) && ! str_contains( $message, 'Da ignorare' ) && ! str_contains( $message, '+39' ), 'No duplicate excerpt, incomplete fees or unnecessary Italian prefix.' );
 	$check( ! str_contains( $message, 'TROVI I DETTAGLI ANCHE SUL SITO' ) && ! empty( $result['warnings'] ), 'Drafts must not export a public link.' );
 	$check( $before_post === get_post( $id, ARRAY_A ) && $before_meta === get_post_meta( $id ), 'Generation must not write editorial content or metadata.' );
+	foreach ( array( '🍾 Degustazione di tè', 'Vini giapponesi 🇯🇵', '1️⃣ The Blind', '&#127863; Vini &amp; novità' ) as $title_with_icon ) {
+		$event_with_icon = clone get_post( $id );
+		$event_with_icon->post_title = $title_with_icon;
+		$expected_title = '*' . mb_strtoupper( html_entity_decode( $title_with_icon, ENT_QUOTES | ENT_HTML5, 'UTF-8' ), 'UTF-8' ) . '*';
+		$check( str_starts_with( Fisar_CDJ_Event_WhatsApp_Message::generate( $event_with_icon )['message'], $expected_title . "\n\n" ), 'Keep a title emoji wherever it occurs, including flags, keycaps and HTML entities, without an extra wine glass.' );
+	}
 	$set( 'deadline', '2026-10-04' );
 	$ordinary_deadline = $generate( $id )['message'];
 	$check( str_contains( $ordinary_deadline, '*⚠️ PRENOTAZIONI ENTRO DOMENICA 4 OTTOBRE*' ) && ! str_contains( $ordinary_deadline, '4 OTTOBRE 2026' ) && str_contains( $ordinary_deadline, "*👉 INFO E PRENOTAZIONI*\n" ), 'Ordinary deadline is uppercase without year; contacts have the shared heading.' );
@@ -121,9 +127,20 @@ try {
 	$unsafe = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<p>A <strong>test</strong><br>new line.</p><script>secret-script</script><iframe>secret-frame</iframe><a href="javascript:alert(1)">test link</a>' );
 	$check( ! str_contains( $unsafe, 'secret-' ) && ! str_contains( $unsafe, 'javascript:' ) && str_contains( $unsafe, '*test*' ) && str_contains( $unsafe, "\nnew line" ), 'Safe conversion preserves text and removes executable content.' );
 	$nested = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<h2><strong>Titolo</strong></h2><p><b>Testo <strong>e altro</strong></b> <em><i>corsivo</i></em></p>' );
-	$check( ! str_contains( $nested, '**' ) && ! str_contains( $nested, '__' ) && str_contains( $nested, '*Titolo*' ) && str_contains( $nested, '*Testo e altro*' ), 'Nested equivalent tags must not produce Markdown double markers.' );
+	$check( ! str_contains( $nested, '**' ) && ! str_contains( $nested, '__' ) && str_contains( $nested, '*🔹 TITOLO*' ) && str_contains( $nested, '*Testo e altro*' ), 'Nested equivalent tags must not produce Markdown double markers.' );
 	$emoji_heading = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<p>🍷 <strong>IN DEGUSTAZIONE</strong></p><ol><li>Vino uno</li></ol><p>🍽️ <strong>IN ABBINAMENTO</strong></p><p>Piatto uno</p>' );
 	$check( str_contains( $emoji_heading, "🍷 *IN DEGUSTAZIONE*\n1. Vino uno" ) && str_contains( $emoji_heading, "🍽️ *IN ABBINAMENTO*\nPiatto uno" ), 'Standalone bold paragraph headings with emoji also stay close to their content.' );
+	foreach ( range( 1, 6 ) as $level ) {
+		$heading = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<h' . $level . '>Caffè, tè &amp; <strong>novità</strong></h' . $level . '><p>Il testo resta minuscolo.</p>' );
+		$check( "*🔹 CAFFÈ, TÈ & NOVITÀ*\nIl testo resta minuscolo." === $heading, 'All heading levels use uppercase Unicode and bold without changing the paragraph.' );
+	}
+	$existing_icon = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<h2><strong>🍷 In degustazione</strong></h2><h3>🍽️ In abbinamento</h3>' );
+	$check( "*🍷 IN DEGUSTAZIONE*\n*🍽️ IN ABBINAMENTO*" === $existing_icon, 'Keep existing leading emoji without adding a second icon or double bold markers.' );
+	$heading_link = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<h2>Il <a href="https://example.org/Menu?codice=AbC">menù</a><br>di oggi</h2><h3><a href="https://example.org/Menu?codice=AbC">https://example.org/Menu?codice=AbC</a></h3>' );
+	$check( "*🔹 IL MENÙ (https://example.org/Menu?codice=AbC) DI OGGI*\n*🔹 https://example.org/Menu?codice=AbC*" === $heading_link, 'Uppercase link labels while keeping case-sensitive URLs intact; multiline headings stay on one line.' );
+	$check( '' === Fisar_CDJ_Event_WhatsApp_Message::from_html( '<h2> <strong></strong> </h2>' ), 'Empty headings do not introduce an icon.' );
+	$paragraph_link = Fisar_CDJ_Event_WhatsApp_Message::from_html( '<p><a href="https://example.org/Menu"><strong>https://example.org/Menu</strong></a></p>' );
+	$check( '*https://example.org/Menu* (https://example.org/Menu)' === $paragraph_link, 'Formatting outside headings remains unchanged, including bold URL labels.' );
 	$order = Fisar_CDJ_Meta_Boxes::event_meta_box_order( array( 'normal' => 'fisar-event-whatsapp-message,fisar-event-meeting,fisar-event-location,fisar-event-registration', 'side' => 'fisar-event-course' ) );
 	$check( str_ends_with( $order['normal'], 'fisar-event-whatsapp-message' ) && ! str_contains( $order['side'], 'whatsapp-message' ), 'Communication tools remain last with a previously saved custom box order.' );
 	$partial_order = Fisar_CDJ_Meta_Boxes::event_meta_box_order( array( 'side' => 'fisar-event-course' ) );

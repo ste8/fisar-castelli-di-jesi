@@ -76,7 +76,9 @@ final class Fisar_CDJ_Event_WhatsApp_Message {
 		$id = $post->ID;
 		$meta = static fn( string $key ): string => (string) get_post_meta( $id, '_fisar_event_' . $key, true );
 		$warnings = array();
-		$sections = array( '🍷 *' . mb_strtoupper( self::plain( $post->post_title ?: 'Evento FISAR Castelli di Jesi' ), 'UTF-8' ) . '*' );
+		$title = mb_strtoupper( self::plain( $post->post_title ?: 'Evento FISAR Castelli di Jesi' ), 'UTF-8' );
+		$title_icon = preg_match( '/[\p{So}\p{Sk}]|[0-9#*]\x{FE0F}?\x{20E3}/u', $title ) ? '' : '🍷 ';
+		$sections = array( $title_icon . '*' . $title . '*' );
 		$body = self::from_html( $post->post_content );
 		$sections[] = $body ?: self::from_html( $post->post_excerpt );
 		if ( preg_match( '/<(?:img|iframe|video|audio)\b|<!-- wp:(?:gallery|embed|shortcode)\b/i', $post->post_content ) ) {
@@ -220,11 +222,12 @@ final class Fisar_CDJ_Event_WhatsApp_Message {
 		return trim( preg_replace( '/(^|\n)([\t ]*[\p{So}\p{Mn}\x{200D}\x{FE0F}\t ]*\*[^*\n]+\*[\t ]*)\n(?:[\t ]*\n)+/u', '$1$2' . "\n", $text ) );
 	}
 
-	private static function node_text( ?DOMNode $node, string $active_markers = '' ): string {
+	private static function node_text( ?DOMNode $node, string $active_markers = '', bool $uppercase = false ): string {
 		if ( ! $node ) { return ''; }
 		if ( XML_TEXT_NODE === $node->nodeType ) {
 			if ( '' === trim( $node->nodeValue ) && in_array( strtolower( $node->parentNode->nodeName ), array( 'body', 'section', 'ul', 'ol' ), true ) ) { return ''; }
-			return preg_replace( '/\s+/u', ' ', $node->nodeValue );
+			$text = preg_replace( '/\s+/u', ' ', $node->nodeValue );
+			return $uppercase ? mb_strtoupper( $text, 'UTF-8' ) : $text;
 		}
 		if ( XML_ELEMENT_NODE !== $node->nodeType ) { return ''; }
 		$tag = strtolower( $node->nodeName );
@@ -235,15 +238,26 @@ final class Fisar_CDJ_Event_WhatsApp_Message {
 			$index = max( 1, (int) $node->getAttribute( 'start' ) );
 			foreach ( $node->childNodes as $item ) {
 				if ( 'li' !== strtolower( $item->nodeName ) ) { continue; }
-				$lines[] = ( 'ol' === $tag ? $index++ . '. ' : '- ' ) . trim( self::node_text( $item, $active_markers ) );
+				$lines[] = ( 'ol' === $tag ? $index++ . '. ' : '- ' ) . trim( self::node_text( $item, $active_markers, $uppercase ) );
 			}
 			return "\n" . implode( "\n", $lines ) . "\n\n";
 		}
 		$is_heading = in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ), true );
+		// Preserve case-sensitive destinations, including links displayed as their URL.
+		if ( 'a' === $tag && $uppercase ) {
+			$url = esc_url_raw( $node->getAttribute( 'href' ), array( 'http', 'https' ) );
+			if ( $url && trim( $node->textContent ) === $url ) { return $url; }
+		}
 		$marker = $is_heading || in_array( $tag, array( 'strong', 'b' ), true ) ? '*' : ( in_array( $tag, array( 'em', 'i' ), true ) ? '_' : '' );
 		$add_marker = '' !== $marker && ! str_contains( $active_markers, $marker );
 		$text = '';
-		foreach ( $node->childNodes as $child ) { $text .= self::node_text( $child, $active_markers . $marker ); }
+		foreach ( $node->childNodes as $child ) { $text .= self::node_text( $child, $active_markers . $marker, $uppercase || $is_heading ); }
+		if ( $is_heading ) {
+			$text = trim( preg_replace( '/\s+/u', ' ', $text ) );
+			if ( '' !== $text && ! preg_match( '/^[\p{So}\p{Sk}]/u', ltrim( $text, "*_ \t\n\r" ) ) ) {
+				$text = '🔹 ' . $text;
+			}
+		}
 		if ( $marker ) {
 			$text = trim( $text );
 			$wrap = $add_marker ? $marker : '';
