@@ -4,7 +4,7 @@
 
 Eleganza calda: molto bianco, spazio, fotografie reali e conviviali, bordeaux misurato e oro FISAR come accento. Identità chiaramente **FISAR Delegazione Castelli di Jesi**; niente “autonoma” nel titolo della hero. Cultura del vino aperta a tutti, non soltanto formazione professionale.
 
-Voce competente, diretta, accogliente, curiosa e informale; evitare burocratese, tecnicismi inutili, toni elitari, commerciali aggressivi o formule artificiose. Riferimento istituzionale: [Carta V2](sources/carta-dei-valori-v2.md), distinta dalle sintesi editoriali della Home. Non reinterpretare il brand per uniformarlo a un modello grafico generico.
+Voce competente, diretta, accogliente, curiosa e informale; evitare burocratese, tecnicismi inutili, toni elitari, commerciali aggressivi o formule artificiose. Riferimento istituzionale: [Carta v0.3.0](sources/carta-dei-valori-v0.3.0.pdf), distinta dalle sintesi editoriali della Home. Non reinterpretare il brand per uniformarlo a un modello grafico generico.
 
 ## Colori e logo
 

@@ -228,7 +228,7 @@ Menu principale: Chi siamo, Eventi, Corsi, Blog, Seguici, Contatti; CTA **Divent
 
 Nella Delegazione la storia è ultima, per distinguere i fondatori dal direttivo attuale; nota introduttiva sul 2010. Il documento storico del 2010 non è lo statuto vigente. Nel riquadro Statuto usare `/statuto/`, alias al documento Drive fornito: non è un download diretto. Incarichi non elettivi distinti dal Consiglio; Eventi dopo Organizzazione Corsi e Didattica.
 
-Le icone della Carta sono aggiunte dal tema in base alle ancore H2: `chi-siamo`, `persone-e-modo-di-lavorare`, `curiosita-e-apertura`, `vino-con-consapevolezza`, `semplicita-e-informalita`, `inclusione-e-accoglienza`, `ognuno-puo-contribuire`. Non rinominarle insieme ai titoli. La Carta è locale e non rappresenta necessariamente i principi della FISAR nazionale; la trascrizione V2 di riferimento è nelle [sorgenti](sources/README.md).
+Le icone della Carta sono aggiunte dal tema in base alle ancore H2: `chi-siamo`, `persone-e-modo-di-lavorare`, `curiosita-e-apertura`, `vino-con-consapevolezza`, `semplicita-e-informalita`, `inclusione-e-accoglienza`, `ognuno-puo-contribuire`. Non rinominarle insieme ai titoli. La Carta è locale e non rappresenta necessariamente i principi della FISAR nazionale; il PDF v0.3.0 di riferimento, compresi i grassetti, è nelle [sorgenti](sources/README.md); la trascrizione V2 è conservata come versione storica.
 
 Footer unico bianco. Dati/recapiti ufficiali, SDI e RUNTS provengono da `fisar_cdj_get_delegation_details()` nel plugin; non duplicarli nei testi di Contatti. Le due mail sono alternative equivalenti; il telefono del Delegato non è automaticamente un contatto WhatsApp. La sede associativa non è necessariamente la sede delle attività.
 
