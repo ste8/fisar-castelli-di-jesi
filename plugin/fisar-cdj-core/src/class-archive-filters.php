@@ -104,7 +104,7 @@ final class Fisar_CDJ_Archive_Filters {
 		} elseif ( 'courses' === $scope ) {
 			return Fisar_CDJ_Course_Filters::options()['years'];
 		} else {
-			$years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) > 0 ORDER BY 1 DESC" );
+			$years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) > 0 AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} visibility WHERE visibility.post_id = {$wpdb->posts}.ID AND visibility.meta_key = '_fisar_post_unlisted' AND visibility.meta_value = '1') ORDER BY 1 DESC" );
 		}
 		return array_map( 'intval', $years );
 	}

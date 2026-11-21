@@ -36,7 +36,7 @@ try {
 	$url = get_permalink( $hidden );
 	$post_before = get_post( $hidden, ARRAY_A );
 	$meta_before = get_post_meta( $hidden );
-	$check( ! Fisar_CDJ_Event_Visibility::is_unlisted( $visible ) && Fisar_CDJ_Event_Visibility::is_unlisted( $hidden ), 'Existing events are listed by default; only an explicit flag hides one.' );
+	$check( ! Fisar_CDJ_Content_Visibility::is_unlisted( $visible ) && Fisar_CDJ_Content_Visibility::is_unlisted( $hidden ), 'Existing events are listed by default; only an explicit flag hides one.' );
 	$check( 'publish' === get_post_status( $hidden ) && is_post_publicly_viewable( $hidden ), 'Unlisted is independent of published status.' );
 	wp_set_current_user( 0 );
 	$direct = new WP_Query( array( 'post_type' => 'fisar_evento', 'name' => get_post_field( 'post_name', $hidden ) ) );
@@ -89,22 +89,22 @@ try {
 	$check( in_array( $hidden, $ids( $admin_query ), true ), 'The WordPress admin list still shows the event.' );
 	$check( 'Non elencato' === apply_filters( 'display_post_states', array(), get_post( $hidden ) )['fisar_unlisted'], 'The admin list labels the event clearly.' );
 	$GLOBALS['current_screen'] = $original_screen;
-	ob_start(); Fisar_CDJ_Event_Visibility::render( get_post( $hidden ) ); $editor_html = ob_get_clean();
+	ob_start(); Fisar_CDJ_Content_Visibility::render( get_post( $hidden ) ); $editor_html = ob_get_clean();
 	$check( str_contains( $editor_html, 'Non elencato — accessibile tramite link' ) && str_contains( $editor_html, 'checked=' ), 'The saved checkbox is visible and checked in the editor.' );
 	$nonce = wp_create_nonce( 'fisar_cdj_save_event_visibility' );
 	foreach ( array( array(), array( '_fisar_event_visibility_present' => '1', '_fisar_event_visibility_nonce' => 'invalid' ), array( '_fisar_event_visibility_present' => '1', '_fisar_event_visibility_nonce' => $nonce, '_fisar_event_unlisted' => array( '1' ) ) ) as $invalid ) {
-		$_POST = $invalid; Fisar_CDJ_Event_Visibility::save( $hidden );
-		$check( Fisar_CDJ_Event_Visibility::is_unlisted( $hidden ), 'Omitted controls, malformed input and invalid nonces never make the event listed.' );
+		$_POST = $invalid; Fisar_CDJ_Content_Visibility::save( $hidden );
+		$check( Fisar_CDJ_Content_Visibility::is_unlisted( $hidden ), 'Omitted controls, malformed input and invalid nonces never make the event listed.' );
 	}
 	$_POST = array( '_fisar_event_visibility_present' => '1', '_fisar_event_visibility_nonce' => $nonce );
-	wp_set_current_user( 0 ); Fisar_CDJ_Event_Visibility::save( $hidden );
-	$check( Fisar_CDJ_Event_Visibility::is_unlisted( $hidden ), 'Anonymous saves cannot change event visibility.' );
-	wp_set_current_user( $admins[0]->ID ); Fisar_CDJ_Event_Visibility::save( $hidden );
-	$check( ! Fisar_CDJ_Event_Visibility::is_unlisted( $hidden ) && in_array( $hidden, $ids( fisar_cdj_get_upcoming_events( -1 ) ), true ), 'Unchecking restores normal listings immediately.' );
+	wp_set_current_user( 0 ); Fisar_CDJ_Content_Visibility::save( $hidden );
+	$check( Fisar_CDJ_Content_Visibility::is_unlisted( $hidden ), 'Anonymous saves cannot change event visibility.' );
+	wp_set_current_user( $admins[0]->ID ); Fisar_CDJ_Content_Visibility::save( $hidden );
+	$check( ! Fisar_CDJ_Content_Visibility::is_unlisted( $hidden ) && in_array( $hidden, $ids( fisar_cdj_get_upcoming_events( -1 ) ), true ), 'Unchecking restores normal listings immediately.' );
 	$check( $url === get_permalink( $hidden ) && $post_before === get_post( $hidden, ARRAY_A ) && $hidden === Fisar_CDJ_Event_Reports::event_for_report( $article ), 'Reversal preserves URL, content and the report relation.' );
-	$_POST[ Fisar_CDJ_Event_Visibility::META ] = '1'; Fisar_CDJ_Event_Visibility::save( $hidden );
+	$_POST[ Fisar_CDJ_Content_Visibility::META ] = '1'; Fisar_CDJ_Content_Visibility::save( $hidden );
 	$check( $meta_before === get_post_meta( $hidden ), 'Checking again restores the original metadata without modifying practical event data.' );
-	$registered = get_registered_meta_keys( 'post', 'fisar_evento' )[ Fisar_CDJ_Event_Visibility::META ];
+	$registered = get_registered_meta_keys( 'post', 'fisar_evento' )[ Fisar_CDJ_Content_Visibility::META ];
 	$check( 'boolean' === $registered['type'] && false === $registered['default'] && false === $registered['show_in_rest'], 'The flag is typed, false by default and not public REST metadata.' );
 	WP_CLI::success( 'Unlisted events: anonymous direct access, public discovery, pagination, REST/admin, robots, safe saves and reversal passed.' );
 	$keep = 'fixtures' === ( $args[0] ?? '' );

@@ -95,6 +95,7 @@ final class Fisar_CDJ_Post_Types {
 		);
 
 		$course_fields = array(
+			'_fisar_course_unlisted'           => 'boolean',
 			'_fisar_course_title_mode'         => 'string',
 			'_fisar_course_director'           => 'string',
 			'_fisar_course_level'              => 'string',
@@ -127,6 +128,8 @@ final class Fisar_CDJ_Post_Types {
 			'_fisar_course_includes'           => 'string',
 			'_fisar_course_calendar'           => 'array',
 		);
+
+		self::register_single_meta( 'post', '_fisar_post_unlisted', 'boolean' );
 
 		foreach ( $event_fields as $key => $type ) {
 			self::register_single_meta( self::EVENT, $key, $type );
@@ -176,7 +179,7 @@ final class Fisar_CDJ_Post_Types {
 				if ( '_fisar_course_title_mode' === $key ) {
 					return fisar_cdj_sanitize_course_title_mode( $value );
 				}
-				if ( in_array( $key, array( '_fisar_event_online_access_public', '_fisar_event_unlisted' ), true ) ) {
+				if ( in_array( $key, array( '_fisar_event_online_access_public', '_fisar_event_unlisted', '_fisar_course_unlisted', '_fisar_post_unlisted' ), true ) ) {
 					return in_array( $value, array( true, 1, '1' ), true );
 				}
 				if ( in_array( $key, array( '_fisar_event_booking_status', '_fisar_course_booking_status' ), true ) ) {
@@ -214,7 +217,7 @@ final class Fisar_CDJ_Post_Types {
 			},
 		);
 
-		if ( in_array( $key, array( '_fisar_event_online_access_public', '_fisar_event_unlisted' ), true ) ) {
+		if ( in_array( $key, array( '_fisar_event_online_access_public', '_fisar_event_unlisted', '_fisar_course_unlisted', '_fisar_post_unlisted' ), true ) ) {
 			$args['default'] = false;
 		}
 		register_post_meta( $post_type, $key, $args );

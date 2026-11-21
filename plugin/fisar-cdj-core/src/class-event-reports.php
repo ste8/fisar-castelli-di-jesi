@@ -98,7 +98,7 @@ final class Fisar_CDJ_Event_Reports {
 			'posts_per_page' => -1,
 			'orderby' => array( 'title' => 'ASC', 'ID' => 'ASC' ),
 		) );
-		$selected_courses = self::courses_for_report( $post->ID );
+		$selected_courses = self::courses_for_report( $post->ID, true );
 		?>
 		<input type="hidden" name="_fisar_report_fields_present" value="1">
 		<div class="fisar-field">
@@ -180,7 +180,7 @@ final class Fisar_CDJ_Event_Reports {
 
 	public static function event_for_report( int $post_id ): int {
 		$event_id = self::sanitize_event_id( get_post_meta( $post_id, self::EVENT_META, true ) );
-		return Fisar_CDJ_Event_Visibility::is_unlisted( $event_id ) ? 0 : $event_id;
+		return Fisar_CDJ_Content_Visibility::is_unlisted( $event_id ) ? 0 : $event_id;
 	}
 
 	/** Find reports in reading order without changing the course itself. */
@@ -199,8 +199,9 @@ final class Fisar_CDJ_Event_Reports {
 		) );
 	}
 
-	public static function courses_for_report( int $post_id ): array {
-		return array_values( array_unique( array_filter( array_map( array( self::class, 'sanitize_course_id' ), get_post_meta( $post_id, self::COURSE_META, false ) ) ) ) );
+	public static function courses_for_report( int $post_id, bool $include_unlisted = false ): array {
+		$ids = array_values( array_unique( array_filter( array_map( array( self::class, 'sanitize_course_id' ), get_post_meta( $post_id, self::COURSE_META, false ) ) ) ) );
+		return $include_unlisted ? $ids : array_values( array_filter( $ids, static fn( $id ) => ! Fisar_CDJ_Content_Visibility::is_unlisted( $id ) ) );
 	}
 
 	public static function social_links( int $post_id ): array {

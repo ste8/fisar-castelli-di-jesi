@@ -44,9 +44,10 @@ try {
 		if ( 'post' === $type ) {
 			$check( array_values( array_diff( $categories, wp_get_post_categories( $id ) ) ) === array(), 'Rendering preserves multiple assigned categories.' );
 		}
-		$order = Fisar_CDJ_Editor_Metadata::box_order( array( 'normal' => 'fisar-event-visibility,other-box,fisar-event-course,fisar-event-whatsapp-message', 'side' => 'postimagediv,categorydiv,third-party' ) );
+		$visibility_box = 'fisar_evento' === $type ? 'fisar-event-visibility' : 'fisar-content-visibility';
+		$order = Fisar_CDJ_Editor_Metadata::box_order( array( 'normal' => $visibility_box . ',other-box,fisar-event-course,fisar-event-whatsapp-message', 'side' => 'postimagediv,categorydiv,third-party' ) );
 		$check( 'third-party' === $order['side'] && ! str_contains( $order['normal'], 'categorydiv' ) && ! str_contains( $order['normal'], 'postimagediv' ), 'Saved sidebar orders cannot restore duplicate native controls.' );
-		$check( 'post' === $type || str_starts_with( $order['normal'], 'fisar-event-visibility,fisar-editor-cover,' ), 'The cover follows event visibility without disturbing other main boxes.' );
+		$check( 'post' === $type || str_starts_with( $order['normal'], $visibility_box . ',fisar-editor-cover,' ), 'The cover follows event visibility without disturbing other main boxes.' );
 		$check( $order === Fisar_CDJ_Editor_Metadata::box_order( $order ), 'Normalizing stored positions is idempotent.' );
 		$request = new WP_REST_Request( 'POST', '/wp/v2/' . ( 'post' === $type ? 'posts' : $type ) . '/' . $id );
 		$request->set_body_params( array( 'featured_media' => $images[1] ) + ( 'post' === $type ? array( 'categories' => array( $categories[0] ) ) : array() ) );

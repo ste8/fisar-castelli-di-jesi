@@ -18,6 +18,7 @@ $online_access = fisar_cdj_get_event_online_access( $event_id );
 $participation = (string) get_post_meta( $event_id, '_fisar_event_participation', true );
 $required      = (bool) get_post_meta( $event_id, '_fisar_event_registration_required', true );
 $course_id     = absint( get_post_meta( $event_id, '_fisar_event_course_id', true ) );
+$course_id     = Fisar_CDJ_Content_Visibility::is_unlisted( $course_id ) ? 0 : $course_id;
 $past          = fisar_cdj_is_event_past( $event_id );
 $ongoing       = count( $event_dates ) === 1 && $event_dates[0]['start'] < fisar_cdj_today() && $event_dates[0]['end'] >= fisar_cdj_today();
 $reports       = class_exists( 'Fisar_CDJ_Event_Reports' ) ? Fisar_CDJ_Event_Reports::for_event( $event_id ) : array();

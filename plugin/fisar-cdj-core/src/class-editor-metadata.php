@@ -70,7 +70,7 @@ final class Fisar_CDJ_Editor_Metadata {
 		$type = $screen ? $screen->post_type : '';
 		if ( ! empty( $order['normal'] ) && is_string( $order['normal'] ) && in_array( $type, self::POST_TYPES, true ) ) {
 			$normal = explode( ',', $order['normal'] );
-			$position = array_search( 'fisar-event-visibility', $normal, true );
+			$position = array_search( 'fisar_evento' === $type ? 'fisar-event-visibility' : 'fisar-content-visibility', $normal, true );
 			$cover = self::is_block_editor() ? ( 'post' === $type ? array() : array( 'fisar-editor-cover' ) ) : array( 'postimagediv' );
 			if ( ! self::is_block_editor() && 'post' === $type ) { $cover[] = 'categorydiv'; }
 			array_splice( $normal, false === $position ? 0 : $position + 1, 0, $cover );

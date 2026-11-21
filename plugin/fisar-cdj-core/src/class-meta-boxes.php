@@ -116,7 +116,7 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	public static function add_meta_boxes(): void {
-		Fisar_CDJ_Event_Visibility::add_meta_box();
+		Fisar_CDJ_Content_Visibility::add_meta_box();
 		Fisar_CDJ_Editor_Metadata::add_meta_boxes();
 		add_meta_box( 'fisar-event-schedule', 'Dettagli dell’evento', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-location', 'Modalità, luogo e orari dell’evento', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );

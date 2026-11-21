@@ -104,13 +104,13 @@ Più contatti WhatsApp con nome facoltativo e numero: accettati `335 1234567` e 
 
 Nel dettaglio c’è un solo pannello finale **Iscrizione**, raggiungibile dall’alto. Scadenza e nota restano anche nel riepilogo iniziale; non aggiungere manualmente un secondo pannello nel testo. Un Evento può essere collegato a un Corso dal riquadro **Corso collegato**, nel pannello principale dei metadati dell’editor, prima di **Messaggio WhatsApp**.
 
-### Evento non elencato, accessibile tramite link
+### Eventi, Corsi e articoli non elencati, accessibili tramite link
 
-Nel pannello principale dei metadati dell’editor, aprire **Visibilità nel sito**, in cima agli altri riquadri, e selezionare **Non elencato — accessibile tramite link**. L’evento deve essere **pubblicato** per aprirsi senza account WordPress: il flag non rende pubblica una bozza. Condividere il normale URL dell’evento, non il link di anteprima riservato agli utenti WordPress.
+Nel pannello principale dei metadati dell’editor, aprire **Visibilità nel sito**, in cima agli altri riquadri, e selezionare **Non elencato — accessibile tramite link**. Il contenuto deve essere **pubblicato** per aprirsi senza account WordPress: il flag non rende pubblica una bozza. Condividere il normale URL, non il link di anteprima riservato agli utenti WordPress. La descrizione del controllo si adatta a evento, corso o articolo.
 
-L’evento resta escluso da Home, archivio e relativi filtri/conteggi, ricerca, feed, sitemap, raccolte REST pubbliche ed elenchi automatici nei Corsi. Negli articoli collegati il rimando all’Evento viene nascosto, conservando l’associazione; il link diretto mantiene invece i racconti e le altre informazioni dell’Evento. La pagina richiede `noindex`. Gli amministratori continuano a trovare l’evento nell’editor e nell’elenco, identificato da **Non elencato**.
+Il contenuto resta escluso da Home, archivi e relativi filtri/conteggi, ricerca, feed, sitemap e raccolte REST pubbliche. Un articolo non elencato non compare nei racconti automatici di Eventi e Corsi, né nei collegamenti Articolo precedente/successivo. Un Corso non elencato non viene richiamato dagli Eventi o dagli articoli collegati; allo stesso modo il rimando a un Evento non elencato viene nascosto nel Blog. Le associazioni salvate restano intatte e disponibili nell’editor. Il dettaglio diretto mantiene le proprie informazioni e i racconti normalmente elencati. La pagina richiede `noindex`. Gli amministratori continuano a trovare i contenuti nell’editor e negli elenchi, identificati da **Non elencato**.
 
-Il link può essere inoltrato e non costituisce una protezione con password. Per elencare normalmente l’evento, togliere la spunta e salvare: URL, testo e associazioni rimangono gli stessi. Il flag è disattivato per default e non viene cambiato da un vecchio editor o da un salvataggio che omette il nuovo riquadro.
+Il link può essere inoltrato e non costituisce una protezione con password. Per elencare normalmente il contenuto, togliere la spunta e salvare: URL, testo e associazioni rimangono gli stessi. Il flag è disattivato per default e non viene cambiato da un vecchio editor o da un salvataggio che omette il nuovo riquadro. Il campo preesistente degli Eventi viene mantenuto, senza migrare o modificare le scelte già salvate.
 
 ### Messaggio da incollare in WhatsApp
 
