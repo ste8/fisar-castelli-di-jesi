@@ -272,3 +272,15 @@
 	aspect-ratio: auto;
 	object-fit: contain;
 }
+
+.fisar-cancellation-row {
+	margin-block: 1rem;
+	padding: 1rem;
+	border: 1px solid #dcdcde;
+}
+.fisar-cancellation-row legend { font-weight: 600; }
+.fisar-cancellation-row .fisar-admin-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fisar-cancellation-row input { max-width: 100%; }
+@media (max-width: 780px) {
+	.fisar-cancellation-row .fisar-admin-grid { grid-template-columns: minmax(0, 1fr); }
+}

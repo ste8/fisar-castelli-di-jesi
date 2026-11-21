@@ -112,6 +112,19 @@ Il contenuto resta escluso da Home, archivi e relativi filtri/conteggi, ricerca,
 
 Il link può essere inoltrato e non costituisce una protezione con password. Per elencare normalmente il contenuto, togliere la spunta e salvare: URL, testo e associazioni rimangono gli stessi. Il flag è disattivato per default e non viene cambiato da un vecchio editor o da un salvataggio che omette il nuovo riquadro. Il campo preesistente degli Eventi viene mantenuto, senza migrare o modificare le scelte già salvate.
 
+### Cancellazioni e rimborsi
+
+Il riquadro **Cancellazioni e rimborsi** si trova nel pannello principale dell’Evento, subito dopo **Iscrizioni**, anche con un ordine personale già salvato. Le condizioni riguardano il rimborso della quota in caso di rinuncia del partecipante.
+
+- **Non specificata** è la modalità iniziale: nessuna condizione viene presunta o mostrata. Non cambia gli Eventi precedenti.
+- **Regole per scadenza** permette di inserire fino a 20 termini con data, ora facoltativa e percentuale di rimborso tra 0 e 100 (anche decimale). Le righe vuote vengono ignorate e le scadenze mostrate in ordine cronologico. I termini sono inclusivi; senza ora comprendono l’intera data, senza stampare un orario inventato. Gli orari seguono il fuso del sito.
+- **Dopo l’ultima scadenza** va scelto esplicitamente: rimborso da verificare con la Delegazione, nessun rimborso oppure una percentuale specifica. Non significa pagare un costo aggiuntivo per cancellarsi. Le **Note facoltative** possono spiegare come comunicare la rinuncia o altre condizioni.
+- **Solo testo** consente condizioni con formattazione libera, senza aggiungere le regole strutturate. Tornando a Non specificata non viene mostrato nulla.
+
+Per la formula abituale, inserire una sola scadenza con rimborso **100%**, lasciare vuota l’ora se non è stata stabilita e scegliere **Rimborso da verificare con la Delegazione** per il periodo successivo. Le condizioni compaiono nella sezione pubblica Iscrizioni/Partecipazione, anche dopo la chiusura delle prenotazioni e negli Eventi conclusi; vengono incluse anche nel messaggio WhatsApp generato dai dati salvati. Le date vengono conservate, senza reinterpretarle in base a oggi. Il testo pubblico e WhatsApp usa **rimborso completo** per il 100%, **nessun rimborso** per lo 0% e la percentuale negli altri casi, anche per la condizione finale. Con una sola scadenza si legge **Dopo questa data**, oppure **Dopo questo termine** se è indicata anche l’ora; con più scadenze resta **Dopo l’ultima scadenza**. Nell’editor i valori restano numerici.
+
+L’editor segnala e blocca righe incomplete, percentuali fuori intervallo, scadenze duplicate o una condizione finale mancante. La validazione lato server conserva le condizioni precedenti in caso di dati malformati e mostra un avviso nel riquadro. Un editor precedente o un salvataggio che omette il pannello non cancella le condizioni già salvate. Non copiare di nuovo la policy nella descrizione o nelle informazioni aggiuntive delle prenotazioni.
+
 ### Messaggio da incollare in WhatsApp
 
 Nel riquadro autonomo **Messaggio WhatsApp**, in fondo ai campi dell’evento, usare **Genera messaggio WhatsApp**. La generazione legge la versione salvata: con modifiche non salvate, evento nuovo o salvataggio in corso la finestra mostra un avviso e non genera/copia dati precedenti. Chiudere, salvare l’evento e riaprire; non occorre ricaricare la pagina dopo un salvataggio riuscito. Sono controllati titolo/testo WordPress e campi aggiuntivi, inclusi contatti, quote e note. Non salva, pubblica o invia nulla.

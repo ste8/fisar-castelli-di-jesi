@@ -31,6 +31,7 @@ $has_location = $venue || $address || $city_label || $maps_url || in_array( $mod
 $location = array( 'mode' => $mode, 'venue' => $venue, 'address' => $address, 'city' => $city_label, 'maps_url' => $maps_url );
 $fees = fisar_cdj_get_event_fees( $event_id );
 $registration = array(
+	'cancellation' => Fisar_CDJ_Event_Cancellation::presentation( $event_id ),
 	'past'     => $past,
 	'required' => $required,
 	'fees'     => $fees,

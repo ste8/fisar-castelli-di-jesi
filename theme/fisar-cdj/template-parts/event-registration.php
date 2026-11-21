@@ -25,4 +25,5 @@ $details      = $registration['details'];
 		<?php endif; ?>
 		<?php if ( empty( $details['closed'] ) && empty( $details['waiting_list'] ) && $registration['notes'] ) : ?><div class="registration-notes"><?php echo wp_kses_post( $registration['notes'] ); ?></div><?php endif; ?>
 	<?php endif; ?>
+	<?php get_template_part( 'template-parts/event-cancellation', null, array( 'policy' => $registration['cancellation'] ?? array() ) ); ?>
 </section>

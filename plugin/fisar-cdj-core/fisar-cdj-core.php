@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FISAR Castelli di Jesi — Core
  * Description: Contenuti, campi, relazioni e logiche di dominio del sito FISAR Castelli di Jesi.
- * Version: 1.3.60
+ * Version: 1.3.63
  * Requires at least: 6.7
  * Requires PHP: 8.1
  * Author: FISAR Castelli di Jesi
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_CORE_VERSION', '1.3.60' );
+define( 'FISAR_CDJ_CORE_VERSION', '1.3.63' );
 define( 'FISAR_CDJ_CORE_FILE', __FILE__ );
 define( 'FISAR_CDJ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FISAR_CDJ_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -32,6 +32,8 @@ require_once FISAR_CDJ_CORE_DIR . 'src/class-archive-filters.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-course-filters.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-event-calendar.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-event-calendar-editor.php';
+require_once FISAR_CDJ_CORE_DIR . 'src/class-event-cancellation.php';
+require_once FISAR_CDJ_CORE_DIR . 'src/class-event-cancellation-editor.php';
 
 function fisar_cdj_core_boot(): void {
 	Fisar_CDJ_Post_Types::init();
@@ -44,6 +46,8 @@ function fisar_cdj_core_boot(): void {
 	Fisar_CDJ_Archive_Filters::init();
 	Fisar_CDJ_Course_Filters::init();
 	Fisar_CDJ_Event_Calendar::init();
+	Fisar_CDJ_Event_Cancellation::init();
+	Fisar_CDJ_Event_Cancellation_Editor::init();
 	Fisar_CDJ_Demo_Content::init();
 }
 add_action( 'plugins_loaded', 'fisar_cdj_core_boot' );

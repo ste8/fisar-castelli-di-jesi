@@ -96,7 +96,7 @@ final class Fisar_CDJ_Meta_Boxes {
 			if ( ! is_string( $ids ) ) {
 				continue;
 			}
-			$remove = array( 'fisar-event-whatsapp-message', 'fisar-event-visibility', 'fisar-event-course' );
+			$remove = array( 'fisar-event-whatsapp-message', 'fisar-event-visibility', 'fisar-event-course', 'fisar-event-cancellation' );
 			if ( null !== $location_context ) { $remove[] = 'fisar-event-meeting'; }
 			$boxes = array_values( array_diff( explode( ',', $ids ), $remove ) );
 			if ( $context === $location_context ) {
@@ -108,6 +108,9 @@ final class Fisar_CDJ_Meta_Boxes {
 		if ( is_string( $order['normal'] ?? null ) && '' !== $order['normal'] ) {
 			$normal = array_filter( explode( ',', $order['normal'] ) );
 			array_unshift( $normal, 'fisar-event-visibility' );
+			$normal = array_values( $normal );
+			$registration = array_search( 'fisar-event-registration', $normal, true );
+			array_splice( $normal, false === $registration ? count( $normal ) : $registration + 1, 0, array( 'fisar-event-cancellation' ) );
 			$normal[] = 'fisar-event-course';
 			$normal[] = 'fisar-event-whatsapp-message';
 			$order['normal'] = implode( ',', $normal );
@@ -123,6 +126,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_meta_box( 'fisar-event-meeting', 'Ritrovo e spostamenti (facoltativo)', array( self::class, 'render_event_meeting' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
+		add_meta_box( 'fisar-event-cancellation', 'Cancellazioni e rimborsi', array( Fisar_CDJ_Event_Cancellation_Editor::class, 'render' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-whatsapp-message', 'Messaggio WhatsApp', array( Fisar_CDJ_Event_WhatsApp_Message::class, 'render' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'low' );
 		add_meta_box( 'fisar-event-course', 'Corso collegato', array( self::class, 'render_event_course' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 

@@ -107,7 +107,7 @@ try {
 	}
 	$check( ! str_contains( $registration_editor, 'frontend' ), 'Editor instructions must avoid frontend jargon.' );
 	$old_order = array( 'normal' => 'fisar-event-meeting,third-party,fisar-event-schedule,fisar-event-location,fisar-event-registration', 'side' => 'fisar-event-course,fisar-event-visibility,submitdiv' );
-	$expected_order = array( 'normal' => 'fisar-event-visibility,third-party,fisar-event-schedule,fisar-event-location,fisar-event-meeting,fisar-event-registration,fisar-event-course,fisar-event-whatsapp-message', 'side' => 'submitdiv' );
+	$expected_order = array( 'normal' => 'fisar-event-visibility,third-party,fisar-event-schedule,fisar-event-location,fisar-event-meeting,fisar-event-registration,fisar-event-cancellation,fisar-event-course,fisar-event-whatsapp-message', 'side' => 'submitdiv' );
 	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $old_order ), 'Saved box order must put meeting immediately after venue without moving unrelated boxes.' );
 	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $expected_order ), 'Box-order adjustment must be idempotent.' );
 	$check( false === Fisar_CDJ_Meta_Boxes::event_meta_box_order( false ), 'Default registration order must remain available to new users.' );

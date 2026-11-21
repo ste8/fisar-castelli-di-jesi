@@ -174,6 +174,10 @@ final class Fisar_CDJ_Event_WhatsApp_Message {
 		} elseif ( ! $required ) {
 			$sections[] = '*Non è richiesta la prenotazione.*';
 		}
+		$cancellation = Fisar_CDJ_Event_Cancellation::presentation( $id );
+		if ( $cancellation['lines'] || $cancellation['text'] ) {
+			$sections[] = "*↩️ CANCELLAZIONI E RIMBORSI*\n" . implode( "\n", array_map( static fn( $line ) => '- ' . $line, $cancellation['lines'] ) ) . self::from_html( $cancellation['text'] ) . ( $cancellation['notes'] ? "\n\n" . self::from_html( $cancellation['notes'] ) : '' );
+		}
 		if ( 'publish' === $post->post_status && ! $post->post_password ) {
 			$sections[] = "*🌐 TROVI I DETTAGLI ANCHE SUL SITO*\n" . get_permalink( $post );
 		} else {
