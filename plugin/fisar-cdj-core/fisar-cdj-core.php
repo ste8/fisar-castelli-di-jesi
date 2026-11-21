@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FISAR Castelli di Jesi — Core
  * Description: Contenuti, campi, relazioni e logiche di dominio del sito FISAR Castelli di Jesi.
- * Version: 1.3.55
+ * Version: 1.3.59
  * Requires at least: 6.7
  * Requires PHP: 8.1
  * Author: FISAR Castelli di Jesi
@@ -13,12 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_CORE_VERSION', '1.3.55' );
+define( 'FISAR_CDJ_CORE_VERSION', '1.3.59' );
 define( 'FISAR_CDJ_CORE_FILE', __FILE__ );
 define( 'FISAR_CDJ_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FISAR_CDJ_CORE_URL', plugin_dir_url( __FILE__ ) );
 
 require_once FISAR_CDJ_CORE_DIR . 'src/class-post-types.php';
+require_once FISAR_CDJ_CORE_DIR . 'src/class-event-visibility.php';
+require_once FISAR_CDJ_CORE_DIR . 'src/class-editor-metadata.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-calendar-importer.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-meta-boxes.php';
 require_once FISAR_CDJ_CORE_DIR . 'src/class-demo-content.php';
@@ -33,6 +35,8 @@ require_once FISAR_CDJ_CORE_DIR . 'src/class-event-calendar-editor.php';
 
 function fisar_cdj_core_boot(): void {
 	Fisar_CDJ_Post_Types::init();
+	Fisar_CDJ_Event_Visibility::init();
+	Fisar_CDJ_Editor_Metadata::init();
 	Fisar_CDJ_Meta_Boxes::init();
 	Fisar_CDJ_Course_Titles::init();
 	Fisar_CDJ_Event_WhatsApp_Message::init();

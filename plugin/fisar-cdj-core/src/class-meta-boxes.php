@@ -80,7 +80,7 @@ final class Fisar_CDJ_Meta_Boxes {
 		add_filter( 'get_user_option_meta-box-order_' . Fisar_CDJ_Post_Types::EVENT, array( self::class, 'event_meta_box_order' ) );
 	}
 
-	/** Keep the meeting after the venue and communication tools last, without writing preferences. */
+	/** Keep event metadata together and communication tools last, without writing preferences. */
 	public static function event_meta_box_order( mixed $order ): mixed {
 		if ( ! is_array( $order ) ) {
 			return $order;
@@ -96,7 +96,7 @@ final class Fisar_CDJ_Meta_Boxes {
 			if ( ! is_string( $ids ) ) {
 				continue;
 			}
-			$remove = array( 'fisar-event-whatsapp-message' );
+			$remove = array( 'fisar-event-whatsapp-message', 'fisar-event-visibility', 'fisar-event-course' );
 			if ( null !== $location_context ) { $remove[] = 'fisar-event-meeting'; }
 			$boxes = array_values( array_diff( explode( ',', $ids ), $remove ) );
 			if ( $context === $location_context ) {
@@ -107,6 +107,8 @@ final class Fisar_CDJ_Meta_Boxes {
 		}
 		if ( is_string( $order['normal'] ?? null ) && '' !== $order['normal'] ) {
 			$normal = array_filter( explode( ',', $order['normal'] ) );
+			array_unshift( $normal, 'fisar-event-visibility' );
+			$normal[] = 'fisar-event-course';
 			$normal[] = 'fisar-event-whatsapp-message';
 			$order['normal'] = implode( ',', $normal );
 		}
@@ -114,13 +116,15 @@ final class Fisar_CDJ_Meta_Boxes {
 	}
 
 	public static function add_meta_boxes(): void {
+		Fisar_CDJ_Event_Visibility::add_meta_box();
+		Fisar_CDJ_Editor_Metadata::add_meta_boxes();
 		add_meta_box( 'fisar-event-schedule', 'Dettagli dell’evento', array( self::class, 'render_event_schedule' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-location', 'Modalità, luogo e orari dell’evento', array( self::class, 'render_event_location' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-meeting', 'Ritrovo e spostamenti (facoltativo)', array( self::class, 'render_event_meeting' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'high' );
 		add_meta_box( 'fisar-event-participation', 'Partecipazione e costi', array( self::class, 'render_event_participation' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-registration', 'Iscrizioni', array( self::class, 'render_event_registration' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 		add_meta_box( 'fisar-event-whatsapp-message', 'Messaggio WhatsApp', array( Fisar_CDJ_Event_WhatsApp_Message::class, 'render' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'low' );
-		add_meta_box( 'fisar-event-course', 'Corso collegato', array( self::class, 'render_event_course' ), Fisar_CDJ_Post_Types::EVENT, 'side', 'default' );
+		add_meta_box( 'fisar-event-course', 'Corso collegato', array( self::class, 'render_event_course' ), Fisar_CDJ_Post_Types::EVENT, 'normal', 'default' );
 
 		add_meta_box( 'fisar-course-details', 'Dettagli del corso', array( self::class, 'render_course_details' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'high' );
 		add_meta_box( 'fisar-course-location', 'Sede', array( self::class, 'render_course_location' ), Fisar_CDJ_Post_Types::COURSE, 'normal', 'default' );
@@ -435,9 +439,13 @@ final class Fisar_CDJ_Meta_Boxes {
 	public static function render_post_summary( WP_Post $post ): void {
 		self::render_excerpt( $post );
 		?>
+		<section class="fisar-admin-section" aria-labelledby="fisar-post-category-title">
+			<h3 id="fisar-post-category-title">Categoria del Blog</h3>
+			<?php Fisar_CDJ_Editor_Metadata::render_categories(); ?>
+		</section>
 		<section class="fisar-admin-section" aria-labelledby="fisar-post-image-title">
 			<h3 id="fisar-post-image-title">Immagine principale</h3>
-			<p>Imposta l’<strong>Immagine in evidenza</strong> nelle impostazioni dell’articolo. Usa preferibilmente una foto quadrata di <strong>1080 × 1080 px</strong>, evitando testi importanti vicino ai bordi. La stessa immagine compare nella home, nell’elenco del Blog e accanto al titolo dell’articolo.</p>
+			<?php Fisar_CDJ_Editor_Metadata::render_cover( $post ); ?>
 		</section>
 		<section class="fisar-admin-section" aria-labelledby="fisar-post-gallery-title">
 			<h3 id="fisar-post-gallery-title">Fotografie nel testo</h3>

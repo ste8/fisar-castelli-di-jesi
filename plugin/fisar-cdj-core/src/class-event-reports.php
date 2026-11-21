@@ -179,7 +179,8 @@ final class Fisar_CDJ_Event_Reports {
 	}
 
 	public static function event_for_report( int $post_id ): int {
-		return self::sanitize_event_id( get_post_meta( $post_id, self::EVENT_META, true ) );
+		$event_id = self::sanitize_event_id( get_post_meta( $post_id, self::EVENT_META, true ) );
+		return Fisar_CDJ_Event_Visibility::is_unlisted( $event_id ) ? 0 : $event_id;
 	}
 
 	/** Find reports in reading order without changing the course itself. */

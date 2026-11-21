@@ -106,11 +106,14 @@ try {
 		$check( $xpath->query( '//section[@aria-labelledby="' . $heading . '"]//h3[@id="' . $heading . '"]' )->length === 1, 'Registration groups need distinct accessible headings.' );
 	}
 	$check( ! str_contains( $registration_editor, 'frontend' ), 'Editor instructions must avoid frontend jargon.' );
-	$old_order = array( 'normal' => 'fisar-event-meeting,third-party,fisar-event-schedule,fisar-event-location,fisar-event-registration', 'side' => 'fisar-event-course,submitdiv' );
-	$expected_order = array( 'normal' => 'third-party,fisar-event-schedule,fisar-event-location,fisar-event-meeting,fisar-event-registration,fisar-event-whatsapp-message', 'side' => 'fisar-event-course,submitdiv' );
+	$old_order = array( 'normal' => 'fisar-event-meeting,third-party,fisar-event-schedule,fisar-event-location,fisar-event-registration', 'side' => 'fisar-event-course,fisar-event-visibility,submitdiv' );
+	$expected_order = array( 'normal' => 'fisar-event-visibility,third-party,fisar-event-schedule,fisar-event-location,fisar-event-meeting,fisar-event-registration,fisar-event-course,fisar-event-whatsapp-message', 'side' => 'submitdiv' );
 	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $old_order ), 'Saved box order must put meeting immediately after venue without moving unrelated boxes.' );
 	$check( $expected_order === Fisar_CDJ_Meta_Boxes::event_meta_box_order( $expected_order ), 'Box-order adjustment must be idempotent.' );
 	$check( false === Fisar_CDJ_Meta_Boxes::event_meta_box_order( false ), 'Default registration order must remain available to new users.' );
+	Fisar_CDJ_Meta_Boxes::add_meta_boxes();
+	$normal_boxes = $GLOBALS['wp_meta_boxes']['fisar_evento']['normal'];
+	$check( isset( $normal_boxes['high']['fisar-event-visibility'], $normal_boxes['default']['fisar-event-course'] ), 'Visibility and course metadata are registered in the main editor panel for new users too.' );
 	ob_start();
 	Fisar_CDJ_Meta_Boxes::render_event_meeting( get_post( $both ) );
 	$meeting_editor = ob_get_clean();

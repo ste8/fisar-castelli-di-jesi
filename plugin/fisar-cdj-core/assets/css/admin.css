@@ -249,3 +249,26 @@
 	#fisar-message-text,
 	.fisar-message-preview { min-height: 14rem; max-height: 35dvh; }
 }
+.fisar-editor-native-cover {
+	max-width: 20rem;
+}
+
+.fisar-editor-native-cover .editor-post-featured-image__container {
+	width: fit-content;
+	max-width: 100%;
+}
+
+.fisar-editor-native-cover .editor-post-featured-image__preview {
+	width: auto;
+	max-width: 100%;
+	background-image: none;
+}
+
+.fisar-editor-native-cover .editor-post-featured-image__preview-image {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 15rem;
+	aspect-ratio: auto;
+	object-fit: contain;
+}

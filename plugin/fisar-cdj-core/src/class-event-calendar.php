@@ -85,7 +85,8 @@ final class Fisar_CDJ_Event_Calendar {
 		global $wpdb;
 		$keys = array_map( static fn( $field ) => '_fisar_event_' . $field, self::FIELDS );
 		$placeholders = implode( ',', array_fill( 0, count( $keys ), '%s' ) );
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT p.ID, m.meta_key, m.meta_value FROM {$wpdb->posts} p INNER JOIN {$wpdb->postmeta} m ON p.ID = m.post_id WHERE p.post_type = %s AND p.post_status = 'publish' AND m.meta_key IN ($placeholders) ORDER BY m.meta_id", Fisar_CDJ_Post_Types::EVENT, ...$keys ) );
+		$unlisted_key = Fisar_CDJ_Event_Visibility::META;
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT p.ID, m.meta_key, m.meta_value FROM {$wpdb->posts} p INNER JOIN {$wpdb->postmeta} m ON p.ID = m.post_id WHERE p.post_type = %s AND p.post_status = 'publish' AND m.meta_key IN ($placeholders) AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} visibility WHERE visibility.post_id = p.ID AND visibility.meta_key = %s AND visibility.meta_value = '1') ORDER BY m.meta_id", Fisar_CDJ_Post_Types::EVENT, ...array_merge( $keys, array( $unlisted_key ) ) ) );
 		$values = array();
 		foreach ( $rows as $row ) {
 			$field = substr( $row->meta_key, strlen( '_fisar_event_' ) );
