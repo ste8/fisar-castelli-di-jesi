@@ -426,6 +426,46 @@ blockquote {
 	min-height: 5.2rem;
 }
 
+.header-search {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .45rem;
+	min-width: 2.75rem;
+	min-height: 2.75rem;
+	margin-left: auto;
+	margin-right: .6rem;
+	border-radius: var(--radius-small);
+	color: var(--color-bordeaux);
+	text-decoration: none;
+}
+
+.header-search:hover,
+.header-search[aria-current="page"] {
+	background: var(--color-tint);
+}
+
+.header-search__label {
+	display: none;
+}
+
+@media (max-width: 37.99rem) {
+	.main-header :is(.site-logo, .custom-logo-link) img {
+		max-width: clamp(7rem, calc(100vw - 12.5rem), 12rem);
+		height: auto;
+	}
+}
+
+@media (min-width: 70rem) {
+	.main-header__navigation { margin-left: auto; }
+	.header-search { order: 2; margin: 0 0 0 .75rem; }
+}
+
+@media (min-width: 80rem) {
+	.header-search { padding: .4rem .65rem; }
+	.header-search__label { display: inline; font-size: var(--font-size-sm); }
+}
+
 .site-logo {
 	display: inline-flex;
 	align-items: center;
@@ -2498,27 +2538,27 @@ blockquote {
 	background: linear-gradient(120deg, var(--color-tint), var(--color-paper) 75%);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero {
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero {
 	padding-block: 1.5rem;
 	border-bottom-color: var(--color-bordeaux-dark);
 	background: var(--color-bordeaux-dark);
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1 {
 	color: var(--color-paper);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .follow-page, .association-page) .page-hero__inner > p:last-child {
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .follow-page, .association-page) .page-hero__inner > p:last-child {
 	color: var(--color-line);
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero__inner {
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero__inner {
 	max-width: var(--container);
 	margin-inline: auto;
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1,
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1,
 :is(.single-event, .single-course) .content-hero h1,
 .single-news .editorial-hero h1 {
 	position: relative;
@@ -2532,12 +2572,12 @@ blockquote {
 	text-wrap: balance;
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1 {
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1 {
 	margin-bottom: 1rem;
 	padding-bottom: .35em;
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1::after,
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .contacts-page, .follow-page, .association-page) .page-hero h1::after,
 :is(.single-event, .single-course) .content-hero h1::after,
 .single-news .editorial-hero h1::after {
 	position: absolute;
@@ -2549,7 +2589,7 @@ blockquote {
 	content: '';
 }
 
-:is(.events-archive, .courses-archive, .news-archive, .privacy-page, .follow-page, .association-page) .page-hero__inner > p:last-child,
+:is(.events-archive, .courses-archive, .news-archive, .global-search, .privacy-page, .follow-page, .association-page) .page-hero__inner > p:last-child,
 :is(.single-event, .single-course) .content-hero__lead,
 .single-news .content-hero__lead {
 	max-width: 46rem;
@@ -2559,11 +2599,11 @@ blockquote {
 	line-height: 1.7;
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .section {
+:is(.events-archive, .courses-archive, .news-archive, .global-search) .section {
 	padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) :is(.page-hero, .section) {
+:is(.events-archive, .courses-archive, .news-archive, .global-search) :is(.page-hero, .section) {
 	padding-top: 1.5rem;
 }
 
@@ -2576,7 +2616,7 @@ blockquote {
 	color: var(--color-muted);
 }
 
-:is(.events-archive, .courses-archive, .news-archive) .section-heading h2 {
+:is(.events-archive, .courses-archive, .news-archive, .global-search) .section-heading h2 {
 	font-family: var(--font-body);
 	font-size: clamp(2rem, 4vw, 2.5rem);
 	font-weight: 500;

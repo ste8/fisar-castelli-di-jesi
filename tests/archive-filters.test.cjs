@@ -30,15 +30,15 @@ class Element {
 }
 
 function setup(withFetch = true, scope = 'blog') {
-	const names = scope === 'courses' ? ['search', 'anno', 'tipologia', 'citta', 'per_pagina'] : ['search', 'anno', 'mese', 'categoria', 'per_pagina'];
+	const names = scope === 'global' ? ['s', 'tipo'] : scope === 'courses' ? ['search', 'anno', 'tipologia', 'citta', 'per_pagina'] : ['search', 'anno', 'mese', 'categoria', 'per_pagina'];
 	const fields = Object.fromEntries(names.map(name => [name, new Element(name)]));
-	fields.per_pagina.value = '12';
-	for (const field of Object.values(fields)) field.tagName = field.name === 'search' ? 'INPUT' : 'SELECT';
+	if (fields.per_pagina) fields.per_pagina.value = '12';
+	for (const field of Object.values(fields)) field.tagName = ['search', 's'].includes(field.name) ? 'INPUT' : 'SELECT';
 	const form = new Element();
-	form.action = scope === 'courses' ? 'https://example.test/corsi/#past-courses' : 'https://example.test/news/';
+	form.action = scope === 'global' ? 'https://example.test/' : scope === 'courses' ? 'https://example.test/corsi/#past-courses' : 'https://example.test/news/';
 	form.dataset.archiveScope = scope;
 	form.elements = Object.values(fields);
-	form.querySelector = () => fields.search;
+	form.querySelector = selector => selector === '[name="s"]' ? fields.s : fields.search;
 	const results = new Element();
 	results.children = [Object.assign(new Element(), { textContent: 'Original results' })];
 	const counter = Object.assign(new Element(), { isCounter: true, textContent: '32 risultati' });
@@ -46,7 +46,7 @@ function setup(withFetch = true, scope = 'blog') {
 	summary.children = [counter];
 	const hint = new Element();
 	const document = {
-		title: 'Blog', activeElement: fields.search,
+		title: 'Blog', activeElement: fields.search || fields.s,
 		querySelector: selector => ({ '.archive-filters': form, '[data-archive-results]': results, '[data-archive-summary]': summary })[selector],
 		getElementById: () => hint,
 		importNode: node => Object.assign(new Element(), { textContent: node.textContent, isReset: node.isReset, href: node.href }),
@@ -242,6 +242,27 @@ async function run() {
 	courses.fire('popstate'); courses.requests[3].resolve('Course page two', '2 risultati'); await tick();
 	assert.equal(courses.fields.tipologia.value, 'introductory');
 	assert.equal(courses.fields.citta.value, 'Città d’Arco');
+	const globalSearch = setup(true, 'global');
+	globalSearch.fields.s.value = 'Varnelli';
+	globalSearch.fields.s.fire('input'); globalSearch.flush();
+	assert.equal(new URL(globalSearch.requests[0].url).searchParams.get('s'), 'Varnelli');
+	globalSearch.requests[0].resolve('Mixed results', '3 risultati'); await tick();
+	globalSearch.change('tipo', 'corsi'); globalSearch.flush();
+	assert.equal(new URL(globalSearch.requests[1].url).searchParams.get('tipo'), 'corsi');
+	globalSearch.requests[1].resolve('Courses only', '1 risultato'); await tick();
+	const globalReset = Object.assign(new Element(), { matches: '[data-archive-reset]', href: 'https://example.test/?s=' });
+	globalSearch.summary.fire('click', { target: globalReset });
+	assert.equal(globalSearch.fields.s.value, '');
+	assert.equal(globalSearch.fields.tipo.value, '');
+	globalSearch.requests[2].resolve('Start searching', 'Cerca tra Eventi, Blog e Corsi.'); await tick();
+	globalSearch.form.fire('submit');
+	assert.equal(new URL(globalSearch.requests[3].url).search, '?s=', 'An empty global search stays on its own page instead of navigating to Home.');
+	globalSearch.requests[3].resolve('Start searching', 'Cerca tra Eventi, Blog e Corsi.'); await tick();
+	assert.equal(globalSearch.fields.s.focused, true);
+	globalSearch.window.location.href = 'https://example.test/?s=Falconara&tipo=eventi';
+	globalSearch.fire('popstate'); globalSearch.requests[4].resolve('Events restored', '2 risultati'); await tick();
+	assert.equal(globalSearch.fields.s.value, 'Falconara');
+	assert.equal(globalSearch.fields.tipo.value, 'eventi');
 	const fallback = setup(false);
 	assert.equal(Object.keys(fallback.form.handlers).length, 0);
 	console.log('Archive live filters: focus, debounce/IME, stale requests, URL/history, page size, partial reset/pagination, retries and cleanup passed.');

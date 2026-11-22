@@ -8,13 +8,14 @@
 	if (!form || !results || !counter || !window.fetch || !window.AbortController || !window.DOMParser) {
 		return;
 	}
-	const textField = form.querySelector('[name="search"]');
+	const textField = form.querySelector('[name="search"]') || form.querySelector('[name="s"]');
+	if (!textField) return;
 	results.setAttribute('tabindex', '-1');
 	const controls = Array.from(form.elements).filter(control => control.name);
 	const legacyNames = { search: 'fisar_text', anno: 'fisar_year', mese: 'fisar_month', categoria: 'fisar_category', per_pagina: 'fisar_per_page' };
 	const hint = document.getElementById('archive-auto-hint');
 	if (hint) {
-		hint.textContent = 'I risultati si aggiornano automaticamente quando cambi una selezione o fai una breve pausa nella scrittura. Puoi anche premere Cerca.';
+		hint.textContent = [hint.textContent.trim(), 'I risultati si aggiornano automaticamente quando cambi una selezione o fai una breve pausa nella scrittura. Puoi anche premere Cerca.'].filter(Boolean).join(' ');
 	}
 	let timer;
 	let controller;
@@ -35,7 +36,7 @@
 		const url = new URL(form.action, window.location.href);
 		for (const control of controls) {
 			const value = control.value.trim();
-			if (value && !(control.name === 'per_pagina' && value === '12')) {
+			if (control.name === 's' || (value && !(control.name === 'per_pagina' && value === '12'))) {
 				url.searchParams.set(control.name, value);
 			}
 		}

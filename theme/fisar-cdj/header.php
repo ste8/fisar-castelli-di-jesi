@@ -40,6 +40,9 @@
 	<div class="main-header">
 		<div class="container main-header__inner">
 			<?php fisar_cdj_theme_logo( for_header: true ); ?>
+			<a class="header-search" href="<?php echo esc_url( Fisar_CDJ_Global_Search::url() ); ?>" aria-label="Cerca nel sito"<?php if ( is_search() ) : ?> aria-current="page"<?php endif; ?>>
+				<?php echo fisar_cdj_theme_icon( 'search' ); ?><span class="header-search__label">Cerca</span>
+			</a>
 			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
 				<span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
 				<span class="menu-toggle__label">Menu</span>

@@ -4,10 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.159' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.161' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 require_once __DIR__ . '/inc/training-journey.php';
+require_once __DIR__ . '/inc/search-preview.php';
 
 function fisar_cdj_theme_event_pagination_query_vars( array $vars ): array {
 	$vars[] = 'eventi_futuri';
@@ -27,6 +28,14 @@ function fisar_cdj_theme_blog_page_size( WP_Query $query ): void {
 	$query->set( 'posts_per_page', $filters['per_page'] );
 }
 add_action( 'pre_get_posts', 'fisar_cdj_theme_blog_page_size' );
+
+function fisar_cdj_theme_search_title( array $parts ): array {
+	if ( is_search() && '' === trim( get_search_query( false ) ) ) {
+		$parts['title'] = 'Cerca nel sito';
+	}
+	return $parts;
+}
+add_filter( 'document_title_parts', 'fisar_cdj_theme_search_title' );
 
 function fisar_cdj_theme_setup(): void {
 	load_theme_textdomain( 'fisar-cdj', get_template_directory() . '/languages' );
@@ -99,7 +108,10 @@ function fisar_cdj_theme_assets(): void {
 	wp_enqueue_style( 'fisar-cdj-style', get_stylesheet_uri(), array(), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_style( 'fisar-cdj-main', get_template_directory_uri() . '/assets/css/main.css', array( 'fisar-cdj-style' ), FISAR_CDJ_THEME_VERSION );
 	wp_enqueue_script( 'fisar-cdj-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), FISAR_CDJ_THEME_VERSION, true );
-	if ( is_home() || is_post_type_archive( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) ) ) {
+	if ( is_search() ) {
+		wp_enqueue_style( 'fisar-cdj-search', get_template_directory_uri() . '/assets/css/search.css', array( 'fisar-cdj-main' ), FISAR_CDJ_THEME_VERSION );
+	}
+	if ( is_search() || is_home() || is_post_type_archive( array( Fisar_CDJ_Post_Types::EVENT, Fisar_CDJ_Post_Types::COURSE ) ) ) {
 		wp_enqueue_script( 'fisar-cdj-archive-filters', get_template_directory_uri() . '/assets/js/archive-filters.js', array(), FISAR_CDJ_THEME_VERSION, true );
 	}
 	if ( is_page( 'diventare-sommelier' ) ) {
@@ -165,6 +177,7 @@ add_filter( 'excerpt_more', 'fisar_cdj_theme_excerpt_more' );
  */
 function fisar_cdj_theme_icon( string $name, string $class = '' ): string {
 	$icons = array(
+		'search'    => '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>',
 		'whatsapp' => '<path d="M20.5 11.8a8.3 8.3 0 0 1-12.3 7.3L3.5 20.5l1.4-4.6A8.3 8.3 0 1 1 20.5 11.8Z"/><path d="M8.2 7.8c.2-.5.4-.5.8-.5h.5l1 2.3-.8 1c.8 1.7 2 2.8 3.7 3.6l1-.9 2.3 1.1v.5c0 .5-.1.8-.5 1.1-.6.5-1.5.7-2.3.5-3.7-1-6.5-3.8-7.4-7.4-.2-.5.2-1 .7-1.3Z"/>',
 		'instagram' => '<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r=".8" class="icon__fill"/>',
 		'facebook'  => '<path d="M13.7 20.5v-7.7h2.7l.4-3h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.8c-.8-.1-1.6-.2-2.4-.2-2.4 0-4.1 1.5-4.1 4.2v2H7.8v3h2.7v7.7"/>',

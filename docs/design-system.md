@@ -76,6 +76,8 @@ Percorso sommelier (pagina in revisione): intestazione bordò compatta, introduz
 
 Seguici: card bianche, fondo caldo comune e pannello newsletter bordeaux, spaziatura compatta. Stessi componenti e descrizioni della Home, non due versioni da mantenere separatamente.
 
+La ricerca globale usa una lista senza card: tipo di contenuto, data pertinente, titolo, sede e breve estratto; le pagine istituzionali non mostrano una data. Estratto centrato sulla prima corrispondenza, con contesto e puntini dove il testo è tagliato; evidenziazione tenue dei termini cercati in titolo, luogo ed estratto, senza cambiare il testo originale. A ricerca vuota si mostrano soltanto i controlli e una breve indicazione coerente con il tipo selezionato, senza blocco introduttivo sotto il form. Form compatto con campo testuale, Contenuti (Tutti/Eventi/Blog/Corsi/Pagine) e Cerca; azzeramento e conteggio nella riga inferiore, intestazione bordò compatta come gli archivi. Accesso con lente nell’intestazione sempre disponibile su mobile; etichetta visibile Cerca da 80rem, nome accessibile Cerca nel sito a ogni larghezza. Sotto 38rem logo proporzionato allo spazio restante per mantenere lente e Menu sulla stessa riga, senza alterare il file del marchio.
+
 ## Responsive e accessibilità
 
 Mobile-first. Breakpoint del componente, non un’imposizione globale: 38rem per varie griglie, 64rem per hero affiancata; footer quattro colonne solo quando c’è spazio. Testare almeno 320, 390, 768, 1023/1024 e 1440 px, più zoom e testi lunghi. Nessun overflow della pagina: la tabella lezioni può scorrere nel proprio riquadro focusabile.
