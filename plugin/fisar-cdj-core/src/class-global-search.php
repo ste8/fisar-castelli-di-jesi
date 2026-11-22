@@ -13,6 +13,7 @@ final class Fisar_CDJ_Global_Search {
 		add_action( 'pre_get_posts', array( self::class, 'prepare_query' ), 20 );
 		add_filter( 'posts_search', array( self::class, 'search' ), 20, 2 );
 		add_filter( 'posts_orderby', array( self::class, 'order' ), 20, 2 );
+		add_filter( 'posts_clauses', array( self::class, 'rank' ), 30, 2 );
 	}
 
 	public static function query_vars( array $vars ): array {
@@ -135,6 +136,90 @@ final class Fisar_CDJ_Global_Search {
 	public static function order( string $order, WP_Query $query ): string {
 		if ( ! $query->get( self::MARKER ) ) { return $order; }
 		global $wpdb;
+		// WordPress's explicit relevance order can be empty when every term is excluded.
+		if ( ! self::ranking_terms( $query ) ) { $order = ''; }
 		return ( $order ? $order . ', ' : '' ) . "{$wpdb->posts}.post_date DESC, {$wpdb->posts}.ID DESC";
+	}
+
+	private static function ranking_terms( WP_Query $query ): array {
+		$prefix = apply_filters( 'wp_query_search_exclusion_prefix', '-' );
+		$terms = array_filter( (array) $query->get( 'search_terms' ), static fn ( $term ) => '' !== $term && ! ( $prefix && str_starts_with( $term, $prefix ) ) );
+		return array_values( array_unique( array_filter( array_map( array( self::class, 'ranking_text' ), $terms ), static fn ( $term ) => '' !== $term ) ) );
+	}
+
+	/** Evaluate visible text consistently on MySQL and MariaDB, without indexing HTML attributes. */
+	private static function ranking_text( string $text ): string {
+		$text = preg_replace( '~<br\b[^>]*>|</(?:p|h[1-6]|li|div|section|ul|ol|blockquote|tr|td|th)>~i', ' ', strip_shortcodes( $text ) );
+		return self::normalized_text( html_entity_decode( wp_strip_all_tags( $text ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+	}
+
+	private static function word_pattern( string $term ): string {
+		return '~(?<![\p{L}\p{N}_])' . preg_quote( $term, '~' ) . '(?![\p{L}\p{N}_])~u';
+	}
+
+	private static function relevance( array $texts, array $terms ): int {
+		$whole_terms = 0;
+		foreach ( $terms as $term ) {
+			foreach ( $texts as $text ) {
+				if ( preg_match( self::word_pattern( $term ), $text ) ) { $whole_terms++; break; }
+			}
+		}
+		$phrase = self::word_pattern( implode( ' ', $terms ) );
+		foreach ( $texts as $text ) {
+			if ( preg_match( $phrase, $text ) ) { return count( $terms ) + 1 + $whole_terms; }
+		}
+		return $whole_terms;
+	}
+
+	/** Read potential public matches cheaply; the main query retains every final filter. */
+	private static function ranking_candidates( WP_Query $query ): array {
+		global $wpdb;
+		$types = (array) $query->get( 'post_type' );
+		$placeholders = implode( ', ', array_fill( 0, count( $types ), '%s' ) );
+		$where = $wpdb->prepare( " AND post_status = 'publish' AND post_password = '' AND post_type IN ({$placeholders})", $types );
+		foreach ( array( 'post__in' => 'IN', 'post__not_in' => 'NOT IN' ) as $field => $operator ) {
+			$ids = array_map( 'intval', (array) $query->get( $field ) );
+			if ( $ids ) { $where .= " AND {$wpdb->posts}.ID {$operator} (" . implode( ',', $ids ) . ')'; }
+		}
+		$keys = array_values( array_intersect_key( Fisar_CDJ_Content_Visibility::FIELDS, array_flip( $types ) ) );
+		if ( $keys ) {
+			$placeholders = implode( ', ', array_fill( 0, count( $keys ), '%s' ) );
+			$where .= $wpdb->prepare( " AND NOT EXISTS (SELECT 1 FROM {$wpdb->postmeta} ranking_visibility WHERE ranking_visibility.post_id = {$wpdb->posts}.ID AND ranking_visibility.meta_key IN ({$placeholders}) AND ranking_visibility.meta_value = '1')", $keys );
+		}
+		$where .= self::search( '', $query );
+		return $wpdb->get_results( "SELECT {$wpdb->posts}.* FROM {$wpdb->posts} WHERE 1=1 {$where}" );
+	}
+
+	/** Rank the already-visible candidates before LIMIT, keeping counts and page boundaries correct. */
+	public static function rank( array $clauses, WP_Query $query ): array {
+		if ( ! $query->get( self::MARKER ) || ! $query->get( 's' ) ) { return $clauses; }
+		$terms = self::ranking_terms( $query );
+		if ( ! $terms ) { return $clauses; }
+		global $wpdb;
+		$candidates = self::ranking_candidates( $query );
+		$location_ids = array();
+		foreach ( $candidates as $post ) {
+			if ( isset( self::LOCATION_KEYS[ $post->post_type ] ) ) { $location_ids[] = (int) $post->ID; }
+		}
+		if ( $location_ids ) { update_meta_cache( 'post', $location_ids ); }
+		$groups = array();
+		foreach ( $candidates as $post ) {
+			$texts = array( $post->post_title, $post->post_content );
+			foreach ( self::LOCATION_KEYS[ $post->post_type ] ?? array() as $key ) {
+				$value = get_post_meta( $post->ID, $key, true );
+				if ( is_string( $value ) ) { $texts[] = $value; }
+			}
+			if ( 'page' === $post->post_type ) { $texts[] = self::page_extra_text( new WP_Post( $post ) ); }
+			$score = self::relevance( array_map( array( self::class, 'ranking_text' ), $texts ), $terms );
+			if ( $score ) { $groups[ $score ][] = (int) $post->ID; }
+		}
+		if ( ! $groups ) { return $clauses; }
+		krsort( $groups, SORT_NUMERIC );
+		$cases = array();
+		foreach ( $groups as $score => $ids ) {
+			$cases[] = "WHEN {$wpdb->posts}.ID IN (" . implode( ',', $ids ) . ') THEN ' . (int) $score;
+		}
+		$clauses['orderby'] = '(CASE ' . implode( ' ', $cases ) . ' ELSE 0 END) DESC, ' . $clauses['orderby'];
+		return $clauses;
 	}
 }

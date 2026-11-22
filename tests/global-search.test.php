@@ -82,6 +82,37 @@ try {
 	$title_match = $make( 'post', array( 'post_title' => 'FisarRelevanceFixture', 'post_date' => '2012-01-01 12:00:00' ) );
 	$make( 'post', array( 'post_title' => 'Una menzione nel testo', 'post_content' => 'FisarRelevanceFixture', 'post_date' => '2025-01-01 12:00:00' ) );
 	$check( $title_match === $query( 'FisarRelevanceFixture' )->posts[0]->ID, 'Title matches rank ahead of a more recent body match.' );
+	$body_nicole = $make( 'post', array( 'post_title' => 'Un incontro speciale', 'post_content' => '<p>Con <strong>Nicolé</strong>, una visita da ricordare.</p>', 'post_date' => '2012-01-01 12:00:00' ) );
+	$whole_ids = array( $body_nicole );
+	$partial_ids = array();
+	for ( $i = 0; $i < 13; $i++ ) {
+		$partial_ids[] = $make( 'post', array( 'post_title' => 'Le aziende vinicole ' . $i, 'post_content' => '<p>Un incontro tra cantine.</p>', 'post_date' => '2025-01-01 12:00:00' ) );
+		$whole_ids[] = $make( 'post', array( 'post_title' => 'Nicole e le degustazioni ' . $i, 'post_date' => '2013-01-01 12:00:00' ) );
+	}
+	$attribute_only = $make( 'post', array( 'post_title' => 'Le aziende vinicole in foto', 'post_content' => '<p>Visita alle aziende vinicole.</p><img src="https://example.test/nicole.jpg" alt="Foto">', 'post_date' => '2026-01-01 12:00:00' ) );
+	$partial_ids[] = $attribute_only;
+	$word_fixtures = array_merge( $whole_ids, $partial_ids );
+	$ranked = array();
+	foreach ( array( 12, 12, 4 ) as $page_index => $page_count ) {
+		$result = $query( 'nicole', array( 'post__in' => $word_fixtures, 'paged' => $page_index + 1 ) );
+		$check( 28 === (int) $result->found_posts && $page_count === $result->post_count, 'Whole-word ranking keeps totals and page sizes.' );
+		$ranked = array_merge( $ranked, wp_list_pluck( $result->posts, 'ID' ) );
+	}
+	$check( 28 === count( array_unique( $ranked ) ), 'Ranking is stable without duplicates between pages.' );
+	$check( ! array_diff( array_slice( $ranked, 0, 14 ), $whole_ids ), 'All whole-word Nicole matches precede newer title matches inside vinicole, across page boundaries.' );
+	$check( $body_nicole === $ranked[13], 'An accented whole word in the body outranks a substring in the title; whole title matches still come first.' );
+	$check( in_array( $attribute_only, array_slice( $ranked, 14 ), true ), 'An image filename cannot promote a partial visible-text match to whole-word relevance.' );
+	$venue_nicole = $make( 'fisar_evento', array( 'post_title' => 'Una visita guidata', 'meta_input' => array( '_fisar_event_venue' => 'Cantina Nicole' ), 'post_date' => '2011-01-01 12:00:00' ) );
+	$ranked_venue = $query( 'nicole', array( 'post__in' => array( $venue_nicole, $attribute_only ) ) );
+	$check( $venue_nicole === $ranked_venue->posts[0]->ID, 'Whole-word matches in a public venue also outrank title substrings.' );
+	$phrase = $make( 'post', array( 'post_title' => 'I fondatori', 'post_content' => '<p>Sauro Bini ci accompagna.</p>', 'post_date' => '2010-01-01 12:00:00' ) );
+	$separate = $make( 'post', array( 'post_title' => 'Sauro e Bini', 'post_date' => '2025-01-01 12:00:00' ) );
+	$check( $phrase === $query( 'sauro bini', array( 'post__in' => array( $phrase, $separate ) ) )->posts[0]->ID, 'A complete phrase in the body outranks separate title words.' );
+	$delegate_body = $make( 'post', array( 'post_title' => 'Un riferimento recente', 'post_content' => '<p>DeMichelisCorrado.</p>', 'post_date' => '2026-01-01 12:00:00' ) );
+	$check( $contacts->ID === $query( 'corrado', array( 'post__in' => array( $contacts->ID, $delegate_body ) ) )->posts[0]->ID, 'Generated public Contacts names participate in whole-word relevance.' );
+	$check( 14 === (int) $query( 'vinicole', array( 'post__in' => $word_fixtures ) )->found_posts, 'Ranking does not remove legitimate partial or whole-word search results.' );
+	$exclusion_only = $query( '-ExcludedWordFixture', array( 'post__in' => $word_fixtures ) );
+	$check( 28 === (int) $exclusion_only->found_posts, 'An exclusion-only search keeps native ordering without an empty phrase score.' );
 	for ( $i = 0; $i < 25; $i++ ) { $make( 'post', array( 'post_title' => 'FisarPaginationFixture ' . $i ) ); }
 	$seen = array();
 	foreach ( array( 12, 12, 1 ) as $i => $count ) {
