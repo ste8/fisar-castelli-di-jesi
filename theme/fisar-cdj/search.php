@@ -23,7 +23,7 @@ $search_hint = match ( $search_state['type'] ) {
 				<form class="archive-filters global-search__form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Cerca nel sito" aria-describedby="archive-auto-hint" data-archive-scope="global">
 					<div class="archive-filters__field archive-filters__search">
 						<label for="global-search-text">Che cosa cerchi?</label>
-						<input id="global-search-text" type="search" name="s" value="<?php echo esc_attr( $search_state['text'] ); ?>" maxlength="200" placeholder="Es. Verdicchio, Varnelli, Falconara…">
+						<input id="global-search-text" type="search" name="s" value="<?php echo esc_attr( $search_state['text'] ); ?>" maxlength="200" placeholder="Es. Verdicchio, Varnelli, Falconara…"<?php if ( '' === $search_state['text'] ) : ?> autofocus<?php endif; ?>>
 					</div>
 					<div class="archive-filters__field">
 						<label for="global-search-type">Contenuti</label>
