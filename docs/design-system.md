@@ -37,7 +37,7 @@ Loghi ufficiali e originale in `assets/brand/logo/`, guida del brand in `assets/
 | H2/H3/H4 del corpo Eventi/Corsi/Blog | Poppins 500, 24/20/18 px alla scala desktop |
 | Grassetti editoriali | Poppins 600 |
 
-Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccezioni dimensionali dei componenti vivono nel CSS. Il canvas degli editor Eventi/Corsi/Articoli usa gli stessi font e gerarchia, non i grandi titoli predefiniti di WordPress. La scala condivisa risiede in `editor-content.css`; i titoli dei riquadri amministrativi sono 20 px, le sottosezioni 16 px.
+Scale fluide, niente riduzione del font per impedire un ritorno a capo. Le eccezioni dimensionali dei componenti vivono nel CSS. Il canvas degli editor Eventi/Corsi/Articoli usa gli stessi font e gerarchia, non i grandi titoli predefiniti di WordPress. La scala condivisa risiede in `editor-content.css`; i titoli di tutti i riquadri principali amministrativi sono 20 px, con interlinea 1,4 e spaziatura verticale di 14 px; le sottosezioni sono 16 px. La regola comune copre Articoli, Corsi ed Eventi, inclusi Visibilità nel sito, Copertina e Categoria del Blog dove presenti, senza dipendere dagli ID dei singoli riquadri.
 
 ## Composizione
 

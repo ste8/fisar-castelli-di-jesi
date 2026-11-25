@@ -16,7 +16,8 @@
 	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
-#poststuff :is([id^="fisar-event-"], [id^="fisar-course-"], #fisar-post-summary, #fisar-post-report, #fisar-social-publishing) .postbox-header .hndle {
+/* All main editor panels share one heading style, including native cover/category boxes. */
+#poststuff :is(#normal-sortables, #advanced-sortables) > .postbox .postbox-header .hndle {
 	font-size: 20px;
 	line-height: 1.4;
 	padding-block: 14px;
