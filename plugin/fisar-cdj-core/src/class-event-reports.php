@@ -4,10 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** Articles link to an event and/or courses; their pages find public reports automatically. */
+/** Articles link to an event and/or course; their pages find public reports automatically. */
 final class Fisar_CDJ_Event_Reports {
 	public const EVENT_META = '_fisar_report_event_id';
-	/** One integer per metadata row also supports reports about several courses. */
+	/** Keep historical multi-course relations readable without a data migration. */
 	public const COURSE_META = '_fisar_report_course_id';
 	public const SOCIAL_FIELDS = array(
 		'_fisar_report_facebook_url'  => 'Facebook',
@@ -80,6 +80,32 @@ final class Fisar_CDJ_Event_Reports {
 		add_meta_box( 'fisar-post-report', 'Racconto di eventi e corsi', array( self::class, 'render' ), 'post', 'normal', 'default' );
 	}
 
+	/** Sort editions by their start date, never by their publication date. */
+	private static function course_options(): array {
+		$courses = get_posts( array(
+			'post_type' => Fisar_CDJ_Post_Types::COURSE,
+			'post_status' => 'publish',
+			'has_password' => false,
+			'posts_per_page' => -1,
+		) );
+		$options = array();
+		foreach ( $courses as $course ) {
+			$start = (string) get_post_meta( $course->ID, '_fisar_course_start_date', true );
+			$date = DateTimeImmutable::createFromFormat( '!Y-m-d', $start, wp_timezone() );
+			$year = Fisar_CDJ_Course_Filters::year( $course->ID );
+			if ( $date && $date->format( 'Y-m-d' ) === $start ) {
+				$sort_date = $start;
+				$period = wp_date( 'm/Y', $date->getTimestamp(), wp_timezone() );
+			} else {
+				$sort_date = $year ? sprintf( '%04d-00-00', $year ) : '';
+				$period = $year ? (string) $year : 'Data non disponibile';
+			}
+			$options[] = array( 'id' => $course->ID, 'date' => $sort_date, 'label' => $period . ' — ' . get_the_title( $course ) );
+		}
+		usort( $options, static fn( array $a, array $b ): int => strcmp( $b['date'], $a['date'] ) ?: $b['id'] <=> $a['id'] );
+		return $options;
+	}
+
 	public static function render( WP_Post $post ): void {
 		wp_nonce_field( self::NONCE_ACTION, self::NONCE_NAME );
 		$selected = (int) get_post_meta( $post->ID, self::EVENT_META, true );
@@ -91,13 +117,7 @@ final class Fisar_CDJ_Event_Reports {
 			'meta_key' => '_fisar_event_date',
 			'orderby' => array( 'meta_value' => 'DESC', 'ID' => 'DESC' ),
 		) );
-		$courses = get_posts( array(
-			'post_type' => Fisar_CDJ_Post_Types::COURSE,
-			'post_status' => 'publish',
-			'has_password' => false,
-			'posts_per_page' => -1,
-			'orderby' => array( 'title' => 'ASC', 'ID' => 'ASC' ),
-		) );
+		$courses = self::course_options();
 		$selected_courses = self::courses_for_report( $post->ID, true );
 		?>
 		<input type="hidden" name="_fisar_report_fields_present" value="1">
@@ -111,17 +131,18 @@ final class Fisar_CDJ_Event_Reports {
 			</select>
 			<p class="description">Quando pubblichi questo articolo, il collegamento al racconto compare automaticamente nella pagina dell’evento. Non occorre modificare l’evento.</p>
 		</div>
-		<fieldset class="fisar-field">
-			<legend><strong>Corsi collegati (facoltativi)</strong></legend>
-			<input type="hidden" name="_fisar_report_courses_present" value="1">
-			<p class="description" id="fisar-report-courses-help">Seleziona il corso raccontato. Puoi sceglierne più di uno per visite condivise o consegne degli attestati. I rimandi compaiono automaticamente nelle pagine dei corsi e nell’articolo.</p>
-			<div class="fisar-report-courses" role="group" aria-label="Corsi disponibili" aria-describedby="fisar-report-courses-help" tabindex="0">
+		<div class="fisar-field">
+			<label for="<?php echo esc_attr( self::COURSE_META ); ?>"><strong>Corso collegato (facoltativo)</strong></label>
+			<input type="hidden" name="_fisar_report_course_present" value="1">
+			<select class="widefat" id="<?php echo esc_attr( self::COURSE_META ); ?>" name="<?php echo esc_attr( self::COURSE_META ); ?>" aria-describedby="fisar-report-courses-help">
+				<option value="0">Nessun corso</option>
 				<?php foreach ( $courses as $course ) : ?>
-					<p><label><input type="checkbox" name="<?php echo esc_attr( self::COURSE_META ); ?>[]" value="<?php echo (int) $course->ID; ?>"<?php checked( in_array( $course->ID, $selected_courses, true ) ); ?>> <?php echo esc_html( get_the_title( $course ) ); ?></label></p>
+					<option value="<?php echo (int) $course['id']; ?>"<?php selected( $selected_courses[0] ?? 0, $course['id'] ); ?>><?php echo esc_html( $course['label'] ); ?></option>
 				<?php endforeach; ?>
-				<?php if ( ! $courses ) : ?><p>Nessun corso pubblicato disponibile.</p><?php endif; ?>
-			</div>
-		</fieldset>
+			</select>
+			<p class="description" id="fisar-report-courses-help">Scegli il corso raccontato. I rimandi compaiono automaticamente nella pagina del corso e nell’articolo.</p>
+			<?php if ( count( $selected_courses ) > 1 ) : ?><p class="description">Questo articolo è collegato a più corsi. Salvando verrà mantenuto solo il corso selezionato.</p><?php endif; ?>
+		</div>
 		<?php
 	}
 
@@ -154,9 +175,10 @@ final class Fisar_CDJ_Event_Reports {
 		if ( isset( $_POST[ self::EVENT_META ] ) ) {
 			update_post_meta( $post_id, self::EVENT_META, self::sanitize_event_id( wp_unslash( $_POST[ self::EVENT_META ] ) ) );
 		}
-		// The separate marker preserves links when an older editor omits these controls.
-		if ( isset( $_POST['_fisar_report_courses_present'] ) && ( ! isset( $_POST[ self::COURSE_META ] ) || is_array( $_POST[ self::COURSE_META ] ) ) ) {
-			$course_ids = array_unique( array_filter( array_map( array( self::class, 'sanitize_course_id' ), wp_unslash( $_POST[ self::COURSE_META ] ?? array() ) ) ) );
+		// A new marker preserves links when an older checkbox editor submits its previous format.
+		if ( isset( $_POST['_fisar_report_course_present'], $_POST[ self::COURSE_META ] ) && is_string( $_POST[ self::COURSE_META ] ) && ctype_digit( $_POST[ self::COURSE_META ] ) ) {
+			$course_id = self::sanitize_course_id( wp_unslash( $_POST[ self::COURSE_META ] ) );
+			$course_ids = $course_id ? array( $course_id ) : array();
 			$stored_ids = array_map( 'intval', get_post_meta( $post_id, self::COURSE_META, false ) );
 			foreach ( array_diff( $stored_ids, $course_ids ) as $course_id ) {
 				delete_post_meta( $post_id, self::COURSE_META, $course_id );

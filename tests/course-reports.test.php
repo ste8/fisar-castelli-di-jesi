@@ -1,5 +1,5 @@
 <?php
-/** Local integration: multiple course relations, safe saves and reciprocal public links. */
+/** Local integration: single course picker, dated editions, safe saves and legacy relations. */
 if ( ! defined( 'WP_CLI' ) || ! WP_CLI || 'local' !== wp_get_environment_type() ) {
 	throw new RuntimeException( 'This test requires local WordPress and WP-CLI.' );
 }
@@ -23,8 +23,13 @@ $render = static function ( string $part, array $arguments ): string {
 try {
 	$admin = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
 	wp_set_current_user( $admin[0]->ID );
-	$course = $create( 'fisar_corso', 'publish', 'Corso con racconti' );
-	$other = $create( 'fisar_corso', 'publish', 'Secondo corso' );
+	$course = $create( 'fisar_corso', 'publish', 'Corso Sommelier — Falconara', array( 'post_date' => '2024-01-01 12:00:00' ) );
+	$other = $create( 'fisar_corso', 'publish', 'Corso Sommelier — Falconara' );
+	$historical = $create( 'fisar_corso', 'publish', 'Edizione storica' );
+	$undated = $create( 'fisar_corso', 'publish', 'Edizione senza data' );
+	update_post_meta( $course, '_fisar_course_start_date', '2026-11-05' );
+	update_post_meta( $other, '_fisar_course_start_date', '2025-03-05' );
+	update_post_meta( $historical, '_fisar_course_archive_year', '2024' );
 	$draft = $create( 'fisar_corso', 'draft', 'Corso non pubblico' );
 	$protected = $create( 'fisar_corso', 'publish', 'Corso protetto', array( 'post_password' => 'local-only' ) );
 	$event = $create( 'fisar_evento', 'publish', 'Evento collegato' );
@@ -32,15 +37,32 @@ try {
 	$course_before = get_post_meta( $course );
 	$content_before = get_post_field( 'post_content', $report, 'raw' );
 	$nonce = wp_create_nonce( 'fisar_cdj_save_report' );
-	$request = array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', '_fisar_report_courses_present' => '1', Fisar_CDJ_Event_Reports::COURSE_META => array( (string) $course, (string) $other, (string) $course, (string) $draft, (string) $protected, (string) $event, '-1', array( $course ) ), Fisar_CDJ_Event_Reports::EVENT_META => (string) $event, '_fisar_report_facebook_url' => 'https://www.facebook.com/photo/?fbid=123&set=pcb.456' );
+	$request = array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', '_fisar_report_course_present' => '1', Fisar_CDJ_Event_Reports::COURSE_META => (string) $course, Fisar_CDJ_Event_Reports::EVENT_META => (string) $event, '_fisar_report_facebook_url' => 'https://www.facebook.com/photo/?fbid=123&set=pcb.456' );
 	$_POST = $request;
 	Fisar_CDJ_Event_Reports::save( $report );
-	$check( Fisar_CDJ_Event_Reports::courses_for_report( $report ) === array( $course, $other ), 'Keep distinct, public courses only, with one metadata row per ID.' );
+	$check( Fisar_CDJ_Event_Reports::courses_for_report( $report ) === array( $course ), 'Save a single selected course.' );
+	foreach ( array( $draft, $protected, $event, '-1', array( $course ) ) as $invalid ) {
+		$check( 0 === Fisar_CDJ_Event_Reports::sanitize_course_id( $invalid ), 'Reject unpublished, protected, wrong-type and malformed course IDs.' );
+	}
+	ob_start(); Fisar_CDJ_Event_Reports::render( get_post( $report ) ); $editor = ob_get_clean();
+	$document = new DOMDocument(); $document->loadHTML( '<meta charset="utf-8">' . $editor ); $xpath = new DOMXPath( $document );
+	$picker = $xpath->query( '//select[@id="_fisar_report_course_id"]' );
+	$check( 1 === $picker->length && ! $picker->item(0)->hasAttribute( 'multiple' ) && '_fisar_report_course_id' === $picker->item(0)->getAttribute( 'name' ), 'One labelled native single select submits one scalar course ID.' );
+	$check( 1 === $xpath->query( '//label[@for="_fisar_report_course_id"]' )->length && ! str_contains( $editor, 'name="_fisar_report_course_id[]"' ), 'The accessible picker replaces the checkbox list.' );
+	$choices = array();
+	foreach ( $xpath->query( '//select[@id="_fisar_report_course_id"]/option' ) as $option ) { $choices[ (int) $option->getAttribute( 'value' ) ] = $option->textContent; }
+	$check( array( $course, $other, $historical, $undated ) === array_values( array_intersect( array_keys( $choices ), array( $course, $other, $historical, $undated ) ) ), 'Editions sort by start date descending, then archive year, with undated courses last, regardless of publication order.' );
+	$check( str_starts_with( $choices[$course], '11/2026 — ' ) && str_starts_with( $choices[$other], '03/2025 — ' ) && str_starts_with( $choices[$historical], '2024 — ' ) && str_starts_with( $choices[$undated], 'Data non disponibile — ' ), 'Duplicate titles are distinguished by edition month/year without inventing missing dates.' );
+	$check( ! isset( $choices[$draft] ) && ! isset( $choices[$protected] ) && 1 === $xpath->query( '//select[@id="_fisar_report_course_id"]/option[@selected and @value="' . $course . '"]' )->length, 'Only published unprotected courses are offered, preserving the existing selection.' );
+	// Historical relations remain readable and unchanged merely by opening the editor.
+	add_post_meta( $report, Fisar_CDJ_Event_Reports::COURSE_META, $other );
+	ob_start(); Fisar_CDJ_Event_Reports::render( get_post( $report ) ); $legacy_editor = ob_get_clean();
+	$check( str_contains( $legacy_editor, 'Salvando verrà mantenuto solo il corso selezionato.' ) && array( $course, $other ) === Fisar_CDJ_Event_Reports::courses_for_report( $report ), 'Legacy multiple links are preserved on read, with a clear notice before replacement.' );
 	$check( get_post_meta( $course ) === $course_before && get_post_field( 'post_content', $report, 'raw' ) === $content_before, 'Linking must not change course metadata or article text.' );
 	$check( Fisar_CDJ_Event_Reports::event_for_report( $report ) === $event, 'Course links coexist with the original event relation.' );
 	$check( array() === Fisar_CDJ_Event_Reports::for_course( $course ), 'Draft reports remain absent.' );
 	$stored = get_post_meta( $report );
-	foreach ( array( array(), array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1' ), array_merge( $request, array( 'fisar_cdj_report_nonce' => 'bad' ) ), array_merge( $request, array( Fisar_CDJ_Event_Reports::COURSE_META => 'malformed' ) ) ) as $request_without_valid_courses ) {
+	foreach ( array( array(), array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1' ), array_merge( $request, array( 'fisar_cdj_report_nonce' => 'bad' ) ), array_merge( $request, array( Fisar_CDJ_Event_Reports::COURSE_META => 'malformed' ) ), array_merge( $request, array( Fisar_CDJ_Event_Reports::COURSE_META => array( (string) $course, (string) $other ) ) ), array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', '_fisar_report_courses_present' => '1', Fisar_CDJ_Event_Reports::COURSE_META => array( (string) $course ) ) ) as $request_without_valid_courses ) {
 		$_POST = $request_without_valid_courses;
 		Fisar_CDJ_Event_Reports::save( $report );
 		$check( get_post_meta( $report ) === $stored, 'Missing controls, invalid nonce or malformed list preserve all links.' );
@@ -70,13 +92,13 @@ try {
 	wp_update_post( array( 'ID' => $other, 'post_status' => 'draft' ) );
 	$check( Fisar_CDJ_Event_Reports::courses_for_report( $report ) === array( $course ) && array() === Fisar_CDJ_Event_Reports::for_course( $other ), 'Unpublishing a course removes its public links without deleting the stored relation.' );
 	wp_update_post( array( 'ID' => $other, 'post_status' => 'publish' ) );
-	$_POST = array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', '_fisar_report_courses_present' => '1', Fisar_CDJ_Event_Reports::COURSE_META => array( (string) $other ) );
+	$_POST = array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', '_fisar_report_course_present' => '1', Fisar_CDJ_Event_Reports::COURSE_META => (string) $other );
 	Fisar_CDJ_Event_Reports::save( $report );
 	$check( array_column( Fisar_CDJ_Event_Reports::for_course( $course ), 'ID' ) === array( $second ) && array_column( Fisar_CDJ_Event_Reports::for_course( $other ), 'ID' ) === array( $report ), 'Changing the article updates both courses automatically.' );
-	unset( $_POST[ Fisar_CDJ_Event_Reports::COURSE_META ] ); Fisar_CDJ_Event_Reports::save( $report );
-	$check( array() === Fisar_CDJ_Event_Reports::courses_for_report( $report ) && Fisar_CDJ_Event_Reports::event_for_report( $report ) === $event, 'Unchecking all courses clears only the course links.' );
+	$_POST[ Fisar_CDJ_Event_Reports::COURSE_META ] = '0'; Fisar_CDJ_Event_Reports::save( $report );
+	$check( array() === Fisar_CDJ_Event_Reports::courses_for_report( $report ) && Fisar_CDJ_Event_Reports::event_for_report( $report ) === $event, 'Selecting no course clears only the course links.' );
 	$check( array() === Fisar_CDJ_Event_Reports::for_course( $event ) && array() === Fisar_CDJ_Event_Reports::for_course( $protected ), 'Wrong types and protected courses cannot expose reports.' );
-	WP_CLI::success( 'Course reports: multiple relations, guarded saves, privacy, chronology, reassignment, clearing and reciprocal templates passed.' );
+	WP_CLI::success( 'Course reports: dated single select, edition ordering, legacy relations, guarded saves, privacy, chronology, reassignment, clearing and reciprocal templates passed.' );
 	if ( 'fixtures' === ( $args[0] ?? '' ) ) {
 		$_POST = array(); add_post_meta( $report, Fisar_CDJ_Event_Reports::COURSE_META, $course );
 		$keep = true;
