@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISAR_CDJ_THEME_VERSION', '1.6.163' );
+define( 'FISAR_CDJ_THEME_VERSION', '1.6.165' );
 
 require_once __DIR__ . '/inc/social-metadata.php';
 require_once __DIR__ . '/inc/training-journey.php';
@@ -90,6 +90,34 @@ function fisar_cdj_theme_gallery_image_orientation( string $html, array $block )
 	return $processor->get_updated_html();
 }
 add_filter( 'render_block_core/image', 'fisar_cdj_theme_gallery_image_orientation', 20, 2 );
+
+/** Derivatives affect rendered HTML only; native gallery blocks and lightbox sources stay intact. */
+function fisar_cdj_theme_optimized_image_attributes( int $id, string $sizes ): array {
+	if ( ! class_exists( 'Fisar_CDJ_Media_Variants' ) ) { return array(); }
+	$variants = Fisar_CDJ_Media_Variants::web( $id, false );
+	if ( is_wp_error( $variants ) || ! $variants ) { return array(); }
+	$default = $variants[ min( 2, count( $variants ) - 1 ) ];
+	return array(
+		'src' => $default['url'], 'width' => $default['width'], 'height' => $default['height'], 'sizes' => $sizes,
+		'srcset' => implode( ', ', array_map( static fn( $image ) => $image['url'] . ' ' . $image['width'] . 'w', $variants ) ),
+	);
+}
+
+function fisar_cdj_theme_optimize_gallery( string $html, array $block ): string {
+	if ( is_admin() || ! is_singular( 'post' ) || ! str_contains( $block['attrs']['className'] ?? '', 'is-style-fisar-photo-grid' ) ) { return $html; }
+	$processor = new WP_HTML_Tag_Processor( $html );
+	while ( $processor->next_tag( 'IMG' ) ) {
+		if ( ! preg_match( '/\bwp-image-(\d+)\b/', $processor->get_attribute( 'class' ) ?? '', $match ) ) { continue; }
+		$portrait = str_contains( $processor->get_attribute( 'class' ), 'fisar-photo-portrait' );
+		$sizes = $portrait ? '(min-width: 48rem) 246px, (min-width: 38rem) 33vw, 50vw' : '(min-width: 48rem) 328px, (min-width: 38rem) 44vw, 67vw';
+		foreach ( fisar_cdj_theme_optimized_image_attributes( (int) $match[1], $sizes ) as $name => $value ) { $processor->set_attribute( $name, $value ); }
+		$processor->set_attribute( 'loading', 'lazy' );
+		$processor->set_attribute( 'decoding', 'async' );
+		$processor->remove_attribute( 'fetchpriority' );
+	}
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/gallery', 'fisar_cdj_theme_optimize_gallery', 30, 2 );
 
 /** Match the editing canvas to each content template, not the admin interface. */
 function fisar_cdj_theme_content_editor_styles(): void {
@@ -454,13 +482,14 @@ function fisar_cdj_theme_post_image( int $post_id, string $class = '', bool $inf
 		}
 	}
 
-	printf(
-		'<img class="%1$s" src="%2$s" alt="%3$s" loading="%4$s" decoding="async">',
-		esc_attr( $class ),
-		esc_url( $url ),
-		esc_attr( $alt ),
-		esc_attr( $loading )
+	$sizes = '(min-width: 64rem) 34rem, calc(100vw - 2rem)';
+	if ( 'editorial-image__asset' === $class ) { $sizes = '(min-width: 24rem) 336px, calc(100vw - 3rem)'; }
+	if ( 'news-card__image' === $class ) { $sizes = is_home() || is_archive() || is_search() ? '(min-width: 38rem) 128px, calc(100vw - 2rem)' : '(min-width: 64rem) 24rem, (min-width: 38rem) 45vw, calc(100vw - 2rem)'; }
+	$attributes = array_merge(
+		array( 'class' => $class, 'alt' => $alt, 'loading' => $loading, 'decoding' => 'async', 'sizes' => $sizes ),
+		fisar_cdj_theme_optimized_image_attributes( $attachment_id, $sizes )
 	);
+	echo wp_get_attachment_image( $attachment_id, 'large', false, $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Native WordPress image escaping.
 }
 
 /** Hide only an explicit Italian prefix in display text, never in stored data or URLs. */

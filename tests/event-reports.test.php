@@ -88,7 +88,22 @@ try {
 	$check( array() === Fisar_CDJ_Event_Reports::for_event( $other_event ) && array() === Fisar_CDJ_Event_Reports::social_links( $report ), 'Explicit clearing removes links without changing content.' );
 	$check( array() === Fisar_CDJ_Event_Reports::for_event( 0 ) && array() === Fisar_CDJ_Event_Reports::for_event( $draft_event ) && array() === Fisar_CDJ_Event_Reports::for_event( $ordinary ), 'Invalid and nonpublic events have no report list.' );
 	ob_start(); Fisar_CDJ_Event_Reports::render( get_post( $report ) ); $editor = ob_get_clean();
-	$check( str_contains( $editor, 'Evento collegato' ) && str_contains( $editor, 'Racconto su Instagram (facoltativo)' ) && str_contains( $editor, 'fisar_cdj_report_nonce' ), 'The native editor provides the relation, URLs and nonce.' );
+	$check( str_contains( $editor, 'Evento collegato' ) && ! str_contains( $editor, '_fisar_report_instagram_url' ) && str_contains( $editor, 'fisar_cdj_report_nonce' ), 'The relationship panel keeps relations and their save nonce without duplicate URL fields.' );
+	ob_start(); Fisar_CDJ_Social_Editor::render( get_post( $report ) ); $social_editor = ob_get_clean();
+	foreach ( array( 'facebook' => 'Facebook', 'instagram' => 'Instagram' ) as $service => $label ) {
+		$key = '_fisar_report_' . $service . '_url';
+		$check( substr_count( $social_editor, 'id="' . $key . '"' ) === 1 && str_contains( $social_editor, 'URL del post ' . $label . ' (facoltativo)' ), 'One explicitly labelled URL control in the social tools section.' );
+		$check( strpos( $social_editor, 'id="' . $key . '"' ) < strpos( $social_editor, '<dialog' ), 'Manual URL controls remain in the editor, outside the preparation dialog.' );
+	}
+	$key = '_fisar_report_facebook_url';
+	update_post_meta( $report, $key, 'https://www.facebook.com/posts/automatically-filled' );
+	$_POST = array( 'fisar_cdj_report_nonce' => $nonce, '_fisar_report_fields_present' => '1', $key => '', '_fisar_report_social_original' => array( $key => '' ) );
+	Fisar_CDJ_Event_Reports::save( $report );
+	$check( 'https://www.facebook.com/posts/automatically-filled' === get_post_meta( $report, $key, true ), 'An unchanged stale form preserves an URL filled by Buffer in the meantime.' );
+	$_POST[ $key ] = 'https://www.facebook.com/posts/manual-url'; Fisar_CDJ_Event_Reports::save( $report );
+	$check( $_POST[ $key ] === get_post_meta( $report, $key, true ), 'An explicit manual edit can replace the URL.' );
+	$_POST['_fisar_report_social_original'][ $key ] = $_POST[ $key ]; $_POST[ $key ] = ''; Fisar_CDJ_Event_Reports::save( $report );
+	$check( '' === get_post_meta( $report, $key, true ), 'Explicit removal still clears the link.' );
 	WP_CLI::success( 'Event reports: guarded saves, unchanged events/text, public-only automatic links, multiple reports, reassignment, clearing and social labels passed.' );
 	if ( 'fixtures' === ( $args[0] ?? '' ) ) {
 		$_POST = array();

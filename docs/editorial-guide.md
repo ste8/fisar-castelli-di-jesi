@@ -36,7 +36,7 @@ Queste regole si applicano alla selezione e al caricamento di eventi, racconti, 
 
 ## Racconti degli eventi nel Blog
 
-In **Articoli → Aggiungi articolo**, il riquadro **Racconto dell’evento** contiene **Evento collegato** e i due URL facoltativi **Racconto su Facebook** / **Racconto su Instagram**. Scegliere l’evento dall’elenco (titolo e data), poi incollare i link ai singoli post social disponibili. Per un normale articolo lasciare Nessun evento e i link vuoti.
+In **Articoli → Aggiungi articolo**, il riquadro **Racconto di eventi e corsi** contiene **Evento collegato** e **Corsi collegati**. Scegliere l’evento dall’elenco (titolo e data), quando pertinente. I campi facoltativi **URL del post Facebook** / **URL del post Instagram** sono nel riquadro **Pubblica su Facebook e Instagram**, accanto al pulsante **Prepara post social**: incollare i link ai singoli post disponibili, anche se pubblicati direttamente sui social. I campi restano visibili nell’editor senza aprire la finestra di preparazione. Per un articolo senza un evento o un corso collegato lasciare vuote le relazioni; i link social possono comunque essere compilati.
 
 Il racconto mostra in fondo il rimando all’evento e i collegamenti **Guarda il racconto su Facebook** / **Guarda il racconto su Instagram**. L’evento mostra automaticamente **Leggi il racconto** appena l’articolo è pubblicato; se i racconti sono più di uno, mostra **Leggi i racconti** e l’elenco. Non occorre modificare anche l’evento. Cambiare evento, scollegare un articolo o riportarlo in bozza aggiorna automaticamente i rimandi. Articoli privati, programmati o protetti da password non compaiono nell’evento pubblico.
 

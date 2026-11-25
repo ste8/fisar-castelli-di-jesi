@@ -122,15 +122,25 @@ final class Fisar_CDJ_Event_Reports {
 				<?php if ( ! $courses ) : ?><p>Nessun corso pubblicato disponibile.</p><?php endif; ?>
 			</div>
 		</fieldset>
+		<?php
+	}
+
+	/** Existing source URLs live beside the social publishing tools, outside the dialog. */
+	public static function render_social_urls( WP_Post $post ): void {
+		?>
+		<div class="fisar-admin-section">
+		<h3>Post pubblicati sui social</h3>
 		<div class="fisar-admin-grid fisar-admin-grid--2">
 			<?php foreach ( self::SOCIAL_FIELDS as $key => $label ) : ?>
 				<div class="fisar-field">
-					<label for="<?php echo esc_attr( $key ); ?>"><strong>Racconto su <?php echo esc_html( $label ); ?> (facoltativo)</strong></label>
-					<input class="widefat" type="url" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( get_post_meta( $post->ID, $key, true ) ); ?>">
+					<label for="<?php echo esc_attr( $key ); ?>"><strong>URL del post <?php echo esc_html( $label ); ?> (facoltativo)</strong></label>
+					<input class="widefat" type="url" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( get_post_meta( $post->ID, $key, true ) ); ?>" aria-describedby="fisar-report-social-help">
+					<input type="hidden" name="_fisar_report_social_original[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( get_post_meta( $post->ID, $key, true ) ); ?>">
 				</div>
 			<?php endforeach; ?>
 		</div>
-		<p class="description">Incolla il link al singolo post. I collegamenti social compaiono in fondo al racconto; lascia vuoto un canale se non è disponibile.</p>
+		<p class="description" id="fisar-report-social-help">Incolla l’URL del singolo post, anche se pubblicato direttamente su Facebook o Instagram. I link compaiono in fondo all’articolo; lascia vuoto un canale se non è disponibile.</p>
+		</div>
 		<?php
 	}
 
@@ -156,8 +166,12 @@ final class Fisar_CDJ_Event_Reports {
 			}
 		}
 		foreach ( self::SOCIAL_FIELDS as $key => $label ) {
-			if ( isset( $_POST[ $key ] ) ) {
-				update_post_meta( $post_id, $key, wp_slash( self::sanitize_url( wp_unslash( $_POST[ $key ] ) ) ) );
+			if ( isset( $_POST[ $key ] ) && is_string( $_POST[ $key ] ) ) {
+				$value = self::sanitize_url( wp_unslash( $_POST[ $key ] ) );
+				$original = $_POST['_fisar_report_social_original'][ $key ] ?? null;
+				// A link filled by Buffer after this editor loaded must survive an unchanged form.
+				if ( is_string( $original ) && $value === self::sanitize_url( wp_unslash( $original ) ) && $value !== get_post_meta( $post_id, $key, true ) ) { continue; }
+				update_post_meta( $post_id, $key, wp_slash( $value ) );
 			}
 		}
 	}

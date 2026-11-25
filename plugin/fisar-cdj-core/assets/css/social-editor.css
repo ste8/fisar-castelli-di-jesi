@@ -1,0 +1,63 @@
+#fisar-social-composer { max-width: 78rem; }
+.fisar-social-dialog {
+	width: min(68rem, calc(100vw - 2rem));
+	max-width: none;
+	max-height: calc(100dvh - 3rem);
+	padding: 0;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+	background: #fff;
+	color: #1d2327;
+	box-sizing: border-box;
+	overflow: clip;
+}
+.fisar-social-dialog[open] { display: flex; flex-direction: column; }
+.fisar-social-dialog::backdrop { background: rgb(0 0 0 / .55); }
+.fisar-social-dialog-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid #dcdcde; }
+#fisar-social-dialog-title { margin: 0; padding: 0; font-size: 20px; line-height: 1.4; }
+.fisar-social-dialog-body { flex: 1 1 auto; overscroll-behavior: contain; padding: 0 1.5rem 1.5rem; overflow: auto; min-height: 0; }
+.fisar-social-dialog :focus-visible { outline: 2px solid #2271b1; outline-offset: 2px; }
+.fisar-social-notice { padding: .8rem 1rem; background: #f0f6fc; border-left: 4px solid #2271b1; }
+.fisar-social-warning { padding: .7rem 1rem; border-left: 4px solid #dba617; background: #fcf9e8; }
+.fisar-social-error { border-left-color: #d63638; background: #fcf0f1; }
+.fisar-social-channels { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-block: 1rem; }
+.fisar-social-channels legend { font-weight: 600; margin-bottom: .75rem; }
+.fisar-social-post { padding: 1rem; border: 1px solid #c3c4c7; border-radius: 4px; min-width: 0; }
+.fisar-social-post legend { padding: 0 .4rem; font-size: 1rem; font-weight: 600; }
+.fisar-social-post > label { display: block; margin-bottom: .5rem; }
+.fisar-social-post textarea { width: 100%; min-height: 10rem; resize: vertical; }
+.fisar-social-actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-block: 1rem; }
+.fisar-social-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem; list-style: none; padding: 0; margin: 1rem 0; }
+.fisar-social-photo { position: relative; min-width: 0; margin: 0; border: 1px solid #c3c4c7; border-radius: 4px; overflow: hidden; background: #fff; cursor: grab; }
+.fisar-social-photo > img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #f6f7f7; user-select: none; }
+.fisar-social-post[data-preview-network="facebook"] .fisar-social-photo-grid { align-items: start; }
+.fisar-social-post[data-preview-network="facebook"] .fisar-social-photo > img { aspect-ratio: auto; height: auto; }
+.fisar-social-photo-number { position: absolute; top: .4rem; left: .4rem; min-width: 1.5rem; line-height: 1.5rem; text-align: center; border-radius: 3px; background: #1d2327; color: #fff; font-weight: 600; }
+.fisar-social-photo-remove { position: absolute; top: .3rem; right: .3rem; width: 2rem; height: 2rem; padding: 0; border: 1px solid #8c8f94; border-radius: 50%; background: #fff; color: #1d2327; font-size: 24px; line-height: 1; cursor: pointer; }
+.fisar-social-photo-remove:hover { background: #fcf0f1; border-color: #b32d2e; color: #b32d2e; }
+.fisar-social-photo-position { display: flex; align-items: center; justify-content: space-between; gap: .4rem; padding: .5rem; cursor: default; }
+.fisar-social-photo-position select { min-height: 30px; width: 4rem; }
+.fisar-social-photo.is-dragging { opacity: .4; }
+.fisar-social-photo.is-drop-target { outline: 3px solid #2271b1; outline-offset: 2px; }
+.fisar-social-photo-add { display: flex; margin: 0; min-height: 11rem; }
+.fisar-social-photo-add-button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; width: 100%; border: 2px dashed #8c8f94; border-radius: 4px; background: #f6f7f7; color: #2271b1; font-size: 36px; cursor: pointer; }
+.fisar-social-photo-add-button span { font-size: 13px; }
+.fisar-social-photo-add-button:hover:enabled { background: #f0f6fc; border-color: #2271b1; }
+.fisar-social-photo-add-button:disabled { opacity: .5; cursor: default; }
+.fisar-social-available { padding: 1rem; margin: 1rem 0; border: 1px solid #2271b1; border-radius: 4px; background: #f0f6fc; }
+.fisar-social-available .fisar-social-actions { margin-top: 0; justify-content: space-between; }
+.fisar-social-available h4 { margin: 0; }
+.fisar-social-available-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: .75rem; }
+.fisar-social-available-photo { padding: 0; overflow: hidden; border: 1px solid #c3c4c7; border-radius: 3px; background: #fff; color: #2271b1; cursor: pointer; }
+.fisar-social-available-photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #f6f7f7; }
+.fisar-social-available-photo span { display: block; padding: .4rem; }
+.fisar-social-result { padding: .75rem; background: #f6f7f7; margin-block: .75rem; }
+.fisar-social-result p { margin: .4rem 0; }
+.fisar-social-dialog [hidden] { display: none !important; }
+@media(max-width: 480px) {
+	.fisar-social-dialog { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
+	.fisar-social-dialog-header { padding: .75rem; }
+	.fisar-social-dialog-body { flex: 1 1 auto; overscroll-behavior: contain; padding: 0 .75rem .75rem; }
+	.fisar-social-photo-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: .6rem; }
+	.fisar-social-photo-position { flex-wrap: wrap; }
+}
