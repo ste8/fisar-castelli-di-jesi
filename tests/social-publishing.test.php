@@ -80,11 +80,12 @@ try {
 	} finally { rename( $source_file . '.fixture-away', $source_file ); }
 	$payload['composer'] = $composer;
 	$check( ! empty( $api( $id, $payload )->get_data()['simulation'] ) && $count === count( $calls ) && ! get_post_meta( $id, Fisar_CDJ_Social_Publishing::DELIVERY_META, true ), 'Simulation needs no account and never sends or writes a delivery.' );
-	$larger_post = clone $post; $larger_post->post_content .= implode( '', array_map( static fn( $image ) => '<img class="wp-image-' . $image . '"/>', array_slice( $images, 12 ) ) );
-	$instagram_only = $composer; $instagram_only['networks']['facebook'] = false; $instagram_only['images'] = array_slice( $images, 0, 20 );
-	$check( ! is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $larger_post, $instagram_only, false ) ), 'The common selection can contain 20 photos if only Instagram is selected.' );
-	$bad = $instagram_only; $bad['images'] = $images;
-	$check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $larger_post, $bad, false ) ), 'Instagram 21 photos is invalid.' );
+	$instagram_only = $composer; $instagram_only['networks']['facebook'] = false;
+	$check( ! is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $post, $instagram_only, false ) ), 'Instagram alone accepts the common maximum of 10 photos.' );
+	$bad = $instagram_only; $bad['images'] = array_slice( $images, 0, 11 );
+	$check( 'social_image_limit' === Fisar_CDJ_Social_Publishing::validate_send( $post, $bad, false )->get_error_code(), 'Instagram alone rejects 11 photos.' );
+	$over_limit_payload = $payload; $over_limit_payload['composer'] = $bad;
+	$check( 'social_image_limit' === $api( $id, $over_limit_payload )->get_data()['code'] && $count === count( $calls ), 'Direct REST sends cannot bypass the 10-photo limit for Instagram alone.' );
 	foreach ( array( '2201 chars' => str_repeat( 'è', 2201 ), 'empty' => '' ) as $text ) { $bad = $composer; $bad['text'] = $text; $check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $post, $bad, false ) ), 'The shared caption respects every selected channel limit.' ); }
 	foreach ( array( null, 'bad', array( 'networks' => array() ), array_replace_recursive( $composer, array( 'networks' => array( 'facebook' => array( 'images' => array( '<script>' ) ) ) ) ) ) as $bad ) { $check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $bad, $post ) ), 'Malformed input rejected.' ); }
 	$bad = $composer; $bad['images'] = array( $id ); $check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $bad, $post ) ), 'Non-attachment image ID rejected.' );

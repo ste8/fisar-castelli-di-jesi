@@ -5,7 +5,7 @@ final class Fisar_CDJ_Social_Publishing {
 	public const DELIVERY_META = '_fisar_social_delivery';
 	public const NETWORKS = array(
 		'facebook' => array( 'label' => 'Facebook', 'images' => 10, 'characters' => 63206 ),
-		'instagram' => array( 'label' => 'Instagram', 'images' => 20, 'characters' => 2200 ),
+		'instagram' => array( 'label' => 'Instagram', 'images' => 10, 'characters' => 2200 ),
 	);
 
 	public static function is_live(): bool { return ! empty( Fisar_CDJ_Social_Settings::values()['live'] ); }

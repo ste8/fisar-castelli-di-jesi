@@ -16,6 +16,15 @@
 .fisar-social-dialog-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid #dcdcde; }
 #fisar-social-dialog-title { margin: 0; padding: 0; font-size: 20px; line-height: 1.4; }
 .fisar-social-dialog-body { flex: 1 1 auto; overscroll-behavior: contain; padding: 0 1.5rem 1.5rem; overflow: auto; min-height: 0; }
+.fisar-social-dialog-footer { flex: 0 0 auto; padding: .75rem 1.5rem; border-top: 1px solid #c3c4c7; background: #fff; }
+.fisar-social-dialog-footer > .fisar-social-actions { margin: 0; }
+.fisar-social-dialog-footer > .fisar-social-notice { display: flex; align-items: center; gap: .65rem; margin: .75rem 0 0; padding: .6rem .8rem; overflow-wrap: anywhere; }
+.fisar-social-dialog-footer .spinner { flex: 0 0 20px; float: none; margin: 0; }
+.fisar-social-dialog-footer .button.is-publishing { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; }
+.fisar-social-dialog-footer .button.button-primary.is-publishing:disabled { background: #2271b1 !important; border-color: #2271b1 !important; color: #fff !important; opacity: 1; cursor: wait; }
+.fisar-social-dialog-footer .button.is-publishing::before { content: ''; flex: 0 0 1em; width: 1em; height: 1em; box-sizing: border-box; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: fisar-social-button-spin .75s linear infinite; }
+@keyframes fisar-social-button-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .fisar-social-dialog-footer .button.is-publishing::before { animation: none; } }
 .fisar-social-dialog :focus-visible { outline: 2px solid #2271b1; outline-offset: 2px; }
 .fisar-social-notice { padding: .8rem 1rem; background: #f0f6fc; border-left: 4px solid #2271b1; }
 .fisar-social-warning { padding: .7rem 1rem; border-left: 4px solid #dba617; background: #fcf9e8; }
@@ -58,6 +67,9 @@
 	.fisar-social-dialog { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
 	.fisar-social-dialog-header { padding: .75rem; }
 	.fisar-social-dialog-body { flex: 1 1 auto; overscroll-behavior: contain; padding: 0 .75rem .75rem; }
+	.fisar-social-dialog-footer { padding: .75rem; }
+	.fisar-social-dialog-footer > .fisar-social-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+	.fisar-social-dialog-footer .button { width: 100%; min-height: 36px; white-space: normal; line-height: 1.4; padding-block: .4rem; }
 	.fisar-social-photo-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: .6rem; }
 	.fisar-social-photo-position { flex-wrap: wrap; }
 }

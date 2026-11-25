@@ -1,13 +1,13 @@
 const assert = require('node:assert/strict');
-const { issues, sharedIssues, mediaIssues, deliveryLocked, bindDialog, syncSocialUrls } = require('../plugin/fisar-cdj-core/assets/js/social-editor.js');
+const { issues, sharedIssues, mediaIssues, deliveryLocked, operationStatus, bindDialog, syncSocialUrls } = require('../plugin/fisar-cdj-core/assets/js/social-editor.js');
 const facebook = { label: 'Facebook', images: 10, characters: 63206 };
-const instagram = { label: 'Instagram', images: 20, characters: 2200 };
+const instagram = { label: 'Instagram', images: 10, characters: 2200 };
 const row = (count, text = 'Un racconto con le nostre foto') => ({ text, images: Array.from({ length: count }, (_, i) => i + 1) });
 assert.deepEqual(issues(row(10), facebook), []);
 assert.match(issues(row(11), facebook)[0], /11 foto.*10/);
 assert.match(issues(row(11), facebook)[0], /nessuna foto.*automaticamente/);
-assert.deepEqual(issues(row(20), instagram), []);
-assert.match(issues(row(21), instagram)[0], /21 foto.*20/);
+assert.deepEqual(issues(row(10), instagram), []);
+assert.match(issues(row(11), instagram)[0], /11 foto.*10/);
 assert.match(issues(row(0), instagram)[0], /almeno una foto/);
 assert.deepEqual(issues(row(0), facebook), []);
 assert.deepEqual(issues(row(1, '🍷'.repeat(2200)), instagram), []);
@@ -16,7 +16,7 @@ assert.match(issues(row(1, '  '), instagram)[0], /Inserisci/);
 const shared = { ...row(12), networks: { facebook: true, instagram: true } };
 assert.match(sharedIssues(shared, { facebook, instagram })[0], /Facebook.*12 foto/);
 shared.networks.facebook = false;
-assert.deepEqual(sharedIssues(shared, { facebook, instagram }), []);
+assert.match(sharedIssues(shared, { facebook, instagram })[0], /Instagram.*12 foto.*10/);
 shared.networks.instagram = false;
 assert.deepEqual(sharedIssues(shared, { facebook, instagram }), ['Seleziona almeno un social.']);
 shared.networks.facebook = shared.networks.instagram = true;
@@ -26,6 +26,13 @@ for (const status of ['sent', 'scheduled', 'sending', 'error']) assert.equal(del
 assert.equal(deliveryLocked({ status: 'unknown' }), true);
 assert.equal(deliveryLocked({ status: 'rejected' }), false);
 assert.equal(deliveryLocked(undefined), false);
+assert.match(operationStatus('send', true, 'now').label, /Pubblicazione in corso/);
+assert.match(operationStatus('send', true, 'scheduled').label, /Programmazione in corso/);
+assert.match(operationStatus('send', false, 'now').label, /Simulazione in corso/);
+for (const intent of ['save', 'refresh', 'reread']) {
+	assert.ok(operationStatus(intent, true, 'now').message);
+	assert.doesNotMatch(operationStatus(intent, true, 'now').message, /Pubblicato|Pubblicazione in corso/);
+}
 const photoVariants = [{ id: 1, variants: { facebook: { error: '' }, instagram: { error: 'Generazione non riuscita' } } }];
 const photoPost = { ...row(1), networks: { facebook: true, instagram: false } };
 assert.deepEqual(mediaIssues(photoPost, { facebook, instagram }, photoVariants), [], 'An unselected network cannot block the selected one.');

@@ -18,6 +18,14 @@
 		return errors;
 	}
 	function deliveryLocked(entry) { return Boolean(entry && (entry.id || entry.status === 'unknown')); }
+	function operationStatus(intent, live, mode) {
+		if (intent === 'send') {
+			const label = !live ? 'Simulazione in corso…' : (mode === 'scheduled' ? 'Programmazione in corso…' : 'Pubblicazione in corso…');
+			return { label, message: `${label} Attendi l’esito.` };
+		}
+		const label = { save: 'Salvataggio in corso…', refresh: 'Aggiornamento esiti…', reread: 'Lettura articolo…' }[intent] || '';
+		return { label, message: label };
+	}
 	function mediaIssues(post, networks, rows) {
 		return post.images.flatMap((id) => selectedNetworks(post, networks).map((service) => {
 			const variant = rows.find((row) => row.id === id)?.variants[service];
@@ -44,7 +52,7 @@
 			if (!dialog.open) { opener.focus(); onClose(); }
 		});
 	}
-	if (typeof module !== 'undefined') module.exports = { issues, sharedIssues, mediaIssues, deliveryLocked, bindDialog, syncSocialUrls };
+	if (typeof module !== 'undefined') module.exports = { issues, sharedIssues, mediaIssues, deliveryLocked, operationStatus, bindDialog, syncSocialUrls };
 	if (typeof window === 'undefined' || !window.wp) return;
 	const wp = window.wp;
 	wp.domReady(function () {
@@ -52,15 +60,16 @@
 		if (!root) return;
 		const container = root.querySelector('[data-social-content]');
 		const dialog = document.getElementById('fisar-social-dialog');
+		const footer = dialog.querySelector('[data-social-footer]');
 		const opener = document.getElementById('fisar-social-open');
 		const closer = document.getElementById('fisar-social-close');
 		const launcherStatus = document.getElementById('fisar-social-launcher-status');
 		// Gutenberg's scrollable metabox/form must not constrain the dialog or own its controls.
 		document.body.append(dialog);
 		const path = `/fisar-cdj/v1/social/${root.dataset.postId}`;
-		let state, busy = false, dirty = false, initialized = false, initializing = false;
+		let state, busy = false, activeIntent = '', dirty = false, needsReread = false, initialized = false, initializing = false;
 		const media = new Map();
-		let sendButton, saveButton, refreshButton, rereadButton, resultBox, messageBox, dirtyBox, modeSelect, dateInput;
+		let sendButton, saveButton, refreshButton, rereadButton, resultBox, messageBox, messageText, progressSpinner, dirtyBox, modeSelect, dateInput;
 		let fields, channelFields, textInput, textCount, photoCount, warning, photoGrid, availablePhotos, photoAnnouncement, previewSelect, formatNote;
 		let previewService = 'instagram';
 		bindDialog({
@@ -87,7 +96,7 @@
 			return editor?.getCurrentPostId?.() ? editor.isEditedPostDirty() || editor.isSavingPost() : classicValue() !== classicInitial;
 		}
 		function notify(text, error = false) {
-			messageBox.textContent = text;
+			messageText.textContent = text;
 			messageBox.className = `fisar-social-notice${error ? ' fisar-social-error' : ''}`;
 			messageBox.hidden = !text;
 		}
@@ -96,7 +105,15 @@
 			const remaining = selected.filter((service) => !state.live || !deliveryLocked(state.delivery[service]));
 			const mediaErrors = mediaIssues(state.composer, state.networks, state.media).length > 0;
 			sendButton.disabled = busy || !state.canPublish || !remaining.length || mediaErrors || sharedIssues(state.composer, state.networks, state.articleImages).length > 0 || nativeDirty();
-			sendButton.textContent = state.live ? (state.composer.mode === 'scheduled' ? 'Programma sui social' : 'Pubblica sui social') : 'Simula invio';
+			const progress = operationStatus(activeIntent, state.live, state.composer.mode);
+			sendButton.textContent = activeIntent === 'send' ? progress.label : (state.live ? (state.composer.mode === 'scheduled' ? 'Programma sui social' : 'Pubblica sui social') : 'Simula invio');
+			sendButton.classList.toggle('is-publishing', activeIntent === 'send');
+			sendButton.setAttribute('aria-busy', String(activeIntent === 'send'));
+			saveButton.textContent = activeIntent === 'save' ? progress.label : 'Salva preparazione';
+			refreshButton.textContent = activeIntent === 'refresh' ? progress.label : 'Aggiorna esiti';
+			rereadButton.textContent = activeIntent === 'reread' ? progress.label : 'Aggiorna dati articolo';
+			rereadButton.hidden = !needsReread;
+			progressSpinner.hidden = !busy;
 			saveButton.disabled = refreshButton.disabled = rereadButton.disabled = modeSelect.disabled = dateInput.disabled = busy;
 			fields.disabled = channelFields.disabled = busy;
 			previewSelect.disabled = busy;
@@ -105,6 +122,11 @@
 			dirtyBox.hidden = !nativeDirty();
 			container.setAttribute('aria-busy', String(busy));
 		}
+		function startOperation(intent) {
+			activeIntent = intent; busy = true; updateControls();
+			notify(operationStatus(intent, state.live, state.composer.mode).message);
+		}
+		function finishOperation() { activeIntent = ''; busy = false; updateControls(); }
 		function markDirty() { dirty = true; updateControls(); }
 		function setPreview(service) {
 			previewService = service; media.clear();
@@ -118,8 +140,7 @@
 			const selected = selectedNetworks(post, state.networks);
 			const maxImages = selected.length ? Math.min(...selected.map((service) => state.networks[service].images)) : null;
 			const maxCharacters = selected.length ? Math.min(...selected.map((service) => state.networks[service].characters)) : null;
-			const bytes = post.images.reduce((sum, id) => sum + (media.get(id)?.bytes || 0), 0);
-			photoCount.textContent = `${post.images.length} foto selezionate${maxImages ? ` · massimo ${maxImages} per i canali selezionati` : ''}${bytes ? ` · copie ${state.networks[previewService].label}: ${Math.ceil(bytes / 1024).toLocaleString('it-IT')} kB totali` : ''}`;
+			photoCount.textContent = `${post.images.length} foto selezionate${maxImages ? ` · massimo ${maxImages}` : ''}`;
 			formatNote.textContent = previewService === 'facebook' ? 'Facebook: foto intere nelle proporzioni originali, senza margini aggiunti.' : 'Instagram: copie 1080 × 1080 px con foto intere e margini bianchi dove servono, per conservare tutte le inquadrature nel carosello.';
 			textCount.textContent = `${Array.from(post.text).length.toLocaleString('it-IT')}${maxCharacters ? ` / ${maxCharacters.toLocaleString('it-IT')}` : ''} caratteri`;
 			const mediaErrors = mediaIssues(post, state.networks, state.media);
@@ -151,13 +172,14 @@
 		async function reread() {
 			if (busy) return false;
 			if (nativeDirty()) { notify('Salva prima le modifiche dell’articolo.', true); return false; }
-			busy = true; updateControls();
+			startOperation('reread');
 			try {
 				const fresh = await wp.apiFetch({ path });
 				state.version = fresh.version; state.articleImages = fresh.articleImages; state.suggestion = fresh.suggestion;
-				state.media = fresh.media; setPreview(previewService);
+				state.media = fresh.media; needsReread = false; setPreview(previewService);
+				notify('Dati dell’articolo riletti.');
 				return true;
-			} finally { busy = false; updateControls(); }
+			} finally { finishOperation(); }
 		}
 		function renderComposer() {
 			channelFields = element('fieldset', undefined, 'fisar-social-channels'); channelFields.append(element('legend', 'Dove pubblicare'));
@@ -208,7 +230,6 @@
 				element('h3', 'Anteprima delle foto'),
 				element('p', 'La selezione e l’ordine delle foto valgono per entrambi i social. Il menu cambia solo l’anteprima del formato.', 'description'),
 				previewControl, formatNote,
-				element('p', 'Trascina le foto per riordinarle, oppure usa “Posizione”. Con × le escludi dal post social; con + aggiungi quelle già presenti nell’articolo.', 'description'),
 				photoCount, warning, photos, availablePhotos, photoAnnouncement, photoActions);
 			container.append(fields);
 		}
@@ -228,7 +249,7 @@
 		async function action(intent) {
 			if (busy) return;
 			if (intent === 'send' && nativeDirty()) { notify('Salva prima le modifiche dell’articolo.', true); return; }
-			busy = true; updateControls(); notify(intent === 'send' ? (state.live ? 'Invio in corso… Attendi l’esito.' : 'Simulazione in corso…') : 'Operazione in corso…');
+			startOperation(intent);
 			try {
 				const response = await wp.apiFetch({ path, method: 'POST', data: { intent, composer: state.composer, version: state.version } });
 				syncSocialUrls(response.socialUrls, document);
@@ -236,18 +257,21 @@
 				if (intent !== 'refresh') dirty = false;
 				notify(response.message || 'Esiti aggiornati. Un post accettato da Buffer può essere ancora in pubblicazione.');
 			} catch (error) {
+				if (error.code === 'social_changed') needsReread = true;
 				notify(error.message || 'Richiesta interrotta. Aggiorna gli esiti prima di riprovare.', true);
 				try { const fresh = await wp.apiFetch({ path }); state.delivery = fresh.delivery; syncSocialUrls(fresh.socialUrls, document); renderResults(); } catch (_) { /* No automatic retry after an ambiguous outcome. */ }
-			} finally { busy = false; updateControls(); }
+			} finally { finishOperation(); }
 		}
 		async function init() {
 			if (initializing) return;
 			initializing = true;
 			try {
 				state = await wp.apiFetch({ path }); syncSocialUrls(state.socialUrls, document); setPreview(state.composer.networks.instagram ? 'instagram' : 'facebook'); container.replaceChildren();
-				container.append(element('p', state.live ? 'Pubblicazione reale attiva. Il pulsante invierà il post agli account selezionati.' : 'Modalità prova: nessun post verrà inviato a Buffer o pubblicato sui social.', 'fisar-social-notice'));
-				dirtyBox = element('p', 'Ci sono modifiche dell’articolo non salvate. Salvale e usa “Rileggi articolo salvato” prima dell’invio.', 'fisar-social-warning'); dirtyBox.hidden = true; container.append(dirtyBox);
-				messageBox = element('p', '', 'fisar-social-notice'); messageBox.hidden = true; messageBox.setAttribute('role', 'status'); messageBox.setAttribute('aria-live', 'polite'); container.append(messageBox);
+				dirtyBox = element('p', 'Ci sono modifiche dell’articolo non salvate. Salvale prima dell’invio.', 'fisar-social-warning'); dirtyBox.hidden = true; container.append(dirtyBox);
+				footer.replaceChildren();
+				messageBox = element('div', undefined, 'fisar-social-notice'); messageBox.hidden = true; messageBox.setAttribute('role', 'status'); messageBox.setAttribute('aria-live', 'polite'); messageBox.setAttribute('aria-atomic', 'true');
+				progressSpinner = element('span', undefined, 'spinner is-active'); progressSpinner.hidden = true; progressSpinner.setAttribute('aria-hidden', 'true');
+				messageText = element('span'); messageBox.append(progressSpinner, messageText);
 				renderComposer();
 				modeSelect = element('select'); modeSelect.id = 'fisar-social-mode';
 				[['now', 'Pubblica adesso'], ['scheduled', 'Programma data e ora']].forEach(([value, label]) => { const option = element('option', label); option.value = value; modeSelect.append(option); }); modeSelect.value = state.composer.mode;
@@ -259,13 +283,21 @@
 				const scheduling = element('div', undefined, 'fisar-social-actions'); scheduling.append(modeLabel, modeSelect, dateLabel, dateInput); container.append(scheduling);
 				const actions = element('div', undefined, 'fisar-social-actions'); saveButton = button('Salva preparazione', () => action('save'));
 				sendButton = button(state.live ? 'Pubblica sui social' : 'Simula invio', () => action('send'), 'button button-primary'); refreshButton = button('Aggiorna esiti', () => action('refresh'));
-				rereadButton = button('Rileggi articolo salvato', async () => { try { if (await reread()) notify('Articolo riletto. Il post preparato resta invariato: puoi aggiornarlo con “Usa testo dell’articolo” e “Usa foto dell’articolo”.'); } catch (error) { notify(error.message, true); } });
-				actions.append(saveButton, sendButton, refreshButton, rereadButton); container.append(actions);
+				rereadButton = button('Aggiorna dati articolo', async () => {
+					try {
+						if (await reread()) {
+							notify('Dati dell’articolo aggiornati. Testo, selezione e ordine del post preparato restano invariati.');
+							(sendButton.disabled ? saveButton : sendButton).focus();
+						}
+					} catch (error) { notify(error.message, true); }
+				});
+				actions.append(saveButton, sendButton, refreshButton, rereadButton); footer.append(actions, messageBox);
 				resultBox = element('div'); resultBox.setAttribute('aria-live', 'polite'); container.append(resultBox); photoGrid.render(); renderAvailablePhotos(); updatePreview(); renderResults();
+				footer.hidden = false;
 				initialized = true;
 				const unsubscribe = wp.data.subscribe(updateControls); window.addEventListener('pagehide', unsubscribe, { once: true });
 				window.addEventListener('beforeunload', (event) => { if (dirty || busy) { event.preventDefault(); event.returnValue = ''; } });
-			} catch (error) { container.replaceChildren(element('p', error.message || 'Impossibile aprire la preparazione social.', 'fisar-social-warning fisar-social-error'), button('Riprova', init)); }
+			} catch (error) { footer.hidden = true; container.replaceChildren(element('p', error.message || 'Impossibile aprire la preparazione social.', 'fisar-social-warning fisar-social-error'), button('Riprova', init)); }
 			finally { initializing = false; }
 		}
 	});

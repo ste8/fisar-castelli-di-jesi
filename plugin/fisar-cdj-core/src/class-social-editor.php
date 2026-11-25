@@ -34,6 +34,7 @@ final class Fisar_CDJ_Social_Editor {
 				<?php if ( current_user_can( 'manage_options' ) ) : ?><p><a href="<?php echo esc_url( admin_url( 'options-general.php?page=fisar-social' ) ); ?>">Impostazioni Pubblicazione social</a></p><?php endif; ?>
 				<div data-social-content><p>Caricamento della preparazione social…</p></div>
 			</div>
+			<div class="fisar-social-dialog-footer" data-social-footer role="group" aria-label="Azioni e stato del post social" hidden></div>
 		</dialog>
 		</div><?php
 	}
@@ -99,7 +100,7 @@ final class Fisar_CDJ_Social_Editor {
 			return is_wp_error( $result ) ? $result : array( 'delivery' => $result, 'socialUrls' => self::social_urls( $post->ID ) );
 		}
 		if ( ! is_string( $raw['version'] ?? null ) || ! hash_equals( self::version( $post ), $raw['version'] ) ) {
-			return new WP_Error( 'social_changed', 'L’articolo è cambiato. Rileggi i dati salvati e controlla la preparazione prima di inviare.', array( 'status' => 409 ) );
+			return new WP_Error( 'social_changed', 'L’articolo è cambiato. Aggiorna i dati dell’articolo e controlla la preparazione prima di inviare.', array( 'status' => 409 ) );
 		}
 		$composer = Fisar_CDJ_Social_Publishing::validate_composer( $raw['composer'] ?? null, $post );
 		if ( is_wp_error( $composer ) ) { return $composer; }
