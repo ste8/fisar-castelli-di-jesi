@@ -15,7 +15,8 @@ final class Fisar_CDJ_Social_Editor {
 		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) || ! $screen || 'post' !== $screen->post_type ) { return; }
 		wp_enqueue_style( 'fisar-social-editor', FISAR_CDJ_CORE_URL . 'assets/css/social-editor.css', array(), FISAR_CDJ_CORE_VERSION );
 		wp_enqueue_script( 'fisar-social-photo-grid', FISAR_CDJ_CORE_URL . 'assets/js/social-photo-grid.js', array(), FISAR_CDJ_CORE_VERSION, true );
-		wp_enqueue_script( 'fisar-social-editor', FISAR_CDJ_CORE_URL . 'assets/js/social-editor.js', array( 'wp-dom-ready', 'wp-api-fetch', 'wp-data', 'fisar-social-photo-grid' ), FISAR_CDJ_CORE_VERSION, true );
+		wp_enqueue_script( 'fisar-social-photo-tags', FISAR_CDJ_CORE_URL . 'assets/js/social-photo-tags.js', array(), FISAR_CDJ_CORE_VERSION, true );
+		wp_enqueue_script( 'fisar-social-editor', FISAR_CDJ_CORE_URL . 'assets/js/social-editor.js', array( 'wp-dom-ready', 'wp-api-fetch', 'wp-data', 'fisar-social-photo-grid', 'fisar-social-photo-tags' ), FISAR_CDJ_CORE_VERSION, true );
 	}
 
 	public static function render( WP_Post $post ): void {
@@ -74,6 +75,7 @@ final class Fisar_CDJ_Social_Editor {
 		return array(
 			'composer' => $composer, 'version' => self::version( $post ),
 			'networks' => Fisar_CDJ_Social_Publishing::NETWORKS,
+			'instagramTagLimit' => Fisar_CDJ_Social_Publishing::MAX_INSTAGRAM_TAGS,
 			'articleImages' => Fisar_CDJ_Social_Publishing::article_images( $post ),
 			'suggestion' => Fisar_CDJ_Social_Publishing::initial_text( $post ),
 			'media' => array_map( static fn( int $id ): array => array(

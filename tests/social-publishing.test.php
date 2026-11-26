@@ -72,6 +72,43 @@ try {
 	$composer['images'] = array_slice( $images, 0, 10 );
 	$validation = Fisar_CDJ_Social_Publishing::validate_send( $post, $composer, false );
 	$check( ! is_wp_error( $validation ), 'A shared selection of 10 photos works for both destinations. ' . ( is_wp_error( $validation ) ? $validation->get_error_message() : '' ) );
+	$tagged = $composer; $tagged['instagram_tags'] = array(
+		array( 'imageId' => $images[0], 'handle' => ' @Example.Person ', 'x' => 0.25, 'y' => 0.75 ),
+		array( 'imageId' => $images[9], 'handle' => 'second_person', 'x' => 1, 'y' => 0 ),
+	);
+	$tagged = Fisar_CDJ_Social_Publishing::validate_composer( $tagged, $post );
+	$check( ! is_wp_error( $tagged ) && 'example.person' === $tagged['instagram_tags'][0]['handle'], 'Normalize Instagram handles while preserving photo IDs and normalized positions.' );
+	$tag_save = $payload; $tag_save['intent'] = 'save'; $tag_save['composer'] = $tagged;
+	$check( 200 === $api( $id, $tag_save )->get_status() && $count === count( $calls ), 'Saving photo tags never sends a post.' );
+	$check( $tagged['instagram_tags'] === Fisar_CDJ_Social_Publishing::composer( $post )['instagram_tags'], 'Saved tags survive loading an existing preparation.' );
+	$tag_state = rest_do_request( new WP_REST_Request( 'GET', '/fisar-cdj/v1/social/' . $id ) )->get_data();
+	$check( $tagged['instagram_tags'] === $tag_state['composer']['instagram_tags'] && 20 === $tag_state['instagramTagLimit'], 'The authenticated editor can reload tags and the common post limit.' );
+	$reordered = $tagged; $reordered['images'] = array_reverse( $tagged['images'] );
+	$ig_tags = Fisar_CDJ_Social_Publishing::payload( 'instagram', 'ig', $reordered );
+	$check( 'second_person' === $ig_tags['assets'][0]['image']['metadata']['userTags'][0]['handle'] && 'example.person' === $ig_tags['assets'][9]['image']['metadata']['userTags'][0]['handle'], 'Tags follow the image ID after reordering, not its former position.' );
+	$check( 0.25 === $ig_tags['assets'][9]['image']['metadata']['userTags'][0]['x'] && 0.0 === $ig_tags['assets'][0]['image']['metadata']['userTags'][0]['y'] && isset( $ig_tags['assets'][9]['image']['metadata']['altText'] ), 'Instagram receives numeric normalized coordinates alongside alt text.' );
+	$check( ! isset( $ig_tags['assets'][1]['image']['metadata']['userTags'] ) && $composer['text'] === $ig_tags['text'], 'Tags do not spread to other photos or change the shared caption.' );
+	$fb_tags = Fisar_CDJ_Social_Publishing::payload( 'facebook', 'fb', $tagged );
+	$check( ! str_contains( wp_json_encode( $fb_tags ), 'userTags' ) && $composer['text'] === $fb_tags['text'], 'Facebook payloads and captions never contain Instagram photo tags.' );
+	foreach ( array(
+		array( 'imageId' => $images[10] ), array( 'imageId' => $id ), array( 'handle' => 'bad name' ), array( 'handle' => 'https://instagram.com/name' ), array( 'handle' => 'bad..name' ), array( 'handle' => str_repeat( 'a', 31 ) ),
+		array( 'x' => '0.5' ), array( 'x' => -0.1 ), array( 'y' => 1.01 ), array( 'x' => NAN ), array( 'y' => INF ), array( 'x' => true ),
+	) as $change ) {
+		$bad_tag = $tagged; $bad_tag['instagram_tags'][0] = array_replace( $bad_tag['instagram_tags'][0], $change );
+		$check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $bad_tag, $post ) ), 'Reject invalid handles, positions and tags on unselected/foreign photos.' );
+	}
+	$bad_tag = $tagged; $bad_tag['instagram_tags'][] = $tagged['instagram_tags'][0];
+	$check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $bad_tag, $post ) ), 'Reject duplicate accounts on the same photo.' );
+	$bad_tag['instagram_tags'] = array( 'unexpected' => $tagged['instagram_tags'][0] );
+	$check( is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $bad_tag, $post ) ), 'Reject malformed tag lists.' );
+	$many_tags = $composer; $many_tags['instagram_tags'] = array_map( static fn( $n ) => array( 'imageId' => $images[0], 'handle' => 'person_' . $n, 'x' => 0.5, 'y' => 0.5 ), range( 1, 21 ) );
+	$check( ! is_wp_error( Fisar_CDJ_Social_Publishing::validate_composer( $many_tags, $post ) ) && 'social_instagram_tag_limit' === Fisar_CDJ_Social_Publishing::validate_send( $post, $many_tags, false )->get_error_code(), 'An over-limit preparation can be saved but Instagram cannot be sent.' );
+	$many_tags['networks']['instagram'] = false;
+	$check( ! is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $post, $many_tags, false ) ), 'Inactive Instagram tags cannot block a Facebook-only send.' );
+	$many_tags['instagram_tags'] = array_slice( $many_tags['instagram_tags'], 0, 20 ); $many_tags['networks']['instagram'] = true;
+	$check( ! is_wp_error( Fisar_CDJ_Social_Publishing::validate_send( $post, $many_tags, false ) ), 'Exactly 20 tags are accepted.' );
+	$legacy_tags = $composer; unset( $legacy_tags['instagram_tags'] );
+	$check( array() === Fisar_CDJ_Social_Publishing::validate_composer( $legacy_tags, $post )['instagram_tags'], 'Existing preparations without tags remain valid.' );
 	$first_media = Fisar_CDJ_Social_Publishing::media( $images[0] );
 	$check( 1080 === $first_media['width'] && 1080 === $first_media['height'] && str_contains( $first_media['url'], '-social.jpg' ), 'The real generated JPEG, not the uploaded original, supplies validation dimensions.' );
 	$source_file = get_attached_file( $images[0] ); rename( $source_file, $source_file . '.fixture-away' );

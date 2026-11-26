@@ -1,4 +1,4 @@
-/* Photo preview is also the editor: native drag/drop, accessible positions and removal. */
+/* Photo preview is also the editor: drag/drop, keyboard reordering and removal. */
 (function () {
 	'use strict';
 	function movePhoto(ids, id, position) {
@@ -8,8 +8,8 @@
 		return next;
 	}
 	class SocialPhotoGrid {
-		constructor({ root, getIds, getMedia, onChange, onAdd, canAdd, announce }) {
-			Object.assign(this, { root, getIds, getMedia, onChange, onAdd, canAdd, announce });
+		constructor({ root, getIds, getMedia, onChange, onAdd, canAdd, announce, showTags = () => false, getTags = () => [], onTag }) {
+			Object.assign(this, { root, getIds, getMedia, onChange, onAdd, canAdd, announce, showTags, getTags, onTag });
 			this.disabled = false; this.dragId = null;
 			root.addEventListener('dragstart', (event) => this.startDrag(event));
 			root.addEventListener('dragover', (event) => this.over(event));
@@ -33,18 +33,28 @@
 			ids.forEach((id, index) => {
 				const image = this.getMedia(id);
 				const tile = this.create('li', 'fisar-social-photo'); tile.dataset.photoId = id; tile.draggable = !this.disabled;
+				tile.tabIndex = 0; tile.setAttribute('aria-label', `Foto ${index + 1} di ${ids.length}. Per riordinare usa Alt e i tasti freccia.`);
+				tile.addEventListener('keydown', (event) => {
+					if (event.target !== tile || !event.altKey || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+					event.preventDefault();
+					const target = index + (['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 1);
+					if (target >= 0 && target < ids.length) this.move(id, target);
+				});
 				const img = this.create('img'); img.src = image?.preview || image?.url || image?.thumbnail || ''; img.alt = image?.alt || image?.title || `Foto ${index + 1}`; img.draggable = false;
 				const number = this.create('span', 'fisar-social-photo-number', String(index + 1)); number.setAttribute('aria-hidden', 'true');
 				const remove = this.button('×', `Rimuovi foto ${index + 1}`, () => {
 					const next = this.getIds().filter((value) => value !== id); this.onChange(next); this.render(next[Math.min(index, next.length - 1)]);
 					this.announce(`Foto rimossa dal post social. ${next.length} foto selezionate.`);
 				}, 'fisar-social-photo-remove');
-				const positionLabel = this.create('label', 'fisar-social-photo-position-label', 'Posizione'); positionLabel.htmlFor = `fisar-social-position-${id}`;
-				const position = this.create('select'); position.id = positionLabel.htmlFor; position.setAttribute('aria-label', `Posizione della foto ${index + 1}`);
-				ids.forEach((_, n) => { const option = this.create('option', '', String(n + 1)); option.value = String(n); position.append(option); }); position.value = String(index);
-				position.addEventListener('change', () => this.move(id, Number(position.value)));
-				const controls = this.create('div', 'fisar-social-photo-position'); controls.append(positionLabel, position);
-				tile.append(img, number, remove, controls); this.root.append(tile);
+				tile.append(img, number, remove); this.root.append(tile);
+				if (this.showTags() && image?.url && !image.error) {
+					const tags = this.getTags(id);
+					const tagControls = this.create('div', 'fisar-social-photo-tag-controls');
+					const tagButton = this.button(tags.length ? `Tag (Instagram) · ${tags.length}` : 'Tag (Instagram)', `Tag (Instagram) nella foto ${index + 1}`, () => this.onTag(id, index), 'button');
+					tagButton.dataset.tagPhoto = id; tagControls.append(tagButton);
+					if (tags.length) tagControls.append(this.create('p', 'description', tags.map((tag) => `@${tag.handle}`).join(', ')));
+					tile.append(tagControls);
+				}
 			});
 			const addTile = this.create('li', 'fisar-social-photo-add');
 			const add = this.button('+', 'Aggiungi foto dall’articolo', this.onAdd, 'fisar-social-photo-add-button');
@@ -52,7 +62,7 @@
 			if (!this.canAdd()) add.title = 'Tutte le foto dell’articolo sono già selezionate.';
 			addTile.append(add); this.root.append(addTile);
 			this.setDisabled(this.disabled);
-			if (focusId !== undefined) this.root.querySelector(`[data-photo-id="${focusId}"] select`)?.focus();
+			if (focusId !== undefined) this.root.querySelector(`[data-photo-id="${focusId}"]`)?.focus();
 		}
 		move(id, position) {
 			if (this.disabled) return;

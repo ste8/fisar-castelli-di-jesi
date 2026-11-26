@@ -17,7 +17,24 @@
 		if (articleImages && post.images.some((id) => !articleImages.includes(id))) errors.push('Alcune foto non sono più nell’articolo. Rimuovile dal post social oppure aggiungile all’articolo e salvalo.');
 		return errors;
 	}
+	function photoTagIssues(post, limit) {
+		return post.networks.instagram && (post.instagram_tags || []).length > limit ? [`Instagram: massimo ${limit} tag nelle foto per post. Rimuovi quelli in più prima dell’invio.`] : [];
+	}
 	function deliveryLocked(entry) { return Boolean(entry && (entry.id || entry.status === 'unknown')); }
+	function publicationSummary(state) {
+		if (!state.live) return null;
+		const services = selectedNetworks(state.composer, state.networks).filter((service) => !deliveryLocked(state.delivery[service]));
+		if (!services.length) return null;
+		const scheduled = state.composer.mode === 'scheduled';
+		const date = state.composer.scheduled_at?.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/);
+		return {
+			title: scheduled ? 'Conferma programmazione' : 'Conferma pubblicazione',
+			button: scheduled ? 'Conferma programmazione' : 'Conferma pubblicazione',
+			targets: services.map((service) => `${state.networks[service].label}: ${state.accounts[service] || 'Account selezionato'}`),
+			photos: `${state.composer.images.length} foto selezionate`,
+			when: scheduled ? (date ? `Data e ora: ${date[3]}/${date[2]}/${date[1]} alle ${date[4]} (${state.timezone}).` : 'Data e ora da impostare.') : 'Il post verrà inviato adesso.',
+		};
+	}
 	function operationStatus(intent, live, mode) {
 		if (intent === 'send') {
 			const label = !live ? 'Simulazione in corso…' : (mode === 'scheduled' ? 'Programmazione in corso…' : 'Pubblicazione in corso…');
@@ -52,7 +69,7 @@
 			if (!dialog.open) { opener.focus(); onClose(); }
 		});
 	}
-	if (typeof module !== 'undefined') module.exports = { issues, sharedIssues, mediaIssues, deliveryLocked, operationStatus, bindDialog, syncSocialUrls };
+	if (typeof module !== 'undefined') module.exports = { issues, sharedIssues, photoTagIssues, mediaIssues, deliveryLocked, publicationSummary, operationStatus, bindDialog, syncSocialUrls };
 	if (typeof window === 'undefined' || !window.wp) return;
 	const wp = window.wp;
 	wp.domReady(function () {
@@ -67,14 +84,15 @@
 		// Gutenberg's scrollable metabox/form must not constrain the dialog or own its controls.
 		document.body.append(dialog);
 		const path = `/fisar-cdj/v1/social/${root.dataset.postId}`;
-		let state, busy = false, activeIntent = '', dirty = false, needsReread = false, initialized = false, initializing = false;
+		let state, busy = false, confirming = false, activeIntent = '', dirty = false, needsReread = false, initialized = false, initializing = false;
 		const media = new Map();
 		let sendButton, saveButton, refreshButton, rereadButton, resultBox, messageBox, messageText, progressSpinner, dirtyBox, modeSelect, dateInput;
 		let fields, channelFields, textInput, textCount, photoCount, warning, photoGrid, availablePhotos, photoAnnouncement, previewSelect, formatNote;
 		let previewService = 'instagram';
+		const tagEditor = new window.FisarSocialPhotoTags(document);
 		bindDialog({
 			dialog, opener, closer, title: document.getElementById('fisar-social-dialog-title'),
-			isBusy: () => busy,
+			isBusy: () => busy || confirming,
 			onOpen: () => { if (initialized) updateControls(); else init(); },
 			onClose: () => { photoGrid?.cancelDrag(); launcherStatus.textContent = dirty ? 'Preparazione modificata, non ancora salvata. Riapri la finestra per continuare.' : (state?.live ? 'Riapri per preparare il post o controllare gli esiti.' : 'Modalità prova: nessun post viene pubblicato sui social.'); },
 		});
@@ -101,10 +119,11 @@
 			messageBox.hidden = !text;
 		}
 		function updateControls() {
+			const locked = busy || confirming;
 			const selected = selectedNetworks(state.composer, state.networks);
 			const remaining = selected.filter((service) => !state.live || !deliveryLocked(state.delivery[service]));
 			const mediaErrors = mediaIssues(state.composer, state.networks, state.media).length > 0;
-			sendButton.disabled = busy || !state.canPublish || !remaining.length || mediaErrors || sharedIssues(state.composer, state.networks, state.articleImages).length > 0 || nativeDirty();
+			sendButton.disabled = locked || !state.canPublish || !remaining.length || mediaErrors || sharedIssues(state.composer, state.networks, state.articleImages).length > 0 || photoTagIssues(state.composer, state.instagramTagLimit).length > 0 || nativeDirty();
 			const progress = operationStatus(activeIntent, state.live, state.composer.mode);
 			sendButton.textContent = activeIntent === 'send' ? progress.label : (state.live ? (state.composer.mode === 'scheduled' ? 'Programma sui social' : 'Pubblica sui social') : 'Simula invio');
 			sendButton.classList.toggle('is-publishing', activeIntent === 'send');
@@ -114,11 +133,11 @@
 			rereadButton.textContent = activeIntent === 'reread' ? progress.label : 'Aggiorna dati articolo';
 			rereadButton.hidden = !needsReread;
 			progressSpinner.hidden = !busy;
-			saveButton.disabled = refreshButton.disabled = rereadButton.disabled = modeSelect.disabled = dateInput.disabled = busy;
-			fields.disabled = channelFields.disabled = busy;
-			previewSelect.disabled = busy;
-			photoGrid.setDisabled(busy);
-			closer.disabled = busy;
+			saveButton.disabled = refreshButton.disabled = rereadButton.disabled = modeSelect.disabled = dateInput.disabled = locked;
+			fields.disabled = channelFields.disabled = locked;
+			previewSelect.disabled = locked;
+			photoGrid.setDisabled(locked);
+			closer.disabled = locked;
 			dirtyBox.hidden = !nativeDirty();
 			container.setAttribute('aria-busy', String(busy));
 		}
@@ -144,14 +163,27 @@
 			formatNote.textContent = previewService === 'facebook' ? 'Facebook: foto intere nelle proporzioni originali, senza margini aggiunti.' : 'Instagram: copie 1080 × 1080 px con foto intere e margini bianchi dove servono, per conservare tutte le inquadrature nel carosello.';
 			textCount.textContent = `${Array.from(post.text).length.toLocaleString('it-IT')}${maxCharacters ? ` / ${maxCharacters.toLocaleString('it-IT')}` : ''} caratteri`;
 			const mediaErrors = mediaIssues(post, state.networks, state.media);
-			warning.textContent = [...new Set([...sharedIssues(post, state.networks, state.articleImages), ...mediaErrors])].join(' '); warning.hidden = !warning.textContent;
+			warning.textContent = [...new Set([...sharedIssues(post, state.networks, state.articleImages), ...photoTagIssues(post, state.instagramTagLimit), ...mediaErrors])].join(' '); warning.hidden = !warning.textContent;
 			updateControls();
 		}
 		function availableImageIds() { return state.articleImages.filter((id) => !state.composer.images.includes(id)); }
+		function editPhotoTags(id, index) {
+			if (busy || previewService !== 'instagram') return;
+			const tags = state.composer.instagram_tags || [];
+			tagEditor.open({
+				image: media.get(id), index, tags: tags.filter((tag) => tag.imageId === id),
+				otherCount: tags.filter((tag) => tag.imageId !== id).length, limit: state.instagramTagLimit,
+				onSave: (photoTags) => {
+					state.composer.instagram_tags = [...tags.filter((tag) => tag.imageId !== id), ...photoTags.map((tag) => ({ ...tag, imageId: id }))];
+					photoGrid.render(); updatePreview(); markDirty(); photoAnnouncement.textContent = `Tag della foto ${index + 1} aggiornati nella preparazione.`;
+				},
+				onClose: () => photoGrid.root.querySelector(`[data-tag-photo="${id}"]`)?.focus(),
+			});
+		}
 		function renderAvailablePhotos() {
 			availablePhotos.replaceChildren();
 			const heading = element('h4', 'Foto dell’articolo disponibili');
-			const close = button('Chiudi selezione', () => { availablePhotos.hidden = true; (photoGrid.root.querySelector('.fisar-social-photo-add-button:enabled') || photoGrid.root.querySelector('select'))?.focus(); });
+			const close = button('Chiudi selezione', () => { availablePhotos.hidden = true; (photoGrid.root.querySelector('.fisar-social-photo-add-button:enabled') || photoGrid.root.querySelector('[data-photo-id]'))?.focus(); });
 			const header = element('div', undefined, 'fisar-social-actions'); header.append(heading, close); availablePhotos.append(header);
 			const available = availableImageIds();
 			if (!available.length) { availablePhotos.append(element('p', 'Tutte le foto dell’articolo sono già selezionate.')); return; }
@@ -217,14 +249,15 @@
 			photoAnnouncement = element('p', '', 'screen-reader-text'); photoAnnouncement.setAttribute('role', 'status'); photoAnnouncement.setAttribute('aria-live', 'polite');
 			photoGrid = new window.FisarSocialPhotoGrid({
 				root: photos, getIds: () => state.composer.images, getMedia: (id) => media.get(id),
-				onChange: (ids) => { state.composer.images = ids; renderAvailablePhotos(); updatePreview(); markDirty(); },
+				onChange: (ids) => { state.composer.images = ids; state.composer.instagram_tags = (state.composer.instagram_tags || []).filter((tag) => ids.includes(tag.imageId)); renderAvailablePhotos(); updatePreview(); markDirty(); },
+				showTags: () => previewService === 'instagram', getTags: (id) => (state.composer.instagram_tags || []).filter((tag) => tag.imageId === id), onTag: editPhotoTags,
 				onAdd: () => { renderAvailablePhotos(); availablePhotos.hidden = false; availablePhotos.querySelector('button[data-add-photo]')?.focus(); },
 				canAdd: () => availableImageIds().length > 0,
 				announce: (text) => { photoAnnouncement.textContent = text; },
 			});
 			const photoActions = element('div', undefined, 'fisar-social-actions');
 			photoActions.append(button('Usa foto dell’articolo', async () => {
-				try { if (await reread()) { state.composer.images = [...state.articleImages]; photoGrid.render(); renderAvailablePhotos(); updatePreview(); markDirty(); } } catch (error) { notify(error.message, true); }
+				try { if (await reread()) { state.composer.images = [...state.articleImages]; state.composer.instagram_tags = (state.composer.instagram_tags || []).filter((tag) => state.composer.images.includes(tag.imageId)); photoGrid.render(); renderAvailablePhotos(); updatePreview(); markDirty(); } } catch (error) { notify(error.message, true); }
 			}));
 			fields.append(textLabel, textInput, textCount, useText,
 				element('h3', 'Anteprima delle foto'),
@@ -246,9 +279,37 @@
 				resultBox.append(item);
 			});
 		}
+		function confirmPublication(summary) {
+			return new Promise((resolve) => {
+				const confirmation = element('dialog', undefined, 'fisar-social-dialog fisar-social-confirm-dialog');
+				confirmation.setAttribute('aria-labelledby', 'fisar-social-confirm-title'); confirmation.setAttribute('aria-describedby', 'fisar-social-confirm-summary');
+				const header = element('div', undefined, 'fisar-social-dialog-header');
+				const title = element('h2', summary.title); title.id = 'fisar-social-confirm-title'; header.append(title);
+				const body = element('div', undefined, 'fisar-social-dialog-body'); body.id = 'fisar-social-confirm-summary';
+				body.append(element('p', 'Confermi l’invio del post a questi account?'));
+				const targets = element('ul'); summary.targets.forEach((target) => targets.append(element('li', target)));
+				body.append(targets, element('p', summary.photos), element('p', summary.when));
+				const actions = element('div', undefined, 'fisar-social-dialog-footer');
+				const cancel = button('Annulla', () => confirmation.close('cancel'));
+				actions.append(cancel, button(summary.button, () => confirmation.close('publish'), 'button button-primary'));
+				confirmation.append(header, body, actions); document.body.append(confirmation);
+				confirmation.addEventListener('close', () => { const approved = confirmation.returnValue === 'publish'; confirmation.remove(); resolve(approved); }, { once: true });
+				confirmation.showModal(); cancel.focus();
+			});
+		}
 		async function action(intent) {
-			if (busy) return;
+			if (busy || confirming) return;
 			if (intent === 'send' && nativeDirty()) { notify('Salva prima le modifiche dell’articolo.', true); return; }
+			if (intent === 'send') {
+				updateControls(); if (sendButton.disabled) return;
+				const summary = publicationSummary(state);
+				if (summary) {
+					confirming = true; updateControls();
+					let approved;
+					try { approved = await confirmPublication(summary); } finally { confirming = false; updateControls(); sendButton.focus(); }
+					if (!approved || sendButton.disabled) return;
+				}
+			}
 			startOperation(intent);
 			try {
 				const response = await wp.apiFetch({ path, method: 'POST', data: { intent, composer: state.composer, version: state.version } });

@@ -3,6 +3,7 @@
 final class Fisar_CDJ_Social_Publishing {
 	public const COMPOSER_META = '_fisar_social_composer';
 	public const DELIVERY_META = '_fisar_social_delivery';
+	public const MAX_INSTAGRAM_TAGS = 20;
 	public const NETWORKS = array(
 		'facebook' => array( 'label' => 'Facebook', 'images' => 10, 'characters' => 63206 ),
 		'instagram' => array( 'label' => 'Instagram', 'images' => 10, 'characters' => 2200 ),
@@ -44,17 +45,17 @@ final class Fisar_CDJ_Social_Publishing {
 
 	public static function composer( WP_Post $post ): array {
 		$saved = get_post_meta( $post->ID, self::COMPOSER_META, true );
-		if ( is_array( $saved ) && isset( $saved['text'], $saved['images'], $saved['networks'] ) ) { return $saved; }
+		if ( is_array( $saved ) && isset( $saved['text'], $saved['images'], $saved['networks'] ) ) { return array_merge( array( 'instagram_tags' => array() ), $saved ); }
 		// Preserve a preparation saved in the first local prototype; do not merge or crop photos.
 		if ( is_array( $saved ) && is_array( $saved['networks']['facebook'] ?? null ) ) {
 			$source = ! empty( $saved['networks']['facebook']['enabled'] ) ? $saved['networks']['facebook'] : $saved['networks']['instagram'];
 			return array(
 				'text' => $source['text'], 'images' => $source['images'],
 				'networks' => array_map( static fn( array $row ): bool => ! empty( $row['enabled'] ), $saved['networks'] ),
-				'mode' => $saved['mode'], 'scheduled_at' => $saved['scheduled_at'],
+				'mode' => $saved['mode'], 'scheduled_at' => $saved['scheduled_at'], 'instagram_tags' => array(),
 			);
 		}
-		return array( 'text' => self::initial_text( $post ), 'images' => self::article_images( $post ), 'networks' => array( 'facebook' => true, 'instagram' => true ), 'mode' => 'now', 'scheduled_at' => '' );
+		return array( 'text' => self::initial_text( $post ), 'images' => self::article_images( $post ), 'networks' => array( 'facebook' => true, 'instagram' => true ), 'mode' => 'now', 'scheduled_at' => '', 'instagram_tags' => array() );
 	}
 
 	public static function validate_composer( mixed $raw, WP_Post $post ): array|WP_Error {
@@ -72,7 +73,37 @@ final class Fisar_CDJ_Social_Publishing {
 			if ( ! is_bool( $raw['networks'][ $service ] ?? null ) ) { return new WP_Error( 'social_invalid', 'Selezione dei canali non valida.' ); }
 			$clean['networks'][ $service ] = $raw['networks'][ $service ];
 		}
+		$tags = self::instagram_tags( $raw['instagram_tags'] ?? array(), $clean['images'] );
+		if ( is_wp_error( $tags ) ) { return $tags; }
+		$clean['instagram_tags'] = $tags;
 		return $clean;
+	}
+
+	/** Photo IDs keep tags attached to their image when the shared gallery is reordered. */
+	private static function instagram_tags( mixed $raw, array $images ): array|WP_Error {
+		$error = new WP_Error( 'social_instagram_tags', 'Instagram: controlla gli username e le posizioni dei tag nelle foto.' );
+		if ( ! is_array( $raw ) || ! array_is_list( $raw ) || count( $raw ) > self::MAX_INSTAGRAM_TAGS * self::NETWORKS['instagram']['images'] ) { return $error; }
+		$tags = array(); $seen = array();
+		foreach ( $raw as $tag ) {
+			if ( ! is_array( $tag ) || ! is_int( $tag['imageId'] ?? null ) || ! in_array( $tag['imageId'], $images, true ) || ! is_string( $tag['handle'] ?? null ) ) { return $error; }
+			$handle = strtolower( ltrim( trim( $tag['handle'] ), '@' ) );
+			if ( ! preg_match( '/^[a-z0-9_](?:[a-z0-9_.]{0,28}[a-z0-9_])?$/D', $handle ) || str_contains( $handle, '..' ) ) { return $error; }
+			foreach ( array( 'x', 'y' ) as $axis ) {
+				if ( ! isset( $tag[$axis] ) || ( ! is_int( $tag[$axis] ) && ! is_float( $tag[$axis] ) ) || ! is_finite( (float) $tag[$axis] ) || $tag[$axis] < 0 || $tag[$axis] > 1 ) { return $error; }
+			}
+			$key = $tag['imageId'] . ':' . $handle;
+			if ( isset( $seen[$key] ) ) { return new WP_Error( 'social_instagram_tags', 'Instagram: lo stesso profilo è già taggato in questa foto.' ); }
+			$seen[$key] = true;
+			$tags[] = array( 'imageId' => $tag['imageId'], 'handle' => $handle, 'x' => (float) $tag['x'], 'y' => (float) $tag['y'] );
+		}
+		return $tags;
+	}
+
+	private static function tags_for_send( array $composer ): array|WP_Error {
+		$tags = self::instagram_tags( $composer['instagram_tags'] ?? array(), $composer['images'] );
+		if ( is_wp_error( $tags ) ) { return $tags; }
+		if ( count( $tags ) > self::MAX_INSTAGRAM_TAGS ) { return new WP_Error( 'social_instagram_tag_limit', 'Instagram: massimo ' . self::MAX_INSTAGRAM_TAGS . ' tag nelle foto per post. Rimuovi quelli in più prima dell’invio.' ); }
+		return $tags;
 	}
 
 	public static function media( int $id, string $service = 'instagram' ): array {
@@ -90,6 +121,10 @@ final class Fisar_CDJ_Social_Publishing {
 
 	public static function validate_send( WP_Post $post, array $composer, bool $live ): true|WP_Error {
 		if ( array_diff( $composer['images'], self::article_images( $post ) ) ) { return new WP_Error( 'social_article_images', 'Scegli solo foto già presenti nell’articolo.' ); }
+		if ( ! empty( $composer['networks']['instagram'] ) ) {
+			$tags = self::tags_for_send( $composer );
+			if ( is_wp_error( $tags ) ) { return $tags; }
+		}
 		if ( $live && ( 'publish' !== $post->post_status || $post->post_password || Fisar_CDJ_Content_Visibility::is_unlisted( $post->ID ) ) ) {
 			return new WP_Error( 'social_private', 'Per pubblicare sui social l’articolo deve essere pubblicato, elencato e senza password.' );
 		}
@@ -126,11 +161,16 @@ final class Fisar_CDJ_Social_Publishing {
 	}
 
 	public static function payload( string $service, string $channel, array $composer ): array|WP_Error {
+		$tags = 'instagram' === $service ? self::tags_for_send( $composer ) : array();
+		if ( is_wp_error( $tags ) ) { return $tags; }
 		$assets = array();
 		foreach ( $composer['images'] as $id ) {
 			$image = self::media( $id, $service );
 			if ( $image['error'] ) { return new WP_Error( 'social_media_prepare', $image['error'] ); }
-			$assets[] = array( 'image' => array( 'url' => $image['url'], 'metadata' => array( 'altText' => $image['alt'] ) ) );
+			$metadata = array( 'altText' => $image['alt'] );
+			$image_tags = array_values( array_filter( $tags, static fn( array $tag ): bool => $tag['imageId'] === $id ) );
+			if ( $image_tags ) { $metadata['userTags'] = array_map( static fn( array $tag ): array => array( 'handle' => $tag['handle'], 'x' => $tag['x'], 'y' => $tag['y'] ), $image_tags ); }
+			$assets[] = array( 'image' => array( 'url' => $image['url'], 'metadata' => $metadata ) );
 		}
 		$input = array(
 			'channelId' => $channel, 'text' => $composer['text'], 'schedulingType' => 'automatic',

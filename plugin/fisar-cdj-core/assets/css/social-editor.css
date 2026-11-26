@@ -14,7 +14,7 @@
 .fisar-social-dialog[open] { display: flex; flex-direction: column; }
 .fisar-social-dialog::backdrop { background: rgb(0 0 0 / .55); }
 .fisar-social-dialog-header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid #dcdcde; }
-#fisar-social-dialog-title { margin: 0; padding: 0; font-size: 20px; line-height: 1.4; }
+:is(#fisar-social-dialog-title, #fisar-social-tags-title, #fisar-social-confirm-title) { margin: 0; padding: 0; font-size: 20px; line-height: 1.4; }
 .fisar-social-dialog-body { flex: 1 1 auto; overscroll-behavior: contain; padding: 0 1.5rem 1.5rem; overflow: auto; min-height: 0; }
 .fisar-social-dialog-footer { flex: 0 0 auto; padding: .75rem 1.5rem; border-top: 1px solid #c3c4c7; background: #fff; }
 .fisar-social-dialog-footer > .fisar-social-actions { margin: 0; }
@@ -44,8 +44,25 @@
 .fisar-social-photo-number { position: absolute; top: .4rem; left: .4rem; min-width: 1.5rem; line-height: 1.5rem; text-align: center; border-radius: 3px; background: #1d2327; color: #fff; font-weight: 600; }
 .fisar-social-photo-remove { position: absolute; top: .3rem; right: .3rem; width: 2rem; height: 2rem; padding: 0; border: 1px solid #8c8f94; border-radius: 50%; background: #fff; color: #1d2327; font-size: 24px; line-height: 1; cursor: pointer; }
 .fisar-social-photo-remove:hover { background: #fcf0f1; border-color: #b32d2e; color: #b32d2e; }
-.fisar-social-photo-position { display: flex; align-items: center; justify-content: space-between; gap: .4rem; padding: .5rem; cursor: default; }
-.fisar-social-photo-position select { min-height: 30px; width: 4rem; }
+.fisar-social-photo-tag-controls { padding: .5rem; cursor: default; }
+.fisar-social-photo-tag-controls .button { width: 100%; min-height: 32px; padding: .4rem .5rem; line-height: 1.4; white-space: normal; color: #2c3338; border-color: #8c8f94; background: #f6f7f7; }
+.fisar-social-photo-tag-controls .button:hover:enabled { color: #1d2327; border-color: #50575e; background: #f0f0f1; }
+.fisar-social-confirm-dialog { width: min(36rem, calc(100vw - 2rem)); }
+.fisar-social-confirm-dialog .fisar-social-dialog-footer { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: .6rem; }
+.fisar-social-photo-tag-controls p { margin: .4rem 0 0; overflow-wrap: anywhere; }
+.fisar-social-tags-dialog { width: min(60rem, calc(100vw - 2rem)); }
+.fisar-social-tags-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem; }
+.fisar-social-tag-stage { position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: #fff; cursor: crosshair; overflow: hidden; }
+.fisar-social-tag-stage > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.fisar-social-tag-markers { position: absolute; inset: 0; pointer-events: none; }
+.fisar-social-image-tag { position: absolute; max-width: 70%; padding: .2rem .35rem; transform: translate(-50%, -50%); border-radius: 3px; background: rgb(0 0 0 / .8); color: #fff; font-size: 13px; overflow-wrap: anywhere; }
+.fisar-social-tag-point { position: absolute; display: grid; place-items: center; width: 28px; height: 28px; transform: translate(-50%, -50%); border: 2px solid #fff; border-radius: 50%; background: #2271b1; color: #fff; font-size: 22px; box-shadow: 0 0 0 2px #2271b1; }
+.fisar-social-tag-controls > label { display: block; margin-bottom: .5rem; font-weight: 600; }
+.fisar-social-tag-controls > input { width: 100%; }
+.fisar-social-tag-list { list-style: none; margin: 1rem 0; padding: 0; }
+.fisar-social-tag-list li { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding-block: .65rem; border-bottom: 1px solid #dcdcde; }
+.fisar-social-tag-list a { flex: 1 1 100%; overflow-wrap: anywhere; }
+@media(max-width: 680px) { .fisar-social-tags-layout { grid-template-columns: minmax(0, 1fr); gap: .5rem; } }
 .fisar-social-photo.is-dragging { opacity: .4; }
 .fisar-social-photo.is-drop-target { outline: 3px solid #2271b1; outline-offset: 2px; }
 .fisar-social-photo-add { display: flex; margin: 0; min-height: 11rem; }
@@ -71,5 +88,4 @@
 	.fisar-social-dialog-footer > .fisar-social-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
 	.fisar-social-dialog-footer .button { width: 100%; min-height: 36px; white-space: normal; line-height: 1.4; padding-block: .4rem; }
 	.fisar-social-photo-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: .6rem; }
-	.fisar-social-photo-position { flex-wrap: wrap; }
 }

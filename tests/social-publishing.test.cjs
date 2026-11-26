@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { issues, sharedIssues, mediaIssues, deliveryLocked, operationStatus, bindDialog, syncSocialUrls } = require('../plugin/fisar-cdj-core/assets/js/social-editor.js');
+const { issues, sharedIssues, photoTagIssues, mediaIssues, deliveryLocked, publicationSummary, operationStatus, bindDialog, syncSocialUrls } = require('../plugin/fisar-cdj-core/assets/js/social-editor.js');
 const facebook = { label: 'Facebook', images: 10, characters: 63206 };
 const instagram = { label: 'Instagram', images: 10, characters: 2200 };
 const row = (count, text = 'Un racconto con le nostre foto') => ({ text, images: Array.from({ length: count }, (_, i) => i + 1) });
@@ -26,6 +26,24 @@ for (const status of ['sent', 'scheduled', 'sending', 'error']) assert.equal(del
 assert.equal(deliveryLocked({ status: 'unknown' }), true);
 assert.equal(deliveryLocked({ status: 'rejected' }), false);
 assert.equal(deliveryLocked(undefined), false);
+const confirmationState = {
+	live: true, composer: { ...row(8), networks: { facebook: true, instagram: true }, mode: 'now', scheduled_at: '' },
+	networks: { facebook, instagram }, delivery: {}, accounts: { facebook: 'Pagina Facebook', instagram: 'Profilo Instagram' }, timezone: 'Europe/Rome',
+};
+assert.deepEqual(publicationSummary(confirmationState).targets, ['Facebook: Pagina Facebook', 'Instagram: Profilo Instagram']);
+assert.equal(publicationSummary(confirmationState).photos, '8 foto selezionate');
+assert.match(publicationSummary(confirmationState).when, /adesso/);
+confirmationState.delivery.facebook = { id: 'remote-fb', status: 'sent' };
+assert.deepEqual(publicationSummary(confirmationState).targets, ['Instagram: Profilo Instagram'], 'Confirmation lists only destinations that can still receive the post.');
+confirmationState.composer.mode = 'scheduled'; confirmationState.composer.scheduled_at = '2030-04-01T18:45';
+assert.equal(publicationSummary(confirmationState).title, 'Conferma programmazione');
+assert.equal(publicationSummary(confirmationState).when, 'Data e ora: 01/04/2030 alle 18:45 (Europe/Rome).');
+confirmationState.delivery.instagram = { status: 'unknown' };
+assert.equal(publicationSummary(confirmationState), null, 'Already-created and ambiguous destinations cannot be confirmed for another send.');
+confirmationState.delivery = {}; confirmationState.composer.networks.facebook = false;
+assert.deepEqual(publicationSummary(confirmationState).targets, ['Instagram: Profilo Instagram']);
+confirmationState.live = false;
+assert.equal(publicationSummary(confirmationState), null, 'Simulation never asks for a real-publication confirmation.');
 assert.match(operationStatus('send', true, 'now').label, /Pubblicazione in corso/);
 assert.match(operationStatus('send', true, 'scheduled').label, /Programmazione in corso/);
 assert.match(operationStatus('send', false, 'now').label, /Simulazione in corso/);
@@ -94,3 +112,19 @@ const selected = { ...row(2), networks: { facebook: true, instagram: true } };
 assert.deepEqual(sharedIssues(selected, { facebook, instagram }, [1, 2, 3]), []);
 assert.match(sharedIssues(selected, { facebook, instagram }, [1])[0], /non sono più nell’articolo/);
 console.log('Photo preview: immutable first/last/adjacent ordering and article-only selection checks passed.');
+
+const { normalizeHandle, validHandle, normalizedPoint } = require('../plugin/fisar-cdj-core/assets/js/social-photo-tags.js');
+assert.equal(normalizeHandle(' @Example.Person '), 'example.person');
+for (const handle of ['a', '_person', 'example.person', 'person_123', 'a'.repeat(30)]) assert.equal(validHandle(handle), true);
+for (const handle of ['', 'bad name', '.person', 'person.', 'two..dots', 'https://instagram.com/person', 'a'.repeat(31), '<script>']) assert.equal(validHandle(handle), false);
+assert.deepEqual(normalizedPoint(200, 400, { left: 100, top: 100, width: 400, height: 400 }), { x: .25, y: .75 });
+assert.deepEqual(normalizedPoint(-1, 900, { left: 100, top: 100, width: 400, height: 400 }), { x: 0, y: 1 });
+const tagPost = { ...row(2), networks: { facebook: true, instagram: true }, instagram_tags: Array.from({ length: 21 }, () => ({ imageId: 1 })) };
+assert.match(photoTagIssues(tagPost, 20)[0], /massimo 20/);
+tagPost.networks.instagram = false;
+assert.deepEqual(photoTagIssues(tagPost, 20), []);
+tagPost.networks.instagram = true; tagPost.instagram_tags.pop();
+assert.deepEqual(photoTagIssues(tagPost, 20), []);
+delete tagPost.instagram_tags;
+assert.deepEqual(photoTagIssues(tagPost, 20), []);
+console.log('Photo tags: exact handles, normalized image positions, legacy preparations and Instagram-only limits passed.');
